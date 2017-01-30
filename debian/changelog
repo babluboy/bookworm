@@ -1,0 +1,10 @@
+nutty (0.1) precise; urgency=low
+
+  * Initial Release (13-Jul-2015)
+  First release of Nutty with the following features:
+  1) Get Basic Information on Network Cards
+  2) Find the route hop times to any valid URL or IP Address
+  3) Check the ports in use
+  4) Find details of the devices on the home network
+
+ -- Siddhartha Das <bablu.boy@gmail.com>  Mon, 13 Jul 2015 20:00:00 -0000

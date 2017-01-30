@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Version=0.1
+Name=Bookworm
+GenericName=eBook Reader
+Comment=Opens digital eBooks for reading
+Categories=GTK;Utility;
+Exec=bookworm
+Icon=bookworm
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=bookworm
+X-GNOME-Keywords=Bookworm;ebook;reader
+Actions=AboutDialog;
+
+[Desktop Action AboutDialog]
+Exec=bookworm --about
+Name=About Bookworm
