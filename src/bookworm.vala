@@ -1,4 +1,4 @@
-/* Copyright 2016 Siddhartha Das (bablu.boy@gmail.com)
+/* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
 * This file is part of Bookworm.
 *
@@ -13,7 +13,7 @@
 * Public License for more details.
 *
 * You should have received a copy of the GNU General Public License along
-* with Nutty. If not, see http://www.gnu.org/licenses/.
+* with Bookworm. If not, see http://www.gnu.org/licenses/.
 */
 
 using Gtk;
@@ -43,13 +43,16 @@ namespace BookwormApp {
 		public string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 		public Gtk.Box bookSelection_ui_box;
 		public Gtk.Box bookReading_ui_box;
+		public Gtk.Grid library_grid;
+		public static Gee.HashMap<string, Gee.HashMap<string,string>> libraryViewMap = new Gee.HashMap<string, Gee.HashMap<string,string>>();
+		public string locationOfEBookCurrentlyRead = "";
 
 		construct {
 			application_id = "org.bookworm";
 			flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 
 			program_name = "Bookworm";
-			app_years = "2016";
+			app_years = "2017";
 
 			build_version = Constants.bookworm_version;
 			app_icon = "bookworm";
@@ -142,12 +145,7 @@ namespace BookwormApp {
 			window.add(createBoookwormUI());
 			window.show_all();
 			toggleUIState();
-			//load pictures
-			try{
 
-			}catch(GLib.Error e){
-				warning("Failed to load icons/theme: "+e.message);
-			}
 			//Exit Application Event
 			window.destroy.connect (() => {
 				//save state information to file
@@ -230,7 +228,10 @@ namespace BookwormApp {
 			//Create the UI for selecting a book
 			bookSelection_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
 			//Create a box to display the book library
-			Gtk.Box library_box = new Gtk.Box (Orientation.HORIZONTAL, 0);
+			library_grid = new Gtk.Grid ();
+			library_grid.set_column_spacing (BookwormApp.Constants.SPACING_WIDGETS);
+			library_grid.set_row_spacing (BookwormApp.Constants.SPACING_WIDGETS);
+
 			//Create a footer to add/remove books
 			Gtk.Box add_remove_footer_box = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
 			//Set up Button for adding book
@@ -249,14 +250,18 @@ namespace BookwormApp {
 			add_remove_footer_box.pack_start (remove_book_button, false, true, 0);
 
 			//add all components to ui box for selecting a book
-			bookSelection_ui_box.pack_start (library_box, true, true, 0);
+			bookSelection_ui_box.pack_start (library_grid, true, true, 0);
       bookSelection_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
 			//Create the UI for reading a selected book
 			bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
 			//create the webview to display page content
-			aReader = new ePubReader();
-			aWebView = aReader.getWebView();
+			WebKit.Settings webkitSettings = new WebKit.Settings();
+	    webkitSettings.set_allow_file_access_from_file_urls (true);
+	    webkitSettings.set_default_font_family("droid sans");
+	    //webkitSettings.set_allow_universal_access_from_file_urls(true);
+	    webkitSettings.set_auto_load_images(true);
+	    aWebView = new WebKit.WebView.with_settings(webkitSettings);
 
 			//create book reading footer
 			Gtk.Box book_reading_footer_box = new Gtk.Box (Orientation.HORIZONTAL, 0);
@@ -289,21 +294,23 @@ namespace BookwormApp {
 
 			//Add all UI action listeners
 			forward_button.clicked.connect (() => {
-				ePubReader.pageChange (aWebView, aReader.currentPageNumber+1);
-				pageNumberLabel.set_text((aReader.currentPageNumber+1).to_string() + " of " + "504");
-				//check if the end of the book is reached and disable forward page button
-				if(aReader.currentPageNumber+1 == aReader.readingListData.size){
-					forward_button.set_sensitive(false);
-				}
+				//get hashmap for ebook
+				Gee.HashMap<string,string> bookDetailsMap = libraryViewMap.get(locationOfEBookCurrentlyRead);
+				//get list of content pages in book
+				Gee.ArrayList<string> pageContentList = new Gee.ArrayList<string> ();
+				pageContentList = BookwormApp.ePubReader.getListOfPagesInBook(bookDetailsMap);
+				bookDetailsMap = BookwormApp.ePubReader.renderPage(aWebView, bookDetailsMap, pageContentList, "FORWARD");
 			});
 			back_button.clicked.connect (() => {
-				if(aReader.currentPageNumber > 0){
-					ePubReader.pageChange (aWebView, aReader.currentPageNumber-1);
-					pageNumberLabel.set_text((aReader.currentPageNumber-1).to_string() + " of " + "504");
-				}
+				//get hashmap for ebook
+				Gee.HashMap<string,string> bookDetailsMap = libraryViewMap.get(locationOfEBookCurrentlyRead);
+				//get list of content pages in book
+				Gee.ArrayList<string> pageContentList = new Gee.ArrayList<string> ();
+				pageContentList = BookwormApp.ePubReader.getListOfPagesInBook(bookDetailsMap);
+				bookDetailsMap = BookwormApp.ePubReader.renderPage(aWebView, bookDetailsMap, pageContentList, "BACKWARD");
 			});
 			add_book_button.clicked.connect (() => {
-				readSelectedBook();
+				selectAndAddBookToLibrary();
 			});
 			remove_book_button.clicked.connect (() => {
 
@@ -321,19 +328,73 @@ namespace BookwormApp {
 	    BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EPUB_EXTRACTION_LOCATION, "", "");
 		}
 
-		public void readSelectedBook(){
-			//reset the arraylist contaning the book details
-			BookwormApp.ePubReader.readingListData.clear();
-			BookwormApp.ePubReader.currentPageNumber = -1;
-			//prepare the selected book for reading
-			ePubReader.prepareBookForReading(window);
-			//Update header title
-			headerbar.subtitle = BookwormApp.ePubReader.bookTitle;
-			//set UI for reading book
+		public void selectAndAddBookToLibrary(){
+			//create a hashmap to hold details for the book
+			Gee.HashMap<string,string> bookDetailsMap = new Gee.HashMap<string,string>();
+	    //choose eBook using a File chooser dialog
+			string eBookLocation = "";
+			Gtk.FileChooserDialog aFileChooserDialog = BookwormApp.Utils.new_file_chooser_dialog (Gtk.FileChooserAction.OPEN, "Select eBook", window, false);
+	    aFileChooserDialog.show_all ();
+	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
+	      eBookLocation = aFileChooserDialog.get_filename();
+				bookDetailsMap.set("LOCATION_OF_EBOOK", eBookLocation);
+				debug("Choosen eBook = " + eBookLocation);
+	      BookwormApp.Utils.last_file_chooser_path = aFileChooserDialog.get_current_folder();
+	      debug("Last visited folder for FileChooserDialog set as:"+BookwormApp.Utils.last_file_chooser_path);
+	      aFileChooserDialog.destroy();
+	    }else{
+	      aFileChooserDialog.destroy();
+	    }
+			//create temp location for extraction of eBook
+			string extractionLocation = BookwormApp.Constants.EPUB_EXTRACTION_LOCATION;
+			extractionLocation = extractionLocation + File.new_for_path(eBookLocation).get_basename();
+			bookDetailsMap.set("LOCATION_OF_EXTRACTED_EBOOK_CONTENTS", extractionLocation);
+			//check and create directory for extracting contents of ebook
+	    BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
+	    //unzip eBook contents into temp location
+	    BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
+			debug("eBook extracted into folder:"+extractionLocation);
+			//determine location of eBook cover image
+			bookDetailsMap = BookwormApp.ePubReader.getBookCoverImageLocation(bookDetailsMap);
+			//add book details to libraryView Map
+			libraryViewMap.set(eBookLocation, bookDetailsMap);
+			//add eBook cover image to library view
+			updateLibraryView(bookDetailsMap);
+		}
+
+		public void updateLibraryView(Gee.HashMap<string,string> bookDetailsMap){
+			string bookCoverLocation = bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE");
+			debug("Updating Library for cover:"+bookCoverLocation);
+			Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_size(bookCoverLocation, 200,200);
+			Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+			Gtk.EventBox aEventBox = new Gtk.EventBox();
+    	aEventBox.add(aCoverImage);
+			//aEventBox.child_set_property (aCoverImage, "BOOK_ID", bookDetailsMap.get("LOCATION_OF_EBOOK"));
+			int noOfBooksInLibraryView = libraryViewMap.size;
+			debug ("No of books in library:"+noOfBooksInLibraryView.to_string());
+			library_grid.attach(aEventBox, noOfBooksInLibraryView, 0, 1, 1);
+			window.show_all();
+			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+			toggleUIState();
+			//add listener for book cover EventBox
+			aEventBox.button_press_event.connect (() => {
+				readSelectedBook(bookDetailsMap);
+				locationOfEBookCurrentlyRead = bookDetailsMap.get("LOCATION_OF_EBOOK");
+				debug("Action initiated for reading eBook:"+bookDetailsMap.get("LOCATION_OF_EBOOK"));
+				return true;
+			});
+		}
+
+		public void readSelectedBook(owned Gee.HashMap<string,string> bookDetailsMap){
+			//change the application view to Book Reading mode
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
 			toggleUIState();
-			//Show first page of selected book
-			ePubReader.pageChange (aWebView, aReader.currentPageNumber+1);
+			//Update header title
+			headerbar.subtitle = bookDetailsMap.get("EBOOK_TITLE");
+			//get list of content pages in book
+			Gee.ArrayList<string> pageContentList = new Gee.ArrayList<string> ();
+			pageContentList = BookwormApp.ePubReader.getListOfPagesInBook(bookDetailsMap);
+			bookDetailsMap = BookwormApp.ePubReader.renderPage(aWebView, bookDetailsMap, pageContentList, "FORWARD");
 		}
 
 		public void toggleUIState(){

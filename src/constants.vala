@@ -1,4 +1,4 @@
-/* Copyright 2016 Siddhartha Das (bablu.boy@gmail.com)
+/* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
 * This file is part of Bookworm.
 *

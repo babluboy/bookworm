@@ -1,4 +1,4 @@
-/* Copyright 2016 Siddhartha Das (bablu.boy@gmail.com)
+/* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
 * This file is part of Bookworm.
 *
@@ -305,12 +305,13 @@ namespace BookwormApp.Utils {
 		    aFileChooserDialog.set_current_name("");
 			}
 		aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
-		if(last_file_chooser_path != null){
-				bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
-				debug("Opening FileChooserDialog with path:"+BookwormApp.Utils.last_file_chooser_path+" returned status:"+aFileChooserDialogOpeningstatus.to_string());
-			}else{
-				aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
-			}
+		debug("Setting File chooser to open on folder:"+BookwormApp.Utils.last_file_chooser_path);
+		if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){
+			bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+			debug("Opening FileChooserDialog with path:"+BookwormApp.Utils.last_file_chooser_path+" returned status:"+aFileChooserDialogOpeningstatus.to_string());
+		}else{
+			aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
+		}
 		aFileChooserDialog.key_press_event.connect ((ev) => {
 		    if (ev.keyval == 65307) // Esc key
 		        aFileChooserDialog.destroy ();
