@@ -1,0 +1,8 @@
+/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/install.dir
+/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/list_install_components.dir
+/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/rebuild_cache.dir
+/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/edit_cache.dir
+/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/pot_file.dir
+/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/bookworm.dir
+/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/install/strip.dir
+/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/install/local.dir

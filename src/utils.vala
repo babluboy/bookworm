@@ -298,12 +298,12 @@ namespace BookwormApp.Utils {
 		Gtk.FileChooserDialog aFileChooserDialog = new Gtk.FileChooserDialog (title, parent, action);
 		aFileChooserDialog.set_select_multiple (select_multiple);
 		aFileChooserDialog.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
-		if (action == Gtk.FileChooserAction.OPEN)
+		if (action == Gtk.FileChooserAction.OPEN){
 		    aFileChooserDialog.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
-		else{
+		}else{
 		    aFileChooserDialog.add_button (_("Save"), Gtk.ResponseType.ACCEPT);
 		    aFileChooserDialog.set_current_name("");
-			}
+		}
 		aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
 		debug("Setting File chooser to open on folder:"+BookwormApp.Utils.last_file_chooser_path);
 		if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){

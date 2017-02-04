@@ -63,10 +63,8 @@ public class BookwormApp.ePubReader{
     }
     //read contents from spine and manifest and populate reading ArrayList
     string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
-    //debug("Spine Data:"+spineData);
     string manifestData = BookwormApp.Utils.extractXMLTag(OpfContents, "<manifest", "</manifest>");
     string[] manifestItemList = BookwormApp.Utils.multiExtractBetweenTwoStrings (manifestData, "<item", "/>");
-    //debug("Manifest Data:"+manifestData);
     //determine the location of the book's cover image
     for (int i = 0; i < manifestItemList.length; i++) {
         if (manifestItemList[i].down().contains("media-type=\"image") && manifestItemList[i].down().contains("cover")) {
@@ -84,8 +82,8 @@ public class BookwormApp.ePubReader{
     debug("Cover found:"+bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE"));
     if(bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE") == null || bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE").length < 1){
       bookDetailsMap.set("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE", BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION);
-      debug("Default Cover found:"+bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE"));
-
+      bookDetailsMap.set("IS_DEFAULT_COVER", "true");
+      debug("Cover not found, so default cover set from :"+bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE"));
     }
     return bookDetailsMap;
   }

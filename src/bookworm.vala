@@ -358,39 +358,55 @@ namespace BookwormApp {
 	    aFileChooserDialog.show_all ();
 	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
 	      eBookLocation = aFileChooserDialog.get_filename();
-				bookDetailsMap.set("LOCATION_OF_EBOOK", eBookLocation);
-				debug("Choosen eBook = " + eBookLocation);
 	      BookwormApp.Utils.last_file_chooser_path = aFileChooserDialog.get_current_folder();
 	      debug("Last visited folder for FileChooserDialog set as:"+BookwormApp.Utils.last_file_chooser_path);
 	      aFileChooserDialog.destroy();
 	    }else{
 	      aFileChooserDialog.destroy();
 	    }
-			//create temp location for extraction of eBook
-			string extractionLocation = BookwormApp.Constants.EPUB_EXTRACTION_LOCATION;
-			extractionLocation = extractionLocation + File.new_for_path(eBookLocation).get_basename();
-			bookDetailsMap.set("LOCATION_OF_EXTRACTED_EBOOK_CONTENTS", extractionLocation);
-			//check and create directory for extracting contents of ebook
-	    BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
-	    //unzip eBook contents into temp location
-	    BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
-			debug("eBook extracted into folder:"+extractionLocation);
-			//determine location of eBook cover image
-			bookDetailsMap = BookwormApp.ePubReader.getBookCoverImageLocation(bookDetailsMap);
-			//add book details to libraryView Map
-			libraryViewMap.set(eBookLocation, bookDetailsMap);
-			debug ("No of books in library:"+libraryViewMap.size.to_string());
-			//add eBook cover image to library view
-			updateLibraryView(bookDetailsMap);
+			//check if the selected eBook exists
+			File eBookFile = File.new_for_path (eBookLocation);
+			if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
+				debug("Choosen eBook = " + eBookLocation);
+				bookDetailsMap.set("LOCATION_OF_EBOOK", eBookLocation);
+				//create temp location for extraction of eBook
+				string extractionLocation = BookwormApp.Constants.EPUB_EXTRACTION_LOCATION;
+				extractionLocation = extractionLocation + File.new_for_path(eBookLocation).get_basename();
+				bookDetailsMap.set("LOCATION_OF_EXTRACTED_EBOOK_CONTENTS", extractionLocation);
+				//check and create directory for extracting contents of ebook
+		    BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
+		    //unzip eBook contents into temp location
+		    BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
+				debug("eBook extracted into folder:"+extractionLocation);
+				//determine location of eBook cover image
+				bookDetailsMap = BookwormApp.ePubReader.getBookCoverImageLocation(bookDetailsMap);
+				//add book details to libraryView Map
+				libraryViewMap.set(eBookLocation, bookDetailsMap);
+				debug ("No of books in library:"+libraryViewMap.size.to_string());
+				//add eBook cover image to library view
+				updateLibraryView(bookDetailsMap);
+			}else{
+				debug("No ebook selected");
+			}
 		}
 
 		public void updateLibraryView(Gee.HashMap<string,string> bookDetailsMap){
 			string bookCoverLocation = bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE");
 			debug("Updating Library for cover:"+bookCoverLocation);
+			Gtk.EventBox aEventBox = new Gtk.EventBox();
 			Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(bookCoverLocation, 150, 200, false);
 			Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
-			Gtk.EventBox aEventBox = new Gtk.EventBox();
-    	aEventBox.add(aCoverImage);
+			if("true" == bookDetailsMap.get("IS_DEFAULT_COVER")){
+				Gtk.Overlay aOverlayImage = new Gtk.Overlay();
+				aOverlayImage.add(aCoverImage);
+				Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+bookDetailsMap.get("EBOOK_TITLE")+"</b>");
+				overlayTextLabel.set_use_markup (true);
+				overlayTextLabel.set_line_wrap (true);
+				aOverlayImage.add_overlay(overlayTextLabel);
+				aEventBox.add(aOverlayImage);
+			}else{
+    		aEventBox.add(aCoverImage);
+			}
 			//add eventbox widet to a hashmap for later removal
 			libraryViewEventBoxWidgets.set(bookDetailsMap.get("LOCATION_OF_EBOOK"), aEventBox);
 			//check if there are no books in the library view
