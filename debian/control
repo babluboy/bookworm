@@ -6,7 +6,7 @@ Build-Depends: cmake (>= 2.8),
                debhelper (>= 9),
                libgee-0.8-dev,
                libgtk-3-dev (>= 3.14),
-               valac (>= 0.26), 
+               valac (>= 0.26),
                libgranite-dev (>= 0.3.0),
                libwebkit2gtk-4.0-37,
                libwebkit2gtk-4.0-dev
@@ -16,5 +16,4 @@ Homepage: https://launchpad.net/bookworm
 Package: bookworm
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, unzip
-Description: Bookworm - eBook Reader
-Bookworm aims to be a reader centric eBook application with a simplistic user interface
+Description: Bookworm eBook Reader. Bookworm aims to be a reader centric eBook application with a simplistic user interface

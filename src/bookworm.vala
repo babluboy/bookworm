@@ -46,6 +46,9 @@ namespace BookwormApp {
 		public Gtk.Grid library_grid;
 		public static Gee.HashMap<string, Gee.HashMap<string,string>> libraryViewMap = new Gee.HashMap<string, Gee.HashMap<string,string>>();
 		public string locationOfEBookCurrentlyRead = "";
+		public int countBooksAddedIntoLibraryRow = 0;
+		public Widget lastBookUpdatedIntoLibraryGrid = null;
+		public Gee.HashMap<string,Gtk.EventBox> libraryViewEventBoxWidgets = new Gee.HashMap<string,Gtk.EventBox>();
 
 		construct {
 			application_id = "org.bookworm";
@@ -162,6 +165,7 @@ namespace BookwormApp {
 			headerbar.set_show_close_button(true);
 			headerbar.spacing = Constants.SPACING_WIDGETS;
 			window.set_titlebar (headerbar);
+			window.maximize();
 			//add menu items to header bar - content list button
 			Gtk.Image library_view_button_image = new Gtk.Image ();
 			library_view_button_image.set_from_file (Constants.LIBRARY_VIEW_IMAGE_LOCATION);
@@ -183,6 +187,7 @@ namespace BookwormApp {
 			headerSearchBar = new Gtk.SearchEntry();
 			headerSearchBar.set_text(Constants.TEXT_FOR_SEARCH_HEADERBAR);
 			headerbar.pack_end(headerSearchBar);
+			headerSearchBar.set_sensitive(false);
 			// Set actions for HeaderBar search
 			headerSearchBar.search_changed.connect (() => {
 
@@ -231,6 +236,9 @@ namespace BookwormApp {
 			library_grid = new Gtk.Grid ();
 			library_grid.set_column_spacing (BookwormApp.Constants.SPACING_WIDGETS);
 			library_grid.set_row_spacing (BookwormApp.Constants.SPACING_WIDGETS);
+			ScrolledWindow library_scroll = new ScrolledWindow (null, null);
+			library_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+			library_scroll.add (library_grid);
 
 			//Create a footer to add/remove books
 			Gtk.Box add_remove_footer_box = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
@@ -250,7 +258,7 @@ namespace BookwormApp {
 			add_remove_footer_box.pack_start (remove_book_button, false, true, 0);
 
 			//add all components to ui box for selecting a book
-			bookSelection_ui_box.pack_start (library_grid, true, true, 0);
+			bookSelection_ui_box.pack_start (library_scroll, true, true, 0);
       bookSelection_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
 			//Create the UI for reading a selected book
@@ -258,7 +266,7 @@ namespace BookwormApp {
 			//create the webview to display page content
 			WebKit.Settings webkitSettings = new WebKit.Settings();
 	    webkitSettings.set_allow_file_access_from_file_urls (true);
-	    webkitSettings.set_default_font_family("droid sans");
+	    webkitSettings.set_default_font_family("helvetica");
 	    //webkitSettings.set_allow_universal_access_from_file_urls(true);
 	    webkitSettings.set_auto_load_images(true);
 	    aWebView = new WebKit.WebView.with_settings(webkitSettings);
@@ -313,7 +321,7 @@ namespace BookwormApp {
 				selectAndAddBookToLibrary();
 			});
 			remove_book_button.clicked.connect (() => {
-
+				selectAndRemoveBookFromLibrary();
 			});
 
 			//ensure all required set up is present
@@ -326,6 +334,19 @@ namespace BookwormApp {
 		public void ensureRequiredSetUp(){
 			//check and create directory for extracting contents of ebook
 	    BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EPUB_EXTRACTION_LOCATION, "", "");
+		}
+
+		public void selectAndRemoveBookFromLibrary(){
+			/*
+			Gtk.EventBox aEventBox = libraryViewEventBoxWidgets.get("/home/sid/Documents/Projects/bookworm/ebooks/J. K. Rowling - Harry Potter and the Chamber of Secrets.epub");
+			debug("eventbox to be removed:"+aEventBox.get_child_visible().to_string());
+			//library_grid.remove(aEventBox);
+			aEventBox.destroy();
+			libraryViewMap.unset("/home/sid/Documents/Projects/bookworm/ebooks/J. K. Rowling - Harry Potter and the Chamber of Secrets.epub");
+			window.show_all();
+			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+			toggleUIState();
+			*/
 		}
 
 		public void selectAndAddBookToLibrary(){
@@ -358,6 +379,7 @@ namespace BookwormApp {
 			bookDetailsMap = BookwormApp.ePubReader.getBookCoverImageLocation(bookDetailsMap);
 			//add book details to libraryView Map
 			libraryViewMap.set(eBookLocation, bookDetailsMap);
+			debug ("No of books in library:"+libraryViewMap.size.to_string());
 			//add eBook cover image to library view
 			updateLibraryView(bookDetailsMap);
 		}
@@ -365,14 +387,28 @@ namespace BookwormApp {
 		public void updateLibraryView(Gee.HashMap<string,string> bookDetailsMap){
 			string bookCoverLocation = bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE");
 			debug("Updating Library for cover:"+bookCoverLocation);
-			Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_size(bookCoverLocation, 200,200);
+			Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(bookCoverLocation, 150, 200, false);
 			Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 			Gtk.EventBox aEventBox = new Gtk.EventBox();
     	aEventBox.add(aCoverImage);
-			//aEventBox.child_set_property (aCoverImage, "BOOK_ID", bookDetailsMap.get("LOCATION_OF_EBOOK"));
-			int noOfBooksInLibraryView = libraryViewMap.size;
-			debug ("No of books in library:"+noOfBooksInLibraryView.to_string());
-			library_grid.attach(aEventBox, noOfBooksInLibraryView, 0, 1, 1);
+			//add eventbox widet to a hashmap for later removal
+			libraryViewEventBoxWidgets.set(bookDetailsMap.get("LOCATION_OF_EBOOK"), aEventBox);
+			//check if there are no books in the library view
+			if(lastBookUpdatedIntoLibraryGrid == null){
+				library_grid.attach (aEventBox, 0, 0, 1, 1);
+				countBooksAddedIntoLibraryRow++;
+			}else{
+				//check if the top row has the maximum number of books already
+				if(countBooksAddedIntoLibraryRow < BookwormApp.Constants.MAX_BOOK_COVER_PER_ROW){
+					library_grid.attach_next_to (aEventBox, lastBookUpdatedIntoLibraryGrid, PositionType.LEFT, 1, 1);
+					countBooksAddedIntoLibraryRow++;
+				}else{
+					//max books on a row has been reached add the book on a new top row
+					library_grid.attach_next_to (aEventBox, null, PositionType.TOP, 1, 1);
+					countBooksAddedIntoLibraryRow = 0;
+				}
+			}
+			lastBookUpdatedIntoLibraryGrid = aEventBox;
 			window.show_all();
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 			toggleUIState();
@@ -394,7 +430,7 @@ namespace BookwormApp {
 			//get list of content pages in book
 			Gee.ArrayList<string> pageContentList = new Gee.ArrayList<string> ();
 			pageContentList = BookwormApp.ePubReader.getListOfPagesInBook(bookDetailsMap);
-			bookDetailsMap = BookwormApp.ePubReader.renderPage(aWebView, bookDetailsMap, pageContentList, "FORWARD");
+			bookDetailsMap = BookwormApp.ePubReader.renderPage(aWebView, bookDetailsMap, pageContentList, "");
 		}
 
 		public void toggleUIState(){

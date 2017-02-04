@@ -20,7 +20,7 @@ namespace BookwormApp.Constants {
 	public const string bookworm_version = "0.1";
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
-	public const string TEXT_FOR_SEARCH_HEADERBAR = _("Filter results...");
+	public const string TEXT_FOR_SEARCH_HEADERBAR = _("Search here...");
 
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
@@ -34,7 +34,12 @@ namespace BookwormApp.Constants {
 	public static const string REMOVE_BOOK_ICON_IMAGE_LOCATION = "/usr/share/icons/hicolor/16x16/actions/bookworm-list-remove.svg";
 	public static const string LIBRARY_VIEW_IMAGE_LOCATION = "/usr/share/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg";
 	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/icons/hicolor/16x16/actions/bookworm-view-list-symbolic.svg";
+	public static const string DEFAULT_COVER_IMAGE_LOCATION = "/usr/share/icons/hicolor/256x256/apps/bookworm-defaultbook.png";
 	public static const string EPUB_EXTRACTION_LOCATION = "/tmp/bookworm/";
+
+	public static const int MAX_BOOK_COVER_PER_ROW = 8;
+	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
+	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
 
 	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE","READING_MODE"};
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";

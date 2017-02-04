@@ -20,7 +20,7 @@ using Gee;
 namespace BookwormApp.Utils {
 	public string last_file_chooser_path = null;
 	public static StringBuilder spawn_async_with_pipes_output;
-	public static string nutty_state_data;
+	public string bookwormStateData;
 
 	public bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
 		if(spawn_async_with_pipes_output == null)
@@ -321,10 +321,10 @@ namespace BookwormApp.Utils {
 		all_files_filter.set_filter_name (_("All files"));
 		all_files_filter.add_pattern ("*");
 		aFileChooserDialog.add_filter (all_files_filter);
-		//var epub_files_filter = new Gtk.FileFilter ();
-		//epub_files_filter.set_filter_name (_("ePub files"));
-		//epub_files_filter.add_mime_type ("application/xhtml+xml");
-		//aFileChooserDialog.add_filter (epub_files_filter);
+		var epub_files_filter = new Gtk.FileFilter ();
+		epub_files_filter.set_filter_name (_("ePub files"));
+		epub_files_filter.add_mime_type ("application/xhtml+xml");
+		aFileChooserDialog.add_filter (epub_files_filter);
 		aFileChooserDialog.set_filter (all_files_filter);
 		return aFileChooserDialog;
   }
@@ -427,14 +427,14 @@ namespace BookwormApp.Utils {
 				FileUtils.close(new IOChannel.file(path, "r").unix_get_fd());
 			}
 			if("READ_PROPS" == operation){
-				if(nutty_state_data != null && nutty_state_data.length > 5){ //nutty state data exists - no need to read the nutty state file
-					data  = nutty_state_data;
+				if(bookwormStateData != null && bookwormStateData.length > 5){ //nutty state data exists - no need to read the nutty state file
+					data  = bookwormStateData;
 				}else{ //nutty state data is not available - read the nutty state file
 					if(file.query_exists ()){
 						bool wasRead = FileUtils.get_contents(path+"/"+filename, out data);
 						if(wasRead){
 							//set the global variable for the nutty state data to avoid reading the contents again
-							nutty_state_data = data;
+							bookwormStateData = data;
 						}else{
 							result.assign("false");
 						}
@@ -477,4 +477,32 @@ namespace BookwormApp.Utils {
 		debug("Completed file operation["+operation+"]...");
 		return result.str;
 	}
+
+		public static Gee.ArrayList<string> createPagination (Gee.ArrayList<string> contentLocationList) {
+			Gee.ArrayList<string> pageContentList = new Gee.ArrayList<string>();
+			StringBuilder aPageContent = new StringBuilder("");
+			int current_number_of_lines_per_page = 0;
+			int current_number_of_chars_per_line = 0;
+			int current_position = 0;
+			for(int i=0; i<contentLocationList.size; i++){
+				//extract contents from location
+		    string contents = BookwormApp.Utils.fileOperations("READ_FILE", contentLocationList.get(i), "", "");
+				while(current_position < contents.length){
+					while(current_number_of_lines_per_page < BookwormApp.Constants.MAX_NUMBER_OF_LINES_PER_PAGE){
+						aPageContent.append(contents.slice(current_position, contents.index_of(" ", current_position+BookwormApp.Constants.MAX_NUMBER_OF_CHARS_PER_LINE))).append(" ").append("<br>");
+						//debug("extracted line:"+aPageContent.str);
+						current_position = contents.index_of(" ", current_position+BookwormApp.Constants.MAX_NUMBER_OF_CHARS_PER_LINE)+1;
+						current_number_of_lines_per_page++;
+						debug("current_position:"+current_position.to_string()+"::::current_number_of_lines_per_page:"+current_number_of_lines_per_page.to_string());
+						//break;
+					}
+					pageContentList.add(aPageContent.str);
+					debug(aPageContent.str);
+					aPageContent.erase(0, -1);
+					//break;
+				}
+				break;
+			}
+			return pageContentList;
+		}
 }
