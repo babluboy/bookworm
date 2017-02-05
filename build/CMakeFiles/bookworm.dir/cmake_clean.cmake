@@ -3,11 +3,13 @@ file(REMOVE_RECURSE
   "src/utils.c"
   "src/constants.c"
   "src/ePubReader.c"
+  "src/book.c"
   "bookworm_valac.stamp"
   "CMakeFiles/bookworm.dir/src/bookworm.c.o"
   "CMakeFiles/bookworm.dir/src/utils.c.o"
   "CMakeFiles/bookworm.dir/src/constants.c.o"
   "CMakeFiles/bookworm.dir/src/ePubReader.c.o"
+  "CMakeFiles/bookworm.dir/src/book.c.o"
   "bookworm.pdb"
   "bookworm"
 )

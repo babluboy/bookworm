@@ -69,12 +69,16 @@ src/constants.c: src/bookworm.c
 src/ePubReader.c: src/bookworm.c
 	@$(CMAKE_COMMAND) -E touch_nocreate src/ePubReader.c
 
+src/book.c: src/bookworm.c
+	@$(CMAKE_COMMAND) -E touch_nocreate src/book.c
+
 bookworm_valac.stamp: ../src/bookworm.vala
 bookworm_valac.stamp: ../src/utils.vala
 bookworm_valac.stamp: ../src/constants.vala
 bookworm_valac.stamp: ../src/ePubReader.vala
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating src/bookworm.c;src/utils.c;src/constants.c;src/ePubReader.c"
-	/usr/bin/valac -C -b /home/sid/Documents/Projects/bookworm/dev -d /home/sid/Documents/Projects/bookworm/dev/build --pkg=gtk+-3.0 --pkg=gee-0.8 --pkg=granite>=0.3.0 --pkg=webkit2gtk-4.0 -g /home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala /home/sid/Documents/Projects/bookworm/dev/src/utils.vala /home/sid/Documents/Projects/bookworm/dev/src/constants.vala /home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala
+bookworm_valac.stamp: ../src/book.vala
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating src/bookworm.c;src/utils.c;src/constants.c;src/ePubReader.c;src/book.c"
+	/usr/bin/valac -C -b /home/sid/Documents/Projects/bookworm/dev -d /home/sid/Documents/Projects/bookworm/dev/build --pkg=gtk+-3.0 --pkg=gee-0.8 --pkg=granite>=0.3.0 --pkg=webkit2gtk-4.0 -g /home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala /home/sid/Documents/Projects/bookworm/dev/src/utils.vala /home/sid/Documents/Projects/bookworm/dev/src/constants.vala /home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala /home/sid/Documents/Projects/bookworm/dev/src/book.vala
 	touch /home/sid/Documents/Projects/bookworm/dev/build/bookworm_valac.stamp
 
 CMakeFiles/bookworm.dir/src/bookworm.c.o: CMakeFiles/bookworm.dir/flags.make
@@ -173,12 +177,37 @@ CMakeFiles/bookworm.dir/src/ePubReader.c.o.provides: CMakeFiles/bookworm.dir/src
 CMakeFiles/bookworm.dir/src/ePubReader.c.o.provides.build: CMakeFiles/bookworm.dir/src/ePubReader.c.o
 
 
+CMakeFiles/bookworm.dir/src/book.c.o: CMakeFiles/bookworm.dir/flags.make
+CMakeFiles/bookworm.dir/src/book.c.o: src/book.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/bookworm.dir/src/book.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/bookworm.dir/src/book.c.o   -c /home/sid/Documents/Projects/bookworm/dev/build/src/book.c
+
+CMakeFiles/bookworm.dir/src/book.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bookworm.dir/src/book.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sid/Documents/Projects/bookworm/dev/build/src/book.c > CMakeFiles/bookworm.dir/src/book.c.i
+
+CMakeFiles/bookworm.dir/src/book.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bookworm.dir/src/book.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sid/Documents/Projects/bookworm/dev/build/src/book.c -o CMakeFiles/bookworm.dir/src/book.c.s
+
+CMakeFiles/bookworm.dir/src/book.c.o.requires:
+
+.PHONY : CMakeFiles/bookworm.dir/src/book.c.o.requires
+
+CMakeFiles/bookworm.dir/src/book.c.o.provides: CMakeFiles/bookworm.dir/src/book.c.o.requires
+	$(MAKE) -f CMakeFiles/bookworm.dir/build.make CMakeFiles/bookworm.dir/src/book.c.o.provides.build
+.PHONY : CMakeFiles/bookworm.dir/src/book.c.o.provides
+
+CMakeFiles/bookworm.dir/src/book.c.o.provides.build: CMakeFiles/bookworm.dir/src/book.c.o
+
+
 # Object files for target bookworm
 bookworm_OBJECTS = \
 "CMakeFiles/bookworm.dir/src/bookworm.c.o" \
 "CMakeFiles/bookworm.dir/src/utils.c.o" \
 "CMakeFiles/bookworm.dir/src/constants.c.o" \
-"CMakeFiles/bookworm.dir/src/ePubReader.c.o"
+"CMakeFiles/bookworm.dir/src/ePubReader.c.o" \
+"CMakeFiles/bookworm.dir/src/book.c.o"
 
 # External object files for target bookworm
 bookworm_EXTERNAL_OBJECTS =
@@ -187,9 +216,10 @@ bookworm: CMakeFiles/bookworm.dir/src/bookworm.c.o
 bookworm: CMakeFiles/bookworm.dir/src/utils.c.o
 bookworm: CMakeFiles/bookworm.dir/src/constants.c.o
 bookworm: CMakeFiles/bookworm.dir/src/ePubReader.c.o
+bookworm: CMakeFiles/bookworm.dir/src/book.c.o
 bookworm: CMakeFiles/bookworm.dir/build.make
 bookworm: CMakeFiles/bookworm.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable bookworm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable bookworm"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bookworm.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -201,6 +231,7 @@ CMakeFiles/bookworm.dir/requires: CMakeFiles/bookworm.dir/src/bookworm.c.o.requi
 CMakeFiles/bookworm.dir/requires: CMakeFiles/bookworm.dir/src/utils.c.o.requires
 CMakeFiles/bookworm.dir/requires: CMakeFiles/bookworm.dir/src/constants.c.o.requires
 CMakeFiles/bookworm.dir/requires: CMakeFiles/bookworm.dir/src/ePubReader.c.o.requires
+CMakeFiles/bookworm.dir/requires: CMakeFiles/bookworm.dir/src/book.c.o.requires
 
 .PHONY : CMakeFiles/bookworm.dir/requires
 
@@ -212,6 +243,7 @@ CMakeFiles/bookworm.dir/depend: src/bookworm.c
 CMakeFiles/bookworm.dir/depend: src/utils.c
 CMakeFiles/bookworm.dir/depend: src/constants.c
 CMakeFiles/bookworm.dir/depend: src/ePubReader.c
+CMakeFiles/bookworm.dir/depend: src/book.c
 CMakeFiles/bookworm.dir/depend: bookworm_valac.stamp
 	cd /home/sid/Documents/Projects/bookworm/dev/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sid/Documents/Projects/bookworm/dev /home/sid/Documents/Projects/bookworm/dev /home/sid/Documents/Projects/bookworm/dev/build /home/sid/Documents/Projects/bookworm/dev/build /home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles/bookworm.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/bookworm.dir/depend

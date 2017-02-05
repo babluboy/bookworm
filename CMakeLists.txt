@@ -28,6 +28,7 @@ set (SOURCE_LIST
     src/utils.vala
     src/constants.vala
     src/ePubReader.vala
+    src/book.vala
 )
 
 # custom command to update pot template files
@@ -81,6 +82,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/utils.vala
     src/constants.vala
     src/ePubReader.vala
+    src/book.vala
 
 # tell what libraries to use when compiling
 PACKAGES

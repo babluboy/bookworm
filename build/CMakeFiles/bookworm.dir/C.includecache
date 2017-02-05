@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+/home/sid/Documents/Projects/bookworm/dev/build/src/book.c
+glib.h
+-
+glib-object.h
+-
+stdlib.h
+-
+string.h
+-
+gee.h
+-
+gobject/gvaluecollector.h
+-
+
 /home/sid/Documents/Projects/bookworm/dev/build/src/bookworm.c
 glib.h
 -
@@ -55,9 +69,9 @@ stdlib.h
 -
 string.h
 -
-gee.h
--
 gio/gio.h
+-
+gee.h
 -
 webkit2/webkit2.h
 -

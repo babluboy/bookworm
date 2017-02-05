@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/sid/Documents/Projects/bookworm/dev/build
 CMakeFiles/pot_file.dir/all:
 	$(MAKE) -f CMakeFiles/pot_file.dir/build.make CMakeFiles/pot_file.dir/depend
 	$(MAKE) -f CMakeFiles/pot_file.dir/build.make CMakeFiles/pot_file.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=7 "Built target pot_file"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=8 "Built target pot_file"
 .PHONY : CMakeFiles/pot_file.dir/all
 
 # Include target in all.
@@ -103,7 +103,7 @@ clean: CMakeFiles/pot_file.dir/clean
 CMakeFiles/bookworm.dir/all:
 	$(MAKE) -f CMakeFiles/bookworm.dir/build.make CMakeFiles/bookworm.dir/depend
 	$(MAKE) -f CMakeFiles/bookworm.dir/build.make CMakeFiles/bookworm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target bookworm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target bookworm"
 .PHONY : CMakeFiles/bookworm.dir/all
 
 # Include target in all.
@@ -113,7 +113,7 @@ all: CMakeFiles/bookworm.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/bookworm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/bookworm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles 0
 .PHONY : CMakeFiles/bookworm.dir/rule

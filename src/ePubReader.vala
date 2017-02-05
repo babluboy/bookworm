@@ -16,14 +16,7 @@
 * with Bookworm. If not, see http://www.gnu.org/licenses/.
 */
 
-public class BookwormApp.ePubReader{
-
-  public static string baseLocationOfContents = "";
-  public static int currentPageNumber = -1;
-  public static Gee.ArrayList<string> readingListData = new Gee.ArrayList<string>();
-  public static string bookTitle = "";
-  public static string bookCoverLocation = "";
-  public static string eBookLocation = "";
+public class BookwormApp.ePubReader {
 
   public static string getLocationOfContentOPFFile(string extractionLocation){
     //ensure correct mime type in mimetype file
@@ -46,19 +39,19 @@ public class BookwormApp.ePubReader{
     return locationOfOPFFile;
   }
 
-  public static Gee.HashMap<string,string> getBookCoverImageLocation (owned Gee.HashMap<string,string> bookDetailsMap){
+  public static BookwormApp.Book getBookCoverImageLocation (owned BookwormApp.Book aBook){
     string bookCoverLocation = "";
-    string extractionLocation = bookDetailsMap.get("LOCATION_OF_EXTRACTED_EBOOK_CONTENTS");
+    string extractionLocation = aBook.getBookExtractionLocation();
     string locationOfOPFFile = getLocationOfContentOPFFile(extractionLocation);
-    bookDetailsMap.set("LOCATION_OF_EBOOK_CONTENT_OPF_FILE", locationOfOPFFile);
+    aBook.setOPFFileLocation(locationOfOPFFile);
     string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
-    bookDetailsMap.set("BASE_LOCATION_OF_EBOOK_CONTENTS", baseLocationOfContents);
+    aBook.setBaseLocationOfContents(baseLocationOfContents);
     //read contents from content.opf file
     string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
     //determine the title of the book
     if(OpfContents.contains("<dc:title>") && OpfContents.contains("</dc:title>")){
       string bookTitle = OpfContents.slice(OpfContents.index_of("<dc:title>")+"<dc:title>".length, OpfContents.index_of("</dc:title>"));
-      bookDetailsMap.set("EBOOK_TITLE", bookTitle);
+      aBook.setBookTitle(bookTitle);
       debug("Determined eBook Title as:"+bookTitle);
     }
     //read contents from spine and manifest and populate reading ArrayList
@@ -72,31 +65,33 @@ public class BookwormApp.ePubReader{
             int endIndexOfCoverLocation = manifestItemList[i].index_of("\"", startIndexOfCoverLocation+1);
             if(startIndexOfCoverLocation != -1 && endIndexOfCoverLocation != -1 && endIndexOfCoverLocation > startIndexOfCoverLocation){
               bookCoverLocation = baseLocationOfContents + manifestItemList[i].slice(startIndexOfCoverLocation, endIndexOfCoverLocation);
-              bookDetailsMap.set("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE", bookCoverLocation);
+              aBook.setBookCoverLocation(bookCoverLocation);
               debug("Book Cover image located at:"+bookCoverLocation);
             }
             break;
         }
     }
     //check if cover was not found and assign default cover
-    debug("Cover found:"+bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE"));
-    if(bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE") == null || bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE").length < 1){
-      bookDetailsMap.set("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE", BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION);
-      bookDetailsMap.set("IS_DEFAULT_COVER", "true");
-      debug("Cover not found, so default cover set from :"+bookDetailsMap.get("LOCATION_OF_EBOOK_COVER_PAGE_IMAGE"));
+    debug("Cover found:"+aBook.getBookCoverLocation());
+    if(aBook.getBookCoverLocation() == null || aBook.getBookCoverLocation().length < 1){
+      aBook.setIsBookCoverImagePresent(false);
+      aBook.setBookCoverLocation(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION);
+      debug("Cover not found, so default cover set from :"+aBook.getBookCoverLocation());
+    }else{
+      //cover was assigned from the ebook contents
+      aBook.setIsBookCoverImagePresent(true);
     }
-    return bookDetailsMap;
+    return aBook;
   }
 
-  public static Gee.ArrayList<string> getListOfPagesInBook(owned Gee.HashMap<string,string> bookDetailsMap){
-    Gee.ArrayList<string> pageContentList = new Gee.ArrayList<string>();
+  public static BookwormApp.Book getListOfPagesInBook(owned BookwormApp.Book aBook){
     //read contents from content.opf file
-    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", bookDetailsMap.get("LOCATION_OF_EBOOK_CONTENT_OPF_FILE"), "", "");
+    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", aBook.getOPFFileLocation(), "", "");
     //parse eBook and read contents of spine and manifest
     string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
     string manifestData = BookwormApp.Utils.extractXMLTag(OpfContents, "<manifest", "</manifest>");
     string[] manifestItemList = BookwormApp.Utils.multiExtractBetweenTwoStrings (manifestData, "<item", "/>");
-    //debug("Manifest Data:"+manifestData);
+
     int positionOfSpineItemref = 0;
     int positionOfManifestItemref = 0;
     int positionOfManifestDataStart = 0;
@@ -119,9 +114,9 @@ public class BookwormApp.ePubReader{
             positionOfManifestDataStart = bufferForManifestDataExtraction.str.index_of("href=\"")+6;
             positionOfManifestDataEnd = bufferForManifestDataExtraction.str.index_of("\"", bufferForManifestDataExtraction.str.index_of("href=\"")+8);
             bufferForLocationOfContentData.erase(0, -1);
-            bufferForLocationOfContentData.append(bookDetailsMap.get("BASE_LOCATION_OF_EBOOK_CONTENTS"))
+            bufferForLocationOfContentData.append(aBook.getBaseLocationOfContents())
                                           .append(bufferForManifestDataExtraction.str.slice(positionOfManifestDataStart, positionOfManifestDataEnd));
-            pageContentList.add (bufferForLocationOfContentData.str);
+            aBook.setBookContentList(bufferForLocationOfContentData.str);
             debug("Matching spine reference["+bufferForSpineDataExtraction.str+"], extracted content location:"+bufferForLocationOfContentData.str);
             break;
           }
@@ -131,37 +126,36 @@ public class BookwormApp.ePubReader{
       }
       positionOfSpineItemref = spineData.index_of ("<itemref idref=", positionOfSpineItemref+1);
     }
-    debug("Completed extracting location of content files in ebook. Number of content files = "+pageContentList.size.to_string());
-    return pageContentList;
+    debug("Completed extracting location of content files in ebook. Number of content files = "+aBook.getBookContentList().size.to_string());
+    return aBook;
   }
 
-  public static Gee.HashMap<string,string> renderPage (WebKit.WebView aWebView, owned Gee.HashMap<string,string> bookDetailsMap, Gee.ArrayList<string> pageContentList, string direction){
-    string baseLocationOfContents = bookDetailsMap.get("BASE_LOCATION_OF_EBOOK_CONTENTS");
+  public static BookwormApp.Book renderPage (WebKit.WebView aWebView, owned BookwormApp.Book aBook, string direction){
+    string baseLocationOfContents = aBook.getBaseLocationOfContents();
     int currentContentLocation = 0;
     //check current content location of book
-    if(bookDetailsMap.has_key("CURRENT_LOCATION_OF_EBOOK_CONTENTS")){
-      currentContentLocation = int.parse(bookDetailsMap.get("CURRENT_LOCATION_OF_EBOOK_CONTENTS"));
+    if(aBook.getBookPageNumber() != -1){
+      currentContentLocation = aBook.getBookPageNumber();
       debug("Book has a CURRENT_LOCATION set at :"+currentContentLocation.to_string());
-      if(direction == "FORWARD" && currentContentLocation < (pageContentList.size - 1)){
+      if(direction == "FORWARD" && currentContentLocation < (aBook.getBookContentList().size - 1)){
         currentContentLocation++;
-        bookDetailsMap.set("CURRENT_LOCATION_OF_EBOOK_CONTENTS", currentContentLocation.to_string());
+        aBook.setBookPageNumber(currentContentLocation);
       }else{
-        bookDetailsMap.set("IS_FORWARD_POSSIBLE", "false");
+        aBook.setIfPageForward(false);
       }
       if(direction == "BACKWARD" && currentContentLocation > 0){
         currentContentLocation--;
-        bookDetailsMap.set("CURRENT_LOCATION_OF_EBOOK_CONTENTS", currentContentLocation.to_string());
+        aBook.setBookPageNumber(currentContentLocation);
       }else{
-        bookDetailsMap.set("IS_BACKWARD_POSSIBLE", "false");
+        aBook.setIfPageBackward(false);
       }
     }else{
-      bookDetailsMap.set("CURRENT_LOCATION_OF_EBOOK_CONTENTS", "0");
+      aBook.setBookPageNumber(0);
       debug("Book did not had a CURRENT_LOCATION set.");
     }
-    debug("Rendering location ["+currentContentLocation.to_string()+"]"+pageContentList.get(currentContentLocation));
+    debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));
     //extract contents from location and format the same
-    string contents = BookwormApp.Utils.fileOperations("READ_FILE", pageContentList.get(currentContentLocation), "", "");
-    //BookwormApp.Utils.createPagination(pageContentList);
+    string contents = BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(currentContentLocation), "", "");
     if(contents.index_of("<img src=\"") != -1){
       contents = contents.replace("<img src=\"","<img src=\""+baseLocationOfContents+"/");
     }else{
@@ -171,6 +165,6 @@ public class BookwormApp.ePubReader{
     //render the content on webview
     aWebView.load_html(contents, "file:///");
 
-    return bookDetailsMap;
+    return aBook;
   }
 }

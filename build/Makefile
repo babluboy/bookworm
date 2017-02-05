@@ -180,6 +180,33 @@ bookworm/fast:
 	$(MAKE) -f CMakeFiles/bookworm.dir/build.make CMakeFiles/bookworm.dir/build
 .PHONY : bookworm/fast
 
+src/book.o: src/book.c.o
+
+.PHONY : src/book.o
+
+# target to build an object file
+src/book.c.o:
+	$(MAKE) -f CMakeFiles/bookworm.dir/build.make CMakeFiles/bookworm.dir/src/book.c.o
+.PHONY : src/book.c.o
+
+src/book.i: src/book.c.i
+
+.PHONY : src/book.i
+
+# target to preprocess a source file
+src/book.c.i:
+	$(MAKE) -f CMakeFiles/bookworm.dir/build.make CMakeFiles/bookworm.dir/src/book.c.i
+.PHONY : src/book.c.i
+
+src/book.s: src/book.c.s
+
+.PHONY : src/book.s
+
+# target to generate assembly for a file
+src/book.c.s:
+	$(MAKE) -f CMakeFiles/bookworm.dir/build.make CMakeFiles/bookworm.dir/src/book.c.s
+.PHONY : src/book.c.s
+
 src/bookworm.o: src/bookworm.c.o
 
 .PHONY : src/bookworm.o
@@ -302,6 +329,9 @@ help:
 	@echo "... bookworm"
 	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... src/book.o"
+	@echo "... src/book.i"
+	@echo "... src/book.s"
 	@echo "... src/bookworm.o"
 	@echo "... src/bookworm.i"
 	@echo "... src/bookworm.s"

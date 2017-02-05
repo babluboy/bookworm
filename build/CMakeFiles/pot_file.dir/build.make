@@ -60,6 +60,7 @@ po/bookworm.pot: ../src/bookworm.vala
 po/bookworm.pot: ../src/utils.vala
 po/bookworm.pot: ../src/constants.vala
 po/bookworm.pot: ../src/ePubReader.vala
+po/bookworm.pot: ../src/book.vala
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Extract translatable messages to po/bookworm.pot"
 	cd /home/sid/Documents/Projects/bookworm/dev && xgettext --language=C --keyword=_ --escape --sort-output -o po/bookworm.pot src/bookworm.vala
 
