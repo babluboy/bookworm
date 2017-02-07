@@ -505,4 +505,23 @@ namespace BookwormApp.Utils {
 			}
 			return pageContentList;
 		}
+
+		public static string createTableOfContents (Gee.ArrayList<string> bookContentList){
+			debug("Started creating Table Of Contents....");
+			StringBuilder tocHTML = new StringBuilder();
+			tocHTML.append("<html>")
+						 .append("<head></head>")
+						 .append("<body> <font align=\"right\"><b>Book Contents</b>")
+						 .append("<table>");
+			for(int i=0; i<bookContentList.size; i++){
+				tocHTML.append("<tr><td>")
+							 .append("<a href=\""+BookwormApp.Constants.PREFIX_FOR_FILE_URL+bookContentList.get(i)+"\">Content Part "+(i+1).to_string()+"</a></td><td>")
+							 .append("</td></tr>");
+			}
+			tocHTML.append("</table>")
+						 .append("</body>")
+						 .append("</html>");
+			debug("Completed creating Table Of Contents....");
+			return tocHTML.str;
+		}
 }

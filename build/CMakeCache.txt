@@ -352,7 +352,7 @@ DEPS_gtk+-3.0_VERSION:INTERNAL=3.18.9
 DEPS_webkit2gtk-4.0_INCLUDEDIR:INTERNAL=/usr/include
 DEPS_webkit2gtk-4.0_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
 DEPS_webkit2gtk-4.0_PREFIX:INTERNAL=/usr
-DEPS_webkit2gtk-4.0_VERSION:INTERNAL=2.14.2
+DEPS_webkit2gtk-4.0_VERSION:INTERNAL=2.14.3
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
 //Details about finding Vala

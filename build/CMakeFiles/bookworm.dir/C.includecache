@@ -43,9 +43,9 @@ glib/gi18n-lib.h
 -
 gio/gio.h
 -
-gdk-pixbuf/gdk-pixbuf.h
--
 gdk/gdk.h
+-
+gdk-pixbuf/gdk-pixbuf.h
 -
 
 /home/sid/Documents/Projects/bookworm/dev/build/src/constants.c

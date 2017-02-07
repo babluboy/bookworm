@@ -131,40 +131,58 @@ public class BookwormApp.ePubReader {
   }
 
   public static BookwormApp.Book renderPage (WebKit.WebView aWebView, owned BookwormApp.Book aBook, string direction){
+    StringBuilder contents = new StringBuilder();
     string baseLocationOfContents = aBook.getBaseLocationOfContents();
     int currentContentLocation = 0;
-    //check current content location of book
-    if(aBook.getBookPageNumber() != -1){
-      currentContentLocation = aBook.getBookPageNumber();
-      debug("Book has a CURRENT_LOCATION set at :"+currentContentLocation.to_string());
-      if(direction == "FORWARD" && currentContentLocation < (aBook.getBookContentList().size - 1)){
-        currentContentLocation++;
-        aBook.setBookPageNumber(currentContentLocation);
-      }else{
-        aBook.setIfPageForward(false);
-      }
-      if(direction == "BACKWARD" && currentContentLocation > 0){
-        currentContentLocation--;
-        aBook.setBookPageNumber(currentContentLocation);
-      }else{
-        aBook.setIfPageBackward(false);
-      }
-    }else{
-      aBook.setBookPageNumber(0);
-      debug("Book did not had a CURRENT_LOCATION set.");
-    }
-    debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));
-    //extract contents from location and format the same
-    string contents = BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(currentContentLocation), "", "");
-    if(contents.index_of("<img src=\"") != -1){
-      contents = contents.replace("<img src=\"","<img src=\""+baseLocationOfContents+"/");
-    }else{
-      contents = contents.replace("src=\"","src=\""+baseLocationOfContents+"/");
-    }
-    contents = contents.replace("xlink:href=\"","xlink:href=\""+baseLocationOfContents+"/");
-    //render the content on webview
-    aWebView.load_html(contents, "file:///");
+    switch(direction){
+      case "TABLE_OF_CONTENTS": // Generate the table of contents
+        //render the table of content
+        if(aBook.getTOCHTMLContent() == null || aBook.getTOCHTMLContent().length < 1 ){
+          if(aBook.getBookContentList() != null && aBook.getBookContentList().size > 0){
+            aBook.setTOCHTMLContent(BookwormApp.Utils.createTableOfContents(aBook.getBookContentList()));
+          }else{
+            getListOfPagesInBook(aBook);
+            aBook.setTOCHTMLContent(BookwormApp.Utils.createTableOfContents(aBook.getBookContentList()));
+          }
+        }
+        aWebView.load_html(aBook.getTOCHTMLContent(), BookwormApp.Constants.PREFIX_FOR_FILE_URL);
+        break;
+      default: // this case is for moving forward or backward
+        //check current content location of book
+        if(aBook.getBookPageNumber() != -1){
+          currentContentLocation = aBook.getBookPageNumber();
+          debug("Book has a CURRENT_LOCATION set at :"+currentContentLocation.to_string());
+          if(direction == "FORWARD" && currentContentLocation < (aBook.getBookContentList().size - 1)){
+            currentContentLocation++;
+            aBook.setBookPageNumber(currentContentLocation);
+          }else{
+            aBook.setIfPageForward(false);
+          }
+          if(direction == "BACKWARD" && currentContentLocation > 0){
+            currentContentLocation--;
+            aBook.setBookPageNumber(currentContentLocation);
+          }else{
+            aBook.setIfPageBackward(false);
+          }
+        }else{
+          aBook.setBookPageNumber(0);
+          debug("Book did not had a CURRENT_LOCATION set.");
+        }
+        debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));
+        //extract contents from location and format the same
+        contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(currentContentLocation), "", ""));
 
+        if(contents.str.index_of("<img src=\"") != -1){
+          contents.assign(contents.str.replace("<img src=\"","<img src=\""+baseLocationOfContents+"/"));
+        }else{
+          contents.assign(contents.str.replace("src=\"","src=\""+baseLocationOfContents+"/"));
+        }
+        contents.assign(contents.str.replace("xlink:href=\"","xlink:href=\""+baseLocationOfContents+"/"));
+        contents.assign(contents.str.replace("<link href=\"","<link href=\""+baseLocationOfContents+"/"));
+        //render the content on webview
+        aWebView.load_html(contents.str, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
+        break;
+    }
     return aBook;
   }
 }

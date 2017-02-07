@@ -28,6 +28,7 @@ public class BookwormApp.Book{
   private int bookPageNumber = -1;
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
+  private string tocHTMLContent = "";
   private Gee.ArrayList<string> bookContentList = new Gee.ArrayList<string> ();
 
 
@@ -117,5 +118,13 @@ public class BookwormApp.Book{
   }
   public bool getIfPageBackward (){
     return ifPageBackward;
+  }
+
+  //getter setter for eBook Table of Contents
+  public void setTOCHTMLContent (string aTOCHTMLContent){
+    tocHTMLContent = aTOCHTMLContent;
+  }
+  public string getTOCHTMLContent (){
+    return tocHTMLContent;
   }
 }

@@ -63,6 +63,7 @@ struct _BookwormAppBookPrivate {
 	gint bookPageNumber;
 	gboolean ifPageForward;
 	gboolean ifPageBackward;
+	gchar* tocHTMLContent;
 	GeeArrayList* bookContentList;
 };
 
@@ -106,6 +107,8 @@ void bookworm_app_book_setIfPageForward (BookwormAppBook* self, gboolean ifBookP
 gboolean bookworm_app_book_getIfPageForward (BookwormAppBook* self);
 void bookworm_app_book_setIfPageBackward (BookwormAppBook* self, gboolean ifBookPageBackward);
 gboolean bookworm_app_book_getIfPageBackward (BookwormAppBook* self);
+void bookworm_app_book_setTOCHTMLContent (BookwormAppBook* self, const gchar* aTOCHTMLContent);
+gchar* bookworm_app_book_getTOCHTMLContent (BookwormAppBook* self);
 BookwormAppBook* bookworm_app_book_new (void);
 BookwormAppBook* bookworm_app_book_construct (GType object_type);
 static void bookworm_app_book_finalize (BookwormAppBook* obj);
@@ -114,19 +117,19 @@ static void bookworm_app_book_finalize (BookwormAppBook* obj);
 void bookworm_app_book_setBookLocation (BookwormAppBook* self, const gchar* aBookLocation) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 35 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 35 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (aBookLocation != NULL);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = aBookLocation;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_g_free0 (self->priv->bookLocation);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->bookLocation = _tmp1_;
-#line 130 "book.c"
+#line 133 "book.c"
 }
 
 
@@ -134,36 +137,36 @@ gchar* bookworm_app_book_getBookLocation (BookwormAppBook* self) {
 	gchar* result = NULL;
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 40 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->bookLocation;
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 40 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 40 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp1_;
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 40 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 148 "book.c"
+#line 151 "book.c"
 }
 
 
 void bookworm_app_book_setBookCoverLocation (BookwormAppBook* self, const gchar* aBookCoverLocation) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 43 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 43 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (aBookCoverLocation != NULL);
-#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 45 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = aBookCoverLocation;
-#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 45 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 45 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_g_free0 (self->priv->bookCoverLocation);
-#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 45 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->bookCoverLocation = _tmp1_;
-#line 167 "book.c"
+#line 170 "book.c"
 }
 
 
@@ -171,41 +174,41 @@ gchar* bookworm_app_book_getBookCoverLocation (BookwormAppBook* self) {
 	gchar* result = NULL;
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->bookCoverLocation;
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp1_;
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 185 "book.c"
+#line 188 "book.c"
 }
 
 
 void bookworm_app_book_setBookContentList (BookwormAppBook* self, const gchar* contentList) {
 	GeeArrayList* _tmp0_ = NULL;
 	const gchar* _tmp1_ = NULL;
-#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (contentList != NULL);
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->bookContentList;
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = contentList;
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	gee_abstract_collection_add ((GeeAbstractCollection*) _tmp0_, _tmp1_);
-#line 202 "book.c"
+#line 205 "book.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 209 "book.c"
+#line 212 "book.c"
 }
 
 
@@ -213,36 +216,36 @@ GeeArrayList* bookworm_app_book_getBookContentList (BookwormAppBook* self) {
 	GeeArrayList* result = NULL;
 	GeeArrayList* _tmp0_ = NULL;
 	GeeArrayList* _tmp1_ = NULL;
-#line 54 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->bookContentList;
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp1_;
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 227 "book.c"
+#line 230 "book.c"
 }
 
 
 void bookworm_app_book_setBookExtractionLocation (BookwormAppBook* self, const gchar* aBookExtractionLocation) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (aBookExtractionLocation != NULL);
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = aBookExtractionLocation;
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_g_free0 (self->priv->bookExtractionLocation);
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->bookExtractionLocation = _tmp1_;
-#line 246 "book.c"
+#line 249 "book.c"
 }
 
 
@@ -250,36 +253,36 @@ gchar* bookworm_app_book_getBookExtractionLocation (BookwormAppBook* self) {
 	gchar* result = NULL;
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->bookExtractionLocation;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp1_;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 264 "book.c"
+#line 267 "book.c"
 }
 
 
 void bookworm_app_book_setBookTitle (BookwormAppBook* self, const gchar* aBookTitle) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (aBookTitle != NULL);
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = aBookTitle;
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_g_free0 (self->priv->bookTitle);
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->bookTitle = _tmp1_;
-#line 283 "book.c"
+#line 286 "book.c"
 }
 
 
@@ -287,36 +290,36 @@ gchar* bookworm_app_book_getBookTitle (BookwormAppBook* self) {
 	gchar* result = NULL;
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->bookTitle;
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp1_;
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 301 "book.c"
+#line 304 "book.c"
 }
 
 
 void bookworm_app_book_setOPFFileLocation (BookwormAppBook* self, const gchar* aOPFFileLocation) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (aOPFFileLocation != NULL);
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = aOPFFileLocation;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_g_free0 (self->priv->opfFileLocation);
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->opfFileLocation = _tmp1_;
-#line 320 "book.c"
+#line 323 "book.c"
 }
 
 
@@ -324,36 +327,36 @@ gchar* bookworm_app_book_getOPFFileLocation (BookwormAppBook* self) {
 	gchar* result = NULL;
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->opfFileLocation;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp1_;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 338 "book.c"
+#line 341 "book.c"
 }
 
 
 void bookworm_app_book_setBaseLocationOfContents (BookwormAppBook* self, const gchar* aBaseLocationOfContents) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 83 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 83 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (aBaseLocationOfContents != NULL);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 85 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = aBaseLocationOfContents;
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 85 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 85 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_g_free0 (self->priv->baseLocationOfContents);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 85 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->baseLocationOfContents = _tmp1_;
-#line 357 "book.c"
+#line 360 "book.c"
 }
 
 
@@ -361,125 +364,162 @@ gchar* bookworm_app_book_getBaseLocationOfContents (BookwormAppBook* self) {
 	gchar* result = NULL;
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->baseLocationOfContents;
-#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp1_;
-#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 375 "book.c"
+#line 378 "book.c"
 }
 
 
 void bookworm_app_book_setIsBookCoverImagePresent (BookwormAppBook* self, gboolean isABookCoverImagePresent) {
 	gboolean _tmp0_ = FALSE;
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = isABookCoverImagePresent;
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->isBookCoverImagePresent = _tmp0_;
-#line 387 "book.c"
+#line 390 "book.c"
 }
 
 
 gboolean bookworm_app_book_getIsBookCoverImagePresent (BookwormAppBook* self) {
 	gboolean result = FALSE;
 	gboolean _tmp0_ = FALSE;
-#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->isBookCoverImagePresent;
-#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp0_;
-#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 402 "book.c"
+#line 405 "book.c"
 }
 
 
 void bookworm_app_book_setBookPageNumber (BookwormAppBook* self, gint aBookPageNumber) {
 	gint _tmp0_ = 0;
-#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 100 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 100 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = aBookPageNumber;
-#line 100 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->bookPageNumber = _tmp0_;
-#line 414 "book.c"
+#line 417 "book.c"
 }
 
 
 gint bookworm_app_book_getBookPageNumber (BookwormAppBook* self) {
 	gint result = 0;
 	gint _tmp0_ = 0;
-#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->bookPageNumber;
-#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp0_;
-#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 429 "book.c"
+#line 432 "book.c"
 }
 
 
 void bookworm_app_book_setIfPageForward (BookwormAppBook* self, gboolean ifBookPageForward) {
 	gboolean _tmp0_ = FALSE;
-#line 107 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = ifBookPageForward;
-#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->ifPageForward = _tmp0_;
-#line 441 "book.c"
+#line 444 "book.c"
 }
 
 
 gboolean bookworm_app_book_getIfPageForward (BookwormAppBook* self) {
 	gboolean result = FALSE;
 	gboolean _tmp0_ = FALSE;
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->ifPageForward;
-#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp0_;
-#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 456 "book.c"
+#line 459 "book.c"
 }
 
 
 void bookworm_app_book_setIfPageBackward (BookwormAppBook* self, gboolean ifBookPageBackward) {
 	gboolean _tmp0_ = FALSE;
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_if_fail (self != NULL);
-#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = ifBookPageBackward;
-#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->ifPageBackward = _tmp0_;
-#line 468 "book.c"
+#line 471 "book.c"
 }
 
 
 gboolean bookworm_app_book_getIfPageBackward (BookwormAppBook* self) {
 	gboolean result = FALSE;
 	gboolean _tmp0_ = FALSE;
-#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_tmp0_ = self->priv->ifPageBackward;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	result = _tmp0_;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return result;
-#line 483 "book.c"
+#line 486 "book.c"
+}
+
+
+void bookworm_app_book_setTOCHTMLContent (BookwormAppBook* self, const gchar* aTOCHTMLContent) {
+	const gchar* _tmp0_ = NULL;
+	gchar* _tmp1_ = NULL;
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	g_return_if_fail (self != NULL);
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	g_return_if_fail (aTOCHTMLContent != NULL);
+#line 125 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	_tmp0_ = aTOCHTMLContent;
+#line 125 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	_tmp1_ = g_strdup (_tmp0_);
+#line 125 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	_g_free0 (self->priv->tocHTMLContent);
+#line 125 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	self->priv->tocHTMLContent = _tmp1_;
+#line 505 "book.c"
+}
+
+
+gchar* bookworm_app_book_getTOCHTMLContent (BookwormAppBook* self) {
+	gchar* result = NULL;
+	const gchar* _tmp0_ = NULL;
+	gchar* _tmp1_ = NULL;
+#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	g_return_val_if_fail (self != NULL, NULL);
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	_tmp0_ = self->priv->tocHTMLContent;
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	_tmp1_ = g_strdup (_tmp0_);
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	result = _tmp1_;
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	return result;
+#line 523 "book.c"
 }
 
 
@@ -489,21 +529,21 @@ BookwormAppBook* bookworm_app_book_construct (GType object_type) {
 	self = (BookwormAppBook*) g_type_create_instance (object_type);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return self;
-#line 493 "book.c"
+#line 533 "book.c"
 }
 
 
 BookwormAppBook* bookworm_app_book_new (void) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return bookworm_app_book_construct (BOOKWORM_APP_TYPE_BOOK);
-#line 500 "book.c"
+#line 540 "book.c"
 }
 
 
 static void bookworm_app_value_book_init (GValue* value) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	value->data[0].v_pointer = NULL;
-#line 507 "book.c"
+#line 547 "book.c"
 }
 
 
@@ -512,7 +552,7 @@ static void bookworm_app_value_book_free_value (GValue* value) {
 	if (value->data[0].v_pointer) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		bookworm_app_book_unref (value->data[0].v_pointer);
-#line 516 "book.c"
+#line 556 "book.c"
 	}
 }
 
@@ -522,11 +562,11 @@ static void bookworm_app_value_book_copy_value (const GValue* src_value, GValue*
 	if (src_value->data[0].v_pointer) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		dest_value->data[0].v_pointer = bookworm_app_book_ref (src_value->data[0].v_pointer);
-#line 526 "book.c"
+#line 566 "book.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		dest_value->data[0].v_pointer = NULL;
-#line 530 "book.c"
+#line 570 "book.c"
 	}
 }
 
@@ -534,37 +574,37 @@ static void bookworm_app_value_book_copy_value (const GValue* src_value, GValue*
 static gpointer bookworm_app_value_book_peek_pointer (const GValue* value) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return value->data[0].v_pointer;
-#line 538 "book.c"
+#line 578 "book.c"
 }
 
 
 static gchar* bookworm_app_value_book_collect_value (GValue* value, guint n_collect_values, GTypeCValue* collect_values, guint collect_flags) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	if (collect_values[0].v_pointer) {
-#line 545 "book.c"
+#line 585 "book.c"
 		BookwormAppBook* object;
 		object = collect_values[0].v_pointer;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		if (object->parent_instance.g_class == NULL) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 			return g_strconcat ("invalid unclassed object pointer for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
-#line 552 "book.c"
+#line 592 "book.c"
 		} else if (!g_value_type_compatible (G_TYPE_FROM_INSTANCE (object), G_VALUE_TYPE (value))) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 			return g_strconcat ("invalid object type `", g_type_name (G_TYPE_FROM_INSTANCE (object)), "' for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
-#line 556 "book.c"
+#line 596 "book.c"
 		}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		value->data[0].v_pointer = bookworm_app_book_ref (object);
-#line 560 "book.c"
+#line 600 "book.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		value->data[0].v_pointer = NULL;
-#line 564 "book.c"
+#line 604 "book.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return NULL;
-#line 568 "book.c"
+#line 608 "book.c"
 }
 
 
@@ -575,25 +615,25 @@ static gchar* bookworm_app_value_book_lcopy_value (const GValue* value, guint n_
 	if (!object_p) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		return g_strdup_printf ("value location for `%s' passed as NULL", G_VALUE_TYPE_NAME (value));
-#line 579 "book.c"
+#line 619 "book.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	if (!value->data[0].v_pointer) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		*object_p = NULL;
-#line 585 "book.c"
+#line 625 "book.c"
 	} else if (collect_flags & G_VALUE_NOCOPY_CONTENTS) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		*object_p = value->data[0].v_pointer;
-#line 589 "book.c"
+#line 629 "book.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		*object_p = bookworm_app_book_ref (value->data[0].v_pointer);
-#line 593 "book.c"
+#line 633 "book.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return NULL;
-#line 597 "book.c"
+#line 637 "book.c"
 }
 
 
@@ -607,7 +647,7 @@ GParamSpec* bookworm_app_param_spec_book (const gchar* name, const gchar* nick, 
 	G_PARAM_SPEC (spec)->value_type = object_type;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return G_PARAM_SPEC (spec);
-#line 611 "book.c"
+#line 651 "book.c"
 }
 
 
@@ -616,7 +656,7 @@ gpointer bookworm_app_value_get_book (const GValue* value) {
 	g_return_val_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, BOOKWORM_APP_TYPE_BOOK), NULL);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return value->data[0].v_pointer;
-#line 620 "book.c"
+#line 660 "book.c"
 }
 
 
@@ -636,17 +676,17 @@ void bookworm_app_value_set_book (GValue* value, gpointer v_object) {
 		value->data[0].v_pointer = v_object;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		bookworm_app_book_ref (value->data[0].v_pointer);
-#line 640 "book.c"
+#line 680 "book.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		value->data[0].v_pointer = NULL;
-#line 644 "book.c"
+#line 684 "book.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	if (old) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		bookworm_app_book_unref (old);
-#line 650 "book.c"
+#line 690 "book.c"
 	}
 }
 
@@ -665,17 +705,17 @@ void bookworm_app_value_take_book (GValue* value, gpointer v_object) {
 		g_return_if_fail (g_value_type_compatible (G_TYPE_FROM_INSTANCE (v_object), G_VALUE_TYPE (value)));
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		value->data[0].v_pointer = v_object;
-#line 669 "book.c"
+#line 709 "book.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		value->data[0].v_pointer = NULL;
-#line 673 "book.c"
+#line 713 "book.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	if (old) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		bookworm_app_book_unref (old);
-#line 679 "book.c"
+#line 719 "book.c"
 	}
 }
 
@@ -687,7 +727,7 @@ static void bookworm_app_book_class_init (BookwormAppBookClass * klass) {
 	((BookwormAppBookClass *) klass)->finalize = bookworm_app_book_finalize;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	g_type_class_add_private (klass, sizeof (BookwormAppBookPrivate));
-#line 691 "book.c"
+#line 731 "book.c"
 }
 
 
@@ -698,7 +738,8 @@ static void bookworm_app_book_instance_init (BookwormAppBook * self) {
 	gchar* _tmp3_ = NULL;
 	gchar* _tmp4_ = NULL;
 	gchar* _tmp5_ = NULL;
-	GeeArrayList* _tmp6_ = NULL;
+	gchar* _tmp6_ = NULL;
+	GeeArrayList* _tmp7_ = NULL;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv = BOOKWORM_APP_BOOK_GET_PRIVATE (self);
 #line 21 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
@@ -734,12 +775,16 @@ static void bookworm_app_book_instance_init (BookwormAppBook * self) {
 #line 30 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->priv->ifPageBackward = TRUE;
 #line 31 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
-	_tmp6_ = gee_array_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL, NULL, NULL);
+	_tmp6_ = g_strdup ("");
 #line 31 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
-	self->priv->bookContentList = _tmp6_;
+	self->priv->tocHTMLContent = _tmp6_;
+#line 32 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	_tmp7_ = gee_array_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL, NULL, NULL);
+#line 32 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	self->priv->bookContentList = _tmp7_;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	self->ref_count = 1;
-#line 743 "book.c"
+#line 788 "book.c"
 }
 
 
@@ -762,8 +807,10 @@ static void bookworm_app_book_finalize (BookwormAppBook* obj) {
 #line 26 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_g_free0 (self->priv->baseLocationOfContents);
 #line 31 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
+	_g_free0 (self->priv->tocHTMLContent);
+#line 32 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	_g_object_unref0 (self->priv->bookContentList);
-#line 767 "book.c"
+#line 814 "book.c"
 }
 
 
@@ -788,7 +835,7 @@ gpointer bookworm_app_book_ref (gpointer instance) {
 	g_atomic_int_inc (&self->ref_count);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 	return instance;
-#line 792 "book.c"
+#line 839 "book.c"
 }
 
 
@@ -801,7 +848,7 @@ void bookworm_app_book_unref (gpointer instance) {
 		BOOKWORM_APP_BOOK_GET_CLASS (self)->finalize (self);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/book.vala"
 		g_type_free_instance ((GTypeInstance *) self);
-#line 805 "book.c"
+#line 852 "book.c"
 	}
 }
 

@@ -36,6 +36,7 @@ namespace BookwormApp.Constants {
 	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/icons/hicolor/16x16/actions/bookworm-view-list-symbolic.svg";
 	public static const string DEFAULT_COVER_IMAGE_LOCATION = "/usr/share/icons/hicolor/256x256/apps/bookworm-defaultbook.png";
 	public static const string EPUB_EXTRACTION_LOCATION = "/tmp/bookworm/";
+	public static const string PREFIX_FOR_FILE_URL = "file:///";
 
 	public static const int MAX_BOOK_COVER_PER_ROW = 8;
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;

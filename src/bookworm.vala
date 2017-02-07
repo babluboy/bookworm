@@ -199,7 +199,9 @@ namespace BookwormApp {
 				toggleUIState();
 			});
 			content_list_button.clicked.connect (() => {
-
+				//get object for this ebook
+				aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
+				aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "TABLE_OF_CONTENTS");
 			});
 			debug("Completed loading HeaderBar sucessfully...");
 		}
@@ -268,9 +270,10 @@ namespace BookwormApp {
 			WebKit.Settings webkitSettings = new WebKit.Settings();
 	    webkitSettings.set_allow_file_access_from_file_urls (true);
 	    webkitSettings.set_default_font_family("helvetica");
-	    //webkitSettings.set_allow_universal_access_from_file_urls(true);
+			//webkitSettings.set_allow_universal_access_from_file_urls(true);
 	    webkitSettings.set_auto_load_images(true);
 	    aWebView = new WebKit.WebView.with_settings(webkitSettings);
+			//aWebView.set_zoom_level (6.0); // use this for page zooming
 
 			//create book reading footer
 			Gtk.Box book_reading_footer_box = new Gtk.Box (Orientation.HORIZONTAL, 0);
@@ -302,6 +305,10 @@ namespace BookwormApp {
 			main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
 
 			//Add all UI action listeners
+			aWebView.context_menu.connect (() => {
+				//TO-DO: Build context menu for reading ebook
+				return true;//stops webview default context menu from loading
+			});
 			forward_button.clicked.connect (() => {
 				//get object for this ebook
 				aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
@@ -320,6 +327,18 @@ namespace BookwormApp {
 			});
 			remove_book_button.clicked.connect (() => {
 				removeBookFromLibrary();
+			});
+			//capture the url clicked on the webview
+			aWebView.decide_policy.connect (() => {
+				string url_clicked_on_webview = aWebView.get_uri().replace("%20"," ");
+				if(url_clicked_on_webview != null && url_clicked_on_webview.length > 1){
+					aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
+					if(aBook.getBookContentList().contains(url_clicked_on_webview.replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, ""))){
+						aBook.setBookPageNumber(aBook.getBookContentList().index_of(url_clicked_on_webview.replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, "")));
+						debug("Using Table of Contents Navigation, Book page number set at"+aBook.getBookPageNumber().to_string());
+					}
+				}
+				return true;
 			});
 
 			//ensure all required set up is present
@@ -383,6 +402,7 @@ namespace BookwormApp {
 				aBook = BookwormApp.ePubReader.getBookCoverImageLocation(aBook);
 				//add book details to libraryView Map
 				libraryViewMap.set(eBookLocation, aBook);
+				locationOfEBookCurrentlyRead = eBookLocation;
 				debug ("No of books in library:"+libraryViewMap.size.to_string());
 				//add eBook cover image to library view
 				updateLibraryView(aBook);
@@ -433,9 +453,8 @@ namespace BookwormApp {
 			toggleUIState();
 			//add listener for book cover EventBox
 			aEventBox.button_press_event.connect (() => {
+				debug("Initiated process for reading eBook:"+aBook.getBookLocation());
 				readSelectedBook(aBook);
-				locationOfEBookCurrentlyRead = aBook.getBookLocation();
-				debug("Action initiated for reading eBook:"+aBook.getBookLocation());
 				return true;
 			});
 		}

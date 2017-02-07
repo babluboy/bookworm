@@ -63,12 +63,12 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args, int spawn_args_length1);
 static Block2Data* block2_data_ref (Block2Data* _data2_);
 static void block2_data_unref (void * _userdata_);
-static gboolean ___lambda16_ (GIOChannel* channel, GIOCondition condition);
-static gboolean ____lambda16__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
-static gboolean ___lambda17_ (GIOChannel* channel, GIOCondition condition);
-static gboolean ____lambda17__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
-static void ___lambda18_ (Block2Data* _data2_, GPid pid, gint status);
-static void ____lambda18__gchild_watch_func (GPid pid, gint status, gpointer self);
+static gboolean ___lambda18_ (GIOChannel* channel, GIOCondition condition);
+static gboolean ____lambda18__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
+static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition);
+static gboolean ____lambda19__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
+static void ___lambda20_ (Block2Data* _data2_, GPid pid, gint status);
+static void ____lambda20__gchild_watch_func (GPid pid, gint status, gpointer self);
 gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd);
 gchar* bookworm_app_utils_extractBetweenTwoStrings (const gchar* stringToBeSearched, const gchar* startString, const gchar* endString, GError** error);
 #define BOOKWORM_APP_CONSTANTS_TEXT_FOR_NOT_AVAILABLE _ ("Not Available")
@@ -85,8 +85,8 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooserAction action, const gchar* title, GtkWindow* parent, gboolean select_multiple);
 static Block3Data* block3_data_ref (Block3Data* _data3_);
 static void block3_data_unref (void * _userdata_);
-static gboolean __lambda12_ (Block3Data* _data3_, GdkEventKey* ev);
-static gboolean ___lambda12__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self);
+static gboolean __lambda13_ (Block3Data* _data3_, GdkEventKey* ev);
+static gboolean ___lambda13__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self);
 gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* path, const gchar* filename, const gchar* contents);
 #define BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_VALUE "=="
 #define BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_START "~~"
@@ -94,6 +94,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocationList);
 #define BOOKWORM_APP_CONSTANTS_MAX_NUMBER_OF_LINES_PER_PAGE 30
 #define BOOKWORM_APP_CONSTANTS_MAX_NUMBER_OF_CHARS_PER_LINE 80
+gchar* bookworm_app_utils_createTableOfContents (GeeArrayList* bookContentList);
+#define BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL "file:///"
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func);
 static gint _vala_array_length (gpointer array);
@@ -112,7 +114,7 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 	_tmp0_ = bookworm_app_utils_spawn_async_with_pipes_output;
 #line 26 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp0_ == NULL) {
-#line 116 "utils.c"
+#line 118 "utils.c"
 		GString* _tmp1_ = NULL;
 #line 27 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp1_ = g_string_new ("");
@@ -120,7 +122,7 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 		_g_string_free0 (bookworm_app_utils_spawn_async_with_pipes_output);
 #line 27 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		bookworm_app_utils_spawn_async_with_pipes_output = _tmp1_;
-#line 124 "utils.c"
+#line 126 "utils.c"
 	}
 #line 29 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp2_ = condition;
@@ -130,7 +132,7 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 		result = FALSE;
 #line 30 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return result;
-#line 134 "utils.c"
+#line 136 "utils.c"
 	}
 	{
 		gchar* line = NULL;
@@ -152,13 +154,13 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 			_g_free0 (line);
 #line 34 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_inner_error_->domain == G_IO_CHANNEL_ERROR) {
-#line 156 "utils.c"
-				goto __catch1_g_io_channel_error;
+#line 158 "utils.c"
+				goto __catch2_g_io_channel_error;
 			}
 #line 34 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_inner_error_->domain == G_CONVERT_ERROR) {
-#line 161 "utils.c"
-				goto __catch1_g_convert_error;
+#line 163 "utils.c"
+				goto __catch2_g_convert_error;
 			}
 #line 34 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_free0 (line);
@@ -168,7 +170,7 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 			g_clear_error (&_inner_error_);
 #line 34 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			return FALSE;
-#line 172 "utils.c"
+#line 174 "utils.c"
 		}
 #line 35 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp5_ = bookworm_app_utils_spawn_async_with_pipes_output;
@@ -178,10 +180,10 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 		g_string_append (_tmp5_, _tmp6_);
 #line 32 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_free0 (line);
-#line 182 "utils.c"
+#line 184 "utils.c"
 	}
-	goto __finally1;
-	__catch1_g_io_channel_error:
+	goto __finally2;
+	__catch2_g_io_channel_error:
 	{
 		GError* e = NULL;
 		GString* _tmp7_ = NULL;
@@ -205,10 +207,10 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 		_g_error_free0 (e);
 #line 38 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return result;
-#line 209 "utils.c"
+#line 211 "utils.c"
 	}
-	goto __finally1;
-	__catch1_g_convert_error:
+	goto __finally2;
+	__catch2_g_convert_error:
 	{
 		GError* e = NULL;
 		GString* _tmp10_ = NULL;
@@ -248,9 +250,9 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 		_g_error_free0 (e);
 #line 42 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return result;
-#line 252 "utils.c"
+#line 254 "utils.c"
 	}
-	__finally1:
+	__finally2:
 #line 32 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 32 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -259,13 +261,13 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 		g_clear_error (&_inner_error_);
 #line 32 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return FALSE;
-#line 263 "utils.c"
+#line 265 "utils.c"
 	}
 #line 44 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = TRUE;
 #line 44 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 269 "utils.c"
+#line 271 "utils.c"
 }
 
 
@@ -274,7 +276,7 @@ static Block2Data* block2_data_ref (Block2Data* _data2_) {
 	g_atomic_int_inc (&_data2_->_ref_count_);
 #line 47 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return _data2_;
-#line 278 "utils.c"
+#line 280 "utils.c"
 }
 
 
@@ -287,7 +289,7 @@ static void block2_data_unref (void * _userdata_) {
 		_g_main_loop_unref0 (_data2_->loop);
 #line 47 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		g_slice_free (Block2Data, _data2_);
-#line 291 "utils.c"
+#line 293 "utils.c"
 	}
 }
 
@@ -305,7 +307,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 	if (_tmp0_ == NULL) {
 #line 1055 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		separator = "";
-#line 309 "utils.c"
+#line 311 "utils.c"
 	}
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp3_ = str_array;
@@ -315,7 +317,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 	if (_tmp3_ != NULL) {
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp2_ = TRUE;
-#line 319 "utils.c"
+#line 321 "utils.c"
 	} else {
 		gchar** _tmp4_ = NULL;
 		gint _tmp4__length1 = 0;
@@ -325,13 +327,13 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 		_tmp4__length1 = str_array_length1;
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp2_ = _tmp4__length1 > 0;
-#line 329 "utils.c"
+#line 331 "utils.c"
 	}
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp2_) {
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp1_ = TRUE;
-#line 335 "utils.c"
+#line 337 "utils.c"
 	} else {
 		gboolean _tmp5_ = FALSE;
 		gchar** _tmp6_ = NULL;
@@ -342,7 +344,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 		_tmp6__length1 = str_array_length1;
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		if (_tmp6__length1 == -1) {
-#line 346 "utils.c"
+#line 348 "utils.c"
 			gchar** _tmp7_ = NULL;
 			gint _tmp7__length1 = 0;
 			const gchar* _tmp8_ = NULL;
@@ -354,19 +356,19 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 			_tmp8_ = _tmp7_[0];
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			_tmp5_ = _tmp8_ != NULL;
-#line 358 "utils.c"
+#line 360 "utils.c"
 		} else {
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			_tmp5_ = FALSE;
-#line 362 "utils.c"
+#line 364 "utils.c"
 		}
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp1_ = _tmp5_;
-#line 366 "utils.c"
+#line 368 "utils.c"
 	}
 #line 1057 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp1_) {
-#line 370 "utils.c"
+#line 372 "utils.c"
 		gint i = 0;
 		gsize len = 0UL;
 		gint _tmp31_ = 0;
@@ -389,7 +391,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 		const gchar* _tmp62_ = NULL;
 #line 1059 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		len = (gsize) 1;
-#line 393 "utils.c"
+#line 395 "utils.c"
 		{
 			gboolean _tmp9_ = FALSE;
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -398,7 +400,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 			_tmp9_ = TRUE;
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			while (TRUE) {
-#line 402 "utils.c"
+#line 404 "utils.c"
 				gboolean _tmp11_ = FALSE;
 				gboolean _tmp12_ = FALSE;
 				gchar** _tmp13_ = NULL;
@@ -411,13 +413,13 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 				gsize _tmp30_ = 0UL;
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				if (!_tmp9_) {
-#line 415 "utils.c"
+#line 417 "utils.c"
 					gint _tmp10_ = 0;
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp10_ = i;
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					i = _tmp10_ + 1;
-#line 421 "utils.c"
+#line 423 "utils.c"
 				}
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				_tmp9_ = FALSE;
@@ -427,7 +429,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 				_tmp13__length1 = str_array_length1;
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				if (_tmp13__length1 != -1) {
-#line 431 "utils.c"
+#line 433 "utils.c"
 					gint _tmp14_ = 0;
 					gchar** _tmp15_ = NULL;
 					gint _tmp15__length1 = 0;
@@ -439,17 +441,17 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 					_tmp15__length1 = str_array_length1;
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp12_ = _tmp14_ < _tmp15__length1;
-#line 443 "utils.c"
+#line 445 "utils.c"
 				} else {
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp12_ = FALSE;
-#line 447 "utils.c"
+#line 449 "utils.c"
 				}
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				if (_tmp12_) {
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp11_ = TRUE;
-#line 453 "utils.c"
+#line 455 "utils.c"
 				} else {
 					gboolean _tmp16_ = FALSE;
 					gchar** _tmp17_ = NULL;
@@ -460,7 +462,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 					_tmp17__length1 = str_array_length1;
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					if (_tmp17__length1 == -1) {
-#line 464 "utils.c"
+#line 466 "utils.c"
 						gchar** _tmp18_ = NULL;
 						gint _tmp18__length1 = 0;
 						gint _tmp19_ = 0;
@@ -475,21 +477,21 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 						_tmp20_ = _tmp18_[_tmp19_];
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 						_tmp16_ = _tmp20_ != NULL;
-#line 479 "utils.c"
+#line 481 "utils.c"
 					} else {
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 						_tmp16_ = FALSE;
-#line 483 "utils.c"
+#line 485 "utils.c"
 					}
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp11_ = _tmp16_;
-#line 487 "utils.c"
+#line 489 "utils.c"
 				}
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				if (!_tmp11_) {
 #line 1060 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					break;
-#line 493 "utils.c"
+#line 495 "utils.c"
 				}
 #line 1061 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				_tmp22_ = str_array;
@@ -501,7 +503,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 				_tmp24_ = _tmp22_[_tmp23_];
 #line 1061 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				if (_tmp24_ != NULL) {
-#line 505 "utils.c"
+#line 507 "utils.c"
 					gchar** _tmp25_ = NULL;
 					gint _tmp25__length1 = 0;
 					gint _tmp26_ = 0;
@@ -522,24 +524,24 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 					_tmp29_ = _tmp28_;
 #line 1061 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp21_ = _tmp29_;
-#line 526 "utils.c"
+#line 528 "utils.c"
 				} else {
 #line 1061 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp21_ = 0;
-#line 530 "utils.c"
+#line 532 "utils.c"
 				}
 #line 1061 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				_tmp30_ = len;
 #line 1061 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				len = _tmp30_ + _tmp21_;
-#line 536 "utils.c"
+#line 538 "utils.c"
 			}
 		}
 #line 1063 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp31_ = i;
 #line 1063 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		if (_tmp31_ == 0) {
-#line 543 "utils.c"
+#line 545 "utils.c"
 			gchar* _tmp32_ = NULL;
 #line 1064 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			_tmp32_ = g_strdup ("");
@@ -547,7 +549,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 			result = _tmp32_;
 #line 1064 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			return result;
-#line 551 "utils.c"
+#line 553 "utils.c"
 		}
 #line 1066 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp33_ = i;
@@ -585,7 +587,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 		_tmp45_ = g_stpcpy ((void*) _tmp42_, (const gchar*) _tmp44_);
 #line 1070 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		ptr = _tmp45_;
-#line 589 "utils.c"
+#line 591 "utils.c"
 		{
 			gboolean _tmp46_ = FALSE;
 #line 1071 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -594,7 +596,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 			_tmp46_ = TRUE;
 #line 1071 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			while (TRUE) {
-#line 598 "utils.c"
+#line 600 "utils.c"
 				gint _tmp48_ = 0;
 				gchar** _tmp49_ = NULL;
 				gint _tmp49__length1 = 0;
@@ -610,13 +612,13 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 				void* _tmp61_ = NULL;
 #line 1071 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				if (!_tmp46_) {
-#line 614 "utils.c"
+#line 616 "utils.c"
 					gint _tmp47_ = 0;
 #line 1071 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp47_ = i;
 #line 1071 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					i = _tmp47_ + 1;
-#line 620 "utils.c"
+#line 622 "utils.c"
 				}
 #line 1071 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				_tmp46_ = FALSE;
@@ -630,7 +632,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 				if (!(_tmp48_ < _tmp49__length1)) {
 #line 1071 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					break;
-#line 634 "utils.c"
+#line 636 "utils.c"
 				}
 #line 1072 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				_tmp50_ = ptr;
@@ -650,7 +652,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 				_tmp56_ = _tmp54_[_tmp55_];
 #line 1073 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				if (_tmp56_ != NULL) {
-#line 654 "utils.c"
+#line 656 "utils.c"
 					gchar** _tmp57_ = NULL;
 					gint _tmp57__length1 = 0;
 					gint _tmp58_ = 0;
@@ -665,11 +667,11 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 					_tmp59_ = _tmp57_[_tmp58_];
 #line 1073 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp53_ = (const gchar*) _tmp59_;
-#line 669 "utils.c"
+#line 671 "utils.c"
 				} else {
 #line 1073 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 					_tmp53_ = "";
-#line 673 "utils.c"
+#line 675 "utils.c"
 				}
 #line 1073 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				_tmp60_ = ptr;
@@ -677,7 +679,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 				_tmp61_ = g_stpcpy (_tmp60_, _tmp53_);
 #line 1073 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 				ptr = _tmp61_;
-#line 681 "utils.c"
+#line 683 "utils.c"
 			}
 		}
 #line 1076 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -688,7 +690,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 		result = (gchar*) _tmp62_;
 #line 1076 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 692 "utils.c"
+#line 694 "utils.c"
 	} else {
 		gchar* _tmp63_ = NULL;
 #line 1078 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -697,12 +699,12 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 		result = _tmp63_;
 #line 1078 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 701 "utils.c"
+#line 703 "utils.c"
 	}
 }
 
 
-static gboolean ___lambda16_ (GIOChannel* channel, GIOCondition condition) {
+static gboolean ___lambda18_ (GIOChannel* channel, GIOCondition condition) {
 	gboolean result = FALSE;
 	GIOChannel* _tmp0_ = NULL;
 	GIOCondition _tmp1_ = 0;
@@ -719,20 +721,20 @@ static gboolean ___lambda16_ (GIOChannel* channel, GIOCondition condition) {
 	result = _tmp2_;
 #line 75 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 723 "utils.c"
+#line 725 "utils.c"
 }
 
 
-static gboolean ____lambda16__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
+static gboolean ____lambda18__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
 	gboolean result;
-	result = ___lambda16_ (source, condition);
+	result = ___lambda18_ (source, condition);
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 732 "utils.c"
+#line 734 "utils.c"
 }
 
 
-static gboolean ___lambda17_ (GIOChannel* channel, GIOCondition condition) {
+static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition) {
 	gboolean result = FALSE;
 	GIOChannel* _tmp0_ = NULL;
 	GIOCondition _tmp1_ = 0;
@@ -749,20 +751,20 @@ static gboolean ___lambda17_ (GIOChannel* channel, GIOCondition condition) {
 	result = _tmp2_;
 #line 81 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 753 "utils.c"
+#line 755 "utils.c"
 }
 
 
-static gboolean ____lambda17__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
+static gboolean ____lambda19__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
 	gboolean result;
-	result = ___lambda17_ (source, condition);
+	result = ___lambda19_ (source, condition);
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 762 "utils.c"
+#line 764 "utils.c"
 }
 
 
-static void ___lambda18_ (Block2Data* _data2_, GPid pid, gint status) {
+static void ___lambda20_ (Block2Data* _data2_, GPid pid, gint status) {
 	GPid _tmp0_ = 0;
 #line 86 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp0_ = pid;
@@ -770,14 +772,14 @@ static void ___lambda18_ (Block2Data* _data2_, GPid pid, gint status) {
 	g_spawn_close_pid (_tmp0_);
 #line 87 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	g_main_loop_quit (_data2_->loop);
-#line 774 "utils.c"
+#line 776 "utils.c"
 }
 
 
-static void ____lambda18__gchild_watch_func (GPid pid, gint status, gpointer self) {
+static void ____lambda20__gchild_watch_func (GPid pid, gint status, gpointer self) {
 #line 84 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	___lambda18_ (self, pid, status);
-#line 781 "utils.c"
+	___lambda20_ (self, pid, status);
+#line 783 "utils.c"
 }
 
 
@@ -810,7 +812,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 	_tmp0_ = bookworm_app_utils_spawn_async_with_pipes_output;
 #line 48 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp0_ == NULL) {
-#line 814 "utils.c"
+#line 816 "utils.c"
 		GString* _tmp1_ = NULL;
 #line 49 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp1_ = g_string_new ("");
@@ -818,7 +820,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 		_g_string_free0 (bookworm_app_utils_spawn_async_with_pipes_output);
 #line 49 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		bookworm_app_utils_spawn_async_with_pipes_output = _tmp1_;
-#line 822 "utils.c"
+#line 824 "utils.c"
 	}
 #line 51 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp2_ = spawn_args;
@@ -846,7 +848,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 	_tmp8_ = g_main_loop_new (NULL, FALSE);
 #line 53 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_data2_->loop = _tmp8_;
-#line 850 "utils.c"
+#line 852 "utils.c"
 	{
 		gchar** spawn_env = NULL;
 		gchar** _tmp9_ = NULL;
@@ -897,8 +899,8 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 			spawn_env = (_vala_array_free (spawn_env, spawn_env_length1, (GDestroyNotify) g_free), NULL);
 #line 62 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_inner_error_->domain == G_SPAWN_ERROR) {
-#line 901 "utils.c"
-				goto __catch2_g_spawn_error;
+#line 903 "utils.c"
+				goto __catch3_g_spawn_error;
 			}
 #line 62 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			spawn_env = (_vala_array_free (spawn_env, spawn_env_length1, (GDestroyNotify) g_free), NULL);
@@ -912,7 +914,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 			g_clear_error (&_inner_error_);
 #line 62 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			return 0;
-#line 916 "utils.c"
+#line 918 "utils.c"
 		}
 #line 73 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp16_ = g_io_channel_unix_new (standard_output);
@@ -921,7 +923,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp17_ = output;
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_io_add_watch (_tmp17_, G_IO_IN | G_IO_HUP, ____lambda16__gio_func, NULL);
+		g_io_add_watch (_tmp17_, G_IO_IN | G_IO_HUP, ____lambda18__gio_func, NULL);
 #line 79 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp18_ = g_io_channel_unix_new (standard_error);
 #line 79 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -929,9 +931,9 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp19_ = _error_;
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_io_add_watch (_tmp19_, G_IO_IN | G_IO_HUP, ____lambda17__gio_func, NULL);
+		g_io_add_watch (_tmp19_, G_IO_IN | G_IO_HUP, ____lambda19__gio_func, NULL);
 #line 84 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, child_pid, ____lambda18__gchild_watch_func, block2_data_ref (_data2_), block2_data_unref);
+		g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, child_pid, ____lambda20__gchild_watch_func, block2_data_ref (_data2_), block2_data_unref);
 #line 89 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		g_main_loop_run (_data2_->loop);
 #line 54 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -940,10 +942,10 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 		_g_io_channel_unref0 (output);
 #line 54 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		spawn_env = (_vala_array_free (spawn_env, spawn_env_length1, (GDestroyNotify) g_free), NULL);
-#line 944 "utils.c"
+#line 946 "utils.c"
 	}
-	goto __finally2;
-	__catch2_g_spawn_error:
+	goto __finally3;
+	__catch3_g_spawn_error:
 	{
 		GError* e = NULL;
 		gchar** _tmp20_ = NULL;
@@ -1009,9 +1011,9 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 		g_string_append (_tmp31_, _tmp33_);
 #line 54 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_error_free0 (e);
-#line 1013 "utils.c"
+#line 1015 "utils.c"
 	}
-	__finally2:
+	__finally3:
 #line 54 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 54 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -1024,7 +1026,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 		g_clear_error (&_inner_error_);
 #line 54 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return 0;
-#line 1028 "utils.c"
+#line 1030 "utils.c"
 	}
 #line 94 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp34_ = spawn_args;
@@ -1058,7 +1060,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 	_data2_ = NULL;
 #line 95 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 1062 "utils.c"
+#line 1064 "utils.c"
 }
 
 
@@ -1098,7 +1100,7 @@ gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd) {
 	_g_free0 (_tmp2_);
 #line 102 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	exitCodeForCommand = 0;
-#line 1102 "utils.c"
+#line 1104 "utils.c"
 	{
 		const gchar* _tmp5_ = NULL;
 		gchar* _tmp6_ = NULL;
@@ -1121,14 +1123,14 @@ gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd) {
 		exitCodeForCommand = _tmp8_;
 #line 104 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 1125 "utils.c"
-			goto __catch3_g_error;
+#line 1127 "utils.c"
+			goto __catch4_g_error;
 		}
 #line 105 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp9_ = exitCodeForCommand;
 #line 105 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp9_ != 0) {
-#line 1132 "utils.c"
+#line 1134 "utils.c"
 			const gchar* _tmp10_ = NULL;
 			gchar* _tmp11_ = NULL;
 			gchar* _tmp12_ = NULL;
@@ -1158,11 +1160,11 @@ gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd) {
 			_g_free0 (_tmp14_);
 #line 106 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_free0 (_tmp12_);
-#line 1162 "utils.c"
+#line 1164 "utils.c"
 		}
 	}
-	goto __finally3;
-	__catch3_g_error:
+	goto __finally4;
+	__catch4_g_error:
 	{
 		GError* e = NULL;
 		const gchar* _tmp17_ = NULL;
@@ -1206,9 +1208,9 @@ gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd) {
 		_g_free0 (_tmp19_);
 #line 103 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_error_free0 (e);
-#line 1210 "utils.c"
+#line 1212 "utils.c"
 	}
-	__finally3:
+	__finally4:
 #line 103 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 103 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -1221,7 +1223,7 @@ gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd) {
 		g_clear_error (&_inner_error_);
 #line 103 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return NULL;
-#line 1225 "utils.c"
+#line 1227 "utils.c"
 	}
 #line 111 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp26_ = cmd;
@@ -1245,7 +1247,7 @@ gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd) {
 	_g_free0 (std_err);
 #line 112 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 1249 "utils.c"
+#line 1251 "utils.c"
 }
 
 
@@ -1272,7 +1274,7 @@ static gint string_index_of (const gchar* self, const gchar* needle, gint start_
 	_tmp3_ = _result_;
 #line 990 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp3_ != NULL) {
-#line 1276 "utils.c"
+#line 1278 "utils.c"
 		gchar* _tmp4_ = NULL;
 #line 991 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp4_ = _result_;
@@ -1280,13 +1282,13 @@ static gint string_index_of (const gchar* self, const gchar* needle, gint start_
 		result = (gint) (_tmp4_ - ((gchar*) self));
 #line 991 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 1284 "utils.c"
+#line 1286 "utils.c"
 	} else {
 #line 993 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		result = -1;
 #line 993 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 1290 "utils.c"
+#line 1292 "utils.c"
 	}
 }
 
@@ -1310,7 +1312,7 @@ static glong string_strnlen (gchar* str, glong maxlen) {
 	_tmp3_ = end;
 #line 1296 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp3_ == NULL) {
-#line 1314 "utils.c"
+#line 1316 "utils.c"
 		glong _tmp4_ = 0L;
 #line 1297 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp4_ = maxlen;
@@ -1318,7 +1320,7 @@ static glong string_strnlen (gchar* str, glong maxlen) {
 		result = _tmp4_;
 #line 1297 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 1322 "utils.c"
+#line 1324 "utils.c"
 	} else {
 		gchar* _tmp5_ = NULL;
 		gchar* _tmp6_ = NULL;
@@ -1330,7 +1332,7 @@ static glong string_strnlen (gchar* str, glong maxlen) {
 		result = (glong) (_tmp5_ - _tmp6_);
 #line 1299 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 1334 "utils.c"
+#line 1336 "utils.c"
 	}
 }
 
@@ -1354,21 +1356,21 @@ static gchar* string_substring (const gchar* self, glong offset, glong len) {
 	_tmp1_ = offset;
 #line 1308 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp1_ >= ((glong) 0)) {
-#line 1358 "utils.c"
+#line 1360 "utils.c"
 		glong _tmp2_ = 0L;
 #line 1308 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp2_ = len;
 #line 1308 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp0_ = _tmp2_ >= ((glong) 0);
-#line 1364 "utils.c"
+#line 1366 "utils.c"
 	} else {
 #line 1308 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp0_ = FALSE;
-#line 1368 "utils.c"
+#line 1370 "utils.c"
 	}
 #line 1308 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp0_) {
-#line 1372 "utils.c"
+#line 1374 "utils.c"
 		glong _tmp3_ = 0L;
 		glong _tmp4_ = 0L;
 		glong _tmp5_ = 0L;
@@ -1380,7 +1382,7 @@ static gchar* string_substring (const gchar* self, glong offset, glong len) {
 		_tmp5_ = string_strnlen ((gchar*) self, _tmp3_ + _tmp4_);
 #line 1310 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		string_length = _tmp5_;
-#line 1384 "utils.c"
+#line 1386 "utils.c"
 	} else {
 		gint _tmp6_ = 0;
 		gint _tmp7_ = 0;
@@ -1390,13 +1392,13 @@ static gchar* string_substring (const gchar* self, glong offset, glong len) {
 		_tmp7_ = _tmp6_;
 #line 1312 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		string_length = (glong) _tmp7_;
-#line 1394 "utils.c"
+#line 1396 "utils.c"
 	}
 #line 1315 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp8_ = offset;
 #line 1315 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp8_ < ((glong) 0)) {
-#line 1400 "utils.c"
+#line 1402 "utils.c"
 		glong _tmp9_ = 0L;
 		glong _tmp10_ = 0L;
 		glong _tmp11_ = 0L;
@@ -1410,7 +1412,7 @@ static gchar* string_substring (const gchar* self, glong offset, glong len) {
 		_tmp11_ = offset;
 #line 1317 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		g_return_val_if_fail (_tmp11_ >= ((glong) 0), NULL);
-#line 1414 "utils.c"
+#line 1416 "utils.c"
 	} else {
 		glong _tmp12_ = 0L;
 		glong _tmp13_ = 0L;
@@ -1420,13 +1422,13 @@ static gchar* string_substring (const gchar* self, glong offset, glong len) {
 		_tmp13_ = string_length;
 #line 1319 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		g_return_val_if_fail (_tmp12_ <= _tmp13_, NULL);
-#line 1424 "utils.c"
+#line 1426 "utils.c"
 	}
 #line 1321 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp14_ = len;
 #line 1321 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp14_ < ((glong) 0)) {
-#line 1430 "utils.c"
+#line 1432 "utils.c"
 		glong _tmp15_ = 0L;
 		glong _tmp16_ = 0L;
 #line 1322 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -1435,7 +1437,7 @@ static gchar* string_substring (const gchar* self, glong offset, glong len) {
 		_tmp16_ = offset;
 #line 1322 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		len = _tmp15_ - _tmp16_;
-#line 1439 "utils.c"
+#line 1441 "utils.c"
 	}
 #line 1324 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp17_ = offset;
@@ -1455,7 +1457,7 @@ static gchar* string_substring (const gchar* self, glong offset, glong len) {
 	result = _tmp22_;
 #line 1325 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 1459 "utils.c"
+#line 1461 "utils.c"
 }
 
 
@@ -1478,7 +1480,7 @@ static gchar* string_strip (const gchar* self) {
 	result = _result_;
 #line 1210 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 1482 "utils.c"
+#line 1484 "utils.c"
 }
 
 
@@ -1513,7 +1515,7 @@ gchar* bookworm_app_utils_extractBetweenTwoStrings (const gchar* stringToBeSearc
 	_tmp4_ = positionOfStartStringInData;
 #line 118 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp4_ > -1) {
-#line 1517 "utils.c"
+#line 1519 "utils.c"
 		gint positionOfEndOfStartString = 0;
 		gint _tmp5_ = 0;
 		const gchar* _tmp6_ = NULL;
@@ -1546,7 +1548,7 @@ gchar* bookworm_app_utils_extractBetweenTwoStrings (const gchar* stringToBeSearc
 		_tmp12_ = positionOfStartOfEndString;
 #line 121 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp12_ > -1) {
-#line 1550 "utils.c"
+#line 1552 "utils.c"
 			const gchar* _tmp13_ = NULL;
 			gint _tmp14_ = 0;
 			gint _tmp15_ = 0;
@@ -1574,7 +1576,7 @@ gchar* bookworm_app_utils_extractBetweenTwoStrings (const gchar* stringToBeSearc
 			extractedString = _tmp19_;
 #line 122 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_free0 (_tmp18_);
-#line 1578 "utils.c"
+#line 1580 "utils.c"
 		}
 	} else {
 		gchar* _tmp20_ = NULL;
@@ -1584,13 +1586,13 @@ gchar* bookworm_app_utils_extractBetweenTwoStrings (const gchar* stringToBeSearc
 		_g_free0 (extractedString);
 #line 124 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		extractedString = _tmp20_;
-#line 1588 "utils.c"
+#line 1590 "utils.c"
 	}
 #line 126 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = extractedString;
 #line 126 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 1594 "utils.c"
+#line 1596 "utils.c"
 }
 
 
@@ -1603,7 +1605,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	g_return_val_if_fail (old != NULL, NULL);
 #line 1380 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (replacement != NULL, NULL);
-#line 1607 "utils.c"
+#line 1609 "utils.c"
 	{
 		GRegex* regex = NULL;
 		const gchar* _tmp0_ = NULL;
@@ -1634,8 +1636,8 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			if (_inner_error_->domain == G_REGEX_ERROR) {
-#line 1638 "utils.c"
-				goto __catch5_g_regex_error;
+#line 1640 "utils.c"
+				goto __catch6_g_regex_error;
 			}
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -1643,7 +1645,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			g_clear_error (&_inner_error_);
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			return NULL;
-#line 1647 "utils.c"
+#line 1649 "utils.c"
 		}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp6_ = regex;
@@ -1659,8 +1661,8 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			_g_regex_unref0 (regex);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			if (_inner_error_->domain == G_REGEX_ERROR) {
-#line 1663 "utils.c"
-				goto __catch5_g_regex_error;
+#line 1665 "utils.c"
+				goto __catch6_g_regex_error;
 			}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			_g_regex_unref0 (regex);
@@ -1670,7 +1672,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			g_clear_error (&_inner_error_);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			return NULL;
-#line 1674 "utils.c"
+#line 1676 "utils.c"
 		}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp9_ = _tmp5_;
@@ -1684,10 +1686,10 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		_g_regex_unref0 (regex);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 1688 "utils.c"
+#line 1690 "utils.c"
 	}
-	goto __finally5;
-	__catch5_g_regex_error:
+	goto __finally6;
+	__catch6_g_regex_error:
 	{
 		GError* e = NULL;
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -1698,9 +1700,9 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_g_error_free0 (e);
-#line 1702 "utils.c"
+#line 1704 "utils.c"
 	}
-	__finally5:
+	__finally6:
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -1709,7 +1711,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_clear_error (&_inner_error_);
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return NULL;
-#line 1713 "utils.c"
+#line 1715 "utils.c"
 	}
 }
 
@@ -1721,13 +1723,13 @@ static void _vala_array_add1 (gchar*** array, int* length, int* size, gchar* val
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 138 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1725 "utils.c"
+#line 1727 "utils.c"
 	}
 #line 138 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	(*array)[(*length)++] = value;
 #line 138 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	(*array)[*length] = NULL;
-#line 1731 "utils.c"
+#line 1733 "utils.c"
 }
 
 
@@ -1754,7 +1756,7 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 	results_length1 = 0;
 #line 130 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_results_size_ = results_length1;
-#line 1758 "utils.c"
+#line 1760 "utils.c"
 	{
 		gchar* taggedInput = NULL;
 		const gchar* _tmp1_ = NULL;
@@ -1810,7 +1812,7 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 		_tmp12_ = occurencesOfStartString;
 #line 135 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp12__length1 = occurencesOfStartString_length1;
-#line 1814 "utils.c"
+#line 1816 "utils.c"
 		{
 			gchar** splitString_collection = NULL;
 			gint splitString_collection_length1 = 0;
@@ -1822,14 +1824,14 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 			splitString_collection_length1 = _tmp12__length1;
 #line 135 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			for (splitString_it = 0; splitString_it < _tmp12__length1; splitString_it = splitString_it + 1) {
-#line 1826 "utils.c"
+#line 1828 "utils.c"
 				gchar* _tmp13_ = NULL;
 				gchar* splitString = NULL;
 #line 135 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp13_ = g_strdup (splitString_collection[splitString_it]);
 #line 135 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				splitString = _tmp13_;
-#line 1833 "utils.c"
+#line 1835 "utils.c"
 				{
 					gchar* _tmp14_ = NULL;
 					const gchar* _tmp15_ = NULL;
@@ -1859,8 +1861,8 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 						occurencesOfStartString = (_vala_array_free (occurencesOfStartString, occurencesOfStartString_length1, (GDestroyNotify) g_free), NULL);
 #line 136 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_g_free0 (taggedInput);
-#line 1863 "utils.c"
-						goto __catch4_g_error;
+#line 1865 "utils.c"
+						goto __catch5_g_error;
 					}
 #line 136 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp19_ = searchResult;
@@ -1872,7 +1874,7 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 					_tmp21_ = _tmp20_->str;
 #line 137 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					if (g_strcmp0 (_tmp21_, BOOKWORM_APP_CONSTANTS_TEXT_FOR_NOT_AVAILABLE) != 0) {
-#line 1876 "utils.c"
+#line 1878 "utils.c"
 						gchar** _tmp22_ = NULL;
 						gint _tmp22__length1 = 0;
 						GString* _tmp23_ = NULL;
@@ -1890,13 +1892,13 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 						_tmp25_ = g_strdup (_tmp24_);
 #line 138 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_vala_array_add1 (&results, &results_length1, &_results_size_, _tmp25_);
-#line 1894 "utils.c"
+#line 1896 "utils.c"
 					}
 #line 135 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_g_free0 (_tmp14_);
 #line 135 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_g_free0 (splitString);
-#line 1900 "utils.c"
+#line 1902 "utils.c"
 				}
 			}
 		}
@@ -1906,10 +1908,10 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 		occurencesOfStartString = (_vala_array_free (occurencesOfStartString, occurencesOfStartString_length1, (GDestroyNotify) g_free), NULL);
 #line 131 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_free0 (taggedInput);
-#line 1910 "utils.c"
+#line 1912 "utils.c"
 	}
-	goto __finally4;
-	__catch4_g_error:
+	goto __finally5;
+	__catch5_g_error:
 	{
 		GError* e = NULL;
 		GError* _tmp26_ = NULL;
@@ -1934,9 +1936,9 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 		_g_free0 (_tmp29_);
 #line 131 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_error_free0 (e);
-#line 1938 "utils.c"
+#line 1940 "utils.c"
 	}
-	__finally4:
+	__finally5:
 #line 131 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 131 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -1947,7 +1949,7 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 		g_clear_error (&_inner_error_);
 #line 131 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return NULL;
-#line 1951 "utils.c"
+#line 1953 "utils.c"
 	}
 #line 143 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp30_ = results;
@@ -1957,13 +1959,13 @@ gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToB
 	if (result_length1) {
 #line 143 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		*result_length1 = _tmp30__length1;
-#line 1961 "utils.c"
+#line 1963 "utils.c"
 	}
 #line 143 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = _tmp30_;
 #line 143 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 1967 "utils.c"
+#line 1969 "utils.c"
 }
 
 
@@ -1974,13 +1976,13 @@ static void _vala_array_add2 (gchar*** array, int* length, int* size, gchar* val
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 157 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1978 "utils.c"
+#line 1980 "utils.c"
 	}
 #line 157 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	(*array)[(*length)++] = value;
 #line 157 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	(*array)[*length] = NULL;
-#line 1984 "utils.c"
+#line 1986 "utils.c"
 }
 
 
@@ -2034,7 +2036,7 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 	_tmp2_ = start;
 #line 1344 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp2_ < ((glong) 0)) {
-#line 2038 "utils.c"
+#line 2040 "utils.c"
 		glong _tmp3_ = 0L;
 		glong _tmp4_ = 0L;
 #line 1345 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -2043,13 +2045,13 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 		_tmp4_ = start;
 #line 1345 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		start = _tmp3_ + _tmp4_;
-#line 2047 "utils.c"
+#line 2049 "utils.c"
 	}
 #line 1347 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp5_ = end;
 #line 1347 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp5_ < ((glong) 0)) {
-#line 2053 "utils.c"
+#line 2055 "utils.c"
 		glong _tmp6_ = 0L;
 		glong _tmp7_ = 0L;
 #line 1348 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -2058,13 +2060,13 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 		_tmp7_ = end;
 #line 1348 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		end = _tmp6_ + _tmp7_;
-#line 2062 "utils.c"
+#line 2064 "utils.c"
 	}
 #line 1350 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp9_ = start;
 #line 1350 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp9_ >= ((glong) 0)) {
-#line 2068 "utils.c"
+#line 2070 "utils.c"
 		glong _tmp10_ = 0L;
 		glong _tmp11_ = 0L;
 #line 1350 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -2073,11 +2075,11 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 		_tmp11_ = string_length;
 #line 1350 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp8_ = _tmp10_ <= _tmp11_;
-#line 2077 "utils.c"
+#line 2079 "utils.c"
 	} else {
 #line 1350 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp8_ = FALSE;
-#line 2081 "utils.c"
+#line 2083 "utils.c"
 	}
 #line 1350 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (_tmp8_, NULL);
@@ -2085,7 +2087,7 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 	_tmp13_ = end;
 #line 1351 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp13_ >= ((glong) 0)) {
-#line 2089 "utils.c"
+#line 2091 "utils.c"
 		glong _tmp14_ = 0L;
 		glong _tmp15_ = 0L;
 #line 1351 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -2094,11 +2096,11 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 		_tmp15_ = string_length;
 #line 1351 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp12_ = _tmp14_ <= _tmp15_;
-#line 2098 "utils.c"
+#line 2100 "utils.c"
 	} else {
 #line 1351 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp12_ = FALSE;
-#line 2102 "utils.c"
+#line 2104 "utils.c"
 	}
 #line 1351 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (_tmp12_, NULL);
@@ -2114,7 +2116,7 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 	if (_tmp18_ == NULL) {
 #line 1356 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		str_size = (gsize) 0;
-#line 2118 "utils.c"
+#line 2120 "utils.c"
 	} else {
 		const gchar* _tmp19_ = NULL;
 		gint _tmp20_ = 0;
@@ -2127,7 +2129,7 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 		_tmp21_ = _tmp20_;
 #line 1358 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		str_size = (gsize) _tmp21_;
-#line 2131 "utils.c"
+#line 2133 "utils.c"
 	}
 #line 1361 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp22_ = strlen (self);
@@ -2191,7 +2193,7 @@ static gchar* string_splice (const gchar* self, glong start, glong end, const gc
 	result = (gchar*) _tmp42_;
 #line 1373 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 2195 "utils.c"
+#line 2197 "utils.c"
 }
 
 
@@ -2202,13 +2204,13 @@ static void _vala_array_add3 (gchar*** array, int* length, int* size, gchar* val
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 161 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2206 "utils.c"
+#line 2208 "utils.c"
 	}
 #line 161 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	(*array)[(*length)++] = value;
 #line 161 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	(*array)[*length] = NULL;
-#line 2212 "utils.c"
+#line 2214 "utils.c"
 }
 
 
@@ -2268,7 +2270,7 @@ gchar** bookworm_app_utils_getListOfRepeatingSegments (const gchar* data, const 
 	if (_tmp6_ != -1) {
 #line 153 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		while (TRUE) {
-#line 2272 "utils.c"
+#line 2274 "utils.c"
 			gboolean _tmp7_ = FALSE;
 			const gchar* _tmp8_ = NULL;
 			const gchar* _tmp9_ = NULL;
@@ -2281,7 +2283,7 @@ gchar** bookworm_app_utils_getListOfRepeatingSegments (const gchar* data, const 
 			if (!_tmp7_) {
 #line 153 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				break;
-#line 2285 "utils.c"
+#line 2287 "utils.c"
 			}
 #line 154 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp8_ = data;
@@ -2297,7 +2299,7 @@ gchar** bookworm_app_utils_getListOfRepeatingSegments (const gchar* data, const 
 			_tmp12_ = positionOfNextSegment;
 #line 155 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp12_ != -1) {
-#line 2301 "utils.c"
+#line 2303 "utils.c"
 				const gchar* _tmp13_ = NULL;
 				gint _tmp14_ = 0;
 				gint _tmp15_ = 0;
@@ -2353,7 +2355,7 @@ gchar** bookworm_app_utils_getListOfRepeatingSegments (const gchar* data, const 
 				_tmp26_ = positionOfNextSegment;
 #line 159 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				positionCurrentSegment = _tmp26_;
-#line 2357 "utils.c"
+#line 2359 "utils.c"
 			} else {
 				gchar** _tmp27_ = NULL;
 				gint _tmp27__length1 = 0;
@@ -2374,7 +2376,7 @@ gchar** bookworm_app_utils_getListOfRepeatingSegments (const gchar* data, const 
 				_vala_array_add3 (&segments, &segments_length1, &_segments_size_, _tmp30_);
 #line 162 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				isSegmentsRemaning = FALSE;
-#line 2378 "utils.c"
+#line 2380 "utils.c"
 			}
 		}
 	} else {
@@ -2394,7 +2396,7 @@ gchar** bookworm_app_utils_getListOfRepeatingSegments (const gchar* data, const 
 		segments_length1 = 1;
 #line 166 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_segments_size_ = segments_length1;
-#line 2398 "utils.c"
+#line 2400 "utils.c"
 	}
 #line 168 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp33_ = segments;
@@ -2404,7 +2406,7 @@ gchar** bookworm_app_utils_getListOfRepeatingSegments (const gchar* data, const 
 	if (result_length1) {
 #line 168 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		*result_length1 = _tmp33__length1;
-#line 2408 "utils.c"
+#line 2410 "utils.c"
 	}
 #line 168 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = _tmp33_;
@@ -2412,7 +2414,7 @@ gchar** bookworm_app_utils_getListOfRepeatingSegments (const gchar* data, const 
 	_g_free0 (currentSegment);
 #line 168 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 2416 "utils.c"
+#line 2418 "utils.c"
 }
 
 
@@ -2464,7 +2466,7 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 	_tmp7_ = individualLines;
 #line 174 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp7__length1 = individualLines_length1;
-#line 2468 "utils.c"
+#line 2470 "utils.c"
 	{
 		gchar** line_collection = NULL;
 		gint line_collection_length1 = 0;
@@ -2476,14 +2478,14 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 		line_collection_length1 = _tmp7__length1;
 #line 174 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		for (line_it = 0; line_it < _tmp7__length1; line_it = line_it + 1) {
-#line 2480 "utils.c"
+#line 2482 "utils.c"
 			gchar* _tmp8_ = NULL;
 			gchar* line = NULL;
 #line 174 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp8_ = g_strdup (line_collection[line_it]);
 #line 174 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			line = _tmp8_;
-#line 2487 "utils.c"
+#line 2489 "utils.c"
 			{
 				gchar** valuesInALine = NULL;
 				const gchar* _tmp9_ = NULL;
@@ -2526,19 +2528,19 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 				_tmp16_ = gee_array_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL, NULL, NULL);
 #line 176 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				columnsData = _tmp16_;
-#line 2530 "utils.c"
+#line 2532 "utils.c"
 				{
 					gint count = 0;
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					count = 0;
-#line 2535 "utils.c"
+#line 2537 "utils.c"
 					{
 						gboolean _tmp17_ = FALSE;
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp17_ = TRUE;
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						while (TRUE) {
-#line 2542 "utils.c"
+#line 2544 "utils.c"
 							gint _tmp19_ = 0;
 							gint _tmp20_ = 0;
 							gboolean _tmp21_ = FALSE;
@@ -2547,13 +2549,13 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 							gint _tmp23__length1 = 0;
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 							if (!_tmp17_) {
-#line 2551 "utils.c"
+#line 2553 "utils.c"
 								gint _tmp18_ = 0;
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 								_tmp18_ = count;
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 								count = _tmp18_ + 1;
-#line 2557 "utils.c"
+#line 2559 "utils.c"
 							}
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 							_tmp17_ = FALSE;
@@ -2565,7 +2567,7 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 							if (!(_tmp19_ < _tmp20_)) {
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 								break;
-#line 2569 "utils.c"
+#line 2571 "utils.c"
 							}
 #line 178 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 							_tmp22_ = count;
@@ -2575,7 +2577,7 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 							_tmp23__length1 = valuesInALine_length1;
 #line 178 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 							if (_tmp22_ <= _tmp23__length1) {
-#line 2579 "utils.c"
+#line 2581 "utils.c"
 								gchar** _tmp24_ = NULL;
 								gint _tmp24__length1 = 0;
 								gint _tmp25_ = 0;
@@ -2590,15 +2592,15 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 								_tmp26_ = _tmp24_[_tmp25_];
 #line 178 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 								_tmp21_ = _tmp26_ != NULL;
-#line 2594 "utils.c"
+#line 2596 "utils.c"
 							} else {
 #line 178 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 								_tmp21_ = FALSE;
-#line 2598 "utils.c"
+#line 2600 "utils.c"
 							}
 #line 178 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 							if (_tmp21_) {
-#line 2602 "utils.c"
+#line 2604 "utils.c"
 								GeeArrayList* _tmp27_ = NULL;
 								gchar** _tmp28_ = NULL;
 								gint _tmp28__length1 = 0;
@@ -2624,14 +2626,14 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 								gee_abstract_collection_add ((GeeAbstractCollection*) _tmp27_, _tmp32_);
 #line 179 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 								_g_free0 (_tmp32_);
-#line 2628 "utils.c"
+#line 2630 "utils.c"
 							} else {
 								GeeArrayList* _tmp33_ = NULL;
 #line 181 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 								_tmp33_ = columnsData;
 #line 181 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 								gee_abstract_collection_add ((GeeAbstractCollection*) _tmp33_, " ");
-#line 2635 "utils.c"
+#line 2637 "utils.c"
 							}
 						}
 					}
@@ -2648,7 +2650,7 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 				valuesInALine = (_vala_array_free (valuesInALine, valuesInALine_length1, (GDestroyNotify) g_free), NULL);
 #line 174 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_g_free0 (line);
-#line 2652 "utils.c"
+#line 2654 "utils.c"
 			}
 		}
 	}
@@ -2658,7 +2660,7 @@ GeeArrayList* bookworm_app_utils_convertMultiLinesToTableArray (const gchar* dat
 	individualLines = (_vala_array_free (individualLines, individualLines_length1, (GDestroyNotify) g_free), NULL);
 #line 186 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 2662 "utils.c"
+#line 2664 "utils.c"
 }
 
 
@@ -2678,7 +2680,7 @@ static gboolean string_contains (const gchar* self, const gchar* needle) {
 	result = _tmp1_ != NULL;
 #line 1377 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 2682 "utils.c"
+#line 2684 "utils.c"
 }
 
 
@@ -2711,7 +2713,7 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 	_tmp2_ = start;
 #line 1330 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp2_ < ((glong) 0)) {
-#line 2715 "utils.c"
+#line 2717 "utils.c"
 		glong _tmp3_ = 0L;
 		glong _tmp4_ = 0L;
 #line 1331 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -2720,13 +2722,13 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 		_tmp4_ = start;
 #line 1331 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		start = _tmp3_ + _tmp4_;
-#line 2724 "utils.c"
+#line 2726 "utils.c"
 	}
 #line 1333 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp5_ = end;
 #line 1333 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp5_ < ((glong) 0)) {
-#line 2730 "utils.c"
+#line 2732 "utils.c"
 		glong _tmp6_ = 0L;
 		glong _tmp7_ = 0L;
 #line 1334 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -2735,13 +2737,13 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 		_tmp7_ = end;
 #line 1334 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		end = _tmp6_ + _tmp7_;
-#line 2739 "utils.c"
+#line 2741 "utils.c"
 	}
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp9_ = start;
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp9_ >= ((glong) 0)) {
-#line 2745 "utils.c"
+#line 2747 "utils.c"
 		glong _tmp10_ = 0L;
 		glong _tmp11_ = 0L;
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -2750,11 +2752,11 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 		_tmp11_ = string_length;
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp8_ = _tmp10_ <= _tmp11_;
-#line 2754 "utils.c"
+#line 2756 "utils.c"
 	} else {
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp8_ = FALSE;
-#line 2758 "utils.c"
+#line 2760 "utils.c"
 	}
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (_tmp8_, NULL);
@@ -2762,7 +2764,7 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 	_tmp13_ = end;
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp13_ >= ((glong) 0)) {
-#line 2766 "utils.c"
+#line 2768 "utils.c"
 		glong _tmp14_ = 0L;
 		glong _tmp15_ = 0L;
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -2771,11 +2773,11 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 		_tmp15_ = string_length;
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp12_ = _tmp14_ <= _tmp15_;
-#line 2775 "utils.c"
+#line 2777 "utils.c"
 	} else {
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp12_ = FALSE;
-#line 2779 "utils.c"
+#line 2781 "utils.c"
 	}
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (_tmp12_, NULL);
@@ -2797,7 +2799,7 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 	result = _tmp21_;
 #line 1339 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 2801 "utils.c"
+#line 2803 "utils.c"
 }
 
 
@@ -2827,7 +2829,7 @@ gchar* bookworm_app_utils_extractXMLTag (const gchar* xmlData, const gchar* star
 	_tmp4_ = string_contains (_tmp2_, _tmp3_);
 #line 191 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp4_) {
-#line 2831 "utils.c"
+#line 2833 "utils.c"
 		const gchar* _tmp5_ = NULL;
 		const gchar* _tmp6_ = NULL;
 		gboolean _tmp7_ = FALSE;
@@ -2839,15 +2841,15 @@ gchar* bookworm_app_utils_extractXMLTag (const gchar* xmlData, const gchar* star
 		_tmp7_ = string_contains (_tmp5_, _tmp6_);
 #line 191 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp1_ = _tmp7_;
-#line 2843 "utils.c"
+#line 2845 "utils.c"
 	} else {
 #line 191 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp1_ = FALSE;
-#line 2847 "utils.c"
+#line 2849 "utils.c"
 	}
 #line 191 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp1_) {
-#line 2851 "utils.c"
+#line 2853 "utils.c"
 		const gchar* _tmp8_ = NULL;
 		const gchar* _tmp9_ = NULL;
 		const gchar* _tmp10_ = NULL;
@@ -2885,13 +2887,13 @@ gchar* bookworm_app_utils_extractXMLTag (const gchar* xmlData, const gchar* star
 		_g_free0 (extractedData);
 #line 192 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		extractedData = _tmp18_;
-#line 2889 "utils.c"
+#line 2891 "utils.c"
 	}
 #line 194 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = extractedData;
 #line 194 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 2895 "utils.c"
+#line 2897 "utils.c"
 }
 
 
@@ -2940,7 +2942,7 @@ gchar* bookworm_app_utils_extractXMLAttribute (const gchar* xmlData, const gchar
 	_g_free0 (_tmp5_);
 #line 202 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp7_) {
-#line 2944 "utils.c"
+#line 2946 "utils.c"
 		const gchar* _tmp8_ = NULL;
 		const gchar* _tmp9_ = NULL;
 		gchar* _tmp10_ = NULL;
@@ -2979,15 +2981,15 @@ gchar* bookworm_app_utils_extractXMLAttribute (const gchar* xmlData, const gchar
 		_g_free0 (_tmp14_);
 #line 202 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_free0 (_tmp11_);
-#line 2983 "utils.c"
+#line 2985 "utils.c"
 	} else {
 #line 202 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp1_ = FALSE;
-#line 2987 "utils.c"
+#line 2989 "utils.c"
 	}
 #line 202 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp1_) {
-#line 2991 "utils.c"
+#line 2993 "utils.c"
 		gchar* tagData = NULL;
 		const gchar* _tmp18_ = NULL;
 		const gchar* _tmp19_ = NULL;
@@ -3062,7 +3064,7 @@ gchar* bookworm_app_utils_extractXMLAttribute (const gchar* xmlData, const gchar
 		_g_free0 (_tmp35_);
 #line 205 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp37_) {
-#line 3066 "utils.c"
+#line 3068 "utils.c"
 			const gchar* _tmp38_ = NULL;
 			const gchar* _tmp39_ = NULL;
 			const gchar* _tmp40_ = NULL;
@@ -3118,7 +3120,7 @@ gchar* bookworm_app_utils_extractXMLAttribute (const gchar* xmlData, const gchar
 			_tmp52_ = string_index_of (_tmp50_, "\"", _tmp51_);
 #line 207 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			endPos = _tmp52_;
-#line 3122 "utils.c"
+#line 3124 "utils.c"
 		} else {
 			const gchar* _tmp53_ = NULL;
 			const gchar* _tmp54_ = NULL;
@@ -3189,27 +3191,27 @@ gchar* bookworm_app_utils_extractXMLAttribute (const gchar* xmlData, const gchar
 			_g_free0 (_tmp65_);
 #line 210 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_free0 (_tmp63_);
-#line 3193 "utils.c"
+#line 3195 "utils.c"
 		}
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp74_ = startPos;
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp74_ != -1) {
-#line 3199 "utils.c"
+#line 3201 "utils.c"
 			gint _tmp75_ = 0;
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp75_ = endPos;
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp73_ = _tmp75_ != -1;
-#line 3205 "utils.c"
+#line 3207 "utils.c"
 		} else {
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp73_ = FALSE;
-#line 3209 "utils.c"
+#line 3211 "utils.c"
 		}
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp73_) {
-#line 3213 "utils.c"
+#line 3215 "utils.c"
 			gint _tmp76_ = 0;
 			gint _tmp77_ = 0;
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -3218,15 +3220,15 @@ gchar* bookworm_app_utils_extractXMLAttribute (const gchar* xmlData, const gchar
 			_tmp77_ = startPos;
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp72_ = _tmp76_ > _tmp77_;
-#line 3222 "utils.c"
+#line 3224 "utils.c"
 		} else {
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp72_ = FALSE;
-#line 3226 "utils.c"
+#line 3228 "utils.c"
 		}
 #line 212 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp72_) {
-#line 3230 "utils.c"
+#line 3232 "utils.c"
 			const gchar* _tmp78_ = NULL;
 			gint _tmp79_ = 0;
 			gint _tmp80_ = 0;
@@ -3243,17 +3245,17 @@ gchar* bookworm_app_utils_extractXMLAttribute (const gchar* xmlData, const gchar
 			_g_free0 (extractedData);
 #line 213 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			extractedData = _tmp81_;
-#line 3247 "utils.c"
+#line 3249 "utils.c"
 		}
 #line 202 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_free0 (tagData);
-#line 3251 "utils.c"
+#line 3253 "utils.c"
 	}
 #line 216 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = extractedData;
 #line 216 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 3257 "utils.c"
+#line 3259 "utils.c"
 }
 
 
@@ -3321,7 +3323,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 	tagValue = _tmp6_;
 #line 232 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	while (TRUE) {
-#line 3325 "utils.c"
+#line 3327 "utils.c"
 		gint _tmp7_ = 0;
 		const gchar* _tmp8_ = NULL;
 		const gchar* _tmp9_ = NULL;
@@ -3337,7 +3339,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 		if (!(_tmp7_ != -1)) {
 #line 232 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			break;
-#line 3341 "utils.c"
+#line 3343 "utils.c"
 		}
 #line 233 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp8_ = xmlData;
@@ -3353,7 +3355,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 		_tmp12_ = doesAttributeValueExists;
 #line 234 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp12_) {
-#line 3357 "utils.c"
+#line 3359 "utils.c"
 			const gchar* _tmp13_ = NULL;
 			gint _tmp14_ = 0;
 			gint _tmp15_ = 0;
@@ -3365,7 +3367,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 			_tmp15_ = string_index_of (_tmp13_, "/>", _tmp14_);
 #line 235 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			positionOfEndTag = _tmp15_;
-#line 3369 "utils.c"
+#line 3371 "utils.c"
 		} else {
 			const gchar* _tmp16_ = NULL;
 			gint _tmp17_ = 0;
@@ -3378,7 +3380,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 			_tmp18_ = string_index_of (_tmp16_, ">", _tmp17_);
 #line 237 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			positionOfEndTag = _tmp18_;
-#line 3382 "utils.c"
+#line 3384 "utils.c"
 		}
 #line 240 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp19_ = positionOfEndTag;
@@ -3386,7 +3388,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 		_tmp20_ = positionOfStartTag;
 #line 240 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp19_ > _tmp20_) {
-#line 3390 "utils.c"
+#line 3392 "utils.c"
 			const gchar* _tmp21_ = NULL;
 			const gchar* _tmp22_ = NULL;
 			gint _tmp23_ = 0;
@@ -3429,21 +3431,21 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 			_tmp33_ = positionOfStartAttributeValue;
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp33_ != -1) {
-#line 3433 "utils.c"
+#line 3435 "utils.c"
 				gint _tmp34_ = 0;
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp34_ = positionOfEndAttributeValue;
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp32_ = _tmp34_ != -1;
-#line 3439 "utils.c"
+#line 3441 "utils.c"
 			} else {
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp32_ = FALSE;
-#line 3443 "utils.c"
+#line 3445 "utils.c"
 			}
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp32_) {
-#line 3447 "utils.c"
+#line 3449 "utils.c"
 				gint _tmp35_ = 0;
 				gint _tmp36_ = 0;
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -3452,15 +3454,15 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 				_tmp36_ = positionOfStartAttributeValue;
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp31_ = _tmp35_ > _tmp36_;
-#line 3456 "utils.c"
+#line 3458 "utils.c"
 			} else {
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp31_ = FALSE;
-#line 3460 "utils.c"
+#line 3462 "utils.c"
 			}
 #line 243 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp31_) {
-#line 3464 "utils.c"
+#line 3466 "utils.c"
 				GString* _tmp37_ = NULL;
 				const gchar* _tmp38_ = NULL;
 				gint _tmp39_ = 0;
@@ -3492,20 +3494,20 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 				g_string_assign (_tmp37_, _tmp45_);
 #line 244 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_g_free0 (_tmp45_);
-#line 3496 "utils.c"
+#line 3498 "utils.c"
 			} else {
 				GString* _tmp46_ = NULL;
 #line 246 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp46_ = attributeValue;
 #line 246 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp46_, "");
-#line 3503 "utils.c"
+#line 3505 "utils.c"
 			}
 #line 248 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp47_ = doesAttributeValueExists;
 #line 248 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp47_) {
-#line 3509 "utils.c"
+#line 3511 "utils.c"
 				const gchar* _tmp48_ = NULL;
 				gint _tmp49_ = 0;
 				gint _tmp50_ = 0;
@@ -3543,21 +3545,21 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 				_tmp58_ = positionOfStartTagValue;
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp58_ != -1) {
-#line 3547 "utils.c"
+#line 3549 "utils.c"
 					gint _tmp59_ = 0;
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp59_ = positionOfEndTagValue;
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp57_ = _tmp59_ != -1;
-#line 3553 "utils.c"
+#line 3555 "utils.c"
 				} else {
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp57_ = FALSE;
-#line 3557 "utils.c"
+#line 3559 "utils.c"
 				}
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp57_) {
-#line 3561 "utils.c"
+#line 3563 "utils.c"
 					gint _tmp60_ = 0;
 					gint _tmp61_ = 0;
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -3566,15 +3568,15 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 					_tmp61_ = positionOfStartTagValue;
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp56_ = _tmp60_ > _tmp61_;
-#line 3570 "utils.c"
+#line 3572 "utils.c"
 				} else {
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp56_ = FALSE;
-#line 3574 "utils.c"
+#line 3576 "utils.c"
 				}
 #line 251 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp56_) {
-#line 3578 "utils.c"
+#line 3580 "utils.c"
 					GString* _tmp62_ = NULL;
 					const gchar* _tmp63_ = NULL;
 					gint _tmp64_ = 0;
@@ -3603,14 +3605,14 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 					g_string_assign (_tmp62_, _tmp69_);
 #line 252 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_g_free0 (_tmp69_);
-#line 3607 "utils.c"
+#line 3609 "utils.c"
 				} else {
 					GString* _tmp70_ = NULL;
 #line 254 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp70_ = tagValue;
 #line 254 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					g_string_assign (_tmp70_, "");
-#line 3614 "utils.c"
+#line 3616 "utils.c"
 				}
 #line 257 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp71_ = attributeValue;
@@ -3618,7 +3620,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 				_tmp72_ = _tmp71_->str;
 #line 257 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (g_strcmp0 (_tmp72_, "") != 0) {
-#line 3622 "utils.c"
+#line 3624 "utils.c"
 					GeeHashMap* _tmp73_ = NULL;
 					GString* _tmp74_ = NULL;
 					const gchar* _tmp75_ = NULL;
@@ -3636,7 +3638,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 					_tmp77_ = _tmp76_->str;
 #line 258 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					gee_abstract_map_set ((GeeAbstractMap*) _tmp73_, _tmp75_, _tmp77_);
-#line 3640 "utils.c"
+#line 3642 "utils.c"
 				}
 			} else {
 				const gchar* _tmp78_ = NULL;
@@ -3670,21 +3672,21 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 				_tmp86_ = positionOfStartTagValue;
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp86_ != -1) {
-#line 3674 "utils.c"
+#line 3676 "utils.c"
 					gint _tmp87_ = 0;
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp87_ = positionOfEndTagValue;
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp85_ = _tmp87_ != -1;
-#line 3680 "utils.c"
+#line 3682 "utils.c"
 				} else {
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp85_ = FALSE;
-#line 3684 "utils.c"
+#line 3686 "utils.c"
 				}
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp85_) {
-#line 3688 "utils.c"
+#line 3690 "utils.c"
 					gint _tmp88_ = 0;
 					gint _tmp89_ = 0;
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -3693,15 +3695,15 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 					_tmp89_ = positionOfStartTagValue;
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp84_ = _tmp88_ > _tmp89_;
-#line 3697 "utils.c"
+#line 3699 "utils.c"
 				} else {
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp84_ = FALSE;
-#line 3701 "utils.c"
+#line 3703 "utils.c"
 				}
 #line 263 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp84_) {
-#line 3705 "utils.c"
+#line 3707 "utils.c"
 					GString* _tmp90_ = NULL;
 					const gchar* _tmp91_ = NULL;
 					gint _tmp92_ = 0;
@@ -3724,14 +3726,14 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 					g_string_assign (_tmp90_, _tmp95_);
 #line 264 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_g_free0 (_tmp95_);
-#line 3728 "utils.c"
+#line 3730 "utils.c"
 				} else {
 					GString* _tmp96_ = NULL;
 #line 266 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp96_ = tagValue;
 #line 266 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					g_string_assign (_tmp96_, "");
-#line 3735 "utils.c"
+#line 3737 "utils.c"
 				}
 #line 268 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp97_ = attributeValue;
@@ -3739,7 +3741,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 				_tmp98_ = _tmp97_->str;
 #line 268 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (g_strcmp0 (_tmp98_, "") != 0) {
-#line 3743 "utils.c"
+#line 3745 "utils.c"
 					gboolean _tmp99_ = FALSE;
 					GString* _tmp100_ = NULL;
 					const gchar* _tmp101_ = NULL;
@@ -3754,7 +3756,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 					if (_tmp102_) {
 #line 269 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp99_ = TRUE;
-#line 3758 "utils.c"
+#line 3760 "utils.c"
 					} else {
 						GString* _tmp103_ = NULL;
 						const gchar* _tmp104_ = NULL;
@@ -3767,11 +3769,11 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 						_tmp105_ = string_contains (_tmp104_, ">");
 #line 269 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp99_ = _tmp105_;
-#line 3771 "utils.c"
+#line 3773 "utils.c"
 					}
 #line 269 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					if (!_tmp99_) {
-#line 3775 "utils.c"
+#line 3777 "utils.c"
 						GeeHashMap* _tmp106_ = NULL;
 						GString* _tmp107_ = NULL;
 						const gchar* _tmp108_ = NULL;
@@ -3789,7 +3791,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 						_tmp110_ = _tmp109_->str;
 #line 270 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						gee_abstract_map_set ((GeeAbstractMap*) _tmp106_, _tmp108_, _tmp110_);
-#line 3793 "utils.c"
+#line 3795 "utils.c"
 					}
 				}
 			}
@@ -3798,7 +3800,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 		_tmp111_ = positionOfEndTag;
 #line 274 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		positionOfStartTag = _tmp111_;
-#line 3802 "utils.c"
+#line 3804 "utils.c"
 	}
 #line 276 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = AttributeMap;
@@ -3812,7 +3814,7 @@ GeeHashMap* bookworm_app_utils_extractTagAttributes (const gchar* xmlData, const
 	_g_free0 (qualifiedTagName);
 #line 276 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 3816 "utils.c"
+#line 3818 "utils.c"
 }
 
 
@@ -3864,7 +3866,7 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 	_tmp6_ = positionOfStartTag;
 #line 283 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp6_ != -1) {
-#line 3868 "utils.c"
+#line 3870 "utils.c"
 		GString* _tmp7_ = NULL;
 		const gchar* _tmp8_ = NULL;
 		gint _tmp9_ = 0;
@@ -3884,7 +3886,7 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 		g_string_assign (_tmp7_, _tmp11_);
 #line 284 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_free0 (_tmp11_);
-#line 3888 "utils.c"
+#line 3890 "utils.c"
 	}
 #line 285 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp12_ = xmlDataBuffer;
@@ -3898,19 +3900,19 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 	positionOfStartTag = _tmp15_;
 #line 286 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	positionOfEngTag = 0;
-#line 3902 "utils.c"
+#line 3904 "utils.c"
 	{
 		gint count = 0;
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		count = 0;
-#line 3907 "utils.c"
+#line 3909 "utils.c"
 		{
 			gboolean _tmp16_ = FALSE;
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp16_ = TRUE;
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			while (TRUE) {
-#line 3914 "utils.c"
+#line 3916 "utils.c"
 				gint _tmp18_ = 0;
 				gint _tmp19_ = 0;
 				GString* _tmp20_ = NULL;
@@ -3921,13 +3923,13 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 				gint _tmp25_ = 0;
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (!_tmp16_) {
-#line 3925 "utils.c"
+#line 3927 "utils.c"
 					gint _tmp17_ = 0;
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp17_ = count;
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					count = _tmp17_ + 1;
-#line 3931 "utils.c"
+#line 3933 "utils.c"
 				}
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp16_ = FALSE;
@@ -3939,7 +3941,7 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 				if (!(_tmp18_ < _tmp19_)) {
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					break;
-#line 3943 "utils.c"
+#line 3945 "utils.c"
 				}
 #line 288 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp20_ = xmlDataBuffer;
@@ -3955,7 +3957,7 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 				_tmp25_ = string_index_of (_tmp21_, _tmp22_, (_tmp23_ + _tmp24_) + 1);
 #line 288 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				positionOfEngTag = _tmp25_;
-#line 3959 "utils.c"
+#line 3961 "utils.c"
 			}
 		}
 	}
@@ -3963,21 +3965,21 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 	_tmp28_ = positionOfStartTag;
 #line 290 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp28_ != -1) {
-#line 3967 "utils.c"
+#line 3969 "utils.c"
 		gint _tmp29_ = 0;
 #line 290 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp29_ = positionOfEngTag;
 #line 290 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp27_ = _tmp29_ != -1;
-#line 3973 "utils.c"
+#line 3975 "utils.c"
 	} else {
 #line 290 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp27_ = FALSE;
-#line 3977 "utils.c"
+#line 3979 "utils.c"
 	}
 #line 290 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp27_) {
-#line 3981 "utils.c"
+#line 3983 "utils.c"
 		gint _tmp30_ = 0;
 		gint _tmp31_ = 0;
 		const gchar* _tmp32_ = NULL;
@@ -3995,15 +3997,15 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 		_tmp34_ = _tmp33_;
 #line 290 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp26_ = _tmp30_ > (_tmp31_ + _tmp34_);
-#line 3999 "utils.c"
+#line 4001 "utils.c"
 	} else {
 #line 290 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp26_ = FALSE;
-#line 4003 "utils.c"
+#line 4005 "utils.c"
 	}
 #line 290 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp26_) {
-#line 4007 "utils.c"
+#line 4009 "utils.c"
 		GString* _tmp35_ = NULL;
 		const gchar* _tmp36_ = NULL;
 		gint _tmp37_ = 0;
@@ -4032,7 +4034,7 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 		_g_free0 (extractedData);
 #line 291 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		extractedData = _tmp42_;
-#line 4036 "utils.c"
+#line 4038 "utils.c"
 	}
 #line 293 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = extractedData;
@@ -4040,7 +4042,7 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 	_g_string_free0 (xmlDataBuffer);
 #line 293 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 4044 "utils.c"
+#line 4046 "utils.c"
 }
 
 
@@ -4049,7 +4051,7 @@ static Block3Data* block3_data_ref (Block3Data* _data3_) {
 	g_atomic_int_inc (&_data3_->_ref_count_);
 #line 297 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return _data3_;
-#line 4053 "utils.c"
+#line 4055 "utils.c"
 }
 
 
@@ -4062,7 +4064,7 @@ static void block3_data_unref (void * _userdata_) {
 		_g_object_unref0 (_data3_->aFileChooserDialog);
 #line 297 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		g_slice_free (Block3Data, _data3_);
-#line 4066 "utils.c"
+#line 4068 "utils.c"
 	}
 }
 
@@ -4071,7 +4073,7 @@ static gchar* bool_to_string (gboolean self) {
 	gchar* result = NULL;
 #line 37 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (self) {
-#line 4075 "utils.c"
+#line 4077 "utils.c"
 		gchar* _tmp0_ = NULL;
 #line 38 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp0_ = g_strdup ("true");
@@ -4079,7 +4081,7 @@ static gchar* bool_to_string (gboolean self) {
 		result = _tmp0_;
 #line 38 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 4083 "utils.c"
+#line 4085 "utils.c"
 	} else {
 		gchar* _tmp1_ = NULL;
 #line 40 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -4088,12 +4090,12 @@ static gchar* bool_to_string (gboolean self) {
 		result = _tmp1_;
 #line 40 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 4092 "utils.c"
+#line 4094 "utils.c"
 	}
 }
 
 
-static gboolean __lambda12_ (Block3Data* _data3_, GdkEventKey* ev) {
+static gboolean __lambda13_ (Block3Data* _data3_, GdkEventKey* ev) {
 	gboolean result = FALSE;
 	GdkEventKey* _tmp0_ = NULL;
 	guint _tmp1_ = 0U;
@@ -4105,35 +4107,35 @@ static gboolean __lambda12_ (Block3Data* _data3_, GdkEventKey* ev) {
 	_tmp1_ = _tmp0_->keyval;
 #line 316 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp1_ == ((guint) 65307)) {
-#line 4109 "utils.c"
+#line 4111 "utils.c"
 		GtkFileChooserDialog* _tmp2_ = NULL;
 #line 317 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp2_ = _data3_->aFileChooserDialog;
 #line 317 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		gtk_widget_destroy ((GtkWidget*) _tmp2_);
-#line 4115 "utils.c"
+#line 4117 "utils.c"
 	}
 #line 318 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = FALSE;
 #line 318 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 4121 "utils.c"
+#line 4123 "utils.c"
 }
 
 
-static gboolean ___lambda12__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self) {
+static gboolean ___lambda13__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self) {
 	gboolean result;
-	result = __lambda12_ (self, event);
+	result = __lambda13_ (self, event);
 #line 315 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 4130 "utils.c"
+#line 4132 "utils.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
 #line 323 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 4137 "utils.c"
+#line 4139 "utils.c"
 }
 
 
@@ -4211,7 +4213,7 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 	_tmp8_ = action;
 #line 301 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp8_ == GTK_FILE_CHOOSER_ACTION_OPEN) {
-#line 4215 "utils.c"
+#line 4217 "utils.c"
 		GtkFileChooserDialog* _tmp9_ = NULL;
 		const gchar* _tmp10_ = NULL;
 #line 302 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -4220,7 +4222,7 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 		_tmp10_ = _ ("Open");
 #line 302 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		gtk_dialog_add_button ((GtkDialog*) _tmp9_, _tmp10_, (gint) GTK_RESPONSE_ACCEPT);
-#line 4224 "utils.c"
+#line 4226 "utils.c"
 	} else {
 		GtkFileChooserDialog* _tmp11_ = NULL;
 		const gchar* _tmp12_ = NULL;
@@ -4235,7 +4237,7 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 		_tmp13_ = _data3_->aFileChooserDialog;
 #line 305 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		gtk_file_chooser_set_current_name ((GtkFileChooser*) _tmp13_, "");
-#line 4239 "utils.c"
+#line 4241 "utils.c"
 	}
 #line 307 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp14_ = _data3_->aFileChooserDialog;
@@ -4255,7 +4257,7 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 	_tmp19_ = bookworm_app_utils_last_file_chooser_path;
 #line 309 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp19_ != NULL) {
-#line 4259 "utils.c"
+#line 4261 "utils.c"
 		const gchar* _tmp20_ = NULL;
 		gint _tmp21_ = 0;
 		gint _tmp22_ = 0;
@@ -4267,15 +4269,15 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 		_tmp22_ = _tmp21_;
 #line 309 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp18_ = _tmp22_ != 0;
-#line 4271 "utils.c"
+#line 4273 "utils.c"
 	} else {
 #line 309 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp18_ = FALSE;
-#line 4275 "utils.c"
+#line 4277 "utils.c"
 	}
 #line 309 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (_tmp18_) {
-#line 4279 "utils.c"
+#line 4281 "utils.c"
 		gboolean aFileChooserDialogOpeningstatus = FALSE;
 		GtkFileChooserDialog* _tmp23_ = NULL;
 		const gchar* _tmp24_ = NULL;
@@ -4321,7 +4323,7 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 			g_clear_error (&_inner_error_);
 #line 310 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			return NULL;
-#line 4325 "utils.c"
+#line 4327 "utils.c"
 		}
 #line 311 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp29_ = bookworm_app_utils_last_file_chooser_path;
@@ -4353,7 +4355,7 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 		_g_free0 (_tmp33_);
 #line 311 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_free0 (_tmp31_);
-#line 4357 "utils.c"
+#line 4359 "utils.c"
 	} else {
 		GtkFileChooserDialog* _tmp39_ = NULL;
 		const gchar* _tmp40_ = NULL;
@@ -4363,12 +4365,12 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 		_tmp40_ = g_get_home_dir ();
 #line 313 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		gtk_file_chooser_set_current_folder ((GtkFileChooser*) _tmp39_, _tmp40_);
-#line 4367 "utils.c"
+#line 4369 "utils.c"
 	}
 #line 315 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp41_ = _data3_->aFileChooserDialog;
 #line 315 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	g_signal_connect_data ((GtkWidget*) _tmp41_, "key-press-event", (GCallback) ___lambda12__gtk_widget_key_press_event, block3_data_ref (_data3_), (GClosureNotify) block3_data_unref, 0);
+	g_signal_connect_data ((GtkWidget*) _tmp41_, "key-press-event", (GCallback) ___lambda13__gtk_widget_key_press_event, block3_data_ref (_data3_), (GClosureNotify) block3_data_unref, 0);
 #line 320 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp42_ = gtk_file_filter_new ();
 #line 320 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -4439,7 +4441,7 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 	_data3_ = NULL;
 #line 329 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 4443 "utils.c"
+#line 4445 "utils.c"
 }
 
 
@@ -4483,13 +4485,13 @@ static guint8* string_get_data (const gchar* self, int* result_length1) {
 	if (result_length1) {
 #line 1401 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		*result_length1 = _tmp4__length1;
-#line 4487 "utils.c"
+#line 4489 "utils.c"
 	}
 #line 1401 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	result = _tmp4_;
 #line 1401 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 4493 "utils.c"
+#line 4495 "utils.c"
 }
 
 
@@ -4551,7 +4553,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 	fileDir = NULL;
 #line 337 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	file = NULL;
-#line 4555 "utils.c"
+#line 4557 "utils.c"
 	{
 		gboolean _tmp7_ = FALSE;
 		const gchar* _tmp8_ = NULL;
@@ -4574,7 +4576,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 		if (_tmp8_ != NULL) {
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp7_ = TRUE;
-#line 4578 "utils.c"
+#line 4580 "utils.c"
 		} else {
 			const gchar* _tmp9_ = NULL;
 			gint _tmp10_ = 0;
@@ -4587,11 +4589,11 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp11_ = _tmp10_;
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp7_ = _tmp11_ > 1;
-#line 4591 "utils.c"
+#line 4593 "utils.c"
 		}
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp7_) {
-#line 4595 "utils.c"
+#line 4597 "utils.c"
 			const gchar* _tmp12_ = NULL;
 			GFile* _tmp13_ = NULL;
 #line 340 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -4602,7 +4604,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_g_object_unref0 (fileDir);
 #line 340 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			fileDir = _tmp13_;
-#line 4606 "utils.c"
+#line 4608 "utils.c"
 		}
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp15_ = filename;
@@ -4610,7 +4612,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 		if (_tmp15_ != NULL) {
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp14_ = TRUE;
-#line 4614 "utils.c"
+#line 4616 "utils.c"
 		} else {
 			const gchar* _tmp16_ = NULL;
 			gint _tmp17_ = 0;
@@ -4623,11 +4625,11 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp18_ = _tmp17_;
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp14_ = _tmp18_ > 1;
-#line 4627 "utils.c"
+#line 4629 "utils.c"
 		}
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (_tmp14_) {
-#line 4631 "utils.c"
+#line 4633 "utils.c"
 			const gchar* _tmp19_ = NULL;
 			gchar* _tmp20_ = NULL;
 			gchar* _tmp21_ = NULL;
@@ -4657,13 +4659,13 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_g_free0 (_tmp24_);
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_free0 (_tmp21_);
-#line 4661 "utils.c"
+#line 4663 "utils.c"
 		}
 #line 343 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp26_ = operation;
 #line 343 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("CREATEDIR", _tmp26_) == 0) {
-#line 4667 "utils.c"
+#line 4669 "utils.c"
 			GFile* _tmp27_ = NULL;
 			gboolean _tmp28_ = FALSE;
 			GIOChannel* _tmp32_ = NULL;
@@ -4678,7 +4680,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp28_ = g_file_query_exists (_tmp27_, NULL);
 #line 345 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (!_tmp28_) {
-#line 4682 "utils.c"
+#line 4684 "utils.c"
 				GFile* _tmp29_ = NULL;
 				GString* _tmp30_ = NULL;
 #line 347 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -4687,21 +4689,21 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				g_file_make_directory (_tmp29_, NULL, &_inner_error_);
 #line 347 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4691 "utils.c"
-					goto __catch6_g_error;
+#line 4693 "utils.c"
+					goto __catch7_g_error;
 				}
 #line 348 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp30_ = _result_;
 #line 348 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp30_, "true");
-#line 4698 "utils.c"
+#line 4700 "utils.c"
 			} else {
 				GString* _tmp31_ = NULL;
 #line 351 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp31_ = _result_;
 #line 351 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp31_, "true");
-#line 4705 "utils.c"
+#line 4707 "utils.c"
 			}
 #line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp33_ = path;
@@ -4711,8 +4713,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp32_ = _tmp34_;
 #line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4715 "utils.c"
-				goto __catch6_g_error;
+#line 4717 "utils.c"
+				goto __catch7_g_error;
 			}
 #line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp35_ = _tmp32_;
@@ -4728,13 +4730,13 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_g_io_channel_unref0 (_tmp36_);
 #line 343 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_io_channel_unref0 (_tmp32_);
-#line 4732 "utils.c"
+#line 4734 "utils.c"
 		}
 #line 356 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp38_ = operation;
 #line 356 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("WRITE", _tmp38_) == 0) {
-#line 4738 "utils.c"
+#line 4740 "utils.c"
 			GFile* _tmp39_ = NULL;
 			gboolean _tmp40_ = FALSE;
 			GIOChannel* _tmp60_ = NULL;
@@ -4755,7 +4757,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp40_ = g_file_query_exists (_tmp39_, NULL);
 #line 358 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (!_tmp40_) {
-#line 4759 "utils.c"
+#line 4761 "utils.c"
 				GFile* _tmp41_ = NULL;
 				const gchar* _tmp42_ = NULL;
 				gchar* _tmp43_ = NULL;
@@ -4771,8 +4773,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				g_file_make_directory (_tmp41_, NULL, &_inner_error_);
 #line 360 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4775 "utils.c"
-					goto __catch6_g_error;
+#line 4777 "utils.c"
+					goto __catch7_g_error;
 				}
 #line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp42_ = path;
@@ -4796,14 +4798,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_g_free0 (_tmp44_);
 #line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4800 "utils.c"
-					goto __catch6_g_error;
+#line 4802 "utils.c"
+					goto __catch7_g_error;
 				}
 #line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp49_ = _result_;
 #line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp49_, "true");
-#line 4807 "utils.c"
+#line 4809 "utils.c"
 			} else {
 				const gchar* _tmp50_ = NULL;
 				gchar* _tmp51_ = NULL;
@@ -4845,14 +4847,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_g_free0 (_tmp52_);
 #line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4849 "utils.c"
-					goto __catch6_g_error;
+#line 4851 "utils.c"
+					goto __catch7_g_error;
 				}
 #line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp59_ = _result_;
 #line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp59_, "true");
-#line 4856 "utils.c"
+#line 4858 "utils.c"
 			}
 #line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp61_ = path;
@@ -4878,8 +4880,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp60_ = _tmp68_;
 #line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4882 "utils.c"
-				goto __catch6_g_error;
+#line 4884 "utils.c"
+				goto __catch7_g_error;
 			}
 #line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp69_ = _tmp60_;
@@ -4895,13 +4897,13 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_g_io_channel_unref0 (_tmp70_);
 #line 356 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_io_channel_unref0 (_tmp60_);
-#line 4899 "utils.c"
+#line 4901 "utils.c"
 		}
 #line 372 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp72_ = operation;
 #line 372 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("WRITE_PROPS", _tmp72_) == 0) {
-#line 4905 "utils.c"
+#line 4907 "utils.c"
 			GFile* _tmp73_ = NULL;
 			gboolean _tmp74_ = FALSE;
 			gboolean wasRead = FALSE;
@@ -4921,7 +4923,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp74_ = g_file_query_exists (_tmp73_, NULL);
 #line 374 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (!_tmp74_) {
-#line 4925 "utils.c"
+#line 4927 "utils.c"
 				GFile* _tmp75_ = NULL;
 				const gchar* _tmp76_ = NULL;
 				gchar* _tmp77_ = NULL;
@@ -4936,8 +4938,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				g_file_make_directory (_tmp75_, NULL, &_inner_error_);
 #line 376 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4940 "utils.c"
-					goto __catch6_g_error;
+#line 4942 "utils.c"
+					goto __catch7_g_error;
 				}
 #line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp76_ = path;
@@ -4961,8 +4963,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_g_free0 (_tmp78_);
 #line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4965 "utils.c"
-					goto __catch6_g_error;
+#line 4967 "utils.c"
+					goto __catch7_g_error;
 				}
 			}
 #line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -4993,14 +4995,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			wasRead = _tmp91_;
 #line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4997 "utils.c"
-				goto __catch6_g_error;
+#line 4999 "utils.c"
+				goto __catch7_g_error;
 			}
 #line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp92_ = wasRead;
 #line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp92_) {
-#line 5004 "utils.c"
+#line 5006 "utils.c"
 				gchar** name_value = NULL;
 				const gchar* _tmp93_ = NULL;
 				gchar** _tmp94_ = NULL;
@@ -5054,7 +5056,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_tmp101_ = string_contains (_tmp98_, _tmp100_);
 #line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp101_) {
-#line 5058 "utils.c"
+#line 5060 "utils.c"
 					gchar* dataBeforeProp = NULL;
 					GString* _tmp102_ = NULL;
 					const gchar* _tmp103_ = NULL;
@@ -5220,14 +5222,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 						_g_free0 (dataBeforeProp);
 #line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
-#line 5224 "utils.c"
-						goto __catch6_g_error;
+#line 5226 "utils.c"
+						goto __catch7_g_error;
 					}
 #line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_g_free0 (dataAfterProp);
 #line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_g_free0 (dataBeforeProp);
-#line 5231 "utils.c"
+#line 5233 "utils.c"
 				} else {
 					GString* _tmp144_ = NULL;
 					const gchar* _tmp145_ = NULL;
@@ -5287,8 +5289,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 					if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
-#line 5291 "utils.c"
-						goto __catch6_g_error;
+#line 5293 "utils.c"
+						goto __catch7_g_error;
 					}
 				}
 #line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -5317,8 +5319,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
-#line 5321 "utils.c"
-					goto __catch6_g_error;
+#line 5323 "utils.c"
+					goto __catch7_g_error;
 				}
 #line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp167_ = _tmp158_;
@@ -5336,21 +5338,21 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_g_io_channel_unref0 (_tmp158_);
 #line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
-#line 5340 "utils.c"
+#line 5342 "utils.c"
 			} else {
 				GString* _tmp170_ = NULL;
 #line 403 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp170_ = _result_;
 #line 403 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp170_, "false");
-#line 5347 "utils.c"
+#line 5349 "utils.c"
 			}
 		}
 #line 405 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp171_ = operation;
 #line 405 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("READ", _tmp171_) == 0) {
-#line 5354 "utils.c"
+#line 5356 "utils.c"
 			GFile* _tmp172_ = NULL;
 			gboolean _tmp173_ = FALSE;
 #line 406 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -5359,7 +5361,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp173_ = g_file_query_exists (_tmp172_, NULL);
 #line 406 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp173_) {
-#line 5363 "utils.c"
+#line 5365 "utils.c"
 				gboolean wasRead = FALSE;
 				const gchar* _tmp174_ = NULL;
 				gchar* _tmp175_ = NULL;
@@ -5411,14 +5413,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				wasRead = _tmp182_;
 #line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5415 "utils.c"
-					goto __catch6_g_error;
+#line 5417 "utils.c"
+					goto __catch7_g_error;
 				}
 #line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp183_ = wasRead;
 #line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp183_) {
-#line 5422 "utils.c"
+#line 5424 "utils.c"
 					GString* _tmp184_ = NULL;
 					const gchar* _tmp185_ = NULL;
 #line 409 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -5427,14 +5429,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 					_tmp185_ = data;
 #line 409 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					g_string_assign (_tmp184_, _tmp185_);
-#line 5431 "utils.c"
+#line 5433 "utils.c"
 				} else {
 					GString* _tmp186_ = NULL;
 #line 411 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp186_ = _result_;
 #line 411 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					g_string_assign (_tmp186_, "false");
-#line 5438 "utils.c"
+#line 5440 "utils.c"
 				}
 #line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp188_ = path;
@@ -5460,8 +5462,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_tmp187_ = _tmp195_;
 #line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5464 "utils.c"
-					goto __catch6_g_error;
+#line 5466 "utils.c"
+					goto __catch7_g_error;
 				}
 #line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp196_ = _tmp187_;
@@ -5477,21 +5479,21 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_g_io_channel_unref0 (_tmp197_);
 #line 406 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_g_io_channel_unref0 (_tmp187_);
-#line 5481 "utils.c"
+#line 5483 "utils.c"
 			} else {
 				GString* _tmp199_ = NULL;
 #line 416 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp199_ = _result_;
 #line 416 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp199_, "false");
-#line 5488 "utils.c"
+#line 5490 "utils.c"
 			}
 		}
 #line 419 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp200_ = operation;
 #line 419 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("READ_FILE", _tmp200_) == 0) {
-#line 5495 "utils.c"
+#line 5497 "utils.c"
 			gboolean wasRead = FALSE;
 			const gchar* _tmp201_ = NULL;
 			gchar* _tmp202_ = NULL;
@@ -5515,14 +5517,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			wasRead = _tmp203_;
 #line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5519 "utils.c"
-				goto __catch6_g_error;
+#line 5521 "utils.c"
+				goto __catch7_g_error;
 			}
 #line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp204_ = wasRead;
 #line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp204_) {
-#line 5526 "utils.c"
+#line 5528 "utils.c"
 				GString* _tmp205_ = NULL;
 				const gchar* _tmp206_ = NULL;
 #line 422 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -5531,14 +5533,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_tmp206_ = data;
 #line 422 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp205_, _tmp206_);
-#line 5535 "utils.c"
+#line 5537 "utils.c"
 			} else {
 				GString* _tmp207_ = NULL;
 #line 424 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp207_ = _result_;
 #line 424 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp207_, "false");
-#line 5542 "utils.c"
+#line 5544 "utils.c"
 			}
 #line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp209_ = path;
@@ -5548,8 +5550,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp208_ = _tmp210_;
 #line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5552 "utils.c"
-				goto __catch6_g_error;
+#line 5554 "utils.c"
+				goto __catch7_g_error;
 			}
 #line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp211_ = _tmp208_;
@@ -5565,13 +5567,13 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_g_io_channel_unref0 (_tmp212_);
 #line 419 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_io_channel_unref0 (_tmp208_);
-#line 5569 "utils.c"
+#line 5571 "utils.c"
 		}
 #line 429 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp214_ = operation;
 #line 429 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("READ_PROPS", _tmp214_) == 0) {
-#line 5575 "utils.c"
+#line 5577 "utils.c"
 			gboolean _tmp215_ = FALSE;
 			const gchar* _tmp216_ = NULL;
 			GString* _tmp250_ = NULL;
@@ -5598,7 +5600,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp216_ = bookworm_app_utils_bookwormStateData;
 #line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp216_ != NULL) {
-#line 5602 "utils.c"
+#line 5604 "utils.c"
 				const gchar* _tmp217_ = NULL;
 				gint _tmp218_ = 0;
 				gint _tmp219_ = 0;
@@ -5610,15 +5612,15 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_tmp219_ = _tmp218_;
 #line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp215_ = _tmp219_ > 5;
-#line 5614 "utils.c"
+#line 5616 "utils.c"
 			} else {
 #line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp215_ = FALSE;
-#line 5618 "utils.c"
+#line 5620 "utils.c"
 			}
 #line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp215_) {
-#line 5622 "utils.c"
+#line 5624 "utils.c"
 				const gchar* _tmp220_ = NULL;
 				gchar* _tmp221_ = NULL;
 #line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -5629,7 +5631,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_g_free0 (data);
 #line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				data = _tmp221_;
-#line 5633 "utils.c"
+#line 5635 "utils.c"
 			} else {
 				GFile* _tmp222_ = NULL;
 				gboolean _tmp223_ = FALSE;
@@ -5639,7 +5641,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 				_tmp223_ = g_file_query_exists (_tmp222_, NULL);
 #line 433 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (_tmp223_) {
-#line 5643 "utils.c"
+#line 5645 "utils.c"
 					gboolean wasRead = FALSE;
 					const gchar* _tmp224_ = NULL;
 					gchar* _tmp225_ = NULL;
@@ -5691,14 +5693,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 					wasRead = _tmp232_;
 #line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5695 "utils.c"
-						goto __catch6_g_error;
+#line 5697 "utils.c"
+						goto __catch7_g_error;
 					}
 #line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp233_ = wasRead;
 #line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					if (_tmp233_) {
-#line 5702 "utils.c"
+#line 5704 "utils.c"
 						const gchar* _tmp234_ = NULL;
 						gchar* _tmp235_ = NULL;
 #line 437 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -5709,14 +5711,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 						_g_free0 (bookworm_app_utils_bookwormStateData);
 #line 437 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						bookworm_app_utils_bookwormStateData = _tmp235_;
-#line 5713 "utils.c"
+#line 5715 "utils.c"
 					} else {
 						GString* _tmp236_ = NULL;
 #line 439 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp236_ = _result_;
 #line 439 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						g_string_assign (_tmp236_, "false");
-#line 5720 "utils.c"
+#line 5722 "utils.c"
 					}
 #line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp238_ = path;
@@ -5742,8 +5744,8 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 					_tmp237_ = _tmp245_;
 #line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5746 "utils.c"
-						goto __catch6_g_error;
+#line 5748 "utils.c"
+						goto __catch7_g_error;
 					}
 #line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp246_ = _tmp237_;
@@ -5759,14 +5761,14 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 					_g_io_channel_unref0 (_tmp247_);
 #line 433 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_g_io_channel_unref0 (_tmp237_);
-#line 5763 "utils.c"
+#line 5765 "utils.c"
 				} else {
 					GString* _tmp249_ = NULL;
 #line 444 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp249_ = _result_;
 #line 444 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					g_string_assign (_tmp249_, "false");
-#line 5770 "utils.c"
+#line 5772 "utils.c"
 				}
 			}
 #line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -5817,13 +5819,13 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			g_string_assign (_tmp261_, _tmp267_);
 #line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp266_ = (_vala_array_free (_tmp266_, _tmp266__length1, (GDestroyNotify) g_free), NULL);
-#line 5821 "utils.c"
+#line 5823 "utils.c"
 		}
 #line 452 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp268_ = operation;
 #line 452 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("DELETE", _tmp268_) == 0) {
-#line 5827 "utils.c"
+#line 5829 "utils.c"
 			const gchar* _tmp269_ = NULL;
 			gchar* _tmp270_ = NULL;
 			gchar* _tmp271_ = NULL;
@@ -5848,13 +5850,13 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_g_free0 (_tmp274_);
 #line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_free0 (_tmp271_);
-#line 5852 "utils.c"
+#line 5854 "utils.c"
 		}
 #line 455 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp275_ = operation;
 #line 455 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("EXISTS", _tmp275_) == 0) {
-#line 5858 "utils.c"
+#line 5860 "utils.c"
 			GFile* _tmp276_ = NULL;
 			gboolean _tmp277_ = FALSE;
 #line 456 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -5863,20 +5865,20 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp277_ = g_file_query_exists (_tmp276_, NULL);
 #line 456 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp277_) {
-#line 5867 "utils.c"
+#line 5869 "utils.c"
 				GString* _tmp278_ = NULL;
 #line 457 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp278_ = _result_;
 #line 457 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp278_, "true");
-#line 5873 "utils.c"
+#line 5875 "utils.c"
 			}
 		}
 #line 460 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp279_ = operation;
 #line 460 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("IS_EXECUTABLE", _tmp279_) == 0) {
-#line 5880 "utils.c"
+#line 5882 "utils.c"
 			const gchar* _tmp280_ = NULL;
 			gchar* _tmp281_ = NULL;
 			gchar* _tmp282_ = NULL;
@@ -5907,20 +5909,20 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_g_free0 (_tmp282_);
 #line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (_tmp287_) {
-#line 5911 "utils.c"
+#line 5913 "utils.c"
 				GString* _tmp288_ = NULL;
 #line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp288_ = _result_;
 #line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				g_string_assign (_tmp288_, "true");
-#line 5917 "utils.c"
+#line 5919 "utils.c"
 			}
 		}
 #line 465 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp289_ = operation;
 #line 465 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("MAKE_EXECUTABLE", _tmp289_) == 0) {
-#line 5924 "utils.c"
+#line 5926 "utils.c"
 			const gchar* _tmp290_ = NULL;
 			gchar* _tmp291_ = NULL;
 			gchar* _tmp292_ = NULL;
@@ -5964,13 +5966,13 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp300_ = _result_;
 #line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			g_string_assign (_tmp300_, "true");
-#line 5968 "utils.c"
+#line 5970 "utils.c"
 		}
 #line 469 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp301_ = operation;
 #line 469 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		if (g_strcmp0 ("SET_PERMISSIONS", _tmp301_) == 0) {
-#line 5974 "utils.c"
+#line 5976 "utils.c"
 			const gchar* _tmp302_ = NULL;
 			gchar* _tmp303_ = NULL;
 			gchar* _tmp304_ = NULL;
@@ -6033,11 +6035,11 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 			_tmp317_ = _result_;
 #line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			g_string_assign (_tmp317_, "true");
-#line 6037 "utils.c"
+#line 6039 "utils.c"
 		}
 	}
-	goto __finally6;
-	__catch6_g_error:
+	goto __finally7;
+	__catch7_g_error:
 	{
 		GError* e = NULL;
 		const gchar* _tmp318_ = NULL;
@@ -6138,9 +6140,9 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 		_g_free0 (_tmp341_);
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_error_free0 (e);
-#line 6142 "utils.c"
+#line 6144 "utils.c"
 	}
-	__finally6:
+	__finally7:
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -6157,7 +6159,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 		g_clear_error (&_inner_error_);
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return NULL;
-#line 6161 "utils.c"
+#line 6163 "utils.c"
 	}
 #line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp342_ = operation;
@@ -6193,7 +6195,7 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 	_g_string_free0 (_result_);
 #line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 6197 "utils.c"
+#line 6199 "utils.c"
 }
 
 
@@ -6222,19 +6224,19 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 	current_number_of_chars_per_line = 0;
 #line 486 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	current_position = 0;
-#line 6226 "utils.c"
+#line 6228 "utils.c"
 	{
 		gint i = 0;
 #line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		i = 0;
-#line 6231 "utils.c"
+#line 6233 "utils.c"
 		{
 			gboolean _tmp2_ = FALSE;
 #line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp2_ = TRUE;
 #line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			while (TRUE) {
-#line 6238 "utils.c"
+#line 6240 "utils.c"
 				gint _tmp4_ = 0;
 				GeeArrayList* _tmp5_ = NULL;
 				gint _tmp6_ = 0;
@@ -6248,13 +6250,13 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 				gchar* _tmp13_ = NULL;
 #line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (!_tmp2_) {
-#line 6252 "utils.c"
+#line 6254 "utils.c"
 					gint _tmp3_ = 0;
 #line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp3_ = i;
 #line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					i = _tmp3_ + 1;
-#line 6258 "utils.c"
+#line 6260 "utils.c"
 				}
 #line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp2_ = FALSE;
@@ -6270,7 +6272,7 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 				if (!(_tmp4_ < _tmp7_)) {
 #line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					break;
-#line 6274 "utils.c"
+#line 6276 "utils.c"
 				}
 #line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp8_ = contentLocationList;
@@ -6290,7 +6292,7 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 				contents = _tmp13_;
 #line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				while (TRUE) {
-#line 6294 "utils.c"
+#line 6296 "utils.c"
 					gint _tmp14_ = 0;
 					const gchar* _tmp15_ = NULL;
 					gint _tmp16_ = 0;
@@ -6309,11 +6311,11 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 					if (!(_tmp14_ < _tmp17_)) {
 #line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						break;
-#line 6313 "utils.c"
+#line 6315 "utils.c"
 					}
 #line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					while (TRUE) {
-#line 6317 "utils.c"
+#line 6319 "utils.c"
 						gint _tmp18_ = 0;
 						const gchar* _tmp19_ = NULL;
 						gint _tmp20_ = 0;
@@ -6346,7 +6348,7 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 						if (!(_tmp18_ < BOOKWORM_APP_CONSTANTS_MAX_NUMBER_OF_LINES_PER_PAGE)) {
 #line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 							break;
-#line 6350 "utils.c"
+#line 6352 "utils.c"
 						}
 #line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp19_ = contents;
@@ -6418,7 +6420,7 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 						_g_free0 (_tmp36_);
 #line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_g_free0 (_tmp34_);
-#line 6422 "utils.c"
+#line 6424 "utils.c"
 					}
 #line 499 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp44_ = aPageContent->str;
@@ -6430,13 +6432,13 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 					g_debug ("utils.vala:500: %s", _tmp45_);
 #line 501 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					g_string_erase (aPageContent, (gssize) 0, (gssize) -1);
-#line 6434 "utils.c"
+#line 6436 "utils.c"
 				}
 #line 504 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_g_free0 (contents);
 #line 504 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				break;
-#line 6440 "utils.c"
+#line 6442 "utils.c"
 			}
 		}
 	}
@@ -6446,7 +6448,180 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 	_g_string_free0 (aPageContent);
 #line 506 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 6450 "utils.c"
+#line 6452 "utils.c"
+}
+
+
+gchar* bookworm_app_utils_createTableOfContents (GeeArrayList* bookContentList) {
+	gchar* result = NULL;
+	GString* tocHTML = NULL;
+	GString* _tmp0_ = NULL;
+	GString* _tmp1_ = NULL;
+	GString* _tmp2_ = NULL;
+	GString* _tmp3_ = NULL;
+	GString* _tmp4_ = NULL;
+	GString* _tmp29_ = NULL;
+	GString* _tmp30_ = NULL;
+	GString* _tmp31_ = NULL;
+	GString* _tmp32_ = NULL;
+	const gchar* _tmp33_ = NULL;
+	gchar* _tmp34_ = NULL;
+#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_return_val_if_fail (bookContentList != NULL, NULL);
+#line 510 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_debug ("utils.vala:510: Started creating Table Of Contents....");
+#line 511 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp0_ = g_string_new ("");
+#line 511 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	tocHTML = _tmp0_;
+#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp1_ = tocHTML;
+#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp2_ = g_string_append (_tmp1_, "<html>");
+#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp3_ = g_string_append (_tmp2_, "<head></head>");
+#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp4_ = g_string_append (_tmp3_, "<body> <font align=\"right\"><b>Book Contents</b>");
+#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_string_append (_tmp4_, "<table>");
+#line 6488 "utils.c"
+	{
+		gint i = 0;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		i = 0;
+#line 6493 "utils.c"
+		{
+			gboolean _tmp5_ = FALSE;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp5_ = TRUE;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			while (TRUE) {
+#line 6500 "utils.c"
+				gint _tmp7_ = 0;
+				GeeArrayList* _tmp8_ = NULL;
+				gint _tmp9_ = 0;
+				gint _tmp10_ = 0;
+				GString* _tmp11_ = NULL;
+				GString* _tmp12_ = NULL;
+				GeeArrayList* _tmp13_ = NULL;
+				gint _tmp14_ = 0;
+				gpointer _tmp15_ = NULL;
+				gchar* _tmp16_ = NULL;
+				gchar* _tmp17_ = NULL;
+				gchar* _tmp18_ = NULL;
+				gchar* _tmp19_ = NULL;
+				gchar* _tmp20_ = NULL;
+				gint _tmp21_ = 0;
+				gchar* _tmp22_ = NULL;
+				gchar* _tmp23_ = NULL;
+				gchar* _tmp24_ = NULL;
+				gchar* _tmp25_ = NULL;
+				gchar* _tmp26_ = NULL;
+				gchar* _tmp27_ = NULL;
+				GString* _tmp28_ = NULL;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (!_tmp5_) {
+#line 6525 "utils.c"
+					gint _tmp6_ = 0;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp6_ = i;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					i = _tmp6_ + 1;
+#line 6531 "utils.c"
+				}
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp5_ = FALSE;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp7_ = i;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp8_ = bookContentList;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp9_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp8_);
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp10_ = _tmp9_;
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (!(_tmp7_ < _tmp10_)) {
+#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					break;
+#line 6547 "utils.c"
+				}
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp11_ = tocHTML;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp12_ = g_string_append (_tmp11_, "<tr><td>");
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp13_ = bookContentList;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp14_ = i;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp15_ = gee_abstract_list_get ((GeeAbstractList*) _tmp13_, _tmp14_);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp16_ = (gchar*) _tmp15_;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp17_ = g_strconcat ("<a href=\"" BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL, _tmp16_, NULL);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp18_ = _tmp17_;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp19_ = g_strconcat (_tmp18_, "\">Content Part ", NULL);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp20_ = _tmp19_;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp21_ = i;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp22_ = g_strdup_printf ("%i", _tmp21_ + 1);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp23_ = _tmp22_;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp24_ = g_strconcat (_tmp20_, _tmp23_, NULL);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp25_ = _tmp24_;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp26_ = g_strconcat (_tmp25_, "</a></td><td>", NULL);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp27_ = _tmp26_;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp28_ = g_string_append (_tmp12_, _tmp27_);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_append (_tmp28_, "</td></tr>");
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp27_);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp25_);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp23_);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp20_);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp18_);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp16_);
+#line 6599 "utils.c"
+			}
+		}
+	}
+#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp29_ = tocHTML;
+#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp30_ = g_string_append (_tmp29_, "</table>");
+#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp31_ = g_string_append (_tmp30_, "</body>");
+#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_string_append (_tmp31_, "</html>");
+#line 524 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_debug ("utils.vala:524: Completed creating Table Of Contents....");
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp32_ = tocHTML;
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp33_ = _tmp32_->str;
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp34_ = g_strdup (_tmp33_);
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	result = _tmp34_;
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_g_string_free0 (tocHTML);
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	return result;
+#line 6625 "utils.c"
 }
 
 
