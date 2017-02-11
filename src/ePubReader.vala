@@ -18,6 +18,19 @@
 
 public class BookwormApp.ePubReader {
 
+  public static string extractEBook(string eBookLocation){
+    string extractionLocation = "";
+    debug("Initiated process for content extraction of eBook located at:"+eBookLocation);
+    //create temp location for extraction of eBook
+    extractionLocation = BookwormApp.Constants.EPUB_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
+    //check and create directory for extracting contents of ebook
+    BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
+    //unzip eBook contents into temp location
+    BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
+    debug("eBook contents extracted sucessfully into location:"+extractionLocation);
+    return extractionLocation;
+  }
+
   public static string getLocationOfContentOPFFile(string extractionLocation){
     //ensure correct mime type in mimetype file
     string ePubMimeContents = BookwormApp.Utils.fileOperations("READ", extractionLocation, BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME, "");
@@ -39,23 +52,15 @@ public class BookwormApp.ePubReader {
     return locationOfOPFFile;
   }
 
-  public static BookwormApp.Book getBookCoverImageLocation (owned BookwormApp.Book aBook){
+  public static BookwormApp.Book getBookCoverImageLocation (owned BookwormApp.Book aBook, string bookworm_config_path){
+    debug("Initiated process for cover image extraction of eBook located at:"+aBook.getBookExtractionLocation());
     string bookCoverLocation = "";
     string extractionLocation = aBook.getBookExtractionLocation();
     string locationOfOPFFile = getLocationOfContentOPFFile(extractionLocation);
-    aBook.setOPFFileLocation(locationOfOPFFile);
     string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
-    aBook.setBaseLocationOfContents(baseLocationOfContents);
     //read contents from content.opf file
     string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
-    //determine the title of the book
-    if(OpfContents.contains("<dc:title>") && OpfContents.contains("</dc:title>")){
-      string bookTitle = OpfContents.slice(OpfContents.index_of("<dc:title>")+"<dc:title>".length, OpfContents.index_of("</dc:title>"));
-      aBook.setBookTitle(bookTitle);
-      debug("Determined eBook Title as:"+bookTitle);
-    }
     //read contents from spine and manifest and populate reading ArrayList
-    string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
     string manifestData = BookwormApp.Utils.extractXMLTag(OpfContents, "<manifest", "</manifest>");
     string[] manifestItemList = BookwormApp.Utils.multiExtractBetweenTwoStrings (manifestData, "<item", "/>");
     //determine the location of the book's cover image
@@ -65,28 +70,54 @@ public class BookwormApp.ePubReader {
             int endIndexOfCoverLocation = manifestItemList[i].index_of("\"", startIndexOfCoverLocation+1);
             if(startIndexOfCoverLocation != -1 && endIndexOfCoverLocation != -1 && endIndexOfCoverLocation > startIndexOfCoverLocation){
               bookCoverLocation = baseLocationOfContents + manifestItemList[i].slice(startIndexOfCoverLocation, endIndexOfCoverLocation);
-              aBook.setBookCoverLocation(bookCoverLocation);
-              debug("Book Cover image located at:"+bookCoverLocation);
             }
             break;
         }
     }
-    //check if cover was not found and assign default cover
-    debug("Cover found:"+aBook.getBookCoverLocation());
-    if(aBook.getBookCoverLocation() == null || aBook.getBookCoverLocation().length < 1){
+    //check if cover was not found and assign flag
+    if(bookCoverLocation == null || bookCoverLocation.length < 1){
       aBook.setIsBookCoverImagePresent(false);
-      aBook.setBookCoverLocation(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION);
-      debug("Cover not found, so default cover set from :"+aBook.getBookCoverLocation());
+      //aBook.setBookCoverLocation(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION);
+      debug("eBook cover image not found");
     }else{
-      //cover was assigned from the ebook contents
+      //cover was extracted from the ebook contents
       aBook.setIsBookCoverImagePresent(true);
+      //copy cover image to bookworm cover image location
+      File coverImageFile = File.new_for_commandline_arg(bookCoverLocation);
+      string bookwormCoverLocation = bookworm_config_path+"/covers/"+aBook.getBookLocation().replace("/", "_").replace(" ", "")+"_"+coverImageFile.get_basename();
+      BookwormApp.Utils.execute_sync_command("cp \""+bookCoverLocation+"\" \""+bookwormCoverLocation+"\"");
+      aBook.setBookCoverLocation(bookwormCoverLocation);
+      debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
+    }
+    return aBook;
+  }
+
+  public static BookwormApp.Book getBookTitle(owned BookwormApp.Book aBook, string bookworm_config_path){
+    debug("Initiated process for finding title of eBook located at:"+aBook.getBookExtractionLocation());
+    string extractionLocation = aBook.getBookExtractionLocation();
+    string locationOfOPFFile = getLocationOfContentOPFFile(extractionLocation);
+    string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
+    //read contents from OPF file
+    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
+    //determine the title of the book
+    if(OpfContents.contains("<dc:title>") && OpfContents.contains("</dc:title>")){
+      string bookTitle = OpfContents.slice(OpfContents.index_of("<dc:title>")+"<dc:title>".length, OpfContents.index_of("</dc:title>"));
+      aBook.setBookTitle(bookTitle);
+      debug("Determined eBook Title as:"+bookTitle);
+    }else{
+      aBook.setBookTitle("Unknown Book");
+      debug("Could not determine eBook Title, default title set");
     }
     return aBook;
   }
 
   public static BookwormApp.Book getListOfPagesInBook(owned BookwormApp.Book aBook){
+    string extractionLocation = aBook.getBookExtractionLocation();
+    string locationOfOPFFile = getLocationOfContentOPFFile(extractionLocation);
+    string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
+    aBook.setBaseLocationOfContents(baseLocationOfContents);
     //read contents from content.opf file
-    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", aBook.getOPFFileLocation(), "", "");
+    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
     //parse eBook and read contents of spine and manifest
     string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
     string manifestData = BookwormApp.Utils.extractXMLTag(OpfContents, "<manifest", "</manifest>");
@@ -166,6 +197,7 @@ public class BookwormApp.ePubReader {
           }
         }else{
           aBook.setBookPageNumber(0);
+          currentContentLocation = 0;
           debug("Book did not had a CURRENT_LOCATION set.");
         }
         debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));

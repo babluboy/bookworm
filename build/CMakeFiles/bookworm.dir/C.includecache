@@ -37,6 +37,8 @@ webkit2/webkit2.h
 -
 gee.h
 -
+sqlite3.h
+-
 locale.h
 -
 glib/gi18n-lib.h
@@ -46,6 +48,8 @@ gio/gio.h
 gdk/gdk.h
 -
 gdk-pixbuf/gdk-pixbuf.h
+-
+stdio.h
 -
 
 /home/sid/Documents/Projects/bookworm/dev/build/src/constants.c

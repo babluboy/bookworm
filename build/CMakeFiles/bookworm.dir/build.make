@@ -78,7 +78,7 @@ bookworm_valac.stamp: ../src/constants.vala
 bookworm_valac.stamp: ../src/ePubReader.vala
 bookworm_valac.stamp: ../src/book.vala
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sid/Documents/Projects/bookworm/dev/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating src/bookworm.c;src/utils.c;src/constants.c;src/ePubReader.c;src/book.c"
-	/usr/bin/valac -C -b /home/sid/Documents/Projects/bookworm/dev -d /home/sid/Documents/Projects/bookworm/dev/build --pkg=gtk+-3.0 --pkg=gee-0.8 --pkg=granite>=0.3.0 --pkg=webkit2gtk-4.0 -g /home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala /home/sid/Documents/Projects/bookworm/dev/src/utils.vala /home/sid/Documents/Projects/bookworm/dev/src/constants.vala /home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala /home/sid/Documents/Projects/bookworm/dev/src/book.vala
+	/usr/bin/valac -C -b /home/sid/Documents/Projects/bookworm/dev -d /home/sid/Documents/Projects/bookworm/dev/build --pkg=gtk+-3.0 --pkg=gee-0.8 --pkg=granite>=0.3.0 --pkg=webkit2gtk-4.0 --pkg=sqlite3>=3.5.9 -g /home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala /home/sid/Documents/Projects/bookworm/dev/src/utils.vala /home/sid/Documents/Projects/bookworm/dev/src/constants.vala /home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala /home/sid/Documents/Projects/bookworm/dev/src/book.vala
 	touch /home/sid/Documents/Projects/bookworm/dev/build/bookworm_valac.stamp
 
 CMakeFiles/bookworm.dir/src/bookworm.c.o: CMakeFiles/bookworm.dir/flags.make

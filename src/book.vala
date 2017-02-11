@@ -18,6 +18,7 @@
 
 public class BookwormApp.Book{
 
+  private int bookId = 0;
   private string bookLocation = "";
   private string bookCoverLocation = "";
   private string bookExtractionLocation = "";
@@ -25,12 +26,22 @@ public class BookwormApp.Book{
   private string opfFileLocation = "";
   private string baseLocationOfContents = "";
   private bool isBookCoverImagePresent = false;
+  private string bookPublishDate = "";
+  private string bookCreationDate = "";
+  private string bookLastModificationDate = "";
   private int bookPageNumber = -1;
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
   private string tocHTMLContent = "";
   private Gee.ArrayList<string> bookContentList = new Gee.ArrayList<string> ();
 
+  //getter list for book id
+  public void setBookId (int aBookId){
+    bookId = aBookId;
+  }
+  public int getBookId (){
+    return bookId;
+  }
 
   //getter list for book location
   public void setBookLocation (string aBookLocation){
@@ -96,6 +107,30 @@ public class BookwormApp.Book{
     return isBookCoverImagePresent;
   }
 
+  //getter list for book location
+  public void setBookPublishDate (string aBookPublishDate){
+    bookPublishDate = aBookPublishDate;
+  }
+  public string getBookPublishDate (){
+    return bookPublishDate;
+  }
+
+  //getter list for book location
+  public void setBookCreationDate (string aBookCreationDate){
+    bookCreationDate = aBookCreationDate;
+  }
+  public string getBookCreationDate (){
+    return bookCreationDate;
+  }
+
+  //getter list for book location
+  public void setBookLastModificationDate (string aBookLastModificationDate){
+    bookLastModificationDate = aBookLastModificationDate;
+  }
+  public string getBookLastModificationDate (){
+    return bookLastModificationDate;
+  }
+
   //getter setter for eBook pageNumber
   public void setBookPageNumber (int aBookPageNumber){
     bookPageNumber = aBookPageNumber;
@@ -126,5 +161,30 @@ public class BookwormApp.Book{
   }
   public string getTOCHTMLContent (){
     return tocHTMLContent;
+  }
+
+  //print book details
+  public string to_string(){
+    StringBuilder bookDetails = new StringBuilder();
+            bookDetails.append("bookId=").append(bookId.to_string()).append(",\n")
+           .append("bookLocation=").append(bookLocation).append(",\n")
+           .append("bookCoverLocation=").append(bookCoverLocation).append(",\n")
+           .append("bookExtractionLocation=").append(bookExtractionLocation).append(",\n")
+           .append("bookTitle="+bookTitle).append(",\n")
+           .append("opfFileLocation=").append(opfFileLocation).append(",\n")
+           .append("baseLocationOfContents=").append(baseLocationOfContents).append(",\n")
+           .append("bookPublishDate="+bookPublishDate).append(",\n")
+           .append("isBookCoverImagePresent=").append(isBookCoverImagePresent.to_string()).append(",\n")
+           .append("bookCreationDate=").append(bookCreationDate).append(",\n")
+           .append("bookLastModificationDate=").append(bookLastModificationDate).append(",\n")
+           .append("bookPageNumber=").append(bookPageNumber.to_string()).append(",\n")
+           .append("ifPageForward=").append(ifPageForward.to_string()).append(",\n")
+           .append("ifPageBackward=").append(ifPageBackward.to_string()).append(",\n")
+           .append("tocHTMLContent=").append(tocHTMLContent).append(",\n")
+           .append("bookContentList=");
+     for (int i=0; i<bookContentList.size;i++) {
+        bookDetails.append("["+i.to_string()+"]="+bookContentList.get(i)+",");
+     }
+     return bookDetails.str;
   }
 }

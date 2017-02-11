@@ -330,7 +330,7 @@ namespace BookwormApp.Utils {
   }
 
 	public static string fileOperations (string operation, string path, string filename, string contents) {
-		debug("Started file operation["+operation+"]...");
+		debug("Started file operation["+operation+"], for path="+path+", filename="+filename);
 		StringBuilder result = new StringBuilder("false");
 		string data = "";
 		File fileDir = null;
@@ -338,7 +338,7 @@ namespace BookwormApp.Utils {
 		try{
 			if(path != null || path.length > 1)
 				fileDir = File.new_for_commandline_arg(path);
-			if(filename != null || filename.length > 1)
+			if(filename != null && filename.length > 1)
 				file = File.new_for_path(path+"/"+filename);
 			if("CREATEDIR" == operation){
 				//check if directory does not exists
@@ -346,6 +346,7 @@ namespace BookwormApp.Utils {
 					//create the directory
 					fileDir.make_directory();
 					result.assign("true");
+					debug("Directory created:"+fileDir.get_path());
 				}else{
 					//do nothing
 					result.assign("true");

@@ -40,6 +40,7 @@ typedef struct _BookwormAppePubReader BookwormAppePubReader;
 typedef struct _BookwormAppePubReaderClass BookwormAppePubReaderClass;
 typedef struct _BookwormAppePubReaderPrivate BookwormAppePubReaderPrivate;
 #define _g_free0(var) (var = (g_free (var), NULL))
+#define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 
 #define BOOKWORM_APP_TYPE_BOOK (bookworm_app_book_get_type ())
 #define BOOKWORM_APP_BOOK(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BOOKWORM_APP_TYPE_BOOK, BookwormAppBook))
@@ -52,7 +53,6 @@ typedef struct _BookwormAppBook BookwormAppBook;
 typedef struct _BookwormAppBookClass BookwormAppBookClass;
 #define _g_regex_unref0(var) ((var == NULL) ? NULL : (var = (g_regex_unref (var), NULL)))
 #define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
-#define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 #define _bookworm_app_book_unref0(var) ((var == NULL) ? NULL : (var = (bookworm_app_book_unref (var), NULL)))
 #define _g_string_free0(var) ((var == NULL) ? NULL : (var = (g_string_free (var, TRUE), NULL)))
 typedef struct _BookwormAppParamSpecePubReader BookwormAppParamSpecePubReader;
@@ -85,8 +85,11 @@ GType bookworm_app_epub_reader_get_type (void) G_GNUC_CONST;
 enum  {
 	BOOKWORM_APP_EPUB_READER_DUMMY_PROPERTY
 };
-gchar* bookworm_app_epub_reader_getLocationOfContentOPFFile (const gchar* extractionLocation);
+gchar* bookworm_app_epub_reader_extractEBook (const gchar* eBookLocation);
+#define BOOKWORM_APP_CONSTANTS_EPUB_EXTRACTION_LOCATION "/tmp/bookworm/"
 gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* path, const gchar* filename, const gchar* contents);
+gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd);
+gchar* bookworm_app_epub_reader_getLocationOfContentOPFFile (const gchar* extractionLocation);
 #define BOOKWORM_APP_CONSTANTS_EPUB_MIME_SPECIFICATION_FILENAME "mimetype"
 #define BOOKWORM_APP_CONSTANTS_EPUB_MIME_SPECIFICATION_CONTENT "application/epub+zip"
 #define BOOKWORM_APP_CONSTANTS_EPUB_META_INF_FILENAME "META-INF/container.xml"
@@ -97,19 +100,17 @@ void bookworm_app_value_set_book (GValue* value, gpointer v_object);
 void bookworm_app_value_take_book (GValue* value, gpointer v_object);
 gpointer bookworm_app_value_get_book (const GValue* value);
 GType bookworm_app_book_get_type (void) G_GNUC_CONST;
-BookwormAppBook* bookworm_app_epub_reader_getBookCoverImageLocation (BookwormAppBook* aBook);
+BookwormAppBook* bookworm_app_epub_reader_getBookCoverImageLocation (BookwormAppBook* aBook, const gchar* bookworm_config_path);
 gchar* bookworm_app_book_getBookExtractionLocation (BookwormAppBook* self);
-void bookworm_app_book_setOPFFileLocation (BookwormAppBook* self, const gchar* aOPFFileLocation);
-void bookworm_app_book_setBaseLocationOfContents (BookwormAppBook* self, const gchar* aBaseLocationOfContents);
-void bookworm_app_book_setBookTitle (BookwormAppBook* self, const gchar* aBookTitle);
 gchar* bookworm_app_utils_extractXMLTag (const gchar* xmlData, const gchar* startTag, const gchar* endTag, GError** error);
 gchar** bookworm_app_utils_multiExtractBetweenTwoStrings (const gchar* stringToBeSearched, const gchar* startString, const gchar* endString, int* result_length1);
-void bookworm_app_book_setBookCoverLocation (BookwormAppBook* self, const gchar* aBookCoverLocation);
-gchar* bookworm_app_book_getBookCoverLocation (BookwormAppBook* self);
 void bookworm_app_book_setIsBookCoverImagePresent (BookwormAppBook* self, gboolean isABookCoverImagePresent);
-#define BOOKWORM_APP_CONSTANTS_DEFAULT_COVER_IMAGE_LOCATION "/usr/share/icons/hicolor/256x256/apps/bookworm-defaultbook.png"
+gchar* bookworm_app_book_getBookLocation (BookwormAppBook* self);
+void bookworm_app_book_setBookCoverLocation (BookwormAppBook* self, const gchar* aBookCoverLocation);
+BookwormAppBook* bookworm_app_epub_reader_getBookTitle (BookwormAppBook* aBook, const gchar* bookworm_config_path);
+void bookworm_app_book_setBookTitle (BookwormAppBook* self, const gchar* aBookTitle);
 BookwormAppBook* bookworm_app_epub_reader_getListOfPagesInBook (BookwormAppBook* aBook);
-gchar* bookworm_app_book_getOPFFileLocation (BookwormAppBook* self);
+void bookworm_app_book_setBaseLocationOfContents (BookwormAppBook* self, const gchar* aBaseLocationOfContents);
 gchar* bookworm_app_book_getBaseLocationOfContents (BookwormAppBook* self);
 void bookworm_app_book_setBookContentList (BookwormAppBook* self, const gchar* contentList);
 GeeArrayList* bookworm_app_book_getBookContentList (BookwormAppBook* self);
@@ -127,6 +128,133 @@ BookwormAppePubReader* bookworm_app_epub_reader_construct (GType object_type);
 static void bookworm_app_epub_reader_finalize (BookwormAppePubReader* obj);
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func);
+
+
+gchar* bookworm_app_epub_reader_extractEBook (const gchar* eBookLocation) {
+	gchar* result = NULL;
+	gchar* extractionLocation = NULL;
+	gchar* _tmp0_ = NULL;
+	const gchar* _tmp1_ = NULL;
+	gchar* _tmp2_ = NULL;
+	gchar* _tmp3_ = NULL;
+	const gchar* _tmp4_ = NULL;
+	GFile* _tmp5_ = NULL;
+	GFile* _tmp6_ = NULL;
+	gchar* _tmp7_ = NULL;
+	gchar* _tmp8_ = NULL;
+	gchar* _tmp9_ = NULL;
+	const gchar* _tmp10_ = NULL;
+	gchar* _tmp11_ = NULL;
+	gchar* _tmp12_ = NULL;
+	const gchar* _tmp13_ = NULL;
+	gchar* _tmp14_ = NULL;
+	gchar* _tmp15_ = NULL;
+	gchar* _tmp16_ = NULL;
+	gchar* _tmp17_ = NULL;
+	const gchar* _tmp18_ = NULL;
+	gchar* _tmp19_ = NULL;
+	gchar* _tmp20_ = NULL;
+	gchar* _tmp21_ = NULL;
+	gchar* _tmp22_ = NULL;
+	gchar* _tmp23_ = NULL;
+	gchar* _tmp24_ = NULL;
+	const gchar* _tmp25_ = NULL;
+	gchar* _tmp26_ = NULL;
+	gchar* _tmp27_ = NULL;
+#line 21 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_return_val_if_fail (eBookLocation != NULL, NULL);
+#line 22 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp0_ = g_strdup ("");
+#line 22 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	extractionLocation = _tmp0_;
+#line 23 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp1_ = eBookLocation;
+#line 23 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp2_ = g_strconcat ("Initiated process for content extraction of eBook located at:", _tmp1_, NULL);
+#line 23 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp3_ = _tmp2_;
+#line 23 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:23: %s", _tmp3_);
+#line 23 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp3_);
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp4_ = eBookLocation;
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp5_ = g_file_new_for_path (_tmp4_);
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp6_ = _tmp5_;
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp7_ = g_file_get_basename (_tmp6_);
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp8_ = _tmp7_;
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp9_ = g_strconcat (BOOKWORM_APP_CONSTANTS_EPUB_EXTRACTION_LOCATION, _tmp8_, NULL);
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (extractionLocation);
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	extractionLocation = _tmp9_;
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp8_);
+#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_object_unref0 (_tmp6_);
+#line 27 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp10_ = extractionLocation;
+#line 27 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp11_ = bookworm_app_utils_fileOperations ("CREATEDIR", _tmp10_, "", "");
+#line 27 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp12_ = _tmp11_;
+#line 27 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp12_);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp13_ = eBookLocation;
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp14_ = g_strconcat ("unzip -o \"", _tmp13_, NULL);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp15_ = _tmp14_;
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp16_ = g_strconcat (_tmp15_, "\" -d \"", NULL);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp17_ = _tmp16_;
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp18_ = extractionLocation;
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp19_ = g_strconcat (_tmp17_, _tmp18_, NULL);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp20_ = _tmp19_;
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp21_ = g_strconcat (_tmp20_, "\"", NULL);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp22_ = _tmp21_;
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp23_ = bookworm_app_utils_execute_sync_command (_tmp22_);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp24_ = _tmp23_;
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp24_);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp22_);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp20_);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp17_);
+#line 29 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp15_);
+#line 30 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp25_ = extractionLocation;
+#line 30 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp26_ = g_strconcat ("eBook contents extracted sucessfully into location:", _tmp25_, NULL);
+#line 30 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp27_ = _tmp26_;
+#line 30 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:30: %s", _tmp27_);
+#line 30 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp27_);
+#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	result = extractionLocation;
+#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	return result;
+#line 257 "ePubReader.c"
+}
 
 
 static gchar* string_strip (const gchar* self) {
@@ -148,7 +276,7 @@ static gchar* string_strip (const gchar* self) {
 	result = _result_;
 #line 1210 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 152 "ePubReader.c"
+#line 280 "ePubReader.c"
 }
 
 
@@ -175,7 +303,7 @@ static gint string_index_of (const gchar* self, const gchar* needle, gint start_
 	_tmp3_ = _result_;
 #line 990 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp3_ != NULL) {
-#line 179 "ePubReader.c"
+#line 307 "ePubReader.c"
 		gchar* _tmp4_ = NULL;
 #line 991 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp4_ = _result_;
@@ -183,13 +311,13 @@ static gint string_index_of (const gchar* self, const gchar* needle, gint start_
 		result = (gint) (_tmp4_ - ((gchar*) self));
 #line 991 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 187 "ePubReader.c"
+#line 315 "ePubReader.c"
 	} else {
 #line 993 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		result = -1;
 #line 993 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 193 "ePubReader.c"
+#line 321 "ePubReader.c"
 	}
 }
 
@@ -223,7 +351,7 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 	_tmp2_ = start;
 #line 1330 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp2_ < ((glong) 0)) {
-#line 227 "ePubReader.c"
+#line 355 "ePubReader.c"
 		glong _tmp3_ = 0L;
 		glong _tmp4_ = 0L;
 #line 1331 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -232,13 +360,13 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 		_tmp4_ = start;
 #line 1331 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		start = _tmp3_ + _tmp4_;
-#line 236 "ePubReader.c"
+#line 364 "ePubReader.c"
 	}
 #line 1333 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp5_ = end;
 #line 1333 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp5_ < ((glong) 0)) {
-#line 242 "ePubReader.c"
+#line 370 "ePubReader.c"
 		glong _tmp6_ = 0L;
 		glong _tmp7_ = 0L;
 #line 1334 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -247,13 +375,13 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 		_tmp7_ = end;
 #line 1334 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		end = _tmp6_ + _tmp7_;
-#line 251 "ePubReader.c"
+#line 379 "ePubReader.c"
 	}
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	_tmp9_ = start;
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp9_ >= ((glong) 0)) {
-#line 257 "ePubReader.c"
+#line 385 "ePubReader.c"
 		glong _tmp10_ = 0L;
 		glong _tmp11_ = 0L;
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -262,11 +390,11 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 		_tmp11_ = string_length;
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp8_ = _tmp10_ <= _tmp11_;
-#line 266 "ePubReader.c"
+#line 394 "ePubReader.c"
 	} else {
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp8_ = FALSE;
-#line 270 "ePubReader.c"
+#line 398 "ePubReader.c"
 	}
 #line 1336 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (_tmp8_, NULL);
@@ -274,7 +402,7 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 	_tmp13_ = end;
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (_tmp13_ >= ((glong) 0)) {
-#line 278 "ePubReader.c"
+#line 406 "ePubReader.c"
 		glong _tmp14_ = 0L;
 		glong _tmp15_ = 0L;
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -283,11 +411,11 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 		_tmp15_ = string_length;
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp12_ = _tmp14_ <= _tmp15_;
-#line 287 "ePubReader.c"
+#line 415 "ePubReader.c"
 	} else {
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp12_ = FALSE;
-#line 291 "ePubReader.c"
+#line 419 "ePubReader.c"
 	}
 #line 1337 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (_tmp12_, NULL);
@@ -309,7 +437,7 @@ static gchar* string_slice (const gchar* self, glong start, glong end) {
 	result = _tmp21_;
 #line 1339 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 313 "ePubReader.c"
+#line 441 "ePubReader.c"
 }
 
 
@@ -385,63 +513,63 @@ gchar* bookworm_app_epub_reader_getLocationOfContentOPFFile (const gchar* extrac
 	const gchar* _tmp73_ = NULL;
 	gchar* _tmp74_ = NULL;
 	gchar* _tmp75_ = NULL;
-#line 21 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 34 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	g_return_val_if_fail (extractionLocation != NULL, NULL);
-#line 23 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp0_ = extractionLocation;
-#line 23 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp1_ = bookworm_app_utils_fileOperations ("READ", _tmp0_, BOOKWORM_APP_CONSTANTS_EPUB_MIME_SPECIFICATION_FILENAME, "");
-#line 23 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	ePubMimeContents = _tmp1_;
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp2_ = extractionLocation;
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp3_ = g_strconcat ("Mime Contents in file :", _tmp2_, NULL);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp4_ = _tmp3_;
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp5_ = g_strconcat (_tmp4_, "/", NULL);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp6_ = _tmp5_;
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp7_ = g_strconcat (_tmp6_, BOOKWORM_APP_CONSTANTS_EPUB_MIME_SPECIFICATION_FILENAME, NULL);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp8_ = _tmp7_;
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp9_ = g_strconcat (_tmp8_, " is:", NULL);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp10_ = _tmp9_;
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp11_ = ePubMimeContents;
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp12_ = g_strconcat (_tmp10_, _tmp11_, NULL);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp13_ = _tmp12_;
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	g_debug ("ePubReader.vala:24: %s", _tmp13_);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:37: %s", _tmp13_);
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp13_);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp10_);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp8_);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp6_);
-#line 24 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp4_);
-#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp14_ = ePubMimeContents;
-#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp15_ = string_strip (_tmp14_);
-#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp16_ = _tmp15_;
-#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp17_ = g_strcmp0 (_tmp16_, BOOKWORM_APP_CONSTANTS_EPUB_MIME_SPECIFICATION_CONTENT) != 0;
-#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp16_);
-#line 25 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (_tmp17_) {
-#line 445 "ePubReader.c"
+#line 573 "ePubReader.c"
 		const gchar* _tmp18_ = NULL;
 		gchar* _tmp19_ = NULL;
 		gchar* _tmp20_ = NULL;
@@ -454,193 +582,193 @@ gchar* bookworm_app_epub_reader_getLocationOfContentOPFFile (const gchar* extrac
 		gchar* _tmp27_ = NULL;
 		gchar* _tmp28_ = NULL;
 		gchar* _tmp29_ = NULL;
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp18_ = extractionLocation;
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp19_ = g_strconcat ("Mime Contents in file :", _tmp18_, NULL);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp20_ = _tmp19_;
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp21_ = g_strconcat (_tmp20_, "/", NULL);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp22_ = _tmp21_;
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp23_ = g_strconcat (_tmp22_, BOOKWORM_APP_CONSTANTS_EPUB_MIME_SPECIFICATION_FILENAME, NULL);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp24_ = _tmp23_;
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp25_ = g_strconcat (_tmp24_, " is not :", NULL);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp26_ = _tmp25_;
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp27_ = g_strconcat (_tmp26_, BOOKWORM_APP_CONSTANTS_EPUB_MIME_SPECIFICATION_CONTENT, NULL);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp28_ = _tmp27_;
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		g_debug ("ePubReader.vala:26: %s", _tmp28_);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		g_debug ("ePubReader.vala:39: %s", _tmp28_);
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (_tmp28_);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (_tmp26_);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (_tmp24_);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (_tmp22_);
-#line 26 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (_tmp20_);
-#line 27 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 40 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp29_ = g_strdup ("false");
-#line 27 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 40 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		result = _tmp29_;
-#line 27 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 40 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (ePubMimeContents);
-#line 27 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 40 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		return result;
-#line 500 "ePubReader.c"
+#line 628 "ePubReader.c"
 	}
-#line 30 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 43 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp30_ = extractionLocation;
-#line 30 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 43 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp31_ = bookworm_app_utils_fileOperations ("READ", _tmp30_, BOOKWORM_APP_CONSTANTS_EPUB_META_INF_FILENAME, "");
-#line 30 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 43 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	metaInfContents = _tmp31_;
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp32_ = extractionLocation;
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp33_ = g_strconcat ("META-INF Contents in file :", _tmp32_, NULL);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp34_ = _tmp33_;
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp35_ = g_strconcat (_tmp34_, "/", NULL);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp36_ = _tmp35_;
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp37_ = g_strconcat (_tmp36_, BOOKWORM_APP_CONSTANTS_EPUB_META_INF_FILENAME, NULL);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp38_ = _tmp37_;
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp39_ = g_strconcat (_tmp38_, " is:", NULL);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp40_ = _tmp39_;
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp41_ = metaInfContents;
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp42_ = g_strconcat (_tmp40_, _tmp41_, NULL);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp43_ = _tmp42_;
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	g_debug ("ePubReader.vala:31: %s", _tmp43_);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:44: %s", _tmp43_);
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp43_);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp40_);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp38_);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp36_);
-#line 31 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp34_);
-#line 33 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp44_ = metaInfContents;
-#line 33 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp45_ = string_index_of (_tmp44_, "<rootfile full-path=\"", 0);
-#line 33 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp46_ = strlen ("<rootfile full-path=\"");
-#line 33 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp47_ = _tmp46_;
-#line 33 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	startPosOfContentOPFFile = _tmp45_ + _tmp47_;
-#line 34 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp48_ = metaInfContents;
-#line 34 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp49_ = startPosOfContentOPFFile;
-#line 34 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp50_ = string_index_of (_tmp48_, "\"", _tmp49_ + 1);
-#line 34 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	endPosOfContentOPFFile = _tmp50_;
-#line 35 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp51_ = metaInfContents;
-#line 35 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp52_ = startPosOfContentOPFFile;
-#line 35 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp53_ = endPosOfContentOPFFile;
-#line 35 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp54_ = string_slice (_tmp51_, (glong) _tmp52_, (glong) _tmp53_);
-#line 35 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	ContentOPFFilePath = _tmp54_;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp55_ = extractionLocation;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp56_ = g_strconcat ("CONTENT.OPF file relative path [Fetched from file:", _tmp55_, NULL);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp57_ = _tmp56_;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp58_ = g_strconcat (_tmp57_, "/", NULL);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp59_ = _tmp58_;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp60_ = g_strconcat (_tmp59_, BOOKWORM_APP_CONSTANTS_EPUB_META_INF_FILENAME, NULL);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp61_ = _tmp60_;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp62_ = g_strconcat (_tmp61_, "] is:", NULL);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp63_ = _tmp62_;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp64_ = ContentOPFFilePath;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp65_ = g_strconcat (_tmp63_, _tmp64_, NULL);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp66_ = _tmp65_;
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	g_debug ("ePubReader.vala:36: %s", _tmp66_);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:49: %s", _tmp66_);
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp66_);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp63_);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp61_);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp59_);
-#line 36 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp57_);
-#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp67_ = extractionLocation;
-#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp68_ = g_strconcat (_tmp67_, "/", NULL);
-#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp69_ = _tmp68_;
-#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp70_ = ContentOPFFilePath;
-#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp71_ = g_strconcat (_tmp69_, _tmp70_, NULL);
-#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp72_ = _tmp71_;
-#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp69_);
-#line 37 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	locationOfOPFFile = _tmp72_;
-#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp73_ = locationOfOPFFile;
-#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp74_ = g_strconcat ("Absolute path to CONTENT.OPF : ", _tmp73_, NULL);
-#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp75_ = _tmp74_;
-#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	g_debug ("ePubReader.vala:38: %s", _tmp75_);
-#line 38 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:51: %s", _tmp75_);
+#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (_tmp75_);
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	result = locationOfOPFFile;
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (ContentOPFFilePath);
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (metaInfContents);
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (ePubMimeContents);
-#line 39 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return result;
-#line 644 "ePubReader.c"
+#line 772 "ePubReader.c"
 }
 
 
@@ -653,7 +781,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	g_return_val_if_fail (old != NULL, NULL);
 #line 1380 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (replacement != NULL, NULL);
-#line 657 "ePubReader.c"
+#line 785 "ePubReader.c"
 	{
 		GRegex* regex = NULL;
 		const gchar* _tmp0_ = NULL;
@@ -684,7 +812,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			if (_inner_error_->domain == G_REGEX_ERROR) {
-#line 688 "ePubReader.c"
+#line 816 "ePubReader.c"
 				goto __catch8_g_regex_error;
 			}
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -693,7 +821,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			g_clear_error (&_inner_error_);
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			return NULL;
-#line 697 "ePubReader.c"
+#line 825 "ePubReader.c"
 		}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp6_ = regex;
@@ -709,7 +837,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			_g_regex_unref0 (regex);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			if (_inner_error_->domain == G_REGEX_ERROR) {
-#line 713 "ePubReader.c"
+#line 841 "ePubReader.c"
 				goto __catch8_g_regex_error;
 			}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -720,7 +848,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			g_clear_error (&_inner_error_);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			return NULL;
-#line 724 "ePubReader.c"
+#line 852 "ePubReader.c"
 		}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp9_ = _tmp5_;
@@ -734,7 +862,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		_g_regex_unref0 (regex);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 738 "ePubReader.c"
+#line 866 "ePubReader.c"
 	}
 	goto __finally8;
 	__catch8_g_regex_error:
@@ -748,7 +876,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_g_error_free0 (e);
-#line 752 "ePubReader.c"
+#line 880 "ePubReader.c"
 	}
 	__finally8:
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -759,7 +887,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_clear_error (&_inner_error_);
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return NULL;
-#line 763 "ePubReader.c"
+#line 891 "ePubReader.c"
 	}
 }
 
@@ -780,153 +908,702 @@ static gboolean string_contains (const gchar* self, const gchar* needle) {
 	result = _tmp1_ != NULL;
 #line 1377 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	return result;
-#line 784 "ePubReader.c"
+#line 912 "ePubReader.c"
 }
 
 
 static gpointer _bookworm_app_book_ref0 (gpointer self) {
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return self ? bookworm_app_book_ref (self) : NULL;
-#line 791 "ePubReader.c"
+#line 919 "ePubReader.c"
 }
 
 
-BookwormAppBook* bookworm_app_epub_reader_getBookCoverImageLocation (BookwormAppBook* aBook) {
+BookwormAppBook* bookworm_app_epub_reader_getBookCoverImageLocation (BookwormAppBook* aBook, const gchar* bookworm_config_path) {
 	BookwormAppBook* result = NULL;
-	gchar* bookCoverLocation = NULL;
-	gchar* _tmp0_ = NULL;
-	gchar* extractionLocation = NULL;
-	BookwormAppBook* _tmp1_ = NULL;
+	BookwormAppBook* _tmp0_ = NULL;
+	gchar* _tmp1_ = NULL;
 	gchar* _tmp2_ = NULL;
-	gchar* locationOfOPFFile = NULL;
-	const gchar* _tmp3_ = NULL;
+	gchar* _tmp3_ = NULL;
 	gchar* _tmp4_ = NULL;
-	BookwormAppBook* _tmp5_ = NULL;
-	const gchar* _tmp6_ = NULL;
+	gchar* bookCoverLocation = NULL;
+	gchar* _tmp5_ = NULL;
+	gchar* extractionLocation = NULL;
+	BookwormAppBook* _tmp6_ = NULL;
+	gchar* _tmp7_ = NULL;
+	gchar* locationOfOPFFile = NULL;
+	gchar* _tmp8_ = NULL;
 	gchar* baseLocationOfContents = NULL;
-	const gchar* _tmp7_ = NULL;
-	const gchar* _tmp8_ = NULL;
 	GFile* _tmp9_ = NULL;
 	GFile* _tmp10_ = NULL;
 	gchar* _tmp11_ = NULL;
 	gchar* _tmp12_ = NULL;
 	gchar* _tmp13_ = NULL;
 	gchar* _tmp14_ = NULL;
-	BookwormAppBook* _tmp15_ = NULL;
-	const gchar* _tmp16_ = NULL;
+	gchar* OpfContents = NULL;
+	gchar* _tmp15_ = NULL;
+	gchar* manifestData = NULL;
+	gchar* _tmp16_ = NULL;
+	gchar** manifestItemList = NULL;
+	gint _tmp17_ = 0;
+	gchar** _tmp18_ = NULL;
+	gint manifestItemList_length1 = 0;
+	gint _manifestItemList_size_ = 0;
+	gboolean _tmp60_ = FALSE;
+	const gchar* _tmp61_ = NULL;
+	BookwormAppBook* _tmp105_ = NULL;
+	BookwormAppBook* _tmp106_ = NULL;
+	GError * _inner_error_ = NULL;
+#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_return_val_if_fail (aBook != NULL, NULL);
+#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_return_val_if_fail (bookworm_config_path != NULL, NULL);
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp0_ = aBook;
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp1_ = bookworm_app_book_getBookExtractionLocation (_tmp0_);
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp2_ = _tmp1_;
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp3_ = g_strconcat ("Initiated process for cover image extraction of eBook located at:", _tmp2_, NULL);
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp4_ = _tmp3_;
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:56: %s", _tmp4_);
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp4_);
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp2_);
+#line 57 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp5_ = g_strdup ("");
+#line 57 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	bookCoverLocation = _tmp5_;
+#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp6_ = aBook;
+#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp7_ = bookworm_app_book_getBookExtractionLocation (_tmp6_);
+#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	extractionLocation = _tmp7_;
+#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp8_ = bookworm_app_epub_reader_getLocationOfContentOPFFile (extractionLocation);
+#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	locationOfOPFFile = _tmp8_;
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp9_ = g_file_new_for_path (locationOfOPFFile);
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp10_ = _tmp9_;
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp11_ = g_file_get_basename (_tmp10_);
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp12_ = _tmp11_;
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp13_ = string_replace (locationOfOPFFile, _tmp12_, "");
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp14_ = _tmp13_;
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp12_);
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_object_unref0 (_tmp10_);
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	baseLocationOfContents = _tmp14_;
+#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp15_ = bookworm_app_utils_fileOperations ("READ_FILE", locationOfOPFFile, "", "");
+#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	OpfContents = _tmp15_;
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp16_ = bookworm_app_utils_extractXMLTag (OpfContents, "<manifest", "</manifest>", &_inner_error_);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	manifestData = _tmp16_;
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (OpfContents);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (baseLocationOfContents);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (locationOfOPFFile);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (extractionLocation);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (bookCoverLocation);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_bookworm_app_book_unref0 (aBook);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		g_clear_error (&_inner_error_);
+#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		return NULL;
+#line 1038 "ePubReader.c"
+	}
+#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp18_ = bookworm_app_utils_multiExtractBetweenTwoStrings (manifestData, "<item", "/>", &_tmp17_);
+#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	manifestItemList = _tmp18_;
+#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	manifestItemList_length1 = _tmp17_;
+#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_manifestItemList_size_ = manifestItemList_length1;
+#line 1048 "ePubReader.c"
+	{
+		gint i = 0;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		i = 0;
+#line 1053 "ePubReader.c"
+		{
+			gboolean _tmp19_ = FALSE;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp19_ = TRUE;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			while (TRUE) {
+#line 1060 "ePubReader.c"
+				gint _tmp21_ = 0;
+				gchar** _tmp22_ = NULL;
+				gint _tmp22__length1 = 0;
+				gboolean _tmp23_ = FALSE;
+				gchar** _tmp24_ = NULL;
+				gint _tmp24__length1 = 0;
+				gint _tmp25_ = 0;
+				const gchar* _tmp26_ = NULL;
+				gchar* _tmp27_ = NULL;
+				gchar* _tmp28_ = NULL;
+				gboolean _tmp29_ = FALSE;
+				gboolean _tmp30_ = FALSE;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				if (!_tmp19_) {
+#line 1075 "ePubReader.c"
+					gint _tmp20_ = 0;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp20_ = i;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					i = _tmp20_ + 1;
+#line 1081 "ePubReader.c"
+				}
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp19_ = FALSE;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp21_ = i;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp22_ = manifestItemList;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp22__length1 = manifestItemList_length1;
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				if (!(_tmp21_ < _tmp22__length1)) {
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					break;
+#line 1095 "ePubReader.c"
+				}
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp24_ = manifestItemList;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp24__length1 = manifestItemList_length1;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp25_ = i;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp26_ = _tmp24_[_tmp25_];
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp27_ = g_utf8_strdown (_tmp26_, (gssize) -1);
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp28_ = _tmp27_;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp29_ = string_contains (_tmp28_, "media-type=\"image");
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp30_ = _tmp29_;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_g_free0 (_tmp28_);
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				if (_tmp30_) {
+#line 1117 "ePubReader.c"
+					gchar** _tmp31_ = NULL;
+					gint _tmp31__length1 = 0;
+					gint _tmp32_ = 0;
+					const gchar* _tmp33_ = NULL;
+					gchar* _tmp34_ = NULL;
+					gchar* _tmp35_ = NULL;
+					gboolean _tmp36_ = FALSE;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp31_ = manifestItemList;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp31__length1 = manifestItemList_length1;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp32_ = i;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp33_ = _tmp31_[_tmp32_];
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp34_ = g_utf8_strdown (_tmp33_, (gssize) -1);
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp35_ = _tmp34_;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp36_ = string_contains (_tmp35_, "cover");
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp23_ = _tmp36_;
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_g_free0 (_tmp35_);
+#line 1143 "ePubReader.c"
+				} else {
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp23_ = FALSE;
+#line 1147 "ePubReader.c"
+				}
+#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				if (_tmp23_) {
+#line 1151 "ePubReader.c"
+					gint startIndexOfCoverLocation = 0;
+					gchar** _tmp37_ = NULL;
+					gint _tmp37__length1 = 0;
+					gint _tmp38_ = 0;
+					const gchar* _tmp39_ = NULL;
+					gint _tmp40_ = 0;
+					gint endIndexOfCoverLocation = 0;
+					gchar** _tmp41_ = NULL;
+					gint _tmp41__length1 = 0;
+					gint _tmp42_ = 0;
+					const gchar* _tmp43_ = NULL;
+					gint _tmp44_ = 0;
+					gint _tmp45_ = 0;
+					gboolean _tmp46_ = FALSE;
+					gboolean _tmp47_ = FALSE;
+					gint _tmp48_ = 0;
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp37_ = manifestItemList;
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp37__length1 = manifestItemList_length1;
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp38_ = i;
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp39_ = _tmp37_[_tmp38_];
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp40_ = string_index_of (_tmp39_, "href=\"", 0);
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					startIndexOfCoverLocation = _tmp40_ + 6;
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp41_ = manifestItemList;
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp41__length1 = manifestItemList_length1;
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp42_ = i;
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp43_ = _tmp41_[_tmp42_];
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp44_ = startIndexOfCoverLocation;
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp45_ = string_index_of (_tmp43_, "\"", _tmp44_ + 1);
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					endIndexOfCoverLocation = _tmp45_;
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp48_ = startIndexOfCoverLocation;
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					if (_tmp48_ != -1) {
+#line 1198 "ePubReader.c"
+						gint _tmp49_ = 0;
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp49_ = endIndexOfCoverLocation;
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp47_ = _tmp49_ != -1;
+#line 1204 "ePubReader.c"
+					} else {
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp47_ = FALSE;
+#line 1208 "ePubReader.c"
+					}
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					if (_tmp47_) {
+#line 1212 "ePubReader.c"
+						gint _tmp50_ = 0;
+						gint _tmp51_ = 0;
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp50_ = endIndexOfCoverLocation;
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp51_ = startIndexOfCoverLocation;
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp46_ = _tmp50_ > _tmp51_;
+#line 1221 "ePubReader.c"
+					} else {
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp46_ = FALSE;
+#line 1225 "ePubReader.c"
+					}
+#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					if (_tmp46_) {
+#line 1229 "ePubReader.c"
+						gchar** _tmp52_ = NULL;
+						gint _tmp52__length1 = 0;
+						gint _tmp53_ = 0;
+						const gchar* _tmp54_ = NULL;
+						gint _tmp55_ = 0;
+						gint _tmp56_ = 0;
+						gchar* _tmp57_ = NULL;
+						gchar* _tmp58_ = NULL;
+						gchar* _tmp59_ = NULL;
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp52_ = manifestItemList;
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp52__length1 = manifestItemList_length1;
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp53_ = i;
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp54_ = _tmp52_[_tmp53_];
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp55_ = startIndexOfCoverLocation;
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp56_ = endIndexOfCoverLocation;
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp57_ = string_slice (_tmp54_, (glong) _tmp55_, (glong) _tmp56_);
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp58_ = _tmp57_;
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_tmp59_ = g_strconcat (baseLocationOfContents, _tmp58_, NULL);
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_g_free0 (bookCoverLocation);
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						bookCoverLocation = _tmp59_;
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+						_g_free0 (_tmp58_);
+#line 1263 "ePubReader.c"
+					}
+#line 74 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					break;
+#line 1267 "ePubReader.c"
+				}
+			}
+		}
+	}
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp61_ = bookCoverLocation;
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	if (_tmp61_ == NULL) {
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp60_ = TRUE;
+#line 1278 "ePubReader.c"
+	} else {
+		const gchar* _tmp62_ = NULL;
+		gint _tmp63_ = 0;
+		gint _tmp64_ = 0;
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp62_ = bookCoverLocation;
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp63_ = strlen (_tmp62_);
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp64_ = _tmp63_;
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp60_ = _tmp64_ < 1;
+#line 1291 "ePubReader.c"
+	}
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	if (_tmp60_) {
+#line 1295 "ePubReader.c"
+		BookwormAppBook* _tmp65_ = NULL;
+#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp65_ = aBook;
+#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		bookworm_app_book_setIsBookCoverImagePresent (_tmp65_, FALSE);
+#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		g_debug ("ePubReader.vala:81: eBook cover image not found");
+#line 1303 "ePubReader.c"
+	} else {
+		BookwormAppBook* _tmp66_ = NULL;
+		GFile* coverImageFile = NULL;
+		const gchar* _tmp67_ = NULL;
+		GFile* _tmp68_ = NULL;
+		gchar* bookwormCoverLocation = NULL;
+		const gchar* _tmp69_ = NULL;
+		gchar* _tmp70_ = NULL;
+		gchar* _tmp71_ = NULL;
+		BookwormAppBook* _tmp72_ = NULL;
+		gchar* _tmp73_ = NULL;
+		gchar* _tmp74_ = NULL;
+		gchar* _tmp75_ = NULL;
+		gchar* _tmp76_ = NULL;
+		gchar* _tmp77_ = NULL;
+		gchar* _tmp78_ = NULL;
+		gchar* _tmp79_ = NULL;
+		gchar* _tmp80_ = NULL;
+		gchar* _tmp81_ = NULL;
+		gchar* _tmp82_ = NULL;
+		GFile* _tmp83_ = NULL;
+		gchar* _tmp84_ = NULL;
+		gchar* _tmp85_ = NULL;
+		gchar* _tmp86_ = NULL;
+		gchar* _tmp87_ = NULL;
+		const gchar* _tmp88_ = NULL;
+		gchar* _tmp89_ = NULL;
+		gchar* _tmp90_ = NULL;
+		gchar* _tmp91_ = NULL;
+		gchar* _tmp92_ = NULL;
+		const gchar* _tmp93_ = NULL;
+		gchar* _tmp94_ = NULL;
+		gchar* _tmp95_ = NULL;
+		gchar* _tmp96_ = NULL;
+		gchar* _tmp97_ = NULL;
+		gchar* _tmp98_ = NULL;
+		gchar* _tmp99_ = NULL;
+		BookwormAppBook* _tmp100_ = NULL;
+		const gchar* _tmp101_ = NULL;
+		const gchar* _tmp102_ = NULL;
+		gchar* _tmp103_ = NULL;
+		gchar* _tmp104_ = NULL;
+#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp66_ = aBook;
+#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		bookworm_app_book_setIsBookCoverImagePresent (_tmp66_, TRUE);
+#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp67_ = bookCoverLocation;
+#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp68_ = g_file_new_for_commandline_arg (_tmp67_);
+#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		coverImageFile = _tmp68_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp69_ = bookworm_config_path;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp70_ = g_strconcat (_tmp69_, "/covers/", NULL);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp71_ = _tmp70_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp72_ = aBook;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp73_ = bookworm_app_book_getBookLocation (_tmp72_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp74_ = _tmp73_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp75_ = string_replace (_tmp74_, "/", "_");
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp76_ = _tmp75_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp77_ = string_replace (_tmp76_, " ", "");
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp78_ = _tmp77_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp79_ = g_strconcat (_tmp71_, _tmp78_, NULL);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp80_ = _tmp79_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp81_ = g_strconcat (_tmp80_, "_", NULL);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp82_ = _tmp81_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp83_ = coverImageFile;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp84_ = g_file_get_basename (_tmp83_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp85_ = _tmp84_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp86_ = g_strconcat (_tmp82_, _tmp85_, NULL);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp87_ = _tmp86_;
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp85_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp82_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp80_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp78_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp76_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp74_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp71_);
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		bookwormCoverLocation = _tmp87_;
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp88_ = bookCoverLocation;
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp89_ = g_strconcat ("cp \"", _tmp88_, NULL);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp90_ = _tmp89_;
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp91_ = g_strconcat (_tmp90_, "\" \"", NULL);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp92_ = _tmp91_;
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp93_ = bookwormCoverLocation;
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp94_ = g_strconcat (_tmp92_, _tmp93_, NULL);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp95_ = _tmp94_;
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp96_ = g_strconcat (_tmp95_, "\"", NULL);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp97_ = _tmp96_;
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp98_ = bookworm_app_utils_execute_sync_command (_tmp97_);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp99_ = _tmp98_;
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp99_);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp97_);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp95_);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp92_);
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp90_);
+#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp100_ = aBook;
+#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp101_ = bookwormCoverLocation;
+#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		bookworm_app_book_setBookCoverLocation (_tmp100_, _tmp101_);
+#line 90 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp102_ = bookwormCoverLocation;
+#line 90 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp103_ = g_strconcat ("eBook cover image extracted sucessfully into location:", _tmp102_, NULL);
+#line 90 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp104_ = _tmp103_;
+#line 90 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		g_debug ("ePubReader.vala:90: %s", _tmp104_);
+#line 90 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (_tmp104_);
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (bookwormCoverLocation);
+#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_object_unref0 (coverImageFile);
+#line 1464 "ePubReader.c"
+	}
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp105_ = aBook;
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp106_ = _bookworm_app_book_ref0 (_tmp105_);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	result = _tmp106_;
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	manifestItemList = (_vala_array_free (manifestItemList, manifestItemList_length1, (GDestroyNotify) g_free), NULL);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (manifestData);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (OpfContents);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (baseLocationOfContents);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (locationOfOPFFile);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (extractionLocation);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (bookCoverLocation);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_bookworm_app_book_unref0 (aBook);
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	return result;
+#line 1490 "ePubReader.c"
+}
+
+
+BookwormAppBook* bookworm_app_epub_reader_getBookTitle (BookwormAppBook* aBook, const gchar* bookworm_config_path) {
+	BookwormAppBook* result = NULL;
+	BookwormAppBook* _tmp0_ = NULL;
+	gchar* _tmp1_ = NULL;
+	gchar* _tmp2_ = NULL;
+	gchar* _tmp3_ = NULL;
+	gchar* _tmp4_ = NULL;
+	gchar* extractionLocation = NULL;
+	BookwormAppBook* _tmp5_ = NULL;
+	gchar* _tmp6_ = NULL;
+	gchar* locationOfOPFFile = NULL;
+	const gchar* _tmp7_ = NULL;
+	gchar* _tmp8_ = NULL;
+	gchar* baseLocationOfContents = NULL;
+	const gchar* _tmp9_ = NULL;
+	const gchar* _tmp10_ = NULL;
+	GFile* _tmp11_ = NULL;
+	GFile* _tmp12_ = NULL;
+	gchar* _tmp13_ = NULL;
+	gchar* _tmp14_ = NULL;
+	gchar* _tmp15_ = NULL;
+	gchar* _tmp16_ = NULL;
 	gchar* OpfContents = NULL;
 	const gchar* _tmp17_ = NULL;
 	gchar* _tmp18_ = NULL;
 	gboolean _tmp19_ = FALSE;
 	const gchar* _tmp20_ = NULL;
 	gboolean _tmp21_ = FALSE;
-	gchar* spineData = NULL;
-	const gchar* _tmp37_ = NULL;
-	gchar* _tmp38_ = NULL;
-	gchar* manifestData = NULL;
-	const gchar* _tmp39_ = NULL;
-	gchar* _tmp40_ = NULL;
-	gchar** manifestItemList = NULL;
-	const gchar* _tmp41_ = NULL;
-	gint _tmp42_ = 0;
-	gchar** _tmp43_ = NULL;
-	gint manifestItemList_length1 = 0;
-	gint _manifestItemList_size_ = 0;
-	BookwormAppBook* _tmp91_ = NULL;
-	gchar* _tmp92_ = NULL;
-	gchar* _tmp93_ = NULL;
-	gchar* _tmp94_ = NULL;
-	gchar* _tmp95_ = NULL;
-	gboolean _tmp96_ = FALSE;
-	BookwormAppBook* _tmp97_ = NULL;
-	gchar* _tmp98_ = NULL;
-	gchar* _tmp99_ = NULL;
-	gboolean _tmp100_ = FALSE;
-	BookwormAppBook* _tmp114_ = NULL;
-	BookwormAppBook* _tmp115_ = NULL;
-	GError * _inner_error_ = NULL;
-#line 42 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	BookwormAppBook* _tmp38_ = NULL;
+	BookwormAppBook* _tmp39_ = NULL;
+#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	g_return_val_if_fail (aBook != NULL, NULL);
-#line 43 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp0_ = g_strdup ("");
-#line 43 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	bookCoverLocation = _tmp0_;
-#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp1_ = aBook;
-#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp2_ = bookworm_app_book_getBookExtractionLocation (_tmp1_);
-#line 44 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	extractionLocation = _tmp2_;
-#line 45 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp3_ = extractionLocation;
-#line 45 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp4_ = bookworm_app_epub_reader_getLocationOfContentOPFFile (_tmp3_);
-#line 45 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	locationOfOPFFile = _tmp4_;
-#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_return_val_if_fail (bookworm_config_path != NULL, NULL);
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp0_ = aBook;
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp1_ = bookworm_app_book_getBookExtractionLocation (_tmp0_);
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp2_ = _tmp1_;
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp3_ = g_strconcat ("Initiated process for finding title of eBook located at:", _tmp2_, NULL);
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp4_ = _tmp3_;
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:96: %s", _tmp4_);
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp4_);
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp2_);
+#line 97 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp5_ = aBook;
-#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp6_ = locationOfOPFFile;
-#line 46 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	bookworm_app_book_setOPFFileLocation (_tmp5_, _tmp6_);
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp7_ = locationOfOPFFile;
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp8_ = locationOfOPFFile;
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp9_ = g_file_new_for_path (_tmp8_);
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp10_ = _tmp9_;
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp11_ = g_file_get_basename (_tmp10_);
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 97 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp6_ = bookworm_app_book_getBookExtractionLocation (_tmp5_);
+#line 97 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	extractionLocation = _tmp6_;
+#line 98 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp7_ = extractionLocation;
+#line 98 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp8_ = bookworm_app_epub_reader_getLocationOfContentOPFFile (_tmp7_);
+#line 98 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	locationOfOPFFile = _tmp8_;
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp9_ = locationOfOPFFile;
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp10_ = locationOfOPFFile;
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp11_ = g_file_new_for_path (_tmp10_);
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp12_ = _tmp11_;
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp13_ = string_replace (_tmp7_, _tmp12_, "");
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp13_ = g_file_get_basename (_tmp12_);
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp14_ = _tmp13_;
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (_tmp12_);
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_object_unref0 (_tmp10_);
-#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	baseLocationOfContents = _tmp14_;
-#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp15_ = aBook;
-#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp16_ = baseLocationOfContents;
-#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	bookworm_app_book_setBaseLocationOfContents (_tmp15_, _tmp16_);
-#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp15_ = string_replace (_tmp9_, _tmp14_, "");
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp16_ = _tmp15_;
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp14_);
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_object_unref0 (_tmp12_);
+#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	baseLocationOfContents = _tmp16_;
+#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp17_ = locationOfOPFFile;
-#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp18_ = bookworm_app_utils_fileOperations ("READ_FILE", _tmp17_, "", "");
-#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	OpfContents = _tmp18_;
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp20_ = OpfContents;
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp21_ = string_contains (_tmp20_, "<dc:title>");
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (_tmp21_) {
-#line 913 "ePubReader.c"
+#line 1590 "ePubReader.c"
 		const gchar* _tmp22_ = NULL;
 		gboolean _tmp23_ = FALSE;
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp22_ = OpfContents;
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp23_ = string_contains (_tmp22_, "</dc:title>");
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp19_ = _tmp23_;
-#line 922 "ePubReader.c"
+#line 1599 "ePubReader.c"
 	} else {
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp19_ = FALSE;
-#line 926 "ePubReader.c"
+#line 1603 "ePubReader.c"
 	}
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (_tmp19_) {
-#line 930 "ePubReader.c"
+#line 1607 "ePubReader.c"
 		gchar* bookTitle = NULL;
 		const gchar* _tmp24_ = NULL;
 		const gchar* _tmp25_ = NULL;
@@ -941,504 +1618,108 @@ BookwormAppBook* bookworm_app_epub_reader_getBookCoverImageLocation (BookwormApp
 		const gchar* _tmp34_ = NULL;
 		gchar* _tmp35_ = NULL;
 		gchar* _tmp36_ = NULL;
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp24_ = OpfContents;
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp25_ = OpfContents;
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp26_ = string_index_of (_tmp25_, "<dc:title>", 0);
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp27_ = strlen ("<dc:title>");
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp28_ = _tmp27_;
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp29_ = OpfContents;
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp30_ = string_index_of (_tmp29_, "</dc:title>", 0);
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp31_ = string_slice (_tmp24_, (glong) (_tmp26_ + _tmp28_), (glong) _tmp30_);
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		bookTitle = _tmp31_;
-#line 54 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp32_ = aBook;
-#line 54 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp33_ = bookTitle;
-#line 54 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		bookworm_app_book_setBookTitle (_tmp32_, _tmp33_);
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp34_ = bookTitle;
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp35_ = g_strconcat ("Determined eBook Title as:", _tmp34_, NULL);
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_tmp36_ = _tmp35_;
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		g_debug ("ePubReader.vala:55: %s", _tmp36_);
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		g_debug ("ePubReader.vala:106: %s", _tmp36_);
+#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (_tmp36_);
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (bookTitle);
-#line 981 "ePubReader.c"
-	}
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp37_ = OpfContents;
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp38_ = bookworm_app_utils_extractXMLTag (_tmp37_, "<spine", "</spine>", &_inner_error_);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	spineData = _tmp38_;
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (OpfContents);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (baseLocationOfContents);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (locationOfOPFFile);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (extractionLocation);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (bookCoverLocation);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_bookworm_app_book_unref0 (aBook);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		g_clear_error (&_inner_error_);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		return NULL;
-#line 1009 "ePubReader.c"
-	}
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp39_ = OpfContents;
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp40_ = bookworm_app_utils_extractXMLTag (_tmp39_, "<manifest", "</manifest>", &_inner_error_);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	manifestData = _tmp40_;
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (spineData);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (OpfContents);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (baseLocationOfContents);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (locationOfOPFFile);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (extractionLocation);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (bookCoverLocation);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_bookworm_app_book_unref0 (aBook);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		g_clear_error (&_inner_error_);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		return NULL;
-#line 1039 "ePubReader.c"
-	}
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp41_ = manifestData;
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp43_ = bookworm_app_utils_multiExtractBetweenTwoStrings (_tmp41_, "<item", "/>", &_tmp42_);
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	manifestItemList = _tmp43_;
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	manifestItemList_length1 = _tmp42_;
-#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_manifestItemList_size_ = manifestItemList_length1;
-#line 1051 "ePubReader.c"
-	{
-		gint i = 0;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		i = 0;
-#line 1056 "ePubReader.c"
-		{
-			gboolean _tmp44_ = FALSE;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp44_ = TRUE;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			while (TRUE) {
-#line 1063 "ePubReader.c"
-				gint _tmp46_ = 0;
-				gchar** _tmp47_ = NULL;
-				gint _tmp47__length1 = 0;
-				gboolean _tmp48_ = FALSE;
-				gchar** _tmp49_ = NULL;
-				gint _tmp49__length1 = 0;
-				gint _tmp50_ = 0;
-				const gchar* _tmp51_ = NULL;
-				gchar* _tmp52_ = NULL;
-				gchar* _tmp53_ = NULL;
-				gboolean _tmp54_ = FALSE;
-				gboolean _tmp55_ = FALSE;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				if (!_tmp44_) {
-#line 1078 "ePubReader.c"
-					gint _tmp45_ = 0;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp45_ = i;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					i = _tmp45_ + 1;
-#line 1084 "ePubReader.c"
-				}
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp44_ = FALSE;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp46_ = i;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp47_ = manifestItemList;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp47__length1 = manifestItemList_length1;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				if (!(_tmp46_ < _tmp47__length1)) {
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					break;
-#line 1098 "ePubReader.c"
-				}
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp49_ = manifestItemList;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp49__length1 = manifestItemList_length1;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp50_ = i;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp51_ = _tmp49_[_tmp50_];
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp52_ = g_utf8_strdown (_tmp51_, (gssize) -1);
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp53_ = _tmp52_;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp54_ = string_contains (_tmp53_, "media-type=\"image");
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp55_ = _tmp54_;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_g_free0 (_tmp53_);
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				if (_tmp55_) {
-#line 1120 "ePubReader.c"
-					gchar** _tmp56_ = NULL;
-					gint _tmp56__length1 = 0;
-					gint _tmp57_ = 0;
-					const gchar* _tmp58_ = NULL;
-					gchar* _tmp59_ = NULL;
-					gchar* _tmp60_ = NULL;
-					gboolean _tmp61_ = FALSE;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp56_ = manifestItemList;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp56__length1 = manifestItemList_length1;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp57_ = i;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp58_ = _tmp56_[_tmp57_];
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp59_ = g_utf8_strdown (_tmp58_, (gssize) -1);
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp60_ = _tmp59_;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp61_ = string_contains (_tmp60_, "cover");
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp48_ = _tmp61_;
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_g_free0 (_tmp60_);
-#line 1146 "ePubReader.c"
-				} else {
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp48_ = FALSE;
-#line 1150 "ePubReader.c"
-				}
-#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				if (_tmp48_) {
-#line 1154 "ePubReader.c"
-					gint startIndexOfCoverLocation = 0;
-					gchar** _tmp62_ = NULL;
-					gint _tmp62__length1 = 0;
-					gint _tmp63_ = 0;
-					const gchar* _tmp64_ = NULL;
-					gint _tmp65_ = 0;
-					gint endIndexOfCoverLocation = 0;
-					gchar** _tmp66_ = NULL;
-					gint _tmp66__length1 = 0;
-					gint _tmp67_ = 0;
-					const gchar* _tmp68_ = NULL;
-					gint _tmp69_ = 0;
-					gint _tmp70_ = 0;
-					gboolean _tmp71_ = FALSE;
-					gboolean _tmp72_ = FALSE;
-					gint _tmp73_ = 0;
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp62_ = manifestItemList;
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp62__length1 = manifestItemList_length1;
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp63_ = i;
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp64_ = _tmp62_[_tmp63_];
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp65_ = string_index_of (_tmp64_, "href=\"", 0);
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					startIndexOfCoverLocation = _tmp65_ + 6;
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp66_ = manifestItemList;
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp66__length1 = manifestItemList_length1;
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp67_ = i;
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp68_ = _tmp66_[_tmp67_];
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp69_ = startIndexOfCoverLocation;
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp70_ = string_index_of (_tmp68_, "\"", _tmp69_ + 1);
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					endIndexOfCoverLocation = _tmp70_;
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp73_ = startIndexOfCoverLocation;
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					if (_tmp73_ != -1) {
-#line 1201 "ePubReader.c"
-						gint _tmp74_ = 0;
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp74_ = endIndexOfCoverLocation;
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp72_ = _tmp74_ != -1;
-#line 1207 "ePubReader.c"
-					} else {
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp72_ = FALSE;
-#line 1211 "ePubReader.c"
-					}
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					if (_tmp72_) {
-#line 1215 "ePubReader.c"
-						gint _tmp75_ = 0;
-						gint _tmp76_ = 0;
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp75_ = endIndexOfCoverLocation;
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp76_ = startIndexOfCoverLocation;
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp71_ = _tmp75_ > _tmp76_;
-#line 1224 "ePubReader.c"
-					} else {
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp71_ = FALSE;
-#line 1228 "ePubReader.c"
-					}
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					if (_tmp71_) {
-#line 1232 "ePubReader.c"
-						const gchar* _tmp77_ = NULL;
-						gchar** _tmp78_ = NULL;
-						gint _tmp78__length1 = 0;
-						gint _tmp79_ = 0;
-						const gchar* _tmp80_ = NULL;
-						gint _tmp81_ = 0;
-						gint _tmp82_ = 0;
-						gchar* _tmp83_ = NULL;
-						gchar* _tmp84_ = NULL;
-						gchar* _tmp85_ = NULL;
-						BookwormAppBook* _tmp86_ = NULL;
-						const gchar* _tmp87_ = NULL;
-						const gchar* _tmp88_ = NULL;
-						gchar* _tmp89_ = NULL;
-						gchar* _tmp90_ = NULL;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp77_ = baseLocationOfContents;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp78_ = manifestItemList;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp78__length1 = manifestItemList_length1;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp79_ = i;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp80_ = _tmp78_[_tmp79_];
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp81_ = startIndexOfCoverLocation;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp82_ = endIndexOfCoverLocation;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp83_ = string_slice (_tmp80_, (glong) _tmp81_, (glong) _tmp82_);
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp84_ = _tmp83_;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp85_ = g_strconcat (_tmp77_, _tmp84_, NULL);
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_g_free0 (bookCoverLocation);
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						bookCoverLocation = _tmp85_;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_g_free0 (_tmp84_);
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp86_ = aBook;
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp87_ = bookCoverLocation;
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						bookworm_app_book_setBookCoverLocation (_tmp86_, _tmp87_);
-#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp88_ = bookCoverLocation;
-#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp89_ = g_strconcat ("Book Cover image located at:", _tmp88_, NULL);
-#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_tmp90_ = _tmp89_;
-#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						g_debug ("ePubReader.vala:69: %s", _tmp90_);
-#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-						_g_free0 (_tmp90_);
-#line 1290 "ePubReader.c"
-					}
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					break;
-#line 1294 "ePubReader.c"
-				}
-			}
-		}
-	}
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp91_ = aBook;
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp92_ = bookworm_app_book_getBookCoverLocation (_tmp91_);
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp93_ = _tmp92_;
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp94_ = g_strconcat ("Cover found:", _tmp93_, NULL);
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp95_ = _tmp94_;
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	g_debug ("ePubReader.vala:75: %s", _tmp95_);
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (_tmp95_);
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (_tmp93_);
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp97_ = aBook;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp98_ = bookworm_app_book_getBookCoverLocation (_tmp97_);
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp99_ = _tmp98_;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp100_ = _tmp99_ == NULL;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (_tmp99_);
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	if (_tmp100_) {
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp96_ = TRUE;
-#line 1329 "ePubReader.c"
+#line 1658 "ePubReader.c"
 	} else {
-		BookwormAppBook* _tmp101_ = NULL;
-		gchar* _tmp102_ = NULL;
-		gchar* _tmp103_ = NULL;
-		gint _tmp104_ = 0;
-		gint _tmp105_ = 0;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp101_ = aBook;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp102_ = bookworm_app_book_getBookCoverLocation (_tmp101_);
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp103_ = _tmp102_;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp104_ = strlen (_tmp103_);
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp105_ = _tmp104_;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp96_ = _tmp105_ < 1;
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (_tmp103_);
-#line 1350 "ePubReader.c"
+		BookwormAppBook* _tmp37_ = NULL;
+#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp37_ = aBook;
+#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		bookworm_app_book_setBookTitle (_tmp37_, "Unknown Book");
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		g_debug ("ePubReader.vala:109: Could not determine eBook Title, default title se" \
+"t");
+#line 1667 "ePubReader.c"
 	}
-#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	if (_tmp96_) {
-#line 1354 "ePubReader.c"
-		BookwormAppBook* _tmp106_ = NULL;
-		BookwormAppBook* _tmp107_ = NULL;
-		BookwormAppBook* _tmp108_ = NULL;
-		gchar* _tmp109_ = NULL;
-		gchar* _tmp110_ = NULL;
-		gchar* _tmp111_ = NULL;
-		gchar* _tmp112_ = NULL;
-#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp106_ = aBook;
-#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		bookworm_app_book_setIsBookCoverImagePresent (_tmp106_, FALSE);
-#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp107_ = aBook;
-#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		bookworm_app_book_setBookCoverLocation (_tmp107_, BOOKWORM_APP_CONSTANTS_DEFAULT_COVER_IMAGE_LOCATION);
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp108_ = aBook;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp109_ = bookworm_app_book_getBookCoverLocation (_tmp108_);
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp110_ = _tmp109_;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp111_ = g_strconcat ("Cover not found, so default cover set from :", _tmp110_, NULL);
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp112_ = _tmp111_;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		g_debug ("ePubReader.vala:79: %s", _tmp112_);
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (_tmp112_);
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_g_free0 (_tmp110_);
-#line 1386 "ePubReader.c"
-	} else {
-		BookwormAppBook* _tmp113_ = NULL;
-#line 82 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp113_ = aBook;
-#line 82 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		bookworm_app_book_setIsBookCoverImagePresent (_tmp113_, TRUE);
-#line 1393 "ePubReader.c"
-	}
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp114_ = aBook;
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp115_ = _bookworm_app_book_ref0 (_tmp114_);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	result = _tmp115_;
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	manifestItemList = (_vala_array_free (manifestItemList, manifestItemList_length1, (GDestroyNotify) g_free), NULL);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (manifestData);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (spineData);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp38_ = aBook;
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp39_ = _bookworm_app_book_ref0 (_tmp38_);
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	result = _tmp39_;
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (OpfContents);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (baseLocationOfContents);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (locationOfOPFFile);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (extractionLocation);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (bookCoverLocation);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_bookworm_app_book_unref0 (aBook);
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return result;
-#line 1421 "ePubReader.c"
+#line 1687 "ePubReader.c"
 }
 
 
 BookwormAppBook* bookworm_app_epub_reader_getListOfPagesInBook (BookwormAppBook* aBook) {
 	BookwormAppBook* result = NULL;
-	gchar* OpfContents = NULL;
+	gchar* extractionLocation = NULL;
 	BookwormAppBook* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-	gchar* _tmp2_ = NULL;
+	gchar* locationOfOPFFile = NULL;
+	const gchar* _tmp2_ = NULL;
 	gchar* _tmp3_ = NULL;
-	gchar* _tmp4_ = NULL;
-	gchar* spineData = NULL;
+	gchar* baseLocationOfContents = NULL;
+	const gchar* _tmp4_ = NULL;
 	const gchar* _tmp5_ = NULL;
-	gchar* _tmp6_ = NULL;
-	gchar* manifestData = NULL;
-	const gchar* _tmp7_ = NULL;
+	GFile* _tmp6_ = NULL;
+	GFile* _tmp7_ = NULL;
 	gchar* _tmp8_ = NULL;
+	gchar* _tmp9_ = NULL;
+	gchar* _tmp10_ = NULL;
+	gchar* _tmp11_ = NULL;
+	BookwormAppBook* _tmp12_ = NULL;
+	const gchar* _tmp13_ = NULL;
+	gchar* OpfContents = NULL;
+	const gchar* _tmp14_ = NULL;
+	gchar* _tmp15_ = NULL;
+	gchar* spineData = NULL;
+	const gchar* _tmp16_ = NULL;
+	gchar* _tmp17_ = NULL;
+	gchar* manifestData = NULL;
+	const gchar* _tmp18_ = NULL;
+	gchar* _tmp19_ = NULL;
 	gchar** manifestItemList = NULL;
-	const gchar* _tmp9_ = NULL;
-	gint _tmp10_ = 0;
-	gchar** _tmp11_ = NULL;
+	const gchar* _tmp20_ = NULL;
+	gint _tmp21_ = 0;
+	gchar** _tmp22_ = NULL;
 	gint manifestItemList_length1 = 0;
 	gint _manifestItemList_size_ = 0;
 	gint positionOfSpineItemref = 0;
@@ -1446,460 +1727,510 @@ BookwormAppBook* bookworm_app_epub_reader_getListOfPagesInBook (BookwormAppBook*
 	gint positionOfManifestDataStart = 0;
 	gint positionOfManifestDataEnd = 0;
 	GString* bufferForSpineDataExtraction = NULL;
-	GString* _tmp12_ = NULL;
+	GString* _tmp23_ = NULL;
 	GString* bufferForManifestDataExtraction = NULL;
-	GString* _tmp13_ = NULL;
+	GString* _tmp24_ = NULL;
 	GString* bufferForLocationOfContentData = NULL;
-	GString* _tmp14_ = NULL;
-	BookwormAppBook* _tmp88_ = NULL;
-	GeeArrayList* _tmp89_ = NULL;
-	GeeArrayList* _tmp90_ = NULL;
-	gint _tmp91_ = 0;
-	gint _tmp92_ = 0;
-	gchar* _tmp93_ = NULL;
-	gchar* _tmp94_ = NULL;
-	gchar* _tmp95_ = NULL;
-	gchar* _tmp96_ = NULL;
-	BookwormAppBook* _tmp97_ = NULL;
-	BookwormAppBook* _tmp98_ = NULL;
+	GString* _tmp25_ = NULL;
+	BookwormAppBook* _tmp99_ = NULL;
+	GeeArrayList* _tmp100_ = NULL;
+	GeeArrayList* _tmp101_ = NULL;
+	gint _tmp102_ = 0;
+	gint _tmp103_ = 0;
+	gchar* _tmp104_ = NULL;
+	gchar* _tmp105_ = NULL;
+	gchar* _tmp106_ = NULL;
+	gchar* _tmp107_ = NULL;
+	BookwormAppBook* _tmp108_ = NULL;
+	BookwormAppBook* _tmp109_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 114 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	g_return_val_if_fail (aBook != NULL, NULL);
-#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp0_ = aBook;
-#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp1_ = bookworm_app_book_getOPFFileLocation (_tmp0_);
-#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp2_ = _tmp1_;
-#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp3_ = bookworm_app_utils_fileOperations ("READ_FILE", _tmp2_, "", "");
-#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp4_ = _tmp3_;
-#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (_tmp2_);
-#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	OpfContents = _tmp4_;
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp5_ = OpfContents;
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp6_ = bookworm_app_utils_extractXMLTag (_tmp5_, "<spine", "</spine>", &_inner_error_);
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	spineData = _tmp6_;
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp1_ = bookworm_app_book_getBookExtractionLocation (_tmp0_);
+#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	extractionLocation = _tmp1_;
+#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp2_ = extractionLocation;
+#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp3_ = bookworm_app_epub_reader_getLocationOfContentOPFFile (_tmp2_);
+#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	locationOfOPFFile = _tmp3_;
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp4_ = locationOfOPFFile;
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp5_ = locationOfOPFFile;
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp6_ = g_file_new_for_path (_tmp5_);
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp7_ = _tmp6_;
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp8_ = g_file_get_basename (_tmp7_);
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp9_ = _tmp8_;
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp10_ = string_replace (_tmp4_, _tmp9_, "");
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp11_ = _tmp10_;
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp9_);
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_object_unref0 (_tmp7_);
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	baseLocationOfContents = _tmp11_;
+#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp12_ = aBook;
+#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp13_ = baseLocationOfContents;
+#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	bookworm_app_book_setBaseLocationOfContents (_tmp12_, _tmp13_);
+#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp14_ = locationOfOPFFile;
+#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp15_ = bookworm_app_utils_fileOperations ("READ_FILE", _tmp14_, "", "");
+#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	OpfContents = _tmp15_;
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp16_ = OpfContents;
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp17_ = bookworm_app_utils_extractXMLTag (_tmp16_, "<spine", "</spine>", &_inner_error_);
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	spineData = _tmp17_;
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (OpfContents);
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (baseLocationOfContents);
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (locationOfOPFFile);
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (extractionLocation);
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_bookworm_app_book_unref0 (aBook);
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		g_clear_error (&_inner_error_);
-#line 91 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		return NULL;
-#line 1501 "ePubReader.c"
+#line 1819 "ePubReader.c"
 	}
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp7_ = OpfContents;
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp8_ = bookworm_app_utils_extractXMLTag (_tmp7_, "<manifest", "</manifest>", &_inner_error_);
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	manifestData = _tmp8_;
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp18_ = OpfContents;
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp19_ = bookworm_app_utils_extractXMLTag (_tmp18_, "<manifest", "</manifest>", &_inner_error_);
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	manifestData = _tmp19_;
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (spineData);
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_g_free0 (OpfContents);
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (baseLocationOfContents);
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (locationOfOPFFile);
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_g_free0 (extractionLocation);
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		_bookworm_app_book_unref0 (aBook);
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		g_clear_error (&_inner_error_);
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		return NULL;
-#line 1523 "ePubReader.c"
+#line 1847 "ePubReader.c"
 	}
-#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp9_ = manifestData;
-#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp11_ = bookworm_app_utils_multiExtractBetweenTwoStrings (_tmp9_, "<item", "/>", &_tmp10_);
-#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	manifestItemList = _tmp11_;
-#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	manifestItemList_length1 = _tmp10_;
-#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp20_ = manifestData;
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp22_ = bookworm_app_utils_multiExtractBetweenTwoStrings (_tmp20_, "<item", "/>", &_tmp21_);
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	manifestItemList = _tmp22_;
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	manifestItemList_length1 = _tmp21_;
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_manifestItemList_size_ = manifestItemList_length1;
-#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 126 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	positionOfSpineItemref = 0;
-#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	positionOfManifestItemref = 0;
-#line 97 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	positionOfManifestDataStart = 0;
-#line 98 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	positionOfManifestDataEnd = 0;
-#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp12_ = g_string_new ("");
-#line 99 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	bufferForSpineDataExtraction = _tmp12_;
-#line 100 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp13_ = g_string_new ("");
-#line 100 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	bufferForManifestDataExtraction = _tmp13_;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp14_ = g_string_new ("");
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	bufferForLocationOfContentData = _tmp14_;
-#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp23_ = g_string_new ("");
+#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	bufferForSpineDataExtraction = _tmp23_;
+#line 131 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp24_ = g_string_new ("");
+#line 131 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	bufferForManifestDataExtraction = _tmp24_;
+#line 132 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp25_ = g_string_new ("");
+#line 132 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	bufferForLocationOfContentData = _tmp25_;
+#line 134 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	while (TRUE) {
-#line 1557 "ePubReader.c"
-		gint _tmp15_ = 0;
-		GString* _tmp16_ = NULL;
-		gint _tmp17_ = 0;
-		const gchar* _tmp85_ = NULL;
-		gint _tmp86_ = 0;
-		gint _tmp87_ = 0;
-#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp15_ = positionOfSpineItemref;
-#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		if (!(_tmp15_ != -1)) {
-#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 1881 "ePubReader.c"
+		gint _tmp26_ = 0;
+		GString* _tmp27_ = NULL;
+		gint _tmp28_ = 0;
+		const gchar* _tmp96_ = NULL;
+		gint _tmp97_ = 0;
+		gint _tmp98_ = 0;
+#line 134 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp26_ = positionOfSpineItemref;
+#line 134 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		if (!(_tmp26_ != -1)) {
+#line 134 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 			break;
-#line 1570 "ePubReader.c"
+#line 1894 "ePubReader.c"
 		}
-#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp16_ = bufferForSpineDataExtraction;
-#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		g_string_erase (_tmp16_, (gssize) 0, (gssize) -1);
-#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp17_ = positionOfSpineItemref;
-#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		if (_tmp17_ > 0) {
-#line 1580 "ePubReader.c"
-			GString* _tmp18_ = NULL;
-			const gchar* _tmp19_ = NULL;
-			gint _tmp20_ = 0;
-			const gchar* _tmp21_ = NULL;
-			gint _tmp22_ = 0;
-			gint _tmp23_ = 0;
-			gchar* _tmp24_ = NULL;
-			gchar* _tmp25_ = NULL;
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp18_ = bufferForSpineDataExtraction;
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp19_ = spineData;
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp20_ = positionOfSpineItemref;
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp21_ = spineData;
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp22_ = positionOfSpineItemref;
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp23_ = string_index_of (_tmp21_, "\"", _tmp22_ + 17);
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp24_ = string_slice (_tmp19_, (glong) (_tmp20_ + 16), (glong) _tmp23_);
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_tmp25_ = _tmp24_;
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			g_string_append (_tmp18_, _tmp25_);
-#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-			_g_free0 (_tmp25_);
-#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 135 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp27_ = bufferForSpineDataExtraction;
+#line 135 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		g_string_erase (_tmp27_, (gssize) 0, (gssize) -1);
+#line 136 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp28_ = positionOfSpineItemref;
+#line 136 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		if (_tmp28_ > 0) {
+#line 1904 "ePubReader.c"
+			GString* _tmp29_ = NULL;
+			const gchar* _tmp30_ = NULL;
+			gint _tmp31_ = 0;
+			const gchar* _tmp32_ = NULL;
+			gint _tmp33_ = 0;
+			gint _tmp34_ = 0;
+			gchar* _tmp35_ = NULL;
+			gchar* _tmp36_ = NULL;
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp29_ = bufferForSpineDataExtraction;
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp30_ = spineData;
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp31_ = positionOfSpineItemref;
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp32_ = spineData;
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp33_ = positionOfSpineItemref;
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp34_ = string_index_of (_tmp32_, "\"", _tmp33_ + 17);
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp35_ = string_slice (_tmp30_, (glong) (_tmp31_ + 16), (glong) _tmp34_);
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_tmp36_ = _tmp35_;
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			g_string_append (_tmp29_, _tmp36_);
+#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+			_g_free0 (_tmp36_);
+#line 139 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 			while (TRUE) {
-#line 1611 "ePubReader.c"
-				gint _tmp26_ = 0;
-				GString* _tmp27_ = NULL;
-				GString* _tmp28_ = NULL;
-				const gchar* _tmp29_ = NULL;
-				const gchar* _tmp30_ = NULL;
-				gint _tmp31_ = 0;
-				gint _tmp32_ = 0;
-				const gchar* _tmp33_ = NULL;
-				gint _tmp34_ = 0;
-				gint _tmp35_ = 0;
-				gchar* _tmp36_ = NULL;
-				gchar* _tmp37_ = NULL;
+#line 1935 "ePubReader.c"
+				gint _tmp37_ = 0;
 				GString* _tmp38_ = NULL;
-				const gchar* _tmp39_ = NULL;
-				GString* _tmp40_ = NULL;
+				GString* _tmp39_ = NULL;
+				const gchar* _tmp40_ = NULL;
 				const gchar* _tmp41_ = NULL;
-				gchar* _tmp42_ = NULL;
-				gchar* _tmp43_ = NULL;
-				gchar* _tmp44_ = NULL;
-				gchar* _tmp45_ = NULL;
-				gboolean _tmp46_ = FALSE;
-				gboolean _tmp47_ = FALSE;
-				const gchar* _tmp82_ = NULL;
-				gint _tmp83_ = 0;
-				gint _tmp84_ = 0;
-#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp26_ = positionOfManifestItemref;
-#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				if (!(_tmp26_ != -1)) {
-#line 108 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				gint _tmp42_ = 0;
+				gint _tmp43_ = 0;
+				const gchar* _tmp44_ = NULL;
+				gint _tmp45_ = 0;
+				gint _tmp46_ = 0;
+				gchar* _tmp47_ = NULL;
+				gchar* _tmp48_ = NULL;
+				GString* _tmp49_ = NULL;
+				const gchar* _tmp50_ = NULL;
+				GString* _tmp51_ = NULL;
+				const gchar* _tmp52_ = NULL;
+				gchar* _tmp53_ = NULL;
+				gchar* _tmp54_ = NULL;
+				gchar* _tmp55_ = NULL;
+				gchar* _tmp56_ = NULL;
+				gboolean _tmp57_ = FALSE;
+				gboolean _tmp58_ = FALSE;
+				const gchar* _tmp93_ = NULL;
+				gint _tmp94_ = 0;
+				gint _tmp95_ = 0;
+#line 139 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp37_ = positionOfManifestItemref;
+#line 139 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				if (!(_tmp37_ != -1)) {
+#line 139 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					break;
-#line 1643 "ePubReader.c"
+#line 1967 "ePubReader.c"
 				}
-#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp27_ = bufferForManifestDataExtraction;
-#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				g_string_erase (_tmp27_, (gssize) 0, (gssize) -1);
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp28_ = bufferForManifestDataExtraction;
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp29_ = manifestData;
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp30_ = manifestData;
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp31_ = positionOfManifestItemref;
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp32_ = string_index_of (_tmp30_, "<item", _tmp31_);
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp33_ = manifestData;
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp34_ = positionOfManifestItemref;
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp35_ = string_index_of (_tmp33_, "/>", _tmp34_);
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp36_ = string_slice (_tmp29_, (glong) _tmp32_, (glong) _tmp35_);
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp37_ = _tmp36_;
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				g_string_append (_tmp28_, _tmp37_);
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_g_free0 (_tmp37_);
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp38_ = bufferForManifestDataExtraction;
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp39_ = _tmp38_->str;
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp40_ = bufferForSpineDataExtraction;
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp41_ = _tmp40_->str;
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp42_ = g_strconcat ("id=\"", _tmp41_, NULL);
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp43_ = _tmp42_;
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp44_ = g_strconcat (_tmp43_, "\"", NULL);
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp45_ = _tmp44_;
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp46_ = string_contains (_tmp39_, _tmp45_);
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp47_ = _tmp46_;
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_g_free0 (_tmp45_);
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_g_free0 (_tmp43_);
-#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				if (_tmp47_) {
-#line 1699 "ePubReader.c"
-					GString* _tmp48_ = NULL;
-					const gchar* _tmp49_ = NULL;
-					gint _tmp50_ = 0;
-					GString* _tmp51_ = NULL;
-					const gchar* _tmp52_ = NULL;
-					GString* _tmp53_ = NULL;
-					const gchar* _tmp54_ = NULL;
-					gint _tmp55_ = 0;
-					gint _tmp56_ = 0;
-					GString* _tmp57_ = NULL;
-					GString* _tmp58_ = NULL;
-					BookwormAppBook* _tmp59_ = NULL;
-					gchar* _tmp60_ = NULL;
-					gchar* _tmp61_ = NULL;
+#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				g_string_erase (_tmp38_, (gssize) 0, (gssize) -1);
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp39_ = bufferForManifestDataExtraction;
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp40_ = manifestData;
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp41_ = manifestData;
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp42_ = positionOfManifestItemref;
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp43_ = string_index_of (_tmp41_, "<item", _tmp42_);
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp44_ = manifestData;
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp45_ = positionOfManifestItemref;
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp46_ = string_index_of (_tmp44_, "/>", _tmp45_);
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp47_ = string_slice (_tmp40_, (glong) _tmp43_, (glong) _tmp46_);
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp48_ = _tmp47_;
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				g_string_append (_tmp39_, _tmp48_);
+#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_g_free0 (_tmp48_);
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp49_ = bufferForManifestDataExtraction;
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp50_ = _tmp49_->str;
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp51_ = bufferForSpineDataExtraction;
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp52_ = _tmp51_->str;
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp53_ = g_strconcat ("id=\"", _tmp52_, NULL);
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp54_ = _tmp53_;
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp55_ = g_strconcat (_tmp54_, "\"", NULL);
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp56_ = _tmp55_;
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp57_ = string_contains (_tmp50_, _tmp56_);
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp58_ = _tmp57_;
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_g_free0 (_tmp56_);
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_g_free0 (_tmp54_);
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				if (_tmp58_) {
+#line 2023 "ePubReader.c"
+					GString* _tmp59_ = NULL;
+					const gchar* _tmp60_ = NULL;
+					gint _tmp61_ = 0;
 					GString* _tmp62_ = NULL;
-					GString* _tmp63_ = NULL;
-					const gchar* _tmp64_ = NULL;
-					gint _tmp65_ = 0;
+					const gchar* _tmp63_ = NULL;
+					GString* _tmp64_ = NULL;
+					const gchar* _tmp65_ = NULL;
 					gint _tmp66_ = 0;
-					gchar* _tmp67_ = NULL;
-					gchar* _tmp68_ = NULL;
-					BookwormAppBook* _tmp69_ = NULL;
-					GString* _tmp70_ = NULL;
-					const gchar* _tmp71_ = NULL;
-					GString* _tmp72_ = NULL;
-					const gchar* _tmp73_ = NULL;
-					gchar* _tmp74_ = NULL;
-					gchar* _tmp75_ = NULL;
-					gchar* _tmp76_ = NULL;
-					gchar* _tmp77_ = NULL;
-					GString* _tmp78_ = NULL;
-					const gchar* _tmp79_ = NULL;
-					gchar* _tmp80_ = NULL;
-					gchar* _tmp81_ = NULL;
-#line 114 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp48_ = bufferForManifestDataExtraction;
-#line 114 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp49_ = _tmp48_->str;
-#line 114 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp50_ = string_index_of (_tmp49_, "href=\"", 0);
-#line 114 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					positionOfManifestDataStart = _tmp50_ + 6;
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp51_ = bufferForManifestDataExtraction;
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp52_ = _tmp51_->str;
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp53_ = bufferForManifestDataExtraction;
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp54_ = _tmp53_->str;
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp55_ = string_index_of (_tmp54_, "href=\"", 0);
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp56_ = string_index_of (_tmp52_, "\"", _tmp55_ + 8);
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					positionOfManifestDataEnd = _tmp56_;
-#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp57_ = bufferForLocationOfContentData;
-#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					g_string_erase (_tmp57_, (gssize) 0, (gssize) -1);
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp58_ = bufferForLocationOfContentData;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp59_ = aBook;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp60_ = bookworm_app_book_getBaseLocationOfContents (_tmp59_);
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp61_ = _tmp60_;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp62_ = g_string_append (_tmp58_, _tmp61_);
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp63_ = bufferForManifestDataExtraction;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp64_ = _tmp63_->str;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp65_ = positionOfManifestDataStart;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp66_ = positionOfManifestDataEnd;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp67_ = string_slice (_tmp64_, (glong) _tmp65_, (glong) _tmp66_);
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp68_ = _tmp67_;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					g_string_append (_tmp62_, _tmp68_);
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_g_free0 (_tmp68_);
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_g_free0 (_tmp61_);
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp69_ = aBook;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp70_ = bufferForLocationOfContentData;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp71_ = _tmp70_->str;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					bookworm_app_book_setBookContentList (_tmp69_, _tmp71_);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp72_ = bufferForSpineDataExtraction;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp73_ = _tmp72_->str;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp74_ = g_strconcat ("Matching spine reference[", _tmp73_, NULL);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp75_ = _tmp74_;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp76_ = g_strconcat (_tmp75_, "], extracted content location:", NULL);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp77_ = _tmp76_;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp78_ = bufferForLocationOfContentData;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp79_ = _tmp78_->str;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp80_ = g_strconcat (_tmp77_, _tmp79_, NULL);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_tmp81_ = _tmp80_;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					g_debug ("ePubReader.vala:120: %s", _tmp81_);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_g_free0 (_tmp81_);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_g_free0 (_tmp77_);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					_g_free0 (_tmp75_);
-#line 121 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					gint _tmp67_ = 0;
+					GString* _tmp68_ = NULL;
+					GString* _tmp69_ = NULL;
+					BookwormAppBook* _tmp70_ = NULL;
+					gchar* _tmp71_ = NULL;
+					gchar* _tmp72_ = NULL;
+					GString* _tmp73_ = NULL;
+					GString* _tmp74_ = NULL;
+					const gchar* _tmp75_ = NULL;
+					gint _tmp76_ = 0;
+					gint _tmp77_ = 0;
+					gchar* _tmp78_ = NULL;
+					gchar* _tmp79_ = NULL;
+					BookwormAppBook* _tmp80_ = NULL;
+					GString* _tmp81_ = NULL;
+					const gchar* _tmp82_ = NULL;
+					GString* _tmp83_ = NULL;
+					const gchar* _tmp84_ = NULL;
+					gchar* _tmp85_ = NULL;
+					gchar* _tmp86_ = NULL;
+					gchar* _tmp87_ = NULL;
+					gchar* _tmp88_ = NULL;
+					GString* _tmp89_ = NULL;
+					const gchar* _tmp90_ = NULL;
+					gchar* _tmp91_ = NULL;
+					gchar* _tmp92_ = NULL;
+#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp59_ = bufferForManifestDataExtraction;
+#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp60_ = _tmp59_->str;
+#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp61_ = string_index_of (_tmp60_, "href=\"", 0);
+#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					positionOfManifestDataStart = _tmp61_ + 6;
+#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp62_ = bufferForManifestDataExtraction;
+#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp63_ = _tmp62_->str;
+#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp64_ = bufferForManifestDataExtraction;
+#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp65_ = _tmp64_->str;
+#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp66_ = string_index_of (_tmp65_, "href=\"", 0);
+#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp67_ = string_index_of (_tmp63_, "\"", _tmp66_ + 8);
+#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					positionOfManifestDataEnd = _tmp67_;
+#line 147 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp68_ = bufferForLocationOfContentData;
+#line 147 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					g_string_erase (_tmp68_, (gssize) 0, (gssize) -1);
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp69_ = bufferForLocationOfContentData;
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp70_ = aBook;
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp71_ = bookworm_app_book_getBaseLocationOfContents (_tmp70_);
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp72_ = _tmp71_;
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp73_ = g_string_append (_tmp69_, _tmp72_);
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp74_ = bufferForManifestDataExtraction;
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp75_ = _tmp74_->str;
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp76_ = positionOfManifestDataStart;
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp77_ = positionOfManifestDataEnd;
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp78_ = string_slice (_tmp75_, (glong) _tmp76_, (glong) _tmp77_);
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp79_ = _tmp78_;
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					g_string_append (_tmp73_, _tmp79_);
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_g_free0 (_tmp79_);
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_g_free0 (_tmp72_);
+#line 150 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp80_ = aBook;
+#line 150 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp81_ = bufferForLocationOfContentData;
+#line 150 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp82_ = _tmp81_->str;
+#line 150 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					bookworm_app_book_setBookContentList (_tmp80_, _tmp82_);
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp83_ = bufferForSpineDataExtraction;
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp84_ = _tmp83_->str;
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp85_ = g_strconcat ("Matching spine reference[", _tmp84_, NULL);
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp86_ = _tmp85_;
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp87_ = g_strconcat (_tmp86_, "], extracted content location:", NULL);
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp88_ = _tmp87_;
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp89_ = bufferForLocationOfContentData;
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp90_ = _tmp89_->str;
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp91_ = g_strconcat (_tmp88_, _tmp90_, NULL);
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_tmp92_ = _tmp91_;
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					g_debug ("ePubReader.vala:151: %s", _tmp92_);
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_g_free0 (_tmp92_);
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_g_free0 (_tmp88_);
+#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					_g_free0 (_tmp86_);
+#line 152 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					break;
-#line 1826 "ePubReader.c"
+#line 2150 "ePubReader.c"
 				}
-#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp82_ = manifestData;
-#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp83_ = positionOfManifestItemref;
-#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				_tmp84_ = string_index_of (_tmp82_, "<item", _tmp83_ + 5);
-#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				positionOfManifestItemref = _tmp84_;
-#line 1836 "ePubReader.c"
+#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp93_ = manifestData;
+#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp94_ = positionOfManifestItemref;
+#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				_tmp95_ = string_index_of (_tmp93_, "<item", _tmp94_ + 5);
+#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				positionOfManifestItemref = _tmp95_;
+#line 2160 "ePubReader.c"
 			}
-#line 125 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 156 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 			positionOfManifestItemref = 0;
-#line 1840 "ePubReader.c"
+#line 2164 "ePubReader.c"
 		}
-#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp85_ = spineData;
-#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp86_ = positionOfSpineItemref;
-#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		_tmp87_ = string_index_of (_tmp85_, "<itemref idref=", _tmp86_ + 1);
-#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-		positionOfSpineItemref = _tmp87_;
-#line 1850 "ePubReader.c"
+#line 158 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp96_ = spineData;
+#line 158 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp97_ = positionOfSpineItemref;
+#line 158 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		_tmp98_ = string_index_of (_tmp96_, "<itemref idref=", _tmp97_ + 1);
+#line 158 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+		positionOfSpineItemref = _tmp98_;
+#line 2174 "ePubReader.c"
 	}
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp88_ = aBook;
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp89_ = bookworm_app_book_getBookContentList (_tmp88_);
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp90_ = _tmp89_;
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp91_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp90_);
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp92_ = _tmp91_;
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp93_ = g_strdup_printf ("%i", _tmp92_);
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp94_ = _tmp93_;
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp95_ = g_strconcat ("Completed extracting location of content files in ebook. Number of con" \
-"tent files = ", _tmp94_, NULL);
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp96_ = _tmp95_;
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	g_debug ("ePubReader.vala:129: %s", _tmp96_);
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (_tmp96_);
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_free0 (_tmp94_);
-#line 129 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_g_object_unref0 (_tmp90_);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp97_ = aBook;
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	_tmp98_ = _bookworm_app_book_ref0 (_tmp97_);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-	result = _tmp98_;
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp99_ = aBook;
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp100_ = bookworm_app_book_getBookContentList (_tmp99_);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp101_ = _tmp100_;
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp102_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp101_);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp103_ = _tmp102_;
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp104_ = g_strdup_printf ("%i", _tmp103_);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp105_ = _tmp104_;
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp106_ = g_strconcat ("Completed extracting location of content files in ebook. Number of con" \
+"tent files = ", _tmp105_, NULL);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp107_ = _tmp106_;
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	g_debug ("ePubReader.vala:160: %s", _tmp107_);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp107_);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (_tmp105_);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_object_unref0 (_tmp101_);
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp108_ = aBook;
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_tmp109_ = _bookworm_app_book_ref0 (_tmp108_);
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	result = _tmp109_;
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_string_free0 (bufferForLocationOfContentData);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_string_free0 (bufferForManifestDataExtraction);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_string_free0 (bufferForSpineDataExtraction);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	manifestItemList = (_vala_array_free (manifestItemList, manifestItemList_length1, (GDestroyNotify) g_free), NULL);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (manifestData);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (spineData);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (OpfContents);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (baseLocationOfContents);
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (locationOfOPFFile);
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+	_g_free0 (extractionLocation);
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_bookworm_app_book_unref0 (aBook);
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return result;
-#line 1902 "ePubReader.c"
+#line 2232 "ePubReader.c"
 }
 
 
@@ -1914,40 +2245,40 @@ BookwormAppBook* bookworm_app_epub_reader_renderPage (WebKitWebView* aWebView, B
 	const gchar* _tmp3_ = NULL;
 	const gchar* _tmp4_ = NULL;
 	GQuark _tmp6_ = 0U;
-#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	static GQuark _tmp5_label0 = 0;
-#line 1919 "ePubReader.c"
+#line 2249 "ePubReader.c"
 	BookwormAppBook* _tmp146_ = NULL;
 	BookwormAppBook* _tmp147_ = NULL;
-#line 133 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	g_return_val_if_fail (aWebView != NULL, NULL);
-#line 133 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	g_return_val_if_fail (aBook != NULL, NULL);
-#line 133 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	g_return_val_if_fail (direction != NULL, NULL);
-#line 134 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 165 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp0_ = g_string_new ("");
-#line 134 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 165 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	contents = _tmp0_;
-#line 135 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 166 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp1_ = aBook;
-#line 135 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 166 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp2_ = bookworm_app_book_getBaseLocationOfContents (_tmp1_);
-#line 135 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 166 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	baseLocationOfContents = _tmp2_;
-#line 136 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 167 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	currentContentLocation = 0;
-#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp3_ = direction;
-#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp4_ = _tmp3_;
-#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp6_ = (NULL == _tmp4_) ? 0 : g_quark_from_string (_tmp4_);
-#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (_tmp6_ == ((0 != _tmp5_label0) ? _tmp5_label0 : (_tmp5_label0 = g_quark_from_static_string ("TABLE_OF_CONTENTS")))) {
-#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		switch (0) {
-#line 1950 "ePubReader.c"
+#line 2280 "ePubReader.c"
 			default:
 			{
 				gboolean _tmp7_ = FALSE;
@@ -1959,117 +2290,117 @@ BookwormAppBook* bookworm_app_epub_reader_renderPage (WebKitWebView* aWebView, B
 				BookwormAppBook* _tmp44_ = NULL;
 				gchar* _tmp45_ = NULL;
 				gchar* _tmp46_ = NULL;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp8_ = aBook;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp9_ = bookworm_app_book_getTOCHTMLContent (_tmp8_);
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp10_ = _tmp9_;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp11_ = _tmp10_ == NULL;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp10_);
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				if (_tmp11_) {
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp7_ = TRUE;
-#line 1976 "ePubReader.c"
+#line 2306 "ePubReader.c"
 				} else {
 					BookwormAppBook* _tmp12_ = NULL;
 					gchar* _tmp13_ = NULL;
 					gchar* _tmp14_ = NULL;
 					gint _tmp15_ = 0;
 					gint _tmp16_ = 0;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp12_ = aBook;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp13_ = bookworm_app_book_getTOCHTMLContent (_tmp12_);
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp14_ = _tmp13_;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp15_ = strlen (_tmp14_);
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp16_ = _tmp15_;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp7_ = _tmp16_ < 1;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp14_);
-#line 1997 "ePubReader.c"
+#line 2327 "ePubReader.c"
 				}
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				if (_tmp7_) {
-#line 2001 "ePubReader.c"
+#line 2331 "ePubReader.c"
 					gboolean _tmp17_ = FALSE;
 					BookwormAppBook* _tmp18_ = NULL;
 					GeeArrayList* _tmp19_ = NULL;
 					GeeArrayList* _tmp20_ = NULL;
 					gboolean _tmp21_ = FALSE;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp18_ = aBook;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp19_ = bookworm_app_book_getBookContentList (_tmp18_);
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp20_ = _tmp19_;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp21_ = _tmp20_ != NULL;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_object_unref0 (_tmp20_);
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					if (_tmp21_) {
-#line 2019 "ePubReader.c"
+#line 2349 "ePubReader.c"
 						BookwormAppBook* _tmp22_ = NULL;
 						GeeArrayList* _tmp23_ = NULL;
 						GeeArrayList* _tmp24_ = NULL;
 						gint _tmp25_ = 0;
 						gint _tmp26_ = 0;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp22_ = aBook;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp23_ = bookworm_app_book_getBookContentList (_tmp22_);
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp24_ = _tmp23_;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp25_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp24_);
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp26_ = _tmp25_;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp17_ = _tmp26_ > 0;
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_g_object_unref0 (_tmp24_);
-#line 2039 "ePubReader.c"
+#line 2369 "ePubReader.c"
 					} else {
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp17_ = FALSE;
-#line 2043 "ePubReader.c"
+#line 2373 "ePubReader.c"
 					}
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					if (_tmp17_) {
-#line 2047 "ePubReader.c"
+#line 2377 "ePubReader.c"
 						BookwormAppBook* _tmp27_ = NULL;
 						BookwormAppBook* _tmp28_ = NULL;
 						GeeArrayList* _tmp29_ = NULL;
 						GeeArrayList* _tmp30_ = NULL;
 						gchar* _tmp31_ = NULL;
 						gchar* _tmp32_ = NULL;
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp27_ = aBook;
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp28_ = aBook;
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp29_ = bookworm_app_book_getBookContentList (_tmp28_);
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp30_ = _tmp29_;
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp31_ = bookworm_app_utils_createTableOfContents (_tmp30_);
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp32_ = _tmp31_;
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						bookworm_app_book_setTOCHTMLContent (_tmp27_, _tmp32_);
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_g_free0 (_tmp32_);
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_g_object_unref0 (_tmp30_);
-#line 2072 "ePubReader.c"
+#line 2402 "ePubReader.c"
 					} else {
 						BookwormAppBook* _tmp33_ = NULL;
 						BookwormAppBook* _tmp34_ = NULL;
@@ -2081,58 +2412,58 @@ BookwormAppBook* bookworm_app_epub_reader_renderPage (WebKitWebView* aWebView, B
 						GeeArrayList* _tmp40_ = NULL;
 						gchar* _tmp41_ = NULL;
 						gchar* _tmp42_ = NULL;
-#line 144 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp33_ = aBook;
-#line 144 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp34_ = _bookworm_app_book_ref0 (_tmp33_);
-#line 144 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp35_ = bookworm_app_epub_reader_getListOfPagesInBook (_tmp34_);
-#line 144 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp36_ = _tmp35_;
-#line 144 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_bookworm_app_book_unref0 (_tmp36_);
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp37_ = aBook;
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp38_ = aBook;
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp39_ = bookworm_app_book_getBookContentList (_tmp38_);
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp40_ = _tmp39_;
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp41_ = bookworm_app_utils_createTableOfContents (_tmp40_);
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp42_ = _tmp41_;
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						bookworm_app_book_setTOCHTMLContent (_tmp37_, _tmp42_);
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_g_free0 (_tmp42_);
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_g_object_unref0 (_tmp40_);
-#line 2112 "ePubReader.c"
+#line 2442 "ePubReader.c"
 					}
 				}
-#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 179 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp43_ = aWebView;
-#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 179 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp44_ = aBook;
-#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 179 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp45_ = bookworm_app_book_getTOCHTMLContent (_tmp44_);
-#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 179 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp46_ = _tmp45_;
-#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 179 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				webkit_web_view_load_html (_tmp43_, _tmp46_, BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL);
-#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 179 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp46_);
-#line 149 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				break;
-#line 2129 "ePubReader.c"
+#line 2459 "ePubReader.c"
 			}
 		}
 	} else {
-#line 137 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		switch (0) {
-#line 2135 "ePubReader.c"
+#line 2465 "ePubReader.c"
 			default:
 			{
 				BookwormAppBook* _tmp47_ = NULL;
@@ -2187,13 +2518,13 @@ BookwormAppBook* bookworm_app_epub_reader_renderPage (WebKitWebView* aWebView, B
 				WebKitWebView* _tmp143_ = NULL;
 				GString* _tmp144_ = NULL;
 				const gchar* _tmp145_ = NULL;
-#line 152 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 183 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp47_ = aBook;
-#line 152 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 183 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp48_ = bookworm_app_book_getBookPageNumber (_tmp47_);
-#line 152 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 183 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				if (_tmp48_ != -1) {
-#line 2196 "ePubReader.c"
+#line 2526 "ePubReader.c"
 					BookwormAppBook* _tmp49_ = NULL;
 					gint _tmp50_ = 0;
 					gint _tmp51_ = 0;
@@ -2205,216 +2536,218 @@ BookwormAppBook* bookworm_app_epub_reader_renderPage (WebKitWebView* aWebView, B
 					const gchar* _tmp57_ = NULL;
 					gboolean _tmp68_ = FALSE;
 					const gchar* _tmp69_ = NULL;
-#line 153 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp49_ = aBook;
-#line 153 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp50_ = bookworm_app_book_getBookPageNumber (_tmp49_);
-#line 153 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					currentContentLocation = _tmp50_;
-#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp51_ = currentContentLocation;
-#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp52_ = g_strdup_printf ("%i", _tmp51_);
-#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp53_ = _tmp52_;
-#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp54_ = g_strconcat ("Book has a CURRENT_LOCATION set at :", _tmp53_, NULL);
-#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp55_ = _tmp54_;
-#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					g_debug ("ePubReader.vala:154: %s", _tmp55_);
-#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					g_debug ("ePubReader.vala:185: %s", _tmp55_);
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp55_);
-#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp53_);
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp57_ = direction;
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					if (g_strcmp0 (_tmp57_, "FORWARD") == 0) {
-#line 2234 "ePubReader.c"
+#line 2564 "ePubReader.c"
 						gint _tmp58_ = 0;
 						BookwormAppBook* _tmp59_ = NULL;
 						GeeArrayList* _tmp60_ = NULL;
 						GeeArrayList* _tmp61_ = NULL;
 						gint _tmp62_ = 0;
 						gint _tmp63_ = 0;
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp58_ = currentContentLocation;
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp59_ = aBook;
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp60_ = bookworm_app_book_getBookContentList (_tmp59_);
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp61_ = _tmp60_;
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp62_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp61_);
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp63_ = _tmp62_;
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp56_ = _tmp58_ < (_tmp63_ - 1);
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_g_object_unref0 (_tmp61_);
-#line 2257 "ePubReader.c"
+#line 2587 "ePubReader.c"
 					} else {
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp56_ = FALSE;
-#line 2261 "ePubReader.c"
+#line 2591 "ePubReader.c"
 					}
-#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					if (_tmp56_) {
-#line 2265 "ePubReader.c"
+#line 2595 "ePubReader.c"
 						gint _tmp64_ = 0;
 						BookwormAppBook* _tmp65_ = NULL;
 						gint _tmp66_ = 0;
-#line 156 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 187 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp64_ = currentContentLocation;
-#line 156 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 187 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						currentContentLocation = _tmp64_ + 1;
-#line 157 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp65_ = aBook;
-#line 157 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp66_ = currentContentLocation;
-#line 157 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						bookworm_app_book_setBookPageNumber (_tmp65_, _tmp66_);
-#line 2279 "ePubReader.c"
+#line 2609 "ePubReader.c"
 					} else {
 						BookwormAppBook* _tmp67_ = NULL;
-#line 159 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 190 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp67_ = aBook;
-#line 159 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 190 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						bookworm_app_book_setIfPageForward (_tmp67_, FALSE);
-#line 2286 "ePubReader.c"
+#line 2616 "ePubReader.c"
 					}
-#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp69_ = direction;
-#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					if (g_strcmp0 (_tmp69_, "BACKWARD") == 0) {
-#line 2292 "ePubReader.c"
+#line 2622 "ePubReader.c"
 						gint _tmp70_ = 0;
-#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp70_ = currentContentLocation;
-#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp68_ = _tmp70_ > 0;
-#line 2298 "ePubReader.c"
+#line 2628 "ePubReader.c"
 					} else {
-#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp68_ = FALSE;
-#line 2302 "ePubReader.c"
+#line 2632 "ePubReader.c"
 					}
-#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					if (_tmp68_) {
-#line 2306 "ePubReader.c"
+#line 2636 "ePubReader.c"
 						gint _tmp71_ = 0;
 						BookwormAppBook* _tmp72_ = NULL;
 						gint _tmp73_ = 0;
-#line 162 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 193 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp71_ = currentContentLocation;
-#line 162 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 193 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						currentContentLocation = _tmp71_ - 1;
-#line 163 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 194 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp72_ = aBook;
-#line 163 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 194 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp73_ = currentContentLocation;
-#line 163 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 194 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						bookworm_app_book_setBookPageNumber (_tmp72_, _tmp73_);
-#line 2320 "ePubReader.c"
+#line 2650 "ePubReader.c"
 					} else {
 						BookwormAppBook* _tmp74_ = NULL;
-#line 165 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						_tmp74_ = aBook;
-#line 165 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 						bookworm_app_book_setIfPageBackward (_tmp74_, FALSE);
-#line 2327 "ePubReader.c"
+#line 2657 "ePubReader.c"
 					}
 				} else {
 					BookwormAppBook* _tmp75_ = NULL;
-#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 199 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp75_ = aBook;
-#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 199 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					bookworm_app_book_setBookPageNumber (_tmp75_, 0);
-#line 169 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-					g_debug ("ePubReader.vala:169: Book did not had a CURRENT_LOCATION set.");
-#line 2337 "ePubReader.c"
+#line 200 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					currentContentLocation = 0;
+#line 201 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+					g_debug ("ePubReader.vala:201: Book did not had a CURRENT_LOCATION set.");
+#line 2669 "ePubReader.c"
 				}
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp76_ = currentContentLocation;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp77_ = g_strdup_printf ("%i", _tmp76_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp78_ = _tmp77_;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp79_ = g_strconcat ("Rendering location [", _tmp78_, NULL);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp80_ = _tmp79_;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp81_ = g_strconcat (_tmp80_, "]", NULL);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp82_ = _tmp81_;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp83_ = aBook;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp84_ = bookworm_app_book_getBookContentList (_tmp83_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp85_ = _tmp84_;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp86_ = currentContentLocation;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp87_ = gee_abstract_list_get ((GeeAbstractList*) _tmp85_, _tmp86_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp88_ = (gchar*) _tmp87_;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp89_ = g_strconcat (_tmp82_, _tmp88_, NULL);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp90_ = _tmp89_;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
-				g_debug ("ePubReader.vala:171: %s", _tmp90_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+				g_debug ("ePubReader.vala:203: %s", _tmp90_);
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp90_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp88_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_object_unref0 (_tmp85_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp82_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp80_);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 203 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp78_);
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp91_ = contents;
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp92_ = aBook;
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp93_ = bookworm_app_book_getBookContentList (_tmp92_);
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp94_ = _tmp93_;
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp95_ = currentContentLocation;
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp96_ = gee_abstract_list_get ((GeeAbstractList*) _tmp94_, _tmp95_);
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp97_ = (gchar*) _tmp96_;
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp98_ = bookworm_app_utils_fileOperations ("READ_FILE", _tmp97_, "", "");
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp99_ = _tmp98_;
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				g_string_assign (_tmp91_, _tmp99_);
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp99_);
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp97_);
-#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 205 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_object_unref0 (_tmp94_);
-#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp100_ = contents;
-#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp101_ = _tmp100_->str;
-#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp102_ = string_index_of (_tmp101_, "<img src=\"", 0);
-#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				if (_tmp102_ != -1) {
-#line 2417 "ePubReader.c"
+#line 2749 "ePubReader.c"
 					GString* _tmp103_ = NULL;
 					GString* _tmp104_ = NULL;
 					const gchar* _tmp105_ = NULL;
@@ -2425,35 +2758,35 @@ BookwormAppBook* bookworm_app_epub_reader_renderPage (WebKitWebView* aWebView, B
 					gchar* _tmp110_ = NULL;
 					gchar* _tmp111_ = NULL;
 					gchar* _tmp112_ = NULL;
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp103_ = contents;
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp104_ = contents;
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp105_ = _tmp104_->str;
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp106_ = baseLocationOfContents;
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp107_ = g_strconcat ("<img src=\"", _tmp106_, NULL);
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp108_ = _tmp107_;
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp109_ = g_strconcat (_tmp108_, "/", NULL);
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp110_ = _tmp109_;
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp111_ = string_replace (_tmp105_, "<img src=\"", _tmp110_);
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp112_ = _tmp111_;
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					g_string_assign (_tmp103_, _tmp112_);
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp112_);
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp110_);
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 208 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp108_);
-#line 2456 "ePubReader.c"
+#line 2788 "ePubReader.c"
 				} else {
 					GString* _tmp113_ = NULL;
 					GString* _tmp114_ = NULL;
@@ -2465,121 +2798,121 @@ BookwormAppBook* bookworm_app_epub_reader_renderPage (WebKitWebView* aWebView, B
 					gchar* _tmp120_ = NULL;
 					gchar* _tmp121_ = NULL;
 					gchar* _tmp122_ = NULL;
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp113_ = contents;
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp114_ = contents;
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp115_ = _tmp114_->str;
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp116_ = baseLocationOfContents;
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp117_ = g_strconcat ("src=\"", _tmp116_, NULL);
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp118_ = _tmp117_;
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp119_ = g_strconcat (_tmp118_, "/", NULL);
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp120_ = _tmp119_;
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp121_ = string_replace (_tmp115_, "src=\"", _tmp120_);
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_tmp122_ = _tmp121_;
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					g_string_assign (_tmp113_, _tmp122_);
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp122_);
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp120_);
-#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 210 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 					_g_free0 (_tmp118_);
-#line 2496 "ePubReader.c"
+#line 2828 "ePubReader.c"
 				}
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp123_ = contents;
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp124_ = contents;
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp125_ = _tmp124_->str;
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp126_ = baseLocationOfContents;
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp127_ = g_strconcat ("xlink:href=\"", _tmp126_, NULL);
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp128_ = _tmp127_;
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp129_ = g_strconcat (_tmp128_, "/", NULL);
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp130_ = _tmp129_;
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp131_ = string_replace (_tmp125_, "xlink:href=\"", _tmp130_);
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp132_ = _tmp131_;
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				g_string_assign (_tmp123_, _tmp132_);
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp132_);
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp130_);
-#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp128_);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp133_ = contents;
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp134_ = contents;
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp135_ = _tmp134_->str;
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp136_ = baseLocationOfContents;
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp137_ = g_strconcat ("<link href=\"", _tmp136_, NULL);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp138_ = _tmp137_;
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp139_ = g_strconcat (_tmp138_, "/", NULL);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp140_ = _tmp139_;
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp141_ = string_replace (_tmp135_, "<link href=\"", _tmp140_);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp142_ = _tmp141_;
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				g_string_assign (_tmp133_, _tmp142_);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp142_);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp140_);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_g_free0 (_tmp138_);
-#line 183 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 215 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp143_ = aWebView;
-#line 183 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 215 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp144_ = contents;
-#line 183 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 215 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				_tmp145_ = _tmp144_->str;
-#line 183 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 215 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				webkit_web_view_load_html (_tmp143_, _tmp145_, BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL);
-#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 216 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 				break;
-#line 2564 "ePubReader.c"
+#line 2896 "ePubReader.c"
 			}
 		}
 	}
-#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp146_ = aBook;
-#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_tmp147_ = _bookworm_app_book_ref0 (_tmp146_);
-#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	result = _tmp147_;
-#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_free0 (baseLocationOfContents);
-#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_g_string_free0 (contents);
-#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	_bookworm_app_book_unref0 (aBook);
-#line 186 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return result;
-#line 2582 "ePubReader.c"
+#line 2914 "ePubReader.c"
 }
 
 
@@ -2589,21 +2922,21 @@ BookwormAppePubReader* bookworm_app_epub_reader_construct (GType object_type) {
 	self = (BookwormAppePubReader*) g_type_create_instance (object_type);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return self;
-#line 2592 "ePubReader.c"
+#line 2924 "ePubReader.c"
 }
 
 
 BookwormAppePubReader* bookworm_app_epub_reader_new (void) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return bookworm_app_epub_reader_construct (BOOKWORM_APP_TYPE_EPUB_READER);
-#line 2599 "ePubReader.c"
+#line 2931 "ePubReader.c"
 }
 
 
 static void bookworm_app_value_epub_reader_init (GValue* value) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	value->data[0].v_pointer = NULL;
-#line 2606 "ePubReader.c"
+#line 2938 "ePubReader.c"
 }
 
 
@@ -2612,7 +2945,7 @@ static void bookworm_app_value_epub_reader_free_value (GValue* value) {
 	if (value->data[0].v_pointer) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		bookworm_app_epub_reader_unref (value->data[0].v_pointer);
-#line 2615 "ePubReader.c"
+#line 2947 "ePubReader.c"
 	}
 }
 
@@ -2622,11 +2955,11 @@ static void bookworm_app_value_epub_reader_copy_value (const GValue* src_value, 
 	if (src_value->data[0].v_pointer) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		dest_value->data[0].v_pointer = bookworm_app_epub_reader_ref (src_value->data[0].v_pointer);
-#line 2625 "ePubReader.c"
+#line 2957 "ePubReader.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		dest_value->data[0].v_pointer = NULL;
-#line 2629 "ePubReader.c"
+#line 2961 "ePubReader.c"
 	}
 }
 
@@ -2634,37 +2967,37 @@ static void bookworm_app_value_epub_reader_copy_value (const GValue* src_value, 
 static gpointer bookworm_app_value_epub_reader_peek_pointer (const GValue* value) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return value->data[0].v_pointer;
-#line 2637 "ePubReader.c"
+#line 2969 "ePubReader.c"
 }
 
 
 static gchar* bookworm_app_value_epub_reader_collect_value (GValue* value, guint n_collect_values, GTypeCValue* collect_values, guint collect_flags) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (collect_values[0].v_pointer) {
-#line 2644 "ePubReader.c"
+#line 2976 "ePubReader.c"
 		BookwormAppePubReader* object;
 		object = collect_values[0].v_pointer;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		if (object->parent_instance.g_class == NULL) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 			return g_strconcat ("invalid unclassed object pointer for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
-#line 2651 "ePubReader.c"
+#line 2983 "ePubReader.c"
 		} else if (!g_value_type_compatible (G_TYPE_FROM_INSTANCE (object), G_VALUE_TYPE (value))) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 			return g_strconcat ("invalid object type `", g_type_name (G_TYPE_FROM_INSTANCE (object)), "' for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
-#line 2655 "ePubReader.c"
+#line 2987 "ePubReader.c"
 		}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		value->data[0].v_pointer = bookworm_app_epub_reader_ref (object);
-#line 2659 "ePubReader.c"
+#line 2991 "ePubReader.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		value->data[0].v_pointer = NULL;
-#line 2663 "ePubReader.c"
+#line 2995 "ePubReader.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return NULL;
-#line 2667 "ePubReader.c"
+#line 2999 "ePubReader.c"
 }
 
 
@@ -2675,25 +3008,25 @@ static gchar* bookworm_app_value_epub_reader_lcopy_value (const GValue* value, g
 	if (!object_p) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		return g_strdup_printf ("value location for `%s' passed as NULL", G_VALUE_TYPE_NAME (value));
-#line 2678 "ePubReader.c"
+#line 3010 "ePubReader.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (!value->data[0].v_pointer) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		*object_p = NULL;
-#line 2684 "ePubReader.c"
+#line 3016 "ePubReader.c"
 	} else if (collect_flags & G_VALUE_NOCOPY_CONTENTS) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		*object_p = value->data[0].v_pointer;
-#line 2688 "ePubReader.c"
+#line 3020 "ePubReader.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		*object_p = bookworm_app_epub_reader_ref (value->data[0].v_pointer);
-#line 2692 "ePubReader.c"
+#line 3024 "ePubReader.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return NULL;
-#line 2696 "ePubReader.c"
+#line 3028 "ePubReader.c"
 }
 
 
@@ -2707,7 +3040,7 @@ GParamSpec* bookworm_app_param_spec_epub_reader (const gchar* name, const gchar*
 	G_PARAM_SPEC (spec)->value_type = object_type;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return G_PARAM_SPEC (spec);
-#line 2710 "ePubReader.c"
+#line 3042 "ePubReader.c"
 }
 
 
@@ -2716,7 +3049,7 @@ gpointer bookworm_app_value_get_epub_reader (const GValue* value) {
 	g_return_val_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, BOOKWORM_APP_TYPE_EPUB_READER), NULL);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return value->data[0].v_pointer;
-#line 2719 "ePubReader.c"
+#line 3051 "ePubReader.c"
 }
 
 
@@ -2736,17 +3069,17 @@ void bookworm_app_value_set_epub_reader (GValue* value, gpointer v_object) {
 		value->data[0].v_pointer = v_object;
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		bookworm_app_epub_reader_ref (value->data[0].v_pointer);
-#line 2739 "ePubReader.c"
+#line 3071 "ePubReader.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		value->data[0].v_pointer = NULL;
-#line 2743 "ePubReader.c"
+#line 3075 "ePubReader.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (old) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		bookworm_app_epub_reader_unref (old);
-#line 2749 "ePubReader.c"
+#line 3081 "ePubReader.c"
 	}
 }
 
@@ -2765,17 +3098,17 @@ void bookworm_app_value_take_epub_reader (GValue* value, gpointer v_object) {
 		g_return_if_fail (g_value_type_compatible (G_TYPE_FROM_INSTANCE (v_object), G_VALUE_TYPE (value)));
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		value->data[0].v_pointer = v_object;
-#line 2768 "ePubReader.c"
+#line 3100 "ePubReader.c"
 	} else {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		value->data[0].v_pointer = NULL;
-#line 2772 "ePubReader.c"
+#line 3104 "ePubReader.c"
 	}
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	if (old) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		bookworm_app_epub_reader_unref (old);
-#line 2778 "ePubReader.c"
+#line 3110 "ePubReader.c"
 	}
 }
 
@@ -2785,14 +3118,14 @@ static void bookworm_app_epub_reader_class_init (BookwormAppePubReaderClass * kl
 	bookworm_app_epub_reader_parent_class = g_type_class_peek_parent (klass);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	((BookwormAppePubReaderClass *) klass)->finalize = bookworm_app_epub_reader_finalize;
-#line 2788 "ePubReader.c"
+#line 3120 "ePubReader.c"
 }
 
 
 static void bookworm_app_epub_reader_instance_init (BookwormAppePubReader * self) {
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	self->ref_count = 1;
-#line 2795 "ePubReader.c"
+#line 3127 "ePubReader.c"
 }
 
 
@@ -2802,7 +3135,7 @@ static void bookworm_app_epub_reader_finalize (BookwormAppePubReader* obj) {
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, BOOKWORM_APP_TYPE_EPUB_READER, BookwormAppePubReader);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	g_signal_handlers_destroy (self);
-#line 2805 "ePubReader.c"
+#line 3137 "ePubReader.c"
 }
 
 
@@ -2827,7 +3160,7 @@ gpointer bookworm_app_epub_reader_ref (gpointer instance) {
 	g_atomic_int_inc (&self->ref_count);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 	return instance;
-#line 2830 "ePubReader.c"
+#line 3162 "ePubReader.c"
 }
 
 
@@ -2840,7 +3173,7 @@ void bookworm_app_epub_reader_unref (gpointer instance) {
 		BOOKWORM_APP_EPUB_READER_GET_CLASS (self)->finalize (self);
 #line 19 "/home/sid/Documents/Projects/bookworm/dev/src/ePubReader.vala"
 		g_type_free_instance ((GTypeInstance *) self);
-#line 2843 "ePubReader.c"
+#line 3175 "ePubReader.c"
 	}
 }
 

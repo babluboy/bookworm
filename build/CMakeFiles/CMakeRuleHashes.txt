@@ -1,5 +1,5 @@
 # Hashes of file build rules.
 45bb50a11d0b95be6a6e997b26c33bd9 CMakeFiles/pot_file
-b1bc22e642c8b0af7343b2c31a058f0d bookworm_valac.stamp
+398f5662056c0b066e78522fc1023777 bookworm_valac.stamp
 92529685f9ea14de2662b0572f06a0cc po/bookworm.pot
 45bb50a11d0b95be6a6e997b26c33bd9 src/bookworm.c

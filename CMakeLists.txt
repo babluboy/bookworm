@@ -50,6 +50,7 @@ pkg_check_modules(DEPS REQUIRED
                   gee-0.8
                   granite>=0.3.0
                   webkit2gtk-4.0
+                  sqlite3>=3.5.9
                  )
 
 add_definitions(${DEPS_CFLAGS})
@@ -90,6 +91,7 @@ PACKAGES
     gee-0.8
     granite>=0.3.0
     webkit2gtk-4.0
+    sqlite3>=3.5.9
 )
 
 # tell cmake what to call the executable we just made

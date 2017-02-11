@@ -63,12 +63,12 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args, int spawn_args_length1);
 static Block2Data* block2_data_ref (Block2Data* _data2_);
 static void block2_data_unref (void * _userdata_);
-static gboolean ___lambda18_ (GIOChannel* channel, GIOCondition condition);
-static gboolean ____lambda18__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
 static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition);
 static gboolean ____lambda19__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
-static void ___lambda20_ (Block2Data* _data2_, GPid pid, gint status);
-static void ____lambda20__gchild_watch_func (GPid pid, gint status, gpointer self);
+static gboolean ___lambda20_ (GIOChannel* channel, GIOCondition condition);
+static gboolean ____lambda20__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
+static void ___lambda21_ (Block2Data* _data2_, GPid pid, gint status);
+static void ____lambda21__gchild_watch_func (GPid pid, gint status, gpointer self);
 gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd);
 gchar* bookworm_app_utils_extractBetweenTwoStrings (const gchar* stringToBeSearched, const gchar* startString, const gchar* endString, GError** error);
 #define BOOKWORM_APP_CONSTANTS_TEXT_FOR_NOT_AVAILABLE _ ("Not Available")
@@ -85,8 +85,8 @@ gchar* bookworm_app_utils_extractNestedXMLAttribute (const gchar* xmlData, const
 GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooserAction action, const gchar* title, GtkWindow* parent, gboolean select_multiple);
 static Block3Data* block3_data_ref (Block3Data* _data3_);
 static void block3_data_unref (void * _userdata_);
-static gboolean __lambda13_ (Block3Data* _data3_, GdkEventKey* ev);
-static gboolean ___lambda13__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self);
+static gboolean __lambda12_ (Block3Data* _data3_, GdkEventKey* ev);
+static gboolean ___lambda12__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self);
 gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* path, const gchar* filename, const gchar* contents);
 #define BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_VALUE "=="
 #define BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_START "~~"
@@ -704,7 +704,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 }
 
 
-static gboolean ___lambda18_ (GIOChannel* channel, GIOCondition condition) {
+static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition) {
 	gboolean result = FALSE;
 	GIOChannel* _tmp0_ = NULL;
 	GIOCondition _tmp1_ = 0;
@@ -725,16 +725,16 @@ static gboolean ___lambda18_ (GIOChannel* channel, GIOCondition condition) {
 }
 
 
-static gboolean ____lambda18__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
+static gboolean ____lambda19__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
 	gboolean result;
-	result = ___lambda18_ (source, condition);
+	result = ___lambda19_ (source, condition);
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
 #line 734 "utils.c"
 }
 
 
-static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition) {
+static gboolean ___lambda20_ (GIOChannel* channel, GIOCondition condition) {
 	gboolean result = FALSE;
 	GIOChannel* _tmp0_ = NULL;
 	GIOCondition _tmp1_ = 0;
@@ -755,16 +755,16 @@ static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition) {
 }
 
 
-static gboolean ____lambda19__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
+static gboolean ____lambda20__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
 	gboolean result;
-	result = ___lambda19_ (source, condition);
+	result = ___lambda20_ (source, condition);
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
 #line 764 "utils.c"
 }
 
 
-static void ___lambda20_ (Block2Data* _data2_, GPid pid, gint status) {
+static void ___lambda21_ (Block2Data* _data2_, GPid pid, gint status) {
 	GPid _tmp0_ = 0;
 #line 86 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp0_ = pid;
@@ -776,9 +776,9 @@ static void ___lambda20_ (Block2Data* _data2_, GPid pid, gint status) {
 }
 
 
-static void ____lambda20__gchild_watch_func (GPid pid, gint status, gpointer self) {
+static void ____lambda21__gchild_watch_func (GPid pid, gint status, gpointer self) {
 #line 84 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	___lambda20_ (self, pid, status);
+	___lambda21_ (self, pid, status);
 #line 783 "utils.c"
 }
 
@@ -923,7 +923,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp17_ = output;
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_io_add_watch (_tmp17_, G_IO_IN | G_IO_HUP, ____lambda18__gio_func, NULL);
+		g_io_add_watch (_tmp17_, G_IO_IN | G_IO_HUP, ____lambda19__gio_func, NULL);
 #line 79 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp18_ = g_io_channel_unix_new (standard_error);
 #line 79 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -931,9 +931,9 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp19_ = _error_;
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_io_add_watch (_tmp19_, G_IO_IN | G_IO_HUP, ____lambda19__gio_func, NULL);
+		g_io_add_watch (_tmp19_, G_IO_IN | G_IO_HUP, ____lambda20__gio_func, NULL);
 #line 84 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, child_pid, ____lambda20__gchild_watch_func, block2_data_ref (_data2_), block2_data_unref);
+		g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, child_pid, ____lambda21__gchild_watch_func, block2_data_ref (_data2_), block2_data_unref);
 #line 89 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		g_main_loop_run (_data2_->loop);
 #line 54 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -4095,7 +4095,7 @@ static gchar* bool_to_string (gboolean self) {
 }
 
 
-static gboolean __lambda13_ (Block3Data* _data3_, GdkEventKey* ev) {
+static gboolean __lambda12_ (Block3Data* _data3_, GdkEventKey* ev) {
 	gboolean result = FALSE;
 	GdkEventKey* _tmp0_ = NULL;
 	guint _tmp1_ = 0U;
@@ -4123,9 +4123,9 @@ static gboolean __lambda13_ (Block3Data* _data3_, GdkEventKey* ev) {
 }
 
 
-static gboolean ___lambda13__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self) {
+static gboolean ___lambda12__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self) {
 	gboolean result;
-	result = __lambda13_ (self, event);
+	result = __lambda12_ (self, event);
 #line 315 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
 #line 4132 "utils.c"
@@ -4370,7 +4370,7 @@ GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooser
 #line 315 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp41_ = _data3_->aFileChooserDialog;
 #line 315 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	g_signal_connect_data ((GtkWidget*) _tmp41_, "key-press-event", (GCallback) ___lambda13__gtk_widget_key_press_event, block3_data_ref (_data3_), (GClosureNotify) block3_data_unref, 0);
+	g_signal_connect_data ((GtkWidget*) _tmp41_, "key-press-event", (GCallback) ___lambda12__gtk_widget_key_press_event, block3_data_ref (_data3_), (GClosureNotify) block3_data_unref, 0);
 #line 320 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp42_ = gtk_file_filter_new ();
 #line 320 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -4502,20 +4502,28 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 	gchar* _tmp2_ = NULL;
 	gchar* _tmp3_ = NULL;
 	gchar* _tmp4_ = NULL;
-	GString* _result_ = NULL;
-	GString* _tmp5_ = NULL;
-	gchar* data = NULL;
+	const gchar* _tmp5_ = NULL;
 	gchar* _tmp6_ = NULL;
+	gchar* _tmp7_ = NULL;
+	gchar* _tmp8_ = NULL;
+	gchar* _tmp9_ = NULL;
+	const gchar* _tmp10_ = NULL;
+	gchar* _tmp11_ = NULL;
+	gchar* _tmp12_ = NULL;
+	GString* _result_ = NULL;
+	GString* _tmp13_ = NULL;
+	gchar* data = NULL;
+	gchar* _tmp14_ = NULL;
 	GFile* fileDir = NULL;
 	GFile* file = NULL;
-	const gchar* _tmp342_ = NULL;
-	gchar* _tmp343_ = NULL;
-	gchar* _tmp344_ = NULL;
-	gchar* _tmp345_ = NULL;
-	gchar* _tmp346_ = NULL;
-	GString* _tmp347_ = NULL;
-	const gchar* _tmp348_ = NULL;
-	gchar* _tmp349_ = NULL;
+	const gchar* _tmp355_ = NULL;
+	gchar* _tmp356_ = NULL;
+	gchar* _tmp357_ = NULL;
+	gchar* _tmp358_ = NULL;
+	gchar* _tmp359_ = NULL;
+	GString* _tmp360_ = NULL;
+	const gchar* _tmp361_ = NULL;
+	gchar* _tmp362_ = NULL;
 	GError * _inner_error_ = NULL;
 #line 332 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	g_return_val_if_fail (operation != NULL, NULL);
@@ -4532,1615 +4540,1659 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 #line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp2_ = _tmp1_;
 #line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp3_ = g_strconcat (_tmp2_, "]...", NULL);
+	_tmp3_ = g_strconcat (_tmp2_, "], for path=", NULL);
 #line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp4_ = _tmp3_;
 #line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	g_debug ("utils.vala:333: %s", _tmp4_);
+	_tmp5_ = path;
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp6_ = g_strconcat (_tmp4_, _tmp5_, NULL);
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp7_ = _tmp6_;
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp8_ = g_strconcat (_tmp7_, ", filename=", NULL);
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp9_ = _tmp8_;
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp10_ = filename;
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp11_ = g_strconcat (_tmp9_, _tmp10_, NULL);
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp12_ = _tmp11_;
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_debug ("utils.vala:333: %s", _tmp12_);
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_g_free0 (_tmp12_);
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_g_free0 (_tmp9_);
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_g_free0 (_tmp7_);
 #line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_g_free0 (_tmp4_);
 #line 333 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_g_free0 (_tmp2_);
 #line 334 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp5_ = g_string_new ("false");
+	_tmp13_ = g_string_new ("false");
 #line 334 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_result_ = _tmp5_;
+	_result_ = _tmp13_;
 #line 335 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp6_ = g_strdup ("");
+	_tmp14_ = g_strdup ("");
 #line 335 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	data = _tmp6_;
+	data = _tmp14_;
 #line 336 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	fileDir = NULL;
 #line 337 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	file = NULL;
-#line 4557 "utils.c"
+#line 4587 "utils.c"
 	{
-		gboolean _tmp7_ = FALSE;
-		const gchar* _tmp8_ = NULL;
-		gboolean _tmp14_ = FALSE;
-		const gchar* _tmp15_ = NULL;
-		const gchar* _tmp26_ = NULL;
-		const gchar* _tmp38_ = NULL;
-		const gchar* _tmp72_ = NULL;
-		const gchar* _tmp171_ = NULL;
-		const gchar* _tmp200_ = NULL;
-		const gchar* _tmp214_ = NULL;
-		const gchar* _tmp268_ = NULL;
-		const gchar* _tmp275_ = NULL;
-		const gchar* _tmp279_ = NULL;
-		const gchar* _tmp289_ = NULL;
-		const gchar* _tmp301_ = NULL;
+		gboolean _tmp15_ = FALSE;
+		const gchar* _tmp16_ = NULL;
+		gboolean _tmp22_ = FALSE;
+		const gchar* _tmp23_ = NULL;
+		const gchar* _tmp34_ = NULL;
+		const gchar* _tmp51_ = NULL;
+		const gchar* _tmp85_ = NULL;
+		const gchar* _tmp184_ = NULL;
+		const gchar* _tmp213_ = NULL;
+		const gchar* _tmp227_ = NULL;
+		const gchar* _tmp281_ = NULL;
+		const gchar* _tmp288_ = NULL;
+		const gchar* _tmp292_ = NULL;
+		const gchar* _tmp302_ = NULL;
+		const gchar* _tmp314_ = NULL;
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp8_ = path;
+		_tmp16_ = path;
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (_tmp8_ != NULL) {
+		if (_tmp16_ != NULL) {
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp7_ = TRUE;
-#line 4580 "utils.c"
+			_tmp15_ = TRUE;
+#line 4610 "utils.c"
 		} else {
-			const gchar* _tmp9_ = NULL;
-			gint _tmp10_ = 0;
-			gint _tmp11_ = 0;
+			const gchar* _tmp17_ = NULL;
+			gint _tmp18_ = 0;
+			gint _tmp19_ = 0;
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp9_ = path;
+			_tmp17_ = path;
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp10_ = strlen (_tmp9_);
+			_tmp18_ = strlen (_tmp17_);
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp11_ = _tmp10_;
+			_tmp19_ = _tmp18_;
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp7_ = _tmp11_ > 1;
-#line 4593 "utils.c"
+			_tmp15_ = _tmp19_ > 1;
+#line 4623 "utils.c"
 		}
 #line 339 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (_tmp7_) {
-#line 4597 "utils.c"
-			const gchar* _tmp12_ = NULL;
-			GFile* _tmp13_ = NULL;
+		if (_tmp15_) {
+#line 4627 "utils.c"
+			const gchar* _tmp20_ = NULL;
+			GFile* _tmp21_ = NULL;
 #line 340 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp12_ = path;
+			_tmp20_ = path;
 #line 340 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp13_ = g_file_new_for_commandline_arg (_tmp12_);
+			_tmp21_ = g_file_new_for_commandline_arg (_tmp20_);
 #line 340 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_object_unref0 (fileDir);
 #line 340 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			fileDir = _tmp13_;
-#line 4608 "utils.c"
+			fileDir = _tmp21_;
+#line 4638 "utils.c"
 		}
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp15_ = filename;
+		_tmp23_ = filename;
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (_tmp15_ != NULL) {
+		if (_tmp23_ != NULL) {
+#line 4644 "utils.c"
+			const gchar* _tmp24_ = NULL;
+			gint _tmp25_ = 0;
+			gint _tmp26_ = 0;
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp14_ = TRUE;
-#line 4616 "utils.c"
+			_tmp24_ = filename;
+#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp25_ = strlen (_tmp24_);
+#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp26_ = _tmp25_;
+#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp22_ = _tmp26_ > 1;
+#line 4656 "utils.c"
 		} else {
-			const gchar* _tmp16_ = NULL;
-			gint _tmp17_ = 0;
-			gint _tmp18_ = 0;
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp16_ = filename;
-#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp17_ = strlen (_tmp16_);
-#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp18_ = _tmp17_;
-#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp14_ = _tmp18_ > 1;
-#line 4629 "utils.c"
+			_tmp22_ = FALSE;
+#line 4660 "utils.c"
 		}
 #line 341 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (_tmp14_) {
-#line 4633 "utils.c"
-			const gchar* _tmp19_ = NULL;
-			gchar* _tmp20_ = NULL;
-			gchar* _tmp21_ = NULL;
-			const gchar* _tmp22_ = NULL;
-			gchar* _tmp23_ = NULL;
-			gchar* _tmp24_ = NULL;
-			GFile* _tmp25_ = NULL;
+		if (_tmp22_) {
+#line 4664 "utils.c"
+			const gchar* _tmp27_ = NULL;
+			gchar* _tmp28_ = NULL;
+			gchar* _tmp29_ = NULL;
+			const gchar* _tmp30_ = NULL;
+			gchar* _tmp31_ = NULL;
+			gchar* _tmp32_ = NULL;
+			GFile* _tmp33_ = NULL;
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp19_ = path;
+			_tmp27_ = path;
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp20_ = g_strconcat (_tmp19_, "/", NULL);
+			_tmp28_ = g_strconcat (_tmp27_, "/", NULL);
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp21_ = _tmp20_;
+			_tmp29_ = _tmp28_;
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp22_ = filename;
+			_tmp30_ = filename;
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp23_ = g_strconcat (_tmp21_, _tmp22_, NULL);
+			_tmp31_ = g_strconcat (_tmp29_, _tmp30_, NULL);
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp24_ = _tmp23_;
+			_tmp32_ = _tmp31_;
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp25_ = g_file_new_for_path (_tmp24_);
+			_tmp33_ = g_file_new_for_path (_tmp32_);
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_object_unref0 (file);
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			file = _tmp25_;
+			file = _tmp33_;
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp24_);
+			_g_free0 (_tmp32_);
 #line 342 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp21_);
-#line 4663 "utils.c"
+			_g_free0 (_tmp29_);
+#line 4694 "utils.c"
 		}
 #line 343 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp26_ = operation;
+		_tmp34_ = operation;
 #line 343 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("CREATEDIR", _tmp26_) == 0) {
-#line 4669 "utils.c"
-			GFile* _tmp27_ = NULL;
-			gboolean _tmp28_ = FALSE;
-			GIOChannel* _tmp32_ = NULL;
-			const gchar* _tmp33_ = NULL;
-			GIOChannel* _tmp34_ = NULL;
-			GIOChannel* _tmp35_ = NULL;
-			GIOChannel* _tmp36_ = NULL;
-			gint _tmp37_ = 0;
-#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp27_ = fileDir;
-#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp28_ = g_file_query_exists (_tmp27_, NULL);
-#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (!_tmp28_) {
-#line 4684 "utils.c"
-				GFile* _tmp29_ = NULL;
-				GString* _tmp30_ = NULL;
-#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp29_ = fileDir;
-#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_file_make_directory (_tmp29_, NULL, &_inner_error_);
-#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4693 "utils.c"
-					goto __catch7_g_error;
-				}
-#line 348 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp30_ = _result_;
-#line 348 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp30_, "true");
+		if (g_strcmp0 ("CREATEDIR", _tmp34_) == 0) {
 #line 4700 "utils.c"
-			} else {
-				GString* _tmp31_ = NULL;
-#line 351 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp31_ = _result_;
-#line 351 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp31_, "true");
-#line 4707 "utils.c"
-			}
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp33_ = path;
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp34_ = g_io_channel_new_file (_tmp33_, "r", &_inner_error_);
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp32_ = _tmp34_;
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4717 "utils.c"
-				goto __catch7_g_error;
-			}
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp35_ = _tmp32_;
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp32_ = NULL;
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp36_ = _tmp35_;
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp37_ = g_io_channel_unix_get_fd (_tmp36_);
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			close (_tmp37_);
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_io_channel_unref0 (_tmp36_);
-#line 343 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_io_channel_unref0 (_tmp32_);
-#line 4734 "utils.c"
-		}
-#line 356 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp38_ = operation;
-#line 356 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("WRITE", _tmp38_) == 0) {
-#line 4740 "utils.c"
-			GFile* _tmp39_ = NULL;
-			gboolean _tmp40_ = FALSE;
-			GIOChannel* _tmp60_ = NULL;
-			const gchar* _tmp61_ = NULL;
-			gchar* _tmp62_ = NULL;
-			gchar* _tmp63_ = NULL;
-			const gchar* _tmp64_ = NULL;
-			gchar* _tmp65_ = NULL;
-			gchar* _tmp66_ = NULL;
-			GIOChannel* _tmp67_ = NULL;
-			GIOChannel* _tmp68_ = NULL;
-			GIOChannel* _tmp69_ = NULL;
-			GIOChannel* _tmp70_ = NULL;
-			gint _tmp71_ = 0;
-#line 358 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp39_ = fileDir;
-#line 358 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp40_ = g_file_query_exists (_tmp39_, NULL);
-#line 358 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (!_tmp40_) {
-#line 4761 "utils.c"
-				GFile* _tmp41_ = NULL;
-				const gchar* _tmp42_ = NULL;
+			GFile* _tmp35_ = NULL;
+			gboolean _tmp36_ = FALSE;
+			GIOChannel* _tmp45_ = NULL;
+			const gchar* _tmp46_ = NULL;
+			GIOChannel* _tmp47_ = NULL;
+			GIOChannel* _tmp48_ = NULL;
+			GIOChannel* _tmp49_ = NULL;
+			gint _tmp50_ = 0;
+#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp35_ = fileDir;
+#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp36_ = g_file_query_exists (_tmp35_, NULL);
+#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (!_tmp36_) {
+#line 4715 "utils.c"
+				GFile* _tmp37_ = NULL;
+				GString* _tmp38_ = NULL;
+				GFile* _tmp39_ = NULL;
+				gchar* _tmp40_ = NULL;
+				gchar* _tmp41_ = NULL;
+				gchar* _tmp42_ = NULL;
 				gchar* _tmp43_ = NULL;
-				gchar* _tmp44_ = NULL;
-				const gchar* _tmp45_ = NULL;
-				gchar* _tmp46_ = NULL;
-				gchar* _tmp47_ = NULL;
-				const gchar* _tmp48_ = NULL;
-				GString* _tmp49_ = NULL;
-#line 360 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp41_ = fileDir;
-#line 360 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_file_make_directory (_tmp41_, NULL, &_inner_error_);
-#line 360 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp37_ = fileDir;
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_file_make_directory (_tmp37_, NULL, &_inner_error_);
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4777 "utils.c"
+#line 4729 "utils.c"
 					goto __catch7_g_error;
 				}
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp42_ = path;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp43_ = g_strconcat (_tmp42_, "/", NULL);
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp44_ = _tmp43_;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp45_ = filename;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp46_ = g_strconcat (_tmp44_, _tmp45_, NULL);
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp47_ = _tmp46_;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp48_ = contents;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_file_set_contents (_tmp47_, _tmp48_, (gssize) -1, &_inner_error_);
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp47_);
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp44_);
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4802 "utils.c"
-					goto __catch7_g_error;
-				}
-#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp49_ = _result_;
-#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp49_, "true");
-#line 4809 "utils.c"
+#line 348 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp38_ = _result_;
+#line 348 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp38_, "true");
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp39_ = fileDir;
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp40_ = g_file_get_path (_tmp39_);
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp41_ = _tmp40_;
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp42_ = g_strconcat ("Directory created:", _tmp41_, NULL);
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp43_ = _tmp42_;
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_debug ("utils.vala:349: %s", _tmp43_);
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp43_);
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp41_);
+#line 4752 "utils.c"
 			} else {
-				const gchar* _tmp50_ = NULL;
-				gchar* _tmp51_ = NULL;
-				gchar* _tmp52_ = NULL;
-				const gchar* _tmp53_ = NULL;
-				gchar* _tmp54_ = NULL;
-				gchar* _tmp55_ = NULL;
-				const gchar* _tmp56_ = NULL;
-				guint8* _tmp57_ = NULL;
-				gint _tmp57__length1 = 0;
-				guint8* _tmp58_ = NULL;
-				gint _tmp58__length1 = 0;
-				GString* _tmp59_ = NULL;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp50_ = path;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp51_ = g_strconcat (_tmp50_, "/", NULL);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp52_ = _tmp51_;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp53_ = filename;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp54_ = g_strconcat (_tmp52_, _tmp53_, NULL);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp55_ = _tmp54_;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp56_ = contents;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp57_ = string_get_data (_tmp56_, &_tmp57__length1);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp58_ = _tmp57_;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp58__length1 = _tmp57__length1;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_file_set_contents (_tmp55_, (const char*) _tmp58_, (size_t) _tmp58__length1, &_inner_error_);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp55_);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp52_);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4851 "utils.c"
-					goto __catch7_g_error;
-				}
-#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp59_ = _result_;
-#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp59_, "true");
-#line 4858 "utils.c"
+				GString* _tmp44_ = NULL;
+#line 352 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp44_ = _result_;
+#line 352 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp44_, "true");
+#line 4759 "utils.c"
 			}
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp61_ = path;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp62_ = g_strconcat (_tmp61_, "/", NULL);
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp63_ = _tmp62_;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp64_ = filename;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp65_ = g_strconcat (_tmp63_, _tmp64_, NULL);
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp66_ = _tmp65_;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp67_ = g_io_channel_new_file (_tmp66_, "r", &_inner_error_);
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp68_ = _tmp67_;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp66_);
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp63_);
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp60_ = _tmp68_;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp46_ = path;
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp47_ = g_io_channel_new_file (_tmp46_, "r", &_inner_error_);
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp45_ = _tmp47_;
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4884 "utils.c"
+#line 4769 "utils.c"
 				goto __catch7_g_error;
 			}
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp69_ = _tmp60_;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp60_ = NULL;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp70_ = _tmp69_;
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp71_ = g_io_channel_unix_get_fd (_tmp70_);
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			close (_tmp71_);
-#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_io_channel_unref0 (_tmp70_);
-#line 356 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_io_channel_unref0 (_tmp60_);
-#line 4901 "utils.c"
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp48_ = _tmp45_;
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp45_ = NULL;
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp49_ = _tmp48_;
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp50_ = g_io_channel_unix_get_fd (_tmp49_);
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			close (_tmp50_);
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_io_channel_unref0 (_tmp49_);
+#line 343 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_io_channel_unref0 (_tmp45_);
+#line 4786 "utils.c"
 		}
-#line 372 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp72_ = operation;
-#line 372 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("WRITE_PROPS", _tmp72_) == 0) {
-#line 4907 "utils.c"
-			GFile* _tmp73_ = NULL;
-			gboolean _tmp74_ = FALSE;
-			gboolean wasRead = FALSE;
-			const gchar* _tmp83_ = NULL;
-			gchar* _tmp84_ = NULL;
-			gchar* _tmp85_ = NULL;
-			const gchar* _tmp86_ = NULL;
-			gchar* _tmp87_ = NULL;
-			gchar* _tmp88_ = NULL;
-			gchar* _tmp89_ = NULL;
-			gboolean _tmp90_ = FALSE;
-			gboolean _tmp91_ = FALSE;
-			gboolean _tmp92_ = FALSE;
-#line 374 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp73_ = fileDir;
-#line 374 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp74_ = g_file_query_exists (_tmp73_, NULL);
-#line 374 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (!_tmp74_) {
-#line 4927 "utils.c"
-				GFile* _tmp75_ = NULL;
-				const gchar* _tmp76_ = NULL;
-				gchar* _tmp77_ = NULL;
-				gchar* _tmp78_ = NULL;
-				const gchar* _tmp79_ = NULL;
-				gchar* _tmp80_ = NULL;
-				gchar* _tmp81_ = NULL;
-				const gchar* _tmp82_ = NULL;
-#line 376 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp75_ = fileDir;
-#line 376 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_file_make_directory (_tmp75_, NULL, &_inner_error_);
-#line 376 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 357 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp51_ = operation;
+#line 357 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		if (g_strcmp0 ("WRITE", _tmp51_) == 0) {
+#line 4792 "utils.c"
+			GFile* _tmp52_ = NULL;
+			gboolean _tmp53_ = FALSE;
+			GIOChannel* _tmp73_ = NULL;
+			const gchar* _tmp74_ = NULL;
+			gchar* _tmp75_ = NULL;
+			gchar* _tmp76_ = NULL;
+			const gchar* _tmp77_ = NULL;
+			gchar* _tmp78_ = NULL;
+			gchar* _tmp79_ = NULL;
+			GIOChannel* _tmp80_ = NULL;
+			GIOChannel* _tmp81_ = NULL;
+			GIOChannel* _tmp82_ = NULL;
+			GIOChannel* _tmp83_ = NULL;
+			gint _tmp84_ = 0;
+#line 359 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp52_ = fileDir;
+#line 359 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp53_ = g_file_query_exists (_tmp52_, NULL);
+#line 359 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (!_tmp53_) {
+#line 4813 "utils.c"
+				GFile* _tmp54_ = NULL;
+				const gchar* _tmp55_ = NULL;
+				gchar* _tmp56_ = NULL;
+				gchar* _tmp57_ = NULL;
+				const gchar* _tmp58_ = NULL;
+				gchar* _tmp59_ = NULL;
+				gchar* _tmp60_ = NULL;
+				const gchar* _tmp61_ = NULL;
+				GString* _tmp62_ = NULL;
+#line 361 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp54_ = fileDir;
+#line 361 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_file_make_directory (_tmp54_, NULL, &_inner_error_);
+#line 361 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4942 "utils.c"
+#line 4829 "utils.c"
 					goto __catch7_g_error;
 				}
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp76_ = path;
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp77_ = g_strconcat (_tmp76_, "/", NULL);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp78_ = _tmp77_;
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp79_ = filename;
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp80_ = g_strconcat (_tmp78_, _tmp79_, NULL);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp81_ = _tmp80_;
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp82_ = contents;
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_file_set_contents (_tmp81_, _tmp82_, (gssize) -1, &_inner_error_);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp81_);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp78_);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp55_ = path;
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp56_ = g_strconcat (_tmp55_, "/", NULL);
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp57_ = _tmp56_;
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp58_ = filename;
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp59_ = g_strconcat (_tmp57_, _tmp58_, NULL);
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp60_ = _tmp59_;
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp61_ = contents;
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_file_set_contents (_tmp60_, _tmp61_, (gssize) -1, &_inner_error_);
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp60_);
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp57_);
+#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4967 "utils.c"
+#line 4854 "utils.c"
 					goto __catch7_g_error;
 				}
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp62_ = _result_;
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp62_, "true");
+#line 4861 "utils.c"
+			} else {
+				const gchar* _tmp63_ = NULL;
+				gchar* _tmp64_ = NULL;
+				gchar* _tmp65_ = NULL;
+				const gchar* _tmp66_ = NULL;
+				gchar* _tmp67_ = NULL;
+				gchar* _tmp68_ = NULL;
+				const gchar* _tmp69_ = NULL;
+				guint8* _tmp70_ = NULL;
+				gint _tmp70__length1 = 0;
+				guint8* _tmp71_ = NULL;
+				gint _tmp71__length1 = 0;
+				GString* _tmp72_ = NULL;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp63_ = path;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp64_ = g_strconcat (_tmp63_, "/", NULL);
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp65_ = _tmp64_;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp66_ = filename;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp67_ = g_strconcat (_tmp65_, _tmp66_, NULL);
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp68_ = _tmp67_;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp69_ = contents;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp70_ = string_get_data (_tmp69_, &_tmp70__length1);
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp71_ = _tmp70_;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp71__length1 = _tmp70__length1;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_file_set_contents (_tmp68_, (const char*) _tmp71_, (size_t) _tmp71__length1, &_inner_error_);
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp68_);
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp65_);
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 4903 "utils.c"
+					goto __catch7_g_error;
+				}
+#line 368 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp72_ = _result_;
+#line 368 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp72_, "true");
+#line 4910 "utils.c"
 			}
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp83_ = path;
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp84_ = g_strconcat (_tmp83_, "/", NULL);
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp85_ = _tmp84_;
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp86_ = filename;
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp87_ = g_strconcat (_tmp85_, _tmp86_, NULL);
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp88_ = _tmp87_;
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp90_ = g_file_get_contents (_tmp88_, &_tmp89_, NULL, &_inner_error_);
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (data);
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			data = _tmp89_;
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp91_ = _tmp90_;
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp88_);
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp85_);
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			wasRead = _tmp91_;
-#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp74_ = path;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp75_ = g_strconcat (_tmp74_, "/", NULL);
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp76_ = _tmp75_;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp77_ = filename;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp78_ = g_strconcat (_tmp76_, _tmp77_, NULL);
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp79_ = _tmp78_;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp80_ = g_io_channel_new_file (_tmp79_, "r", &_inner_error_);
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp81_ = _tmp80_;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp79_);
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp76_);
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp73_ = _tmp81_;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4999 "utils.c"
+#line 4936 "utils.c"
 				goto __catch7_g_error;
 			}
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp82_ = _tmp73_;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp73_ = NULL;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp83_ = _tmp82_;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp84_ = g_io_channel_unix_get_fd (_tmp83_);
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			close (_tmp84_);
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_io_channel_unref0 (_tmp83_);
+#line 357 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_io_channel_unref0 (_tmp73_);
+#line 4953 "utils.c"
+		}
+#line 373 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp85_ = operation;
+#line 373 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		if (g_strcmp0 ("WRITE_PROPS", _tmp85_) == 0) {
+#line 4959 "utils.c"
+			GFile* _tmp86_ = NULL;
+			gboolean _tmp87_ = FALSE;
+			gboolean wasRead = FALSE;
+			const gchar* _tmp96_ = NULL;
+			gchar* _tmp97_ = NULL;
+			gchar* _tmp98_ = NULL;
+			const gchar* _tmp99_ = NULL;
+			gchar* _tmp100_ = NULL;
+			gchar* _tmp101_ = NULL;
+			gchar* _tmp102_ = NULL;
+			gboolean _tmp103_ = FALSE;
+			gboolean _tmp104_ = FALSE;
+			gboolean _tmp105_ = FALSE;
+#line 375 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp86_ = fileDir;
+#line 375 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp87_ = g_file_query_exists (_tmp86_, NULL);
+#line 375 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (!_tmp87_) {
+#line 4979 "utils.c"
+				GFile* _tmp88_ = NULL;
+				const gchar* _tmp89_ = NULL;
+				gchar* _tmp90_ = NULL;
+				gchar* _tmp91_ = NULL;
+				const gchar* _tmp92_ = NULL;
+				gchar* _tmp93_ = NULL;
+				gchar* _tmp94_ = NULL;
+				const gchar* _tmp95_ = NULL;
+#line 377 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp88_ = fileDir;
+#line 377 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_file_make_directory (_tmp88_, NULL, &_inner_error_);
+#line 377 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 4994 "utils.c"
+					goto __catch7_g_error;
+				}
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp89_ = path;
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp90_ = g_strconcat (_tmp89_, "/", NULL);
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp91_ = _tmp90_;
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp92_ = filename;
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp93_ = g_strconcat (_tmp91_, _tmp92_, NULL);
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp94_ = _tmp93_;
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp95_ = contents;
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_file_set_contents (_tmp94_, _tmp95_, (gssize) -1, &_inner_error_);
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp94_);
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp91_);
+#line 379 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 5019 "utils.c"
+					goto __catch7_g_error;
+				}
+			}
 #line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp92_ = wasRead;
+			_tmp96_ = path;
 #line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (_tmp92_) {
-#line 5006 "utils.c"
+			_tmp97_ = g_strconcat (_tmp96_, "/", NULL);
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp98_ = _tmp97_;
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp99_ = filename;
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp100_ = g_strconcat (_tmp98_, _tmp99_, NULL);
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp101_ = _tmp100_;
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp103_ = g_file_get_contents (_tmp101_, &_tmp102_, NULL, &_inner_error_);
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (data);
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			data = _tmp102_;
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp104_ = _tmp103_;
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp101_);
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp98_);
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			wasRead = _tmp104_;
+#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 5051 "utils.c"
+				goto __catch7_g_error;
+			}
+#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp105_ = wasRead;
+#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (_tmp105_) {
+#line 5058 "utils.c"
 				gchar** name_value = NULL;
-				const gchar* _tmp93_ = NULL;
-				gchar** _tmp94_ = NULL;
-				gchar** _tmp95_ = NULL;
+				const gchar* _tmp106_ = NULL;
+				gchar** _tmp107_ = NULL;
+				gchar** _tmp108_ = NULL;
 				gint name_value_length1 = 0;
 				gint _name_value_size_ = 0;
-				GString* _tmp96_ = NULL;
-				const gchar* _tmp97_ = NULL;
-				const gchar* _tmp98_ = NULL;
-				gchar** _tmp99_ = NULL;
-				gint _tmp99__length1 = 0;
-				const gchar* _tmp100_ = NULL;
-				gboolean _tmp101_ = FALSE;
-				GIOChannel* _tmp158_ = NULL;
-				const gchar* _tmp159_ = NULL;
-				gchar* _tmp160_ = NULL;
-				gchar* _tmp161_ = NULL;
-				const gchar* _tmp162_ = NULL;
-				gchar* _tmp163_ = NULL;
-				gchar* _tmp164_ = NULL;
-				GIOChannel* _tmp165_ = NULL;
-				GIOChannel* _tmp166_ = NULL;
-				GIOChannel* _tmp167_ = NULL;
-				GIOChannel* _tmp168_ = NULL;
-				gint _tmp169_ = 0;
-#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp93_ = contents;
-#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp95_ = _tmp94_ = g_strsplit (_tmp93_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_VALUE, -1);
-#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				name_value = _tmp95_;
-#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				name_value_length1 = _vala_array_length (_tmp94_);
-#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				GString* _tmp109_ = NULL;
+				const gchar* _tmp110_ = NULL;
+				const gchar* _tmp111_ = NULL;
+				gchar** _tmp112_ = NULL;
+				gint _tmp112__length1 = 0;
+				const gchar* _tmp113_ = NULL;
+				gboolean _tmp114_ = FALSE;
+				GIOChannel* _tmp171_ = NULL;
+				const gchar* _tmp172_ = NULL;
+				gchar* _tmp173_ = NULL;
+				gchar* _tmp174_ = NULL;
+				const gchar* _tmp175_ = NULL;
+				gchar* _tmp176_ = NULL;
+				gchar* _tmp177_ = NULL;
+				GIOChannel* _tmp178_ = NULL;
+				GIOChannel* _tmp179_ = NULL;
+				GIOChannel* _tmp180_ = NULL;
+				GIOChannel* _tmp181_ = NULL;
+				gint _tmp182_ = 0;
+#line 383 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp106_ = contents;
+#line 383 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp108_ = _tmp107_ = g_strsplit (_tmp106_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_VALUE, -1);
+#line 383 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				name_value = _tmp108_;
+#line 383 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				name_value_length1 = _vala_array_length (_tmp107_);
+#line 383 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_name_value_size_ = name_value_length1;
-#line 384 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp96_ = _result_;
-#line 384 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp97_ = data;
-#line 384 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp96_, _tmp97_);
-#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp98_ = data;
-#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp99_ = name_value;
-#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp99__length1 = name_value_length1;
-#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp100_ = _tmp99_[0];
-#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp101_ = string_contains (_tmp98_, _tmp100_);
-#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				if (_tmp101_) {
-#line 5060 "utils.c"
+#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp109_ = _result_;
+#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp110_ = data;
+#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp109_, _tmp110_);
+#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp111_ = data;
+#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp112_ = name_value;
+#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp112__length1 = name_value_length1;
+#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp113_ = _tmp112_[0];
+#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp114_ = string_contains (_tmp111_, _tmp113_);
+#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (_tmp114_) {
+#line 5112 "utils.c"
 					gchar* dataBeforeProp = NULL;
-					GString* _tmp102_ = NULL;
-					const gchar* _tmp103_ = NULL;
-					const gchar* _tmp104_ = NULL;
-					gchar** _tmp105_ = NULL;
-					gchar** _tmp106_ = NULL;
-					gchar** _tmp107_ = NULL;
-					gint _tmp107__length1 = 0;
-					const gchar* _tmp108_ = NULL;
-					gchar* _tmp109_ = NULL;
-					gchar* _tmp110_ = NULL;
-					gchar** _tmp111_ = NULL;
-					gchar** _tmp112_ = NULL;
-					gchar** _tmp113_ = NULL;
-					gint _tmp113__length1 = 0;
-					const gchar* _tmp114_ = NULL;
-					gchar* _tmp115_ = NULL;
-					gchar* _tmp116_ = NULL;
-					gchar* dataAfterProp = NULL;
-					GString* _tmp117_ = NULL;
-					const gchar* _tmp118_ = NULL;
-					const gchar* _tmp119_ = NULL;
-					gchar* _tmp120_ = NULL;
-					gchar* _tmp121_ = NULL;
-					gchar** _tmp122_ = NULL;
-					gchar** _tmp123_ = NULL;
+					GString* _tmp115_ = NULL;
+					const gchar* _tmp116_ = NULL;
+					const gchar* _tmp117_ = NULL;
+					gchar** _tmp118_ = NULL;
+					gchar** _tmp119_ = NULL;
+					gchar** _tmp120_ = NULL;
+					gint _tmp120__length1 = 0;
+					const gchar* _tmp121_ = NULL;
+					gchar* _tmp122_ = NULL;
+					gchar* _tmp123_ = NULL;
 					gchar** _tmp124_ = NULL;
-					gint _tmp124__length1 = 0;
-					const gchar* _tmp125_ = NULL;
-					gchar* _tmp126_ = NULL;
-					gchar* _tmp127_ = NULL;
-					GString* _tmp128_ = NULL;
-					const gchar* _tmp129_ = NULL;
-					const gchar* _tmp130_ = NULL;
-					gchar* _tmp131_ = NULL;
-					gchar* _tmp132_ = NULL;
-					const gchar* _tmp133_ = NULL;
+					gchar** _tmp125_ = NULL;
+					gchar** _tmp126_ = NULL;
+					gint _tmp126__length1 = 0;
+					const gchar* _tmp127_ = NULL;
+					gchar* _tmp128_ = NULL;
+					gchar* _tmp129_ = NULL;
+					gchar* dataAfterProp = NULL;
+					GString* _tmp130_ = NULL;
+					const gchar* _tmp131_ = NULL;
+					const gchar* _tmp132_ = NULL;
+					gchar* _tmp133_ = NULL;
 					gchar* _tmp134_ = NULL;
-					gchar* _tmp135_ = NULL;
-					const gchar* _tmp136_ = NULL;
-					gchar* _tmp137_ = NULL;
-					gchar* _tmp138_ = NULL;
-					const gchar* _tmp139_ = NULL;
+					gchar** _tmp135_ = NULL;
+					gchar** _tmp136_ = NULL;
+					gchar** _tmp137_ = NULL;
+					gint _tmp137__length1 = 0;
+					const gchar* _tmp138_ = NULL;
+					gchar* _tmp139_ = NULL;
 					gchar* _tmp140_ = NULL;
-					gchar* _tmp141_ = NULL;
-					GString* _tmp142_ = NULL;
+					GString* _tmp141_ = NULL;
+					const gchar* _tmp142_ = NULL;
 					const gchar* _tmp143_ = NULL;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp102_ = _result_;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp103_ = _tmp102_->str;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp104_ = contents;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp106_ = _tmp105_ = g_strsplit (_tmp104_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_VALUE, 2);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp107_ = _tmp106_;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp107__length1 = _vala_array_length (_tmp105_);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp108_ = _tmp107_[0];
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp109_ = g_strconcat (BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_START, _tmp108_, NULL);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp110_ = _tmp109_;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp112_ = _tmp111_ = g_strsplit (_tmp103_, _tmp110_, 2);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp113_ = _tmp112_;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp113__length1 = _vala_array_length (_tmp111_);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp114_ = _tmp113_[0];
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp115_ = g_strdup (_tmp114_);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp116_ = _tmp115_;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp113_ = (_vala_array_free (_tmp113_, _tmp113__length1, (GDestroyNotify) g_free), NULL);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp110_);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp107_ = (_vala_array_free (_tmp107_, _tmp107__length1, (GDestroyNotify) g_free), NULL);
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					dataBeforeProp = _tmp116_;
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp117_ = _result_;
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp118_ = _tmp117_->str;
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp119_ = contents;
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp120_ = g_strconcat (_tmp119_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_END, NULL);
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp121_ = _tmp120_;
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp123_ = _tmp122_ = g_strsplit (_tmp118_, _tmp121_, 0);
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp124_ = _tmp123_;
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp124__length1 = _vala_array_length (_tmp122_);
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp125_ = _tmp124_[1];
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp126_ = g_strdup (_tmp125_);
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp127_ = _tmp126_;
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp124_ = (_vala_array_free (_tmp124_, _tmp124__length1, (GDestroyNotify) g_free), NULL);
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp121_);
-#line 390 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					dataAfterProp = _tmp127_;
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp128_ = _result_;
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp129_ = dataBeforeProp;
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp130_ = contents;
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp131_ = g_strconcat (_tmp129_, _tmp130_, NULL);
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp132_ = _tmp131_;
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp133_ = dataAfterProp;
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp134_ = g_strconcat (_tmp132_, _tmp133_, NULL);
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp135_ = _tmp134_;
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					g_string_append (_tmp128_, _tmp135_);
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp135_);
-#line 392 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp132_);
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp136_ = path;
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp137_ = g_strconcat (_tmp136_, "/", NULL);
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp138_ = _tmp137_;
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp139_ = filename;
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp140_ = g_strconcat (_tmp138_, _tmp139_, NULL);
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp141_ = _tmp140_;
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp142_ = _result_;
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp143_ = _tmp142_->str;
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					g_file_set_contents (_tmp141_, _tmp143_, (gssize) -1, &_inner_error_);
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp141_);
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp138_);
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						_g_free0 (dataAfterProp);
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						_g_free0 (dataBeforeProp);
-#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
-#line 5226 "utils.c"
-						goto __catch7_g_error;
-					}
-#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (dataAfterProp);
-#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (dataBeforeProp);
-#line 5233 "utils.c"
-				} else {
-					GString* _tmp144_ = NULL;
-					const gchar* _tmp145_ = NULL;
-					gchar* _tmp146_ = NULL;
+					gchar* _tmp144_ = NULL;
+					gchar* _tmp145_ = NULL;
+					const gchar* _tmp146_ = NULL;
 					gchar* _tmp147_ = NULL;
 					gchar* _tmp148_ = NULL;
-					gchar* _tmp149_ = NULL;
-					const gchar* _tmp150_ = NULL;
+					const gchar* _tmp149_ = NULL;
+					gchar* _tmp150_ = NULL;
 					gchar* _tmp151_ = NULL;
-					gchar* _tmp152_ = NULL;
-					const gchar* _tmp153_ = NULL;
+					const gchar* _tmp152_ = NULL;
+					gchar* _tmp153_ = NULL;
 					gchar* _tmp154_ = NULL;
-					gchar* _tmp155_ = NULL;
-					GString* _tmp156_ = NULL;
-					const gchar* _tmp157_ = NULL;
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp144_ = _result_;
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp145_ = contents;
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp146_ = g_strconcat (BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_START, _tmp145_, NULL);
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp147_ = _tmp146_;
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp148_ = g_strconcat (_tmp147_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_END, NULL);
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp149_ = _tmp148_;
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					g_string_append (_tmp144_, _tmp149_);
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp149_);
-#line 397 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp147_);
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp150_ = path;
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp151_ = g_strconcat (_tmp150_, "/", NULL);
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp152_ = _tmp151_;
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp153_ = filename;
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp154_ = g_strconcat (_tmp152_, _tmp153_, NULL);
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp155_ = _tmp154_;
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp156_ = _result_;
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp157_ = _tmp156_->str;
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					g_file_set_contents (_tmp155_, _tmp157_, (gssize) -1, &_inner_error_);
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp155_);
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp152_);
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					GString* _tmp155_ = NULL;
+					const gchar* _tmp156_ = NULL;
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp115_ = _result_;
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp116_ = _tmp115_->str;
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp117_ = contents;
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp119_ = _tmp118_ = g_strsplit (_tmp117_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_VALUE, 2);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp120_ = _tmp119_;
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp120__length1 = _vala_array_length (_tmp118_);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp121_ = _tmp120_[0];
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp122_ = g_strconcat (BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_START, _tmp121_, NULL);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp123_ = _tmp122_;
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp125_ = _tmp124_ = g_strsplit (_tmp116_, _tmp123_, 2);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp126_ = _tmp125_;
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp126__length1 = _vala_array_length (_tmp124_);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp127_ = _tmp126_[0];
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp128_ = g_strdup (_tmp127_);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp129_ = _tmp128_;
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp126_ = (_vala_array_free (_tmp126_, _tmp126__length1, (GDestroyNotify) g_free), NULL);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp123_);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp120_ = (_vala_array_free (_tmp120_, _tmp120__length1, (GDestroyNotify) g_free), NULL);
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					dataBeforeProp = _tmp129_;
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp130_ = _result_;
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp131_ = _tmp130_->str;
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp132_ = contents;
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp133_ = g_strconcat (_tmp132_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_END, NULL);
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp134_ = _tmp133_;
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp136_ = _tmp135_ = g_strsplit (_tmp131_, _tmp134_, 0);
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp137_ = _tmp136_;
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp137__length1 = _vala_array_length (_tmp135_);
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp138_ = _tmp137_[1];
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp139_ = g_strdup (_tmp138_);
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp140_ = _tmp139_;
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp137_ = (_vala_array_free (_tmp137_, _tmp137__length1, (GDestroyNotify) g_free), NULL);
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp134_);
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					dataAfterProp = _tmp140_;
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp141_ = _result_;
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp142_ = dataBeforeProp;
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp143_ = contents;
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp144_ = g_strconcat (_tmp142_, _tmp143_, NULL);
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp145_ = _tmp144_;
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp146_ = dataAfterProp;
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp147_ = g_strconcat (_tmp145_, _tmp146_, NULL);
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp148_ = _tmp147_;
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					g_string_append (_tmp141_, _tmp148_);
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp148_);
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp145_);
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp149_ = path;
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp150_ = g_strconcat (_tmp149_, "/", NULL);
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp151_ = _tmp150_;
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp152_ = filename;
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp153_ = g_strconcat (_tmp151_, _tmp152_, NULL);
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp154_ = _tmp153_;
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp155_ = _result_;
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp156_ = _tmp155_->str;
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					g_file_set_contents (_tmp154_, _tmp156_, (gssize) -1, &_inner_error_);
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp154_);
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp151_);
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						_g_free0 (dataAfterProp);
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						_g_free0 (dataBeforeProp);
+#line 395 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
-#line 5293 "utils.c"
+#line 5278 "utils.c"
+						goto __catch7_g_error;
+					}
+#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (dataAfterProp);
+#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (dataBeforeProp);
+#line 5285 "utils.c"
+				} else {
+					GString* _tmp157_ = NULL;
+					const gchar* _tmp158_ = NULL;
+					gchar* _tmp159_ = NULL;
+					gchar* _tmp160_ = NULL;
+					gchar* _tmp161_ = NULL;
+					gchar* _tmp162_ = NULL;
+					const gchar* _tmp163_ = NULL;
+					gchar* _tmp164_ = NULL;
+					gchar* _tmp165_ = NULL;
+					const gchar* _tmp166_ = NULL;
+					gchar* _tmp167_ = NULL;
+					gchar* _tmp168_ = NULL;
+					GString* _tmp169_ = NULL;
+					const gchar* _tmp170_ = NULL;
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp157_ = _result_;
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp158_ = contents;
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp159_ = g_strconcat (BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_START, _tmp158_, NULL);
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp160_ = _tmp159_;
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp161_ = g_strconcat (_tmp160_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_END, NULL);
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp162_ = _tmp161_;
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					g_string_append (_tmp157_, _tmp162_);
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp162_);
+#line 398 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp160_);
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp163_ = path;
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp164_ = g_strconcat (_tmp163_, "/", NULL);
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp165_ = _tmp164_;
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp166_ = filename;
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp167_ = g_strconcat (_tmp165_, _tmp166_, NULL);
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp168_ = _tmp167_;
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp169_ = _result_;
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp170_ = _tmp169_->str;
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					g_file_set_contents (_tmp168_, _tmp170_, (gssize) -1, &_inner_error_);
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp168_);
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp165_);
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
+#line 5345 "utils.c"
 						goto __catch7_g_error;
 					}
 				}
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp159_ = path;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp160_ = g_strconcat (_tmp159_, "/", NULL);
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp161_ = _tmp160_;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp162_ = filename;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp163_ = g_strconcat (_tmp161_, _tmp162_, NULL);
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp164_ = _tmp163_;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp165_ = g_io_channel_new_file (_tmp164_, "r", &_inner_error_);
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp166_ = _tmp165_;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp164_);
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp161_);
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp158_ = _tmp166_;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp172_ = path;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp173_ = g_strconcat (_tmp172_, "/", NULL);
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp174_ = _tmp173_;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp175_ = filename;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp176_ = g_strconcat (_tmp174_, _tmp175_, NULL);
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp177_ = _tmp176_;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp178_ = g_io_channel_new_file (_tmp177_, "r", &_inner_error_);
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp179_ = _tmp178_;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp177_);
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp174_);
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp171_ = _tmp179_;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
-#line 5323 "utils.c"
+#line 5375 "utils.c"
 					goto __catch7_g_error;
 				}
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp167_ = _tmp158_;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp158_ = NULL;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp168_ = _tmp167_;
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp169_ = g_io_channel_unix_get_fd (_tmp168_);
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				close (_tmp169_);
-#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_io_channel_unref0 (_tmp168_);
-#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_io_channel_unref0 (_tmp158_);
-#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp180_ = _tmp171_;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp171_ = NULL;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp181_ = _tmp180_;
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp182_ = g_io_channel_unix_get_fd (_tmp181_);
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				close (_tmp182_);
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_io_channel_unref0 (_tmp181_);
+#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_io_channel_unref0 (_tmp171_);
+#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				name_value = (_vala_array_free (name_value, name_value_length1, (GDestroyNotify) g_free), NULL);
-#line 5342 "utils.c"
+#line 5394 "utils.c"
 			} else {
-				GString* _tmp170_ = NULL;
-#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp170_ = _result_;
-#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp170_, "false");
-#line 5349 "utils.c"
+				GString* _tmp183_ = NULL;
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp183_ = _result_;
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp183_, "false");
+#line 5401 "utils.c"
 			}
 		}
-#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp171_ = operation;
-#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("READ", _tmp171_) == 0) {
-#line 5356 "utils.c"
-			GFile* _tmp172_ = NULL;
-			gboolean _tmp173_ = FALSE;
 #line 406 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp172_ = file;
+		_tmp184_ = operation;
 #line 406 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp173_ = g_file_query_exists (_tmp172_, NULL);
-#line 406 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (_tmp173_) {
-#line 5365 "utils.c"
+		if (g_strcmp0 ("READ", _tmp184_) == 0) {
+#line 5408 "utils.c"
+			GFile* _tmp185_ = NULL;
+			gboolean _tmp186_ = FALSE;
+#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp185_ = file;
+#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp186_ = g_file_query_exists (_tmp185_, NULL);
+#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (_tmp186_) {
+#line 5417 "utils.c"
 				gboolean wasRead = FALSE;
-				const gchar* _tmp174_ = NULL;
-				gchar* _tmp175_ = NULL;
-				gchar* _tmp176_ = NULL;
-				const gchar* _tmp177_ = NULL;
-				gchar* _tmp178_ = NULL;
-				gchar* _tmp179_ = NULL;
-				gchar* _tmp180_ = NULL;
-				gboolean _tmp181_ = FALSE;
-				gboolean _tmp182_ = FALSE;
-				gboolean _tmp183_ = FALSE;
-				GIOChannel* _tmp187_ = NULL;
-				const gchar* _tmp188_ = NULL;
+				const gchar* _tmp187_ = NULL;
+				gchar* _tmp188_ = NULL;
 				gchar* _tmp189_ = NULL;
-				gchar* _tmp190_ = NULL;
-				const gchar* _tmp191_ = NULL;
+				const gchar* _tmp190_ = NULL;
+				gchar* _tmp191_ = NULL;
 				gchar* _tmp192_ = NULL;
 				gchar* _tmp193_ = NULL;
-				GIOChannel* _tmp194_ = NULL;
-				GIOChannel* _tmp195_ = NULL;
-				GIOChannel* _tmp196_ = NULL;
-				GIOChannel* _tmp197_ = NULL;
-				gint _tmp198_ = 0;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp174_ = path;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp175_ = g_strconcat (_tmp174_, "/", NULL);
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp176_ = _tmp175_;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp177_ = filename;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp178_ = g_strconcat (_tmp176_, _tmp177_, NULL);
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp179_ = _tmp178_;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp181_ = g_file_get_contents (_tmp179_, &_tmp180_, NULL, &_inner_error_);
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				gboolean _tmp194_ = FALSE;
+				gboolean _tmp195_ = FALSE;
+				gboolean _tmp196_ = FALSE;
+				GIOChannel* _tmp200_ = NULL;
+				const gchar* _tmp201_ = NULL;
+				gchar* _tmp202_ = NULL;
+				gchar* _tmp203_ = NULL;
+				const gchar* _tmp204_ = NULL;
+				gchar* _tmp205_ = NULL;
+				gchar* _tmp206_ = NULL;
+				GIOChannel* _tmp207_ = NULL;
+				GIOChannel* _tmp208_ = NULL;
+				GIOChannel* _tmp209_ = NULL;
+				GIOChannel* _tmp210_ = NULL;
+				gint _tmp211_ = 0;
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp187_ = path;
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp188_ = g_strconcat (_tmp187_, "/", NULL);
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp189_ = _tmp188_;
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp190_ = filename;
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp191_ = g_strconcat (_tmp189_, _tmp190_, NULL);
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp192_ = _tmp191_;
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp194_ = g_file_get_contents (_tmp192_, &_tmp193_, NULL, &_inner_error_);
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_g_free0 (data);
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				data = _tmp180_;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp182_ = _tmp181_;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp179_);
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp176_);
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				wasRead = _tmp182_;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5417 "utils.c"
-					goto __catch7_g_error;
-				}
 #line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp183_ = wasRead;
+				data = _tmp193_;
 #line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				if (_tmp183_) {
-#line 5424 "utils.c"
-					GString* _tmp184_ = NULL;
-					const gchar* _tmp185_ = NULL;
-#line 409 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp184_ = _result_;
-#line 409 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp185_ = data;
-#line 409 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					g_string_assign (_tmp184_, _tmp185_);
-#line 5433 "utils.c"
-				} else {
-					GString* _tmp186_ = NULL;
-#line 411 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp186_ = _result_;
-#line 411 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					g_string_assign (_tmp186_, "false");
-#line 5440 "utils.c"
-				}
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp188_ = path;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp189_ = g_strconcat (_tmp188_, "/", NULL);
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp190_ = _tmp189_;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp191_ = filename;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp192_ = g_strconcat (_tmp190_, _tmp191_, NULL);
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp193_ = _tmp192_;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp194_ = g_io_channel_new_file (_tmp193_, "r", &_inner_error_);
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp195_ = _tmp194_;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp193_);
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp190_);
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp187_ = _tmp195_;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp192_);
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp189_);
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				wasRead = _tmp195_;
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5466 "utils.c"
+#line 5469 "utils.c"
 					goto __catch7_g_error;
 				}
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp196_ = _tmp187_;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp187_ = NULL;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp197_ = _tmp196_;
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp198_ = g_io_channel_unix_get_fd (_tmp197_);
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				close (_tmp198_);
-#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_io_channel_unref0 (_tmp197_);
-#line 406 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_io_channel_unref0 (_tmp187_);
-#line 5483 "utils.c"
+#line 409 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp196_ = wasRead;
+#line 409 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (_tmp196_) {
+#line 5476 "utils.c"
+					GString* _tmp197_ = NULL;
+					const gchar* _tmp198_ = NULL;
+#line 410 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp197_ = _result_;
+#line 410 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp198_ = data;
+#line 410 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					g_string_assign (_tmp197_, _tmp198_);
+#line 5485 "utils.c"
+				} else {
+					GString* _tmp199_ = NULL;
+#line 412 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp199_ = _result_;
+#line 412 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					g_string_assign (_tmp199_, "false");
+#line 5492 "utils.c"
+				}
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp201_ = path;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp202_ = g_strconcat (_tmp201_, "/", NULL);
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp203_ = _tmp202_;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp204_ = filename;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp205_ = g_strconcat (_tmp203_, _tmp204_, NULL);
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp206_ = _tmp205_;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp207_ = g_io_channel_new_file (_tmp206_, "r", &_inner_error_);
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp208_ = _tmp207_;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp206_);
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp203_);
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp200_ = _tmp208_;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 5518 "utils.c"
+					goto __catch7_g_error;
+				}
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp209_ = _tmp200_;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp200_ = NULL;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp210_ = _tmp209_;
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp211_ = g_io_channel_unix_get_fd (_tmp210_);
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				close (_tmp211_);
+#line 415 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_io_channel_unref0 (_tmp210_);
+#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_io_channel_unref0 (_tmp200_);
+#line 5535 "utils.c"
 			} else {
-				GString* _tmp199_ = NULL;
-#line 416 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp199_ = _result_;
-#line 416 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp199_, "false");
-#line 5490 "utils.c"
+				GString* _tmp212_ = NULL;
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp212_ = _result_;
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp212_, "false");
+#line 5542 "utils.c"
 			}
 		}
-#line 419 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp200_ = operation;
-#line 419 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("READ_FILE", _tmp200_) == 0) {
-#line 5497 "utils.c"
+#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp213_ = operation;
+#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		if (g_strcmp0 ("READ_FILE", _tmp213_) == 0) {
+#line 5549 "utils.c"
 			gboolean wasRead = FALSE;
-			const gchar* _tmp201_ = NULL;
-			gchar* _tmp202_ = NULL;
-			gboolean _tmp203_ = FALSE;
-			gboolean _tmp204_ = FALSE;
-			GIOChannel* _tmp208_ = NULL;
-			const gchar* _tmp209_ = NULL;
-			GIOChannel* _tmp210_ = NULL;
-			GIOChannel* _tmp211_ = NULL;
-			GIOChannel* _tmp212_ = NULL;
-			gint _tmp213_ = 0;
-#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp201_ = path;
-#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp203_ = g_file_get_contents (_tmp201_, &_tmp202_, NULL, &_inner_error_);
-#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			const gchar* _tmp214_ = NULL;
+			gchar* _tmp215_ = NULL;
+			gboolean _tmp216_ = FALSE;
+			gboolean _tmp217_ = FALSE;
+			GIOChannel* _tmp221_ = NULL;
+			const gchar* _tmp222_ = NULL;
+			GIOChannel* _tmp223_ = NULL;
+			GIOChannel* _tmp224_ = NULL;
+			GIOChannel* _tmp225_ = NULL;
+			gint _tmp226_ = 0;
+#line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp214_ = path;
+#line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp216_ = g_file_get_contents (_tmp214_, &_tmp215_, NULL, &_inner_error_);
+#line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_g_free0 (data);
-#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			data = _tmp202_;
-#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			wasRead = _tmp203_;
-#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			data = _tmp215_;
+#line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			wasRead = _tmp216_;
+#line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5521 "utils.c"
+#line 5573 "utils.c"
 				goto __catch7_g_error;
 			}
-#line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp204_ = wasRead;
-#line 421 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (_tmp204_) {
-#line 5528 "utils.c"
-				GString* _tmp205_ = NULL;
-				const gchar* _tmp206_ = NULL;
 #line 422 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp205_ = _result_;
+			_tmp217_ = wasRead;
 #line 422 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp206_ = data;
-#line 422 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp205_, _tmp206_);
-#line 5537 "utils.c"
+			if (_tmp217_) {
+#line 5580 "utils.c"
+				GString* _tmp218_ = NULL;
+				const gchar* _tmp219_ = NULL;
+#line 423 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp218_ = _result_;
+#line 423 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp219_ = data;
+#line 423 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp218_, _tmp219_);
+#line 5589 "utils.c"
 			} else {
-				GString* _tmp207_ = NULL;
-#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp207_ = _result_;
-#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp207_, "false");
-#line 5544 "utils.c"
+				GString* _tmp220_ = NULL;
+#line 425 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp220_ = _result_;
+#line 425 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp220_, "false");
+#line 5596 "utils.c"
 			}
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp209_ = path;
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp210_ = g_io_channel_new_file (_tmp209_, "r", &_inner_error_);
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp208_ = _tmp210_;
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp222_ = path;
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp223_ = g_io_channel_new_file (_tmp222_, "r", &_inner_error_);
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp221_ = _tmp223_;
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5554 "utils.c"
+#line 5606 "utils.c"
 				goto __catch7_g_error;
 			}
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp211_ = _tmp208_;
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp208_ = NULL;
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp212_ = _tmp211_;
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp213_ = g_io_channel_unix_get_fd (_tmp212_);
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			close (_tmp213_);
-#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_io_channel_unref0 (_tmp212_);
-#line 419 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_io_channel_unref0 (_tmp208_);
-#line 5571 "utils.c"
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp224_ = _tmp221_;
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp221_ = NULL;
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp225_ = _tmp224_;
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp226_ = g_io_channel_unix_get_fd (_tmp225_);
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			close (_tmp226_);
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_io_channel_unref0 (_tmp225_);
+#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_io_channel_unref0 (_tmp221_);
+#line 5623 "utils.c"
 		}
-#line 429 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp214_ = operation;
-#line 429 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("READ_PROPS", _tmp214_) == 0) {
-#line 5577 "utils.c"
-			gboolean _tmp215_ = FALSE;
-			const gchar* _tmp216_ = NULL;
-			GString* _tmp250_ = NULL;
-			const gchar* _tmp251_ = NULL;
-			const gchar* _tmp252_ = NULL;
-			gchar* _tmp253_ = NULL;
-			gchar* _tmp254_ = NULL;
-			gchar* _tmp255_ = NULL;
-			gchar* _tmp256_ = NULL;
-			gchar** _tmp257_ = NULL;
-			gchar** _tmp258_ = NULL;
-			gchar** _tmp259_ = NULL;
-			gint _tmp259__length1 = 0;
-			const gchar* _tmp260_ = NULL;
-			GString* _tmp261_ = NULL;
-			GString* _tmp262_ = NULL;
-			const gchar* _tmp263_ = NULL;
-			gchar** _tmp264_ = NULL;
-			gchar** _tmp265_ = NULL;
-			gchar** _tmp266_ = NULL;
-			gint _tmp266__length1 = 0;
-			const gchar* _tmp267_ = NULL;
 #line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp216_ = bookworm_app_utils_bookwormStateData;
+		_tmp227_ = operation;
 #line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (_tmp216_ != NULL) {
-#line 5604 "utils.c"
-				const gchar* _tmp217_ = NULL;
-				gint _tmp218_ = 0;
-				gint _tmp219_ = 0;
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp217_ = bookworm_app_utils_bookwormStateData;
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp218_ = strlen (_tmp217_);
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp219_ = _tmp218_;
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp215_ = _tmp219_ > 5;
-#line 5616 "utils.c"
+		if (g_strcmp0 ("READ_PROPS", _tmp227_) == 0) {
+#line 5629 "utils.c"
+			gboolean _tmp228_ = FALSE;
+			const gchar* _tmp229_ = NULL;
+			GString* _tmp263_ = NULL;
+			const gchar* _tmp264_ = NULL;
+			const gchar* _tmp265_ = NULL;
+			gchar* _tmp266_ = NULL;
+			gchar* _tmp267_ = NULL;
+			gchar* _tmp268_ = NULL;
+			gchar* _tmp269_ = NULL;
+			gchar** _tmp270_ = NULL;
+			gchar** _tmp271_ = NULL;
+			gchar** _tmp272_ = NULL;
+			gint _tmp272__length1 = 0;
+			const gchar* _tmp273_ = NULL;
+			GString* _tmp274_ = NULL;
+			GString* _tmp275_ = NULL;
+			const gchar* _tmp276_ = NULL;
+			gchar** _tmp277_ = NULL;
+			gchar** _tmp278_ = NULL;
+			gchar** _tmp279_ = NULL;
+			gint _tmp279__length1 = 0;
+			const gchar* _tmp280_ = NULL;
+#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp229_ = bookworm_app_utils_bookwormStateData;
+#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (_tmp229_ != NULL) {
+#line 5656 "utils.c"
+				const gchar* _tmp230_ = NULL;
+				gint _tmp231_ = 0;
+				gint _tmp232_ = 0;
+#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp230_ = bookworm_app_utils_bookwormStateData;
+#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp231_ = strlen (_tmp230_);
+#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp232_ = _tmp231_;
+#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp228_ = _tmp232_ > 5;
+#line 5668 "utils.c"
 			} else {
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp215_ = FALSE;
-#line 5620 "utils.c"
+#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp228_ = FALSE;
+#line 5672 "utils.c"
 			}
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (_tmp215_) {
-#line 5624 "utils.c"
-				const gchar* _tmp220_ = NULL;
-				gchar* _tmp221_ = NULL;
 #line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp220_ = bookworm_app_utils_bookwormStateData;
-#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp221_ = g_strdup (_tmp220_);
-#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (_tmp228_) {
+#line 5676 "utils.c"
+				const gchar* _tmp233_ = NULL;
+				gchar* _tmp234_ = NULL;
+#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp233_ = bookworm_app_utils_bookwormStateData;
+#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp234_ = g_strdup (_tmp233_);
+#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_g_free0 (data);
-#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				data = _tmp221_;
-#line 5635 "utils.c"
+#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				data = _tmp234_;
+#line 5687 "utils.c"
 			} else {
-				GFile* _tmp222_ = NULL;
-				gboolean _tmp223_ = FALSE;
-#line 433 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp222_ = file;
-#line 433 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp223_ = g_file_query_exists (_tmp222_, NULL);
-#line 433 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				if (_tmp223_) {
-#line 5645 "utils.c"
+				GFile* _tmp235_ = NULL;
+				gboolean _tmp236_ = FALSE;
+#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp235_ = file;
+#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp236_ = g_file_query_exists (_tmp235_, NULL);
+#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				if (_tmp236_) {
+#line 5697 "utils.c"
 					gboolean wasRead = FALSE;
-					const gchar* _tmp224_ = NULL;
-					gchar* _tmp225_ = NULL;
-					gchar* _tmp226_ = NULL;
-					const gchar* _tmp227_ = NULL;
-					gchar* _tmp228_ = NULL;
-					gchar* _tmp229_ = NULL;
-					gchar* _tmp230_ = NULL;
-					gboolean _tmp231_ = FALSE;
-					gboolean _tmp232_ = FALSE;
-					gboolean _tmp233_ = FALSE;
-					GIOChannel* _tmp237_ = NULL;
-					const gchar* _tmp238_ = NULL;
+					const gchar* _tmp237_ = NULL;
+					gchar* _tmp238_ = NULL;
 					gchar* _tmp239_ = NULL;
-					gchar* _tmp240_ = NULL;
-					const gchar* _tmp241_ = NULL;
+					const gchar* _tmp240_ = NULL;
+					gchar* _tmp241_ = NULL;
 					gchar* _tmp242_ = NULL;
 					gchar* _tmp243_ = NULL;
-					GIOChannel* _tmp244_ = NULL;
-					GIOChannel* _tmp245_ = NULL;
-					GIOChannel* _tmp246_ = NULL;
-					GIOChannel* _tmp247_ = NULL;
-					gint _tmp248_ = 0;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp224_ = path;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp225_ = g_strconcat (_tmp224_, "/", NULL);
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp226_ = _tmp225_;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp227_ = filename;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp228_ = g_strconcat (_tmp226_, _tmp227_, NULL);
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp229_ = _tmp228_;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp231_ = g_file_get_contents (_tmp229_, &_tmp230_, NULL, &_inner_error_);
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					gboolean _tmp244_ = FALSE;
+					gboolean _tmp245_ = FALSE;
+					gboolean _tmp246_ = FALSE;
+					GIOChannel* _tmp250_ = NULL;
+					const gchar* _tmp251_ = NULL;
+					gchar* _tmp252_ = NULL;
+					gchar* _tmp253_ = NULL;
+					const gchar* _tmp254_ = NULL;
+					gchar* _tmp255_ = NULL;
+					gchar* _tmp256_ = NULL;
+					GIOChannel* _tmp257_ = NULL;
+					GIOChannel* _tmp258_ = NULL;
+					GIOChannel* _tmp259_ = NULL;
+					GIOChannel* _tmp260_ = NULL;
+					gint _tmp261_ = 0;
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp237_ = path;
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp238_ = g_strconcat (_tmp237_, "/", NULL);
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp239_ = _tmp238_;
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp240_ = filename;
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp241_ = g_strconcat (_tmp239_, _tmp240_, NULL);
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp242_ = _tmp241_;
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp244_ = g_file_get_contents (_tmp242_, &_tmp243_, NULL, &_inner_error_);
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_g_free0 (data);
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					data = _tmp230_;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp232_ = _tmp231_;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp229_);
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp226_);
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					wasRead = _tmp232_;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5697 "utils.c"
-						goto __catch7_g_error;
-					}
 #line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp233_ = wasRead;
+					data = _tmp243_;
 #line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					if (_tmp233_) {
-#line 5704 "utils.c"
-						const gchar* _tmp234_ = NULL;
-						gchar* _tmp235_ = NULL;
-#line 437 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						_tmp234_ = data;
-#line 437 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						_tmp235_ = g_strdup (_tmp234_);
-#line 437 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						_g_free0 (bookworm_app_utils_bookwormStateData);
-#line 437 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						bookworm_app_utils_bookwormStateData = _tmp235_;
-#line 5715 "utils.c"
-					} else {
-						GString* _tmp236_ = NULL;
-#line 439 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						_tmp236_ = _result_;
-#line 439 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						g_string_assign (_tmp236_, "false");
-#line 5722 "utils.c"
-					}
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp238_ = path;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp239_ = g_strconcat (_tmp238_, "/", NULL);
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp240_ = _tmp239_;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp241_ = filename;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp242_ = g_strconcat (_tmp240_, _tmp241_, NULL);
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp243_ = _tmp242_;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp244_ = g_io_channel_new_file (_tmp243_, "r", &_inner_error_);
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp245_ = _tmp244_;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp243_);
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_free0 (_tmp240_);
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp237_ = _tmp245_;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp242_);
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp239_);
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					wasRead = _tmp245_;
+#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 5748 "utils.c"
+#line 5749 "utils.c"
 						goto __catch7_g_error;
 					}
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp246_ = _tmp237_;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp237_ = NULL;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp247_ = _tmp246_;
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp248_ = g_io_channel_unix_get_fd (_tmp247_);
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					close (_tmp248_);
-#line 442 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_io_channel_unref0 (_tmp247_);
-#line 433 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_g_io_channel_unref0 (_tmp237_);
-#line 5765 "utils.c"
+#line 436 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp246_ = wasRead;
+#line 436 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					if (_tmp246_) {
+#line 5756 "utils.c"
+						const gchar* _tmp247_ = NULL;
+						gchar* _tmp248_ = NULL;
+#line 438 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						_tmp247_ = data;
+#line 438 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						_tmp248_ = g_strdup (_tmp247_);
+#line 438 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						_g_free0 (bookworm_app_utils_bookwormStateData);
+#line 438 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						bookworm_app_utils_bookwormStateData = _tmp248_;
+#line 5767 "utils.c"
+					} else {
+						GString* _tmp249_ = NULL;
+#line 440 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						_tmp249_ = _result_;
+#line 440 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						g_string_assign (_tmp249_, "false");
+#line 5774 "utils.c"
+					}
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp251_ = path;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp252_ = g_strconcat (_tmp251_, "/", NULL);
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp253_ = _tmp252_;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp254_ = filename;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp255_ = g_strconcat (_tmp253_, _tmp254_, NULL);
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp256_ = _tmp255_;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp257_ = g_io_channel_new_file (_tmp256_, "r", &_inner_error_);
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp258_ = _tmp257_;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp256_);
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_free0 (_tmp253_);
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp250_ = _tmp258_;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 5800 "utils.c"
+						goto __catch7_g_error;
+					}
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp259_ = _tmp250_;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp250_ = NULL;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp260_ = _tmp259_;
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp261_ = g_io_channel_unix_get_fd (_tmp260_);
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					close (_tmp261_);
+#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_io_channel_unref0 (_tmp260_);
+#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_g_io_channel_unref0 (_tmp250_);
+#line 5817 "utils.c"
 				} else {
-					GString* _tmp249_ = NULL;
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp249_ = _result_;
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					g_string_assign (_tmp249_, "false");
-#line 5772 "utils.c"
+					GString* _tmp262_ = NULL;
+#line 445 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp262_ = _result_;
+#line 445 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					g_string_assign (_tmp262_, "false");
+#line 5824 "utils.c"
 				}
 			}
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp250_ = _result_;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp251_ = data;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp252_ = contents;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp253_ = g_strconcat (BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_START, _tmp252_, NULL);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp254_ = _tmp253_;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp255_ = g_strconcat (_tmp254_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_VALUE, NULL);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp256_ = _tmp255_;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp258_ = _tmp257_ = g_strsplit (_tmp251_, _tmp256_, 2);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp259_ = _tmp258_;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp259__length1 = _vala_array_length (_tmp257_);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp260_ = _tmp259_[1];
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			g_string_assign (_tmp250_, _tmp260_);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp259_ = (_vala_array_free (_tmp259_, _tmp259__length1, (GDestroyNotify) g_free), NULL);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp256_);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp254_);
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp261_ = _result_;
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp262_ = _result_;
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp263_ = _tmp262_->str;
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp265_ = _tmp264_ = g_strsplit (_tmp263_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_END, 2);
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp266_ = _tmp265_;
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp266__length1 = _vala_array_length (_tmp264_);
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp267_ = _tmp266_[0];
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			g_string_assign (_tmp261_, _tmp267_);
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp266_ = (_vala_array_free (_tmp266_, _tmp266__length1, (GDestroyNotify) g_free), NULL);
-#line 5823 "utils.c"
-		}
-#line 452 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp268_ = operation;
-#line 452 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("DELETE", _tmp268_) == 0) {
-#line 5829 "utils.c"
-			const gchar* _tmp269_ = NULL;
-			gchar* _tmp270_ = NULL;
-			gchar* _tmp271_ = NULL;
-			const gchar* _tmp272_ = NULL;
-			gchar* _tmp273_ = NULL;
-			gchar* _tmp274_ = NULL;
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp269_ = path;
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp270_ = g_strconcat (_tmp269_, "/", NULL);
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp271_ = _tmp270_;
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp272_ = filename;
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp273_ = g_strconcat (_tmp271_, _tmp272_, NULL);
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp274_ = _tmp273_;
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			g_remove (_tmp274_);
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp274_);
-#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp271_);
-#line 5854 "utils.c"
-		}
-#line 455 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp275_ = operation;
-#line 455 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("EXISTS", _tmp275_) == 0) {
-#line 5860 "utils.c"
-			GFile* _tmp276_ = NULL;
-			gboolean _tmp277_ = FALSE;
-#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp276_ = file;
-#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp277_ = g_file_query_exists (_tmp276_, NULL);
-#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (_tmp277_) {
-#line 5869 "utils.c"
-				GString* _tmp278_ = NULL;
-#line 457 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp278_ = _result_;
-#line 457 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp278_, "true");
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp263_ = _result_;
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp264_ = data;
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp265_ = contents;
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp266_ = g_strconcat (BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_START, _tmp265_, NULL);
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp267_ = _tmp266_;
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp268_ = g_strconcat (_tmp267_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_VALUE, NULL);
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp269_ = _tmp268_;
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp271_ = _tmp270_ = g_strsplit (_tmp264_, _tmp269_, 2);
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp272_ = _tmp271_;
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp272__length1 = _vala_array_length (_tmp270_);
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp273_ = _tmp272_[1];
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			g_string_assign (_tmp263_, _tmp273_);
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp272_ = (_vala_array_free (_tmp272_, _tmp272__length1, (GDestroyNotify) g_free), NULL);
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp269_);
+#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp267_);
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp274_ = _result_;
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp275_ = _result_;
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp276_ = _tmp275_->str;
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp278_ = _tmp277_ = g_strsplit (_tmp276_, BOOKWORM_APP_CONSTANTS_IDENTIFIER_FOR_PROPERTY_END, 2);
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp279_ = _tmp278_;
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp279__length1 = _vala_array_length (_tmp277_);
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp280_ = _tmp279_[0];
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			g_string_assign (_tmp274_, _tmp280_);
+#line 451 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp279_ = (_vala_array_free (_tmp279_, _tmp279__length1, (GDestroyNotify) g_free), NULL);
 #line 5875 "utils.c"
-			}
 		}
-#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp279_ = operation;
-#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("IS_EXECUTABLE", _tmp279_) == 0) {
-#line 5882 "utils.c"
-			const gchar* _tmp280_ = NULL;
-			gchar* _tmp281_ = NULL;
-			gchar* _tmp282_ = NULL;
-			const gchar* _tmp283_ = NULL;
+#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp281_ = operation;
+#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		if (g_strcmp0 ("DELETE", _tmp281_) == 0) {
+#line 5881 "utils.c"
+			const gchar* _tmp282_ = NULL;
+			gchar* _tmp283_ = NULL;
 			gchar* _tmp284_ = NULL;
-			gchar* _tmp285_ = NULL;
-			gboolean _tmp286_ = FALSE;
-			gboolean _tmp287_ = FALSE;
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp280_ = path;
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp281_ = g_strconcat (_tmp280_, "/", NULL);
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp282_ = _tmp281_;
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp283_ = filename;
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp284_ = g_strconcat (_tmp282_, _tmp283_, NULL);
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp285_ = _tmp284_;
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp286_ = g_file_test (_tmp285_, G_FILE_TEST_IS_EXECUTABLE);
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			const gchar* _tmp285_ = NULL;
+			gchar* _tmp286_ = NULL;
+			gchar* _tmp287_ = NULL;
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp282_ = path;
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp283_ = g_strconcat (_tmp282_, "/", NULL);
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp284_ = _tmp283_;
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp285_ = filename;
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp286_ = g_strconcat (_tmp284_, _tmp285_, NULL);
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp287_ = _tmp286_;
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp285_);
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp282_);
-#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			if (_tmp287_) {
-#line 5913 "utils.c"
-				GString* _tmp288_ = NULL;
-#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp288_ = _result_;
-#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_assign (_tmp288_, "true");
-#line 5919 "utils.c"
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			g_remove (_tmp287_);
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp287_);
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp284_);
+#line 5906 "utils.c"
+		}
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp288_ = operation;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		if (g_strcmp0 ("EXISTS", _tmp288_) == 0) {
+#line 5912 "utils.c"
+			GFile* _tmp289_ = NULL;
+			gboolean _tmp290_ = FALSE;
+#line 457 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp289_ = file;
+#line 457 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp290_ = g_file_query_exists (_tmp289_, NULL);
+#line 457 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (_tmp290_) {
+#line 5921 "utils.c"
+				GString* _tmp291_ = NULL;
+#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp291_ = _result_;
+#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp291_, "true");
+#line 5927 "utils.c"
 			}
 		}
-#line 465 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp289_ = operation;
-#line 465 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("MAKE_EXECUTABLE", _tmp289_) == 0) {
-#line 5926 "utils.c"
-			const gchar* _tmp290_ = NULL;
-			gchar* _tmp291_ = NULL;
-			gchar* _tmp292_ = NULL;
-			gchar* _tmp293_ = NULL;
+#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp292_ = operation;
+#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		if (g_strcmp0 ("IS_EXECUTABLE", _tmp292_) == 0) {
+#line 5934 "utils.c"
+			const gchar* _tmp293_ = NULL;
 			gchar* _tmp294_ = NULL;
-			const gchar* _tmp295_ = NULL;
-			gchar* _tmp296_ = NULL;
+			gchar* _tmp295_ = NULL;
+			const gchar* _tmp296_ = NULL;
 			gchar* _tmp297_ = NULL;
 			gchar* _tmp298_ = NULL;
-			gchar* _tmp299_ = NULL;
-			GString* _tmp300_ = NULL;
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp290_ = path;
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp291_ = g_strconcat ("chmod +x ", _tmp290_, NULL);
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp292_ = _tmp291_;
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp293_ = g_strconcat (_tmp292_, "/", NULL);
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp294_ = _tmp293_;
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp295_ = filename;
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp296_ = g_strconcat (_tmp294_, _tmp295_, NULL);
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp297_ = _tmp296_;
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp298_ = bookworm_app_utils_execute_sync_command (_tmp297_);
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp299_ = _tmp298_;
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp299_);
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp297_);
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp294_);
-#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp292_);
-#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp300_ = _result_;
-#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			g_string_assign (_tmp300_, "true");
-#line 5970 "utils.c"
+			gboolean _tmp299_ = FALSE;
+			gboolean _tmp300_ = FALSE;
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp293_ = path;
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp294_ = g_strconcat (_tmp293_, "/", NULL);
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp295_ = _tmp294_;
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp296_ = filename;
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp297_ = g_strconcat (_tmp295_, _tmp296_, NULL);
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp298_ = _tmp297_;
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp299_ = g_file_test (_tmp298_, G_FILE_TEST_IS_EXECUTABLE);
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp300_ = _tmp299_;
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp298_);
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp295_);
+#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			if (_tmp300_) {
+#line 5965 "utils.c"
+				GString* _tmp301_ = NULL;
+#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp301_ = _result_;
+#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_assign (_tmp301_, "true");
+#line 5971 "utils.c"
+			}
 		}
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp301_ = operation;
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		if (g_strcmp0 ("SET_PERMISSIONS", _tmp301_) == 0) {
-#line 5976 "utils.c"
-			const gchar* _tmp302_ = NULL;
-			gchar* _tmp303_ = NULL;
+#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp302_ = operation;
+#line 466 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		if (g_strcmp0 ("MAKE_EXECUTABLE", _tmp302_) == 0) {
+#line 5978 "utils.c"
+			const gchar* _tmp303_ = NULL;
 			gchar* _tmp304_ = NULL;
 			gchar* _tmp305_ = NULL;
 			gchar* _tmp306_ = NULL;
-			const gchar* _tmp307_ = NULL;
-			gchar* _tmp308_ = NULL;
+			gchar* _tmp307_ = NULL;
+			const gchar* _tmp308_ = NULL;
 			gchar* _tmp309_ = NULL;
 			gchar* _tmp310_ = NULL;
 			gchar* _tmp311_ = NULL;
-			const gchar* _tmp312_ = NULL;
-			gchar* _tmp313_ = NULL;
-			gchar* _tmp314_ = NULL;
-			gchar* _tmp315_ = NULL;
+			gchar* _tmp312_ = NULL;
+			GString* _tmp313_ = NULL;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp303_ = path;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp304_ = g_strconcat ("chmod +x ", _tmp303_, NULL);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp305_ = _tmp304_;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp306_ = g_strconcat (_tmp305_, "/", NULL);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp307_ = _tmp306_;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp308_ = filename;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp309_ = g_strconcat (_tmp307_, _tmp308_, NULL);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp310_ = _tmp309_;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp311_ = bookworm_app_utils_execute_sync_command (_tmp310_);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp312_ = _tmp311_;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp312_);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp310_);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp307_);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp305_);
+#line 468 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp313_ = _result_;
+#line 468 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			g_string_assign (_tmp313_, "true");
+#line 6022 "utils.c"
+		}
+#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp314_ = operation;
+#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		if (g_strcmp0 ("SET_PERMISSIONS", _tmp314_) == 0) {
+#line 6028 "utils.c"
+			const gchar* _tmp315_ = NULL;
 			gchar* _tmp316_ = NULL;
-			GString* _tmp317_ = NULL;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp302_ = contents;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp303_ = g_strconcat ("chmod ", _tmp302_, NULL);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp304_ = _tmp303_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp305_ = g_strconcat (_tmp304_, " ", NULL);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp306_ = _tmp305_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp307_ = path;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp308_ = g_strconcat (_tmp306_, _tmp307_, NULL);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp309_ = _tmp308_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp310_ = g_strconcat (_tmp309_, "/", NULL);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp311_ = _tmp310_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp312_ = filename;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp313_ = g_strconcat (_tmp311_, _tmp312_, NULL);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp314_ = _tmp313_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp315_ = bookworm_app_utils_execute_sync_command (_tmp314_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp316_ = _tmp315_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp316_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp314_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp311_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp309_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp306_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_g_free0 (_tmp304_);
+			gchar* _tmp317_ = NULL;
+			gchar* _tmp318_ = NULL;
+			gchar* _tmp319_ = NULL;
+			const gchar* _tmp320_ = NULL;
+			gchar* _tmp321_ = NULL;
+			gchar* _tmp322_ = NULL;
+			gchar* _tmp323_ = NULL;
+			gchar* _tmp324_ = NULL;
+			const gchar* _tmp325_ = NULL;
+			gchar* _tmp326_ = NULL;
+			gchar* _tmp327_ = NULL;
+			gchar* _tmp328_ = NULL;
+			gchar* _tmp329_ = NULL;
+			GString* _tmp330_ = NULL;
 #line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			_tmp317_ = _result_;
+			_tmp315_ = contents;
 #line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-			g_string_assign (_tmp317_, "true");
-#line 6039 "utils.c"
+			_tmp316_ = g_strconcat ("chmod ", _tmp315_, NULL);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp317_ = _tmp316_;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp318_ = g_strconcat (_tmp317_, " ", NULL);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp319_ = _tmp318_;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp320_ = path;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp321_ = g_strconcat (_tmp319_, _tmp320_, NULL);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp322_ = _tmp321_;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp323_ = g_strconcat (_tmp322_, "/", NULL);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp324_ = _tmp323_;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp325_ = filename;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp326_ = g_strconcat (_tmp324_, _tmp325_, NULL);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp327_ = _tmp326_;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp328_ = bookworm_app_utils_execute_sync_command (_tmp327_);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp329_ = _tmp328_;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp329_);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp327_);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp324_);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp322_);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp319_);
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_g_free0 (_tmp317_);
+#line 472 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			_tmp330_ = _result_;
+#line 472 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+			g_string_assign (_tmp330_, "true");
+#line 6091 "utils.c"
 		}
 	}
 	goto __finally7;
 	__catch7_g_error:
 	{
 		GError* e = NULL;
-		const gchar* _tmp318_ = NULL;
-		gchar* _tmp319_ = NULL;
-		gchar* _tmp320_ = NULL;
-		gchar* _tmp321_ = NULL;
-		gchar* _tmp322_ = NULL;
-		const gchar* _tmp323_ = NULL;
-		gchar* _tmp324_ = NULL;
-		gchar* _tmp325_ = NULL;
-		gchar* _tmp326_ = NULL;
-		gchar* _tmp327_ = NULL;
-		const gchar* _tmp328_ = NULL;
-		gchar* _tmp329_ = NULL;
-		gchar* _tmp330_ = NULL;
-		gchar* _tmp331_ = NULL;
+		const gchar* _tmp331_ = NULL;
 		gchar* _tmp332_ = NULL;
-		GError* _tmp333_ = NULL;
-		const gchar* _tmp334_ = NULL;
+		gchar* _tmp333_ = NULL;
+		gchar* _tmp334_ = NULL;
 		gchar* _tmp335_ = NULL;
-		gchar* _tmp336_ = NULL;
-		GString* _tmp337_ = NULL;
-		GError* _tmp338_ = NULL;
-		const gchar* _tmp339_ = NULL;
+		const gchar* _tmp336_ = NULL;
+		gchar* _tmp337_ = NULL;
+		gchar* _tmp338_ = NULL;
+		gchar* _tmp339_ = NULL;
 		gchar* _tmp340_ = NULL;
-		gchar* _tmp341_ = NULL;
+		const gchar* _tmp341_ = NULL;
+		gchar* _tmp342_ = NULL;
+		gchar* _tmp343_ = NULL;
+		gchar* _tmp344_ = NULL;
+		gchar* _tmp345_ = NULL;
+		GError* _tmp346_ = NULL;
+		const gchar* _tmp347_ = NULL;
+		gchar* _tmp348_ = NULL;
+		gchar* _tmp349_ = NULL;
+		GString* _tmp350_ = NULL;
+		GError* _tmp351_ = NULL;
+		const gchar* _tmp352_ = NULL;
+		gchar* _tmp353_ = NULL;
+		gchar* _tmp354_ = NULL;
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		e = _inner_error_;
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_inner_error_ = NULL;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp318_ = operation;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp319_ = g_strconcat ("Failure in File Operation [operation=", _tmp318_, NULL);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp320_ = _tmp319_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp321_ = g_strconcat (_tmp320_, ",path=", NULL);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp322_ = _tmp321_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp323_ = path;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp324_ = g_strconcat (_tmp322_, _tmp323_, NULL);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp325_ = _tmp324_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp326_ = g_strconcat (_tmp325_, ", filename=", NULL);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp327_ = _tmp326_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp328_ = filename;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp329_ = g_strconcat (_tmp327_, _tmp328_, NULL);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp330_ = _tmp329_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp331_ = g_strconcat (_tmp330_, "]: ", NULL);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp332_ = _tmp331_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp333_ = e;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp334_ = _tmp333_->message;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp335_ = g_strconcat (_tmp332_, _tmp334_, NULL);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp336_ = _tmp335_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_warning ("utils.vala:474: %s", _tmp336_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_g_free0 (_tmp336_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_g_free0 (_tmp332_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_g_free0 (_tmp330_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_g_free0 (_tmp327_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_g_free0 (_tmp325_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_g_free0 (_tmp322_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_g_free0 (_tmp320_);
 #line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp337_ = _result_;
+		_tmp331_ = operation;
 #line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp338_ = e;
+		_tmp332_ = g_strconcat ("Failure in File Operation [operation=", _tmp331_, NULL);
 #line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp339_ = _tmp338_->message;
+		_tmp333_ = _tmp332_;
 #line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp340_ = g_strconcat ("false:", _tmp339_, NULL);
+		_tmp334_ = g_strconcat (_tmp333_, ",path=", NULL);
 #line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_tmp341_ = _tmp340_;
+		_tmp335_ = _tmp334_;
 #line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_string_assign (_tmp337_, _tmp341_);
+		_tmp336_ = path;
 #line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		_g_free0 (_tmp341_);
+		_tmp337_ = g_strconcat (_tmp335_, _tmp336_, NULL);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp338_ = _tmp337_;
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp339_ = g_strconcat (_tmp338_, ", filename=", NULL);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp340_ = _tmp339_;
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp341_ = filename;
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp342_ = g_strconcat (_tmp340_, _tmp341_, NULL);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp343_ = _tmp342_;
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp344_ = g_strconcat (_tmp343_, "]: ", NULL);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp345_ = _tmp344_;
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp346_ = e;
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp347_ = _tmp346_->message;
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp348_ = g_strconcat (_tmp345_, _tmp347_, NULL);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp349_ = _tmp348_;
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		g_warning ("utils.vala:475: %s", _tmp349_);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_g_free0 (_tmp349_);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_g_free0 (_tmp345_);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_g_free0 (_tmp343_);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_g_free0 (_tmp340_);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_g_free0 (_tmp338_);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_g_free0 (_tmp335_);
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_g_free0 (_tmp333_);
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp350_ = _result_;
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp351_ = e;
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp352_ = _tmp351_->message;
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp353_ = g_strconcat ("false:", _tmp352_, NULL);
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_tmp354_ = _tmp353_;
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		g_string_assign (_tmp350_, _tmp354_);
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+		_g_free0 (_tmp354_);
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_g_error_free0 (e);
-#line 6144 "utils.c"
+#line 6196 "utils.c"
 	}
 	__finally7:
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -6159,43 +6211,43 @@ gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* p
 		g_clear_error (&_inner_error_);
 #line 338 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		return NULL;
-#line 6163 "utils.c"
+#line 6215 "utils.c"
 	}
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp342_ = operation;
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp343_ = g_strconcat ("Completed file operation[", _tmp342_, NULL);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp344_ = _tmp343_;
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp345_ = g_strconcat (_tmp344_, "]...", NULL);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp346_ = _tmp345_;
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	g_debug ("utils.vala:477: %s", _tmp346_);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_g_free0 (_tmp346_);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_g_free0 (_tmp344_);
 #line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp347_ = _result_;
+	_tmp355_ = operation;
 #line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp348_ = _tmp347_->str;
+	_tmp356_ = g_strconcat ("Completed file operation[", _tmp355_, NULL);
 #line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp349_ = g_strdup (_tmp348_);
+	_tmp357_ = _tmp356_;
 #line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	result = _tmp349_;
+	_tmp358_ = g_strconcat (_tmp357_, "]...", NULL);
 #line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp359_ = _tmp358_;
+#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_debug ("utils.vala:478: %s", _tmp359_);
+#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_g_free0 (_tmp359_);
+#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_g_free0 (_tmp357_);
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp360_ = _result_;
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp361_ = _tmp360_->str;
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	_tmp362_ = g_strdup (_tmp361_);
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	result = _tmp362_;
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_g_object_unref0 (file);
-#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_g_object_unref0 (fileDir);
-#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_g_free0 (data);
-#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_g_string_free0 (_result_);
-#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 6199 "utils.c"
+#line 6251 "utils.c"
 }
 
 
@@ -6208,35 +6260,35 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 	gint current_number_of_lines_per_page = 0;
 	gint current_number_of_chars_per_line = 0;
 	gint current_position = 0;
-#line 481 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	g_return_val_if_fail (contentLocationList != NULL, NULL);
-#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp0_ = gee_array_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL, NULL, NULL);
-#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	pageContentList = _tmp0_;
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	_tmp1_ = g_string_new ("");
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	aPageContent = _tmp1_;
 #line 484 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	current_number_of_lines_per_page = 0;
+	_tmp1_ = g_string_new ("");
+#line 484 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	aPageContent = _tmp1_;
 #line 485 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	current_number_of_chars_per_line = 0;
+	current_number_of_lines_per_page = 0;
 #line 486 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	current_number_of_chars_per_line = 0;
+#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	current_position = 0;
-#line 6228 "utils.c"
+#line 6280 "utils.c"
 	{
 		gint i = 0;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		i = 0;
-#line 6233 "utils.c"
+#line 6285 "utils.c"
 		{
 			gboolean _tmp2_ = FALSE;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp2_ = TRUE;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			while (TRUE) {
-#line 6240 "utils.c"
+#line 6292 "utils.c"
 				gint _tmp4_ = 0;
 				GeeArrayList* _tmp5_ = NULL;
 				gint _tmp6_ = 0;
@@ -6248,74 +6300,74 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 				gchar* _tmp11_ = NULL;
 				gchar* _tmp12_ = NULL;
 				gchar* _tmp13_ = NULL;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (!_tmp2_) {
-#line 6254 "utils.c"
+#line 6306 "utils.c"
 					gint _tmp3_ = 0;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp3_ = i;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					i = _tmp3_ + 1;
-#line 6260 "utils.c"
+#line 6312 "utils.c"
 				}
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp2_ = FALSE;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp4_ = i;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp5_ = contentLocationList;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp6_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp5_);
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp7_ = _tmp6_;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (!(_tmp4_ < _tmp7_)) {
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					break;
-#line 6276 "utils.c"
+#line 6328 "utils.c"
 				}
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp8_ = contentLocationList;
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp9_ = i;
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp10_ = gee_abstract_list_get ((GeeAbstractList*) _tmp8_, _tmp9_);
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp11_ = (gchar*) _tmp10_;
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp12_ = bookworm_app_utils_fileOperations ("READ_FILE", _tmp11_, "", "");
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp13_ = _tmp12_;
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp11_);
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				contents = _tmp13_;
 #line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp8_ = contentLocationList;
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp9_ = i;
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp10_ = gee_abstract_list_get ((GeeAbstractList*) _tmp8_, _tmp9_);
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp11_ = (gchar*) _tmp10_;
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp12_ = bookworm_app_utils_fileOperations ("READ_FILE", _tmp11_, "", "");
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp13_ = _tmp12_;
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp11_);
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				contents = _tmp13_;
+#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				while (TRUE) {
-#line 6296 "utils.c"
+#line 6348 "utils.c"
 					gint _tmp14_ = 0;
 					const gchar* _tmp15_ = NULL;
 					gint _tmp16_ = 0;
 					gint _tmp17_ = 0;
 					const gchar* _tmp44_ = NULL;
 					const gchar* _tmp45_ = NULL;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp14_ = current_position;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp15_ = contents;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp16_ = strlen (_tmp15_);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp17_ = _tmp16_;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					if (!(_tmp14_ < _tmp17_)) {
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						break;
-#line 6315 "utils.c"
-					}
 #line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp14_ = current_position;
+#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp15_ = contents;
+#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp16_ = strlen (_tmp15_);
+#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp17_ = _tmp16_;
+#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					if (!(_tmp14_ < _tmp17_)) {
+#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						break;
+#line 6367 "utils.c"
+					}
+#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					while (TRUE) {
-#line 6319 "utils.c"
+#line 6371 "utils.c"
 						gint _tmp18_ = 0;
 						const gchar* _tmp19_ = NULL;
 						gint _tmp20_ = 0;
@@ -6342,113 +6394,113 @@ GeeArrayList* bookworm_app_utils_createPagination (GeeArrayList* contentLocation
 						gchar* _tmp41_ = NULL;
 						gchar* _tmp42_ = NULL;
 						gchar* _tmp43_ = NULL;
-#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp18_ = current_number_of_lines_per_page;
-#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						if (!(_tmp18_ < BOOKWORM_APP_CONSTANTS_MAX_NUMBER_OF_LINES_PER_PAGE)) {
-#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 							break;
-#line 6352 "utils.c"
+#line 6404 "utils.c"
 						}
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp19_ = contents;
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp20_ = current_position;
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp21_ = contents;
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp22_ = current_position;
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp23_ = string_index_of (_tmp21_, " ", _tmp22_ + BOOKWORM_APP_CONSTANTS_MAX_NUMBER_OF_CHARS_PER_LINE);
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp24_ = string_slice (_tmp19_, (glong) _tmp20_, (glong) _tmp23_);
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp25_ = _tmp24_;
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp26_ = g_string_append (aPageContent, _tmp25_);
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp27_ = g_string_append (_tmp26_, " ");
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						g_string_append (_tmp27_, "<br>");
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_g_free0 (_tmp25_);
-#line 494 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp28_ = contents;
-#line 494 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp29_ = current_position;
-#line 494 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp30_ = string_index_of (_tmp28_, " ", _tmp29_ + BOOKWORM_APP_CONSTANTS_MAX_NUMBER_OF_CHARS_PER_LINE);
-#line 494 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						current_position = _tmp30_ + 1;
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp31_ = current_number_of_lines_per_page;
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						current_number_of_lines_per_page = _tmp31_ + 1;
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp32_ = current_position;
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp33_ = g_strdup_printf ("%i", _tmp32_);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp34_ = _tmp33_;
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp35_ = g_strconcat ("current_position:", _tmp34_, NULL);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp36_ = _tmp35_;
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp37_ = g_strconcat (_tmp36_, "::::current_number_of_lines_per_page:", NULL);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp38_ = _tmp37_;
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp39_ = current_number_of_lines_per_page;
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp40_ = g_strdup_printf ("%i", _tmp39_);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp41_ = _tmp40_;
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp42_ = g_strconcat (_tmp38_, _tmp41_, NULL);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_tmp43_ = _tmp42_;
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-						g_debug ("utils.vala:496: %s", _tmp43_);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+						g_debug ("utils.vala:497: %s", _tmp43_);
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_g_free0 (_tmp43_);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_g_free0 (_tmp41_);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_g_free0 (_tmp38_);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_g_free0 (_tmp36_);
-#line 496 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 						_g_free0 (_tmp34_);
-#line 6424 "utils.c"
+#line 6476 "utils.c"
 					}
-#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 500 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp44_ = aPageContent->str;
-#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 500 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					gee_abstract_collection_add ((GeeAbstractCollection*) pageContentList, _tmp44_);
-#line 500 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					_tmp45_ = aPageContent->str;
-#line 500 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-					g_debug ("utils.vala:500: %s", _tmp45_);
 #line 501 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					_tmp45_ = aPageContent->str;
+#line 501 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+					g_debug ("utils.vala:501: %s", _tmp45_);
+#line 502 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					g_string_erase (aPageContent, (gssize) 0, (gssize) -1);
-#line 6436 "utils.c"
+#line 6488 "utils.c"
 				}
-#line 504 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_g_free0 (contents);
-#line 504 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				break;
-#line 6442 "utils.c"
+#line 6494 "utils.c"
 			}
 		}
 	}
-#line 506 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = pageContentList;
-#line 506 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_g_string_free0 (aPageContent);
-#line 506 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 6452 "utils.c"
+#line 6504 "utils.c"
 }
 
 
@@ -6466,37 +6518,37 @@ gchar* bookworm_app_utils_createTableOfContents (GeeArrayList* bookContentList) 
 	GString* _tmp32_ = NULL;
 	const gchar* _tmp33_ = NULL;
 	gchar* _tmp34_ = NULL;
-#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	g_return_val_if_fail (bookContentList != NULL, NULL);
 #line 510 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	g_debug ("utils.vala:510: Started creating Table Of Contents....");
+	g_return_val_if_fail (bookContentList != NULL, NULL);
 #line 511 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_debug ("utils.vala:511: Started creating Table Of Contents....");
+#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp0_ = g_string_new ("");
-#line 511 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	tocHTML = _tmp0_;
-#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp1_ = tocHTML;
-#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp2_ = g_string_append (_tmp1_, "<html>");
-#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp3_ = g_string_append (_tmp2_, "<head></head>");
-#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp4_ = g_string_append (_tmp3_, "<body> <font align=\"right\"><b>Book Contents</b>");
-#line 512 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	g_string_append (_tmp4_, "<table>");
-#line 6488 "utils.c"
+#line 6540 "utils.c"
 	{
 		gint i = 0;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		i = 0;
-#line 6493 "utils.c"
+#line 6545 "utils.c"
 		{
 			gboolean _tmp5_ = FALSE;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			_tmp5_ = TRUE;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 			while (TRUE) {
-#line 6500 "utils.c"
+#line 6552 "utils.c"
 				gint _tmp7_ = 0;
 				GeeArrayList* _tmp8_ = NULL;
 				gint _tmp9_ = 0;
@@ -6519,109 +6571,109 @@ gchar* bookworm_app_utils_createTableOfContents (GeeArrayList* bookContentList) 
 				gchar* _tmp26_ = NULL;
 				gchar* _tmp27_ = NULL;
 				GString* _tmp28_ = NULL;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (!_tmp5_) {
-#line 6525 "utils.c"
+#line 6577 "utils.c"
 					gint _tmp6_ = 0;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					_tmp6_ = i;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					i = _tmp6_ + 1;
-#line 6531 "utils.c"
+#line 6583 "utils.c"
 				}
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp5_ = FALSE;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp7_ = i;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp8_ = bookContentList;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp9_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp8_);
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				_tmp10_ = _tmp9_;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 				if (!(_tmp7_ < _tmp10_)) {
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 					break;
-#line 6547 "utils.c"
-				}
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp11_ = tocHTML;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp12_ = g_string_append (_tmp11_, "<tr><td>");
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp13_ = bookContentList;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp14_ = i;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp15_ = gee_abstract_list_get ((GeeAbstractList*) _tmp13_, _tmp14_);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp16_ = (gchar*) _tmp15_;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp17_ = g_strconcat ("<a href=\"" BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL, _tmp16_, NULL);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp18_ = _tmp17_;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp19_ = g_strconcat (_tmp18_, "\">Content Part ", NULL);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp20_ = _tmp19_;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp21_ = i;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp22_ = g_strdup_printf ("%i", _tmp21_ + 1);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp23_ = _tmp22_;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp24_ = g_strconcat (_tmp20_, _tmp23_, NULL);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp25_ = _tmp24_;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp26_ = g_strconcat (_tmp25_, "</a></td><td>", NULL);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp27_ = _tmp26_;
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_tmp28_ = g_string_append (_tmp12_, _tmp27_);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				g_string_append (_tmp28_, "</td></tr>");
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp27_);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp25_);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp23_);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp20_);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp18_);
-#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-				_g_free0 (_tmp16_);
 #line 6599 "utils.c"
+				}
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp11_ = tocHTML;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp12_ = g_string_append (_tmp11_, "<tr><td>");
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp13_ = bookContentList;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp14_ = i;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp15_ = gee_abstract_list_get ((GeeAbstractList*) _tmp13_, _tmp14_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp16_ = (gchar*) _tmp15_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp17_ = g_strconcat ("<a href=\"" BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL, _tmp16_, NULL);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp18_ = _tmp17_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp19_ = g_strconcat (_tmp18_, "\">Content Part ", NULL);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp20_ = _tmp19_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp21_ = i;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp22_ = g_strdup_printf ("%i", _tmp21_ + 1);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp23_ = _tmp22_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp24_ = g_strconcat (_tmp20_, _tmp23_, NULL);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp25_ = _tmp24_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp26_ = g_strconcat (_tmp25_, "</a></td><td>", NULL);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp27_ = _tmp26_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_tmp28_ = g_string_append (_tmp12_, _tmp27_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				g_string_append (_tmp28_, "</td></tr>");
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp27_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp25_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp23_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp20_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp18_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+				_g_free0 (_tmp16_);
+#line 6651 "utils.c"
 			}
 		}
 	}
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 522 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp29_ = tocHTML;
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 522 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp30_ = g_string_append (_tmp29_, "</table>");
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 522 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp31_ = g_string_append (_tmp30_, "</body>");
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 522 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	g_string_append (_tmp31_, "</html>");
-#line 524 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	g_debug ("utils.vala:524: Completed creating Table Of Contents....");
 #line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+	g_debug ("utils.vala:525: Completed creating Table Of Contents....");
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp32_ = tocHTML;
-#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp33_ = _tmp32_->str;
-#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp34_ = g_strdup (_tmp33_);
-#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	result = _tmp34_;
-#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_g_string_free0 (tocHTML);
-#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
-#line 6625 "utils.c"
+#line 6677 "utils.c"
 }
 
 
