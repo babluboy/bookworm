@@ -10,6 +10,8 @@ Build-Depends: cmake (>= 2.8),
                libgranite-dev (>= 0.3.0),
                libwebkit2gtk-4.0-37,
                libwebkit2gtk-4.0-dev
+               sqlite3
+               libsqlite3-dev
 Standards-Version: 3.9.5
 Homepage: https://launchpad.net/bookworm
 
