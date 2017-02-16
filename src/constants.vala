@@ -35,14 +35,17 @@ namespace BookwormApp.Constants {
 	public static const string LIBRARY_VIEW_IMAGE_LOCATION = "/usr/share/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg";
 	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/icons/hicolor/16x16/actions/bookworm-view-list-symbolic.svg";
 	public static const string DEFAULT_COVER_IMAGE_LOCATION = "/usr/share/icons/hicolor/256x256/apps/bookworm-defaultbook.png";
+	public static const string SELECTION_IMAGE_BUTTON_LOCATION = "/usr/share/icons/hicolor/24x24/actions/bookworm-selection.svg";
+	public static const string SELECTION_OPTION_IMAGE_LOCATION = "/usr/share/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
+	public static const string SELECTION_CHECKED_IMAGE_LOCATION = "/usr/share/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
 	public static const string EPUB_EXTRACTION_LOCATION = "/tmp/bookworm/";
 	public static const string PREFIX_FOR_FILE_URL = "file:///";
-	
-	public static const int MAX_BOOK_COVER_PER_ROW = 8;
+
+	public static const int MAX_BOOK_COVER_PER_ROW = 6;
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
 
-	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE","READING_MODE"};
+	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE","READING_MODE", "SELECTION_MODE", "SELECTED_MODE"};
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
 	public static const string IDENTIFIER_FOR_PROPERTY_START = "~~";
 	public static const string IDENTIFIER_FOR_PROPERTY_END = "##\n";

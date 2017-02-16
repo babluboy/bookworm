@@ -33,6 +33,10 @@ public class BookwormApp.Book{
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
   private string tocHTMLContent = "";
+  private Gtk.EventBox eventBox;
+  private Gtk.Overlay overlayImage;
+  private Gtk.Image coverImage;
+  private bool isBookSelected = false;
   private Gee.ArrayList<string> bookContentList = new Gee.ArrayList<string> ();
 
   //getter list for book id
@@ -162,6 +166,39 @@ public class BookwormApp.Book{
   public string getTOCHTMLContent (){
     return tocHTMLContent;
   }
+
+  //getter setter for EventBox associated with this eBook
+  public void setEventBox (Gtk.EventBox aEventBox){
+    eventBox = aEventBox;
+  }
+  public Gtk.EventBox getEventBox (){
+    return eventBox;
+  }
+
+  //getter setter for OverLayImage associated with this eBook
+  public void setOverlayImage (Gtk.Overlay aOverlayImage){
+    overlayImage = aOverlayImage;
+  }
+  public Gtk.Overlay getOverlayImage (){
+    return overlayImage;
+  }
+
+  //getter setter for Cover Image associated with this eBook
+  public void setCoverImage (Gtk.Image aCoverImage){
+    coverImage = aCoverImage;
+  }
+  public Gtk.Image getCoverImage (){
+    return coverImage;
+  }
+
+  //getter setter for determining if the book is selected
+  public void setIsBookSelected  (bool aIsBookSelected){
+    isBookSelected = aIsBookSelected;
+  }
+  public bool getIsBookSelected (){
+    return isBookSelected;
+  }
+
 
   //print book details
   public string to_string(){

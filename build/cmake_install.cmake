@@ -109,6 +109,18 @@ file(INSTALL DESTINATION "/usr/share/icons/hicolor/256x256/apps" TYPE FILE FILES
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/24x24/actions" TYPE FILE FILES "/home/sid/Documents/Projects/bookworm/dev/data/icons/24/bookworm-selection.svg")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/24x24/actions" TYPE FILE FILES "/home/sid/Documents/Projects/bookworm/dev/data/icons/24/bookworm-selection-checked.svg")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/24x24/actions" TYPE FILE FILES "/home/sid/Documents/Projects/bookworm/dev/data/icons/24/bookworm-selection-option.svg")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
    "/usr/share/applications/bookworm.desktop")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)

@@ -26,13 +26,13 @@
 #include <granite.h>
 #include <gtk/gtk.h>
 #include <webkit2/webkit2.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gee.h>
 #include <sqlite3.h>
 #include <locale.h>
 #include <glib/gi18n-lib.h>
 #include <gio/gio.h>
 #include <gdk/gdk.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <stdio.h>
 
 
@@ -96,7 +96,12 @@ struct _BookwormAppBookworm {
 	GtkHeaderBar* headerbar;
 	GtkBox* bookSelection_ui_box;
 	GtkBox* bookReading_ui_box;
+	GtkScrolledWindow* library_scroll;
 	GtkGrid* library_grid;
+	GdkPixbuf* bookSelectionPix;
+	GdkPixbuf* bookSelectedPix;
+	GtkImage* bookSelectionImage;
+	GdkPixbuf* aBookCover;
 	gchar* BOOKWORM_CURRENT_STATE;
 	gchar* locationOfEBookCurrentlyRead;
 	gint countBooksAddedIntoLibraryRow;
@@ -167,9 +172,9 @@ void bookworm_app_bookworm_loadBookwormState (BookwormAppBookworm* self);
 static void bookworm_app_bookworm_create_headerbar (BookwormAppBookworm* self, GtkWindow* window);
 GtkBox* bookworm_app_bookworm_createBoookwormUI (BookwormAppBookworm* self);
 void bookworm_app_bookworm_toggleUIState (BookwormAppBookworm* self);
-static void __lambda18_ (BookwormAppBookworm* self);
+static void __lambda19_ (BookwormAppBookworm* self);
 void bookworm_app_bookworm_saveBookwormState (BookwormAppBookworm* self);
-static void ___lambda18__gtk_widget_destroy (GtkWidget* _sender, gpointer self);
+static void ___lambda19__gtk_widget_destroy (GtkWidget* _sender, gpointer self);
 #define BOOKWORM_APP_CONSTANTS_TEXT_FOR_SUBTITLE_HEADERBAR _ ("eBook Reader")
 #define BOOKWORM_APP_CONSTANTS_LIBRARY_VIEW_IMAGE_LOCATION "/usr/share/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg"
 #define BOOKWORM_APP_CONSTANTS_CONTENTS_VIEW_IMAGE_LOCATION "/usr/share/icons/hicolor/16x16/actions/bookworm-view-list-symbolic.svg"
@@ -178,6 +183,7 @@ GraniteWidgetsAppMenu* bookworm_app_bookworm_createBookwormMenu (BookwormAppBook
 static void __lambda6_ (BookwormAppBookworm* self);
 static void ___lambda6__gtk_search_entry_search_changed (GtkSearchEntry* _sender, gpointer self);
 static void __lambda7_ (BookwormAppBookworm* self);
+void bookworm_app_bookworm_updateLibraryViewForSelectionMode (BookwormAppBookworm* self, BookwormAppBook* lBook);
 static void ___lambda7__gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void __lambda8_ (BookwormAppBookworm* self);
 BookwormAppBook* bookworm_app_epub_reader_renderPage (WebKitWebView* aWebView, BookwormAppBook* aBook, const gchar* direction);
@@ -189,6 +195,7 @@ static void ___lambda4__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer s
 static void __lambda5_ (BookwormAppBookworm* self);
 static void ___lambda5__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _granite_application_show_about_granite_widgets_app_menu_show_about (GraniteWidgetsAppMenu* _sender, GtkWidget* w, gpointer self);
+#define BOOKWORM_APP_CONSTANTS_SELECTION_IMAGE_BUTTON_LOCATION "/usr/share/icons/hicolor/24x24/actions/bookworm-selection.svg"
 #define BOOKWORM_APP_CONSTANTS_ADD_BOOK_ICON_IMAGE_LOCATION "/usr/share/icons/hicolor/16x16/actions/bookworm-list-add.svg"
 #define BOOKWORM_APP_CONSTANTS_REMOVE_BOOK_ICON_IMAGE_LOCATION "/usr/share/icons/hicolor/16x16/actions/bookworm-list-remove.svg"
 #define BOOKWORM_APP_CONSTANTS_SPACING_BUTTONS 6
@@ -196,6 +203,7 @@ static void _granite_application_show_about_granite_widgets_app_menu_show_about 
 #define BOOKWORM_APP_CONSTANTS_NEXT_PAGE_ICON_IMAGE_LOCATION "/usr/share/icons/hicolor/16x16/actions/bookworm-go-next.svg"
 static void __lambda9_ (BookwormAppBookworm* self);
 gchar* bookworm_app_book_to_string (BookwormAppBook* self);
+gchar* bookworm_app_book_getBookLocation (BookwormAppBook* self);
 static void ___lambda9__gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void __lambda10_ (BookwormAppBookworm* self);
 static void ___lambda10__gtk_button_clicked (GtkButton* _sender, gpointer self);
@@ -207,24 +215,29 @@ void bookworm_app_book_setBookLocation (BookwormAppBook* self, const gchar* aBoo
 void bookworm_app_bookworm_addBookToLibrary (BookwormAppBookworm* self, BookwormAppBook* aBook);
 static void ___lambda11__gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void __lambda14_ (BookwormAppBookworm* self);
-void bookworm_app_bookworm_removeBookFromLibrary (BookwormAppBookworm* self);
 static void ___lambda14__gtk_button_clicked (GtkButton* _sender, gpointer self);
-static gboolean __lambda15_ (BookwormAppBookworm* self);
-static gboolean ___lambda15__webkit_web_view_context_menu (WebKitWebView* _sender, WebKitContextMenu* context_menu, GdkEvent* event, WebKitHitTestResult* hit_test_result, gpointer self);
-static gboolean __lambda16_ (BookwormAppBookworm* self, GdkEventKey* ev);
-static gboolean ___lambda16__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self);
-static gboolean __lambda17_ (BookwormAppBookworm* self);
+static void __lambda15_ (BookwormAppBookworm* self);
+void bookworm_app_bookworm_removeSelectedBooksFromLibrary (BookwormAppBookworm* self);
+static void ___lambda15__gtk_button_clicked (GtkButton* _sender, gpointer self);
+static gboolean __lambda16_ (BookwormAppBookworm* self);
+static gboolean ___lambda16__webkit_web_view_context_menu (WebKitWebView* _sender, WebKitContextMenu* context_menu, GdkEvent* event, WebKitHitTestResult* hit_test_result, gpointer self);
+static gboolean __lambda17_ (BookwormAppBookworm* self, GdkEventKey* ev);
+static gboolean ___lambda17__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self);
+static gboolean __lambda18_ (BookwormAppBookworm* self);
 GeeArrayList* bookworm_app_book_getBookContentList (BookwormAppBook* self);
 #define BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL "file:///"
 void bookworm_app_book_setBookPageNumber (BookwormAppBook* self, gint aBookPageNumber);
 gint bookworm_app_book_getBookPageNumber (BookwormAppBook* self);
-static gboolean ___lambda17__webkit_web_view_decide_policy (WebKitWebView* _sender, WebKitPolicyDecision* decision, WebKitPolicyDecisionType type, gpointer self);
+static gboolean ___lambda18__webkit_web_view_decide_policy (WebKitWebView* _sender, WebKitPolicyDecision* decision, WebKitPolicyDecisionType type, gpointer self);
 void bookworm_app_bookworm_ensureRequiredSetUp (BookwormAppBookworm* self);
 void bookworm_app_bookworm_updateLibraryViewFromDB (BookwormAppBookworm* self);
 gchar* bookworm_app_utils_fileOperations (const gchar* operation, const gchar* path, const gchar* filename, const gchar* contents);
 #define BOOKWORM_APP_CONSTANTS_EPUB_EXTRACTION_LOCATION "/tmp/bookworm/"
+#define BOOKWORM_APP_CONSTANTS_DEFAULT_COVER_IMAGE_LOCATION "/usr/share/icons/hicolor/256x256/apps/bookworm-defaultbook.png"
+gboolean bookworm_app_book_getIsBookSelected (BookwormAppBook* self);
+GtkEventBox* bookworm_app_book_getEventBox (BookwormAppBook* self);
+void bookworm_app_bookworm_removeBookFromDB (BookwormAppBookworm* self, BookwormAppBook* aBook);
 GtkFileChooserDialog* bookworm_app_utils_new_file_chooser_dialog (GtkFileChooserAction action, const gchar* title, GtkWindow* parent, gboolean select_multiple);
-gchar* bookworm_app_book_getBookLocation (BookwormAppBook* self);
 gchar* bookworm_app_epub_reader_extractEBook (const gchar* eBookLocation);
 void bookworm_app_book_setBookExtractionLocation (BookwormAppBook* self, const gchar* aBookExtractionLocation);
 BookwormAppBook* bookworm_app_epub_reader_getBookCoverImageLocation (BookwormAppBook* aBook, const gchar* bookworm_config_path);
@@ -235,12 +248,19 @@ static Block1Data* block1_data_ref (Block1Data* _data1_);
 static void block1_data_unref (void * _userdata_);
 gchar* bookworm_app_book_getBookCoverLocation (BookwormAppBook* self);
 gboolean bookworm_app_book_getIsBookCoverImagePresent (BookwormAppBook* self);
-#define BOOKWORM_APP_CONSTANTS_DEFAULT_COVER_IMAGE_LOCATION "/usr/share/icons/hicolor/256x256/apps/bookworm-defaultbook.png"
 gchar* bookworm_app_book_getBookTitle (BookwormAppBook* self);
-#define BOOKWORM_APP_CONSTANTS_MAX_BOOK_COVER_PER_ROW 8
+#define BOOKWORM_APP_CONSTANTS_MAX_BOOK_COVER_PER_ROW 6
+void bookworm_app_book_setCoverImage (BookwormAppBook* self, GtkImage* aCoverImage);
+void bookworm_app_book_setEventBox (BookwormAppBook* self, GtkEventBox* aEventBox);
+void bookworm_app_book_setOverlayImage (BookwormAppBook* self, GtkOverlay* aOverlayImage);
 static gboolean __lambda13_ (Block1Data* _data1_);
 void bookworm_app_bookworm_readSelectedBook (BookwormAppBookworm* self, BookwormAppBook* aBook);
 static gboolean ___lambda13__gtk_widget_button_press_event (GtkWidget* _sender, GdkEventButton* event, gpointer self);
+void bookworm_app_book_setIsBookSelected (BookwormAppBook* self, gboolean aIsBookSelected);
+GtkOverlay* bookworm_app_book_getOverlayImage (BookwormAppBook* self);
+GtkImage* bookworm_app_book_getCoverImage (BookwormAppBook* self);
+#define BOOKWORM_APP_CONSTANTS_SELECTION_OPTION_IMAGE_LOCATION "/usr/share/icons/hicolor/24x24/actions/bookworm-selection-option.svg"
+#define BOOKWORM_APP_CONSTANTS_SELECTION_CHECKED_IMAGE_LOCATION "/usr/share/icons/hicolor/24x24/actions/bookworm-selection-checked.svg"
 gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd);
 BookwormAppBook* bookworm_app_epub_reader_getListOfPagesInBook (BookwormAppBook* aBook);
 void bookworm_app_book_setBookId (BookwormAppBook* self, gint aBookId);
@@ -255,49 +275,49 @@ static void bookworm_app_bookworm_finalize (GObject* obj);
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func);
 
-extern const gchar* BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[2];
+extern const gchar* BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[4];
 
 BookwormAppBookworm* bookworm_app_bookworm_construct (GType object_type) {
 	BookwormAppBookworm * self = NULL;
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self = (BookwormAppBookworm*) granite_application_construct (object_type);
-#line 85 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	setlocale (LC_MESSAGES, "");
-#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	textdomain (GETTEXT_PACKAGE);
-#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "utf-8");
-#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bindtextdomain (GETTEXT_PACKAGE, "./locale");
-#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:89: Completed setting Internalization...");
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 97 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:97: Completed setting Internalization...");
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return self;
-#line 277 "bookworm.c"
+#line 297 "bookworm.c"
 }
 
 
 BookwormAppBookworm* bookworm_app_bookworm_new (void) {
-#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return bookworm_app_bookworm_construct (BOOKWORM_APP_TYPE_BOOKWORM);
-#line 284 "bookworm.c"
+#line 304 "bookworm.c"
 }
 
 
 static gboolean _vala_string_array_contains (gchar** stack, int stack_length, gchar* needle) {
 	int i;
-#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	for (i = 0; i < stack_length; i++) {
-#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		if (g_strcmp0 (stack[i], needle) == 0) {
-#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			return TRUE;
-#line 296 "bookworm.c"
+#line 316 "bookworm.c"
 		}
 	}
-#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return FALSE;
-#line 301 "bookworm.c"
+#line 321 "bookworm.c"
 }
 
 
@@ -314,139 +334,139 @@ gint bookworm_app_bookworm_main (gchar** args, int args_length1) {
 	gboolean _tmp6_ = FALSE;
 	gchar** _tmp7_ = NULL;
 	gint _tmp7__length1 = 0;
-#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = g_log_default_handler;
-#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0__target = NULL;
-#line 93 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_log_set_handler ("bookworm", G_LOG_LEVEL_DEBUG, _tmp0_, _tmp0__target);
-#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = args;
-#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1__length1 = args_length1;
-#line 94 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_vala_string_array_contains (_tmp1_, _tmp1__length1, "--debug")) {
-#line 95 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 103 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		g_setenv ("G_MESSAGES_DEBUG", "all", TRUE);
-#line 96 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_debug ("bookworm.vala:96: Bookworm Application running in debug mode - all deb" \
-"ug messages will be displayed");
-#line 334 "bookworm.c"
+#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_debug ("bookworm.vala:104: Bookworm Application running in debug mode - all de" \
+"bug messages will be displayed");
+#line 354 "bookworm.c"
 	}
-#line 98 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = bookworm_app_bookworm_new ();
-#line 98 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (bookworm_app_bookworm_application);
-#line 98 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 106 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_application = _tmp2_;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp7_ = args;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp7__length1 = args_length1;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_vala_string_array_contains (_tmp7_, _tmp7__length1, "--help")) {
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp6_ = TRUE;
-#line 350 "bookworm.c"
+#line 370 "bookworm.c"
 	} else {
 		gchar** _tmp8_ = NULL;
 		gint _tmp8__length1 = 0;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp8_ = args;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp8__length1 = args_length1;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp6_ = _vala_string_array_contains (_tmp8_, _tmp8__length1, "-h");
-#line 360 "bookworm.c"
+#line 380 "bookworm.c"
 	}
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp6_) {
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp5_ = TRUE;
-#line 366 "bookworm.c"
+#line 386 "bookworm.c"
 	} else {
 		gchar** _tmp9_ = NULL;
 		gint _tmp9__length1 = 0;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp9_ = args;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp9__length1 = args_length1;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp5_ = _vala_string_array_contains (_tmp9_, _tmp9__length1, "--monitor");
-#line 376 "bookworm.c"
+#line 396 "bookworm.c"
 	}
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp5_) {
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp4_ = TRUE;
-#line 382 "bookworm.c"
+#line 402 "bookworm.c"
 	} else {
 		gchar** _tmp10_ = NULL;
 		gint _tmp10__length1 = 0;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp10_ = args;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp10__length1 = args_length1;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp4_ = _vala_string_array_contains (_tmp10_, _tmp10__length1, "--alert");
-#line 392 "bookworm.c"
+#line 412 "bookworm.c"
 	}
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp4_) {
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp3_ = TRUE;
-#line 398 "bookworm.c"
+#line 418 "bookworm.c"
 	} else {
 		gchar** _tmp11_ = NULL;
 		gint _tmp11__length1 = 0;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp11_ = args;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp11__length1 = args_length1;
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp3_ = _vala_string_array_contains (_tmp11_, _tmp11__length1, "--version");
-#line 408 "bookworm.c"
+#line 428 "bookworm.c"
 	}
-#line 101 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp3_) {
-#line 412 "bookworm.c"
+#line 432 "bookworm.c"
 		BookwormAppBookworm* _tmp12_ = NULL;
 		gchar** _tmp13_ = NULL;
 		gint _tmp13__length1 = 0;
 		gint _tmp14_ = 0;
-#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp12_ = bookworm_app_bookworm_application;
-#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp13_ = args;
-#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp13__length1 = args_length1;
-#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp14_ = bookworm_app_bookworm_processCommandLine (_tmp12_, _tmp13_, _tmp13__length1);
-#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		result = _tmp14_;
-#line 102 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		return result;
-#line 429 "bookworm.c"
+#line 449 "bookworm.c"
 	} else {
 		BookwormAppBookworm* _tmp15_ = NULL;
 		gchar** _tmp16_ = NULL;
 		gint _tmp16__length1 = 0;
 		gint _tmp17_ = 0;
-#line 104 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 112 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		gtk_init (&args_length1, &args);
-#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 113 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp15_ = bookworm_app_bookworm_application;
-#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 113 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp16_ = args;
-#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 113 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp16__length1 = args_length1;
-#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 113 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp17_ = granite_application_run ((GraniteApplication*) _tmp15_, _tmp16_, _tmp16__length1);
-#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 113 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		result = _tmp17_;
-#line 105 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 113 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		return result;
-#line 449 "bookworm.c"
+#line 469 "bookworm.c"
 	}
 }
 
@@ -455,26 +475,26 @@ int main (int argc, char ** argv) {
 #if !GLIB_CHECK_VERSION (2,35,0)
 	g_type_init ();
 #endif
-#line 92 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 100 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return bookworm_app_bookworm_main (argv, argc);
-#line 460 "bookworm.c"
+#line 480 "bookworm.c"
 }
 
 
 static gint bookworm_app_bookworm_real_command_line (GApplication* base, GApplicationCommandLine* command_line) {
 	BookwormAppBookworm * self;
 	gint result = 0;
-#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self = (BookwormAppBookworm*) base;
-#line 109 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_val_if_fail (command_line != NULL, 0);
-#line 110 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_application_activate ((GApplication*) self);
-#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	result = 0;
-#line 111 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 477 "bookworm.c"
+#line 497 "bookworm.c"
 }
 
 
@@ -483,9 +503,9 @@ static gint bookworm_app_bookworm_processCommandLine (BookwormAppBookworm* self,
 	gboolean _tmp10_ = FALSE;
 	gboolean _tmp11_ = FALSE;
 	GError * _inner_error_ = NULL;
-#line 114 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 488 "bookworm.c"
+#line 508 "bookworm.c"
 	{
 		GOptionContext* opt_context = NULL;
 		GOptionContext* _tmp0_ = NULL;
@@ -499,58 +519,58 @@ static gint bookworm_app_bookworm_processCommandLine (BookwormAppBookworm* self,
 		gint tmpArgs_length1 = 0;
 		gint _tmpArgs_size_ = 0;
 		GOptionContext* _tmp5_ = NULL;
-#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp0_ = g_option_context_new ("- bookworm");
-#line 116 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		opt_context = _tmp0_;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 125 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp1_ = opt_context;
-#line 117 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 125 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		g_option_context_set_help_enabled (_tmp1_, TRUE);
-#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 126 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp2_ = opt_context;
-#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 126 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp3_ = self->options;
-#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 126 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp3__length1 = self->options_length1;
-#line 118 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 126 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		g_option_context_add_main_entries (_tmp2_, _tmp3_, NULL);
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp4_ = args;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp4__length1 = args_length1;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		tmpArgs = _tmp4_;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		tmpArgs_length1 = _tmp4__length1;
-#line 119 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmpArgs_size_ = tmpArgs_length1;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp5_ = opt_context;
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		g_option_context_parse (_tmp5_, &tmpArgs_length1, &tmpArgs, &_inner_error_);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_g_option_context_free0 (opt_context);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			if (_inner_error_->domain == G_OPTION_ERROR) {
-#line 538 "bookworm.c"
+#line 558 "bookworm.c"
 				goto __catch0_g_option_error;
 			}
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_g_option_context_free0 (opt_context);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			g_clear_error (&_inner_error_);
-#line 120 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			return 0;
-#line 549 "bookworm.c"
+#line 569 "bookworm.c"
 		}
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_option_context_free0 (opt_context);
-#line 553 "bookworm.c"
+#line 573 "bookworm.c"
 	}
 	goto __finally0;
 	__catch0_g_option_error:
@@ -561,86 +581,86 @@ static gint bookworm_app_bookworm_processCommandLine (BookwormAppBookworm* self,
 		const gchar* _tmp7_ = NULL;
 		GError* _tmp8_ = NULL;
 		const gchar* _tmp9_ = NULL;
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		e = _inner_error_;
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_inner_error_ = NULL;
-#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp6_ = args;
-#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp6__length1 = args_length1;
-#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp7_ = _tmp6_[0];
-#line 122 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_info ("bookworm.vala:122: Run '%s --help' to see a full list of available com" \
+#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_info ("bookworm.vala:130: Run '%s --help' to see a full list of available com" \
 "mand line options.\n", _tmp7_);
-#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 131 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp8_ = e;
-#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 131 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp9_ = _tmp8_->message;
-#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_info ("bookworm.vala:123: error: %s\n", _tmp9_);
-#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 131 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_info ("bookworm.vala:131: error: %s\n", _tmp9_);
+#line 132 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		result = 0;
-#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 132 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_error_free0 (e);
-#line 124 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 132 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		return result;
-#line 588 "bookworm.c"
+#line 608 "bookworm.c"
 	}
 	__finally0:
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		g_clear_error (&_inner_error_);
-#line 115 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 123 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		return 0;
-#line 599 "bookworm.c"
-	}
-#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_ = bookworm_app_bookworm_command_line_option_debug;
-#line 127 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	if (_tmp10_) {
-#line 128 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_debug ("bookworm.vala:128: Bookworm running in debug mode...");
-#line 607 "bookworm.c"
-	}
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = bookworm_app_bookworm_command_line_option_version;
-#line 130 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	if (_tmp11_) {
-#line 131 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_print ("%s", "\nbookworm version " BOOKWORM_APP_CONSTANTS_bookworm_version " \n");
-#line 132 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		result = 0;
-#line 132 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		return result;
 #line 619 "bookworm.c"
-	} else {
-#line 134 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_application_activate ((GApplication*) self);
+	}
 #line 135 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		result = 0;
+	_tmp10_ = bookworm_app_bookworm_command_line_option_debug;
 #line 135 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		return result;
+	if (_tmp10_) {
+#line 136 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_debug ("bookworm.vala:136: Bookworm running in debug mode...");
 #line 627 "bookworm.c"
 	}
+#line 138 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = bookworm_app_bookworm_command_line_option_version;
+#line 138 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (_tmp11_) {
+#line 139 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_print ("%s", "\nbookworm version " BOOKWORM_APP_CONSTANTS_bookworm_version " \n");
+#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		result = 0;
+#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		return result;
+#line 639 "bookworm.c"
+	} else {
+#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_application_activate ((GApplication*) self);
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		result = 0;
+#line 143 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		return result;
+#line 647 "bookworm.c"
+	}
 }
 
 
-static void __lambda18_ (BookwormAppBookworm* self) {
-#line 159 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+static void __lambda19_ (BookwormAppBookworm* self) {
+#line 167 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_saveBookwormState (self);
-#line 635 "bookworm.c"
+#line 655 "bookworm.c"
 }
 
 
-static void ___lambda18__gtk_widget_destroy (GtkWidget* _sender, gpointer self) {
-#line 157 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	__lambda18_ ((BookwormAppBookworm*) self);
-#line 642 "bookworm.c"
+static void ___lambda19__gtk_widget_destroy (GtkWidget* _sender, gpointer self) {
+#line 165 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	__lambda19_ ((BookwormAppBookworm*) self);
+#line 662 "bookworm.c"
 }
 
 
@@ -658,67 +678,67 @@ static void bookworm_app_bookworm_real_activate (GApplication* base) {
 	GtkBox* _tmp9_ = NULL;
 	GtkWindow* _tmp10_ = NULL;
 	GtkWindow* _tmp11_ = NULL;
-#line 139 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 147 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self = (BookwormAppBookworm*) base;
-#line 140 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:140: Starting to activate Gtk Window for Bookworm...");
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp0_ = (GtkWindow*) gtk_window_new (GTK_WINDOW_TOPLEVEL);
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp0_);
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (self->window);
-#line 141 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->window = _tmp0_;
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = self->window;
-#line 142 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_application_add_window ((GtkApplication*) self, _tmp1_);
-#line 144 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp2_ = self->window;
-#line 144 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_window_set_default_size (_tmp2_, 1000, 600);
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp3_ = self->window;
-#line 145 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_container_set_border_width ((GtkContainer*) _tmp3_, (guint) BOOKWORM_APP_CONSTANTS_SPACING_WIDGETS);
-#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp4_ = self->window;
-#line 146 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_window_set_position (_tmp4_, GTK_WIN_POS_CENTER);
-#line 147 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp5_ = self->window;
-#line 147 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_set (_tmp5_, "window-position", GTK_WIN_POS_CENTER, NULL);
+#line 148 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:148: Starting to activate Gtk Window for Bookworm...");
 #line 149 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	bookworm_app_bookworm_loadBookwormState (self);
-#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp6_ = self->window;
-#line 151 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	bookworm_app_bookworm_create_headerbar (self, _tmp6_);
+	_tmp0_ = (GtkWindow*) gtk_window_new (GTK_WINDOW_TOPLEVEL);
+#line 149 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp0_);
+#line 149 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->window);
+#line 149 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->window = _tmp0_;
+#line 150 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = self->window;
+#line 150 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_application_add_window ((GtkApplication*) self, _tmp1_);
 #line 152 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp7_ = self->window;
+	_tmp2_ = self->window;
 #line 152 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp8_ = bookworm_app_bookworm_createBoookwormUI (self);
-#line 152 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp9_ = _tmp8_;
-#line 152 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_container_add ((GtkContainer*) _tmp7_, (GtkWidget*) _tmp9_);
-#line 152 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (_tmp9_);
+	gtk_window_set_default_size (_tmp2_, 1000, 600);
 #line 153 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_ = self->window;
+	_tmp3_ = self->window;
 #line 153 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_widget_show_all ((GtkWidget*) _tmp10_);
+	gtk_container_set_border_width ((GtkContainer*) _tmp3_, (guint) BOOKWORM_APP_CONSTANTS_SPACING_WIDGETS);
 #line 154 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	bookworm_app_bookworm_toggleUIState (self);
+	_tmp4_ = self->window;
+#line 154 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_window_set_position (_tmp4_, GTK_WIN_POS_CENTER);
+#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp5_ = self->window;
+#line 155 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_set (_tmp5_, "window-position", GTK_WIN_POS_CENTER, NULL);
 #line 157 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = self->window;
-#line 157 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp11_, "destroy", (GCallback) ___lambda18__gtk_widget_destroy, self, 0);
+	bookworm_app_bookworm_loadBookwormState (self);
+#line 159 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp6_ = self->window;
+#line 159 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_bookworm_create_headerbar (self, _tmp6_);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp7_ = self->window;
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp8_ = bookworm_app_bookworm_createBoookwormUI (self);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp9_ = _tmp8_;
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_container_add ((GtkContainer*) _tmp7_, (GtkWidget*) _tmp9_);
+#line 160 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (_tmp9_);
 #line 161 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:161: Completed loading Gtk Window for Bookworm...");
-#line 720 "bookworm.c"
+	_tmp10_ = self->window;
+#line 161 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_widget_show_all ((GtkWidget*) _tmp10_);
+#line 162 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_bookworm_toggleUIState (self);
+#line 165 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = self->window;
+#line 165 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object ((GtkWidget*) _tmp11_, "destroy", (GCallback) ___lambda19__gtk_widget_destroy, self, 0);
+#line 169 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:169: Completed loading Gtk Window for Bookworm...");
+#line 740 "bookworm.c"
 }
 
 
@@ -727,40 +747,47 @@ static void __lambda6_ (BookwormAppBookworm* self) {
 
 
 static void ___lambda6__gtk_search_entry_search_changed (GtkSearchEntry* _sender, gpointer self) {
-#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 204 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda6_ ((BookwormAppBookworm*) self);
-#line 731 "bookworm.c"
+#line 751 "bookworm.c"
 }
 
 
 static void __lambda7_ (BookwormAppBookworm* self) {
-	const gchar* _tmp0_ = NULL;
-	gchar* _tmp1_ = NULL;
-#line 201 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp0_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
-#line 201 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = g_strdup (_tmp0_);
-#line 201 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	GtkHeaderBar* _tmp0_ = NULL;
+	const gchar* _tmp1_ = NULL;
+	gchar* _tmp2_ = NULL;
+#line 209 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp0_ = self->headerbar;
+#line 209 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_header_bar_set_subtitle (_tmp0_, "");
+#line 211 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
+#line 211 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = g_strdup (_tmp1_);
+#line 211 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (self->BOOKWORM_CURRENT_STATE);
-#line 201 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->BOOKWORM_CURRENT_STATE = _tmp1_;
-#line 202 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 211 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->BOOKWORM_CURRENT_STATE = _tmp2_;
+#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_bookworm_updateLibraryViewForSelectionMode (self, NULL);
+#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_toggleUIState (self);
-#line 748 "bookworm.c"
+#line 775 "bookworm.c"
 }
 
 
 static void ___lambda7__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-#line 199 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda7_ ((BookwormAppBookworm*) self);
-#line 755 "bookworm.c"
+#line 782 "bookworm.c"
 }
 
 
 static gpointer _bookworm_app_book_ref0 (gpointer self) {
-#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return self ? bookworm_app_book_ref (self) : NULL;
-#line 762 "bookworm.c"
+#line 789 "bookworm.c"
 }
 
 
@@ -772,36 +799,36 @@ static void __lambda8_ (BookwormAppBookworm* self) {
 	BookwormAppBook* _tmp4_ = NULL;
 	BookwormAppBook* _tmp5_ = NULL;
 	BookwormAppBook* _tmp6_ = NULL;
-#line 206 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 217 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = bookworm_app_bookworm_libraryViewMap;
-#line 206 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 217 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = self->locationOfEBookCurrentlyRead;
-#line 206 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 217 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp0_, _tmp1_);
-#line 206 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 217 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (self->aBook);
-#line 206 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 217 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->aBook = (BookwormAppBook*) _tmp2_;
-#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = self->aWebView;
-#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = self->aBook;
-#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp5_ = _bookworm_app_book_ref0 (_tmp4_);
-#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp6_ = bookworm_app_epub_reader_renderPage (_tmp3_, _tmp5_, "TABLE_OF_CONTENTS");
-#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (self->aBook);
-#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->aBook = _tmp6_;
-#line 796 "bookworm.c"
+#line 823 "bookworm.c"
 }
 
 
 static void ___lambda8__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-#line 204 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 215 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda8_ ((BookwormAppBookworm*) self);
-#line 803 "bookworm.c"
+#line 830 "bookworm.c"
 }
 
 
@@ -836,147 +863,147 @@ static void bookworm_app_bookworm_create_headerbar (BookwormAppBookworm* self, G
 	GtkSearchEntry* _tmp23_ = NULL;
 	GtkSearchEntry* _tmp24_ = NULL;
 	GtkSearchEntry* _tmp25_ = NULL;
-#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (window != NULL);
-#line 165 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:165: Starting creation of header bar..");
-#line 166 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 173 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:173: Starting creation of header bar..");
+#line 174 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = (GtkHeaderBar*) gtk_header_bar_new ();
-#line 166 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 174 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_object_ref_sink (_tmp0_);
-#line 166 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 174 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (self->headerbar);
-#line 166 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 174 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->headerbar = _tmp0_;
-#line 167 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = self->headerbar;
-#line 167 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp2_ = ((GraniteApplication*) self)->program_name;
-#line 167 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_header_bar_set_title (_tmp1_, _tmp2_);
-#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp3_ = self->headerbar;
-#line 168 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_header_bar_set_subtitle (_tmp3_, BOOKWORM_APP_CONSTANTS_TEXT_FOR_SUBTITLE_HEADERBAR);
-#line 169 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp4_ = self->headerbar;
-#line 169 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_header_bar_set_show_close_button (_tmp4_, TRUE);
-#line 170 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp5_ = self->headerbar;
-#line 170 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_set (_tmp5_, "spacing", BOOKWORM_APP_CONSTANTS_SPACING_WIDGETS, NULL);
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp6_ = window;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp7_ = self->headerbar;
-#line 171 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_window_set_titlebar (_tmp6_, (GtkWidget*) _tmp7_);
-#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp8_ = window;
-#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_window_maximize (_tmp8_);
-#line 174 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp9_ = (GtkImage*) gtk_image_new ();
-#line 174 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp9_);
-#line 174 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	library_view_button_image = _tmp9_;
 #line 175 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_image_set_from_file (library_view_button_image, BOOKWORM_APP_CONSTANTS_LIBRARY_VIEW_IMAGE_LOCATION);
+	_tmp1_ = self->headerbar;
+#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = ((GraniteApplication*) self)->program_name;
+#line 175 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_header_bar_set_title (_tmp1_, _tmp2_);
 #line 176 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_ = (GtkButton*) gtk_button_new ();
+	_tmp3_ = self->headerbar;
 #line 176 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp10_);
-#line 176 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	library_view_button = _tmp10_;
+	gtk_header_bar_set_subtitle (_tmp3_, BOOKWORM_APP_CONSTANTS_TEXT_FOR_SUBTITLE_HEADERBAR);
 #line 177 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_button_set_image (library_view_button, (GtkWidget*) library_view_button_image);
+	_tmp4_ = self->headerbar;
+#line 177 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_header_bar_set_show_close_button (_tmp4_, TRUE);
+#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp5_ = self->headerbar;
+#line 178 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_set (_tmp5_, "spacing", BOOKWORM_APP_CONSTANTS_SPACING_WIDGETS, NULL);
 #line 179 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = (GtkImage*) gtk_image_new ();
+	_tmp6_ = window;
 #line 179 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp11_);
+	_tmp7_ = self->headerbar;
 #line 179 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	content_list_button_image = _tmp11_;
+	gtk_window_set_titlebar (_tmp6_, (GtkWidget*) _tmp7_);
 #line 180 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_image_set_from_file (content_list_button_image, BOOKWORM_APP_CONSTANTS_CONTENTS_VIEW_IMAGE_LOCATION);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp12_ = (GtkButton*) gtk_button_new ();
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp12_);
-#line 181 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	content_list_button = _tmp12_;
+	_tmp8_ = window;
+#line 180 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_window_maximize (_tmp8_);
 #line 182 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp9_ = (GtkImage*) gtk_image_new ();
+#line 182 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp9_);
+#line 182 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	library_view_button_image = _tmp9_;
+#line 183 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_image_set_from_file (library_view_button_image, BOOKWORM_APP_CONSTANTS_LIBRARY_VIEW_IMAGE_LOCATION);
+#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp10_ = (GtkButton*) gtk_button_new ();
+#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp10_);
+#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	library_view_button = _tmp10_;
+#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_button_set_image (library_view_button, (GtkWidget*) library_view_button_image);
+#line 187 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = (GtkImage*) gtk_image_new ();
+#line 187 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp11_);
+#line 187 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	content_list_button_image = _tmp11_;
+#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_image_set_from_file (content_list_button_image, BOOKWORM_APP_CONSTANTS_CONTENTS_VIEW_IMAGE_LOCATION);
+#line 189 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp12_ = (GtkButton*) gtk_button_new ();
+#line 189 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp12_);
+#line 189 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	content_list_button = _tmp12_;
+#line 190 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	gtk_button_set_image (content_list_button, (GtkWidget*) content_list_button_image);
-#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp13_ = self->headerbar;
-#line 184 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	gtk_header_bar_pack_start (_tmp13_, (GtkWidget*) library_view_button);
-#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 193 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp14_ = self->headerbar;
-#line 185 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 193 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	gtk_header_bar_pack_start (_tmp14_, (GtkWidget*) content_list_button);
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp15_ = self->headerbar;
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp16_ = (GtkMenu*) gtk_menu_new ();
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_object_ref_sink (_tmp16_);
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp17_ = _tmp16_;
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp18_ = bookworm_app_bookworm_createBookwormMenu (self, _tmp17_);
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp19_ = _tmp18_;
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	gtk_header_bar_pack_end (_tmp15_, (GtkWidget*) _tmp19_);
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (_tmp19_);
-#line 188 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (_tmp17_);
-#line 191 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp20_ = (GtkSearchEntry*) gtk_search_entry_new ();
-#line 191 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp20_);
-#line 191 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (self->headerSearchBar);
-#line 191 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->headerSearchBar = _tmp20_;
-#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp21_ = self->headerSearchBar;
-#line 192 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_entry_set_text ((GtkEntry*) _tmp21_, BOOKWORM_APP_CONSTANTS_TEXT_FOR_SEARCH_HEADERBAR);
-#line 193 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp22_ = self->headerbar;
-#line 193 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp23_ = self->headerSearchBar;
-#line 193 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_header_bar_pack_end (_tmp22_, (GtkWidget*) _tmp23_);
-#line 194 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp24_ = self->headerSearchBar;
-#line 194 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_widget_set_sensitive ((GtkWidget*) _tmp24_, FALSE);
-#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp25_ = self->headerSearchBar;
-#line 196 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (_tmp25_, "search-changed", (GCallback) ___lambda6__gtk_search_entry_search_changed, self, 0);
 #line 199 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (library_view_button, "clicked", (GCallback) ___lambda7__gtk_button_clicked, self, 0);
+	_tmp20_ = (GtkSearchEntry*) gtk_search_entry_new ();
+#line 199 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp20_);
+#line 199 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->headerSearchBar);
+#line 199 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->headerSearchBar = _tmp20_;
+#line 200 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp21_ = self->headerSearchBar;
+#line 200 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_entry_set_text ((GtkEntry*) _tmp21_, BOOKWORM_APP_CONSTANTS_TEXT_FOR_SEARCH_HEADERBAR);
+#line 201 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp22_ = self->headerbar;
+#line 201 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp23_ = self->headerSearchBar;
+#line 201 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_header_bar_pack_end (_tmp22_, (GtkWidget*) _tmp23_);
+#line 202 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp24_ = self->headerSearchBar;
+#line 202 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp24_, FALSE);
 #line 204 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp25_ = self->headerSearchBar;
+#line 204 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (_tmp25_, "search-changed", (GCallback) ___lambda6__gtk_search_entry_search_changed, self, 0);
+#line 207 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (library_view_button, "clicked", (GCallback) ___lambda7__gtk_button_clicked, self, 0);
+#line 215 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_signal_connect_object (content_list_button, "clicked", (GCallback) ___lambda8__gtk_button_clicked, self, 0);
-#line 209 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:209: Completed loading HeaderBar sucessfully...");
-#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 220 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:220: Completed loading HeaderBar sucessfully...");
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (content_list_button);
-#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (content_list_button_image);
-#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (library_view_button);
-#line 164 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 172 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (library_view_button_image);
-#line 978 "bookworm.c"
+#line 1005 "bookworm.c"
 }
 
 
@@ -985,9 +1012,9 @@ static void __lambda4_ (BookwormAppBookworm* self) {
 
 
 static void ___lambda4__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 223 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 234 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda4_ ((BookwormAppBookworm*) self);
-#line 989 "bookworm.c"
+#line 1016 "bookworm.c"
 }
 
 
@@ -996,16 +1023,16 @@ static void __lambda5_ (BookwormAppBookworm* self) {
 
 
 static void ___lambda5__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 226 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 237 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda5_ ((BookwormAppBookworm*) self);
-#line 1000 "bookworm.c"
+#line 1027 "bookworm.c"
 }
 
 
 static void _granite_application_show_about_granite_widgets_app_menu_show_about (GraniteWidgetsAppMenu* _sender, GtkWidget* w, gpointer self) {
-#line 230 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 241 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	granite_application_show_about ((GraniteApplication*) self, w);
-#line 1007 "bookworm.c"
+#line 1034 "bookworm.c"
 }
 
 
@@ -1020,139 +1047,155 @@ GraniteWidgetsAppMenu* bookworm_app_bookworm_createBookwormMenu (BookwormAppBook
 	GtkMenu* _tmp3_ = NULL;
 	GtkMenu* _tmp4_ = NULL;
 	GraniteWidgetsAppMenu* _tmp5_ = NULL;
-#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_return_val_if_fail (self != NULL, NULL);
-#line 212 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_return_val_if_fail (menu != NULL, NULL);
-#line 213 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:213: Starting creation of Bookworm Menu...");
-#line 216 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp0_ = (GtkMenuItem*) gtk_menu_item_new_with_label (BOOKWORM_APP_CONSTANTS_TEXT_FOR_HEADERBAR_MENU_PREFS);
-#line 216 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp0_);
-#line 216 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	menuItemPrefferences = _tmp0_;
-#line 217 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = menu;
-#line 217 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_container_add ((GtkContainer*) _tmp1_, (GtkWidget*) menuItemPrefferences);
-#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp2_ = (GtkMenuItem*) gtk_menu_item_new_with_label (BOOKWORM_APP_CONSTANTS_TEXT_FOR_HEADERBAR_MENU_EXPORT);
-#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp2_);
-#line 218 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	menuItemExportToFile = _tmp2_;
-#line 219 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp3_ = menu;
-#line 219 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_container_add ((GtkContainer*) _tmp3_, (GtkWidget*) menuItemExportToFile);
-#line 220 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp4_ = menu;
-#line 220 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp5_ = granite_widgets_app_menu_new_with_app ((GraniteApplication*) self, _tmp4_);
-#line 220 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp5_);
-#line 220 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (app_menu);
-#line 220 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	app_menu = _tmp5_;
 #line 223 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (menuItemPrefferences, "activate", (GCallback) ___lambda4__gtk_menu_item_activate, self, 0);
-#line 226 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (menuItemExportToFile, "activate", (GCallback) ___lambda5__gtk_menu_item_activate, self, 0);
+	g_return_val_if_fail (self != NULL, NULL);
+#line 223 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_return_val_if_fail (menu != NULL, NULL);
+#line 224 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:224: Starting creation of Bookworm Menu...");
+#line 227 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp0_ = (GtkMenuItem*) gtk_menu_item_new_with_label (BOOKWORM_APP_CONSTANTS_TEXT_FOR_HEADERBAR_MENU_PREFS);
+#line 227 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp0_);
+#line 227 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	menuItemPrefferences = _tmp0_;
+#line 228 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = menu;
+#line 228 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_container_add ((GtkContainer*) _tmp1_, (GtkWidget*) menuItemPrefferences);
+#line 229 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = (GtkMenuItem*) gtk_menu_item_new_with_label (BOOKWORM_APP_CONSTANTS_TEXT_FOR_HEADERBAR_MENU_EXPORT);
+#line 229 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp2_);
+#line 229 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	menuItemExportToFile = _tmp2_;
 #line 230 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (app_menu, "show-about", (GCallback) _granite_application_show_about_granite_widgets_app_menu_show_about, (GraniteApplication*) self, 0);
+	_tmp3_ = menu;
+#line 230 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_container_add ((GtkContainer*) _tmp3_, (GtkWidget*) menuItemExportToFile);
 #line 231 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:231: Completed creation of Bookworm Menu sucessfully...");
-#line 232 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp4_ = menu;
+#line 231 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp5_ = granite_widgets_app_menu_new_with_app ((GraniteApplication*) self, _tmp4_);
+#line 231 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp5_);
+#line 231 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (app_menu);
+#line 231 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	app_menu = _tmp5_;
+#line 234 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (menuItemPrefferences, "activate", (GCallback) ___lambda4__gtk_menu_item_activate, self, 0);
+#line 237 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (menuItemExportToFile, "activate", (GCallback) ___lambda5__gtk_menu_item_activate, self, 0);
+#line 241 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (app_menu, "show-about", (GCallback) _granite_application_show_about_granite_widgets_app_menu_show_about, (GraniteApplication*) self, 0);
+#line 242 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:242: Completed creation of Bookworm Menu sucessfully...");
+#line 243 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	result = app_menu;
-#line 232 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 243 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (menuItemExportToFile);
-#line 232 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 243 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (menuItemPrefferences);
-#line 232 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 243 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 1074 "bookworm.c"
+#line 1101 "bookworm.c"
 }
 
 
 static void __lambda9_ (BookwormAppBookworm* self) {
-	const gchar* _tmp0_ = NULL;
-	gchar* _tmp1_ = NULL;
-	gchar* _tmp2_ = NULL;
-	GeeHashMap* _tmp3_ = NULL;
-	const gchar* _tmp4_ = NULL;
-	gpointer _tmp5_ = NULL;
-	BookwormAppBook* _tmp6_ = NULL;
+	GeeHashMap* _tmp0_ = NULL;
+	const gchar* _tmp1_ = NULL;
+	gpointer _tmp2_ = NULL;
+	BookwormAppBook* _tmp3_ = NULL;
+	gchar* _tmp4_ = NULL;
+	gchar* _tmp5_ = NULL;
+	gchar* _tmp6_ = NULL;
 	gchar* _tmp7_ = NULL;
-	gchar* _tmp8_ = NULL;
-	gchar* _tmp9_ = NULL;
-	gchar* _tmp10_ = NULL;
-	WebKitWebView* _tmp11_ = NULL;
-	BookwormAppBook* _tmp12_ = NULL;
+	WebKitWebView* _tmp8_ = NULL;
+	BookwormAppBook* _tmp9_ = NULL;
+	BookwormAppBook* _tmp10_ = NULL;
+	BookwormAppBook* _tmp11_ = NULL;
+	GeeHashMap* _tmp12_ = NULL;
 	BookwormAppBook* _tmp13_ = NULL;
-	BookwormAppBook* _tmp14_ = NULL;
-	WebKitWebView* _tmp15_ = NULL;
-#line 313 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp0_ = self->locationOfEBookCurrentlyRead;
-#line 313 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = g_strconcat ("locationOfEBookCurrentlyRead=", _tmp0_, NULL);
-#line 313 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp2_ = _tmp1_;
-#line 313 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:313: %s", _tmp2_);
-#line 313 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp2_);
-#line 315 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp3_ = bookworm_app_bookworm_libraryViewMap;
-#line 315 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp4_ = self->locationOfEBookCurrentlyRead;
-#line 315 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp5_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp3_, _tmp4_);
-#line 315 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gchar* _tmp14_ = NULL;
+	gchar* _tmp15_ = NULL;
+	BookwormAppBook* _tmp16_ = NULL;
+	BookwormAppBook* _tmp17_ = NULL;
+	gchar* _tmp18_ = NULL;
+	WebKitWebView* _tmp19_ = NULL;
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp0_ = bookworm_app_bookworm_libraryViewMap;
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = self->locationOfEBookCurrentlyRead;
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp0_, _tmp1_);
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (self->aBook);
-#line 315 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->aBook = (BookwormAppBook*) _tmp5_;
-#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp6_ = self->aBook;
-#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp7_ = bookworm_app_book_to_string (_tmp6_);
-#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp8_ = _tmp7_;
-#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp9_ = g_strconcat ("Initiating read forward for eBook:", _tmp8_, NULL);
-#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_ = _tmp9_;
-#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:316: %s", _tmp10_);
-#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp10_);
-#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp8_);
-#line 317 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = self->aWebView;
-#line 317 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp12_ = self->aBook;
-#line 317 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp13_ = _bookworm_app_book_ref0 (_tmp12_);
-#line 317 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp14_ = bookworm_app_epub_reader_renderPage (_tmp11_, _tmp13_, "FORWARD");
-#line 317 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->aBook = (BookwormAppBook*) _tmp2_;
+#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp3_ = self->aBook;
+#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp4_ = bookworm_app_book_to_string (_tmp3_);
+#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp5_ = _tmp4_;
+#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp6_ = g_strconcat ("Initiating read forward for eBook:", _tmp5_, NULL);
+#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp7_ = _tmp6_;
+#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:334: %s", _tmp7_);
+#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp7_);
+#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp5_);
+#line 335 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp8_ = self->aWebView;
+#line 335 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp9_ = self->aBook;
+#line 335 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp10_ = _bookworm_app_book_ref0 (_tmp9_);
+#line 335 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = bookworm_app_epub_reader_renderPage (_tmp8_, _tmp10_, "FORWARD");
+#line 335 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (self->aBook);
-#line 317 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->aBook = _tmp14_;
-#line 319 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp15_ = self->aWebView;
-#line 319 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_widget_grab_focus ((GtkWidget*) _tmp15_);
-#line 1147 "bookworm.c"
+#line 335 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->aBook = _tmp11_;
+#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp12_ = bookworm_app_bookworm_libraryViewMap;
+#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp13_ = self->aBook;
+#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp14_ = bookworm_app_book_getBookLocation (_tmp13_);
+#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp15_ = _tmp14_;
+#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp16_ = self->aBook;
+#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gee_abstract_map_set ((GeeAbstractMap*) _tmp12_, _tmp15_, _tmp16_);
+#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp15_);
+#line 338 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp17_ = self->aBook;
+#line 338 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp18_ = bookworm_app_book_getBookLocation (_tmp17_);
+#line 338 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (self->locationOfEBookCurrentlyRead);
+#line 338 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->locationOfEBookCurrentlyRead = _tmp18_;
+#line 340 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp19_ = self->aWebView;
+#line 340 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_widget_grab_focus ((GtkWidget*) _tmp19_);
+#line 1190 "bookworm.c"
 }
 
 
 static void ___lambda9__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-#line 312 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 331 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda9_ ((BookwormAppBookworm*) self);
-#line 1154 "bookworm.c"
+#line 1197 "bookworm.c"
 }
 
 
@@ -1160,45 +1203,95 @@ static void __lambda10_ (BookwormAppBookworm* self) {
 	GeeHashMap* _tmp0_ = NULL;
 	const gchar* _tmp1_ = NULL;
 	gpointer _tmp2_ = NULL;
-	WebKitWebView* _tmp3_ = NULL;
-	BookwormAppBook* _tmp4_ = NULL;
-	BookwormAppBook* _tmp5_ = NULL;
-	BookwormAppBook* _tmp6_ = NULL;
-	WebKitWebView* _tmp7_ = NULL;
-#line 324 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	BookwormAppBook* _tmp3_ = NULL;
+	gchar* _tmp4_ = NULL;
+	gchar* _tmp5_ = NULL;
+	gchar* _tmp6_ = NULL;
+	gchar* _tmp7_ = NULL;
+	WebKitWebView* _tmp8_ = NULL;
+	BookwormAppBook* _tmp9_ = NULL;
+	BookwormAppBook* _tmp10_ = NULL;
+	BookwormAppBook* _tmp11_ = NULL;
+	GeeHashMap* _tmp12_ = NULL;
+	BookwormAppBook* _tmp13_ = NULL;
+	gchar* _tmp14_ = NULL;
+	gchar* _tmp15_ = NULL;
+	BookwormAppBook* _tmp16_ = NULL;
+	BookwormAppBook* _tmp17_ = NULL;
+	gchar* _tmp18_ = NULL;
+	WebKitWebView* _tmp19_ = NULL;
+#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = bookworm_app_bookworm_libraryViewMap;
-#line 324 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = self->locationOfEBookCurrentlyRead;
-#line 324 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp0_, _tmp1_);
-#line 324 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (self->aBook);
-#line 324 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 345 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->aBook = (BookwormAppBook*) _tmp2_;
-#line 325 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp3_ = self->aWebView;
-#line 325 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp4_ = self->aBook;
-#line 325 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp5_ = _bookworm_app_book_ref0 (_tmp4_);
-#line 325 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp6_ = bookworm_app_epub_reader_renderPage (_tmp3_, _tmp5_, "BACKWARD");
-#line 325 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp3_ = self->aBook;
+#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp4_ = bookworm_app_book_to_string (_tmp3_);
+#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp5_ = _tmp4_;
+#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp6_ = g_strconcat ("Initiating read previous for eBook:", _tmp5_, NULL);
+#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp7_ = _tmp6_;
+#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:346: %s", _tmp7_);
+#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp7_);
+#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp5_);
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp8_ = self->aWebView;
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp9_ = self->aBook;
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp10_ = _bookworm_app_book_ref0 (_tmp9_);
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = bookworm_app_epub_reader_renderPage (_tmp8_, _tmp10_, "BACKWARD");
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (self->aBook);
-#line 325 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->aBook = _tmp6_;
-#line 327 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp7_ = self->aWebView;
-#line 327 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_widget_grab_focus ((GtkWidget*) _tmp7_);
-#line 1193 "bookworm.c"
+#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->aBook = _tmp11_;
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp12_ = bookworm_app_bookworm_libraryViewMap;
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp13_ = self->aBook;
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp14_ = bookworm_app_book_getBookLocation (_tmp13_);
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp15_ = _tmp14_;
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp16_ = self->aBook;
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gee_abstract_map_set ((GeeAbstractMap*) _tmp12_, _tmp15_, _tmp16_);
+#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp15_);
+#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp17_ = self->aBook;
+#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp18_ = bookworm_app_book_getBookLocation (_tmp17_);
+#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (self->locationOfEBookCurrentlyRead);
+#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->locationOfEBookCurrentlyRead = _tmp18_;
+#line 352 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp19_ = self->aWebView;
+#line 352 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_widget_grab_focus ((GtkWidget*) _tmp19_);
+#line 1286 "bookworm.c"
 }
 
 
 static void ___lambda10__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-#line 322 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 343 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda10_ ((BookwormAppBookworm*) self);
-#line 1200 "bookworm.c"
+#line 1293 "bookworm.c"
 }
 
 
@@ -1209,87 +1302,152 @@ static void __lambda11_ (BookwormAppBookworm* self) {
 	BookwormAppBook* _tmp2_ = NULL;
 	BookwormAppBook* _tmp3_ = NULL;
 	BookwormAppBook* _tmp4_ = NULL;
-#line 331 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 356 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = bookworm_app_bookworm_selectBookFileChooser (self);
-#line 331 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 356 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	pathToSelectedBook = _tmp0_;
-#line 332 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 357 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = bookworm_app_book_new ();
-#line 332 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 357 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (self->aBook);
-#line 332 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 357 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->aBook = _tmp1_;
-#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 358 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = self->aBook;
-#line 333 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 358 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_book_setBookLocation (_tmp2_, pathToSelectedBook);
-#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 359 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = self->aBook;
-#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 359 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = _bookworm_app_book_ref0 (_tmp3_);
-#line 334 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 359 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_addBookToLibrary (self, _tmp4_);
-#line 330 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (pathToSelectedBook);
-#line 1233 "bookworm.c"
+#line 1326 "bookworm.c"
 }
 
 
 static void ___lambda11__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-#line 330 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda11_ ((BookwormAppBookworm*) self);
-#line 1240 "bookworm.c"
+#line 1333 "bookworm.c"
 }
 
 
 static void __lambda14_ (BookwormAppBookworm* self) {
-#line 338 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	bookworm_app_bookworm_removeBookFromLibrary (self);
-#line 1247 "bookworm.c"
+	gboolean _tmp0_ = FALSE;
+	const gchar* _tmp1_ = NULL;
+	const gchar* _tmp2_ = NULL;
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = self->BOOKWORM_CURRENT_STATE;
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[2];
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (g_strcmp0 (_tmp1_, _tmp2_) == 0) {
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp0_ = TRUE;
+#line 1349 "bookworm.c"
+	} else {
+		const gchar* _tmp3_ = NULL;
+		const gchar* _tmp4_ = NULL;
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp3_ = self->BOOKWORM_CURRENT_STATE;
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp4_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[3];
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp0_ = g_strcmp0 (_tmp3_, _tmp4_) == 0;
+#line 1359 "bookworm.c"
+	}
+#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (_tmp0_) {
+#line 1363 "bookworm.c"
+		const gchar* _tmp5_ = NULL;
+		gchar* _tmp6_ = NULL;
+#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp5_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
+#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp6_ = g_strdup (_tmp5_);
+#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (self->BOOKWORM_CURRENT_STATE);
+#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		self->BOOKWORM_CURRENT_STATE = _tmp6_;
+#line 367 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookworm_app_bookworm_updateLibraryViewForSelectionMode (self, NULL);
+#line 1376 "bookworm.c"
+	} else {
+		const gchar* _tmp7_ = NULL;
+		gchar* _tmp8_ = NULL;
+#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp7_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[2];
+#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp8_ = g_strdup (_tmp7_);
+#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (self->BOOKWORM_CURRENT_STATE);
+#line 370 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		self->BOOKWORM_CURRENT_STATE = _tmp8_;
+#line 371 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookworm_app_bookworm_updateLibraryViewForSelectionMode (self, NULL);
+#line 1390 "bookworm.c"
+	}
 }
 
 
 static void ___lambda14__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	__lambda14_ ((BookwormAppBookworm*) self);
-#line 1254 "bookworm.c"
+#line 1398 "bookworm.c"
 }
 
 
-static gboolean __lambda15_ (BookwormAppBookworm* self) {
+static void __lambda15_ (BookwormAppBookworm* self) {
+#line 377 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_bookworm_removeSelectedBooksFromLibrary (self);
+#line 1405 "bookworm.c"
+}
+
+
+static void ___lambda15__gtk_button_clicked (GtkButton* _sender, gpointer self) {
+#line 376 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	__lambda15_ ((BookwormAppBookworm*) self);
+#line 1412 "bookworm.c"
+}
+
+
+static gboolean __lambda16_ (BookwormAppBookworm* self) {
 	gboolean result = FALSE;
-#line 343 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	result = TRUE;
-#line 343 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 382 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 1264 "bookworm.c"
+#line 1422 "bookworm.c"
 }
 
 
-static gboolean ___lambda15__webkit_web_view_context_menu (WebKitWebView* _sender, WebKitContextMenu* context_menu, GdkEvent* event, WebKitHitTestResult* hit_test_result, gpointer self) {
+static gboolean ___lambda16__webkit_web_view_context_menu (WebKitWebView* _sender, WebKitContextMenu* context_menu, GdkEvent* event, WebKitHitTestResult* hit_test_result, gpointer self) {
 	gboolean result;
-	result = __lambda15_ ((BookwormAppBookworm*) self);
-#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	result = __lambda16_ ((BookwormAppBookworm*) self);
+#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 1273 "bookworm.c"
+#line 1431 "bookworm.c"
 }
 
 
-static gboolean __lambda16_ (BookwormAppBookworm* self, GdkEventKey* ev) {
+static gboolean __lambda17_ (BookwormAppBookworm* self, GdkEventKey* ev) {
 	gboolean result = FALSE;
 	GdkEventKey* _tmp0_ = NULL;
 	guint _tmp1_ = 0U;
 	GdkEventKey* _tmp9_ = NULL;
 	guint _tmp10_ = 0U;
-#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_val_if_fail (ev != NULL, FALSE);
-#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = ev;
-#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = _tmp0_->keyval;
-#line 347 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 386 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp1_ == ((guint) GDK_KEY_Left)) {
-#line 1291 "bookworm.c"
+#line 1449 "bookworm.c"
 		GeeHashMap* _tmp2_ = NULL;
 		const gchar* _tmp3_ = NULL;
 		gpointer _tmp4_ = NULL;
@@ -1297,37 +1455,37 @@ static gboolean __lambda16_ (BookwormAppBookworm* self, GdkEventKey* ev) {
 		BookwormAppBook* _tmp6_ = NULL;
 		BookwormAppBook* _tmp7_ = NULL;
 		BookwormAppBook* _tmp8_ = NULL;
-#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp2_ = bookworm_app_bookworm_libraryViewMap;
-#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp3_ = self->locationOfEBookCurrentlyRead;
-#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp4_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp2_, _tmp3_);
-#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_bookworm_app_book_unref0 (self->aBook);
-#line 349 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		self->aBook = (BookwormAppBook*) _tmp4_;
-#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp5_ = self->aWebView;
-#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp6_ = self->aBook;
-#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp7_ = _bookworm_app_book_ref0 (_tmp6_);
-#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp8_ = bookworm_app_epub_reader_renderPage (_tmp5_, _tmp7_, "BACKWARD");
-#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_bookworm_app_book_unref0 (self->aBook);
-#line 350 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		self->aBook = _tmp8_;
-#line 1321 "bookworm.c"
+#line 1479 "bookworm.c"
 	}
-#line 352 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp9_ = ev;
-#line 352 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp10_ = _tmp9_->keyval;
-#line 352 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 391 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp10_ == ((guint) GDK_KEY_Right)) {
-#line 1329 "bookworm.c"
+#line 1487 "bookworm.c"
 		GeeHashMap* _tmp11_ = NULL;
 		const gchar* _tmp12_ = NULL;
 		gpointer _tmp13_ = NULL;
@@ -1335,44 +1493,44 @@ static gboolean __lambda16_ (BookwormAppBookworm* self, GdkEventKey* ev) {
 		BookwormAppBook* _tmp15_ = NULL;
 		BookwormAppBook* _tmp16_ = NULL;
 		BookwormAppBook* _tmp17_ = NULL;
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp11_ = bookworm_app_bookworm_libraryViewMap;
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp12_ = self->locationOfEBookCurrentlyRead;
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp13_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp11_, _tmp12_);
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_bookworm_app_book_unref0 (self->aBook);
-#line 354 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		self->aBook = (BookwormAppBook*) _tmp13_;
-#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp14_ = self->aWebView;
-#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp15_ = self->aBook;
-#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp16_ = _bookworm_app_book_ref0 (_tmp15_);
-#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp17_ = bookworm_app_epub_reader_renderPage (_tmp14_, _tmp16_, "FORWARD");
-#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_bookworm_app_book_unref0 (self->aBook);
-#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 394 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		self->aBook = _tmp17_;
-#line 1359 "bookworm.c"
+#line 1517 "bookworm.c"
 	}
-#line 357 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 396 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	result = FALSE;
-#line 357 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 396 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 1365 "bookworm.c"
+#line 1523 "bookworm.c"
 }
 
 
-static gboolean ___lambda16__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self) {
+static gboolean ___lambda17__gtk_widget_key_press_event (GtkWidget* _sender, GdkEventKey* event, gpointer self) {
 	gboolean result;
-	result = __lambda16_ ((BookwormAppBookworm*) self, event);
-#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	result = __lambda17_ ((BookwormAppBookworm*) self, event);
+#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 1374 "bookworm.c"
+#line 1532 "bookworm.c"
 }
 
 
@@ -1385,7 +1543,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	g_return_val_if_fail (old != NULL, NULL);
 #line 1380 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	g_return_val_if_fail (replacement != NULL, NULL);
-#line 1387 "bookworm.c"
+#line 1545 "bookworm.c"
 	{
 		GRegex* regex = NULL;
 		const gchar* _tmp0_ = NULL;
@@ -1416,7 +1574,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			if (_inner_error_->domain == G_REGEX_ERROR) {
-#line 1418 "bookworm.c"
+#line 1576 "bookworm.c"
 				goto __catch1_g_regex_error;
 			}
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -1425,7 +1583,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			g_clear_error (&_inner_error_);
 #line 1382 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			return NULL;
-#line 1427 "bookworm.c"
+#line 1585 "bookworm.c"
 		}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp6_ = regex;
@@ -1441,7 +1599,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			_g_regex_unref0 (regex);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			if (_inner_error_->domain == G_REGEX_ERROR) {
-#line 1443 "bookworm.c"
+#line 1601 "bookworm.c"
 				goto __catch1_g_regex_error;
 			}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -1452,7 +1610,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 			g_clear_error (&_inner_error_);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 			return NULL;
-#line 1454 "bookworm.c"
+#line 1612 "bookworm.c"
 		}
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp9_ = _tmp5_;
@@ -1466,7 +1624,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		_g_regex_unref0 (regex);
 #line 1383 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 1468 "bookworm.c"
+#line 1626 "bookworm.c"
 	}
 	goto __finally1;
 	__catch1_g_regex_error:
@@ -1480,7 +1638,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_g_error_free0 (e);
-#line 1482 "bookworm.c"
+#line 1640 "bookworm.c"
 	}
 	__finally1:
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -1491,12 +1649,12 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_clear_error (&_inner_error_);
 #line 1381 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return NULL;
-#line 1493 "bookworm.c"
+#line 1651 "bookworm.c"
 	}
 }
 
 
-static gboolean __lambda17_ (BookwormAppBookworm* self) {
+static gboolean __lambda18_ (BookwormAppBookworm* self) {
 	gboolean result = FALSE;
 	gchar* url_clicked_on_webview = NULL;
 	WebKitWebView* _tmp0_ = NULL;
@@ -1504,39 +1662,39 @@ static gboolean __lambda17_ (BookwormAppBookworm* self) {
 	gchar* _tmp2_ = NULL;
 	gboolean _tmp3_ = FALSE;
 	const gchar* _tmp4_ = NULL;
-#line 361 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 400 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = self->aWebView;
-#line 361 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 400 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = webkit_web_view_get_uri (_tmp0_);
-#line 361 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 400 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = string_replace (_tmp1_, "%20", " ");
-#line 361 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 400 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	url_clicked_on_webview = _tmp2_;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = url_clicked_on_webview;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp4_ != NULL) {
-#line 1518 "bookworm.c"
+#line 1676 "bookworm.c"
 		const gchar* _tmp5_ = NULL;
 		gint _tmp6_ = 0;
 		gint _tmp7_ = 0;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp5_ = url_clicked_on_webview;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp6_ = strlen (_tmp5_);
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp7_ = _tmp6_;
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp3_ = _tmp7_ > 1;
-#line 1530 "bookworm.c"
+#line 1688 "bookworm.c"
 	} else {
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp3_ = FALSE;
-#line 1534 "bookworm.c"
+#line 1692 "bookworm.c"
 	}
-#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 401 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp3_) {
-#line 1538 "bookworm.c"
+#line 1696 "bookworm.c"
 		GeeHashMap* _tmp8_ = NULL;
 		const gchar* _tmp9_ = NULL;
 		gpointer _tmp10_ = NULL;
@@ -1548,39 +1706,39 @@ static gboolean __lambda17_ (BookwormAppBookworm* self) {
 		gchar* _tmp16_ = NULL;
 		gboolean _tmp17_ = FALSE;
 		gboolean _tmp18_ = FALSE;
-#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp8_ = bookworm_app_bookworm_libraryViewMap;
-#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp9_ = self->locationOfEBookCurrentlyRead;
-#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp10_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp8_, _tmp9_);
-#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_bookworm_app_book_unref0 (self->aBook);
-#line 363 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 402 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		self->aBook = (BookwormAppBook*) _tmp10_;
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp11_ = self->aBook;
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp12_ = bookworm_app_book_getBookContentList (_tmp11_);
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp13_ = _tmp12_;
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp14_ = url_clicked_on_webview;
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp15_ = string_replace (_tmp14_, BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL, "");
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp16_ = _tmp15_;
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp17_ = gee_abstract_collection_contains ((GeeAbstractCollection*) _tmp13_, _tmp16_);
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp18_ = _tmp17_;
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp16_);
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_object_unref0 (_tmp13_);
-#line 364 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 403 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		if (_tmp18_) {
-#line 1582 "bookworm.c"
+#line 1740 "bookworm.c"
 			BookwormAppBook* _tmp19_ = NULL;
 			BookwormAppBook* _tmp20_ = NULL;
 			GeeArrayList* _tmp21_ = NULL;
@@ -1595,65 +1753,65 @@ static gboolean __lambda17_ (BookwormAppBookworm* self) {
 			gchar* _tmp30_ = NULL;
 			gchar* _tmp31_ = NULL;
 			gchar* _tmp32_ = NULL;
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp19_ = self->aBook;
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp20_ = self->aBook;
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp21_ = bookworm_app_book_getBookContentList (_tmp20_);
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp22_ = _tmp21_;
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp23_ = url_clicked_on_webview;
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp24_ = string_replace (_tmp23_, BOOKWORM_APP_CONSTANTS_PREFIX_FOR_FILE_URL, "");
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp25_ = _tmp24_;
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp26_ = gee_abstract_list_index_of ((GeeAbstractList*) _tmp22_, _tmp25_);
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			bookworm_app_book_setBookPageNumber (_tmp19_, _tmp26_);
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_g_free0 (_tmp25_);
-#line 365 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 404 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_g_object_unref0 (_tmp22_);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp27_ = self->aBook;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp28_ = bookworm_app_book_getBookPageNumber (_tmp27_);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp29_ = g_strdup_printf ("%i", _tmp28_);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp30_ = _tmp29_;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp31_ = g_strconcat ("Using Table of Contents Navigation, Book page number set at", _tmp30_, NULL);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp32_ = _tmp31_;
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			g_debug ("bookworm.vala:366: %s", _tmp32_);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			g_debug ("bookworm.vala:405: %s", _tmp32_);
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_g_free0 (_tmp32_);
-#line 366 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 405 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_g_free0 (_tmp30_);
-#line 1637 "bookworm.c"
+#line 1795 "bookworm.c"
 		}
 	}
-#line 369 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	result = TRUE;
-#line 369 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (url_clicked_on_webview);
-#line 369 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 1646 "bookworm.c"
+#line 1804 "bookworm.c"
 }
 
 
-static gboolean ___lambda17__webkit_web_view_decide_policy (WebKitWebView* _sender, WebKitPolicyDecision* decision, WebKitPolicyDecisionType type, gpointer self) {
+static gboolean ___lambda18__webkit_web_view_decide_policy (WebKitWebView* _sender, WebKitPolicyDecision* decision, WebKitPolicyDecisionType type, gpointer self) {
 	gboolean result;
-	result = __lambda17_ ((BookwormAppBookworm*) self);
-#line 360 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	result = __lambda18_ ((BookwormAppBookworm*) self);
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 1655 "bookworm.c"
+#line 1813 "bookworm.c"
 }
 
 
@@ -1662,295 +1820,331 @@ GtkBox* bookworm_app_bookworm_createBoookwormUI (BookwormAppBookworm* self) {
 	GtkGrid* _tmp0_ = NULL;
 	GtkGrid* _tmp1_ = NULL;
 	GtkGrid* _tmp2_ = NULL;
-	GtkScrolledWindow* library_scroll = NULL;
 	GtkScrolledWindow* _tmp3_ = NULL;
-	GtkGrid* _tmp4_ = NULL;
-	GtkImage* add_book_image = NULL;
-	GtkImage* _tmp5_ = NULL;
-	GtkButton* add_book_button = NULL;
-	GtkButton* _tmp6_ = NULL;
-	GtkImage* remove_book_image = NULL;
+	GtkScrolledWindow* _tmp4_ = NULL;
+	GtkScrolledWindow* _tmp5_ = NULL;
+	GtkGrid* _tmp6_ = NULL;
+	GtkImage* select_book_image = NULL;
 	GtkImage* _tmp7_ = NULL;
-	GtkButton* remove_book_button = NULL;
+	GtkButton* select_book_button = NULL;
 	GtkButton* _tmp8_ = NULL;
+	GtkImage* add_book_image = NULL;
+	GtkImage* _tmp9_ = NULL;
+	GtkButton* add_book_button = NULL;
+	GtkButton* _tmp10_ = NULL;
+	GtkImage* remove_book_image = NULL;
+	GtkImage* _tmp11_ = NULL;
+	GtkButton* remove_book_button = NULL;
+	GtkButton* _tmp12_ = NULL;
 	GtkBox* add_remove_footer_box = NULL;
-	GtkBox* _tmp9_ = NULL;
-	GtkBox* _tmp10_ = NULL;
-	GtkBox* _tmp11_ = NULL;
-	GtkBox* _tmp12_ = NULL;
+	GtkBox* _tmp13_ = NULL;
+	GtkBox* _tmp14_ = NULL;
+	GtkBox* _tmp15_ = NULL;
+	GtkScrolledWindow* _tmp16_ = NULL;
+	GtkBox* _tmp17_ = NULL;
 	WebKitSettings* webkitSettings = NULL;
-	WebKitSettings* _tmp13_ = NULL;
-	WebKitWebView* _tmp14_ = NULL;
+	WebKitSettings* _tmp18_ = NULL;
+	WebKitWebView* _tmp19_ = NULL;
 	GtkImage* back_button_image = NULL;
-	GtkImage* _tmp15_ = NULL;
+	GtkImage* _tmp20_ = NULL;
 	GtkButton* back_button = NULL;
-	GtkButton* _tmp16_ = NULL;
+	GtkButton* _tmp21_ = NULL;
 	GtkImage* forward_button_image = NULL;
-	GtkImage* _tmp17_ = NULL;
+	GtkImage* _tmp22_ = NULL;
 	GtkButton* forward_button = NULL;
-	GtkButton* _tmp18_ = NULL;
+	GtkButton* _tmp23_ = NULL;
 	GtkBox* book_reading_footer_box = NULL;
-	GtkBox* _tmp19_ = NULL;
-	GtkLabel* pageNumberLabel = NULL;
-	GtkLabel* _tmp20_ = NULL;
-	GtkBox* _tmp21_ = NULL;
-	GtkBox* _tmp22_ = NULL;
-	WebKitWebView* _tmp23_ = NULL;
 	GtkBox* _tmp24_ = NULL;
-	GtkBox* main_ui_box = NULL;
-	GtkBox* _tmp25_ = NULL;
+	GtkLabel* pageNumberLabel = NULL;
+	GtkLabel* _tmp25_ = NULL;
 	GtkBox* _tmp26_ = NULL;
 	GtkBox* _tmp27_ = NULL;
 	WebKitWebView* _tmp28_ = NULL;
-	WebKitWebView* _tmp29_ = NULL;
-	WebKitWebView* _tmp30_ = NULL;
-#line 235 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	GtkBox* _tmp29_ = NULL;
+	GtkBox* main_ui_box = NULL;
+	GtkBox* _tmp30_ = NULL;
+	GtkBox* _tmp31_ = NULL;
+	GtkBox* _tmp32_ = NULL;
+	WebKitWebView* _tmp33_ = NULL;
+	WebKitWebView* _tmp34_ = NULL;
+	WebKitWebView* _tmp35_ = NULL;
+#line 246 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 236 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:236: Starting to create main window components...");
-#line 239 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp0_ = (GtkGrid*) gtk_grid_new ();
-#line 239 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp0_);
-#line 239 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (self->library_grid);
-#line 239 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->library_grid = _tmp0_;
-#line 240 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = self->library_grid;
-#line 240 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_grid_set_column_spacing (_tmp1_, (guint) BOOKWORM_APP_CONSTANTS_SPACING_WIDGETS);
-#line 241 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp2_ = self->library_grid;
-#line 241 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_grid_set_row_spacing (_tmp2_, (guint) BOOKWORM_APP_CONSTANTS_SPACING_WIDGETS);
-#line 242 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp3_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
-#line 242 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp3_);
-#line 242 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	library_scroll = _tmp3_;
-#line 243 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_scrolled_window_set_policy (library_scroll, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-#line 244 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp4_ = self->library_grid;
-#line 244 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_container_add ((GtkContainer*) library_scroll, (GtkWidget*) _tmp4_);
 #line 247 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp5_ = (GtkImage*) gtk_image_new ();
-#line 247 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp5_);
-#line 247 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	add_book_image = _tmp5_;
-#line 248 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_image_set_from_file (add_book_image, BOOKWORM_APP_CONSTANTS_ADD_BOOK_ICON_IMAGE_LOCATION);
-#line 249 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp6_ = (GtkButton*) gtk_button_new ();
-#line 249 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp6_);
-#line 249 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	add_book_button = _tmp6_;
+	g_debug ("bookworm.vala:247: Starting to create main window components...");
 #line 250 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_button_set_image (add_book_button, (GtkWidget*) add_book_image);
-#line 253 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp7_ = (GtkImage*) gtk_image_new ();
-#line 253 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp7_);
-#line 253 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	remove_book_image = _tmp7_;
+	_tmp0_ = (GtkGrid*) gtk_grid_new ();
+#line 250 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp0_);
+#line 250 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->library_grid);
+#line 250 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->library_grid = _tmp0_;
+#line 251 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = self->library_grid;
+#line 251 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_grid_set_column_spacing (_tmp1_, (guint) BOOKWORM_APP_CONSTANTS_SPACING_WIDGETS);
+#line 252 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = self->library_grid;
+#line 252 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_grid_set_row_spacing (_tmp2_, (guint) BOOKWORM_APP_CONSTANTS_SPACING_WIDGETS);
 #line 254 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_image_set_from_file (remove_book_image, BOOKWORM_APP_CONSTANTS_REMOVE_BOOK_ICON_IMAGE_LOCATION);
+	_tmp3_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
+#line 254 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp3_);
+#line 254 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->library_scroll);
+#line 254 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->library_scroll = _tmp3_;
 #line 255 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp8_ = (GtkButton*) gtk_button_new ();
+	_tmp4_ = self->library_scroll;
 #line 255 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp8_);
-#line 255 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	remove_book_button = _tmp8_;
+	gtk_scrolled_window_set_policy (_tmp4_, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 #line 256 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_button_set_image (remove_book_button, (GtkWidget*) remove_book_image);
+	_tmp5_ = self->library_scroll;
+#line 256 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp6_ = self->library_grid;
+#line 256 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_container_add ((GtkContainer*) _tmp5_, (GtkWidget*) _tmp6_);
 #line 259 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp9_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, BOOKWORM_APP_CONSTANTS_SPACING_BUTTONS);
+	_tmp7_ = (GtkImage*) gtk_image_new ();
 #line 259 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp9_);
+	g_object_ref_sink (_tmp7_);
 #line 259 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	add_remove_footer_box = _tmp9_;
+	select_book_image = _tmp7_;
+#line 260 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_image_set_from_file (select_book_image, BOOKWORM_APP_CONSTANTS_SELECTION_IMAGE_BUTTON_LOCATION);
 #line 261 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (add_remove_footer_box, (GtkWidget*) add_book_button, FALSE, TRUE, (guint) 0);
+	_tmp8_ = (GtkButton*) gtk_button_new ();
+#line 261 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp8_);
+#line 261 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	select_book_button = _tmp8_;
 #line 262 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (add_remove_footer_box, (GtkWidget*) remove_book_button, FALSE, TRUE, (guint) 0);
+	gtk_button_set_image (select_book_button, (GtkWidget*) select_book_image);
 #line 265 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+	_tmp9_ = (GtkImage*) gtk_image_new ();
 #line 265 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp9_);
+#line 265 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	add_book_image = _tmp9_;
+#line 266 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_image_set_from_file (add_book_image, BOOKWORM_APP_CONSTANTS_ADD_BOOK_ICON_IMAGE_LOCATION);
+#line 267 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp10_ = (GtkButton*) gtk_button_new ();
+#line 267 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_object_ref_sink (_tmp10_);
-#line 265 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (self->bookSelection_ui_box);
-#line 265 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->bookSelection_ui_box = _tmp10_;
 #line 267 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = self->bookSelection_ui_box;
-#line 267 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (_tmp11_, (GtkWidget*) library_scroll, TRUE, TRUE, (guint) 0);
+	add_book_button = _tmp10_;
 #line 268 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp12_ = self->bookSelection_ui_box;
-#line 268 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (_tmp12_, (GtkWidget*) add_remove_footer_box, FALSE, TRUE, (guint) 0);
+	gtk_button_set_image (add_book_button, (GtkWidget*) add_book_image);
+#line 271 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = (GtkImage*) gtk_image_new ();
+#line 271 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp11_);
+#line 271 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	remove_book_image = _tmp11_;
 #line 272 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp13_ = webkit_settings_new ();
-#line 272 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	webkitSettings = _tmp13_;
+	gtk_image_set_from_file (remove_book_image, BOOKWORM_APP_CONSTANTS_REMOVE_BOOK_ICON_IMAGE_LOCATION);
 #line 273 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	webkit_settings_set_allow_file_access_from_file_urls (webkitSettings, TRUE);
+	_tmp12_ = (GtkButton*) gtk_button_new ();
+#line 273 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp12_);
+#line 273 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	remove_book_button = _tmp12_;
 #line 274 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	webkit_settings_set_default_font_family (webkitSettings, "helvetica");
-#line 276 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	webkit_settings_set_auto_load_images (webkitSettings, TRUE);
+	gtk_button_set_image (remove_book_button, (GtkWidget*) remove_book_image);
 #line 277 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp14_ = (WebKitWebView*) webkit_web_view_new_with_settings (webkitSettings);
+	_tmp13_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, BOOKWORM_APP_CONSTANTS_SPACING_BUTTONS);
 #line 277 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp14_);
+	g_object_ref_sink (_tmp13_);
 #line 277 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (self->aWebView);
-#line 277 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->aWebView = _tmp14_;
+	add_remove_footer_box = _tmp13_;
+#line 279 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_start (add_remove_footer_box, (GtkWidget*) select_book_button, FALSE, TRUE, (guint) 0);
+#line 280 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_start (add_remove_footer_box, (GtkWidget*) add_book_button, FALSE, TRUE, (guint) 0);
 #line 281 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp15_ = (GtkImage*) gtk_image_new ();
-#line 281 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp15_);
-#line 281 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	back_button_image = _tmp15_;
-#line 282 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_image_set_from_file (back_button_image, BOOKWORM_APP_CONSTANTS_PREV_PAGE_ICON_IMAGE_LOCATION);
-#line 283 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp16_ = (GtkButton*) gtk_button_new ();
-#line 283 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp16_);
-#line 283 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	back_button = _tmp16_;
+	gtk_box_pack_start (add_remove_footer_box, (GtkWidget*) remove_book_button, FALSE, TRUE, (guint) 0);
 #line 284 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_button_set_image (back_button, (GtkWidget*) back_button_image);
+	_tmp14_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+#line 284 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp14_);
+#line 284 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->bookSelection_ui_box);
+#line 284 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->bookSelection_ui_box = _tmp14_;
+#line 286 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp15_ = self->bookSelection_ui_box;
+#line 286 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp16_ = self->library_scroll;
+#line 286 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_start (_tmp15_, (GtkWidget*) _tmp16_, TRUE, TRUE, (guint) 0);
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp17_ = (GtkImage*) gtk_image_new ();
+	_tmp17_ = self->bookSelection_ui_box;
 #line 287 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp17_);
-#line 287 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	forward_button_image = _tmp17_;
-#line 288 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_image_set_from_file (forward_button_image, BOOKWORM_APP_CONSTANTS_NEXT_PAGE_ICON_IMAGE_LOCATION);
-#line 289 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp18_ = (GtkButton*) gtk_button_new ();
-#line 289 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp18_);
-#line 289 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	forward_button = _tmp18_;
-#line 290 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_button_set_image (forward_button, (GtkWidget*) forward_button_image);
+	gtk_box_pack_start (_tmp17_, (GtkWidget*) add_remove_footer_box, FALSE, TRUE, (guint) 0);
+#line 291 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp18_ = webkit_settings_new ();
+#line 291 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	webkitSettings = _tmp18_;
+#line 292 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	webkit_settings_set_allow_file_access_from_file_urls (webkitSettings, TRUE);
 #line 293 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp19_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-#line 293 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp19_);
-#line 293 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	book_reading_footer_box = _tmp19_;
-#line 294 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp20_ = (GtkLabel*) gtk_label_new ("");
-#line 294 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp20_);
-#line 294 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	pageNumberLabel = _tmp20_;
+	webkit_settings_set_default_font_family (webkitSettings, "helvetica");
 #line 295 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (book_reading_footer_box, (GtkWidget*) back_button, FALSE, TRUE, (guint) 0);
+	webkit_settings_set_auto_load_images (webkitSettings, TRUE);
 #line 296 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (book_reading_footer_box, (GtkWidget*) pageNumberLabel, TRUE, TRUE, (guint) 0);
-#line 297 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_end (book_reading_footer_box, (GtkWidget*) forward_button, FALSE, TRUE, (guint) 0);
+	_tmp19_ = (WebKitWebView*) webkit_web_view_new_with_settings (webkitSettings);
+#line 296 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp19_);
+#line 296 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->aWebView);
+#line 296 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->aWebView = _tmp19_;
 #line 300 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp21_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+	_tmp20_ = (GtkImage*) gtk_image_new ();
 #line 300 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp20_);
+#line 300 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	back_button_image = _tmp20_;
+#line 301 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_image_set_from_file (back_button_image, BOOKWORM_APP_CONSTANTS_PREV_PAGE_ICON_IMAGE_LOCATION);
+#line 302 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp21_ = (GtkButton*) gtk_button_new ();
+#line 302 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_object_ref_sink (_tmp21_);
-#line 300 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (self->bookReading_ui_box);
-#line 300 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->bookReading_ui_box = _tmp21_;
-#line 301 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp22_ = self->bookReading_ui_box;
-#line 301 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp23_ = self->aWebView;
-#line 301 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (_tmp22_, (GtkWidget*) _tmp23_, TRUE, TRUE, (guint) 0);
 #line 302 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp24_ = self->bookReading_ui_box;
-#line 302 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (_tmp24_, (GtkWidget*) book_reading_footer_box, FALSE, TRUE, (guint) 0);
-#line 305 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp25_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 305 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_object_ref_sink (_tmp25_);
-#line 305 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	main_ui_box = _tmp25_;
+	back_button = _tmp21_;
+#line 303 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_button_set_image (back_button, (GtkWidget*) back_button_image);
 #line 306 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp26_ = self->bookSelection_ui_box;
+	_tmp22_ = (GtkImage*) gtk_image_new ();
 #line 306 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_start (main_ui_box, (GtkWidget*) _tmp26_, TRUE, TRUE, (guint) 0);
+	g_object_ref_sink (_tmp22_);
+#line 306 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	forward_button_image = _tmp22_;
 #line 307 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp27_ = self->bookReading_ui_box;
-#line 307 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_box_pack_end (main_ui_box, (GtkWidget*) _tmp27_, TRUE, TRUE, (guint) 0);
+	gtk_image_set_from_file (forward_button_image, BOOKWORM_APP_CONSTANTS_NEXT_PAGE_ICON_IMAGE_LOCATION);
+#line 308 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp23_ = (GtkButton*) gtk_button_new ();
+#line 308 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp23_);
+#line 308 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	forward_button = _tmp23_;
+#line 309 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_button_set_image (forward_button, (GtkWidget*) forward_button_image);
 #line 312 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (forward_button, "clicked", (GCallback) ___lambda9__gtk_button_clicked, self, 0);
-#line 322 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (back_button, "clicked", (GCallback) ___lambda10__gtk_button_clicked, self, 0);
-#line 330 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (add_book_button, "clicked", (GCallback) ___lambda11__gtk_button_clicked, self, 0);
-#line 337 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (remove_book_button, "clicked", (GCallback) ___lambda14__gtk_button_clicked, self, 0);
-#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp24_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+#line 312 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp24_);
+#line 312 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	book_reading_footer_box = _tmp24_;
+#line 313 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp25_ = (GtkLabel*) gtk_label_new ("");
+#line 313 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp25_);
+#line 313 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	pageNumberLabel = _tmp25_;
+#line 314 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_start (book_reading_footer_box, (GtkWidget*) back_button, FALSE, TRUE, (guint) 0);
+#line 315 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_start (book_reading_footer_box, (GtkWidget*) pageNumberLabel, TRUE, TRUE, (guint) 0);
+#line 316 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_end (book_reading_footer_box, (GtkWidget*) forward_button, FALSE, TRUE, (guint) 0);
+#line 319 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp26_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+#line 319 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp26_);
+#line 319 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->bookReading_ui_box);
+#line 319 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->bookReading_ui_box = _tmp26_;
+#line 320 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp27_ = self->bookReading_ui_box;
+#line 320 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp28_ = self->aWebView;
-#line 341 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (_tmp28_, "context-menu", (GCallback) ___lambda15__webkit_web_view_context_menu, self, 0);
-#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp29_ = self->aWebView;
-#line 346 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp29_, "key-press-event", (GCallback) ___lambda16__gtk_widget_key_press_event, self, 0);
-#line 360 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp30_ = self->aWebView;
-#line 360 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_object (_tmp30_, "decide-policy", (GCallback) ___lambda17__webkit_web_view_decide_policy, self, 0);
-#line 373 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 320 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_start (_tmp27_, (GtkWidget*) _tmp28_, TRUE, TRUE, (guint) 0);
+#line 321 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp29_ = self->bookReading_ui_box;
+#line 321 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_start (_tmp29_, (GtkWidget*) book_reading_footer_box, FALSE, TRUE, (guint) 0);
+#line 324 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp30_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+#line 324 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp30_);
+#line 324 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	main_ui_box = _tmp30_;
+#line 325 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp31_ = self->bookSelection_ui_box;
+#line 325 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_start (main_ui_box, (GtkWidget*) _tmp31_, TRUE, TRUE, (guint) 0);
+#line 326 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp32_ = self->bookReading_ui_box;
+#line 326 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_box_pack_end (main_ui_box, (GtkWidget*) _tmp32_, TRUE, TRUE, (guint) 0);
+#line 331 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (forward_button, "clicked", (GCallback) ___lambda9__gtk_button_clicked, self, 0);
+#line 343 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (back_button, "clicked", (GCallback) ___lambda10__gtk_button_clicked, self, 0);
+#line 355 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (add_book_button, "clicked", (GCallback) ___lambda11__gtk_button_clicked, self, 0);
+#line 362 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (select_book_button, "clicked", (GCallback) ___lambda14__gtk_button_clicked, self, 0);
+#line 376 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (remove_book_button, "clicked", (GCallback) ___lambda15__gtk_button_clicked, self, 0);
+#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp33_ = self->aWebView;
+#line 380 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (_tmp33_, "context-menu", (GCallback) ___lambda16__webkit_web_view_context_menu, self, 0);
+#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp34_ = self->aWebView;
+#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object ((GtkWidget*) _tmp34_, "key-press-event", (GCallback) ___lambda17__gtk_widget_key_press_event, self, 0);
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp35_ = self->aWebView;
+#line 399 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_object (_tmp35_, "decide-policy", (GCallback) ___lambda18__webkit_web_view_decide_policy, self, 0);
+#line 412 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_ensureRequiredSetUp (self);
-#line 375 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 414 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_updateLibraryViewFromDB (self);
-#line 377 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:377: Completed creation of main windows components...");
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 416 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:416: Completed creation of main window components...");
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	result = main_ui_box;
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (pageNumberLabel);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (book_reading_footer_box);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (forward_button);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (forward_button_image);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (back_button);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (back_button_image);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (webkitSettings);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (add_remove_footer_box);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (remove_book_button);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (remove_book_image);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (add_book_button);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (add_book_image);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (library_scroll);
-#line 378 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (select_book_button);
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (select_book_image);
+#line 417 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 1952 "bookworm.c"
+#line 2146 "bookworm.c"
 }
 
 
@@ -1983,7 +2177,7 @@ static gint _sqlite3_exec (sqlite3* self, const gchar* sql, sqlite3_callback cal
 	ec = _tmp3_;
 #line 37 "/usr/share/vala-0.34/vapi/sqlite3.vapi"
 	if ((&_vala_errmsg) != NULL) {
-#line 1985 "bookworm.c"
+#line 2179 "bookworm.c"
 		const gchar* _tmp4_ = NULL;
 		gchar* _tmp5_ = NULL;
 #line 38 "/usr/share/vala-0.34/vapi/sqlite3.vapi"
@@ -1994,7 +2188,7 @@ static gint _sqlite3_exec (sqlite3* self, const gchar* sql, sqlite3_callback cal
 		_g_free0 (_vala_errmsg);
 #line 38 "/usr/share/vala-0.34/vapi/sqlite3.vapi"
 		_vala_errmsg = _tmp5_;
-#line 1996 "bookworm.c"
+#line 2190 "bookworm.c"
 	}
 #line 40 "/usr/share/vala-0.34/vapi/sqlite3.vapi"
 	_tmp6_ = sqlite_errmsg;
@@ -2006,15 +2200,15 @@ static gint _sqlite3_exec (sqlite3* self, const gchar* sql, sqlite3_callback cal
 	if (errmsg) {
 #line 41 "/usr/share/vala-0.34/vapi/sqlite3.vapi"
 		*errmsg = _vala_errmsg;
-#line 2008 "bookworm.c"
+#line 2202 "bookworm.c"
 	} else {
 #line 41 "/usr/share/vala-0.34/vapi/sqlite3.vapi"
 		_g_free0 (_vala_errmsg);
-#line 2012 "bookworm.c"
+#line 2206 "bookworm.c"
 	}
 #line 41 "/usr/share/vala-0.34/vapi/sqlite3.vapi"
 	return result;
-#line 2016 "bookworm.c"
+#line 2210 "bookworm.c"
 }
 
 
@@ -2045,115 +2239,358 @@ void bookworm_app_bookworm_ensureRequiredSetUp (BookwormAppBookworm* self) {
 	gchar* _tmp24_ = NULL;
 	gint _tmp25_ = 0;
 	gint _tmp26_ = 0;
-#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	GdkPixbuf* _tmp28_ = NULL;
+	GdkPixbuf* _tmp29_ = NULL;
+	GdkPixbuf* _tmp30_ = NULL;
+	GError * _inner_error_ = NULL;
+#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 383 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 422 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = bookworm_app_utils_fileOperations ("CREATEDIR", BOOKWORM_APP_CONSTANTS_EPUB_EXTRACTION_LOCATION, "", "");
-#line 383 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 422 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = _tmp0_;
-#line 383 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 422 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp1_);
-#line 384 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 423 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = bookworm_app_bookworm_bookworm_config_path;
-#line 384 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 423 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = bookworm_app_utils_fileOperations ("CREATEDIR", _tmp2_, "", "");
-#line 384 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 423 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = _tmp3_;
-#line 384 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 423 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp4_);
-#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp5_ = bookworm_app_bookworm_bookworm_config_path;
-#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp6_ = g_strconcat (_tmp5_, "/covers/", NULL);
-#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp7_ = _tmp6_;
-#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp8_ = bookworm_app_utils_fileOperations ("CREATEDIR", _tmp7_, "", "");
-#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp9_ = _tmp8_;
-#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp9_);
-#line 385 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 424 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp7_);
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp10_ = bookworm_app_bookworm_bookworm_config_path;
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp11_ = g_strconcat (_tmp10_, "/bookworm.db", NULL);
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp12_ = _tmp11_;
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp14_ = sqlite3_open_v2 (_tmp12_, &_tmp13_, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, NULL);
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_sqlite3_close0 (self->bookwormDB);
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->bookwormDB = _tmp13_;
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp15_ = _tmp14_;
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp12_);
-#line 387 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	ec = _tmp15_;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp16_ = ec;
-#line 388 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 427 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp16_ != SQLITE_OK) {
-#line 2099 "bookworm.c"
+#line 2297 "bookworm.c"
 		sqlite3* _tmp17_ = NULL;
 		gint _tmp18_ = 0;
 		sqlite3* _tmp19_ = NULL;
 		const gchar* _tmp20_ = NULL;
-#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp17_ = self->bookwormDB;
-#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp18_ = sqlite3_errcode (_tmp17_);
-#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp19_ = self->bookwormDB;
-#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp20_ = sqlite3_errmsg (_tmp19_);
-#line 389 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_warning ("bookworm.vala:389: Can't open database: %d: %s\n", _tmp18_, _tmp20_);
-#line 2114 "bookworm.c"
+#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_warning ("bookworm.vala:428: Can't open database: %d: %s\n", _tmp18_, _tmp20_);
+#line 2312 "bookworm.c"
 	}
-#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp21_ = g_strdup ("CREATE TABLE IF NOT EXISTS BOOK_LIBRARY_TABLE (" "id INTEGER PRIMARY KEY AUTOINCREMENT, " "BOOK_LOCATION TEXT NOT NULL DEFAULT '', " "BOOK_TITLE TEXT NOT NULL DEFAULT '', " "BOOK_AUTHOR TEXT NOT NULL DEFAULT '', " "BOOK_COVER_IMAGE_LOCATION TEXT NOT NULL DEFAULT '', " "IS_BOOK_COVER_IMAGE_PRESENT TEXT NOT NULL DEFAULT '', " "BOOK_PUBLISH_DATE TEXT NOT NULL DEFAULT '', " "BOOK_TOC_DATA TEXT NOT NULL DEFAULT '', " "BOOK_TOTAL_NUMBER_OF_PAGES TEXT NOT NULL DEFAULT '', " "BOOK_LAST_READ_PAGE_NUMBER TEXT NOT NULL DEFAULT '', " "creation_date INTEGER," "modification_date INTEGER)");
-#line 393 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	create_table_query = _tmp21_;
-#line 406 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 445 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_ = self->bookwormDB;
-#line 406 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 445 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp23_ = create_table_query;
-#line 406 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 445 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp25_ = _sqlite3_exec (_tmp22_, _tmp23_, NULL, NULL, &_tmp24_);
-#line 406 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 445 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (errmsg);
-#line 406 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 445 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	errmsg = _tmp24_;
-#line 406 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 445 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	ec = _tmp25_;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 446 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_ = ec;
-#line 407 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 446 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp26_ != SQLITE_OK) {
-#line 2136 "bookworm.c"
+#line 2334 "bookworm.c"
 		const gchar* _tmp27_ = NULL;
-#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 447 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp27_ = errmsg;
-#line 408 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_warning ("bookworm.vala:408: Error: %s\n", _tmp27_);
-#line 2142 "bookworm.c"
+#line 447 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_warning ("bookworm.vala:447: Error: %s\n", _tmp27_);
+#line 2340 "bookworm.c"
 	}
-#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp29_ = gdk_pixbuf_new_from_file_at_scale (BOOKWORM_APP_CONSTANTS_DEFAULT_COVER_IMAGE_LOCATION, 150, 200, FALSE, &_inner_error_);
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp28_ = _tmp29_;
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (create_table_query);
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (errmsg);
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_clear_error (&_inner_error_);
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		return;
+#line 2358 "bookworm.c"
+	}
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp30_ = _tmp28_;
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp28_ = NULL;
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->aBookCover);
+#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->aBookCover = _tmp30_;
+#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (_tmp28_);
+#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (create_table_query);
-#line 381 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 420 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (errmsg);
-#line 2148 "bookworm.c"
+#line 2374 "bookworm.c"
 }
 
 
-void bookworm_app_bookworm_removeBookFromLibrary (BookwormAppBookworm* self) {
-#line 412 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+static gpointer _g_object_ref0 (gpointer self) {
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	return self ? g_object_ref (self) : NULL;
+#line 2381 "bookworm.c"
+}
+
+
+void bookworm_app_bookworm_removeSelectedBooksFromLibrary (BookwormAppBookworm* self) {
+	GeeArrayList* listOfBooksToBeRemoved = NULL;
+	GeeArrayList* _tmp0_ = NULL;
+	GtkWindow* _tmp37_ = NULL;
+#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 2155 "bookworm.c"
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp0_ = gee_array_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL, NULL, NULL);
+#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	listOfBooksToBeRemoved = _tmp0_;
+#line 2395 "bookworm.c"
+	{
+		GeeIterator* _book_it = NULL;
+		GeeHashMap* _tmp1_ = NULL;
+		GeeCollection* _tmp2_ = NULL;
+		GeeCollection* _tmp3_ = NULL;
+		GeeCollection* _tmp4_ = NULL;
+		GeeIterator* _tmp5_ = NULL;
+		GeeIterator* _tmp6_ = NULL;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp1_ = bookworm_app_bookworm_libraryViewMap;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp2_ = gee_abstract_map_get_values ((GeeMap*) _tmp1_);
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp3_ = _tmp2_;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp4_ = _tmp3_;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp5_ = gee_iterable_iterator ((GeeIterable*) _tmp4_);
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp6_ = _tmp5_;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (_tmp4_);
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_book_it = _tmp6_;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		while (TRUE) {
+#line 2422 "bookworm.c"
+			GeeIterator* _tmp7_ = NULL;
+			gboolean _tmp8_ = FALSE;
+			BookwormAppBook* book = NULL;
+			GeeIterator* _tmp9_ = NULL;
+			gpointer _tmp10_ = NULL;
+			BookwormAppBook* _tmp11_ = NULL;
+			gboolean _tmp12_ = FALSE;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp7_ = _book_it;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp8_ = gee_iterator_next (_tmp7_);
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (!_tmp8_) {
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				break;
+#line 2438 "bookworm.c"
+			}
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp9_ = _book_it;
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp10_ = gee_iterator_get (_tmp9_);
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			book = (BookwormAppBook*) _tmp10_;
+#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp11_ = book;
+#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp12_ = bookworm_app_book_getIsBookSelected (G_TYPE_CHECK_INSTANCE_CAST (_tmp11_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (_tmp12_) {
+#line 2452 "bookworm.c"
+				GeeArrayList* _tmp13_ = NULL;
+				BookwormAppBook* _tmp14_ = NULL;
+				gchar* _tmp15_ = NULL;
+				gchar* _tmp16_ = NULL;
+				GtkEventBox* lEventBox = NULL;
+				BookwormAppBook* _tmp17_ = NULL;
+				GtkEventBox* _tmp18_ = NULL;
+				GtkEventBox* _tmp19_ = NULL;
+#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp13_ = listOfBooksToBeRemoved;
+#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp14_ = book;
+#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp15_ = bookworm_app_book_getBookLocation (G_TYPE_CHECK_INSTANCE_CAST (_tmp14_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp16_ = _tmp15_;
+#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gee_abstract_collection_add ((GeeAbstractCollection*) _tmp13_, _tmp16_);
+#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_free0 (_tmp16_);
+#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp17_ = book;
+#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp18_ = bookworm_app_book_getEventBox (G_TYPE_CHECK_INSTANCE_CAST (_tmp17_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 461 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				lEventBox = _tmp18_;
+#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp19_ = lEventBox;
+#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_widget_destroy ((GtkWidget*) _tmp19_);
+#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lEventBox);
+#line 2485 "bookworm.c"
+			}
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_bookworm_app_book_unref0 (book);
+#line 2489 "bookworm.c"
+		}
+#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (_book_it);
+#line 2493 "bookworm.c"
+	}
+	{
+		GeeArrayList* _bookLocation_list = NULL;
+		GeeArrayList* _tmp20_ = NULL;
+		GeeArrayList* _tmp21_ = NULL;
+		gint _bookLocation_size = 0;
+		GeeArrayList* _tmp22_ = NULL;
+		gint _tmp23_ = 0;
+		gint _tmp24_ = 0;
+		gint _bookLocation_index = 0;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp20_ = listOfBooksToBeRemoved;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp21_ = _g_object_ref0 (_tmp20_);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_bookLocation_list = _tmp21_;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp22_ = _bookLocation_list;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp23_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp22_);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp24_ = _tmp23_;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_bookLocation_size = _tmp24_;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_bookLocation_index = -1;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		while (TRUE) {
+#line 2522 "bookworm.c"
+			gint _tmp25_ = 0;
+			gint _tmp26_ = 0;
+			gint _tmp27_ = 0;
+			gchar* bookLocation = NULL;
+			GeeArrayList* _tmp28_ = NULL;
+			gint _tmp29_ = 0;
+			gpointer _tmp30_ = NULL;
+			GeeHashMap* _tmp31_ = NULL;
+			const gchar* _tmp32_ = NULL;
+			gpointer _tmp33_ = NULL;
+			BookwormAppBook* _tmp34_ = NULL;
+			GeeHashMap* _tmp35_ = NULL;
+			const gchar* _tmp36_ = NULL;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp25_ = _bookLocation_index;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_bookLocation_index = _tmp25_ + 1;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp26_ = _bookLocation_index;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp27_ = _bookLocation_size;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (!(_tmp26_ < _tmp27_)) {
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				break;
+#line 2548 "bookworm.c"
+			}
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp28_ = _bookLocation_list;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp29_ = _bookLocation_index;
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp30_ = gee_abstract_list_get ((GeeAbstractList*) _tmp28_, _tmp29_);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookLocation = (gchar*) _tmp30_;
+#line 468 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp31_ = bookworm_app_bookworm_libraryViewMap;
+#line 468 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp32_ = bookLocation;
+#line 468 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp33_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp31_, _tmp32_);
+#line 468 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp34_ = (BookwormAppBook*) _tmp33_;
+#line 468 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookworm_app_bookworm_removeBookFromDB (self, _tmp34_);
+#line 468 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_bookworm_app_book_unref0 (_tmp34_);
+#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp35_ = bookworm_app_bookworm_libraryViewMap;
+#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp36_ = bookLocation;
+#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gee_abstract_map_unset ((GeeAbstractMap*) _tmp35_, _tmp36_, NULL);
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (bookLocation);
+#line 2578 "bookworm.c"
+		}
+#line 467 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (_bookLocation_list);
+#line 2582 "bookworm.c"
+	}
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp37_ = self->window;
+#line 471 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_widget_show_all ((GtkWidget*) _tmp37_);
+#line 472 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_bookworm_toggleUIState (self);
+#line 453 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (listOfBooksToBeRemoved);
+#line 2592 "bookworm.c"
 }
 
 
@@ -2169,33 +2606,33 @@ gchar* bookworm_app_bookworm_selectBookFileChooser (BookwormAppBookworm* self) {
 	GtkFileChooserDialog* _tmp4_ = NULL;
 	GtkFileChooserDialog* _tmp5_ = NULL;
 	gint _tmp6_ = 0;
-#line 425 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 475 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = g_strdup ("");
-#line 426 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 476 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	eBookLocation = _tmp0_;
-#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 428 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookDetailsMap = _tmp1_;
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 480 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = self->window;
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 480 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = bookworm_app_utils_new_file_chooser_dialog (GTK_FILE_CHOOSER_ACTION_OPEN, "Select eBook", _tmp2_, FALSE);
-#line 430 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 480 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	aFileChooserDialog = _tmp3_;
-#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 481 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = aFileChooserDialog;
-#line 431 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 481 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	gtk_widget_show_all ((GtkWidget*) _tmp4_);
-#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp5_ = aFileChooserDialog;
-#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp6_ = gtk_dialog_run ((GtkDialog*) _tmp5_);
-#line 432 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp6_ == ((gint) GTK_RESPONSE_ACCEPT)) {
-#line 2197 "bookworm.c"
+#line 2634 "bookworm.c"
 		GtkFileChooserDialog* _tmp7_ = NULL;
 		gchar* _tmp8_ = NULL;
 		GtkFileChooserDialog* _tmp9_ = NULL;
@@ -2204,374 +2641,450 @@ gchar* bookworm_app_bookworm_selectBookFileChooser (BookwormAppBookworm* self) {
 		gchar* _tmp12_ = NULL;
 		gchar* _tmp13_ = NULL;
 		GtkFileChooserDialog* _tmp14_ = NULL;
-#line 433 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp7_ = aFileChooserDialog;
-#line 433 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp8_ = gtk_file_chooser_get_filename ((GtkFileChooser*) _tmp7_);
-#line 433 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (eBookLocation);
-#line 433 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		eBookLocation = _tmp8_;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 484 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp9_ = aFileChooserDialog;
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 484 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp10_ = gtk_file_chooser_get_current_folder ((GtkFileChooser*) _tmp9_);
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 484 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (bookworm_app_utils_last_file_chooser_path);
-#line 434 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 484 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_utils_last_file_chooser_path = _tmp10_;
-#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 485 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp11_ = bookworm_app_utils_last_file_chooser_path;
-#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 485 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp12_ = g_strconcat ("Last visited folder for FileChooserDialog set as:", _tmp11_, NULL);
-#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 485 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp13_ = _tmp12_;
-#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_debug ("bookworm.vala:435: %s", _tmp13_);
-#line 435 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 485 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_debug ("bookworm.vala:485: %s", _tmp13_);
+#line 485 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp13_);
-#line 436 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 486 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp14_ = aFileChooserDialog;
-#line 436 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 486 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		gtk_widget_destroy ((GtkWidget*) _tmp14_);
-#line 2236 "bookworm.c"
+#line 2673 "bookworm.c"
 	} else {
 		GtkFileChooserDialog* _tmp15_ = NULL;
-#line 438 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp15_ = aFileChooserDialog;
-#line 438 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 488 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		gtk_widget_destroy ((GtkWidget*) _tmp15_);
-#line 2243 "bookworm.c"
+#line 2680 "bookworm.c"
 	}
-#line 440 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	result = eBookLocation;
-#line 440 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (aFileChooserDialog);
-#line 440 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (bookDetailsMap);
-#line 440 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 2253 "bookworm.c"
+#line 2690 "bookworm.c"
 }
 
 
 void bookworm_app_bookworm_addBookToLibrary (BookwormAppBookworm* self, BookwormAppBook* aBook) {
-	BookwormAppBook* _tmp0_ = NULL;
-	gchar* _tmp1_ = NULL;
+	GeeHashMap* _tmp0_ = NULL;
+	BookwormAppBook* _tmp1_ = NULL;
 	gchar* _tmp2_ = NULL;
 	gchar* _tmp3_ = NULL;
-	gchar* _tmp4_ = NULL;
-	gchar* eBookLocation = NULL;
-	BookwormAppBook* _tmp5_ = NULL;
-	gchar* _tmp6_ = NULL;
-	GFile* eBookFile = NULL;
-	const gchar* _tmp7_ = NULL;
-	GFile* _tmp8_ = NULL;
-	gboolean _tmp9_ = FALSE;
-	GFile* _tmp10_ = NULL;
-	gboolean _tmp11_ = FALSE;
-#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gboolean _tmp4_ = FALSE;
+	gboolean _tmp5_ = FALSE;
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (aBook != NULL);
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp0_ = aBook;
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = bookworm_app_book_getBookLocation (_tmp0_);
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp2_ = _tmp1_;
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp3_ = g_strconcat ("Initiated process to add eBook to library from path:", _tmp2_, NULL);
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp4_ = _tmp3_;
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:444: %s", _tmp4_);
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp4_);
-#line 444 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp2_);
-#line 446 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp5_ = aBook;
-#line 446 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp6_ = bookworm_app_book_getBookLocation (_tmp5_);
-#line 446 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	eBookLocation = _tmp6_;
-#line 447 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp7_ = eBookLocation;
-#line 447 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp8_ = g_file_new_for_path (_tmp7_);
-#line 447 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	eBookFile = _tmp8_;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_ = eBookFile;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = g_file_query_exists (_tmp10_, NULL);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	if (_tmp11_) {
-#line 2310 "bookworm.c"
-		GFile* _tmp12_ = NULL;
-		GFileType _tmp13_ = 0;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp12_ = eBookFile;
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp13_ = g_file_query_file_type (_tmp12_, 0, NULL);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp9_ = _tmp13_ != G_FILE_TYPE_DIRECTORY;
-#line 2319 "bookworm.c"
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp0_ = bookworm_app_bookworm_libraryViewMap;
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = aBook;
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = bookworm_app_book_getBookLocation (_tmp1_);
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp3_ = _tmp2_;
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp4_ = gee_abstract_map_has_key ((GeeAbstractMap*) _tmp0_, _tmp3_);
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp5_ = _tmp4_;
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp3_);
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (_tmp5_) {
+#line 2721 "bookworm.c"
 	} else {
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp9_ = FALSE;
-#line 2323 "bookworm.c"
+		BookwormAppBook* _tmp6_ = NULL;
+		gchar* _tmp7_ = NULL;
+		gchar* _tmp8_ = NULL;
+		gchar* _tmp9_ = NULL;
+		gchar* _tmp10_ = NULL;
+		gchar* eBookLocation = NULL;
+		BookwormAppBook* _tmp11_ = NULL;
+		gchar* _tmp12_ = NULL;
+		GFile* eBookFile = NULL;
+		const gchar* _tmp13_ = NULL;
+		GFile* _tmp14_ = NULL;
+		gboolean _tmp15_ = FALSE;
+		GFile* _tmp16_ = NULL;
+		gboolean _tmp17_ = FALSE;
+#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp6_ = aBook;
+#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp7_ = bookworm_app_book_getBookLocation (_tmp6_);
+#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp8_ = _tmp7_;
+#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp9_ = g_strconcat ("Initiated process to add eBook to library from path:", _tmp8_, NULL);
+#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp10_ = _tmp9_;
+#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_debug ("bookworm.vala:499: %s", _tmp10_);
+#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp10_);
+#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp8_);
+#line 501 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp11_ = aBook;
+#line 501 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp12_ = bookworm_app_book_getBookLocation (_tmp11_);
+#line 501 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		eBookLocation = _tmp12_;
+#line 502 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp13_ = eBookLocation;
+#line 502 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp14_ = g_file_new_for_path (_tmp13_);
+#line 502 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		eBookFile = _tmp14_;
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp16_ = eBookFile;
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp17_ = g_file_query_exists (_tmp16_, NULL);
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		if (_tmp17_) {
+#line 2771 "bookworm.c"
+			GFile* _tmp18_ = NULL;
+			GFileType _tmp19_ = 0;
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp18_ = eBookFile;
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp19_ = g_file_query_file_type (_tmp18_, 0, NULL);
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp15_ = _tmp19_ != G_FILE_TYPE_DIRECTORY;
+#line 2780 "bookworm.c"
+		} else {
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp15_ = FALSE;
+#line 2784 "bookworm.c"
+		}
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		if (_tmp15_) {
+#line 2788 "bookworm.c"
+			gchar* extractionLocation = NULL;
+			const gchar* _tmp20_ = NULL;
+			gchar* _tmp21_ = NULL;
+			BookwormAppBook* _tmp22_ = NULL;
+			const gchar* _tmp23_ = NULL;
+			BookwormAppBook* _tmp24_ = NULL;
+			BookwormAppBook* _tmp25_ = NULL;
+			const gchar* _tmp26_ = NULL;
+			BookwormAppBook* _tmp27_ = NULL;
+			BookwormAppBook* _tmp28_ = NULL;
+			BookwormAppBook* _tmp29_ = NULL;
+			const gchar* _tmp30_ = NULL;
+			BookwormAppBook* _tmp31_ = NULL;
+			GeeHashMap* _tmp32_ = NULL;
+			const gchar* _tmp33_ = NULL;
+			BookwormAppBook* _tmp34_ = NULL;
+			const gchar* _tmp35_ = NULL;
+			gchar* _tmp36_ = NULL;
+			BookwormAppBook* _tmp37_ = NULL;
+			BookwormAppBook* _tmp38_ = NULL;
+			BookwormAppBook* _tmp39_ = NULL;
+			GeeHashMap* _tmp40_ = NULL;
+			gint _tmp41_ = 0;
+			gint _tmp42_ = 0;
+			gchar* _tmp43_ = NULL;
+			gchar* _tmp44_ = NULL;
+			gchar* _tmp45_ = NULL;
+			gchar* _tmp46_ = NULL;
+#line 504 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp20_ = eBookLocation;
+#line 504 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp21_ = bookworm_app_epub_reader_extractEBook (_tmp20_);
+#line 504 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			extractionLocation = _tmp21_;
+#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp22_ = aBook;
+#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp23_ = extractionLocation;
+#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookworm_app_book_setBookExtractionLocation (_tmp22_, _tmp23_);
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp24_ = aBook;
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp25_ = _bookworm_app_book_ref0 (_tmp24_);
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp26_ = bookworm_app_bookworm_bookworm_config_path;
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp27_ = bookworm_app_epub_reader_getBookCoverImageLocation (_tmp25_, _tmp26_);
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_bookworm_app_book_unref0 (aBook);
+#line 507 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			aBook = _tmp27_;
+#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp28_ = aBook;
+#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp29_ = _bookworm_app_book_ref0 (_tmp28_);
+#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp30_ = bookworm_app_bookworm_bookworm_config_path;
+#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp31_ = bookworm_app_epub_reader_getBookTitle (_tmp29_, _tmp30_);
+#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_bookworm_app_book_unref0 (aBook);
+#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			aBook = _tmp31_;
+#line 511 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp32_ = bookworm_app_bookworm_libraryViewMap;
+#line 511 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp33_ = eBookLocation;
+#line 511 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp34_ = aBook;
+#line 511 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gee_abstract_map_set ((GeeAbstractMap*) _tmp32_, _tmp33_, _tmp34_);
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp35_ = eBookLocation;
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp36_ = g_strdup (_tmp35_);
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (self->locationOfEBookCurrentlyRead);
+#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			self->locationOfEBookCurrentlyRead = _tmp36_;
+#line 515 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp37_ = aBook;
+#line 515 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp38_ = _bookworm_app_book_ref0 (_tmp37_);
+#line 515 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookworm_app_bookworm_updateLibraryView (self, _tmp38_);
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp39_ = aBook;
+#line 517 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookworm_app_bookworm_addBookToDataBase (self, _tmp39_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp40_ = bookworm_app_bookworm_libraryViewMap;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp41_ = gee_abstract_map_get_size ((GeeMap*) _tmp40_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp42_ = _tmp41_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp43_ = g_strdup_printf ("%i", _tmp42_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp44_ = _tmp43_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp45_ = g_strconcat ("Completed adding book to ebook library. Number of books in library:", _tmp44_, NULL);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp46_ = _tmp45_;
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			g_debug ("bookworm.vala:518: %s", _tmp46_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (_tmp46_);
+#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (_tmp44_);
+#line 503 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (extractionLocation);
+#line 2901 "bookworm.c"
+		} else {
+#line 520 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			g_debug ("bookworm.vala:520: No ebook found for adding to library");
+#line 2905 "bookworm.c"
+		}
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (eBookFile);
+#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (eBookLocation);
+#line 2911 "bookworm.c"
 	}
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	if (_tmp9_) {
-#line 2327 "bookworm.c"
-		gchar* extractionLocation = NULL;
-		const gchar* _tmp14_ = NULL;
-		gchar* _tmp15_ = NULL;
-		BookwormAppBook* _tmp16_ = NULL;
-		const gchar* _tmp17_ = NULL;
-		BookwormAppBook* _tmp18_ = NULL;
-		BookwormAppBook* _tmp19_ = NULL;
-		const gchar* _tmp20_ = NULL;
-		BookwormAppBook* _tmp21_ = NULL;
-		BookwormAppBook* _tmp22_ = NULL;
-		BookwormAppBook* _tmp23_ = NULL;
-		const gchar* _tmp24_ = NULL;
-		BookwormAppBook* _tmp25_ = NULL;
-		GeeHashMap* _tmp26_ = NULL;
-		const gchar* _tmp27_ = NULL;
-		BookwormAppBook* _tmp28_ = NULL;
-		const gchar* _tmp29_ = NULL;
-		gchar* _tmp30_ = NULL;
-		BookwormAppBook* _tmp31_ = NULL;
-		BookwormAppBook* _tmp32_ = NULL;
-		BookwormAppBook* _tmp33_ = NULL;
-		GeeHashMap* _tmp34_ = NULL;
-		gint _tmp35_ = 0;
-		gint _tmp36_ = 0;
-		gchar* _tmp37_ = NULL;
-		gchar* _tmp38_ = NULL;
-		gchar* _tmp39_ = NULL;
-		gchar* _tmp40_ = NULL;
-#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp14_ = eBookLocation;
-#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp15_ = bookworm_app_epub_reader_extractEBook (_tmp14_);
-#line 449 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		extractionLocation = _tmp15_;
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp16_ = aBook;
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp17_ = extractionLocation;
-#line 450 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		bookworm_app_book_setBookExtractionLocation (_tmp16_, _tmp17_);
-#line 452 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp18_ = aBook;
-#line 452 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp19_ = _bookworm_app_book_ref0 (_tmp18_);
-#line 452 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp20_ = bookworm_app_bookworm_bookworm_config_path;
-#line 452 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp21_ = bookworm_app_epub_reader_getBookCoverImageLocation (_tmp19_, _tmp20_);
-#line 452 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_bookworm_app_book_unref0 (aBook);
-#line 452 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		aBook = _tmp21_;
-#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp22_ = aBook;
-#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp23_ = _bookworm_app_book_ref0 (_tmp22_);
-#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp24_ = bookworm_app_bookworm_bookworm_config_path;
-#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp25_ = bookworm_app_epub_reader_getBookTitle (_tmp23_, _tmp24_);
-#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_bookworm_app_book_unref0 (aBook);
-#line 454 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		aBook = _tmp25_;
-#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp26_ = bookworm_app_bookworm_libraryViewMap;
-#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp27_ = eBookLocation;
-#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp28_ = aBook;
-#line 456 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gee_abstract_map_set ((GeeAbstractMap*) _tmp26_, _tmp27_, _tmp28_);
-#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp29_ = eBookLocation;
-#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp30_ = g_strdup (_tmp29_);
-#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_free0 (self->locationOfEBookCurrentlyRead);
-#line 458 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		self->locationOfEBookCurrentlyRead = _tmp30_;
-#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp31_ = aBook;
-#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp32_ = _bookworm_app_book_ref0 (_tmp31_);
-#line 460 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		bookworm_app_bookworm_updateLibraryView (self, _tmp32_);
-#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp33_ = aBook;
-#line 462 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		bookworm_app_bookworm_addBookToDataBase (self, _tmp33_);
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp34_ = bookworm_app_bookworm_libraryViewMap;
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp35_ = gee_abstract_map_get_size ((GeeMap*) _tmp34_);
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp36_ = _tmp35_;
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp37_ = g_strdup_printf ("%i", _tmp36_);
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp38_ = _tmp37_;
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp39_ = g_strconcat ("Completed adding book to ebook library. Number of books in library:", _tmp38_, NULL);
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp40_ = _tmp39_;
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_debug ("bookworm.vala:463: %s", _tmp40_);
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_free0 (_tmp40_);
-#line 463 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_free0 (_tmp38_);
-#line 448 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_free0 (extractionLocation);
-#line 2440 "bookworm.c"
-	} else {
-#line 465 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_debug ("bookworm.vala:465: No ebook found for adding to library");
-#line 2444 "bookworm.c"
-	}
-#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (eBookFile);
-#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (eBookLocation);
-#line 443 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 493 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (aBook);
-#line 2452 "bookworm.c"
+#line 2915 "bookworm.c"
 }
 
 
 static Block1Data* block1_data_ref (Block1Data* _data1_) {
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_atomic_int_inc (&_data1_->_ref_count_);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return _data1_;
-#line 2461 "bookworm.c"
+#line 2924 "bookworm.c"
 }
 
 
 static void block1_data_unref (void * _userdata_) {
 	Block1Data* _data1_;
 	_data1_ = (Block1Data*) _userdata_;
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (g_atomic_int_dec_and_test (&_data1_->_ref_count_)) {
-#line 2470 "bookworm.c"
+#line 2933 "bookworm.c"
 		BookwormAppBookworm* self;
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		self = _data1_->self;
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_object_unref0 (_data1_->aEventBox);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_bookworm_app_book_unref0 (_data1_->aBook);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_object_unref0 (self);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		g_slice_free (Block1Data, _data1_);
-#line 2482 "bookworm.c"
+#line 2945 "bookworm.c"
 	}
-}
-
-
-static gpointer _g_object_ref0 (gpointer self) {
-#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	return self ? g_object_ref (self) : NULL;
-#line 2490 "bookworm.c"
 }
 
 
 static gboolean __lambda13_ (Block1Data* _data1_) {
 	BookwormAppBookworm* self;
 	gboolean result = FALSE;
-	GtkEventBox* _tmp0_ = NULL;
+	const gchar* _tmp0_ = NULL;
 	const gchar* _tmp1_ = NULL;
-	gchar* _tmp2_ = NULL;
-	gchar* _tmp3_ = NULL;
-	GeeHashMap* _tmp4_ = NULL;
-	GtkEventBox* _tmp5_ = NULL;
-	const gchar* _tmp6_ = NULL;
-	gpointer _tmp7_ = NULL;
-	BookwormAppBook* _tmp8_ = NULL;
-	gchar* _tmp9_ = NULL;
-	gchar* _tmp10_ = NULL;
-	gchar* _tmp11_ = NULL;
-	gchar* _tmp12_ = NULL;
-	BookwormAppBook* _tmp13_ = NULL;
-	BookwormAppBook* _tmp14_ = NULL;
-#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gboolean _tmp13_ = FALSE;
+	const gchar* _tmp14_ = NULL;
+	const gchar* _tmp15_ = NULL;
+#line 575 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self = _data1_->self;
-#line 519 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp0_ = _data1_->aEventBox;
-#line 519 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = gtk_buildable_get_name ((GtkBuildable*) _tmp0_);
-#line 519 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp2_ = g_strconcat ("Selected book:", _tmp1_, NULL);
-#line 519 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp3_ = _tmp2_;
-#line 519 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:519: %s", _tmp3_);
-#line 519 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp3_);
-#line 520 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp4_ = bookworm_app_bookworm_libraryViewMap;
-#line 520 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp5_ = _data1_->aEventBox;
-#line 520 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp6_ = gtk_buildable_get_name ((GtkBuildable*) _tmp5_);
-#line 520 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp7_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp4_, _tmp6_);
-#line 520 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_bookworm_app_book_unref0 (_data1_->aBook);
-#line 520 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_data1_->aBook = (BookwormAppBook*) _tmp7_;
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp8_ = _data1_->aBook;
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp9_ = bookworm_app_book_getBookLocation (_tmp8_);
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_ = _tmp9_;
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = g_strconcat ("Initiated process for reading eBook:", _tmp10_, NULL);
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp12_ = _tmp11_;
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:521: %s", _tmp12_);
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp12_);
-#line 521 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp10_);
-#line 522 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp13_ = _data1_->aBook;
-#line 522 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp14_ = _bookworm_app_book_ref0 (_tmp13_);
-#line 522 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	bookworm_app_bookworm_readSelectedBook (self, _tmp14_);
-#line 523 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 576 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp0_ = self->BOOKWORM_CURRENT_STATE;
+#line 576 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
+#line 576 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (g_strcmp0 (_tmp0_, _tmp1_) == 0) {
+#line 2966 "bookworm.c"
+		GeeHashMap* _tmp2_ = NULL;
+		GtkEventBox* _tmp3_ = NULL;
+		const gchar* _tmp4_ = NULL;
+		gpointer _tmp5_ = NULL;
+		BookwormAppBook* _tmp6_ = NULL;
+		gchar* _tmp7_ = NULL;
+		gchar* _tmp8_ = NULL;
+		gchar* _tmp9_ = NULL;
+		gchar* _tmp10_ = NULL;
+		BookwormAppBook* _tmp11_ = NULL;
+		BookwormAppBook* _tmp12_ = NULL;
+#line 577 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp2_ = bookworm_app_bookworm_libraryViewMap;
+#line 577 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp3_ = _data1_->aEventBox;
+#line 577 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp4_ = gtk_buildable_get_name ((GtkBuildable*) _tmp3_);
+#line 577 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp5_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp2_, _tmp4_);
+#line 577 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_bookworm_app_book_unref0 (_data1_->aBook);
+#line 577 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_data1_->aBook = (BookwormAppBook*) _tmp5_;
+#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp6_ = _data1_->aBook;
+#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp7_ = bookworm_app_book_getBookLocation (_tmp6_);
+#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp8_ = _tmp7_;
+#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp9_ = g_strconcat ("Initiated process for reading eBook:", _tmp8_, NULL);
+#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp10_ = _tmp9_;
+#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_debug ("bookworm.vala:578: %s", _tmp10_);
+#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp10_);
+#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp8_);
+#line 579 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp11_ = _data1_->aBook;
+#line 579 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp12_ = _bookworm_app_book_ref0 (_tmp11_);
+#line 579 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookworm_app_bookworm_readSelectedBook (self, _tmp12_);
+#line 3012 "bookworm.c"
+	}
+#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp14_ = self->BOOKWORM_CURRENT_STATE;
+#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp15_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[2];
+#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (g_strcmp0 (_tmp14_, _tmp15_) == 0) {
+#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp13_ = TRUE;
+#line 3022 "bookworm.c"
+	} else {
+		const gchar* _tmp16_ = NULL;
+		const gchar* _tmp17_ = NULL;
+#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp16_ = self->BOOKWORM_CURRENT_STATE;
+#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp17_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[3];
+#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp13_ = g_strcmp0 (_tmp16_, _tmp17_) == 0;
+#line 3032 "bookworm.c"
+	}
+#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (_tmp13_) {
+#line 3036 "bookworm.c"
+		const gchar* _tmp18_ = NULL;
+		gchar* _tmp19_ = NULL;
+		GeeHashMap* _tmp20_ = NULL;
+		GtkEventBox* _tmp21_ = NULL;
+		const gchar* _tmp22_ = NULL;
+		gpointer _tmp23_ = NULL;
+		BookwormAppBook* _tmp24_ = NULL;
+		BookwormAppBook* _tmp25_ = NULL;
+#line 582 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp18_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[3];
+#line 582 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp19_ = g_strdup (_tmp18_);
+#line 582 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (self->BOOKWORM_CURRENT_STATE);
+#line 582 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		self->BOOKWORM_CURRENT_STATE = _tmp19_;
+#line 583 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp20_ = bookworm_app_bookworm_libraryViewMap;
+#line 583 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp21_ = _data1_->aEventBox;
+#line 583 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp22_ = gtk_buildable_get_name ((GtkBuildable*) _tmp21_);
+#line 583 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp23_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp20_, _tmp22_);
+#line 583 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_bookworm_app_book_unref0 (_data1_->aBook);
+#line 583 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_data1_->aBook = (BookwormAppBook*) _tmp23_;
+#line 584 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp24_ = _data1_->aBook;
+#line 584 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp25_ = _bookworm_app_book_ref0 (_tmp24_);
+#line 584 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookworm_app_bookworm_updateLibraryViewForSelectionMode (self, _tmp25_);
+#line 3071 "bookworm.c"
+	}
+#line 586 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	result = TRUE;
-#line 523 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 586 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 2564 "bookworm.c"
+#line 3077 "bookworm.c"
 }
 
 
 static gboolean ___lambda13__gtk_widget_button_press_event (GtkWidget* _sender, GdkEventButton* event, gpointer self) {
 	gboolean result;
 	result = __lambda13_ (self);
-#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 575 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return result;
-#line 2573 "bookworm.c"
+#line 3086 "bookworm.c"
 }
 
 
@@ -2583,430 +3096,1527 @@ void bookworm_app_bookworm_updateLibraryView (BookwormAppBookworm* self, Bookwor
 	gchar* _tmp3_ = NULL;
 	gchar* _tmp4_ = NULL;
 	gchar* _tmp5_ = NULL;
-	GdkPixbuf* aBookCover = NULL;
-	GtkImage* aCoverImage = NULL;
 	GtkEventBox* _tmp6_ = NULL;
 	GtkEventBox* _tmp7_ = NULL;
 	BookwormAppBook* _tmp8_ = NULL;
 	gchar* _tmp9_ = NULL;
 	gchar* _tmp10_ = NULL;
+	GtkOverlay* aOverlayImage = NULL;
+	GtkOverlay* _tmp11_ = NULL;
+	GtkImage* aCoverImage = NULL;
+	GdkPixbuf* _tmp12_ = NULL;
+	GtkImage* _tmp13_ = NULL;
 	gchar* bookCoverLocation = NULL;
-	BookwormAppBook* _tmp11_ = NULL;
-	gboolean _tmp12_ = FALSE;
-	GeeHashMap* _tmp48_ = NULL;
-	BookwormAppBook* _tmp49_ = NULL;
-	gchar* _tmp50_ = NULL;
-	gchar* _tmp51_ = NULL;
-	BookwormAppBook* _tmp52_ = NULL;
-	GeeHashMap* _tmp53_ = NULL;
-	BookwormAppBook* _tmp54_ = NULL;
-	gchar* _tmp55_ = NULL;
-	gchar* _tmp56_ = NULL;
-	GtkEventBox* _tmp57_ = NULL;
-	GtkWidget* _tmp58_ = NULL;
+	BookwormAppBook* _tmp14_ = NULL;
+	gboolean _tmp15_ = FALSE;
+	GtkWidget* _tmp47_ = NULL;
+	BookwormAppBook* _tmp58_ = NULL;
+	GtkImage* _tmp59_ = NULL;
+	BookwormAppBook* _tmp60_ = NULL;
+	GtkEventBox* _tmp61_ = NULL;
+	BookwormAppBook* _tmp62_ = NULL;
+	GtkOverlay* _tmp63_ = NULL;
+	GtkEventBox* _tmp64_ = NULL;
+	GtkWidget* _tmp65_ = NULL;
+	const gchar* _tmp66_ = NULL;
+	gchar* _tmp67_ = NULL;
+	GtkWindow* _tmp68_ = NULL;
 	GtkEventBox* _tmp69_ = NULL;
-	GtkWidget* _tmp70_ = NULL;
-	GtkWindow* _tmp71_ = NULL;
-	const gchar* _tmp72_ = NULL;
+	GeeHashMap* _tmp70_ = NULL;
+	BookwormAppBook* _tmp71_ = NULL;
+	gchar* _tmp72_ = NULL;
 	gchar* _tmp73_ = NULL;
-	GtkEventBox* _tmp74_ = NULL;
+	BookwormAppBook* _tmp74_ = NULL;
+	GeeHashMap* _tmp75_ = NULL;
+	BookwormAppBook* _tmp76_ = NULL;
+	gchar* _tmp77_ = NULL;
+	gchar* _tmp78_ = NULL;
+	GtkEventBox* _tmp79_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (aBook != NULL);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_data1_ = g_slice_new0 (Block1Data);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_data1_->_ref_count_ = 1;
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_data1_->self = g_object_ref (self);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = aBook;
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (_data1_->aBook);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_data1_->aBook = _tmp0_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = _data1_->aBook;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = bookworm_app_book_getBookCoverLocation (_tmp1_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = _tmp2_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = g_strconcat ("Updating Library for cover:", _tmp3_, NULL);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp5_ = _tmp4_;
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:470: %s", _tmp5_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:526: %s", _tmp5_);
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp5_);
-#line 470 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 526 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp3_);
-#line 473 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 527 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp6_ = (GtkEventBox*) gtk_event_box_new ();
-#line 473 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 527 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_object_ref_sink (_tmp6_);
-#line 473 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 527 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_data1_->aEventBox = _tmp6_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 528 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp7_ = _data1_->aEventBox;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 528 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp8_ = _data1_->aBook;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 528 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp9_ = bookworm_app_book_getBookLocation (_tmp8_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 528 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp10_ = _tmp9_;
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 528 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	gtk_buildable_set_name ((GtkBuildable*) _tmp7_, _tmp10_);
-#line 474 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 528 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp10_);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = _data1_->aBook;
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp12_ = bookworm_app_book_getIsBookCoverImagePresent (_tmp11_);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	if (!_tmp12_) {
-#line 2669 "bookworm.c"
-		BookwormAppBook* _tmp13_ = NULL;
-		gchar* _tmp14_ = NULL;
-		GdkPixbuf* _tmp15_ = NULL;
-		GdkPixbuf* _tmp16_ = NULL;
-		GdkPixbuf* _tmp17_ = NULL;
-		GdkPixbuf* _tmp18_ = NULL;
+#line 529 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = (GtkOverlay*) gtk_overlay_new ();
+#line 529 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp11_);
+#line 529 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	aOverlayImage = _tmp11_;
+#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp12_ = self->aBookCover;
+#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp13_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp12_);
+#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_object_ref_sink (_tmp13_);
+#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	aCoverImage = _tmp13_;
+#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp14_ = _data1_->aBook;
+#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp15_ = bookworm_app_book_getIsBookCoverImagePresent (_tmp14_);
+#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (!_tmp15_) {
+#line 3205 "bookworm.c"
+		BookwormAppBook* _tmp16_ = NULL;
+		gchar* _tmp17_ = NULL;
+		GtkOverlay* _tmp18_ = NULL;
 		GtkImage* _tmp19_ = NULL;
-		GtkOverlay* aOverlayImage = NULL;
-		GtkOverlay* _tmp20_ = NULL;
-		GtkOverlay* _tmp21_ = NULL;
-		GtkImage* _tmp22_ = NULL;
 		GtkLabel* overlayTextLabel = NULL;
-		BookwormAppBook* _tmp23_ = NULL;
+		BookwormAppBook* _tmp20_ = NULL;
+		gchar* _tmp21_ = NULL;
+		gchar* _tmp22_ = NULL;
+		gchar* _tmp23_ = NULL;
 		gchar* _tmp24_ = NULL;
 		gchar* _tmp25_ = NULL;
 		gchar* _tmp26_ = NULL;
-		gchar* _tmp27_ = NULL;
-		gchar* _tmp28_ = NULL;
-		gchar* _tmp29_ = NULL;
+		GtkLabel* _tmp27_ = NULL;
+		GtkLabel* _tmp28_ = NULL;
+		GtkLabel* _tmp29_ = NULL;
 		GtkLabel* _tmp30_ = NULL;
-		GtkLabel* _tmp31_ = NULL;
+		GtkOverlay* _tmp31_ = NULL;
 		GtkLabel* _tmp32_ = NULL;
-		GtkLabel* _tmp33_ = NULL;
+		GtkEventBox* _tmp33_ = NULL;
 		GtkOverlay* _tmp34_ = NULL;
-		GtkLabel* _tmp35_ = NULL;
-		GtkEventBox* _tmp36_ = NULL;
-		GtkOverlay* _tmp37_ = NULL;
-#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp13_ = _data1_->aBook;
-#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp14_ = bookworm_app_book_getBookCoverLocation (_tmp13_);
-#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 534 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp16_ = _data1_->aBook;
+#line 534 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp17_ = bookworm_app_book_getBookCoverLocation (_tmp16_);
+#line 534 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (bookCoverLocation);
-#line 478 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		bookCoverLocation = _tmp14_;
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp16_ = gdk_pixbuf_new_from_file_at_scale (BOOKWORM_APP_CONSTANTS_DEFAULT_COVER_IMAGE_LOCATION, 150, 200, FALSE, &_inner_error_);
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp15_ = _tmp16_;
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_g_free0 (bookCoverLocation);
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_g_object_unref0 (aCoverImage);
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_g_object_unref0 (aBookCover);
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			block1_data_unref (_data1_);
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_data1_ = NULL;
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			g_clear_error (&_inner_error_);
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			return;
-#line 2727 "bookworm.c"
-		}
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp17_ = _tmp15_;
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp15_ = NULL;
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_object_unref0 (aBookCover);
-#line 479 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		aBookCover = _tmp17_;
-#line 480 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp18_ = aBookCover;
-#line 480 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp19_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp18_);
-#line 480 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_object_ref_sink (_tmp19_);
-#line 480 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_object_unref0 (aCoverImage);
-#line 480 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		aCoverImage = _tmp19_;
-#line 481 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp20_ = (GtkOverlay*) gtk_overlay_new ();
-#line 481 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_object_ref_sink (_tmp20_);
-#line 481 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		aOverlayImage = _tmp20_;
-#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp21_ = aOverlayImage;
-#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp22_ = aCoverImage;
-#line 482 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_container_add ((GtkContainer*) _tmp21_, (GtkWidget*) _tmp22_);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp23_ = _data1_->aBook;
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp24_ = bookworm_app_book_getBookTitle (_tmp23_);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp25_ = _tmp24_;
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp26_ = g_strconcat ("<b>", _tmp25_, NULL);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp27_ = _tmp26_;
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp28_ = g_strconcat (_tmp27_, "</b>", NULL);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp29_ = _tmp28_;
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp30_ = (GtkLabel*) gtk_label_new (_tmp29_);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_object_ref_sink (_tmp30_);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp31_ = _tmp30_;
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_free0 (_tmp29_);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_free0 (_tmp27_);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_free0 (_tmp25_);
-#line 483 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		overlayTextLabel = _tmp31_;
-#line 484 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 534 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookCoverLocation = _tmp17_;
+#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp18_ = aOverlayImage;
+#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp19_ = aCoverImage;
+#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_container_add ((GtkContainer*) _tmp18_, (GtkWidget*) _tmp19_);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp20_ = _data1_->aBook;
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp21_ = bookworm_app_book_getBookTitle (_tmp20_);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp22_ = _tmp21_;
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp23_ = g_strconcat ("<b>", _tmp22_, NULL);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp24_ = _tmp23_;
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp25_ = g_strconcat (_tmp24_, "</b>", NULL);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp26_ = _tmp25_;
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp27_ = (GtkLabel*) gtk_label_new (_tmp26_);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_object_ref_sink (_tmp27_);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp28_ = _tmp27_;
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp26_);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp24_);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp22_);
+#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		overlayTextLabel = _tmp28_;
+#line 537 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp29_ = overlayTextLabel;
+#line 537 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_label_set_use_markup (_tmp29_, TRUE);
+#line 538 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp30_ = overlayTextLabel;
+#line 538 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_label_set_line_wrap (_tmp30_, TRUE);
+#line 539 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp31_ = aOverlayImage;
+#line 539 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp32_ = overlayTextLabel;
-#line 484 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_label_set_use_markup (_tmp32_, TRUE);
-#line 485 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp33_ = overlayTextLabel;
-#line 485 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_label_set_line_wrap (_tmp33_, TRUE);
-#line 486 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 539 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_overlay_add_overlay (_tmp31_, (GtkWidget*) _tmp32_);
+#line 540 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp33_ = _data1_->aEventBox;
+#line 540 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp34_ = aOverlayImage;
-#line 486 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp35_ = overlayTextLabel;
-#line 486 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_overlay_add_overlay (_tmp34_, (GtkWidget*) _tmp35_);
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp36_ = _data1_->aEventBox;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp37_ = aOverlayImage;
-#line 487 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_container_add ((GtkContainer*) _tmp36_, (GtkWidget*) _tmp37_);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 540 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_container_add ((GtkContainer*) _tmp33_, (GtkWidget*) _tmp34_);
+#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_object_unref0 (overlayTextLabel);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_object_unref0 (aOverlayImage);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_object_unref0 (_tmp15_);
-#line 2813 "bookworm.c"
+#line 3290 "bookworm.c"
 	} else {
-		BookwormAppBook* _tmp38_ = NULL;
-		gchar* _tmp39_ = NULL;
+		BookwormAppBook* _tmp35_ = NULL;
+		gchar* _tmp36_ = NULL;
+		GdkPixbuf* _tmp37_ = NULL;
+		const gchar* _tmp38_ = NULL;
+		GdkPixbuf* _tmp39_ = NULL;
 		GdkPixbuf* _tmp40_ = NULL;
-		const gchar* _tmp41_ = NULL;
-		GdkPixbuf* _tmp42_ = NULL;
-		GdkPixbuf* _tmp43_ = NULL;
-		GdkPixbuf* _tmp44_ = NULL;
-		GtkImage* _tmp45_ = NULL;
-		GtkEventBox* _tmp46_ = NULL;
-		GtkImage* _tmp47_ = NULL;
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp38_ = _data1_->aBook;
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp39_ = bookworm_app_book_getBookCoverLocation (_tmp38_);
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		GdkPixbuf* _tmp41_ = NULL;
+		GtkImage* _tmp42_ = NULL;
+		GtkOverlay* _tmp43_ = NULL;
+		GtkImage* _tmp44_ = NULL;
+		GtkEventBox* _tmp45_ = NULL;
+		GtkOverlay* _tmp46_ = NULL;
+#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp35_ = _data1_->aBook;
+#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp36_ = bookworm_app_book_getBookCoverLocation (_tmp35_);
+#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (bookCoverLocation);
-#line 489 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		bookCoverLocation = _tmp39_;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp41_ = bookCoverLocation;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp42_ = gdk_pixbuf_new_from_file_at_scale (_tmp41_, 150, 200, FALSE, &_inner_error_);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp40_ = _tmp42_;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookCoverLocation = _tmp36_;
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp38_ = bookCoverLocation;
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp39_ = gdk_pixbuf_new_from_file_at_scale (_tmp38_, 150, 200, FALSE, &_inner_error_);
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp37_ = _tmp39_;
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_g_free0 (bookCoverLocation);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_g_object_unref0 (aCoverImage);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_g_object_unref0 (aBookCover);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (aOverlayImage);
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			block1_data_unref (_data1_);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_data1_ = NULL;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			g_clear_error (&_inner_error_);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			return;
-#line 2857 "bookworm.c"
+#line 3336 "bookworm.c"
 		}
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp43_ = _tmp40_;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp40_ = NULL;
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_object_unref0 (aBookCover);
-#line 490 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		aBookCover = _tmp43_;
-#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp44_ = aBookCover;
-#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp45_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp44_);
-#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_object_ref_sink (_tmp45_);
-#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp40_ = _tmp37_;
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp37_ = NULL;
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (self->aBookCover);
+#line 543 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		self->aBookCover = _tmp40_;
+#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp41_ = self->aBookCover;
+#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp42_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp41_);
+#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_object_ref_sink (_tmp42_);
+#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_object_unref0 (aCoverImage);
-#line 491 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		aCoverImage = _tmp45_;
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp46_ = _data1_->aEventBox;
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp47_ = aCoverImage;
-#line 492 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_container_add ((GtkContainer*) _tmp46_, (GtkWidget*) _tmp47_);
-#line 477 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_g_object_unref0 (_tmp40_);
-#line 2885 "bookworm.c"
+#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		aCoverImage = _tmp42_;
+#line 545 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp43_ = aOverlayImage;
+#line 545 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp44_ = aCoverImage;
+#line 545 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_container_add ((GtkContainer*) _tmp43_, (GtkWidget*) _tmp44_);
+#line 546 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp45_ = _data1_->aEventBox;
+#line 546 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp46_ = aOverlayImage;
+#line 546 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_container_add ((GtkContainer*) _tmp45_, (GtkWidget*) _tmp46_);
+#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (_tmp37_);
+#line 3370 "bookworm.c"
 	}
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp48_ = bookworm_app_bookworm_libraryViewMap;
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp49_ = _data1_->aBook;
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp50_ = bookworm_app_book_getBookLocation (_tmp49_);
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp51_ = _tmp50_;
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp52_ = _data1_->aBook;
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gee_abstract_map_set ((GeeAbstractMap*) _tmp48_, _tmp51_, _tmp52_);
-#line 495 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp51_);
-#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp53_ = self->libraryViewEventBoxWidgets;
-#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp54_ = _data1_->aBook;
-#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp55_ = bookworm_app_book_getBookLocation (_tmp54_);
-#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp56_ = _tmp55_;
-#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp57_ = _data1_->aEventBox;
-#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gee_abstract_map_set ((GeeAbstractMap*) _tmp53_, _tmp56_, _tmp57_);
-#line 497 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (_tmp56_);
-#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp58_ = self->lastBookUpdatedIntoLibraryGrid;
-#line 499 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	if (_tmp58_ == NULL) {
-#line 2919 "bookworm.c"
-		GtkGrid* _tmp59_ = NULL;
-		GtkEventBox* _tmp60_ = NULL;
-		gint _tmp61_ = 0;
-#line 500 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp59_ = self->library_grid;
-#line 500 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp60_ = _data1_->aEventBox;
-#line 500 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_grid_attach (_tmp59_, (GtkWidget*) _tmp60_, 0, 0, 1, 1);
-#line 501 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp61_ = self->countBooksAddedIntoLibraryRow;
-#line 501 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		self->countBooksAddedIntoLibraryRow = _tmp61_ + 1;
-#line 2933 "bookworm.c"
+#line 549 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp47_ = self->lastBookUpdatedIntoLibraryGrid;
+#line 549 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (_tmp47_ == NULL) {
+#line 3376 "bookworm.c"
+		GtkGrid* _tmp48_ = NULL;
+		GtkEventBox* _tmp49_ = NULL;
+		gint _tmp50_ = 0;
+#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp48_ = self->library_grid;
+#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp49_ = _data1_->aEventBox;
+#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_grid_attach (_tmp48_, (GtkWidget*) _tmp49_, 0, 0, 1, 1);
+#line 551 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp50_ = self->countBooksAddedIntoLibraryRow;
+#line 551 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		self->countBooksAddedIntoLibraryRow = _tmp50_ + 1;
+#line 3390 "bookworm.c"
 	} else {
-		gint _tmp62_ = 0;
-#line 504 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp62_ = self->countBooksAddedIntoLibraryRow;
-#line 504 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		if (_tmp62_ < BOOKWORM_APP_CONSTANTS_MAX_BOOK_COVER_PER_ROW) {
-#line 2940 "bookworm.c"
-			GtkGrid* _tmp63_ = NULL;
-			GtkEventBox* _tmp64_ = NULL;
-			GtkWidget* _tmp65_ = NULL;
-			gint _tmp66_ = 0;
-#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_tmp63_ = self->library_grid;
-#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_tmp64_ = _data1_->aEventBox;
-#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_tmp65_ = self->lastBookUpdatedIntoLibraryGrid;
-#line 505 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			gtk_grid_attach_next_to (_tmp63_, (GtkWidget*) _tmp64_, _tmp65_, GTK_POS_LEFT, 1, 1);
-#line 506 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_tmp66_ = self->countBooksAddedIntoLibraryRow;
-#line 506 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			self->countBooksAddedIntoLibraryRow = _tmp66_ + 1;
-#line 2957 "bookworm.c"
+		gint _tmp51_ = 0;
+#line 554 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp51_ = self->countBooksAddedIntoLibraryRow;
+#line 554 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		if (_tmp51_ < BOOKWORM_APP_CONSTANTS_MAX_BOOK_COVER_PER_ROW) {
+#line 3397 "bookworm.c"
+			GtkGrid* _tmp52_ = NULL;
+			GtkEventBox* _tmp53_ = NULL;
+			GtkWidget* _tmp54_ = NULL;
+			gint _tmp55_ = 0;
+#line 555 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp52_ = self->library_grid;
+#line 555 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp53_ = _data1_->aEventBox;
+#line 555 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp54_ = self->lastBookUpdatedIntoLibraryGrid;
+#line 555 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_grid_attach_next_to (_tmp52_, (GtkWidget*) _tmp53_, _tmp54_, GTK_POS_LEFT, 1, 1);
+#line 556 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp55_ = self->countBooksAddedIntoLibraryRow;
+#line 556 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			self->countBooksAddedIntoLibraryRow = _tmp55_ + 1;
+#line 3414 "bookworm.c"
 		} else {
-			GtkGrid* _tmp67_ = NULL;
-			GtkEventBox* _tmp68_ = NULL;
-#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_tmp67_ = self->library_grid;
-#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			_tmp68_ = _data1_->aEventBox;
-#line 509 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-			gtk_grid_attach_next_to (_tmp67_, (GtkWidget*) _tmp68_, NULL, GTK_POS_TOP, 1, 1);
-#line 510 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			GtkGrid* _tmp56_ = NULL;
+			GtkEventBox* _tmp57_ = NULL;
+#line 559 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp56_ = self->library_grid;
+#line 559 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp57_ = _data1_->aEventBox;
+#line 559 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_grid_attach_next_to (_tmp56_, (GtkWidget*) _tmp57_, NULL, GTK_POS_TOP, 1, 1);
+#line 560 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			self->countBooksAddedIntoLibraryRow = 0;
-#line 2969 "bookworm.c"
+#line 3426 "bookworm.c"
 		}
 	}
-#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp69_ = _data1_->aEventBox;
-#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp70_ = _g_object_ref0 ((GtkWidget*) _tmp69_);
-#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 564 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp58_ = _data1_->aBook;
+#line 564 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp59_ = aCoverImage;
+#line 564 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_book_setCoverImage (_tmp58_, _tmp59_);
+#line 565 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp60_ = _data1_->aBook;
+#line 565 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp61_ = _data1_->aEventBox;
+#line 565 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_book_setEventBox (_tmp60_, _tmp61_);
+#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp62_ = _data1_->aBook;
+#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp63_ = aOverlayImage;
+#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_book_setOverlayImage (_tmp62_, _tmp63_);
+#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp64_ = _data1_->aEventBox;
+#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp65_ = _g_object_ref0 ((GtkWidget*) _tmp64_);
+#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (self->lastBookUpdatedIntoLibraryGrid);
-#line 513 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->lastBookUpdatedIntoLibraryGrid = _tmp70_;
-#line 514 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp71_ = self->window;
-#line 514 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	gtk_widget_show_all ((GtkWidget*) _tmp71_);
-#line 515 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp72_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
-#line 515 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp73_ = g_strdup (_tmp72_);
-#line 515 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->lastBookUpdatedIntoLibraryGrid = _tmp65_;
+#line 570 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp66_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
+#line 570 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp67_ = g_strdup (_tmp66_);
+#line 570 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (self->BOOKWORM_CURRENT_STATE);
-#line 515 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	self->BOOKWORM_CURRENT_STATE = _tmp73_;
-#line 516 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 570 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	self->BOOKWORM_CURRENT_STATE = _tmp67_;
+#line 571 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp68_ = self->window;
+#line 571 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_widget_show_all ((GtkWidget*) _tmp68_);
+#line 572 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_toggleUIState (self);
-#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp74_ = _data1_->aEventBox;
-#line 518 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_signal_connect_data ((GtkWidget*) _tmp74_, "button-press-event", (GCallback) ___lambda13__gtk_widget_button_press_event, block1_data_ref (_data1_), (GClosureNotify) block1_data_unref, 0);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 575 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp69_ = _data1_->aEventBox;
+#line 575 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_signal_connect_data ((GtkWidget*) _tmp69_, "button-press-event", (GCallback) ___lambda13__gtk_widget_button_press_event, block1_data_ref (_data1_), (GClosureNotify) block1_data_unref, 0);
+#line 589 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp70_ = bookworm_app_bookworm_libraryViewMap;
+#line 589 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp71_ = _data1_->aBook;
+#line 589 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp72_ = bookworm_app_book_getBookLocation (_tmp71_);
+#line 589 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp73_ = _tmp72_;
+#line 589 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp74_ = _data1_->aBook;
+#line 589 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gee_abstract_map_set ((GeeAbstractMap*) _tmp70_, _tmp73_, _tmp74_);
+#line 589 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp73_);
+#line 591 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp75_ = self->libraryViewEventBoxWidgets;
+#line 591 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp76_ = _data1_->aBook;
+#line 591 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp77_ = bookworm_app_book_getBookLocation (_tmp76_);
+#line 591 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp78_ = _tmp77_;
+#line 591 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp79_ = _data1_->aEventBox;
+#line 591 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gee_abstract_map_set ((GeeAbstractMap*) _tmp75_, _tmp78_, _tmp79_);
+#line 591 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp78_);
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (bookCoverLocation);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (aCoverImage);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (aBookCover);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (aOverlayImage);
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	block1_data_unref (_data1_);
-#line 469 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 525 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_data1_ = NULL;
-#line 3008 "bookworm.c"
+#line 3511 "bookworm.c"
+}
+
+
+void bookworm_app_bookworm_updateLibraryViewForSelectionMode (BookwormAppBookworm* self, BookwormAppBook* lBook) {
+	const gchar* _tmp0_ = NULL;
+	const gchar* _tmp1_ = NULL;
+	const gchar* _tmp61_ = NULL;
+	const gchar* _tmp62_ = NULL;
+	const gchar* _tmp92_ = NULL;
+	const gchar* _tmp93_ = NULL;
+	GtkWindow* _tmp181_ = NULL;
+	GError * _inner_error_ = NULL;
+#line 594 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_return_if_fail (self != NULL);
+#line 595 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp0_ = self->BOOKWORM_CURRENT_STATE;
+#line 595 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
+#line 595 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (g_strcmp0 (_tmp0_, _tmp1_) == 0) {
+#line 3532 "bookworm.c"
+		{
+			GeeIterator* _book_it = NULL;
+			GeeHashMap* _tmp2_ = NULL;
+			GeeCollection* _tmp3_ = NULL;
+			GeeCollection* _tmp4_ = NULL;
+			GeeCollection* _tmp5_ = NULL;
+			GeeIterator* _tmp6_ = NULL;
+			GeeIterator* _tmp7_ = NULL;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp2_ = bookworm_app_bookworm_libraryViewMap;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp3_ = gee_abstract_map_get_values ((GeeMap*) _tmp2_);
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp4_ = _tmp3_;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp5_ = _tmp4_;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp6_ = gee_iterable_iterator ((GeeIterable*) _tmp5_);
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp7_ = _tmp6_;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (_tmp5_);
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_book_it = _tmp7_;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			while (TRUE) {
+#line 3559 "bookworm.c"
+				GeeIterator* _tmp8_ = NULL;
+				gboolean _tmp9_ = FALSE;
+				BookwormAppBook* book = NULL;
+				GeeIterator* _tmp10_ = NULL;
+				gpointer _tmp11_ = NULL;
+				BookwormAppBook* _tmp12_ = NULL;
+				GtkEventBox* lEventBox = NULL;
+				BookwormAppBook* _tmp13_ = NULL;
+				GtkEventBox* _tmp14_ = NULL;
+				GtkOverlay* lOverlayImage = NULL;
+				BookwormAppBook* _tmp15_ = NULL;
+				GtkOverlay* _tmp16_ = NULL;
+				GtkEventBox* _tmp17_ = NULL;
+				GtkOverlay* _tmp18_ = NULL;
+				GtkOverlay* _tmp19_ = NULL;
+				BookwormAppBook* _tmp20_ = NULL;
+				GtkImage* _tmp21_ = NULL;
+				GtkImage* _tmp22_ = NULL;
+				GtkOverlay* _tmp23_ = NULL;
+				BookwormAppBook* _tmp24_ = NULL;
+				gboolean _tmp25_ = FALSE;
+				BookwormAppBook* _tmp57_ = NULL;
+				GtkOverlay* _tmp58_ = NULL;
+				BookwormAppBook* _tmp59_ = NULL;
+				GtkEventBox* _tmp60_ = NULL;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp8_ = _book_it;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp9_ = gee_iterator_next (_tmp8_);
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				if (!_tmp9_) {
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					break;
+#line 3593 "bookworm.c"
+				}
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp10_ = _book_it;
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp11_ = gee_iterator_get (_tmp10_);
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				book = (BookwormAppBook*) _tmp11_;
+#line 599 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp12_ = book;
+#line 599 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setIsBookSelected (G_TYPE_CHECK_INSTANCE_CAST (_tmp12_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook), FALSE);
+#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp13_ = book;
+#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp14_ = bookworm_app_book_getEventBox (G_TYPE_CHECK_INSTANCE_CAST (_tmp13_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				lEventBox = _tmp14_;
+#line 601 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp15_ = book;
+#line 601 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp16_ = bookworm_app_book_getOverlayImage (G_TYPE_CHECK_INSTANCE_CAST (_tmp15_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 601 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				lOverlayImage = _tmp16_;
+#line 602 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp17_ = lEventBox;
+#line 602 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp18_ = lOverlayImage;
+#line 602 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_container_remove ((GtkContainer*) _tmp17_, (GtkWidget*) _tmp18_);
+#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp19_ = lOverlayImage;
+#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp20_ = book;
+#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp21_ = bookworm_app_book_getCoverImage (G_TYPE_CHECK_INSTANCE_CAST (_tmp20_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp22_ = _tmp21_;
+#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_container_remove ((GtkContainer*) _tmp19_, (GtkWidget*) _tmp22_);
+#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (_tmp22_);
+#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp23_ = lOverlayImage;
+#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_widget_destroy ((GtkWidget*) _tmp23_);
+#line 606 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp24_ = book;
+#line 606 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp25_ = bookworm_app_book_getIsBookCoverImagePresent (G_TYPE_CHECK_INSTANCE_CAST (_tmp24_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 606 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				if (!_tmp25_) {
+#line 3645 "bookworm.c"
+					GdkPixbuf* aBookCover = NULL;
+					GdkPixbuf* _tmp26_ = NULL;
+					GtkImage* aCoverImage = NULL;
+					GdkPixbuf* _tmp27_ = NULL;
+					GtkImage* _tmp28_ = NULL;
+					GtkOverlay* _tmp29_ = NULL;
+					GtkImage* _tmp30_ = NULL;
+					GtkLabel* overlayTextLabel = NULL;
+					BookwormAppBook* _tmp31_ = NULL;
+					gchar* _tmp32_ = NULL;
+					gchar* _tmp33_ = NULL;
+					gchar* _tmp34_ = NULL;
+					gchar* _tmp35_ = NULL;
+					gchar* _tmp36_ = NULL;
+					gchar* _tmp37_ = NULL;
+					GtkLabel* _tmp38_ = NULL;
+					GtkLabel* _tmp39_ = NULL;
+					GtkLabel* _tmp40_ = NULL;
+					GtkLabel* _tmp41_ = NULL;
+					GtkOverlay* _tmp42_ = NULL;
+					GtkLabel* _tmp43_ = NULL;
+					GtkEventBox* _tmp44_ = NULL;
+					GtkOverlay* _tmp45_ = NULL;
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp26_ = gdk_pixbuf_new_from_file_at_scale (BOOKWORM_APP_CONSTANTS_DEFAULT_COVER_IMAGE_LOCATION, 150, 200, FALSE, &_inner_error_);
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					aBookCover = _tmp26_;
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_g_object_unref0 (lOverlayImage);
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_g_object_unref0 (lEventBox);
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_bookworm_app_book_unref0 (book);
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_g_object_unref0 (_book_it);
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_bookworm_app_book_unref0 (lBook);
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						g_clear_error (&_inner_error_);
+#line 607 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						return;
+#line 3691 "bookworm.c"
+					}
+#line 608 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp27_ = aBookCover;
+#line 608 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp28_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp27_);
+#line 608 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_object_ref_sink (_tmp28_);
+#line 608 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					aCoverImage = _tmp28_;
+#line 609 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp29_ = lOverlayImage;
+#line 609 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp30_ = aCoverImage;
+#line 609 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					gtk_container_add ((GtkContainer*) _tmp29_, (GtkWidget*) _tmp30_);
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp31_ = book;
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp32_ = bookworm_app_book_getBookTitle (G_TYPE_CHECK_INSTANCE_CAST (_tmp31_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp33_ = _tmp32_;
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp34_ = g_strconcat ("<b>", _tmp33_, NULL);
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp35_ = _tmp34_;
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp36_ = g_strconcat (_tmp35_, "</b>", NULL);
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp37_ = _tmp36_;
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp38_ = (GtkLabel*) gtk_label_new (_tmp37_);
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_object_ref_sink (_tmp38_);
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp39_ = _tmp38_;
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_free0 (_tmp37_);
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_free0 (_tmp35_);
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_free0 (_tmp33_);
+#line 610 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					overlayTextLabel = _tmp39_;
+#line 611 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp40_ = overlayTextLabel;
+#line 611 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					gtk_label_set_use_markup (_tmp40_, TRUE);
+#line 612 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp41_ = overlayTextLabel;
+#line 612 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					gtk_label_set_line_wrap (_tmp41_, TRUE);
+#line 613 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp42_ = lOverlayImage;
+#line 613 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp43_ = overlayTextLabel;
+#line 613 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					gtk_overlay_add_overlay (_tmp42_, (GtkWidget*) _tmp43_);
+#line 614 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp44_ = lEventBox;
+#line 614 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp45_ = lOverlayImage;
+#line 614 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					gtk_container_add ((GtkContainer*) _tmp44_, (GtkWidget*) _tmp45_);
+#line 606 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (overlayTextLabel);
+#line 606 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (aCoverImage);
+#line 606 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (aBookCover);
+#line 3761 "bookworm.c"
+				} else {
+					GdkPixbuf* aBookCover = NULL;
+					BookwormAppBook* _tmp46_ = NULL;
+					gchar* _tmp47_ = NULL;
+					gchar* _tmp48_ = NULL;
+					GdkPixbuf* _tmp49_ = NULL;
+					GdkPixbuf* _tmp50_ = NULL;
+					GtkImage* aCoverImage = NULL;
+					GdkPixbuf* _tmp51_ = NULL;
+					GtkImage* _tmp52_ = NULL;
+					GtkOverlay* _tmp53_ = NULL;
+					GtkImage* _tmp54_ = NULL;
+					GtkEventBox* _tmp55_ = NULL;
+					GtkOverlay* _tmp56_ = NULL;
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp46_ = book;
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp47_ = bookworm_app_book_getBookCoverLocation (G_TYPE_CHECK_INSTANCE_CAST (_tmp46_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp48_ = _tmp47_;
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp49_ = gdk_pixbuf_new_from_file_at_scale (_tmp48_, 150, 200, FALSE, &_inner_error_);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp50_ = _tmp49_;
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_free0 (_tmp48_);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					aBookCover = _tmp50_;
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_g_object_unref0 (lOverlayImage);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_g_object_unref0 (lEventBox);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_bookworm_app_book_unref0 (book);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_g_object_unref0 (_book_it);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						_bookworm_app_book_unref0 (lBook);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						g_clear_error (&_inner_error_);
+#line 616 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+						return;
+#line 3808 "bookworm.c"
+					}
+#line 617 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp51_ = aBookCover;
+#line 617 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp52_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp51_);
+#line 617 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_object_ref_sink (_tmp52_);
+#line 617 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					aCoverImage = _tmp52_;
+#line 618 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp53_ = lOverlayImage;
+#line 618 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp54_ = aCoverImage;
+#line 618 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					gtk_container_add ((GtkContainer*) _tmp53_, (GtkWidget*) _tmp54_);
+#line 619 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp55_ = lEventBox;
+#line 619 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_tmp56_ = lOverlayImage;
+#line 619 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					gtk_container_add ((GtkContainer*) _tmp55_, (GtkWidget*) _tmp56_);
+#line 606 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (aCoverImage);
+#line 606 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (aBookCover);
+#line 3834 "bookworm.c"
+				}
+#line 622 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp57_ = book;
+#line 622 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp58_ = lOverlayImage;
+#line 622 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setOverlayImage (G_TYPE_CHECK_INSTANCE_CAST (_tmp57_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook), _tmp58_);
+#line 624 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp59_ = book;
+#line 624 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp60_ = lEventBox;
+#line 624 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setEventBox (G_TYPE_CHECK_INSTANCE_CAST (_tmp59_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook), _tmp60_);
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lOverlayImage);
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lEventBox);
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_bookworm_app_book_unref0 (book);
+#line 3854 "bookworm.c"
+			}
+#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (_book_it);
+#line 3858 "bookworm.c"
+		}
+	}
+#line 627 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp61_ = self->BOOKWORM_CURRENT_STATE;
+#line 627 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp62_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[2];
+#line 627 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (g_strcmp0 (_tmp61_, _tmp62_) == 0) {
+#line 3867 "bookworm.c"
+		{
+			GeeIterator* _book_it = NULL;
+			GeeHashMap* _tmp63_ = NULL;
+			GeeCollection* _tmp64_ = NULL;
+			GeeCollection* _tmp65_ = NULL;
+			GeeCollection* _tmp66_ = NULL;
+			GeeIterator* _tmp67_ = NULL;
+			GeeIterator* _tmp68_ = NULL;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp63_ = bookworm_app_bookworm_libraryViewMap;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp64_ = gee_abstract_map_get_values ((GeeMap*) _tmp63_);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp65_ = _tmp64_;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp66_ = _tmp65_;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp67_ = gee_iterable_iterator ((GeeIterable*) _tmp66_);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp68_ = _tmp67_;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (_tmp66_);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_book_it = _tmp68_;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			while (TRUE) {
+#line 3894 "bookworm.c"
+				GeeIterator* _tmp69_ = NULL;
+				gboolean _tmp70_ = FALSE;
+				BookwormAppBook* book = NULL;
+				GeeIterator* _tmp71_ = NULL;
+				gpointer _tmp72_ = NULL;
+				GtkEventBox* lEventBox = NULL;
+				BookwormAppBook* _tmp73_ = NULL;
+				GtkEventBox* _tmp74_ = NULL;
+				GtkOverlay* lOverlayImage = NULL;
+				BookwormAppBook* _tmp75_ = NULL;
+				GtkOverlay* _tmp76_ = NULL;
+				GdkPixbuf* _tmp77_ = NULL;
+				GdkPixbuf* _tmp78_ = NULL;
+				GdkPixbuf* _tmp79_ = NULL;
+				GdkPixbuf* _tmp80_ = NULL;
+				GtkImage* _tmp81_ = NULL;
+				GtkImage* _tmp82_ = NULL;
+				GtkImage* _tmp83_ = NULL;
+				GtkOverlay* _tmp84_ = NULL;
+				GtkImage* _tmp85_ = NULL;
+				GtkEventBox* _tmp86_ = NULL;
+				GtkOverlay* _tmp87_ = NULL;
+				BookwormAppBook* _tmp88_ = NULL;
+				GtkOverlay* _tmp89_ = NULL;
+				BookwormAppBook* _tmp90_ = NULL;
+				GtkEventBox* _tmp91_ = NULL;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp69_ = _book_it;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp70_ = gee_iterator_next (_tmp69_);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				if (!_tmp70_) {
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					break;
+#line 3929 "bookworm.c"
+				}
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp71_ = _book_it;
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp72_ = gee_iterator_get (_tmp71_);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				book = (BookwormAppBook*) _tmp72_;
+#line 630 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp73_ = book;
+#line 630 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp74_ = bookworm_app_book_getEventBox (G_TYPE_CHECK_INSTANCE_CAST (_tmp73_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 630 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				lEventBox = _tmp74_;
+#line 631 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp75_ = book;
+#line 631 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp76_ = bookworm_app_book_getOverlayImage (G_TYPE_CHECK_INSTANCE_CAST (_tmp75_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook));
+#line 631 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				lOverlayImage = _tmp76_;
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp78_ = gdk_pixbuf_new_from_file (BOOKWORM_APP_CONSTANTS_SELECTION_OPTION_IMAGE_LOCATION, &_inner_error_);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp77_ = _tmp78_;
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (lOverlayImage);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (lEventBox);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_bookworm_app_book_unref0 (book);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (_book_it);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_bookworm_app_book_unref0 (lBook);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_clear_error (&_inner_error_);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					return;
+#line 3971 "bookworm.c"
+				}
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp79_ = _tmp77_;
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp77_ = NULL;
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (self->bookSelectionPix);
+#line 633 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				self->bookSelectionPix = _tmp79_;
+#line 634 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp80_ = self->bookSelectionPix;
+#line 634 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp81_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp80_);
+#line 634 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_object_ref_sink (_tmp81_);
+#line 634 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (self->bookSelectionImage);
+#line 634 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				self->bookSelectionImage = _tmp81_;
+#line 635 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp82_ = self->bookSelectionImage;
+#line 635 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_widget_set_halign ((GtkWidget*) _tmp82_, GTK_ALIGN_START);
+#line 636 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp83_ = self->bookSelectionImage;
+#line 636 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_widget_set_valign ((GtkWidget*) _tmp83_, GTK_ALIGN_START);
+#line 637 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp84_ = lOverlayImage;
+#line 637 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp85_ = self->bookSelectionImage;
+#line 637 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_overlay_add_overlay (_tmp84_, (GtkWidget*) _tmp85_);
+#line 639 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp86_ = lEventBox;
+#line 639 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp87_ = lOverlayImage;
+#line 639 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_container_add ((GtkContainer*) _tmp86_, (GtkWidget*) _tmp87_);
+#line 641 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp88_ = book;
+#line 641 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp89_ = lOverlayImage;
+#line 641 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setOverlayImage (G_TYPE_CHECK_INSTANCE_CAST (_tmp88_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook), _tmp89_);
+#line 643 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp90_ = book;
+#line 643 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp91_ = lEventBox;
+#line 643 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setEventBox (G_TYPE_CHECK_INSTANCE_CAST (_tmp90_, BOOKWORM_APP_TYPE_BOOK, BookwormAppBook), _tmp91_);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (_tmp77_);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lOverlayImage);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lEventBox);
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_bookworm_app_book_unref0 (book);
+#line 4031 "bookworm.c"
+			}
+#line 629 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (_book_it);
+#line 4035 "bookworm.c"
+		}
+	}
+#line 646 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp92_ = self->BOOKWORM_CURRENT_STATE;
+#line 646 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp93_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[3];
+#line 646 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (g_strcmp0 (_tmp92_, _tmp93_) == 0) {
+#line 4044 "bookworm.c"
+		GtkEventBox* lEventBox = NULL;
+		BookwormAppBook* _tmp94_ = NULL;
+		GtkEventBox* _tmp95_ = NULL;
+		GtkOverlay* lOverlayImage = NULL;
+		BookwormAppBook* _tmp96_ = NULL;
+		GtkOverlay* _tmp97_ = NULL;
+		GtkEventBox* _tmp98_ = NULL;
+		GtkOverlay* _tmp99_ = NULL;
+		GtkOverlay* _tmp100_ = NULL;
+		BookwormAppBook* _tmp101_ = NULL;
+		GtkImage* _tmp102_ = NULL;
+		GtkImage* _tmp103_ = NULL;
+		GtkOverlay* _tmp104_ = NULL;
+		BookwormAppBook* _tmp105_ = NULL;
+		gboolean _tmp106_ = FALSE;
+		GtkEventBox* _tmp170_ = NULL;
+		GtkOverlay* _tmp171_ = NULL;
+		BookwormAppBook* _tmp172_ = NULL;
+		GtkOverlay* _tmp173_ = NULL;
+		BookwormAppBook* _tmp174_ = NULL;
+		GtkEventBox* _tmp175_ = NULL;
+		GeeHashMap* _tmp176_ = NULL;
+		BookwormAppBook* _tmp177_ = NULL;
+		gchar* _tmp178_ = NULL;
+		gchar* _tmp179_ = NULL;
+		BookwormAppBook* _tmp180_ = NULL;
+#line 647 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp94_ = lBook;
+#line 647 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp95_ = bookworm_app_book_getEventBox (_tmp94_);
+#line 647 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		lEventBox = _tmp95_;
+#line 648 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp96_ = lBook;
+#line 648 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp97_ = bookworm_app_book_getOverlayImage (_tmp96_);
+#line 648 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		lOverlayImage = _tmp97_;
+#line 649 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp98_ = lEventBox;
+#line 649 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp99_ = lOverlayImage;
+#line 649 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_container_remove ((GtkContainer*) _tmp98_, (GtkWidget*) _tmp99_);
+#line 650 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp100_ = lOverlayImage;
+#line 650 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp101_ = lBook;
+#line 650 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp102_ = bookworm_app_book_getCoverImage (_tmp101_);
+#line 650 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp103_ = _tmp102_;
+#line 650 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_container_remove ((GtkContainer*) _tmp100_, (GtkWidget*) _tmp103_);
+#line 650 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (_tmp103_);
+#line 651 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp104_ = lOverlayImage;
+#line 651 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_widget_destroy ((GtkWidget*) _tmp104_);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp105_ = lBook;
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp106_ = bookworm_app_book_getIsBookCoverImagePresent (_tmp105_);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		if (!_tmp106_) {
+#line 4111 "bookworm.c"
+			GdkPixbuf* aBookCover = NULL;
+			GdkPixbuf* _tmp107_ = NULL;
+			GtkImage* aCoverImage = NULL;
+			GdkPixbuf* _tmp108_ = NULL;
+			GtkImage* _tmp109_ = NULL;
+			GtkOverlay* _tmp110_ = NULL;
+			GtkImage* _tmp111_ = NULL;
+			GtkLabel* overlayTextLabel = NULL;
+			BookwormAppBook* _tmp112_ = NULL;
+			gchar* _tmp113_ = NULL;
+			gchar* _tmp114_ = NULL;
+			gchar* _tmp115_ = NULL;
+			gchar* _tmp116_ = NULL;
+			gchar* _tmp117_ = NULL;
+			gchar* _tmp118_ = NULL;
+			GtkLabel* _tmp119_ = NULL;
+			GtkLabel* _tmp120_ = NULL;
+			GtkLabel* _tmp121_ = NULL;
+			GtkLabel* _tmp122_ = NULL;
+			GtkOverlay* _tmp123_ = NULL;
+			GtkLabel* _tmp124_ = NULL;
+			GdkPixbuf* bookSelectionPix = NULL;
+			GdkPixbuf* _tmp125_ = NULL;
+			GtkImage* bookSelectionImage = NULL;
+			GdkPixbuf* _tmp126_ = NULL;
+			GtkImage* _tmp127_ = NULL;
+			GtkImage* _tmp128_ = NULL;
+			GtkImage* _tmp129_ = NULL;
+			GtkOverlay* _tmp130_ = NULL;
+			GtkImage* _tmp131_ = NULL;
+			BookwormAppBook* _tmp132_ = NULL;
+			gboolean _tmp133_ = FALSE;
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp107_ = gdk_pixbuf_new_from_file_at_scale (BOOKWORM_APP_CONSTANTS_DEFAULT_COVER_IMAGE_LOCATION, 150, 200, FALSE, &_inner_error_);
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			aBookCover = _tmp107_;
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lOverlayImage);
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lEventBox);
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_bookworm_app_book_unref0 (lBook);
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_clear_error (&_inner_error_);
+#line 654 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				return;
+#line 4162 "bookworm.c"
+			}
+#line 655 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp108_ = aBookCover;
+#line 655 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp109_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp108_);
+#line 655 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			g_object_ref_sink (_tmp109_);
+#line 655 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			aCoverImage = _tmp109_;
+#line 656 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp110_ = lOverlayImage;
+#line 656 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp111_ = aCoverImage;
+#line 656 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_container_add ((GtkContainer*) _tmp110_, (GtkWidget*) _tmp111_);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp112_ = lBook;
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp113_ = bookworm_app_book_getBookTitle (_tmp112_);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp114_ = _tmp113_;
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp115_ = g_strconcat ("<b>", _tmp114_, NULL);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp116_ = _tmp115_;
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp117_ = g_strconcat (_tmp116_, "</b>", NULL);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp118_ = _tmp117_;
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp119_ = (GtkLabel*) gtk_label_new (_tmp118_);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			g_object_ref_sink (_tmp119_);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp120_ = _tmp119_;
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (_tmp118_);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (_tmp116_);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (_tmp114_);
+#line 657 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			overlayTextLabel = _tmp120_;
+#line 658 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp121_ = overlayTextLabel;
+#line 658 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_label_set_use_markup (_tmp121_, TRUE);
+#line 659 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp122_ = overlayTextLabel;
+#line 659 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_label_set_line_wrap (_tmp122_, TRUE);
+#line 660 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp123_ = lOverlayImage;
+#line 660 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp124_ = overlayTextLabel;
+#line 660 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_overlay_add_overlay (_tmp123_, (GtkWidget*) _tmp124_);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp125_ = gdk_pixbuf_new_from_file (BOOKWORM_APP_CONSTANTS_SELECTION_OPTION_IMAGE_LOCATION, &_inner_error_);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookSelectionPix = _tmp125_;
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (overlayTextLabel);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (aCoverImage);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (aBookCover);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lOverlayImage);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lEventBox);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_bookworm_app_book_unref0 (lBook);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_clear_error (&_inner_error_);
+#line 663 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				return;
+#line 4244 "bookworm.c"
+			}
+#line 664 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp126_ = bookSelectionPix;
+#line 664 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp127_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp126_);
+#line 664 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			g_object_ref_sink (_tmp127_);
+#line 664 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookSelectionImage = _tmp127_;
+#line 665 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp128_ = bookSelectionImage;
+#line 665 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_widget_set_halign ((GtkWidget*) _tmp128_, GTK_ALIGN_START);
+#line 666 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp129_ = bookSelectionImage;
+#line 666 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_widget_set_valign ((GtkWidget*) _tmp129_, GTK_ALIGN_START);
+#line 667 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp130_ = lOverlayImage;
+#line 667 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp131_ = bookSelectionImage;
+#line 667 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_overlay_add_overlay (_tmp130_, (GtkWidget*) _tmp131_);
+#line 669 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp132_ = lBook;
+#line 669 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp133_ = bookworm_app_book_getIsBookSelected (_tmp132_);
+#line 669 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (!_tmp133_) {
+#line 4274 "bookworm.c"
+				GdkPixbuf* bookSelectedPix = NULL;
+				GdkPixbuf* _tmp134_ = NULL;
+				GtkImage* bookSelectedImage = NULL;
+				GdkPixbuf* _tmp135_ = NULL;
+				GtkImage* _tmp136_ = NULL;
+				GtkImage* _tmp137_ = NULL;
+				GtkImage* _tmp138_ = NULL;
+				GtkOverlay* _tmp139_ = NULL;
+				GtkImage* _tmp140_ = NULL;
+				BookwormAppBook* _tmp141_ = NULL;
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp134_ = gdk_pixbuf_new_from_file (BOOKWORM_APP_CONSTANTS_SELECTION_CHECKED_IMAGE_LOCATION, &_inner_error_);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookSelectedPix = _tmp134_;
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (bookSelectionImage);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (bookSelectionPix);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (overlayTextLabel);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (aCoverImage);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (aBookCover);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (lOverlayImage);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (lEventBox);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_bookworm_app_book_unref0 (lBook);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_clear_error (&_inner_error_);
+#line 671 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					return;
+#line 4313 "bookworm.c"
+				}
+#line 672 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp135_ = bookSelectedPix;
+#line 672 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp136_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp135_);
+#line 672 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_object_ref_sink (_tmp136_);
+#line 672 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookSelectedImage = _tmp136_;
+#line 673 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp137_ = bookSelectedImage;
+#line 673 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_widget_set_halign ((GtkWidget*) _tmp137_, GTK_ALIGN_START);
+#line 674 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp138_ = bookSelectedImage;
+#line 674 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_widget_set_valign ((GtkWidget*) _tmp138_, GTK_ALIGN_START);
+#line 675 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp139_ = lOverlayImage;
+#line 675 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp140_ = bookSelectedImage;
+#line 675 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_overlay_add_overlay (_tmp139_, (GtkWidget*) _tmp140_);
+#line 676 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp141_ = lBook;
+#line 676 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setIsBookSelected (_tmp141_, TRUE);
+#line 669 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (bookSelectedImage);
+#line 669 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (bookSelectedPix);
+#line 4345 "bookworm.c"
+			} else {
+				BookwormAppBook* _tmp142_ = NULL;
+#line 678 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp142_ = lBook;
+#line 678 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setIsBookSelected (_tmp142_, FALSE);
+#line 4352 "bookworm.c"
+			}
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (bookSelectionImage);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (bookSelectionPix);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (overlayTextLabel);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (aCoverImage);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (aBookCover);
+#line 4364 "bookworm.c"
+		} else {
+			GdkPixbuf* aBookCover = NULL;
+			BookwormAppBook* _tmp143_ = NULL;
+			gchar* _tmp144_ = NULL;
+			gchar* _tmp145_ = NULL;
+			GdkPixbuf* _tmp146_ = NULL;
+			GdkPixbuf* _tmp147_ = NULL;
+			GtkImage* aCoverImage = NULL;
+			GdkPixbuf* _tmp148_ = NULL;
+			GtkImage* _tmp149_ = NULL;
+			GtkOverlay* _tmp150_ = NULL;
+			GtkImage* _tmp151_ = NULL;
+			GdkPixbuf* bookSelectionPix = NULL;
+			GdkPixbuf* _tmp152_ = NULL;
+			GtkImage* bookSelectionImage = NULL;
+			GdkPixbuf* _tmp153_ = NULL;
+			GtkImage* _tmp154_ = NULL;
+			GtkImage* _tmp155_ = NULL;
+			GtkImage* _tmp156_ = NULL;
+			GtkOverlay* _tmp157_ = NULL;
+			GtkImage* _tmp158_ = NULL;
+			BookwormAppBook* _tmp159_ = NULL;
+			gboolean _tmp160_ = FALSE;
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp143_ = lBook;
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp144_ = bookworm_app_book_getBookCoverLocation (_tmp143_);
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp145_ = _tmp144_;
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp146_ = gdk_pixbuf_new_from_file_at_scale (_tmp145_, 150, 200, FALSE, &_inner_error_);
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp147_ = _tmp146_;
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_free0 (_tmp145_);
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			aBookCover = _tmp147_;
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lOverlayImage);
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lEventBox);
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_bookworm_app_book_unref0 (lBook);
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_clear_error (&_inner_error_);
+#line 681 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				return;
+#line 4416 "bookworm.c"
+			}
+#line 682 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp148_ = aBookCover;
+#line 682 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp149_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp148_);
+#line 682 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			g_object_ref_sink (_tmp149_);
+#line 682 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			aCoverImage = _tmp149_;
+#line 683 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp150_ = lOverlayImage;
+#line 683 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp151_ = aCoverImage;
+#line 683 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_container_add ((GtkContainer*) _tmp150_, (GtkWidget*) _tmp151_);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp152_ = gdk_pixbuf_new_from_file (BOOKWORM_APP_CONSTANTS_SELECTION_OPTION_IMAGE_LOCATION, &_inner_error_);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookSelectionPix = _tmp152_;
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (aCoverImage);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (aBookCover);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lOverlayImage);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (lEventBox);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_bookworm_app_book_unref0 (lBook);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_clear_error (&_inner_error_);
+#line 686 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				return;
+#line 4454 "bookworm.c"
+			}
+#line 687 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp153_ = bookSelectionPix;
+#line 687 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp154_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp153_);
+#line 687 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			g_object_ref_sink (_tmp154_);
+#line 687 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			bookSelectionImage = _tmp154_;
+#line 688 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp155_ = bookSelectionImage;
+#line 688 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_widget_set_halign ((GtkWidget*) _tmp155_, GTK_ALIGN_START);
+#line 689 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp156_ = bookSelectionImage;
+#line 689 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_widget_set_valign ((GtkWidget*) _tmp156_, GTK_ALIGN_START);
+#line 690 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp157_ = lOverlayImage;
+#line 690 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp158_ = bookSelectionImage;
+#line 690 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			gtk_overlay_add_overlay (_tmp157_, (GtkWidget*) _tmp158_);
+#line 692 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp159_ = lBook;
+#line 692 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_tmp160_ = bookworm_app_book_getIsBookSelected (_tmp159_);
+#line 692 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			if (!_tmp160_) {
+#line 4484 "bookworm.c"
+				GdkPixbuf* bookSelectedPix = NULL;
+				GdkPixbuf* _tmp161_ = NULL;
+				GtkImage* bookSelectedImage = NULL;
+				GdkPixbuf* _tmp162_ = NULL;
+				GtkImage* _tmp163_ = NULL;
+				GtkImage* _tmp164_ = NULL;
+				GtkImage* _tmp165_ = NULL;
+				GtkOverlay* _tmp166_ = NULL;
+				GtkImage* _tmp167_ = NULL;
+				BookwormAppBook* _tmp168_ = NULL;
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp161_ = gdk_pixbuf_new_from_file (BOOKWORM_APP_CONSTANTS_SELECTION_CHECKED_IMAGE_LOCATION, &_inner_error_);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookSelectedPix = _tmp161_;
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (bookSelectionImage);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (bookSelectionPix);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (aCoverImage);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (aBookCover);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (lOverlayImage);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_g_object_unref0 (lEventBox);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					_bookworm_app_book_unref0 (lBook);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					g_clear_error (&_inner_error_);
+#line 693 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+					return;
+#line 4521 "bookworm.c"
+				}
+#line 694 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp162_ = bookSelectedPix;
+#line 694 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp163_ = (GtkImage*) gtk_image_new_from_pixbuf (_tmp162_);
+#line 694 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				g_object_ref_sink (_tmp163_);
+#line 694 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookSelectedImage = _tmp163_;
+#line 695 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp164_ = bookSelectedImage;
+#line 695 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_widget_set_halign ((GtkWidget*) _tmp164_, GTK_ALIGN_START);
+#line 696 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp165_ = bookSelectedImage;
+#line 696 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_widget_set_valign ((GtkWidget*) _tmp165_, GTK_ALIGN_START);
+#line 697 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp166_ = lOverlayImage;
+#line 697 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp167_ = bookSelectedImage;
+#line 697 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				gtk_overlay_add_overlay (_tmp166_, (GtkWidget*) _tmp167_);
+#line 698 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp168_ = lBook;
+#line 698 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setIsBookSelected (_tmp168_, TRUE);
+#line 692 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (bookSelectedImage);
+#line 692 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_g_object_unref0 (bookSelectedPix);
+#line 4553 "bookworm.c"
+			} else {
+				BookwormAppBook* _tmp169_ = NULL;
+#line 700 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				_tmp169_ = lBook;
+#line 700 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+				bookworm_app_book_setIsBookSelected (_tmp169_, FALSE);
+#line 4560 "bookworm.c"
+			}
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (bookSelectionImage);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (bookSelectionPix);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (aCoverImage);
+#line 653 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+			_g_object_unref0 (aBookCover);
+#line 4570 "bookworm.c"
+		}
+#line 703 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp170_ = lEventBox;
+#line 703 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp171_ = lOverlayImage;
+#line 703 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_container_add ((GtkContainer*) _tmp170_, (GtkWidget*) _tmp171_);
+#line 706 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp172_ = lBook;
+#line 706 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp173_ = lOverlayImage;
+#line 706 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookworm_app_book_setOverlayImage (_tmp172_, _tmp173_);
+#line 708 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp174_ = lBook;
+#line 708 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp175_ = lEventBox;
+#line 708 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookworm_app_book_setEventBox (_tmp174_, _tmp175_);
+#line 710 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp176_ = bookworm_app_bookworm_libraryViewMap;
+#line 710 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp177_ = lBook;
+#line 710 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp178_ = bookworm_app_book_getBookLocation (_tmp177_);
+#line 710 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp179_ = _tmp178_;
+#line 710 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp180_ = lBook;
+#line 710 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gee_abstract_map_set ((GeeAbstractMap*) _tmp176_, _tmp179_, _tmp180_);
+#line 710 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp179_);
+#line 646 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (lOverlayImage);
+#line 646 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_object_unref0 (lEventBox);
+#line 4608 "bookworm.c"
+	}
+#line 712 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp181_ = self->window;
+#line 712 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gtk_widget_show_all ((GtkWidget*) _tmp181_);
+#line 713 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	bookworm_app_bookworm_toggleUIState (self);
+#line 594 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_bookworm_app_book_unref0 (lBook);
+#line 4618 "bookworm.c"
 }
 
 
@@ -3065,190 +4675,190 @@ void bookworm_app_bookworm_readSelectedBook (BookwormAppBookworm* self, Bookworm
 	BookwormAppBook* _tmp52_ = NULL;
 	BookwormAppBook* _tmp53_ = NULL;
 	gchar* _tmp54_ = NULL;
-#line 527 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 716 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 527 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 716 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (aBook != NULL);
-#line 529 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 718 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = aBook;
-#line 529 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 718 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = bookworm_app_book_getBookLocation (_tmp0_);
-#line 529 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 718 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	eBookLocation = _tmp1_;
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = eBookLocation;
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = g_file_new_for_path (_tmp2_);
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = _tmp3_;
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp5_ = g_file_get_basename (_tmp4_);
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp6_ = _tmp5_;
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp7_ = g_strconcat (BOOKWORM_APP_CONSTANTS_EPUB_EXTRACTION_LOCATION, _tmp6_, NULL);
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp8_ = _tmp7_;
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp6_);
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (_tmp4_);
-#line 530 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 719 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	extractionLocation = _tmp8_;
-#line 531 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 720 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp9_ = aBook;
-#line 531 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 720 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp10_ = extractionLocation;
-#line 531 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 720 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_book_setBookExtractionLocation (_tmp9_, _tmp10_);
-#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 722 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp11_ = extractionLocation;
-#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 722 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp12_ = bookworm_app_utils_fileOperations ("CREATEDIR", _tmp11_, "", "");
-#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 722 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp13_ = _tmp12_;
-#line 533 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 722 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp13_);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp14_ = eBookLocation;
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp15_ = g_strconcat ("unzip -o \"", _tmp14_, NULL);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp16_ = _tmp15_;
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp17_ = g_strconcat (_tmp16_, "\" -d \"", NULL);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp18_ = _tmp17_;
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp19_ = extractionLocation;
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp20_ = g_strconcat (_tmp18_, _tmp19_, NULL);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp21_ = _tmp20_;
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_ = g_strconcat (_tmp21_, "\"", NULL);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp23_ = _tmp22_;
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp24_ = bookworm_app_utils_execute_sync_command (_tmp23_);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp25_ = _tmp24_;
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp25_);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp23_);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp21_);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp18_);
-#line 535 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 724 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp16_);
-#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 725 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_ = extractionLocation;
-#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 725 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp27_ = g_strconcat ("eBook extracted into folder:", _tmp26_, NULL);
-#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 725 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp28_ = _tmp27_;
-#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:536: %s", _tmp28_);
-#line 536 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 725 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:725: %s", _tmp28_);
+#line 725 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp28_);
-#line 539 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 728 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp29_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[1];
-#line 539 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 728 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp30_ = g_strdup (_tmp29_);
-#line 539 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 728 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (self->BOOKWORM_CURRENT_STATE);
-#line 539 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 728 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->BOOKWORM_CURRENT_STATE = _tmp30_;
-#line 540 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 729 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_toggleUIState (self);
-#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 731 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp31_ = self->headerbar;
-#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 731 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp32_ = aBook;
-#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 731 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp33_ = bookworm_app_book_getBookTitle (_tmp32_);
-#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 731 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp34_ = _tmp33_;
-#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 731 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	gtk_header_bar_set_subtitle (_tmp31_, _tmp34_);
-#line 542 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 731 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp34_);
-#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 733 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp35_ = aBook;
-#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 733 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp36_ = bookworm_app_book_getBookContentList (_tmp35_);
-#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 733 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp37_ = _tmp36_;
-#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 733 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp38_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp37_);
-#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 733 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp39_ = _tmp38_;
-#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 733 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp40_ = _tmp39_ > 0;
-#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 733 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (_tmp37_);
-#line 544 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 733 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp40_) {
-#line 3193 "bookworm.c"
+#line 4803 "bookworm.c"
 	} else {
 		BookwormAppBook* _tmp41_ = NULL;
 		BookwormAppBook* _tmp42_ = NULL;
 		BookwormAppBook* _tmp43_ = NULL;
-#line 548 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 737 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp41_ = aBook;
-#line 548 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 737 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp42_ = _bookworm_app_book_ref0 (_tmp41_);
-#line 548 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 737 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp43_ = bookworm_app_epub_reader_getListOfPagesInBook (_tmp42_);
-#line 548 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 737 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_bookworm_app_book_unref0 (aBook);
-#line 548 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 737 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		aBook = _tmp43_;
-#line 3208 "bookworm.c"
+#line 4818 "bookworm.c"
 	}
-#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 739 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp44_ = self->aWebView;
-#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 739 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp45_ = aBook;
-#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 739 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp46_ = _bookworm_app_book_ref0 (_tmp45_);
-#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 739 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp47_ = bookworm_app_epub_reader_renderPage (_tmp44_, _tmp46_, "");
-#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 739 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (aBook);
-#line 550 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 739 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	aBook = _tmp47_;
-#line 552 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 741 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp48_ = bookworm_app_bookworm_libraryViewMap;
-#line 552 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 741 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp49_ = aBook;
-#line 552 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 741 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp50_ = bookworm_app_book_getBookLocation (_tmp49_);
-#line 552 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 741 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp51_ = _tmp50_;
-#line 552 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 741 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp52_ = aBook;
-#line 552 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 741 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	gee_abstract_map_set ((GeeAbstractMap*) _tmp48_, _tmp51_, _tmp52_);
-#line 552 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 741 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp51_);
-#line 553 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 742 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp53_ = aBook;
-#line 553 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 742 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp54_ = bookworm_app_book_getBookLocation (_tmp53_);
-#line 553 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 742 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (self->locationOfEBookCurrentlyRead);
-#line 553 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 742 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->locationOfEBookCurrentlyRead = _tmp54_;
-#line 527 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 716 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (extractionLocation);
-#line 527 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 716 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (eBookLocation);
-#line 527 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 716 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (aBook);
-#line 3250 "bookworm.c"
+#line 4860 "bookworm.c"
 }
 
 
@@ -3256,7 +4866,7 @@ static gchar* bool_to_string (gboolean self) {
 	gchar* result = NULL;
 #line 37 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 	if (self) {
-#line 3258 "bookworm.c"
+#line 4868 "bookworm.c"
 		gchar* _tmp0_ = NULL;
 #line 38 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		_tmp0_ = g_strdup ("true");
@@ -3264,7 +4874,7 @@ static gchar* bool_to_string (gboolean self) {
 		result = _tmp0_;
 #line 38 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 3266 "bookworm.c"
+#line 4876 "bookworm.c"
 	} else {
 		gchar* _tmp1_ = NULL;
 #line 40 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
@@ -3273,7 +4883,7 @@ static gchar* bool_to_string (gboolean self) {
 		result = _tmp1_;
 #line 40 "/usr/share/vala-0.34/vapi/glib-2.0.vapi"
 		return result;
-#line 3275 "bookworm.c"
+#line 4885 "bookworm.c"
 	}
 }
 
@@ -3315,11 +4925,11 @@ void bookworm_app_bookworm_addBookToDataBase (BookwormAppBookworm* self, Bookwor
 	gchar* _tmp39_ = NULL;
 	gchar* _tmp40_ = NULL;
 	gchar* _tmp41_ = NULL;
-#line 556 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 745 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 556 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 745 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (aBook != NULL);
-#line 558 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 747 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = g_strdup ("INSERT INTO BOOK_LIBRARY_TABLE(\n" \
 "																															 BOOK_LOCATION,\n" \
 "																															 BOOK_TITLE,\n" \
@@ -3328,31 +4938,31 @@ void bookworm_app_bookworm_addBookToDataBase (BookwormAppBookworm* self, Bookwor
 "																															 creation_date,\n" \
 "																															 modification_date) " "VALUES (?,?,?,?, CAST(strftime('%s', 'now') AS INT), CAST(strftime('%s" \
 "', 'now') AS INT))");
-#line 558 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 747 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	insert_data_to_database = _tmp0_;
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = self->bookwormDB;
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = insert_data_to_database;
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = insert_data_to_database;
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = strlen (_tmp3_);
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp5_ = _tmp4_;
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp7_ = sqlite3_prepare_v2 (_tmp1_, _tmp2_, _tmp5_, &_tmp6_, NULL);
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_sqlite3_finalize0 (stmt);
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	stmt = _tmp6_;
-#line 566 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 755 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	ec = _tmp7_;
-#line 567 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 756 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp8_ = ec;
-#line 567 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 756 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	if (_tmp8_ != SQLITE_OK) {
-#line 3347 "bookworm.c"
+#line 4957 "bookworm.c"
 		sqlite3_stmt* _tmp9_ = NULL;
 		const gchar* _tmp10_ = NULL;
 		gchar* _tmp11_ = NULL;
@@ -3362,103 +4972,235 @@ void bookworm_app_bookworm_addBookToDataBase (BookwormAppBookworm* self, Bookwor
 		gint _tmp15_ = 0;
 		sqlite3* _tmp16_ = NULL;
 		const gchar* _tmp17_ = NULL;
-#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 757 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp9_ = stmt;
-#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 757 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp10_ = sqlite3_sql (_tmp9_);
-#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp11_ = g_strconcat ("sql=", _tmp10_, NULL);
-#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 757 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp11_ = g_strconcat ("Executed Query:", _tmp10_, NULL);
+#line 757 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp12_ = _tmp11_;
-#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_debug ("bookworm.vala:568: %s", _tmp12_);
-#line 568 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 757 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_debug ("bookworm.vala:757: %s", _tmp12_);
+#line 757 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp12_);
-#line 569 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 758 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp13_ = stderr;
-#line 569 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 758 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp14_ = self->bookwormDB;
-#line 569 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 758 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp15_ = sqlite3_errcode (_tmp14_);
-#line 569 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 758 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp16_ = self->bookwormDB;
-#line 569 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 758 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp17_ = sqlite3_errmsg (_tmp16_);
-#line 569 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 758 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		fprintf (_tmp13_, "Error: %d: %s\n", _tmp15_, _tmp17_);
-#line 3381 "bookworm.c"
+#line 4991 "bookworm.c"
 	}
-#line 571 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 760 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp18_ = stmt;
-#line 571 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 760 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp19_ = aBook;
-#line 571 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 760 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp20_ = bookworm_app_book_getBookLocation (_tmp19_);
-#line 571 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 760 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp21_ = g_free;
-#line 571 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 760 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	sqlite3_bind_text (_tmp18_, 1, _tmp20_, -1, _tmp21_);
-#line 572 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 761 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_ = stmt;
-#line 572 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 761 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp23_ = aBook;
-#line 572 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 761 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp24_ = bookworm_app_book_getBookTitle (_tmp23_);
-#line 572 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 761 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp25_ = g_free;
-#line 572 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 761 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	sqlite3_bind_text (_tmp22_, 2, _tmp24_, -1, _tmp25_);
-#line 573 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 762 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_ = stmt;
-#line 573 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 762 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp27_ = aBook;
-#line 573 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 762 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp28_ = bookworm_app_book_getBookCoverLocation (_tmp27_);
-#line 573 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 762 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp29_ = g_free;
-#line 573 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 762 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	sqlite3_bind_text (_tmp26_, 3, _tmp28_, -1, _tmp29_);
-#line 574 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 763 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp30_ = stmt;
-#line 574 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 763 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp31_ = aBook;
-#line 574 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 763 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp32_ = bookworm_app_book_getIsBookCoverImagePresent (_tmp31_);
-#line 574 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 763 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp33_ = bool_to_string (_tmp32_);
-#line 574 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 763 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp34_ = g_free;
-#line 574 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 763 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	sqlite3_bind_text (_tmp30_, 4, _tmp33_, -1, _tmp34_);
-#line 576 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 765 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp35_ = stmt;
-#line 576 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 765 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	sqlite3_step (_tmp35_);
-#line 577 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 766 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp36_ = stmt;
-#line 577 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 766 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	sqlite3_reset (_tmp36_);
-#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 767 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp37_ = aBook;
-#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 767 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp38_ = bookworm_app_book_getBookLocation (_tmp37_);
-#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 767 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp39_ = _tmp38_;
-#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 767 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp40_ = g_strconcat ("Added details to Database for book:", _tmp39_, NULL);
-#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 767 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp41_ = _tmp40_;
-#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:578: %s", _tmp41_);
-#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 767 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:767: %s", _tmp41_);
+#line 767 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp41_);
-#line 578 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 767 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (_tmp39_);
-#line 556 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 745 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (insert_data_to_database);
-#line 556 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 745 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_sqlite3_finalize0 (stmt);
-#line 3453 "bookworm.c"
+#line 5063 "bookworm.c"
+}
+
+
+void bookworm_app_bookworm_removeBookFromDB (BookwormAppBookworm* self, BookwormAppBook* aBook) {
+	sqlite3_stmt* stmt = NULL;
+	gchar* delete_book_from_database = NULL;
+	gchar* _tmp0_ = NULL;
+	gint ec = 0;
+	sqlite3* _tmp1_ = NULL;
+	const gchar* _tmp2_ = NULL;
+	const gchar* _tmp3_ = NULL;
+	gint _tmp4_ = 0;
+	gint _tmp5_ = 0;
+	sqlite3_stmt* _tmp6_ = NULL;
+	gint _tmp7_ = 0;
+	gint _tmp8_ = 0;
+	sqlite3_stmt* _tmp18_ = NULL;
+	BookwormAppBook* _tmp19_ = NULL;
+	gchar* _tmp20_ = NULL;
+	GDestroyNotify _tmp21_ = NULL;
+	sqlite3_stmt* _tmp22_ = NULL;
+	sqlite3_stmt* _tmp23_ = NULL;
+	BookwormAppBook* _tmp24_ = NULL;
+	gchar* _tmp25_ = NULL;
+	gchar* _tmp26_ = NULL;
+	gchar* _tmp27_ = NULL;
+	gchar* _tmp28_ = NULL;
+#line 770 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_return_if_fail (self != NULL);
+#line 770 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_return_if_fail (aBook != NULL);
+#line 772 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp0_ = g_strdup ("DELETE FROM BOOK_LIBRARY_TABLE WHERE BOOK_LOCATION = ?");
+#line 772 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	delete_book_from_database = _tmp0_;
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp1_ = self->bookwormDB;
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = delete_book_from_database;
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp3_ = delete_book_from_database;
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp4_ = strlen (_tmp3_);
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp5_ = _tmp4_;
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp7_ = sqlite3_prepare_v2 (_tmp1_, _tmp2_, _tmp5_, &_tmp6_, NULL);
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_sqlite3_finalize0 (stmt);
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	stmt = _tmp6_;
+#line 773 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	ec = _tmp7_;
+#line 774 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp8_ = ec;
+#line 774 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (_tmp8_ != SQLITE_OK) {
+#line 5121 "bookworm.c"
+		sqlite3_stmt* _tmp9_ = NULL;
+		const gchar* _tmp10_ = NULL;
+		gchar* _tmp11_ = NULL;
+		gchar* _tmp12_ = NULL;
+		FILE* _tmp13_ = NULL;
+		sqlite3* _tmp14_ = NULL;
+		gint _tmp15_ = 0;
+		sqlite3* _tmp16_ = NULL;
+		const gchar* _tmp17_ = NULL;
+#line 775 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp9_ = stmt;
+#line 775 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp10_ = sqlite3_sql (_tmp9_);
+#line 775 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp11_ = g_strconcat ("Executed Query:", _tmp10_, NULL);
+#line 775 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp12_ = _tmp11_;
+#line 775 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_debug ("bookworm.vala:775: %s", _tmp12_);
+#line 775 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp12_);
+#line 776 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp13_ = stderr;
+#line 776 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp14_ = self->bookwormDB;
+#line 776 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp15_ = sqlite3_errcode (_tmp14_);
+#line 776 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp16_ = self->bookwormDB;
+#line 776 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp17_ = sqlite3_errmsg (_tmp16_);
+#line 776 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		fprintf (_tmp13_, "Error: %d: %s\n", _tmp15_, _tmp17_);
+#line 5155 "bookworm.c"
+	}
+#line 778 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp18_ = stmt;
+#line 778 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp19_ = aBook;
+#line 778 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp20_ = bookworm_app_book_getBookLocation (_tmp19_);
+#line 778 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp21_ = g_free;
+#line 778 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	sqlite3_bind_text (_tmp18_, 1, _tmp20_, -1, _tmp21_);
+#line 779 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp22_ = stmt;
+#line 779 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	sqlite3_step (_tmp22_);
+#line 780 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp23_ = stmt;
+#line 780 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	sqlite3_reset (_tmp23_);
+#line 781 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp24_ = aBook;
+#line 781 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp25_ = bookworm_app_book_getBookLocation (_tmp24_);
+#line 781 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp26_ = _tmp25_;
+#line 781 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp27_ = g_strconcat ("Removed this book from Database:", _tmp26_, NULL);
+#line 781 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp28_ = _tmp27_;
+#line 781 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:781: %s", _tmp28_);
+#line 781 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp28_);
+#line 781 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (_tmp26_);
+#line 770 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (delete_book_from_database);
+#line 770 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_sqlite3_finalize0 (stmt);
+#line 5195 "bookworm.c"
 }
 
 
@@ -3472,10 +5214,10 @@ void bookworm_app_bookworm_updateLibraryViewFromDB (BookwormAppBookworm* self) {
 	sqlite3_stmt* _tmp3_ = NULL;
 	gint _tmp4_ = 0;
 	gint _tmp5_ = 0;
-	sqlite3_stmt* _tmp78_ = NULL;
-#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	sqlite3_stmt* _tmp89_ = NULL;
+#line 784 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 583 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 786 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = g_strdup ("SELECT id,\n" \
 "																				 BOOK_LOCATION,\n" \
 "																				 BOOK_TITLE,\n" \
@@ -3484,28 +5226,28 @@ void bookworm_app_bookworm_updateLibraryViewFromDB (BookwormAppBookworm* self) {
 "																				 BOOK_PUBLISH_DATE,\n" \
 "																				 creation_date,\n" \
 "																				 modification_date\n" \
-"																  FROM BOOK_LIBRARY_TABLE");
-#line 583 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+"																  FROM BOOK_LIBRARY_TABLE ORDER BY id");
+#line 786 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	fetchLibraryQuery = _tmp0_;
-#line 592 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 795 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = self->bookwormDB;
-#line 592 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 795 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = fetchLibraryQuery;
-#line 592 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 795 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = sqlite3_prepare_v2 (_tmp1_, _tmp2_, -1, &_tmp3_, NULL);
-#line 592 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 795 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_sqlite3_finalize0 (stmt);
-#line 592 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 795 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	stmt = _tmp3_;
-#line 592 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 795 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	ec = _tmp4_;
-#line 593 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 796 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp5_ = ec;
-#line 593 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 796 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_vala_assert (_tmp5_ == SQLITE_OK, "ec == Sqlite.OK");
-#line 594 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 797 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	while (TRUE) {
-#line 3492 "bookworm.c"
+#line 5234 "bookworm.c"
 		sqlite3_stmt* _tmp6_ = NULL;
 		gint _tmp7_ = 0;
 		BookwormAppBook* _tmp8_ = NULL;
@@ -3576,286 +5318,370 @@ void bookworm_app_bookworm_updateLibraryViewFromDB (BookwormAppBookworm* self) {
 		const gchar* _tmp73_ = NULL;
 		gchar* _tmp74_ = NULL;
 		gchar* _tmp75_ = NULL;
-		BookwormAppBook* _tmp76_ = NULL;
-		BookwormAppBook* _tmp77_ = NULL;
-#line 594 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gchar* _tmp76_ = NULL;
+		gchar* _tmp77_ = NULL;
+		sqlite3_stmt* _tmp78_ = NULL;
+		const gchar* _tmp79_ = NULL;
+		gchar* _tmp80_ = NULL;
+		gchar* _tmp81_ = NULL;
+		BookwormAppBook* _tmp82_ = NULL;
+		BookwormAppBook* _tmp83_ = NULL;
+		GeeHashMap* _tmp84_ = NULL;
+		BookwormAppBook* _tmp85_ = NULL;
+		gchar* _tmp86_ = NULL;
+		gchar* _tmp87_ = NULL;
+		BookwormAppBook* _tmp88_ = NULL;
+#line 797 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp6_ = stmt;
-#line 594 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 797 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp7_ = sqlite3_step (_tmp6_);
-#line 594 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 797 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		if (!(_tmp7_ == SQLITE_ROW)) {
-#line 594 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 797 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			break;
-#line 3573 "bookworm.c"
+#line 5326 "bookworm.c"
 		}
-#line 595 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 798 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp8_ = bookworm_app_book_new ();
-#line 595 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 798 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_bookworm_app_book_unref0 (self->aBook);
-#line 595 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 798 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		self->aBook = _tmp8_;
-#line 596 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 799 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp9_ = self->aBook;
-#line 596 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 799 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp10_ = stmt;
-#line 596 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 799 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp11_ = sqlite3_column_int (_tmp10_, 0);
-#line 596 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 799 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_book_setBookId (_tmp9_, _tmp11_);
-#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 800 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp12_ = self->aBook;
-#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 800 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp13_ = stmt;
-#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 800 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp14_ = sqlite3_column_text (_tmp13_, 1);
-#line 597 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 800 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_book_setBookLocation (_tmp12_, _tmp14_);
-#line 598 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 801 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp15_ = self->aBook;
-#line 598 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 801 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp16_ = stmt;
-#line 598 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 801 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp17_ = sqlite3_column_text (_tmp16_, 2);
-#line 598 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 801 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_book_setBookTitle (_tmp15_, _tmp17_);
-#line 599 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 802 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp18_ = self->aBook;
-#line 599 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 802 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp19_ = stmt;
-#line 599 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 802 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp20_ = sqlite3_column_text (_tmp19_, 3);
-#line 599 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 802 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_book_setBookCoverLocation (_tmp18_, _tmp20_);
-#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 803 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp22_ = stmt;
-#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 803 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp23_ = sqlite3_column_text (_tmp22_, 4);
-#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 803 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		if (g_strcmp0 (_tmp23_, "true") == 0) {
-#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 803 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp21_ = TRUE;
-#line 3621 "bookworm.c"
+#line 5374 "bookworm.c"
 		} else {
-#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 803 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 			_tmp21_ = FALSE;
-#line 3625 "bookworm.c"
+#line 5378 "bookworm.c"
 		}
-#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 803 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp24_ = self->aBook;
-#line 600 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 803 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_book_setIsBookCoverImagePresent (_tmp24_, _tmp21_);
-#line 601 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 804 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp25_ = self->aBook;
-#line 601 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 804 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp26_ = stmt;
-#line 601 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 804 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp27_ = sqlite3_column_text (_tmp26_, 5);
-#line 601 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 804 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_book_setBookPublishDate (_tmp25_, _tmp27_);
-#line 602 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 805 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp28_ = self->aBook;
-#line 602 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 805 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp29_ = stmt;
-#line 602 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 805 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp30_ = sqlite3_column_text (_tmp29_, 6);
-#line 602 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 805 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_book_setBookCreationDate (_tmp28_, _tmp30_);
-#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 806 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp31_ = self->aBook;
-#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 806 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp32_ = stmt;
-#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 806 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp33_ = sqlite3_column_text (_tmp32_, 7);
-#line 603 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 806 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		bookworm_app_book_setBookLastModificationDate (_tmp31_, _tmp33_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp34_ = stmt;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp35_ = sqlite3_column_int (_tmp34_, 0);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp36_ = g_strdup_printf ("%i", _tmp35_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp37_ = _tmp36_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp38_ = g_strconcat ("Book details fetched from DB:\n									id=", _tmp37_, NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp39_ = _tmp38_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp40_ = g_strconcat (_tmp39_, ",BOOK_LOCATION=", NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp41_ = _tmp40_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp42_ = stmt;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp43_ = sqlite3_column_text (_tmp42_, 1);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp44_ = g_strconcat (_tmp41_, _tmp43_, NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp45_ = _tmp44_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp46_ = g_strconcat (_tmp45_, ",BOOK_COVER_IMAGE_LOCATION=", NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp46_ = g_strconcat (_tmp45_, ",BOOK_TITLE=", NULL);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp47_ = _tmp46_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp48_ = stmt;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp49_ = sqlite3_column_text (_tmp48_, 2);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp50_ = g_strconcat (_tmp47_, _tmp49_, NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp51_ = _tmp50_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp52_ = g_strconcat (_tmp51_, ",IS_BOOK_COVER_IMAGE_PRESENT=", NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp52_ = g_strconcat (_tmp51_, ",BOOK_COVER_IMAGE_LOCATION=", NULL);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp53_ = _tmp52_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp54_ = stmt;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp55_ = sqlite3_column_text (_tmp54_, 3);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp56_ = g_strconcat (_tmp53_, _tmp55_, NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp57_ = _tmp56_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp58_ = g_strconcat (_tmp57_, ",BOOK_PUBLISH_DATE=", NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp58_ = g_strconcat (_tmp57_, ",IS_BOOK_COVER_IMAGE_PRESENT=", NULL);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp59_ = _tmp58_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp60_ = stmt;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp61_ = sqlite3_column_text (_tmp60_, 4);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp62_ = g_strconcat (_tmp59_, _tmp61_, NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp63_ = _tmp62_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp64_ = g_strconcat (_tmp63_, ",creation_date=", NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp64_ = g_strconcat (_tmp63_, ",BOOK_PUBLISH_DATE=", NULL);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp65_ = _tmp64_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp66_ = stmt;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp67_ = sqlite3_column_text (_tmp66_, 5);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp68_ = g_strconcat (_tmp65_, _tmp67_, NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp69_ = _tmp68_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp70_ = g_strconcat (_tmp69_, ",modification_date=", NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp70_ = g_strconcat (_tmp69_, ",creation_date=", NULL);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp71_ = _tmp70_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp72_ = stmt;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp73_ = sqlite3_column_text (_tmp72_, 6);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp74_ = g_strconcat (_tmp71_, _tmp73_, NULL);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_tmp75_ = _tmp74_;
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		g_debug ("bookworm.vala:604: %s", _tmp75_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp76_ = g_strconcat (_tmp75_, ",modification_date=", NULL);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp77_ = _tmp76_;
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp78_ = stmt;
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp79_ = sqlite3_column_text (_tmp78_, 7);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp80_ = g_strconcat (_tmp77_, _tmp79_, NULL);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp81_ = _tmp80_;
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		g_debug ("bookworm.vala:807: %s", _tmp81_);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp81_);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp77_);
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp75_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp71_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp69_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp65_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp63_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp59_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp57_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp53_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp51_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp47_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp45_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp41_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp39_);
-#line 604 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 807 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 		_g_free0 (_tmp37_);
-#line 613 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp76_ = self->aBook;
-#line 613 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp77_ = _bookworm_app_book_ref0 (_tmp76_);
-#line 613 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		bookworm_app_bookworm_updateLibraryView (self, _tmp77_);
-#line 3775 "bookworm.c"
+#line 817 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp82_ = self->aBook;
+#line 817 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp83_ = _bookworm_app_book_ref0 (_tmp82_);
+#line 817 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		bookworm_app_bookworm_updateLibraryView (self, _tmp83_);
+#line 819 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp84_ = bookworm_app_bookworm_libraryViewMap;
+#line 819 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp85_ = self->aBook;
+#line 819 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp86_ = bookworm_app_book_getBookLocation (_tmp85_);
+#line 819 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp87_ = _tmp86_;
+#line 819 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp88_ = self->aBook;
+#line 819 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gee_abstract_map_set ((GeeAbstractMap*) _tmp84_, _tmp87_, _tmp88_);
+#line 819 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_g_free0 (_tmp87_);
+#line 5558 "bookworm.c"
 	}
-#line 615 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp78_ = stmt;
-#line 615 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	sqlite3_reset (_tmp78_);
-#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 821 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp89_ = stmt;
+#line 821 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	sqlite3_reset (_tmp89_);
+#line 784 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (fetchLibraryQuery);
-#line 581 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 784 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_sqlite3_finalize0 (stmt);
-#line 3785 "bookworm.c"
+#line 5568 "bookworm.c"
 }
 
 
 void bookworm_app_bookworm_toggleUIState (BookwormAppBookworm* self) {
-	const gchar* _tmp0_ = NULL;
-	const gchar* _tmp1_ = NULL;
-#line 618 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	gboolean _tmp0_ = FALSE;
+	gboolean _tmp1_ = FALSE;
+	const gchar* _tmp2_ = NULL;
+	const gchar* _tmp3_ = NULL;
+	const gchar* _tmp10_ = NULL;
+	const gchar* _tmp11_ = NULL;
+#line 824 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 619 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp0_ = self->BOOKWORM_CURRENT_STATE;
-#line 619 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp1_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
-#line 619 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	if (g_strcmp0 (_tmp0_, _tmp1_) == 0) {
-#line 3800 "bookworm.c"
-		GtkBox* _tmp2_ = NULL;
-		GtkBox* _tmp3_ = NULL;
-#line 621 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp2_ = self->bookReading_ui_box;
-#line 621 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_widget_set_visible ((GtkWidget*) _tmp2_, FALSE);
-#line 622 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp3_ = self->bookSelection_ui_box;
-#line 622 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_widget_set_visible ((GtkWidget*) _tmp3_, TRUE);
-#line 3811 "bookworm.c"
+#line 825 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp2_ = self->BOOKWORM_CURRENT_STATE;
+#line 825 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp3_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
+#line 825 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (g_strcmp0 (_tmp2_, _tmp3_) == 0) {
+#line 825 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp1_ = TRUE;
+#line 5589 "bookworm.c"
 	} else {
-		GtkBox* _tmp4_ = NULL;
-		GtkBox* _tmp5_ = NULL;
-#line 625 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp4_ = self->bookReading_ui_box;
-#line 625 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_widget_set_visible ((GtkWidget*) _tmp4_, TRUE);
-#line 626 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		_tmp5_ = self->bookSelection_ui_box;
-#line 626 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-		gtk_widget_set_visible ((GtkWidget*) _tmp5_, FALSE);
-#line 3823 "bookworm.c"
+		const gchar* _tmp4_ = NULL;
+		const gchar* _tmp5_ = NULL;
+#line 826 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp4_ = self->BOOKWORM_CURRENT_STATE;
+#line 826 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp5_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[2];
+#line 826 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp1_ = g_strcmp0 (_tmp4_, _tmp5_) == 0;
+#line 5599 "bookworm.c"
+	}
+#line 825 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (_tmp1_) {
+#line 825 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp0_ = TRUE;
+#line 5605 "bookworm.c"
+	} else {
+		const gchar* _tmp6_ = NULL;
+		const gchar* _tmp7_ = NULL;
+#line 827 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp6_ = self->BOOKWORM_CURRENT_STATE;
+#line 827 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp7_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[3];
+#line 827 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp0_ = g_strcmp0 (_tmp6_, _tmp7_) == 0;
+#line 5615 "bookworm.c"
+	}
+#line 825 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (_tmp0_) {
+#line 5619 "bookworm.c"
+		GtkBox* _tmp8_ = NULL;
+		GtkBox* _tmp9_ = NULL;
+#line 830 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp8_ = self->bookReading_ui_box;
+#line 830 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_widget_set_visible ((GtkWidget*) _tmp8_, FALSE);
+#line 831 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp9_ = self->bookSelection_ui_box;
+#line 831 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_widget_set_visible ((GtkWidget*) _tmp9_, TRUE);
+#line 5630 "bookworm.c"
+	}
+#line 833 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp10_ = self->BOOKWORM_CURRENT_STATE;
+#line 833 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[1];
+#line 833 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	if (g_strcmp0 (_tmp10_, _tmp11_) == 0) {
+#line 5638 "bookworm.c"
+		GtkBox* _tmp12_ = NULL;
+		GtkBox* _tmp13_ = NULL;
+#line 835 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp12_ = self->bookReading_ui_box;
+#line 835 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_widget_set_visible ((GtkWidget*) _tmp12_, TRUE);
+#line 836 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		_tmp13_ = self->bookSelection_ui_box;
+#line 836 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+		gtk_widget_set_visible ((GtkWidget*) _tmp13_, FALSE);
+#line 5649 "bookworm.c"
 	}
 }
 
 
 void bookworm_app_bookworm_saveBookwormState (BookwormAppBookworm* self) {
-#line 630 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 840 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 631 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:631: Starting to save Bookworm state...");
-#line 3833 "bookworm.c"
+#line 841 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:841: Starting to save Bookworm state...");
+#line 5659 "bookworm.c"
 }
 
 
 void bookworm_app_bookworm_loadBookwormState (BookwormAppBookworm* self) {
-#line 635 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 845 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_return_if_fail (self != NULL);
-#line 636 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	g_debug ("bookworm.vala:636: Started loading Bookworm state...");
-#line 3842 "bookworm.c"
+#line 846 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	g_debug ("bookworm.vala:846: Started loading Bookworm state...");
+#line 5668 "bookworm.c"
 }
 
 
@@ -3895,185 +5721,185 @@ static GObject * bookworm_app_bookworm_constructor (GType type, guint n_construc
 	GOptionEntry _tmp27_ = {0};
 	GOptionEntry* _tmp28_ = NULL;
 	gint _tmp28__length1 = 0;
-#line 57 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	parent_class = G_OBJECT_CLASS (bookworm_app_bookworm_parent_class);
-#line 57 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 57 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, BOOKWORM_APP_TYPE_BOOKWORM, BookwormAppBookworm);
-#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_application_set_application_id ((GApplication*) self, "org.bookworm");
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp0_ = g_application_get_flags ((GApplication*) self);
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = _tmp0_;
-#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_application_set_flags ((GApplication*) self, _tmp1_ | G_APPLICATION_HANDLES_COMMAND_LINE);
-#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = g_strdup ("Bookworm");
-#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (((GraniteApplication*) self)->program_name);
-#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	((GraniteApplication*) self)->program_name = _tmp2_;
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = g_strdup ("2017");
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (((GraniteApplication*) self)->app_years);
-#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 70 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	((GraniteApplication*) self)->app_years = _tmp3_;
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = g_strdup (BOOKWORM_APP_CONSTANTS_bookworm_version);
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (((GraniteApplication*) self)->build_version);
-#line 64 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	((GraniteApplication*) self)->build_version = _tmp4_;
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp5_ = g_strdup ("bookworm");
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (((GraniteApplication*) self)->app_icon);
-#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	((GraniteApplication*) self)->app_icon = _tmp5_;
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 74 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp6_ = g_strdup ("https://launchpad.net/bookworm");
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 74 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (((GraniteApplication*) self)->main_url);
-#line 66 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 74 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	((GraniteApplication*) self)->main_url = _tmp6_;
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp7_ = g_strdup ("https://bugs.launchpad.net/bookworm");
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_free0 (((GraniteApplication*) self)->bug_url);
-#line 67 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	((GraniteApplication*) self)->bug_url = _tmp7_;
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp8_ = g_strdup ("https://answers.launchpad.net/bookworm");
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (((GraniteApplication*) self)->help_url);
-#line 68 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->help_url = _tmp8_;
-#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp9_ = g_strdup ("https://translations.launchpad.net/bookworm");
-#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (((GraniteApplication*) self)->translate_url);
-#line 69 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->translate_url = _tmp9_;
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_ = g_new0 (gchar*, 1 + 1);
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp10_[0] = NULL;
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_documenters = (_vala_array_free (((GraniteApplication*) self)->about_documenters, ((GraniteApplication*) self)->about_documenters_length1, (GDestroyNotify) g_free), NULL);
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_documenters = _tmp10_;
-#line 71 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_documenters_length1 = 1;
-#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp11_ = g_strdup ("Siddhartha Das <bablu.boy@gmail.com>");
-#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp12_ = g_new0 (gchar*, 1 + 1);
-#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp12_[0] = _tmp11_;
-#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_artists = (_vala_array_free (((GraniteApplication*) self)->about_artists, ((GraniteApplication*) self)->about_artists_length1, (GDestroyNotify) g_free), NULL);
-#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_artists = _tmp12_;
-#line 72 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_artists_length1 = 1;
-#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp13_ = g_strdup ("Siddhartha Das <bablu.boy@gmail.com>");
-#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp14_ = g_new0 (gchar*, 1 + 1);
-#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp14_[0] = _tmp13_;
-#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_authors = (_vala_array_free (((GraniteApplication*) self)->about_authors, ((GraniteApplication*) self)->about_authors_length1, (GDestroyNotify) g_free), NULL);
-#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_authors = _tmp14_;
-#line 73 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_authors_length1 = 1;
-#line 74 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp15_ = _ ("An eBook Reader");
-#line 74 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp16_ = g_strdup (_tmp15_);
-#line 74 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (((GraniteApplication*) self)->about_comments);
-#line 74 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_comments = _tmp16_;
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp17_ = _ ("Launchpad Translators");
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_tmp18_ = g_strdup (_tmp17_);
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (((GraniteApplication*) self)->about_translators);
-#line 75 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	((GraniteApplication*) self)->about_translators = _tmp18_;
 #line 76 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp8_ = g_strdup ("https://answers.launchpad.net/bookworm");
+#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (((GraniteApplication*) self)->help_url);
+#line 76 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->help_url = _tmp8_;
+#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp9_ = g_strdup ("https://translations.launchpad.net/bookworm");
+#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (((GraniteApplication*) self)->translate_url);
+#line 77 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->translate_url = _tmp9_;
+#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp10_ = g_new0 (gchar*, 1 + 1);
+#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp10_[0] = NULL;
+#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_documenters = (_vala_array_free (((GraniteApplication*) self)->about_documenters, ((GraniteApplication*) self)->about_documenters_length1, (GDestroyNotify) g_free), NULL);
+#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_documenters = _tmp10_;
+#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_documenters_length1 = 1;
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp11_ = g_strdup ("Siddhartha Das <bablu.boy@gmail.com>");
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp12_ = g_new0 (gchar*, 1 + 1);
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp12_[0] = _tmp11_;
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_artists = (_vala_array_free (((GraniteApplication*) self)->about_artists, ((GraniteApplication*) self)->about_artists_length1, (GDestroyNotify) g_free), NULL);
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_artists = _tmp12_;
+#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_artists_length1 = 1;
+#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp13_ = g_strdup ("Siddhartha Das <bablu.boy@gmail.com>");
+#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp14_ = g_new0 (gchar*, 1 + 1);
+#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp14_[0] = _tmp13_;
+#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_authors = (_vala_array_free (((GraniteApplication*) self)->about_authors, ((GraniteApplication*) self)->about_authors_length1, (GDestroyNotify) g_free), NULL);
+#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_authors = _tmp14_;
+#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_authors_length1 = 1;
+#line 82 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp15_ = _ ("An eBook Reader");
+#line 82 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp16_ = g_strdup (_tmp15_);
+#line 82 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (((GraniteApplication*) self)->about_comments);
+#line 82 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_comments = _tmp16_;
+#line 83 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp17_ = _ ("Launchpad Translators");
+#line 83 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_tmp18_ = g_strdup (_tmp17_);
+#line 83 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (((GraniteApplication*) self)->about_translators);
+#line 83 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	((GraniteApplication*) self)->about_translators = _tmp18_;
+#line 84 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	((GraniteApplication*) self)->about_license_type = GTK_LICENSE_GPL_3_0;
-#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp19_ = g_new0 (GOptionEntry, 4);
-#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->options = (g_free (self->options), NULL);
-#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->options = _tmp19_;
-#line 78 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 86 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->options_length1 = 4;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp20_ = self->options;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp20__length1 = self->options_length1;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp21_ = _ ("Display version number");
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_.long_name = "version";
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_.short_name = (gchar) 0;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_.flags = 0;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_.arg = G_OPTION_ARG_NONE;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_.arg_data = &bookworm_app_bookworm_command_line_option_version;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_.description = _tmp21_;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp22_.arg_description = NULL;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp20_[0] = _tmp22_;
-#line 79 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 87 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp23_ = _tmp20_[0];
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp24_ = self->options;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp24__length1 = self->options_length1;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp25_ = _ ("Run Bookworm in debug mode");
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_.long_name = "debug";
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_.short_name = (gchar) 0;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_.flags = 0;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_.arg = G_OPTION_ARG_NONE;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_.arg_data = &bookworm_app_bookworm_command_line_option_debug;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_.description = _tmp25_;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp26_.arg_description = NULL;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp24_[3] = _tmp26_;
-#line 80 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 88 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp27_ = _tmp24_[3];
-#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp28_ = self->options;
-#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp28__length1 = self->options_length1;
-#line 81 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 89 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	g_application_add_main_option_entries ((GApplication*) self, _tmp28_);
-#line 57 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 65 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	return obj;
-#line 4060 "bookworm.c"
+#line 5886 "bookworm.c"
 }
 
 
@@ -4102,11 +5928,11 @@ static void bookworm_app_bookworm_class_init (BookwormAppBookwormClass * klass) 
 	_tmp2_ = g_strdup ("");
 #line 35 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_command_line_option_monitor = _tmp2_;
-#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 57 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, BOOKWORM_APP_TYPE_BOOK, (GBoxedCopyFunc) bookworm_app_book_ref, bookworm_app_book_unref, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 49 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 57 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	bookworm_app_bookworm_libraryViewMap = _tmp3_;
-#line 4093 "bookworm.c"
+#line 5919 "bookworm.c"
 }
 
 
@@ -4122,25 +5948,25 @@ static void bookworm_app_bookworm_instance_init (BookwormAppBookworm * self) {
 	_tmp0_ = g_string_new ("");
 #line 39 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->spawn_async_with_pipes_output = _tmp0_;
-#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp1_ = BOOKWORM_APP_CONSTANTS_BOOKWORM_UI_STATES[0];
-#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp2_ = g_strdup (_tmp1_);
-#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->BOOKWORM_CURRENT_STATE = _tmp2_;
-#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp3_ = g_strdup ("");
-#line 50 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->locationOfEBookCurrentlyRead = _tmp3_;
-#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 59 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->countBooksAddedIntoLibraryRow = 0;
-#line 52 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->lastBookUpdatedIntoLibraryGrid = NULL;
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_tmp4_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, gtk_event_box_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 53 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	self->libraryViewEventBoxWidgets = _tmp4_;
-#line 4127 "bookworm.c"
+#line 5953 "bookworm.c"
 }
 
 
@@ -4167,22 +5993,32 @@ static void bookworm_app_bookworm_finalize (GObject* obj) {
 #line 45 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (self->bookReading_ui_box);
 #line 46 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->library_scroll);
+#line 47 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (self->library_grid);
-#line 48 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (self->BOOKWORM_CURRENT_STATE);
 #line 50 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_free0 (self->locationOfEBookCurrentlyRead);
+	_g_object_unref0 (self->bookSelectionPix);
+#line 51 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->bookSelectedPix);
 #line 52 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
-	_g_object_unref0 (self->lastBookUpdatedIntoLibraryGrid);
+	_g_object_unref0 (self->bookSelectionImage);
 #line 53 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->aBookCover);
+#line 56 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (self->BOOKWORM_CURRENT_STATE);
+#line 58 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_free0 (self->locationOfEBookCurrentlyRead);
+#line 60 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+	_g_object_unref0 (self->lastBookUpdatedIntoLibraryGrid);
+#line 61 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_g_object_unref0 (self->libraryViewEventBoxWidgets);
-#line 54 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 62 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_bookworm_app_book_unref0 (self->aBook);
-#line 55 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
+#line 63 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	_sqlite3_close0 (self->bookwormDB);
 #line 27 "/home/sid/Documents/Projects/bookworm/dev/src/bookworm.vala"
 	G_OBJECT_CLASS (bookworm_app_bookworm_parent_class)->finalize (obj);
-#line 4169 "bookworm.c"
+#line 6005 "bookworm.c"
 }
 
 

@@ -115,6 +115,11 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-add.svg D
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-remove.svg DESTINATION share/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-grid-symbolic.svg DESTINATION share/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-defaultbook.png DESTINATION /usr/share/icons/hicolor/256x256/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection.svg DESTINATION share/icons/hicolor/24x24/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-checked.svg DESTINATION share/icons/hicolor/24x24/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION share/icons/hicolor/24x24/actions)
+
+
 
 # install our .desktop file so the Applications menu will see it
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/bookworm.desktop DESTINATION ${DATADIR}/applications/)

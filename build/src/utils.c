@@ -63,12 +63,12 @@ gboolean bookworm_app_utils_process_line (GIOChannel* channel, GIOCondition cond
 gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args, int spawn_args_length1);
 static Block2Data* block2_data_ref (Block2Data* _data2_);
 static void block2_data_unref (void * _userdata_);
-static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition);
-static gboolean ____lambda19__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
 static gboolean ___lambda20_ (GIOChannel* channel, GIOCondition condition);
 static gboolean ____lambda20__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
-static void ___lambda21_ (Block2Data* _data2_, GPid pid, gint status);
-static void ____lambda21__gchild_watch_func (GPid pid, gint status, gpointer self);
+static gboolean ___lambda21_ (GIOChannel* channel, GIOCondition condition);
+static gboolean ____lambda21__gio_func (GIOChannel* source, GIOCondition condition, gpointer self);
+static void ___lambda22_ (Block2Data* _data2_, GPid pid, gint status);
+static void ____lambda22__gchild_watch_func (GPid pid, gint status, gpointer self);
 gchar* bookworm_app_utils_execute_sync_command (const gchar* cmd);
 gchar* bookworm_app_utils_extractBetweenTwoStrings (const gchar* stringToBeSearched, const gchar* startString, const gchar* endString, GError** error);
 #define BOOKWORM_APP_CONSTANTS_TEXT_FOR_NOT_AVAILABLE _ ("Not Available")
@@ -704,7 +704,7 @@ static gchar* _vala_g_strjoinv (const gchar* separator, gchar** str_array, int s
 }
 
 
-static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition) {
+static gboolean ___lambda20_ (GIOChannel* channel, GIOCondition condition) {
 	gboolean result = FALSE;
 	GIOChannel* _tmp0_ = NULL;
 	GIOCondition _tmp1_ = 0;
@@ -725,16 +725,16 @@ static gboolean ___lambda19_ (GIOChannel* channel, GIOCondition condition) {
 }
 
 
-static gboolean ____lambda19__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
+static gboolean ____lambda20__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
 	gboolean result;
-	result = ___lambda19_ (source, condition);
+	result = ___lambda20_ (source, condition);
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
 #line 734 "utils.c"
 }
 
 
-static gboolean ___lambda20_ (GIOChannel* channel, GIOCondition condition) {
+static gboolean ___lambda21_ (GIOChannel* channel, GIOCondition condition) {
 	gboolean result = FALSE;
 	GIOChannel* _tmp0_ = NULL;
 	GIOCondition _tmp1_ = 0;
@@ -755,16 +755,16 @@ static gboolean ___lambda20_ (GIOChannel* channel, GIOCondition condition) {
 }
 
 
-static gboolean ____lambda20__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
+static gboolean ____lambda21__gio_func (GIOChannel* source, GIOCondition condition, gpointer self) {
 	gboolean result;
-	result = ___lambda20_ (source, condition);
+	result = ___lambda21_ (source, condition);
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	return result;
 #line 764 "utils.c"
 }
 
 
-static void ___lambda21_ (Block2Data* _data2_, GPid pid, gint status) {
+static void ___lambda22_ (Block2Data* _data2_, GPid pid, gint status) {
 	GPid _tmp0_ = 0;
 #line 86 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 	_tmp0_ = pid;
@@ -776,9 +776,9 @@ static void ___lambda21_ (Block2Data* _data2_, GPid pid, gint status) {
 }
 
 
-static void ____lambda21__gchild_watch_func (GPid pid, gint status, gpointer self) {
+static void ____lambda22__gchild_watch_func (GPid pid, gint status, gpointer self) {
 #line 84 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-	___lambda21_ (self, pid, status);
+	___lambda22_ (self, pid, status);
 #line 783 "utils.c"
 }
 
@@ -923,7 +923,7 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp17_ = output;
 #line 74 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_io_add_watch (_tmp17_, G_IO_IN | G_IO_HUP, ____lambda19__gio_func, NULL);
+		g_io_add_watch (_tmp17_, G_IO_IN | G_IO_HUP, ____lambda20__gio_func, NULL);
 #line 79 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp18_ = g_io_channel_unix_new (standard_error);
 #line 79 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
@@ -931,9 +931,9 @@ gint bookworm_app_utils_execute_async_multiarg_command_pipes (gchar** spawn_args
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		_tmp19_ = _error_;
 #line 80 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_io_add_watch (_tmp19_, G_IO_IN | G_IO_HUP, ____lambda20__gio_func, NULL);
+		g_io_add_watch (_tmp19_, G_IO_IN | G_IO_HUP, ____lambda21__gio_func, NULL);
 #line 84 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
-		g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, child_pid, ____lambda21__gchild_watch_func, block2_data_ref (_data2_), block2_data_unref);
+		g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, child_pid, ____lambda22__gchild_watch_func, block2_data_ref (_data2_), block2_data_unref);
 #line 89 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"
 		g_main_loop_run (_data2_->loop);
 #line 54 "/home/sid/Documents/Projects/bookworm/dev/src/utils.vala"

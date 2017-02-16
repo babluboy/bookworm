@@ -15,6 +15,8 @@ stdlib.h
 -
 string.h
 -
+gtk/gtk.h
+-
 gee.h
 -
 gobject/gvaluecollector.h
@@ -35,6 +37,8 @@ gtk/gtk.h
 -
 webkit2/webkit2.h
 -
+gdk-pixbuf/gdk-pixbuf.h
+-
 gee.h
 -
 sqlite3.h
@@ -46,8 +50,6 @@ glib/gi18n-lib.h
 gio/gio.h
 -
 gdk/gdk.h
--
-gdk-pixbuf/gdk-pixbuf.h
 -
 stdio.h
 -

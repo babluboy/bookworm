@@ -12,4 +12,7 @@
 /usr/share/icons/hicolor/16x16/actions/bookworm-list-remove.svg
 /usr/share/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg
 /usr/share/icons/hicolor/256x256/apps/bookworm-defaultbook.png
+/usr/share/icons/hicolor/24x24/actions/bookworm-selection.svg
+/usr/share/icons/hicolor/24x24/actions/bookworm-selection-checked.svg
+/usr/share/icons/hicolor/24x24/actions/bookworm-selection-option.svg
 /usr/share/applications/bookworm.desktop
