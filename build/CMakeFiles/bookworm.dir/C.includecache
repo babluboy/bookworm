@@ -39,9 +39,9 @@ webkit2/webkit2.h
 -
 gdk-pixbuf/gdk-pixbuf.h
 -
-gee.h
--
 sqlite3.h
+-
+gee.h
 -
 locale.h
 -

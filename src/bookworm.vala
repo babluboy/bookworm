@@ -45,22 +45,17 @@ namespace BookwormApp {
 		public Gtk.Box bookReading_ui_box;
 		public ScrolledWindow library_scroll;
 		public Gtk.Grid library_grid;
-		//public Gtk.Grid library_grid_selection;
-		//public Gtk.Grid library_grid_selected;
 		public Gdk.Pixbuf bookSelectionPix;
 		public Gdk.Pixbuf bookSelectedPix;
 		public Gtk.Image bookSelectionImage;
-		public Gdk.Pixbuf aBookCover;
-		//public Gtk.Image aCoverImage;
+		public Sqlite.Database bookwormDB;
 
 		public string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 		public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
 		public string locationOfEBookCurrentlyRead = "";
 		public int countBooksAddedIntoLibraryRow = 0;
 		public Widget lastBookUpdatedIntoLibraryGrid = null;
-		public Gee.HashMap<string,Gtk.EventBox> libraryViewEventBoxWidgets = new Gee.HashMap<string,Gtk.EventBox>();
-		public BookwormApp.Book aBook;
-		public Sqlite.Database bookwormDB;
+
 
 		construct {
 			application_id = "org.bookworm";
@@ -206,7 +201,7 @@ namespace BookwormApp {
 			});
 			library_view_button.clicked.connect (() => {
 				//Update header to remove title of book being read
-				headerbar.subtitle = "";
+				headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
 				//set UI in library view mode
 				BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 				updateLibraryViewForSelectionMode(null);
@@ -214,8 +209,9 @@ namespace BookwormApp {
 			});
 			content_list_button.clicked.connect (() => {
 				//get object for this ebook
-				aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
-				aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "TABLE_OF_CONTENTS");
+				BookwormApp.Book currentBookForContentList = libraryViewMap.get(locationOfEBookCurrentlyRead);
+				currentBookForContentList = BookwormApp.ePubReader.renderPage(aWebView, libraryViewMap.get(locationOfEBookCurrentlyRead), "TABLE_OF_CONTENTS");
+				libraryViewMap.set(locationOfEBookCurrentlyRead, currentBookForContentList);
 			});
 			debug("Completed loading HeaderBar sucessfully...");
 		}
@@ -224,19 +220,19 @@ namespace BookwormApp {
 			debug("Starting creation of Bookworm Menu...");
 			Granite.Widgets.AppMenu app_menu;
 			//Add sub menu items
-			Gtk.MenuItem menuItemPrefferences = new Gtk.MenuItem.with_label(Constants.TEXT_FOR_HEADERBAR_MENU_PREFS);
-			menu.add (menuItemPrefferences);
-			Gtk.MenuItem menuItemExportToFile = new Gtk.MenuItem.with_label(Constants.TEXT_FOR_HEADERBAR_MENU_EXPORT);
-			menu.add (menuItemExportToFile);
+			//Gtk.MenuItem menuItemPrefferences = new Gtk.MenuItem.with_label(Constants.TEXT_FOR_HEADERBAR_MENU_PREFS);
+			//menu.add (menuItemPrefferences);
+			//Gtk.MenuItem menuItemExportToFile = new Gtk.MenuItem.with_label(Constants.TEXT_FOR_HEADERBAR_MENU_EXPORT);
+			//menu.add (menuItemExportToFile);
 			app_menu = new Granite.Widgets.AppMenu.with_app(this, menu);
 
 			//Add actions for menu items
-			menuItemPrefferences.activate.connect(() => {
+			//menuItemPrefferences.activate.connect(() => {
 
-			});
-			menuItemExportToFile.activate.connect(() => {
+			//});
+			//menuItemExportToFile.activate.connect(() => {
 
-			});
+			//});
 			//Add About option to menu
 			app_menu.show_about.connect (show_about);
 			debug("Completed creation of Bookworm Menu sucessfully...");
@@ -330,33 +326,36 @@ namespace BookwormApp {
 			//Add action on the forward button for reading
 			forward_button.clicked.connect (() => {
 				//get object for this ebook and call the next page
-				aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
-				debug("Initiating read forward for eBook:"+aBook.to_string());
-				aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "FORWARD");
+				BookwormApp.Book currentBookForForward = new BookwormApp.Book();
+				currentBookForForward = libraryViewMap.get(locationOfEBookCurrentlyRead);
+				debug("Initiating read forward for eBook:"+currentBookForForward.to_string());
+				currentBookForForward = BookwormApp.ePubReader.renderPage(aWebView, currentBookForForward, "FORWARD");
 				//update book details to libraryView Map
-				libraryViewMap.set(aBook.getBookLocation(), aBook);
-				locationOfEBookCurrentlyRead = aBook.getBookLocation();
+				libraryViewMap.set(currentBookForForward.getBookLocation(), currentBookForForward);
+				locationOfEBookCurrentlyRead = currentBookForForward.getBookLocation();
 				//set the focus to the webview to capture keypress events
 				aWebView.grab_focus();
 			});
 			//Add action on the backward button for reading
 			back_button.clicked.connect (() => {
 				//get object for this ebook and call the next page
-				aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
-				debug("Initiating read previous for eBook:"+aBook.to_string());
-				aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "BACKWARD");
+				BookwormApp.Book currentBookForReverse = new BookwormApp.Book();
+				currentBookForReverse = libraryViewMap.get(locationOfEBookCurrentlyRead);
+				debug("Initiating read previous for eBook:"+currentBookForReverse.to_string());
+				currentBookForReverse = BookwormApp.ePubReader.renderPage(aWebView, currentBookForReverse, "BACKWARD");
 				//update book details to libraryView Map
-				libraryViewMap.set(aBook.getBookLocation(), aBook);
-				locationOfEBookCurrentlyRead = aBook.getBookLocation();
+				libraryViewMap.set(currentBookForReverse.getBookLocation(), currentBookForReverse);
+				locationOfEBookCurrentlyRead = currentBookForReverse.getBookLocation();
 				//set the focus to the webview to capture keypress events
 				aWebView.grab_focus();
 			});
 			//Add action for adding a book on the library view
 			add_book_button.clicked.connect (() => {
 				string pathToSelectedBook = selectBookFileChooser();
-				aBook = new BookwormApp.Book();
-				aBook.setBookLocation(pathToSelectedBook);
-				addBookToLibrary(aBook);
+				BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
+				aBookBeingAdded.setBookLocation(pathToSelectedBook);
+				//the book will be updated to the libraryView Map within the addBookToLibrary function
+				addBookToLibrary(aBookBeingAdded);
 			});
 			//Add action for putting library in select view
 			select_book_button.clicked.connect (() => {
@@ -385,13 +384,17 @@ namespace BookwormApp {
 			aWebView.key_press_event.connect ((ev) => {
 			    if (ev.keyval == Gdk.Key.Left) {// Left Key pressed, move page backwards
 						//get object for this ebook
-						aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
-						aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "BACKWARD");
+						BookwormApp.Book aBookLeftKeyPress = libraryViewMap.get(locationOfEBookCurrentlyRead);
+						aBookLeftKeyPress = BookwormApp.ePubReader.renderPage(aWebView, aBookLeftKeyPress, "BACKWARD");
+						//update book details to libraryView Map
+						libraryViewMap.set(aBookLeftKeyPress.getBookLocation(), aBookLeftKeyPress);
 					}
 			    if (ev.keyval == Gdk.Key.Right) {// Right key pressed, move page forward
 						//get object for this ebook
-						aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
-						aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "FORWARD");
+						BookwormApp.Book aBookRightKeyPress = libraryViewMap.get(locationOfEBookCurrentlyRead);
+						aBookRightKeyPress = BookwormApp.ePubReader.renderPage(aWebView, aBookRightKeyPress, "FORWARD");
+						//update book details to libraryView Map
+						libraryViewMap.set(aBookRightKeyPress.getBookLocation(), aBookRightKeyPress);
 					}
 			    return false;
 			});
@@ -399,10 +402,12 @@ namespace BookwormApp {
 			aWebView.decide_policy.connect (() => {
 				string url_clicked_on_webview = aWebView.get_uri().replace("%20"," ");
 				if(url_clicked_on_webview != null && url_clicked_on_webview.length > 1){
-					aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
-					if(aBook.getBookContentList().contains(url_clicked_on_webview.replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, ""))){
-						aBook.setBookPageNumber(aBook.getBookContentList().index_of(url_clicked_on_webview.replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, "")));
-						debug("Using Table of Contents Navigation, Book page number set at"+aBook.getBookPageNumber().to_string());
+					BookwormApp.Book aBookForURLClick = libraryViewMap.get(locationOfEBookCurrentlyRead);
+					if(aBookForURLClick.getBookContentList().contains(url_clicked_on_webview.replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, ""))){
+						aBookForURLClick.setBookPageNumber(aBookForURLClick.getBookContentList().index_of(url_clicked_on_webview.replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, "")));
+						//update book details to libraryView Map
+						libraryViewMap.set(aBookForURLClick.getBookLocation(), aBookForURLClick);
+						debug("Using Table of Contents Navigation, Book page number set at"+aBookForURLClick.getBookPageNumber().to_string());
 					}
 				}
 				return true;
@@ -446,8 +451,6 @@ namespace BookwormApp {
 			 	if (ec != Sqlite.OK) {
 			 		warning ("Error: %s\n", errmsg);
 			 	}
-				//set default cover image of book and selection images
-				aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION, 150, 200, false);
 		}
 
 		public void removeSelectedBooksFromLibrary(){
@@ -468,6 +471,9 @@ namespace BookwormApp {
 				removeBookFromDB(libraryViewMap.get(bookLocation));
 				libraryViewMap.unset(bookLocation);
 			}
+
+			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+			updateLibraryViewForSelectionMode(null);
 			window.show_all();
 			toggleUIState();
 		}
@@ -523,36 +529,44 @@ namespace BookwormApp {
 		}
 
 		public void updateLibraryView(owned BookwormApp.Book aBook){
-			debug("Updating Library for cover:"+aBook.getBookCoverLocation());
+			debug("Updating Library [Current Row Count:"+countBooksAddedIntoLibraryRow.to_string()+"] for cover:"+aBook.getBookCoverLocation());
 			Gtk.EventBox aEventBox = new Gtk.EventBox();
 			aEventBox.set_name(aBook.getBookLocation());
 			Gtk.Overlay aOverlayImage = new Gtk.Overlay();
-			Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+			Gtk.Image aCoverImage;
 			string bookCoverLocation;
 
 			if(!aBook.getIsBookCoverImagePresent()){
-				bookCoverLocation = aBook.getBookCoverLocation();
-				aOverlayImage.add(aCoverImage);//use the default Book Cover Image
+				//use the default Book Cover Image
+				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION, 150, 200, false);
+				aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+				aOverlayImage.add(aCoverImage);
 				Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+aBook.getBookTitle()+"</b>");
 				overlayTextLabel.set_use_markup (true);
 				overlayTextLabel.set_line_wrap (true);
 				aOverlayImage.add_overlay(overlayTextLabel);
 				aEventBox.add(aOverlayImage);
 			}else{
-				bookCoverLocation = aBook.getBookCoverLocation();
-				aBookCover = new Gdk.Pixbuf.from_file_at_scale(bookCoverLocation, 150, 200, false);
+				//use the cover image extracted from the epub file
+				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
 				aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 				aOverlayImage.add(aCoverImage);
 				aEventBox.add(aOverlayImage);
 			}
+
 			//check if there are no books in the library view
-			if(lastBookUpdatedIntoLibraryGrid == null){
+			if(libraryViewMap.size < 1){
 				library_grid.attach (aEventBox, 0, 0, 1, 1);
 				countBooksAddedIntoLibraryRow++;
 			}else{
 				//check if the top row has the maximum number of books already
 				if(countBooksAddedIntoLibraryRow < BookwormApp.Constants.MAX_BOOK_COVER_PER_ROW){
-					library_grid.attach_next_to (aEventBox, lastBookUpdatedIntoLibraryGrid, PositionType.LEFT, 1, 1);
+					//if the last book added is still present, add the new book before it
+					if(libraryViewMap.has_key(lastBookUpdatedIntoLibraryGrid.get_name())){
+						library_grid.attach_next_to (aEventBox, lastBookUpdatedIntoLibraryGrid, PositionType.LEFT, 1, 1);
+					}else{
+						library_grid.attach_next_to (aEventBox, null, PositionType.LEFT, 1, 1);
+					}
 					countBooksAddedIntoLibraryRow++;
 				}else{
 					//max books on a row has been reached add the book on a new top row
@@ -560,12 +574,13 @@ namespace BookwormApp {
 					countBooksAddedIntoLibraryRow = 0;
 				}
 			}
+			lastBookUpdatedIntoLibraryGrid = aEventBox;
+
 			//set gtk objects into Book objects
 			aBook.setCoverImage (aCoverImage);
 			aBook.setEventBox(aEventBox);
 			aBook.setOverlayImage(aOverlayImage);
 
-			lastBookUpdatedIntoLibraryGrid = aEventBox;
 			//set the view mode
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 			window.show_all();
@@ -587,8 +602,6 @@ namespace BookwormApp {
 			});
 			//add book details to libraryView Map
 			libraryViewMap.set(aBook.getBookLocation(), aBook);
-			//update eventbox widet into EventBook HashMap
-			libraryViewEventBoxWidgets.set(aBook.getBookLocation(), aEventBox);
 		}
 
 		public void updateLibraryViewForSelectionMode(owned BookwormApp.Book? lBook){
@@ -795,15 +808,15 @@ namespace BookwormApp {
 			int ec = bookwormDB.prepare_v2 (fetchLibraryQuery, -1, out stmt);
 			assert (ec == Sqlite.OK);
 			while (stmt.step () == Sqlite.ROW) {
-				aBook = new BookwormApp.Book();
-				aBook.setBookId(stmt.column_int(0));
-				aBook.setBookLocation(stmt.column_text (1));
-				aBook.setBookTitle(stmt.column_text (2));
-				aBook.setBookCoverLocation(stmt.column_text (3));
-				aBook.setIsBookCoverImagePresent((stmt.column_text (4) == "true") ? true:false);
-				aBook.setBookPublishDate(stmt.column_text (5));
-				aBook.setBookCreationDate(stmt.column_text (6));
-				aBook.setBookLastModificationDate(stmt.column_text (7));
+				BookwormApp.Book aBookCreatedFromDB = new BookwormApp.Book();
+				aBookCreatedFromDB.setBookId(stmt.column_int(0));
+				aBookCreatedFromDB.setBookLocation(stmt.column_text (1));
+				aBookCreatedFromDB.setBookTitle(stmt.column_text (2));
+				aBookCreatedFromDB.setBookCoverLocation(stmt.column_text (3));
+				aBookCreatedFromDB.setIsBookCoverImagePresent((stmt.column_text (4) == "true") ? true:false);
+				aBookCreatedFromDB.setBookPublishDate(stmt.column_text (5));
+				aBookCreatedFromDB.setBookCreationDate(stmt.column_text (6));
+				aBookCreatedFromDB.setBookLastModificationDate(stmt.column_text (7));
 				debug("Book details fetched from DB:
 									id="+stmt.column_int(0).to_string()+
 									",BOOK_LOCATION="+stmt.column_text (1)+
@@ -814,9 +827,9 @@ namespace BookwormApp {
 									",creation_date="+stmt.column_text (6)+
 									",modification_date="+stmt.column_text (7)
 							);
-				updateLibraryView(aBook);
+				updateLibraryView(aBookCreatedFromDB);
 				//add book details to libraryView Map
-				libraryViewMap.set(aBook.getBookLocation(), aBook);
+				libraryViewMap.set(aBookCreatedFromDB.getBookLocation(), aBookCreatedFromDB);
 			}
 			stmt.reset ();
 		}

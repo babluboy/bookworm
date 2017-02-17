@@ -356,7 +356,7 @@ DEPS_sqlite3_VERSION:INTERNAL=3.11.0
 DEPS_webkit2gtk-4.0_INCLUDEDIR:INTERNAL=/usr/include
 DEPS_webkit2gtk-4.0_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
 DEPS_webkit2gtk-4.0_PREFIX:INTERNAL=/usr
-DEPS_webkit2gtk-4.0_VERSION:INTERNAL=2.14.3
+DEPS_webkit2gtk-4.0_VERSION:INTERNAL=2.14.5
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
 //Details about finding Vala
