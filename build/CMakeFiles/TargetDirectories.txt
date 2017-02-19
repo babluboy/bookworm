@@ -1,8 +1,0 @@
-/home/choyan/Public/bookworm/build/CMakeFiles/install.dir
-/home/choyan/Public/bookworm/build/CMakeFiles/list_install_components.dir
-/home/choyan/Public/bookworm/build/CMakeFiles/rebuild_cache.dir
-/home/choyan/Public/bookworm/build/CMakeFiles/edit_cache.dir
-/home/choyan/Public/bookworm/build/CMakeFiles/pot_file.dir
-/home/choyan/Public/bookworm/build/CMakeFiles/bookworm.dir
-/home/choyan/Public/bookworm/build/CMakeFiles/install/strip.dir
-/home/choyan/Public/bookworm/build/CMakeFiles/install/local.dir
