@@ -25,7 +25,7 @@ public const string GETTEXT_PACKAGE = "bookworm";
 namespace BookwormApp {
 
 	public class Bookworm:Granite.Application {
-		public Gtk.Window window;
+
 		public int exitCodeForCommand = 0;
 		public static string bookworm_config_path = GLib.Environment.get_user_config_dir ()+"/bookworm";
 		public static bool command_line_option_version = false;
@@ -38,13 +38,16 @@ namespace BookwormApp {
 		public Gtk.SearchEntry headerSearchBar;
 		public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
 
+		public Gtk.Window window;
+		public Gtk.Box bookWormUIBox;
 		public WebKit.WebView aWebView;
 		public ePubReader aReader;
 		public Gtk.HeaderBar headerbar;
+		public Granite.Widgets.Welcome welcomeWidget;
 		public Gtk.Box bookSelection_ui_box;
 		public Gtk.Box bookReading_ui_box;
 		public ScrolledWindow library_scroll;
-		public Gtk.Grid library_grid;
+		public Gtk.FlowBox library_grid;
 		public Gdk.Pixbuf bookSelectionPix;
 		public Gdk.Pixbuf bookSelectedPix;
 		public Gtk.Image bookSelectionImage;
@@ -54,7 +57,6 @@ namespace BookwormApp {
 		public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
 		public string locationOfEBookCurrentlyRead = "";
 		public int countBooksAddedIntoLibraryRow = 0;
-		public Widget lastBookUpdatedIntoLibraryGrid = null;
 
 
 		construct {
@@ -152,9 +154,18 @@ namespace BookwormApp {
 			loadBookwormState();
 			//add window components
 			create_headerbar(window);
-			window.add(createBoookwormUI());
-			window.show_all();
-			toggleUIState();
+			createWelcomeScreen();
+			bookWormUIBox = createBoookwormUI();
+
+			//show welcome screen if no book is present in library instead of the normal library view
+			if(libraryViewMap.size == 0){
+				window.add(welcomeWidget);
+				window.show_all();
+			}else{
+				window.add(bookWormUIBox);
+				window.show_all();
+				toggleUIState();
+			}
 
 			//Exit Application Event
 			window.destroy.connect (() => {
@@ -239,19 +250,46 @@ namespace BookwormApp {
 			return app_menu;
 		}
 
+		public Granite.Widgets.Welcome createWelcomeScreen(){
+			//Create a welcome screen for view of library with no books
+			welcomeWidget = new Granite.Widgets.Welcome (BookwormApp.Constants.TEXT_FOR_WELCOME_MESSAGE_TITLE, BookwormApp.Constants.TEXT_FOR_WELCOME_MESSAGE_SUBTITLE);
+			Gtk.Image? openFolderImage = new Gtk.Image.from_icon_name("document-open", Gtk.IconSize.DIALOG);
+			welcomeWidget.append_with_image (openFolderImage, "Open", BookwormApp.Constants.TEXT_FOR_WELCOME_OPENDIR_MESSAGE);
+
+			//Add action for adding a book on the library view
+			welcomeWidget.activated.connect (() => {
+				//select a eBook
+				string pathToSelectedBook = selectBookFileChooser();
+				//To-DO: Validate if a valid eBook is choosen
+				BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
+				aBookBeingAdded.setBookLocation(pathToSelectedBook);
+				//remove the welcome widget from main window
+				window.remove(welcomeWidget);
+				window.add(bookWormUIBox);
+				window.show_all();
+				toggleUIState();
+				//the book will be updated to the libraryView Map within the addBookToLibrary function
+				addBookToLibrary(aBookBeingAdded);
+			});
+			return welcomeWidget;
+		}
+
 		public Gtk.Box createBoookwormUI() {
 			debug("Starting to create main window components...");
 
 			//Create a box to display the book library
-			library_grid = new Gtk.Grid ();
-			library_grid.set_column_spacing (BookwormApp.Constants.SPACING_WIDGETS);
-			library_grid.set_row_spacing (BookwormApp.Constants.SPACING_WIDGETS);
+			library_grid = new Gtk.FlowBox();
+			library_grid.column_spacing = BookwormApp.Constants.SPACING_WIDGETS;
+			library_grid.row_spacing = BookwormApp.Constants.SPACING_WIDGETS;
+			library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
+			library_grid.homogeneous = true;
+			library_grid.set_valign(Gtk.Align.START);
 
 			library_scroll = new ScrolledWindow (null, null);
 			library_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 			library_scroll.add (library_grid);
 
-			//Set up Button for adding books
+			//Set up Button for selection of books
 			Gtk.Image select_book_image = new Gtk.Image ();
 			select_book_image.set_from_file (BookwormApp.Constants.SELECTION_IMAGE_BUTTON_LOCATION);
 			Gtk.Button select_book_button = new Gtk.Button ();
@@ -280,14 +318,13 @@ namespace BookwormApp {
 			bookSelection_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
 			//add all components to ui box for library view
 			bookSelection_ui_box.pack_start (library_scroll, true, true, 0);
-      bookSelection_ui_box.pack_start (add_remove_footer_box, false, true, 0);
-
+			bookSelection_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
 			//create the webview to display page content
 			WebKit.Settings webkitSettings = new WebKit.Settings();
 	    webkitSettings.set_allow_file_access_from_file_urls (true);
 	    webkitSettings.set_default_font_family("helvetica");
-			//webkitSettings.set_allow_universal_access_from_file_urls(true);
+			//webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
 	    webkitSettings.set_auto_load_images(true);
 	    aWebView = new WebKit.WebView.with_settings(webkitSettings);
 			//aWebView.set_zoom_level (6.0); // use this for page zooming
@@ -540,6 +577,8 @@ namespace BookwormApp {
 				//use the default Book Cover Image
 				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION, 150, 200, false);
 				aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+				aCoverImage.set_halign(Align.START);
+				aCoverImage.set_valign(Align.START);
 				aOverlayImage.add(aCoverImage);
 				Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+aBook.getBookTitle()+"</b>");
 				overlayTextLabel.set_use_markup (true);
@@ -550,38 +589,20 @@ namespace BookwormApp {
 				//use the cover image extracted from the epub file
 				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
 				aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+				aCoverImage.set_halign(Align.START);
+				aCoverImage.set_valign(Align.START);
 				aOverlayImage.add(aCoverImage);
 				aEventBox.add(aOverlayImage);
 			}
 
-			//check if there are no books in the library view
-			if(libraryViewMap.size < 1){
-				library_grid.attach (aEventBox, 0, 0, 1, 1);
-				countBooksAddedIntoLibraryRow++;
-			}else{
-				//check if the top row has the maximum number of books already
-				if(countBooksAddedIntoLibraryRow < BookwormApp.Constants.MAX_BOOK_COVER_PER_ROW){
-					//if the last book added is still present, add the new book before it
-					if(libraryViewMap.has_key(lastBookUpdatedIntoLibraryGrid.get_name())){
-						library_grid.attach_next_to (aEventBox, lastBookUpdatedIntoLibraryGrid, PositionType.LEFT, 1, 1);
-					}else{
-						library_grid.attach_next_to (aEventBox, null, PositionType.LEFT, 1, 1);
-					}
-					countBooksAddedIntoLibraryRow++;
-				}else{
-					//max books on a row has been reached add the book on a new top row
-					library_grid.attach_next_to (aEventBox, null, PositionType.TOP, 1, 1);
-					countBooksAddedIntoLibraryRow = 0;
-				}
-			}
-			lastBookUpdatedIntoLibraryGrid = aEventBox;
+			library_grid.add (aEventBox);
 
 			//set gtk objects into Book objects
 			aBook.setCoverImage (aCoverImage);
 			aBook.setEventBox(aEventBox);
 			aBook.setOverlayImage(aOverlayImage);
 
-			//set the view mode
+			//set the view mode to library view 
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 			window.show_all();
 			toggleUIState();
@@ -619,6 +640,8 @@ namespace BookwormApp {
 					if(!((BookwormApp.Book)book).getIsBookCoverImagePresent()){
 						Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION, 150, 200, false);
 						Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+						aCoverImage.set_halign(Align.START);
+						aCoverImage.set_valign(Align.START);
 						lOverlayImage.add(aCoverImage);//use the default Book Cover Image
 						Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+((BookwormApp.Book)book).getBookTitle()+"</b>");
 						overlayTextLabel.set_use_markup (true);
@@ -628,6 +651,8 @@ namespace BookwormApp {
 					}else{
 						Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(((BookwormApp.Book)book).getBookCoverLocation(), 150, 200, false);
 						Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+						aCoverImage.set_halign(Align.START);
+						aCoverImage.set_valign(Align.START);
 						lOverlayImage.add(aCoverImage);
 						lEventBox.add(lOverlayImage);
 					}
@@ -666,6 +691,8 @@ namespace BookwormApp {
 				if(!lBook.getIsBookCoverImagePresent()){
 					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION, 150, 200, false);
 					Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+					aCoverImage.set_halign(Align.START);
+					aCoverImage.set_valign(Align.START);
 					lOverlayImage.add(aCoverImage);//use the default Book Cover Image
 					Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+lBook.getBookTitle()+"</b>");
 					overlayTextLabel.set_use_markup (true);
@@ -693,6 +720,8 @@ namespace BookwormApp {
 				}else{
 					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(lBook.getBookCoverLocation(), 150, 200, false);
 					Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+					aCoverImage.set_halign(Align.START);
+					aCoverImage.set_valign(Align.START);
 					lOverlayImage.add(aCoverImage);
 
 					//add selection image to overlay
@@ -835,6 +864,7 @@ namespace BookwormApp {
 		}
 
 		public void toggleUIState(){
+
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
 				 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
 				 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]
@@ -848,6 +878,7 @@ namespace BookwormApp {
 				bookReading_ui_box.set_visible(true);
 				bookSelection_ui_box.set_visible(false);
 			}
+
 		}
 
 		public void saveBookwormState(){
