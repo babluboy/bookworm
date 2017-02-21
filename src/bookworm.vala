@@ -68,13 +68,13 @@ namespace BookwormApp {
 
 			build_version = Constants.bookworm_version;
 			app_icon = "bookworm";
-			main_url = "https://launchpad.net/bookworm";
-			bug_url = "https://bugs.launchpad.net/bookworm";
-			help_url = "https://answers.launchpad.net/bookworm";
+			main_url = "https://github.com/babluboy/bookworm/wiki";
+			bug_url = "https://github.com/babluboy/bookworm/issues";
+			help_url = "https://github.com/babluboy/bookworm/wiki";
 			translate_url = "https://translations.launchpad.net/bookworm";
 
 			about_documenters = { null };
-			about_artists = { "Siddhartha Das <bablu.boy@gmail.com>" };
+			about_artists = { null };
 			about_authors = { "Siddhartha Das <bablu.boy@gmail.com>" };
 			about_comments = _("An eBook Reader");
 			about_translators = _("Launchpad Translators");
@@ -199,7 +199,21 @@ namespace BookwormApp {
 			headerbar.pack_start(content_list_button);
 
 			//add menu items to header bar - Menu
-			headerbar.pack_end(createBookwormMenu(new Gtk.Menu ()));
+			Gtk.MenuButton appMenu;
+			Gtk.Menu settingsMenu;
+			Gtk.MenuItem showAbout;
+			showAbout = new Gtk.MenuItem.with_label (_("About"));
+			showAbout.activate.connect (ShowAboutDialog);
+			appMenu = new Gtk.MenuButton ();
+			settingsMenu = new Gtk.Menu ();
+			settingsMenu.append (new Gtk.MenuItem.with_label ("Font"));
+			settingsMenu.append (showAbout);
+			settingsMenu.show_all ();
+			var menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+			appMenu.set_image (menu_icon);
+			appMenu.popup = settingsMenu;
+			headerbar.pack_end (appMenu);
+			//headerbar.pack_end(create_appmenu(new Gtk.Menu ()));
 
 			//Add a search entry to the header
 			headerSearchBar = new Gtk.SearchEntry();
@@ -227,27 +241,23 @@ namespace BookwormApp {
 			debug("Completed loading HeaderBar sucessfully...");
 		}
 
-		public AppMenu createBookwormMenu (Gtk.Menu menu) {
-			debug("Starting creation of Bookworm Menu...");
-			Granite.Widgets.AppMenu app_menu;
-			//Add sub menu items
-			//Gtk.MenuItem menuItemPrefferences = new Gtk.MenuItem.with_label(Constants.TEXT_FOR_HEADERBAR_MENU_PREFS);
-			//menu.add (menuItemPrefferences);
-			//Gtk.MenuItem menuItemExportToFile = new Gtk.MenuItem.with_label(Constants.TEXT_FOR_HEADERBAR_MENU_EXPORT);
-			//menu.add (menuItemExportToFile);
-			app_menu = new Granite.Widgets.AppMenu.with_app(this, menu);
-
-			//Add actions for menu items
-			//menuItemPrefferences.activate.connect(() => {
-
-			//});
-			//menuItemExportToFile.activate.connect(() => {
-
-			//});
-			//Add About option to menu
-			app_menu.show_about.connect (show_about);
-			debug("Completed creation of Bookworm Menu sucessfully...");
-			return app_menu;
+		public virtual void ShowAboutDialog (){
+			Granite.Widgets.AboutDialog aboutDialog = new Granite.Widgets.AboutDialog();
+			aboutDialog.program_name = this.program_name;
+			aboutDialog.website = "https://github.com/babluboy/bookworm/wiki";
+			aboutDialog.website_label = "Website";
+			aboutDialog.logo_icon_name = this.app_icon;
+			aboutDialog.version = this.build_version;
+			aboutDialog.authors = this.about_authors;
+			aboutDialog.comments = this.about_comments;
+			aboutDialog.license_type = this.about_license_type;
+			aboutDialog.translator_credits = this.about_translators;
+			aboutDialog.translate = this.translate_url;
+			aboutDialog.help = this.help_url;
+			aboutDialog.bug = this.bug_url;
+			aboutDialog.response.connect(() => {
+				aboutDialog.destroy ();
+			});
 		}
 
 		public Granite.Widgets.Welcome createWelcomeScreen(){
@@ -602,7 +612,7 @@ namespace BookwormApp {
 			aBook.setEventBox(aEventBox);
 			aBook.setOverlayImage(aOverlayImage);
 
-			//set the view mode to library view 
+			//set the view mode to library view
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 			window.show_all();
 			toggleUIState();
