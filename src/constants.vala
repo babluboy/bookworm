@@ -18,6 +18,8 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_version = "0.2";
+	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = _("Website");
+	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://github.com/babluboy/bookworm/wiki";
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
 	public const string TEXT_FOR_SEARCH_HEADERBAR = _("Search here...");
@@ -28,8 +30,8 @@ namespace BookwormApp.Constants {
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
 
-	public const string TEXT_FOR_HEADERBAR_MENU_PREFS = _("Something");
-	public const string TEXT_FOR_HEADERBAR_MENU_EXPORT = _("Something Else");
+	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
+	public const string TEXT_FOR_PREF_MENU_FONT_ITEM = _("Font");
 
 	public static const string PREV_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-previous.svg";
 	public static const string NEXT_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-next.svg";
@@ -41,7 +43,7 @@ namespace BookwormApp.Constants {
 	public static const string SELECTION_OPTION_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
 	public static const string SELECTION_CHECKED_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
 	public static const string HEADERBAR_PROPERTIES_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-open-menu.svg";
-	public static const string DEFAULT_COVER_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/256x256/apps/bookworm-defaultbook.png";
+	public static const string DEFAULT_COVER_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/256x256/apps/bookworm-defaultbook-darkborder.png";
 	public static const string EPUB_EXTRACTION_LOCATION = "/tmp/bookworm/";
 	public static const string PREFIX_FOR_FILE_URL = "file:///";
 

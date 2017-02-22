@@ -51,7 +51,6 @@ namespace BookwormApp {
 		public Gdk.Pixbuf bookSelectionPix;
 		public Gdk.Pixbuf bookSelectedPix;
 		public Gtk.Image bookSelectionImage;
-		public Sqlite.Database bookwormDB;
 
 		public string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 		public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
@@ -167,9 +166,12 @@ namespace BookwormApp {
 				toggleUIState();
 			}
 
+			//Load BookWorm from the last saved Statement
+			loadBookwormState();
+
 			//Exit Application Event
 			window.destroy.connect (() => {
-				//save state information to file
+				//save books information to database
 				saveBookwormState();
 			});
 			debug("Completed loading Gtk Window for Bookworm...");
@@ -202,11 +204,11 @@ namespace BookwormApp {
 			Gtk.MenuButton appMenu;
 			Gtk.Menu settingsMenu;
 			Gtk.MenuItem showAbout;
-			showAbout = new Gtk.MenuItem.with_label (_("About"));
+			showAbout = new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_ABOUT_ITEM);
 			showAbout.activate.connect (ShowAboutDialog);
 			appMenu = new Gtk.MenuButton ();
 			settingsMenu = new Gtk.Menu ();
-			settingsMenu.append (new Gtk.MenuItem.with_label ("Font"));
+			settingsMenu.append (new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_FONT_ITEM));
 			settingsMenu.append (showAbout);
 			settingsMenu.show_all ();
 			var menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
@@ -244,8 +246,8 @@ namespace BookwormApp {
 		public virtual void ShowAboutDialog (){
 			Granite.Widgets.AboutDialog aboutDialog = new Granite.Widgets.AboutDialog();
 			aboutDialog.program_name = this.program_name;
-			aboutDialog.website = "https://github.com/babluboy/bookworm/wiki";
-			aboutDialog.website_label = "Website";
+			aboutDialog.website = BookwormApp.Constants.TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL;
+			aboutDialog.website_label = BookwormApp.Constants.TEXT_FOR_ABOUT_DIALOG_WEBSITE;
 			aboutDialog.logo_icon_name = this.app_icon;
 			aboutDialog.version = this.build_version;
 			aboutDialog.authors = this.about_authors;
@@ -460,44 +462,20 @@ namespace BookwormApp {
 				return true;
 			});
 
-			//ensure all required set up is present
-			ensureRequiredSetUp();
-			//update the grid based on books present in database library
-			updateLibraryViewFromDB();
-
 			debug("Completed creation of main window components...");
 			return main_ui_box;
 		}
 
-		public void ensureRequiredSetUp(){
+		public void loadBookwormState(){
 			//check and create required directory structure
 	    BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EPUB_EXTRACTION_LOCATION, "", "");
 			BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path, "", "");
 			BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
-			//check if the database exists otherwise create it
-			int ec = Sqlite.Database.open_v2 (bookworm_config_path+"/bookworm.db", out bookwormDB, Sqlite.OPEN_READWRITE | Sqlite.OPEN_CREATE);
-			if (ec != Sqlite.OK) {
-				warning ("Can't open database: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-			}
-			//create main table if it does not exist
-			string errmsg;
-			string create_table_query = "CREATE TABLE IF NOT EXISTS BOOK_LIBRARY_TABLE ("
-                               + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                               + "BOOK_LOCATION TEXT NOT NULL DEFAULT '', "
-															 + "BOOK_TITLE TEXT NOT NULL DEFAULT '', "
-                               + "BOOK_AUTHOR TEXT NOT NULL DEFAULT '', "
-                               + "BOOK_COVER_IMAGE_LOCATION TEXT NOT NULL DEFAULT '', "
-															 + "IS_BOOK_COVER_IMAGE_PRESENT TEXT NOT NULL DEFAULT '', "
-                               + "BOOK_PUBLISH_DATE TEXT NOT NULL DEFAULT '', "
-															 + "BOOK_TOC_DATA TEXT NOT NULL DEFAULT '', "
-															 + "BOOK_TOTAL_NUMBER_OF_PAGES TEXT NOT NULL DEFAULT '', "
-															 + "BOOK_LAST_READ_PAGE_NUMBER TEXT NOT NULL DEFAULT '', "
-                               + "creation_date INTEGER,"
-                               + "modification_date INTEGER)";
-				ec = bookwormDB.exec (create_table_query, null, out errmsg);
-			 	if (ec != Sqlite.OK) {
-			 		warning ("Error: %s\n", errmsg);
-			 	}
+			//check if the database exists otherwise create database and required tables
+			bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
+
+			//Fetch details of Books from the database and update the grid
+			updateLibraryViewFromDB();
 		}
 
 		public void removeSelectedBooksFromLibrary(){
@@ -515,7 +493,7 @@ namespace BookwormApp {
 			}
 			//loop through the removed books and remove them from the Library View Hashmap and Database
 			foreach (string bookLocation in listOfBooksToBeRemoved) {
-				removeBookFromDB(libraryViewMap.get(bookLocation));
+				BookwormApp.DB.removeBookFromDB(libraryViewMap.get(bookLocation));
 				libraryViewMap.unset(bookLocation);
 			}
 
@@ -567,7 +545,7 @@ namespace BookwormApp {
 					//add eBook cover image to library view
 					updateLibraryView(aBook);
 					//insert book details to database
-					addBookToDataBase(aBook);
+					BookwormApp.DB.addBookToDataBase(aBook);
 					debug ("Completed adding book to ebook library. Number of books in library:"+libraryViewMap.size.to_string());
 				}else{
 					debug("No ebook found for adding to library");
@@ -794,83 +772,14 @@ namespace BookwormApp {
 			locationOfEBookCurrentlyRead = aBook.getBookLocation();
 		}
 
-		public void addBookToDataBase(BookwormApp.Book aBook){
-			Sqlite.Statement stmt;
-			string insert_data_to_database = "INSERT INTO BOOK_LIBRARY_TABLE(
-																															 BOOK_LOCATION,
-																															 BOOK_TITLE,
-																															 BOOK_COVER_IMAGE_LOCATION,
-																															 IS_BOOK_COVER_IMAGE_PRESENT,
-																															 creation_date,
-																															 modification_date) "
-										                + "VALUES (?,?,?,?, CAST(strftime('%s', 'now') AS INT), CAST(strftime('%s', 'now') AS INT))";
-			 int ec = bookwormDB.prepare_v2 (insert_data_to_database, insert_data_to_database.length, out stmt);
-			 if (ec != Sqlite.OK) {
-				 debug("Executed Query:"+stmt.sql());
-				 stderr.printf ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-			 }
-			 stmt.bind_text (1, aBook.getBookLocation());
-			 stmt.bind_text (2, aBook.getBookTitle());
-			 stmt.bind_text (3, aBook.getBookCoverLocation());
-			 stmt.bind_text (4, aBook.getIsBookCoverImagePresent().to_string());
-
-			 stmt.step ();
-			 stmt.reset ();
-			 debug("Added details to Database for book:"+aBook.getBookLocation());
-		}
-
-		public void removeBookFromDB(BookwormApp.Book aBook){
-			Sqlite.Statement stmt;
-			string delete_book_from_database = "DELETE FROM BOOK_LIBRARY_TABLE WHERE BOOK_LOCATION = ?";
-			int ec = bookwormDB.prepare_v2 (delete_book_from_database, delete_book_from_database.length, out stmt);
-			if (ec != Sqlite.OK) {
-				debug("Executed Query:"+stmt.sql());
-				stderr.printf ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-			}
-			stmt.bind_text (1, aBook.getBookLocation());
-			stmt.step ();
-			stmt.reset ();
-			debug("Removed this book from Database:"+aBook.getBookLocation());
-		}
-
 		public void updateLibraryViewFromDB(){
-			Sqlite.Statement stmt;
-			string fetchLibraryQuery = "SELECT id,
-																				 BOOK_LOCATION,
-																				 BOOK_TITLE,
-																				 BOOK_COVER_IMAGE_LOCATION,
-																				 IS_BOOK_COVER_IMAGE_PRESENT,
-																				 BOOK_PUBLISH_DATE,
-																				 creation_date,
-																				 modification_date
-																  FROM BOOK_LIBRARY_TABLE ORDER BY id";
-			int ec = bookwormDB.prepare_v2 (fetchLibraryQuery, -1, out stmt);
-			assert (ec == Sqlite.OK);
-			while (stmt.step () == Sqlite.ROW) {
-				BookwormApp.Book aBookCreatedFromDB = new BookwormApp.Book();
-				aBookCreatedFromDB.setBookId(stmt.column_int(0));
-				aBookCreatedFromDB.setBookLocation(stmt.column_text (1));
-				aBookCreatedFromDB.setBookTitle(stmt.column_text (2));
-				aBookCreatedFromDB.setBookCoverLocation(stmt.column_text (3));
-				aBookCreatedFromDB.setIsBookCoverImagePresent((stmt.column_text (4) == "true") ? true:false);
-				aBookCreatedFromDB.setBookPublishDate(stmt.column_text (5));
-				aBookCreatedFromDB.setBookCreationDate(stmt.column_text (6));
-				aBookCreatedFromDB.setBookLastModificationDate(stmt.column_text (7));
-				debug("Book details fetched from DB:
-									id="+stmt.column_int(0).to_string()+
-									",BOOK_LOCATION="+stmt.column_text (1)+
-									",BOOK_TITLE="+stmt.column_text (2)+
-									",BOOK_COVER_IMAGE_LOCATION="+stmt.column_text (3)+
-									",IS_BOOK_COVER_IMAGE_PRESENT="+stmt.column_text (4)+
-									",BOOK_PUBLISH_DATE="+stmt.column_text (5)+
-									",creation_date="+stmt.column_text (6)+
-									",modification_date="+stmt.column_text (7)
-							);
-				updateLibraryView(aBookCreatedFromDB);
+			ArrayList<BookwormApp.Book> listOfBooks = BookwormApp.DB.getBooksFromDB();
+			foreach (BookwormApp.Book book in listOfBooks){
+				//add the book to the UI
+				updateLibraryView(book);
 				//add book details to libraryView Map
-				libraryViewMap.set(aBookCreatedFromDB.getBookLocation(), aBookCreatedFromDB);
+				libraryViewMap.set(book.getBookLocation(), book);
 			}
-			stmt.reset ();
 		}
 
 		public void toggleUIState(){
@@ -893,12 +802,11 @@ namespace BookwormApp {
 
 		public void saveBookwormState(){
 			debug("Starting to save Bookworm state...");
-
-		}
-
-		public void loadBookwormState(){
-			debug("Started loading Bookworm state...");
-
+			//Loop over all books in the library hashmap
+			foreach (var book in libraryViewMap.values){
+				//Update the book details to the database
+				BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
+			}
 		}
 	}
 }

@@ -29,6 +29,7 @@ set (SOURCE_LIST
     src/constants.vala
     src/ePubReader.vala
     src/book.vala
+    src/database.vala
 )
 
 # custom command to update pot template files
@@ -84,6 +85,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/constants.vala
     src/ePubReader.vala
     src/book.vala
+    src/database.vala
 
 # tell what libraries to use when compiling
 PACKAGES
@@ -118,7 +120,7 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-chec
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-defaultbook.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-defaultbook-darkborder.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 
 
 
