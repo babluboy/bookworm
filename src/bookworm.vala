@@ -38,6 +38,7 @@ namespace BookwormApp {
 		public Gtk.SearchEntry headerSearchBar;
 		public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
 
+		public BookwormApp.Settings settings;
 		public Gtk.Window window;
 		public Gtk.Box bookWormUIBox;
 		public WebKit.WebView aWebView;
@@ -144,18 +145,28 @@ namespace BookwormApp {
 			debug("Starting to activate Gtk Window for Bookworm...");
 			window = new Gtk.Window ();
 			add_window (window);
-			//set window attributes
-			window.set_default_size(1000, 600);
+
+			//set window attributes from saved settings
+			settings = BookwormApp.Settings.get_instance();
+			if(settings.window_is_maximized){
+				window.maximize();
+			}else{
+				if(settings.window_width > 0 && settings.window_height > 0){
+					window.set_default_size(settings.window_width, settings.window_height);
+				}else{
+					window.set_default_size(1200, 700);
+				}
+			}
 			window.set_border_width (Constants.SPACING_WIDGETS);
 			window.set_position (Gtk.WindowPosition.CENTER);
 			window.window_position = Gtk.WindowPosition.CENTER;
-			//load state information from file
-			loadBookwormState();
+
 			//add window components
 			create_headerbar(window);
 			createWelcomeScreen();
 			bookWormUIBox = createBoookwormUI();
-
+			//load saved books from DB and add them to Library view
+			loadBookwormState();
 			//show welcome screen if no book is present in library instead of the normal library view
 			if(libraryViewMap.size == 0){
 				window.add(welcomeWidget);
@@ -165,16 +176,17 @@ namespace BookwormApp {
 				window.show_all();
 				toggleUIState();
 			}
-
-			//Load BookWorm from the last saved Statement
-			loadBookwormState();
-
+			//capture window re-size events and save the window size
+			window.size_allocate.connect(() => {
+				//save books information to database
+				saveWindowState();
+			});
 			//Exit Application Event
 			window.destroy.connect (() => {
 				//save books information to database
-				saveBookwormState();
+				saveBooksState();
 			});
-			debug("Completed loading Gtk Window for Bookworm...");
+			debug("Sucessfully activated Gtk Window for Bookworm...");
 		}
 
 		private void create_headerbar(Gtk.Window window) {
@@ -185,7 +197,7 @@ namespace BookwormApp {
 			headerbar.set_show_close_button(true);
 			headerbar.spacing = Constants.SPACING_WIDGETS;
 			window.set_titlebar (headerbar);
-			window.maximize();
+
 			//add menu items to header bar - content list button
 			Gtk.Image library_view_button_image = new Gtk.Image ();
 			library_view_button_image.set_from_file (Constants.LIBRARY_VIEW_IMAGE_LOCATION);
@@ -569,6 +581,8 @@ namespace BookwormApp {
 				aCoverImage.set_valign(Align.START);
 				aOverlayImage.add(aCoverImage);
 				Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+aBook.getBookTitle()+"</b>");
+				overlayTextLabel.set_xalign(0.0f);
+				overlayTextLabel.set_margin_start(12);
 				overlayTextLabel.set_use_markup (true);
 				overlayTextLabel.set_line_wrap (true);
 				aOverlayImage.add_overlay(overlayTextLabel);
@@ -632,6 +646,8 @@ namespace BookwormApp {
 						aCoverImage.set_valign(Align.START);
 						lOverlayImage.add(aCoverImage);//use the default Book Cover Image
 						Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+((BookwormApp.Book)book).getBookTitle()+"</b>");
+						overlayTextLabel.set_xalign(0.0f);
+						overlayTextLabel.set_margin_start(12);
 						overlayTextLabel.set_use_markup (true);
 						overlayTextLabel.set_line_wrap (true);
 						lOverlayImage.add_overlay(overlayTextLabel);
@@ -683,6 +699,8 @@ namespace BookwormApp {
 					aCoverImage.set_valign(Align.START);
 					lOverlayImage.add(aCoverImage);//use the default Book Cover Image
 					Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+lBook.getBookTitle()+"</b>");
+					overlayTextLabel.set_xalign(0.0f);
+					overlayTextLabel.set_margin_start(12);
 					overlayTextLabel.set_use_markup (true);
 					overlayTextLabel.set_line_wrap (true);
 					lOverlayImage.add_overlay(overlayTextLabel);
@@ -800,13 +818,39 @@ namespace BookwormApp {
 
 		}
 
-		public void saveBookwormState(){
-			debug("Starting to save Bookworm state...");
+		public void saveBooksState(){
+			debug("Starting to save state of books...");
 			//Loop over all books in the library hashmap
 			foreach (var book in libraryViewMap.values){
 				//Update the book details to the database
 				BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
 			}
+			debug("Completed saving the book data into DB");
+
+
 		}
+
+		public void saveWindowState(){
+			int width;
+      int height;
+      int x;
+			int y;
+			window.get_size (out width, out height);
+			window.get_position (out x, out y);
+			settings.pos_x = x;
+      settings.pos_y = y;
+      settings.window_width = width;
+			settings.window_height = height;
+			if(window.is_maximized == true){
+				settings.window_is_maximized = true;
+			}else{
+				settings.window_is_maximized = false;
+			}
+			debug("Window state saved in Settings. width="+width.to_string()+",
+																						 height="+height.to_string()+",
+																						 x="+x.to_string()+",
+																						 y="+y.to_string());
+		}
+
 	}
 }

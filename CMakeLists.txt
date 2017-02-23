@@ -30,7 +30,11 @@ set (SOURCE_LIST
     src/ePubReader.vala
     src/book.vala
     src/database.vala
+    src/settings.vala
 )
+
+include (GSettings)
+add_schema ("schemas/org.bookworm.gschema.xml")
 
 # custom command to update pot template files
 set (_pot_file po/${PROJECT_NAME}.pot)
@@ -86,6 +90,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/ePubReader.vala
     src/book.vala
     src/database.vala
+    src/settings.vala
 
 # tell what libraries to use when compiling
 PACKAGES
