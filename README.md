@@ -20,8 +20,7 @@ sudo apt-get build-dep granite-demo
 sudo apt-get install libgranite-dev
 sudo apt-get install valac
 
-sudo add-apt-repository ppa:webkit-team/ppa
-sudo apt-get update
+
 sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
 sudo apt-get install sqlite3 libsqlite3-dev
 
