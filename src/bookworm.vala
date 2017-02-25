@@ -47,6 +47,7 @@ namespace BookwormApp {
 		public Granite.Widgets.Welcome welcomeWidget;
 		public Gtk.Box bookSelection_ui_box;
 		public Gtk.Box bookReading_ui_box;
+		public Gtk.Button content_list_button;
 		public ScrolledWindow library_scroll;
 		public Gtk.FlowBox library_grid;
 		public Gdk.Pixbuf bookSelectionPix;
@@ -206,7 +207,7 @@ namespace BookwormApp {
 
 			Gtk.Image content_list_button_image = new Gtk.Image ();
 			content_list_button_image.set_from_file (Constants.CONTENTS_VIEW_IMAGE_LOCATION);
-			Gtk.Button content_list_button = new Gtk.Button ();
+			content_list_button = new Gtk.Button ();
 			content_list_button.set_image (content_list_button_image);
 
 			headerbar.pack_start(library_view_button);
@@ -391,7 +392,7 @@ namespace BookwormApp {
 				//get object for this ebook and call the next page
 				BookwormApp.Book currentBookForForward = new BookwormApp.Book();
 				currentBookForForward = libraryViewMap.get(locationOfEBookCurrentlyRead);
-				debug("Initiating read forward for eBook:"+currentBookForForward.to_string());
+				debug("Initiating read forward for eBook:"+currentBookForForward.getBookLocation());
 				currentBookForForward = BookwormApp.ePubReader.renderPage(aWebView, currentBookForForward, "FORWARD");
 				//update book details to libraryView Map
 				libraryViewMap.set(currentBookForForward.getBookLocation(), currentBookForForward);
@@ -404,7 +405,7 @@ namespace BookwormApp {
 				//get object for this ebook and call the next page
 				BookwormApp.Book currentBookForReverse = new BookwormApp.Book();
 				currentBookForReverse = libraryViewMap.get(locationOfEBookCurrentlyRead);
-				debug("Initiating read previous for eBook:"+currentBookForReverse.to_string());
+				debug("Initiating read previous for eBook:"+currentBookForReverse.getBookLocation());
 				currentBookForReverse = BookwormApp.ePubReader.renderPage(aWebView, currentBookForReverse, "BACKWARD");
 				//update book details to libraryView Map
 				libraryViewMap.set(currentBookForReverse.getBookLocation(), currentBookForReverse);
@@ -810,11 +811,13 @@ namespace BookwormApp {
 				){
 				//Only show the UI for selecting a book
 				bookReading_ui_box.set_visible(false);
+				content_list_button.set_visible(false);
 				bookSelection_ui_box.set_visible(true);
 			}
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
 				//Only show the UI for reading a book
 				bookReading_ui_box.set_visible(true);
+				content_list_button.set_visible(true);
 				bookSelection_ui_box.set_visible(false);
 			}
 

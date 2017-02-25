@@ -112,6 +112,17 @@ namespace BookwormApp.Utils {
 		return std_out;
 	}
 
+	public string getFullPathFromFilename(string rootDirectoryToSearch, string fileName){
+		string grepOutput = "";
+		try {
+			grepOutput = execute_sync_command ("find \""+rootDirectoryToSearch+"\" -name \""+fileName+"\"");
+			return grepOutput;
+		}catch (Error e){
+			warning("Error encountered in getting full path for filename ["+fileName+"] searching within directory["+rootDirectoryToSearch+"]: "+e.message);
+		}
+		return grepOutput;
+	}
+
 	public string extractBetweenTwoStrings(string stringToBeSearched, string startString, string endString) throws Error{
         	string extractedString = "";
         	int positionOfStartStringInData = stringToBeSearched.index_of(startString,0);

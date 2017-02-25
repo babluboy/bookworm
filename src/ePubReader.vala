@@ -201,16 +201,19 @@ public class BookwormApp.ePubReader {
           debug("Book did not had a CURRENT_LOCATION set.");
         }
         debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));
-        //extract contents from location and format the same
         contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(currentContentLocation), "", ""));
-
-        if(contents.str.index_of("<img src=\"") != -1){
-          contents.assign(contents.str.replace("<img src=\"","<img src=\""+baseLocationOfContents+"/"));
-        }else{
-          contents.assign(contents.str.replace("src=\"","src=\""+baseLocationOfContents+"/"));
+        //find list of relative urls with src, href, etc and convert them to absolute ones
+        foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
+        string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
+          StringBuilder srcItemBaseName = new StringBuilder();
+          StringBuilder srcItemFullPath = new StringBuilder();
+          foreach(string srcItem in srcList){
+            srcItemBaseName.assign(File.new_for_path(srcItem).get_basename());
+            srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItemBaseName.str));
+            contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
+          }
         }
-        contents.assign(contents.str.replace("xlink:href=\"","xlink:href=\""+baseLocationOfContents+"/"));
-        contents.assign(contents.str.replace("<link href=\"","<link href=\""+baseLocationOfContents+"/"));
+
         //render the content on webview
         aWebView.load_html(contents.str, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
         break;

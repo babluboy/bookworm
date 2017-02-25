@@ -59,4 +59,5 @@ namespace BookwormApp.Constants {
 	public const string EPUB_MIME_SPECIFICATION_FILENAME = "mimetype";
 	public const string EPUB_MIME_SPECIFICATION_CONTENT = "application/epub+zip";
 	public const string EPUB_META_INF_FILENAME = "META-INF/container.xml";
+	public const string[] TAG_NAME_WITH_PATHS = {"src=\"", "xlink:href=\"", "<link href=\""};
 }
