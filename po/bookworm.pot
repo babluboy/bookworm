@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 18:13+0000\n"
+"POT-Creation-Date: 2017-02-25 23:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/bookworm.vala:80
+#: src/bookworm.vala:81
 msgid "An eBook Reader"
 msgstr ""
 
-#: src/bookworm.vala:85
+#: src/bookworm.vala:86
 msgid "Display version number"
 msgstr ""
 
-#: src/bookworm.vala:81
+#: src/bookworm.vala:82
 msgid "Launchpad Translators"
 msgstr ""
 
-#: src/bookworm.vala:86
+#: src/bookworm.vala:87
 msgid "Run Bookworm in debug mode"
 msgstr ""

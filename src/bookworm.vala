@@ -47,6 +47,7 @@ namespace BookwormApp {
 		public Granite.Widgets.Welcome welcomeWidget;
 		public Gtk.Box bookSelection_ui_box;
 		public Gtk.Box bookReading_ui_box;
+		public Gtk.Button library_view_button;
 		public Gtk.Button content_list_button;
 		public ScrolledWindow library_scroll;
 		public Gtk.FlowBox library_grid;
@@ -200,10 +201,11 @@ namespace BookwormApp {
 			window.set_titlebar (headerbar);
 
 			//add menu items to header bar - content list button
-			Gtk.Image library_view_button_image = new Gtk.Image ();
-			library_view_button_image.set_from_file (Constants.LIBRARY_VIEW_IMAGE_LOCATION);
-			Gtk.Button library_view_button = new Gtk.Button ();
-			library_view_button.set_image (library_view_button_image);
+			library_view_button = new Gtk.Button.with_label ("Library");
+			library_view_button.get_style_context ().add_class ("back-button");
+			library_view_button.valign = Gtk.Align.CENTER;
+			library_view_button.can_focus = false;
+			library_view_button.vexpand = false;
 
 			Gtk.Image content_list_button_image = new Gtk.Image ();
 			content_list_button_image.set_from_file (Constants.CONTENTS_VIEW_IMAGE_LOCATION);
@@ -812,15 +814,16 @@ namespace BookwormApp {
 				//Only show the UI for selecting a book
 				bookReading_ui_box.set_visible(false);
 				content_list_button.set_visible(false);
+				library_view_button.set_visible(false);
 				bookSelection_ui_box.set_visible(true);
 			}
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
 				//Only show the UI for reading a book
 				bookReading_ui_box.set_visible(true);
 				content_list_button.set_visible(true);
+				library_view_button.set_visible(true);
 				bookSelection_ui_box.set_visible(false);
 			}
-
 		}
 
 		public void saveBooksState(){
