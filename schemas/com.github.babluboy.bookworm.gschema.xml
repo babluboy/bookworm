@@ -1,0 +1,28 @@
+<schemalist>
+	<schema id="com.github.babluboy.bookworm" path="/com/github/babluboy/bookworm/" gettext-domain="bookworm">
+		<key name="pos-x" type="i">
+			<default>920</default>
+			<summary>The saved width of the window.</summary>
+			<description></description>
+		</key>
+		<key name="pos-y" type="i">
+			<default>920</default>
+			<summary>The saved width of the window.</summary>
+			<description></description>
+		</key>
+		<key name="window-width" type="i">
+			<default>1200</default>
+			<summary>The saved width of the window.</summary>
+			<description></description>
+		</key>
+		<key name="window-height" type="i">
+			<default>800</default>
+			<summary>The saved height of the window.</summary>
+			<description></description>
+    </key>
+		<key name="window-is-maximized" type="b">
+				<default>false</default>
+				<summary>Save maximized state of window</summary>
+		</key>
+  </schema>
+</schemalist>

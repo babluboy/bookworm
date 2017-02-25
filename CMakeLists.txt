@@ -34,7 +34,7 @@ set (SOURCE_LIST
 )
 
 include (GSettings)
-add_schema ("schemas/org.bookworm.gschema.xml")
+add_schema ("schemas/com.github.babluboy.bookworm.gschema.xml")
 
 # custom command to update pot template files
 set (_pot_file po/${PROJECT_NAME}.pot)
@@ -130,4 +130,5 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-defaultbook-d
 
 
 # install bookworm .desktop file so the Applications menu will see it
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/bookworm.desktop DESTINATION ${DATADIR}/applications/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.desktop DESTINATION ${DATADIR}/applications)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.appdata.xml DESTINATION ${DATADIR}/appdata)

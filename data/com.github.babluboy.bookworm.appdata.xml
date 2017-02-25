@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Siddharth Das <bablu.boy@gmail.com> -->
+<component type="desktop">
+  <id>com.github.babluboy.bookworm.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_group>bookworm</project_group>
+  <project_license>GPL-3.0+</project_license>
+  <_name>Bookworm</_name>
+  <_summary>A simple ebook reader for Elementary OS</_summary>
+  <description>
+    <_p>
+      A simple eBook Reader application made for elementary OS.
+      The goal of Bookworm is to provide a uniform user experience
+      for multiple electronic document formats like epub,pdf, mobi, etc.
+    </_p>
+    <_p>
+      Bookworm is currently under active development.
+      Only ePub format is supported at the moment.
+    </_p>
+  </description>
+  <screenshots>
+      <screenshot type="default">
+          <caption>The library view with selection mode</caption>
+          <image>https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormBookSelection.jpeg</image>
+      </screenshot>
+  </screenshots>
+  <provides>
+    <binary>bookworm</binary>
+  </provides>
+  <releases>
+​    <release version="0.1" date="2017-02-25">
+​      <description>
+​        <p>Initial WIP Release</p>
+​      </description>
+​    </release>
+​  </releases>
+  <developer_name>Siddhartha Das</developer_name>
+  <url type="homepage">https://github.com/babluboy/bookworm/wiki</url>
+  <url type="bugtracker">https://github.com/babluboy/bookworm/issues</url>
+  <url type="help">https://github.com/babluboy/bookworm/wiki</url>
+  <update_contact>bablu.boy_AT_gmail.com</update_contact>
+</component>

@@ -80,7 +80,7 @@ namespace BookwormApp {
 			about_translators = _("Launchpad Translators");
 			about_license_type = Gtk.License.GPL_3_0;
 
-			options = new OptionEntry[4];
+			options = new OptionEntry[2];
 			options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
 			options[3] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
 			add_main_option_entries (options);
@@ -247,10 +247,12 @@ namespace BookwormApp {
 				toggleUIState();
 			});
 			content_list_button.clicked.connect (() => {
-				//get object for this ebook
-				BookwormApp.Book currentBookForContentList = libraryViewMap.get(locationOfEBookCurrentlyRead);
-				currentBookForContentList = BookwormApp.ePubReader.renderPage(aWebView, libraryViewMap.get(locationOfEBookCurrentlyRead), "TABLE_OF_CONTENTS");
-				libraryViewMap.set(locationOfEBookCurrentlyRead, currentBookForContentList);
+				if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+					//get the content list for the book
+					BookwormApp.Book currentBookForContentList = libraryViewMap.get(locationOfEBookCurrentlyRead);
+					currentBookForContentList = BookwormApp.ePubReader.renderPage(aWebView, libraryViewMap.get(locationOfEBookCurrentlyRead), "TABLE_OF_CONTENTS");
+					libraryViewMap.set(locationOfEBookCurrentlyRead, currentBookForContentList);
+				}
 			});
 			debug("Completed loading HeaderBar sucessfully...");
 		}
@@ -826,8 +828,6 @@ namespace BookwormApp {
 				BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
 			}
 			debug("Completed saving the book data into DB");
-
-
 		}
 
 		public void saveWindowState(){
@@ -837,19 +837,25 @@ namespace BookwormApp {
 			int y;
 			window.get_size (out width, out height);
 			window.get_position (out x, out y);
-			settings.pos_x = x;
-      settings.pos_y = y;
-      settings.window_width = width;
-			settings.window_height = height;
+			if(settings.pos_x != x || settings.pos_y != y){
+				settings.pos_x = x;
+      	settings.pos_y = y;
+			}
+			if(settings.window_width != width || settings.window_height != height){
+      	settings.window_width = width;
+				settings.window_height = height;
+			}
 			if(window.is_maximized == true){
 				settings.window_is_maximized = true;
 			}else{
 				settings.window_is_maximized = false;
 			}
-			debug("Window state saved in Settings. width="+width.to_string()+",
-																						 height="+height.to_string()+",
-																						 x="+x.to_string()+",
-																						 y="+y.to_string());
+			debug("Window state saved in Settings with values
+						 width="+width.to_string()+",
+						 height="+height.to_string()+",
+						 x="+x.to_string()+",
+						 y="+y.to_string()
+					 );
 		}
 
 	}
