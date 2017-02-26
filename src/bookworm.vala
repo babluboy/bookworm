@@ -236,7 +236,7 @@ namespace BookwormApp {
 			headerSearchBar.set_text(Constants.TEXT_FOR_SEARCH_HEADERBAR);
 			headerbar.pack_end(headerSearchBar);
 			headerSearchBar.set_sensitive(false);
-			// Set actions for HeaderBar search
+			//Set actions for HeaderBar search
 			headerSearchBar.search_changed.connect (() => {
 
 			});
@@ -828,14 +828,14 @@ namespace BookwormApp {
 			}
 		}
 
-		public void saveBooksState(){
-			debug("Starting to save state of books...");
-			//Loop over all books in the library hashmap
-			foreach (var book in libraryViewMap.values){
-				//Update the book details to the database
-				BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
-			}
-			debug("Completed saving the book data into DB");
+		public async void saveBooksState (){
+				foreach (var book in libraryViewMap.values){
+					//Update the book details to the database
+					BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
+					debug("Completed saving the book data into DB");
+					Idle.add (saveBooksState.callback);
+					yield;
+				}
 		}
 
 		public void saveWindowState(){
