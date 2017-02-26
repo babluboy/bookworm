@@ -33,6 +33,6 @@ public class BookwormApp.Settings : Granite.Services.Settings {
   }
 
   private Settings () {
-    base ("org.bookworm");
+    base (BookwormApp.Constants.bookworm_id);
   }
 }

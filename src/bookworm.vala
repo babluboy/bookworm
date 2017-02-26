@@ -201,7 +201,7 @@ namespace BookwormApp {
 			window.set_titlebar (headerbar);
 
 			//add menu items to header bar - content list button
-			library_view_button = new Gtk.Button.with_label ("Library");
+			library_view_button = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
 			library_view_button.get_style_context ().add_class ("back-button");
 			library_view_button.valign = Gtk.Align.CENTER;
 			library_view_button.can_focus = false;
@@ -230,7 +230,6 @@ namespace BookwormApp {
 			appMenu.set_image (menu_icon);
 			appMenu.popup = settingsMenu;
 			headerbar.pack_end (appMenu);
-			//headerbar.pack_end(create_appmenu(new Gtk.Menu ()));
 
 			//Add a search entry to the header
 			headerSearchBar = new Gtk.SearchEntry();

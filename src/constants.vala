@@ -17,6 +17,7 @@
 */
 
 namespace BookwormApp.Constants {
+	public const string bookworm_id = "com.github.babluboy.bookworm";
 	public const string bookworm_version = "0.2";
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = _("Website");
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://github.com/babluboy/bookworm/wiki";
@@ -26,6 +27,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
+	public const string TEXT_FOR_LIBRARY_BUTTON = _("Library");
 
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
