@@ -286,18 +286,18 @@ namespace BookwormApp {
 
 			//Add action for adding a book on the library view
 			welcomeWidget.activated.connect (() => {
-				//select a eBook
-				string pathToSelectedBook = selectBookFileChooser();
-				//To-DO: Validate if a valid eBook is choosen
-				BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
-				aBookBeingAdded.setBookLocation(pathToSelectedBook);
+				ArrayList<string> selectedEBooks = selectBookFileChooser();
+				foreach(string pathToSelectedBook in selectedEBooks){
+					BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
+					aBookBeingAdded.setBookLocation(pathToSelectedBook);
+					//the book will be updated to the libraryView Map within the addBookToLibrary function
+					addBookToLibrary(aBookBeingAdded);
+				}
 				//remove the welcome widget from main window
 				window.remove(welcomeWidget);
 				window.add(bookWormUIBox);
 				window.show_all();
 				toggleUIState();
-				//the book will be updated to the libraryView Map within the addBookToLibrary function
-				addBookToLibrary(aBookBeingAdded);
 			});
 			return welcomeWidget;
 		}
@@ -416,11 +416,13 @@ namespace BookwormApp {
 			});
 			//Add action for adding a book on the library view
 			add_book_button.clicked.connect (() => {
-				string pathToSelectedBook = selectBookFileChooser();
-				BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
-				aBookBeingAdded.setBookLocation(pathToSelectedBook);
-				//the book will be updated to the libraryView Map within the addBookToLibrary function
-				addBookToLibrary(aBookBeingAdded);
+				ArrayList<string> selectedEBooks = selectBookFileChooser();
+				foreach(string pathToSelectedBook in selectedEBooks){
+					BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
+					aBookBeingAdded.setBookLocation(pathToSelectedBook);
+					//the book will be updated to the libraryView Map within the addBookToLibrary function
+					addBookToLibrary(aBookBeingAdded);
+				}
 			});
 			//Add action for putting library in select view
 			select_book_button.clicked.connect (() => {
@@ -519,22 +521,23 @@ namespace BookwormApp {
 			toggleUIState();
 		}
 
-		public string selectBookFileChooser(){
-			string eBookLocation = "";
+		public ArrayList<string> selectBookFileChooser(){
+			ArrayList<string> eBookLocationList = new ArrayList<string>();
 			//create a hashmap to hold details for the book
 			Gee.HashMap<string,string> bookDetailsMap = new Gee.HashMap<string,string>();
 	    //choose eBook using a File chooser dialog
-			Gtk.FileChooserDialog aFileChooserDialog = BookwormApp.Utils.new_file_chooser_dialog (Gtk.FileChooserAction.OPEN, "Select eBook", window, false);
+			Gtk.FileChooserDialog aFileChooserDialog = BookwormApp.Utils.new_file_chooser_dialog (Gtk.FileChooserAction.OPEN, "Select eBook", window, true);
 	    aFileChooserDialog.show_all ();
 	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
-	      eBookLocation = aFileChooserDialog.get_filename();
-	      BookwormApp.Utils.last_file_chooser_path = aFileChooserDialog.get_current_folder();
-	      debug("Last visited folder for FileChooserDialog set as:"+BookwormApp.Utils.last_file_chooser_path);
-	      aFileChooserDialog.destroy();
+	      SList<string> uris = aFileChooserDialog.get_uris ();
+				foreach (unowned string uri in uris) {
+					eBookLocationList.add(File.new_for_uri(uri).get_path ());
+				}
+				aFileChooserDialog.close();
 	    }else{
-	      aFileChooserDialog.destroy();
+	      aFileChooserDialog.close();
 	    }
-			return eBookLocation;
+			return eBookLocationList;
 		}
 
 		public void addBookToLibrary(owned BookwormApp.Book aBook){

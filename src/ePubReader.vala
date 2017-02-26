@@ -100,12 +100,20 @@ public class BookwormApp.ePubReader {
     //read contents from OPF file
     string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
     //determine the title of the book
-    if(OpfContents.contains("<dc:title>") && OpfContents.contains("</dc:title>")){
-      string bookTitle = OpfContents.slice(OpfContents.index_of("<dc:title>")+"<dc:title>".length, OpfContents.index_of("</dc:title>"));
-      aBook.setBookTitle(bookTitle);
-      debug("Determined eBook Title as:"+bookTitle);
+    if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
+      int startOfTitleText = OpfContents.index_of(">", OpfContents.index_of("<dc:title"));
+      int endOfTittleText = OpfContents.index_of("</dc:title>", startOfTitleText);
+      debug("startOfTitleText="+startOfTitleText.to_string()+", endOfTittleText="+endOfTittleText.to_string());
+      if(startOfTitleText != -1 && endOfTittleText != -1 && endOfTittleText > startOfTitleText){
+        string bookTitle = OpfContents.slice(startOfTitleText+1, endOfTittleText);
+        aBook.setBookTitle(bookTitle);
+        debug("Determined eBook Title as:"+bookTitle);
+      }else{
+        aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITEL);
+        debug("Could not determine eBook Title, default title set");
+      }
     }else{
-      aBook.setBookTitle("Unknown Book");
+      aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITEL);
       debug("Could not determine eBook Title, default title set");
     }
     return aBook;
@@ -134,34 +142,40 @@ public class BookwormApp.ePubReader {
     while (positionOfSpineItemref != -1){
       bufferForSpineDataExtraction.erase(0, -1);
       if(positionOfSpineItemref > 0){ //condition to ignore the first position
-        bufferForSpineDataExtraction.append(spineData.slice(positionOfSpineItemref+16, spineData.index_of("\"", positionOfSpineItemref+17)));
-        //find the item in manifest matching the spine itemref after looping through all item ids in the manifest
-        while (positionOfManifestItemref != -1){
-          bufferForManifestDataExtraction.erase(0, -1);
-          bufferForManifestDataExtraction.append(manifestData.slice(manifestData.index_of("<item", positionOfManifestItemref), manifestData.index_of("/>", positionOfManifestItemref)));
-          //match spine idref to manifest item id
-          if(bufferForManifestDataExtraction.str.contains("id=\""+bufferForSpineDataExtraction.str+"\"")){
-            //add manifest location item to array list in order of reading
-            positionOfManifestDataStart = bufferForManifestDataExtraction.str.index_of("href=\"")+6;
-            positionOfManifestDataEnd = bufferForManifestDataExtraction.str.index_of("\"", bufferForManifestDataExtraction.str.index_of("href=\"")+8);
-            bufferForLocationOfContentData.erase(0, -1);
-            bufferForLocationOfContentData.append(aBook.getBaseLocationOfContents())
-                                          .append(bufferForManifestDataExtraction.str.slice(positionOfManifestDataStart, positionOfManifestDataEnd));
-            aBook.setBookContentList(bufferForLocationOfContentData.str);
-            debug("Matching spine reference["+bufferForSpineDataExtraction.str+"], extracted content location:"+bufferForLocationOfContentData.str);
-            break;
+        int positionOfIdrefStart = spineData.index_of ("idref=", positionOfSpineItemref+1) + 7;
+        int positionOfIdrefEnd = spineData.index_of("\"", positionOfIdrefStart+1);
+        debug("spine data="+spineData.slice(positionOfIdrefStart, positionOfIdrefEnd));
+        if(positionOfIdrefStart != -1 && positionOfIdrefEnd != -1 && positionOfIdrefEnd > positionOfIdrefStart){
+          bufferForSpineDataExtraction.append(spineData.slice(positionOfIdrefStart, positionOfIdrefEnd));
+          //find the item in manifest matching the spine itemref after looping through all item ids in the manifest
+          while (positionOfManifestItemref != -1){
+            bufferForManifestDataExtraction.erase(0, -1);
+            bufferForManifestDataExtraction.append(manifestData.slice(manifestData.index_of("<item", positionOfManifestItemref), manifestData.index_of("/>", positionOfManifestItemref)));
+            //match spine idref to manifest item id
+            if(bufferForManifestDataExtraction.str.contains("id=\""+bufferForSpineDataExtraction.str+"\"")){
+              //add manifest location item to array list in order of reading
+              positionOfManifestDataStart = bufferForManifestDataExtraction.str.index_of("href=\"")+6;
+              positionOfManifestDataEnd = bufferForManifestDataExtraction.str.index_of("\"", bufferForManifestDataExtraction.str.index_of("href=\"")+8);
+              bufferForLocationOfContentData.erase(0, -1);
+              bufferForLocationOfContentData.append(aBook.getBaseLocationOfContents())
+                                            .append(bufferForManifestDataExtraction.str.slice(positionOfManifestDataStart, positionOfManifestDataEnd));
+              aBook.setBookContentList(bufferForLocationOfContentData.str);
+              debug("Matching spine reference["+bufferForSpineDataExtraction.str+"], extracted content location:"+bufferForLocationOfContentData.str);
+              break;
+            }
+            positionOfManifestItemref = manifestData.index_of ("<item", positionOfManifestItemref+5);
           }
-          positionOfManifestItemref = manifestData.index_of ("<item", positionOfManifestItemref+5);
+          positionOfManifestItemref = 0;
         }
-        positionOfManifestItemref = 0;
       }
-      positionOfSpineItemref = spineData.index_of ("<itemref idref=", positionOfSpineItemref+1);
+      positionOfSpineItemref = spineData.index_of ("<itemref", positionOfSpineItemref+1);
     }
     debug("Completed extracting location of content files in ebook. Number of content files = "+aBook.getBookContentList().size.to_string());
     return aBook;
   }
 
   public static BookwormApp.Book renderPage (WebKit.WebView aWebView, owned BookwormApp.Book aBook, string direction){
+    debug("Starting to renderPage for direction["+direction+"] on book located at "+aBook.getBookLocation());
     StringBuilder contents = new StringBuilder();
     string baseLocationOfContents = aBook.getBaseLocationOfContents();
     int currentContentLocation = 0;
@@ -200,7 +214,14 @@ public class BookwormApp.ePubReader {
           currentContentLocation = 0;
           debug("Book did not had a CURRENT_LOCATION set.");
         }
-        debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));
+        if(aBook.getBookContentList().size > 0 && aBook.getBookContentList().size >= currentContentLocation){
+          debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));
+        }else{
+          //No content list extracted from eBook
+          warning("No contents determined for the book at location ["+currentContentLocation.to_string()+"], no rendering possible.");
+          aWebView.load_html(BookwormApp.Constants.TEXT_FOR_RENDERING_ISSUE, "");
+          return aBook;
+        }
         contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(currentContentLocation), "", ""));
         //find list of relative urls with src, href, etc and convert them to absolute ones
         foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){

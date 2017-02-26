@@ -27,11 +27,13 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
+	public const string TEXT_FOR_RENDERING_ISSUE = _("The content could not be read....");
 	public const string TEXT_FOR_LIBRARY_BUTTON = _("Library");
 
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
 
+	public const string TEXT_FOR_UNKNOWN_TITEL = _("Unknown Book");
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
 	public const string TEXT_FOR_PREF_MENU_FONT_ITEM = _("Font");
 
@@ -52,6 +54,8 @@ namespace BookwormApp.Constants {
 	public static const int MAX_BOOK_COVER_PER_ROW = 6;
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
+	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
+	public static const string FILE_CHOOSER_FILTER_EPUB_FILES = _("ePUB Files");
 
 	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE","READING_MODE", "SELECTION_MODE", "SELECTED_MODE"};
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";

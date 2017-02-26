@@ -305,7 +305,7 @@ namespace BookwormApp.Utils {
 	}
 
 	// Create a GtkFileChooserDialog to perform the action desired
-  public Gtk.FileChooserDialog new_file_chooser_dialog (Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple = false) {
+  public Gtk.FileChooserDialog new_file_chooser_dialog (Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple) {
 		Gtk.FileChooserDialog aFileChooserDialog = new Gtk.FileChooserDialog (title, parent, action);
 		aFileChooserDialog.set_select_multiple (select_multiple);
 		aFileChooserDialog.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
@@ -328,15 +328,17 @@ namespace BookwormApp.Utils {
 		        aFileChooserDialog.destroy ();
 		    return false;
 		});
-		var all_files_filter = new Gtk.FileFilter ();
-		all_files_filter.set_filter_name (_("All files"));
+		Gtk.FileFilter all_files_filter = new Gtk.FileFilter ();
+		all_files_filter.set_filter_name (BookwormApp.Constants.FILE_CHOOSER_FILTER_ALL_FILES);
 		all_files_filter.add_pattern ("*");
 		aFileChooserDialog.add_filter (all_files_filter);
-		var epub_files_filter = new Gtk.FileFilter ();
-		epub_files_filter.set_filter_name (_("ePub files"));
-		epub_files_filter.add_mime_type ("application/xhtml+xml");
+
+		Gtk.FileFilter epub_files_filter = new Gtk.FileFilter ();
+		epub_files_filter.set_filter_name (BookwormApp.Constants.FILE_CHOOSER_FILTER_EPUB_FILES);
+		epub_files_filter.add_pattern ("*.epub");
 		aFileChooserDialog.add_filter (epub_files_filter);
-		aFileChooserDialog.set_filter (all_files_filter);
+
+		aFileChooserDialog.set_filter (epub_files_filter);
 		return aFileChooserDialog;
   }
 
