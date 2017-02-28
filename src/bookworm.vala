@@ -25,7 +25,8 @@ public const string GETTEXT_PACKAGE = "bookworm";
 namespace BookwormApp {
 
 	public class Bookworm:Granite.Application {
-
+		private static Bookworm application;
+		private static bool isBookwormRunning = false;
 		public int exitCodeForCommand = 0;
 		public static string bookworm_config_path = GLib.Environment.get_user_config_dir ()+"/bookworm";
 		public static bool command_line_option_version = false;
@@ -34,7 +35,6 @@ namespace BookwormApp {
 		[CCode (array_length = false, array_null_terminated = true)]
 		public static string command_line_option_monitor = "";
 		public new OptionEntry[] options;
-		public static Bookworm application;
 		public Gtk.SearchEntry headerSearchBar;
 		public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
 
@@ -45,7 +45,7 @@ namespace BookwormApp {
 		public ePubReader aReader;
 		public Gtk.HeaderBar headerbar;
 		public Granite.Widgets.Welcome welcomeWidget;
-		public Gtk.Box bookSelection_ui_box;
+		public Gtk.Box bookLibrary_ui_box;
 		public Gtk.Box bookReading_ui_box;
 		public Gtk.Button library_view_button;
 		public Gtk.Button content_list_button;
@@ -60,27 +60,23 @@ namespace BookwormApp {
 		public string locationOfEBookCurrentlyRead = "";
 		public int countBooksAddedIntoLibraryRow = 0;
 
-
 		construct {
-			application_id = "org.bookworm";
+			application_id = BookwormApp.Constants.bookworm_id;
 			flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
-
-			program_name = "Bookworm";
-			app_years = "2017";
-
-			build_version = Constants.bookworm_version;
-			app_icon = "bookworm";
-			main_url = "https://github.com/babluboy/bookworm/wiki";
-			bug_url = "https://github.com/babluboy/bookworm/issues";
-			help_url = "https://github.com/babluboy/bookworm/wiki";
-			translate_url = "https://translations.launchpad.net/bookworm";
-
+			program_name = BookwormApp.Constants.program_name;
+			app_years = BookwormApp.Constants.app_years;
+			build_version = BookwormApp.Constants.bookworm_version;
+			app_icon = BookwormApp.Constants.app_icon;
+			main_url = BookwormApp.Constants.main_url;
+			bug_url = BookwormApp.Constants.bug_url;
+			help_url = BookwormApp.Constants.help_url;
+			translate_url = BookwormApp.Constants.translate_url;
 			about_documenters = { null };
 			about_artists = { null };
-			about_authors = { "Siddhartha Das <bablu.boy@gmail.com>" };
-			about_comments = _("An eBook Reader");
-			about_translators = _("Launchpad Translators");
-			about_license_type = Gtk.License.GPL_3_0;
+			about_authors = BookwormApp.Constants.about_authors;
+			about_comments = BookwormApp.Constants.about_comments;
+			about_translators = BookwormApp.Constants.translator_credits;
+			about_license_type = BookwormApp.Constants.about_license_type;
 
 			options = new OptionEntry[2];
 			options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
@@ -102,8 +98,8 @@ namespace BookwormApp {
 				Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
 				debug ("Bookworm Application running in debug mode - all debug messages will be displayed");
 			}
-			application = new Bookworm();
-
+			//application = new Bookworm();
+			application = getAppInstance();
 			//Workaround to get Granite's --about & Gtk's --help working together
 			if ("--help" in args || "-h" in args || "--monitor" in args || "--alert" in args || "--version" in args) {
 				return application.processCommandLine (args);
@@ -111,6 +107,15 @@ namespace BookwormApp {
 				Gtk.init (ref args);
 				return application.run(args);
 			}
+		}
+
+		public static Bookworm getAppInstance(){
+			if(application == null){
+				application = new Bookworm();
+			}else{
+				//do nothing, return the existing instance
+			}
+			return application;
 		}
 
 		public override int command_line (ApplicationCommandLine command_line) {
@@ -144,51 +149,58 @@ namespace BookwormApp {
 		}
 
 		public override void activate() {
-			debug("Starting to activate Gtk Window for Bookworm...");
-			window = new Gtk.Window ();
-			add_window (window);
+			//proceed if Bookworm is not running already
+			if(!isBookwormRunning){
+				debug("Starting to activate Gtk Window for Bookworm...");
+				window = new Gtk.Window ();
+				add_window (window);
 
-			//set window attributes from saved settings
-			settings = BookwormApp.Settings.get_instance();
-			if(settings.window_is_maximized){
-				window.maximize();
-			}else{
-				if(settings.window_width > 0 && settings.window_height > 0){
-					window.set_default_size(settings.window_width, settings.window_height);
+				//set window attributes from saved settings
+				settings = BookwormApp.Settings.get_instance();
+				if(settings.window_is_maximized){
+					window.maximize();
 				}else{
-					window.set_default_size(1200, 700);
+					if(settings.window_width > 0 && settings.window_height > 0){
+						window.set_default_size(settings.window_width, settings.window_height);
+					}else{
+						window.set_default_size(1200, 700);
+					}
 				}
-			}
-			window.set_border_width (Constants.SPACING_WIDGETS);
-			window.set_position (Gtk.WindowPosition.CENTER);
-			window.window_position = Gtk.WindowPosition.CENTER;
+				window.set_border_width (Constants.SPACING_WIDGETS);
+				window.set_position (Gtk.WindowPosition.CENTER);
+				window.window_position = Gtk.WindowPosition.CENTER;
+				//set the minimum size of the window on minimize
+				window.set_size_request (600, 350);
 
-			//add window components
-			create_headerbar(window);
-			createWelcomeScreen();
-			bookWormUIBox = createBoookwormUI();
-			//load saved books from DB and add them to Library view
-			loadBookwormState();
-			//show welcome screen if no book is present in library instead of the normal library view
-			if(libraryViewMap.size == 0){
-				window.add(welcomeWidget);
-				window.show_all();
-			}else{
-				window.add(bookWormUIBox);
-				window.show_all();
-				toggleUIState();
+				//add window components
+				create_headerbar(window);
+				createWelcomeScreen();
+				bookWormUIBox = createBoookwormUI();
+				//load saved books from DB and add them to Library view
+				loadBookwormState();
+				//show welcome screen if no book is present in library instead of the normal library view
+				if(libraryViewMap.size == 0){
+					window.add(welcomeWidget);
+					window.show_all();
+				}else{
+					window.add(bookWormUIBox);
+					window.show_all();
+					toggleUIState();
+				}
+
+				//capture window re-size events and save the window size
+				window.size_allocate.connect(() => {
+					//save books information to database
+					saveWindowState();
+				});
+				//Exit Application Event
+				window.destroy.connect (() => {
+					//save books information to database
+					saveBooksState();
+				});
+				isBookwormRunning = true;
+				debug("Sucessfully activated Gtk Window for Bookworm...");
 			}
-			//capture window re-size events and save the window size
-			window.size_allocate.connect(() => {
-				//save books information to database
-				saveWindowState();
-			});
-			//Exit Application Event
-			window.destroy.connect (() => {
-				//save books information to database
-				saveBooksState();
-			});
-			debug("Sucessfully activated Gtk Window for Bookworm...");
 		}
 
 		private void create_headerbar(Gtk.Window window) {
@@ -343,10 +355,10 @@ namespace BookwormApp {
 			add_remove_footer_box.pack_start (remove_book_button, false, true, 0);
 
 			//Create the UI for library view
-			bookSelection_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
+			bookLibrary_ui_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
 			//add all components to ui box for library view
-			bookSelection_ui_box.pack_start (library_scroll, true, true, 0);
-			bookSelection_ui_box.pack_start (add_remove_footer_box, false, true, 0);
+			bookLibrary_ui_box.pack_start (library_scroll, true, true, 0);
+			bookLibrary_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
 			//create the webview to display page content
 			WebKit.Settings webkitSettings = new WebKit.Settings();
@@ -377,13 +389,13 @@ namespace BookwormApp {
 			book_reading_footer_box.pack_end (forward_button, false, true, 0);
 
 			//Create the Gtk Box to hold components for reading a selected book
-			bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
+			bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
 			bookReading_ui_box.pack_start (aWebView, true, true, 0);
       bookReading_ui_box.pack_start (book_reading_footer_box, false, true, 0);
 
 			//Add all ui components to the main UI box
 			Gtk.Box main_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
-			main_ui_box.pack_start(bookSelection_ui_box, true, true, 0);
+			main_ui_box.pack_start(bookLibrary_ui_box, true, true, 0);
 			main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
 
 			//Add all UI action listeners
@@ -505,10 +517,12 @@ namespace BookwormApp {
 					//hold the books to be deleted in a list
 					listOfBooksToBeRemoved.add(((BookwormApp.Book)book).getBookLocation());
 					Gtk.EventBox lEventBox = ((BookwormApp.Book)book).getEventBox();
+
 					//destroy the EventBox widget - this removes the book from the library grid
 					lEventBox.destroy();
 				}
 			}
+			library_grid.show_all();
 			//loop through the removed books and remove them from the Library View Hashmap and Database
 			foreach (string bookLocation in listOfBooksToBeRemoved) {
 				BookwormApp.DB.removeBookFromDB(libraryViewMap.get(bookLocation));
@@ -817,14 +831,14 @@ namespace BookwormApp {
 				bookReading_ui_box.set_visible(false);
 				content_list_button.set_visible(false);
 				library_view_button.set_visible(false);
-				bookSelection_ui_box.set_visible(true);
+				bookLibrary_ui_box.set_visible(true);
 			}
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
 				//Only show the UI for reading a book
 				bookReading_ui_box.set_visible(true);
 				content_list_button.set_visible(true);
 				library_view_button.set_visible(true);
-				bookSelection_ui_box.set_visible(false);
+				bookLibrary_ui_box.set_visible(false);
 			}
 		}
 

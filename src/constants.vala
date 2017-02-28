@@ -19,6 +19,19 @@
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
 	public const string bookworm_version = "0.2";
+	public const string program_name = "Bookworm";
+	public const string app_years = "2017";
+	public const string app_icon = "bookworm";
+	public const string[] about_authors = {"Siddhartha Das <bablu.boy@gmail.com>"};
+	public const string about_comments = _("An eBook Reader");
+	public const Gtk.License about_license_type = Gtk.License.GPL_3_0;
+	public const string translator_credits = _("Launchpad Translators");
+	public const string main_url = "https://github.com/babluboy/bookworm/wiki";
+	public const string bug_url = "https://github.com/babluboy/bookworm/issues";
+	public const string help_url = "https://github.com/babluboy/bookworm/wiki";
+	public const string translate_url = "https://translations.launchpad.net/bookworm";
+
+
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = _("Website");
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://github.com/babluboy/bookworm/wiki";
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
