@@ -518,7 +518,9 @@ namespace BookwormApp {
 					listOfBooksToBeRemoved.add(((BookwormApp.Book)book).getBookLocation());
 					Gtk.EventBox lEventBox = ((BookwormApp.Book)book).getEventBox();
 
-					//destroy the EventBox widget - this removes the book from the library grid
+					//destroy the EventBox parent widget - this removes the book from the library grid
+					lEventBox.get_parent().destroy();
+					//destroy the EventBox widget
 					lEventBox.destroy();
 				}
 			}
