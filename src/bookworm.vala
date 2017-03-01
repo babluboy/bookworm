@@ -253,20 +253,34 @@ namespace BookwormApp {
 
 			});
 			library_view_button.clicked.connect (() => {
-				//Update header to remove title of book being read
-				headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
-				//set UI in library view mode
-				BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-				updateLibraryViewForSelectionMode(null);
-				toggleUIState();
+				//Set action of return to Library View if the current view is Reading View
+				if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+					//Update header to remove title of book being read
+					headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
+					//set UI in library view mode
+					BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+					updateLibraryViewForSelectionMode(null);
+					toggleUIState();
+				}
+
+				//Set action of return to Reading View if the current view is Content View
+				if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
+					//set UI in library view mode
+					BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+					BookwormApp.Book currentBookForContentList = libraryViewMap.get(locationOfEBookCurrentlyRead);
+					currentBookForContentList = BookwormApp.ePubReader.renderPage(aWebView, libraryViewMap.get(locationOfEBookCurrentlyRead), "");
+					libraryViewMap.set(locationOfEBookCurrentlyRead, currentBookForContentList);
+					toggleUIState();
+				}
 			});
 			content_list_button.clicked.connect (() => {
-				if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-					//get the content list for the book
-					BookwormApp.Book currentBookForContentList = libraryViewMap.get(locationOfEBookCurrentlyRead);
-					currentBookForContentList = BookwormApp.ePubReader.renderPage(aWebView, libraryViewMap.get(locationOfEBookCurrentlyRead), "TABLE_OF_CONTENTS");
-					libraryViewMap.set(locationOfEBookCurrentlyRead, currentBookForContentList);
-				}
+				//Set the mode to Content View Mode
+				BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
+				//get the content list for the book
+				BookwormApp.Book currentBookForContentList = libraryViewMap.get(locationOfEBookCurrentlyRead);
+				currentBookForContentList = BookwormApp.ePubReader.renderPage(aWebView, libraryViewMap.get(locationOfEBookCurrentlyRead), "TABLE_OF_CONTENTS");
+				libraryViewMap.set(locationOfEBookCurrentlyRead, currentBookForContentList);
+				toggleUIState();
 			});
 			debug("Completed loading HeaderBar sucessfully...");
 		}
@@ -482,10 +496,14 @@ namespace BookwormApp {
 				string url_clicked_on_webview = aWebView.get_uri().replace("%20"," ");
 				if(url_clicked_on_webview != null && url_clicked_on_webview.length > 1){
 					BookwormApp.Book aBookForURLClick = libraryViewMap.get(locationOfEBookCurrentlyRead);
+					//Condition to check if the link clicked is a Content Navigation Link
 					if(aBookForURLClick.getBookContentList().contains(url_clicked_on_webview.replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, ""))){
 						aBookForURLClick.setBookPageNumber(aBookForURLClick.getBookContentList().index_of(url_clicked_on_webview.replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, "")));
 						//update book details to libraryView Map
 						libraryViewMap.set(aBookForURLClick.getBookLocation(), aBookForURLClick);
+						//Set the mode back to Reading mode
+						BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+						toggleUIState();
 						debug("Using Table of Contents Navigation, Book page number set at"+aBookForURLClick.getBookPageNumber().to_string());
 					}
 				}
@@ -567,12 +585,8 @@ namespace BookwormApp {
 				string eBookLocation = aBook.getBookLocation();
 				File eBookFile = File.new_for_path (eBookLocation);
 				if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
-					string extractionLocation = BookwormApp.ePubReader.extractEBook(eBookLocation);
-					aBook.setBookExtractionLocation(extractionLocation);
-					//determine location of eBook cover image
-					aBook = BookwormApp.ePubReader.getBookCoverImageLocation(aBook, bookworm_config_path);
-					//determine title of eBook
-					aBook = BookwormApp.ePubReader.getBookTitle(aBook, bookworm_config_path);
+					//parse ePub Book
+					aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
 					//add book details to libraryView Map
 					libraryViewMap.set(eBookLocation, aBook);
 					//set the name of the book being currently read
@@ -785,32 +799,20 @@ namespace BookwormApp {
 		}
 
 		public void readSelectedBook(owned BookwormApp.Book aBook){
-			//create temp location for extraction of eBook
-			string eBookLocation = aBook.getBookLocation();
-			string extractionLocation = BookwormApp.Constants.EPUB_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
-			aBook.setBookExtractionLocation(extractionLocation);
-			//check and create directory for extracting contents of ebook
-			BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
-			//unzip eBook contents into temp location
-			BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
-			debug("eBook extracted into folder:"+extractionLocation);
 
 			//change the application view to Book Reading mode
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
 			toggleUIState();
-			//Update header title
-			headerbar.subtitle = aBook.getBookTitle();
-			//check if the book content is available
-			if(aBook.getBookContentList().size > 0){
-				// no need of parsing ebook for content location
-			}else{
-				//get list of content pages in book
-				aBook = BookwormApp.ePubReader.getListOfPagesInBook(aBook);
-			}
+
+			//Extract and Parse the eBook (this will overwrite the contents already extracted)
+			aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
+
 			aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "");
 			//update book details to libraryView Map
 			libraryViewMap.set(aBook.getBookLocation(), aBook);
 			locationOfEBookCurrentlyRead = aBook.getBookLocation();
+			//Update header title
+			headerbar.subtitle = aBook.getBookTitle();
 		}
 
 		public void updateLibraryViewFromDB(){
@@ -829,18 +831,29 @@ namespace BookwormApp {
 				 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
 				 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]
 				){
-				//Only show the UI for selecting a book
+				//UI for Library View
 				bookReading_ui_box.set_visible(false);
 				content_list_button.set_visible(false);
 				library_view_button.set_visible(false);
 				bookLibrary_ui_box.set_visible(true);
 			}
+			//Reading Mode
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-				//Only show the UI for reading a book
+				//UI for Reading View
 				bookReading_ui_box.set_visible(true);
 				content_list_button.set_visible(true);
 				library_view_button.set_visible(true);
 				bookLibrary_ui_box.set_visible(false);
+				library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
+			}
+			//Content View Mode
+			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
+				//UI for Reading View
+				bookReading_ui_box.set_visible(true);
+				content_list_button.set_visible(true);
+				library_view_button.set_visible(true);
+				bookLibrary_ui_box.set_visible(false);
+				library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_RESUME_BUTTON);
 			}
 		}
 

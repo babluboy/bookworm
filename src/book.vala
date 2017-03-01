@@ -19,6 +19,7 @@
 public class BookwormApp.Book{
 
   private int bookId = 0;
+  private bool isBookParsedCorrectly = false;
   private string bookLocation = "";
   private string bookCoverLocation = "";
   private string bookExtractionLocation = "";
@@ -45,6 +46,14 @@ public class BookwormApp.Book{
   }
   public int getBookId (){
     return bookId;
+  }
+
+  //getter list for isBookParsedCorrectly
+  public void setIsBookParsed (bool isParsed){
+    isBookParsedCorrectly = isParsed;
+  }
+  public bool getIsBookParsed (){
+    return isBookParsedCorrectly;
   }
 
   //getter list for book location
