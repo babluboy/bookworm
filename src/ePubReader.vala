@@ -364,11 +364,9 @@ public class BookwormApp.ePubReader {
         //find list of relative urls with src, href, etc and convert them to absolute ones
         foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
         string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
-          StringBuilder srcItemBaseName = new StringBuilder();
           StringBuilder srcItemFullPath = new StringBuilder();
           foreach(string srcItem in srcList){
-            srcItemBaseName.assign(File.new_for_path(srcItem).get_basename());
-            srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItemBaseName.str));
+            srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
             contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
           }
         }

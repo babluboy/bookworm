@@ -115,7 +115,8 @@ namespace BookwormApp.Utils {
 	public string getFullPathFromFilename(string rootDirectoryToSearch, string fileName){
 		string grepOutput = "";
 		try {
-			grepOutput = execute_sync_command ("find \""+rootDirectoryToSearch+"\" -name \""+fileName+"\"");
+			string baseName = File.new_for_path(fileName).get_basename();
+			grepOutput = execute_sync_command ("find \""+rootDirectoryToSearch+"\" -name \""+baseName+"\"");
 			return grepOutput;
 		}catch (Error e){
 			warning("Error encountered in getting full path for filename ["+fileName+"] searching within directory["+rootDirectoryToSearch+"]: "+e.message);
