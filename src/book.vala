@@ -16,6 +16,7 @@
 * with Bookworm. If not, see http://www.gnu.org/licenses/.
 */
 
+using Gee;
 public class BookwormApp.Book{
 
   private int bookId = 0;
@@ -33,12 +34,12 @@ public class BookwormApp.Book{
   private int bookPageNumber = -1;
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
-  private string tocHTMLContent = "";
   private Gtk.EventBox eventBox;
   private Gtk.Overlay overlayImage;
   private Gtk.Image coverImage;
   private bool isBookSelected = false;
-  private Gee.ArrayList<string> bookContentList = new Gee.ArrayList<string> ();
+  private ArrayList<string> bookContentList = new ArrayList<string> ();
+  private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
 
   //getter list for book id
   public void setBookId (int aBookId){
@@ -76,8 +77,16 @@ public class BookwormApp.Book{
   public void setBookContentList (string contentList){
     bookContentList.add(contentList);
   }
-  public Gee.ArrayList<string> getBookContentList (){
+  public ArrayList<string> getBookContentList (){
     return bookContentList;
+  }
+
+  //getter setter for Table Of Contents
+  public void setTOC (HashMap<string,string> toc){
+    TOCMap.add(toc);
+  }
+  public ArrayList<HashMap<string,string>> getTOC (){
+    return TOCMap;
   }
 
   //getter setter for temp location of ebook contents
@@ -168,14 +177,6 @@ public class BookwormApp.Book{
     return ifPageBackward;
   }
 
-  //getter setter for eBook Table of Contents
-  public void setTOCHTMLContent (string aTOCHTMLContent){
-    tocHTMLContent = aTOCHTMLContent;
-  }
-  public string getTOCHTMLContent (){
-    return tocHTMLContent;
-  }
-
   //getter setter for EventBox associated with this eBook
   public void setEventBox (Gtk.EventBox aEventBox){
     eventBox = aEventBox;
@@ -208,7 +209,6 @@ public class BookwormApp.Book{
     return isBookSelected;
   }
 
-
   //print book details
   public string to_string(){
     StringBuilder bookDetails = new StringBuilder();
@@ -226,7 +226,6 @@ public class BookwormApp.Book{
            .append("bookPageNumber=").append(bookPageNumber.to_string()).append(",\n")
            .append("ifPageForward=").append(ifPageForward.to_string()).append(",\n")
            .append("ifPageBackward=").append(ifPageBackward.to_string()).append(",\n")
-           .append("tocHTMLContent=").append(tocHTMLContent).append(",\n")
            .append("bookContentList=");
      for (int i=0; i<bookContentList.size;i++) {
         bookDetails.append("["+i.to_string()+"]="+bookContentList.get(i)+",");

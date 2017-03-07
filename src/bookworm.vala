@@ -41,7 +41,7 @@ namespace BookwormApp {
 		public BookwormApp.Settings settings;
 		public Gtk.Window window;
 		public Gtk.Box bookWormUIBox;
-		public WebKit.WebView aWebView;
+		public static WebKit.WebView aWebView;
 		public ePubReader aReader;
 		public Gtk.HeaderBar headerbar;
 		public Granite.Widgets.Welcome welcomeWidget;
@@ -55,7 +55,7 @@ namespace BookwormApp {
 		public Gdk.Pixbuf bookSelectedPix;
 		public Gtk.Image bookSelectionImage;
 
-		public string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+		public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 		public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
 		public string locationOfEBookCurrentlyRead = "";
 		public int countBooksAddedIntoLibraryRow = 0;
@@ -274,12 +274,10 @@ namespace BookwormApp {
 				}
 			});
 			content_list_button.clicked.connect (() => {
+				BookwormApp.Book aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
+				BookwormApp.Info.createTableOfContents(aBook);
 				//Set the mode to Content View Mode
 				BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
-				//get the content list for the book
-				BookwormApp.Book currentBookForContentList = libraryViewMap.get(locationOfEBookCurrentlyRead);
-				currentBookForContentList = BookwormApp.ePubReader.renderPage(aWebView, libraryViewMap.get(locationOfEBookCurrentlyRead), "TABLE_OF_CONTENTS");
-				libraryViewMap.set(locationOfEBookCurrentlyRead, currentBookForContentList);
 				toggleUIState();
 			});
 			debug("Completed loading HeaderBar sucessfully...");
@@ -410,6 +408,7 @@ namespace BookwormApp {
 			//Add all ui components to the main UI box
 			Gtk.Box main_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
 			main_ui_box.pack_start(bookLibrary_ui_box, true, true, 0);
+			main_ui_box.pack_start(BookwormApp.Info.createBookInfo(), true, true, 0);
 			main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
 
 			//Add all UI action listeners
@@ -491,41 +490,48 @@ namespace BookwormApp {
 					}
 			    return false;
 			});
-			//capture the url clicked on the webview
+			//capture the url clicked on the webview and action the navigation type clicks
 			aWebView.decide_policy.connect ((decision, type) => {
 				if(type == WebKit.PolicyDecisionType.NAVIGATION_ACTION){
 					WebKit.NavigationPolicyDecision aNavDecision = (WebKit.NavigationPolicyDecision)decision;
 					WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action();
 					WebKit.URIRequest aURIReq = aNavAction.get_request ();
 
-					BookwormApp.Book aBookForURLClick = libraryViewMap.get(locationOfEBookCurrentlyRead);
+					BookwormApp.Book aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
 					//Remove %20 and file:/// from the URL if present
 					string url_clicked_on_webview = aURIReq.get_uri().replace("%20"," ").replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, "").strip();
 					debug("URL Captured:"+url_clicked_on_webview);
-					//Check if the URL matches the
-					if(aBookForURLClick.getBookContentList().contains(url_clicked_on_webview)){
-						aBookForURLClick.setBookPageNumber(aBookForURLClick.getBookContentList().index_of(url_clicked_on_webview));
+					//URL matches the content list of URLs
+					if(aBook.getBookContentList().contains(url_clicked_on_webview)){
+						aBook.setBookPageNumber(aBook.getBookContentList().index_of(url_clicked_on_webview));
 						//update book details to libraryView Map
-						libraryViewMap.set(aBookForURLClick.getBookLocation(), aBookForURLClick);
+						libraryViewMap.set(aBook.getBookLocation(), aBook);
 						//Set the mode back to Reading mode
 						BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
 						toggleUIState();
-						debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBookForURLClick.getBookPageNumber().to_string());
+						debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBook.getBookPageNumber().to_string());
+					//URL does not match the Bookworm content URLs
 					}else{
 						//Remove '#' on the end of the URL if present and try to match contents (TODO: See how exact navigation can be done with #)
 						if(url_clicked_on_webview.index_of("#") != -1){
 							url_clicked_on_webview = url_clicked_on_webview.slice(0, url_clicked_on_webview.index_of("#"));
 						}
-						url_clicked_on_webview = BookwormApp.Utils.getFullPathFromFilename(aBookForURLClick.getBookExtractionLocation(), url_clicked_on_webview).strip();
-						if(aBookForURLClick.getBookContentList().contains(url_clicked_on_webview)){
-							aBookForURLClick.setBookPageNumber(aBookForURLClick.getBookContentList().index_of(url_clicked_on_webview));
-							aBookForURLClick = BookwormApp.ePubReader.renderPage(aWebView, aBookForURLClick, "");
+						url_clicked_on_webview = BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), url_clicked_on_webview).strip();
+						//Modify the URL by removing # at the end and see if it matches the content URL
+						if(aBook.getBookContentList().contains(url_clicked_on_webview)){
+							aBook.setBookPageNumber(aBook.getBookContentList().index_of(url_clicked_on_webview));
+							aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "");
 							//update book details to libraryView Map
-							libraryViewMap.set(aBookForURLClick.getBookLocation(), aBookForURLClick);
+							libraryViewMap.set(aBook.getBookLocation(), aBook);
 							//Set the mode back to Reading mode
 							BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
 							toggleUIState();
-							debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBookForURLClick.getBookPageNumber().to_string());
+							debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBook.getBookPageNumber().to_string());
+						//URL is an external one and needs to be loaded on the User's browser
+						}else{
+							//TO-DO:
+							//(1)keep Bookworm on the same page and
+							//(2)open user's browser with the URL
 						}
 					}
 				}
@@ -821,20 +827,18 @@ namespace BookwormApp {
 		}
 
 		public void readSelectedBook(owned BookwormApp.Book aBook){
-
-			//change the application view to Book Reading mode
-			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-			toggleUIState();
-
 			//Extract and Parse the eBook (this will overwrite the contents already extracted)
 			aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
-
+			//render the contents of the current page of book
 			aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "");
 			//update book details to libraryView Map
 			libraryViewMap.set(aBook.getBookLocation(), aBook);
 			locationOfEBookCurrentlyRead = aBook.getBookLocation();
 			//Update header title
 			headerbar.subtitle = aBook.getBookTitle();
+			//change the application view to Book Reading mode
+			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+			toggleUIState();
 		}
 
 		public void updateLibraryViewFromDB(){
@@ -854,28 +858,33 @@ namespace BookwormApp {
 				 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]
 				){
 				//UI for Library View
-				bookReading_ui_box.set_visible(false);
 				content_list_button.set_visible(false);
 				library_view_button.set_visible(false);
 				bookLibrary_ui_box.set_visible(true);
+				bookReading_ui_box.set_visible(false);
+				BookwormApp.Info.info_box.set_visible(false);
 			}
 			//Reading Mode
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
 				//UI for Reading View
-				bookReading_ui_box.set_visible(true);
 				content_list_button.set_visible(true);
 				library_view_button.set_visible(true);
-				bookLibrary_ui_box.set_visible(false);
 				library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
+				bookLibrary_ui_box.set_visible(false);
+				bookReading_ui_box.set_visible(true);
+				BookwormApp.Info.info_box.set_visible(false);
 			}
-			//Content View Mode
+			//Book Meta Data / Content View Mode
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
 				//UI for Reading View
-				bookReading_ui_box.set_visible(true);
+				window.show_all();
 				content_list_button.set_visible(true);
 				library_view_button.set_visible(true);
-				bookLibrary_ui_box.set_visible(false);
 				library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_RESUME_BUTTON);
+				bookLibrary_ui_box.set_visible(false);
+				bookReading_ui_box.set_visible(false);
+				BookwormApp.Info.info_box.set_visible(true);
+				BookwormApp.Info.stack.set_visible_child_name ("content-list");
 			}
 		}
 

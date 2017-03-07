@@ -31,6 +31,7 @@ set (SOURCE_LIST
     src/book.vala
     src/database.vala
     src/settings.vala
+    src/bookinfo.vala
 )
 
 include (GSettings)
@@ -39,7 +40,7 @@ add_schema ("schemas/com.github.babluboy.bookworm.gschema.xml")
 # custom command to update pot template files
 set (_pot_file po/${PROJECT_NAME}.pot)
 add_custom_command (OUTPUT ${_pot_file}
-    COMMAND xgettext --language=C --keyword=_ --escape --sort-output -o po/bookworm.pot src/bookworm.vala
+    COMMAND xgettext --language=C --keyword=_ --escape --sort-output -o po/bookworm.pot src/constants.vala
     DEPENDS ${SOURCE_LIST}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Extract translatable messages to ${_pot_file}")
@@ -91,6 +92,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/book.vala
     src/database.vala
     src/settings.vala
+    src/bookinfo.vala
 
 # tell what libraries to use when compiling
 PACKAGES

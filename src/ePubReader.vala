@@ -17,62 +17,66 @@
 */
 
 using Gee;
+using Gtk;
 public class BookwormApp.ePubReader {
 
   public static BookwormApp.Book parseEPubBook (owned BookwormApp.Book aBook){
-    debug ("Starting to parse EPub Book located at:"+aBook.getBookLocation());
-    //Extract the content of the EPub
-    string extractionLocation = extractEBook(aBook.getBookLocation());
-    if("false" == extractionLocation){ //handle error condition
-      aBook.setIsBookParsed(false);
-      return aBook;
-    }else{
-      aBook.setBookExtractionLocation(extractionLocation);
-    }
-    //Check if the EPUB mime type is correct
-    bool isEPubFormat = isEPubFormat(extractionLocation);
-    if(!isEPubFormat){ //handle error condition
-      aBook.setIsBookParsed(false);
-      return aBook;
-    }
-    //Determine the location of OPF File
-    string locationOfOPFFile = getOPFFileLocation(extractionLocation);
-    if("false" == locationOfOPFFile){ //handle error condition
-      aBook.setIsBookParsed(false);
-      return aBook;
-    }
-    string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
-    aBook.setBaseLocationOfContents(baseLocationOfContents);
+    //Only parse the eBook if it has not been parsed already
+    if(!aBook.getIsBookParsed()){
+      debug ("Starting to parse EPub Book located at:"+aBook.getBookLocation());
+      //Extract the content of the EPub
+      string extractionLocation = extractEBook(aBook.getBookLocation());
+      if("false" == extractionLocation){ //handle error condition
+        aBook.setIsBookParsed(false);
+        return aBook;
+      }else{
+        aBook.setBookExtractionLocation(extractionLocation);
+      }
+      //Check if the EPUB mime type is correct
+      bool isEPubFormat = isEPubFormat(extractionLocation);
+      if(!isEPubFormat){ //handle error condition
+        aBook.setIsBookParsed(false);
+        return aBook;
+      }
+      //Determine the location of OPF File
+      string locationOfOPFFile = getOPFFileLocation(extractionLocation);
+      if("false" == locationOfOPFFile){ //handle error condition
+        aBook.setIsBookParsed(false);
+        return aBook;
+      }
+      string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
+      aBook.setBaseLocationOfContents(baseLocationOfContents);
 
-    //Determine Manifest contents
-    ArrayList<string> manifestItemsList = parseManifestData(locationOfOPFFile);
-    if("false" == manifestItemsList.get(0)){
-      aBook.setIsBookParsed(false);
-      return aBook;
+      //Determine Manifest contents
+      ArrayList<string> manifestItemsList = parseManifestData(locationOfOPFFile);
+      if("false" == manifestItemsList.get(0)){
+        aBook.setIsBookParsed(false);
+        return aBook;
+      }
+
+      //Determine Spine contents
+      ArrayList<string> spineItemsList = parseSpineData(locationOfOPFFile);
+      if("false" == spineItemsList.get(0)){
+        aBook.setIsBookParsed(false);
+        return aBook;
+      }
+
+      //Match Spine with Manifest to populate conetnt list for EPub Book
+      aBook = getContentList(aBook, manifestItemsList, spineItemsList);
+      if(aBook.getBookContentList().size < 1){
+        aBook.setIsBookParsed(false);
+        return aBook;
+      }
+
+      //Determine Book Cover Image
+      aBook = setCoverImage(aBook, manifestItemsList);
+
+      //Determine Book Meta Data like Title, Author, etc
+      aBook = setBookMetaData(aBook, locationOfOPFFile);
+      
+      aBook.setIsBookParsed(true);
+      debug ("Sucessfully parsed EPub Book located at:"+aBook.getBookLocation());
     }
-
-    //Determine Spine contents
-    ArrayList<string> spineItemsList = parseSpineData(locationOfOPFFile);
-    if("false" == spineItemsList.get(0)){
-      aBook.setIsBookParsed(false);
-      return aBook;
-    }
-
-    //Match Spine with Manifest to populate conetnt list for EPub Book
-    aBook = getContentList(aBook, manifestItemsList, spineItemsList);
-    if(aBook.getBookContentList().size < 1){
-      aBook.setIsBookParsed(false);
-      return aBook;
-    }
-
-    //Determine Book Cover Image
-    aBook = getCoverImage(aBook, manifestItemsList);
-
-    //Determine Book Meta Data like Title, Author, etc
-    aBook = getBookMetaData(aBook, locationOfOPFFile);
-
-    aBook.setIsBookParsed(true);
-    debug ("Sucessfully parsed EPub Book located at:"+aBook.getBookLocation());
     return aBook;
   }
 
@@ -213,6 +217,14 @@ public class BookwormApp.ePubReader {
       return spineItemsList;
     }
     string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
+    //check TOC id in Spine data and add as first item to Spine List
+    int startTOCPosition = spineData.index_of("toc=\"");
+    int endTOCPosition = spineData.index_of("\"", startTOCPosition+("toc=\"").length+1);
+    if(startTOCPosition != -1 && endTOCPosition != -1 && endTOCPosition>startTOCPosition) {
+      spineItemsList.add(spineData.slice(startTOCPosition, endTOCPosition));
+      debug("TOC ID="+spineData.slice(startTOCPosition, endTOCPosition));
+    }
+
     string[] spineList = BookwormApp.Utils.multiExtractBetweenTwoStrings (spineData, "<itemref", ">");
     foreach(string spineItem in spineList){
       debug("Spine Item="+spineItem);
@@ -231,12 +243,62 @@ public class BookwormApp.ePubReader {
   public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, ArrayList<string> manifestItemsList, ArrayList<string> spineItemsList){
     StringBuilder bufferForSpineData = new StringBuilder("");
     StringBuilder bufferForLocationOfContentData = new StringBuilder("");
-    //loop over spine items
+    //extract location of ncx file if present on the first index of the Spine List
+    if(spineItemsList.get(0).contains("toc=\"")){
+      int tocRefStartPos = spineItemsList.get(0).index_of("toc=\"")+("toc=\"").length;
+      if((tocRefStartPos-("toc=\"").length) != -1){
+        bufferForSpineData.assign(spineItemsList.get(0).slice(tocRefStartPos, spineItemsList.get(0).length));
+      }else{
+        bufferForSpineData.assign("");
+      }
+      if(bufferForSpineData.str.length > 0){
+        //loop over manifest data to get location of TOC file
+        foreach(string manifestItem in manifestItemsList){
+          if(manifestItem.index_of("id=\""+bufferForSpineData.str+"\"") != -1){
+            int startPosOfNCXContentItem = manifestItem.index_of("href=")+("href=").length+1 ;
+            int endPosOfNCXContentItem = manifestItem.index_of("\"", startPosOfNCXContentItem+1);
+            if(startPosOfNCXContentItem != -1 && endPosOfNCXContentItem != -1 && endPosOfNCXContentItem>startPosOfNCXContentItem){
+              bufferForLocationOfContentData.assign(manifestItem.slice(startPosOfNCXContentItem, endPosOfNCXContentItem));
+              debug("SpineData="+bufferForSpineData.str+" | Location Of NCX ContentData="+bufferForLocationOfContentData.str);
+              //Read ncx file
+              string navigationData = BookwormApp.Utils.fileOperations("READ_FILE", (BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(),bufferForLocationOfContentData.str.strip())).strip(), "", "");
+              string[] navPointList = BookwormApp.Utils.multiExtractBetweenTwoStrings(navigationData, "<navPoint", "</navPoint>");
+              if(navPointList.length > 0){
+                foreach(string navPointItem in navPointList){
+                  //debug("navPointItem:"+navPointItem);
+                  string tocText = BookwormApp.Utils.extractXMLTag(navPointItem, "<text>", "</text>");
+                  int tocNavStartPoint = navPointItem.index_of("src=\"");
+                  int tocNavEndPoint = navPointItem.index_of("\"", tocNavStartPoint+("src=\"").length);
+                  if(tocNavStartPoint != -1 && tocNavEndPoint != -1 && tocNavEndPoint>tocNavStartPoint){
+                    string tocNavLocation = navPointItem.slice(tocNavStartPoint+("src=\"").length, tocNavEndPoint).strip();
+                    if(tocNavLocation.index_of("#") != -1){
+        							tocNavLocation = tocNavLocation.slice(0, tocNavLocation.index_of("#"));
+        						}
+                    tocNavLocation = BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(), tocNavLocation);
+                    if(tocNavLocation.length>0){
+                      debug("tocText="+tocText+", tocNavLocation="+tocNavLocation);
+                      HashMap<string,string> TOCMapItem = new HashMap<string,string>();
+                      TOCMapItem.set(tocNavLocation, tocText);
+                      aBook.setTOC(TOCMapItem);
+                    }
+                  }
+                }
+              }
+            }
+            break;
+          }
+        }
+      }
+    }
+
+    //loop over remaning spine items(ncx file will be ignored as it will not have a prefix of idref)
     foreach(string spineItem in spineItemsList){
       int startPosOfSpineItem = spineItem.index_of("idref=")+("idref=").length+1;
       int endPosOfSpineItem = spineItem.index_of("\"", startPosOfSpineItem+1);
       if(startPosOfSpineItem != -1 && endPosOfSpineItem != -1 && endPosOfSpineItem>startPosOfSpineItem){
         bufferForSpineData.assign(spineItem.slice(startPosOfSpineItem, endPosOfSpineItem));
+      }else{
+        bufferForSpineData.assign("");//clear spine buffer if the data does not contain idref
       }
       if(bufferForSpineData.str.length > 0){
         //loop over manifest items to match the spine item
@@ -254,11 +316,10 @@ public class BookwormApp.ePubReader {
         }
       }
     }
-
     return aBook;
   }
 
-  public static BookwormApp.Book getCoverImage (owned BookwormApp.Book aBook, ArrayList<string> manifestItemsList){
+  public static BookwormApp.Book setCoverImage (owned BookwormApp.Book aBook, ArrayList<string> manifestItemsList){
     debug("Initiated process for cover image extraction of eBook located at:"+aBook.getBookExtractionLocation());
     string bookCoverLocation = "";
     //determine the location of the book's cover image
@@ -275,7 +336,6 @@ public class BookwormApp.ePubReader {
     //check if cover was not found and assign flag
     if(bookCoverLocation == null || bookCoverLocation.length < 1){
       aBook.setIsBookCoverImagePresent(false);
-      //aBook.setBookCoverLocation(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION);
       debug("eBook cover image not found");
     }else{
       //cover was extracted from the ebook contents
@@ -290,7 +350,7 @@ public class BookwormApp.ePubReader {
     return aBook;
   }
 
-  public static BookwormApp.Book getBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
+  public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
     debug("Initiated process for finding title of eBook located at:"+aBook.getBookExtractionLocation());
     string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
     //determine the title of the book
@@ -318,18 +378,7 @@ public class BookwormApp.ePubReader {
     string baseLocationOfContents = aBook.getBaseLocationOfContents();
     int currentContentLocation = 0;
     switch(direction){
-      case "TABLE_OF_CONTENTS": // Generate the table of contents
-        //render the table of content
-        if(aBook.getTOCHTMLContent() == null || aBook.getTOCHTMLContent().length < 1 ){
-          if(aBook.getBookContentList() != null && aBook.getBookContentList().size > 0){
-            aBook.setTOCHTMLContent(BookwormApp.Utils.createTableOfContents(aBook.getBookContentList()));
-          }else{
-            aBook = parseEPubBook(aBook);
-            aBook.setTOCHTMLContent(BookwormApp.Utils.createTableOfContents(aBook.getBookContentList()));
-          }
-        }
-        aWebView.load_html(aBook.getTOCHTMLContent(), BookwormApp.Constants.PREFIX_FOR_FILE_URL);
-        break;
+
       default: // this case is for moving forward or backward
         //check current content location of book
         if(aBook.getBookPageNumber() != -1){

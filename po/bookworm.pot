@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 23:08+0000\n"
+"POT-Creation-Date: 2017-03-07 22:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,86 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/bookworm.vala:82
-msgid "Display version number"
+#: src/constants.vala:54
+msgid "About"
 msgstr ""
 
-#: src/bookworm.vala:83
-msgid "Run Bookworm in debug mode"
+#: src/constants.vala:74
+msgid "All Files"
+msgstr ""
+
+#: src/constants.vala:26
+msgid "An eBook Reader"
+msgstr ""
+
+#: src/constants.vala:47
+msgid "Bookmarks"
+msgstr ""
+
+#: src/constants.vala:40
+msgid "Build your library by adding eBooks"
+msgstr ""
+
+#: src/constants.vala:46
+msgid "Content #"
+msgstr ""
+
+#: src/constants.vala:45
+msgid "Contents"
+msgstr ""
+
+#: src/constants.vala:55
+msgid "Font"
+msgstr ""
+
+#: src/constants.vala:28
+msgid "Launchpad Translators"
+msgstr ""
+
+#: src/constants.vala:43
+msgid "Library"
+msgstr ""
+
+#: src/constants.vala:39
+msgid "Looks like Bookworm has no books !"
+msgstr ""
+
+#: src/constants.vala:36
+msgid "Not Available"
+msgstr ""
+
+#: src/constants.vala:44
+msgid "Resume"
+msgstr ""
+
+#: src/constants.vala:48
+msgid "Search Results"
+msgstr ""
+
+#: src/constants.vala:38
+msgid "Search here..."
+msgstr ""
+
+#: src/constants.vala:41
+msgid "Select an eBook to read"
+msgstr ""
+
+#: src/constants.vala:42
+msgid "The content could not be read...."
+msgstr ""
+
+#: src/constants.vala:53
+msgid "Unknown Book"
+msgstr ""
+
+#: src/constants.vala:34
+msgid "Website"
+msgstr ""
+
+#: src/constants.vala:37
+msgid "eBook Reader"
+msgstr ""
+
+#: src/constants.vala:75
+msgid "ePUB Files"
 msgstr ""

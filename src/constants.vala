@@ -31,7 +31,6 @@ namespace BookwormApp.Constants {
 	public const string help_url = "https://github.com/babluboy/bookworm/wiki";
 	public const string translate_url = "https://translations.launchpad.net/bookworm";
 
-
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = _("Website");
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://github.com/babluboy/bookworm/wiki";
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
@@ -43,6 +42,10 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_RENDERING_ISSUE = _("The content could not be read....");
 	public const string TEXT_FOR_LIBRARY_BUTTON = _("Library");
 	public const string TEXT_FOR_RESUME_BUTTON = _("Resume");
+	public const string TEXT_FOR_INFO_TAB_CONTENTS = _("Contents");
+	public const string TEXT_FOR_INFO_TAB_CONTENT_PREFIX = _("Content #");
+	public const string TEXT_FOR_INFO_TAB_BOOKMARKS = _("Bookmarks");
+	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
 
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
@@ -71,7 +74,12 @@ namespace BookwormApp.Constants {
 	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
 	public static const string FILE_CHOOSER_FILTER_EPUB_FILES = _("ePUB Files");
 
-	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE","READING_MODE", "SELECTION_MODE", "SELECTED_MODE", "CONTENT_MODE"};
+	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE",
+																										 "READING_MODE",
+																										 "SELECTION_MODE",
+																										 "SELECTED_MODE",
+																										 "CONTENT_MODE",
+																										 };
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
 	public static const string IDENTIFIER_FOR_PROPERTY_START = "~~";
 	public static const string IDENTIFIER_FOR_PROPERTY_END = "##\n";
