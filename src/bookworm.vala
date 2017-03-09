@@ -168,7 +168,7 @@ namespace BookwormApp {
 						window.set_default_size(1200, 700);
 					}
 				}
-				window.set_border_width (Constants.SPACING_WIDGETS);
+				window.set_border_width (0);
 				window.set_position (Gtk.WindowPosition.CENTER);
 				window.window_position = Gtk.WindowPosition.CENTER;
 				//set the minimum size of the window on minimize
@@ -196,12 +196,11 @@ namespace BookwormApp {
 				//show welcome screen if no book is present in library instead of the normal library view
 				if(libraryViewMap.size == 0){
 					window.add(welcomeWidget);
-					window.show_all();
 				}else{
 					window.add(bookWormUIBox);
-					window.show_all();
-					toggleUIState();
 				}
+				window.show_all();
+				toggleUIState();
 
 				//capture window re-size events and save the window size
 				window.size_allocate.connect(() => {
@@ -364,6 +363,7 @@ namespace BookwormApp {
 
 			//Create a box to display the book library
 			library_grid = new Gtk.FlowBox();
+			library_grid.set_border_width (BookwormApp.Constants.SPACING_WIDGETS);
 			library_grid.column_spacing = BookwormApp.Constants.SPACING_WIDGETS;
 			library_grid.row_spacing = BookwormApp.Constants.SPACING_WIDGETS;
 			library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
@@ -394,6 +394,7 @@ namespace BookwormApp {
 
 			//Create a footer to select/add/remove books
 			Gtk.Box add_remove_footer_box = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
+			add_remove_footer_box.set_border_width(BookwormApp.Constants.SPACING_BUTTONS);
 			//Set up contents of the add/remove books footer label
 			add_remove_footer_box.pack_start (select_book_button, false, true, 0);
 			add_remove_footer_box.pack_start (add_book_button, false, true, 0);
@@ -438,11 +439,13 @@ namespace BookwormApp {
 			bookReading_ui_box.pack_start (aWebView, true, true, 0);
       bookReading_ui_box.pack_start (book_reading_footer_box, false, true, 0);
 
+
 			//Add all ui components to the main UI box
 			Gtk.Box main_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
 			main_ui_box.pack_start(bookLibrary_ui_box, true, true, 0);
 			main_ui_box.pack_start(BookwormApp.Info.createBookInfo(), true, true, 0);
 			main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
+			main_ui_box.get_style_context().add_class ("containerBoxes");
 
 			//Add all UI action listeners
 
