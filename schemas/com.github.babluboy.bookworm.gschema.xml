@@ -24,5 +24,9 @@
 				<default>false</default>
 				<summary>Save maximized state of window</summary>
 		</key>
+		<key name="zoom-level" type="d">
+				<default>1.0</default>
+				<summary>Save Zoom Level of WebView</summary>
+		</key>
   </schema>
 </schemalist>

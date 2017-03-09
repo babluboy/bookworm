@@ -73,7 +73,7 @@ public class BookwormApp.ePubReader {
 
       //Determine Book Meta Data like Title, Author, etc
       aBook = setBookMetaData(aBook, locationOfOPFFile);
-      
+
       aBook.setIsBookParsed(true);
       debug ("Sucessfully parsed EPub Book located at:"+aBook.getBookLocation());
     }
@@ -265,8 +265,11 @@ public class BookwormApp.ePubReader {
               string[] navPointList = BookwormApp.Utils.multiExtractBetweenTwoStrings(navigationData, "<navPoint", "</navPoint>");
               if(navPointList.length > 0){
                 foreach(string navPointItem in navPointList){
-                  //debug("navPointItem:"+navPointItem);
                   string tocText = BookwormApp.Utils.extractXMLTag(navPointItem, "<text>", "</text>");
+                  //Decode any HTML escape chars to normal chars
+                  unichar accel_char;
+                  Pango.parse_markup (tocText, tocText.length, 0, null, out tocText, out accel_char);
+
                   int tocNavStartPoint = navPointItem.index_of("src=\"");
                   int tocNavEndPoint = navPointItem.index_of("\"", tocNavStartPoint+("src=\"").length);
                   if(tocNavStartPoint != -1 && tocNavEndPoint != -1 && tocNavEndPoint>tocNavStartPoint){

@@ -49,6 +49,7 @@ namespace BookwormApp {
 		public Gtk.Box bookReading_ui_box;
 		public Gtk.Button library_view_button;
 		public Gtk.Button content_list_button;
+		public Gtk.Box textSizeBox;
 		public ScrolledWindow library_scroll;
 		public Gtk.FlowBox library_grid;
 		public Gdk.Pixbuf bookSelectionPix;
@@ -155,8 +156,9 @@ namespace BookwormApp {
 				window = new Gtk.Window ();
 				add_window (window);
 
-				//set window attributes from saved settings
+				//retrieve Settings
 				settings = BookwormApp.Settings.get_instance();
+				//set window attributes from saved settings
 				if(settings.window_is_maximized){
 					window.maximize();
 				}else{
@@ -171,6 +173,19 @@ namespace BookwormApp {
 				window.window_position = Gtk.WindowPosition.CENTER;
 				//set the minimum size of the window on minimize
 				window.set_size_request (600, 350);
+
+				//set css provider
+				var cssProvider = new Gtk.CssProvider();
+				try{
+					cssProvider.load_from_path(BookwormApp.Constants.CSS_LOCATION);
+				}catch(GLib.Error e){
+					warning("Stylesheet could not be loaded. Error:"+e.message);
+				}
+				Gtk.StyleContext.add_provider_for_screen(
+													Gdk.Screen.get_default(),
+													cssProvider,
+													Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+												 );
 
 				//add window components
 				create_headerbar(window);
@@ -214,7 +229,7 @@ namespace BookwormApp {
 
 			//add menu items to header bar - content list button
 			library_view_button = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
-			library_view_button.get_style_context ().add_class ("back-button");
+			library_view_button.get_style_context().add_class ("back-button");
 			library_view_button.valign = Gtk.Align.CENTER;
 			library_view_button.can_focus = false;
 			library_view_button.vexpand = false;
@@ -224,8 +239,20 @@ namespace BookwormApp {
 			content_list_button = new Gtk.Button ();
 			content_list_button.set_image (content_list_button_image);
 
+			Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", IconSize.BUTTON);
+			Gtk.Image menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", IconSize.BUTTON);
+			Gtk.Button textLargerButton = new Gtk.Button();
+			textLargerButton.set_image (menu_icon_text_large);
+			Gtk.Button textSmallerButton = new Gtk.Button();
+			textSmallerButton.set_image (menu_icon_text_small);
+			textSizeBox = new Gtk.Box(Orientation.HORIZONTAL, 0);
+			textSizeBox.get_style_context().add_class(Gtk.STYLE_CLASS_LINKED);
+			textSizeBox.pack_start(textSmallerButton, false, false);
+			textSizeBox.pack_start(textLargerButton, false, false);
+
 			headerbar.pack_start(library_view_button);
 			headerbar.pack_start(content_list_button);
+			headerbar.pack_start(textSizeBox);
 
 			//add menu items to header bar - Menu
 			Gtk.MenuButton appMenu;
@@ -279,6 +306,12 @@ namespace BookwormApp {
 				//Set the mode to Content View Mode
 				BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
 				toggleUIState();
+			});
+			textLargerButton.clicked.connect (() => {
+				aWebView.set_zoom_level (aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+			});
+			textSmallerButton.clicked.connect (() => {
+				aWebView.set_zoom_level (aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
 			});
 			debug("Completed loading HeaderBar sucessfully...");
 		}
@@ -379,7 +412,7 @@ namespace BookwormApp {
 			//webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
 	    webkitSettings.set_auto_load_images(true);
 	    aWebView = new WebKit.WebView.with_settings(webkitSettings);
-			//aWebView.set_zoom_level (6.0); // use this for page zooming
+			aWebView.set_zoom_level(settings.zoom_level);
 
 			//Set up Button for previous page
 			Gtk.Image back_button_image = new Gtk.Image ();
@@ -863,6 +896,7 @@ namespace BookwormApp {
 				bookLibrary_ui_box.set_visible(true);
 				bookReading_ui_box.set_visible(false);
 				BookwormApp.Info.info_box.set_visible(false);
+				textSizeBox.set_visible(false);
 			}
 			//Reading Mode
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
@@ -873,6 +907,7 @@ namespace BookwormApp {
 				bookLibrary_ui_box.set_visible(false);
 				bookReading_ui_box.set_visible(true);
 				BookwormApp.Info.info_box.set_visible(false);
+				textSizeBox.set_visible(true);
 			}
 			//Book Meta Data / Content View Mode
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
@@ -885,6 +920,7 @@ namespace BookwormApp {
 				bookReading_ui_box.set_visible(false);
 				BookwormApp.Info.info_box.set_visible(true);
 				BookwormApp.Info.stack.set_visible_child_name ("content-list");
+				textSizeBox.set_visible(false);
 			}
 		}
 
@@ -918,6 +954,7 @@ namespace BookwormApp {
 			}else{
 				settings.window_is_maximized = false;
 			}
+			settings.zoom_level = aWebView.get_zoom_level();
 			/*
 			debug("Window state saved in Settings with values
 						 width="+width.to_string()+",
@@ -927,6 +964,5 @@ namespace BookwormApp {
 					 );
 			*/
 		}
-
 	}
 }

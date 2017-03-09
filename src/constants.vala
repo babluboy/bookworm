@@ -49,11 +49,13 @@ namespace BookwormApp.Constants {
 
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
+	public const double ZOOM_CHANGE_VALUE = 0.1;
 
 	public const string TEXT_FOR_UNKNOWN_TITLE = _("Unknown Book");
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
 	public const string TEXT_FOR_PREF_MENU_FONT_ITEM = _("Font");
 
+	public static const string CSS_LOCATION = "/usr/share/bookworm/com.github.babluboy.bookworm.app.css";
 	public static const string PREV_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-previous.svg";
 	public static const string NEXT_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-next.svg";
 	public static const string ADD_BOOK_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-add.svg";

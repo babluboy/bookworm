@@ -24,6 +24,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
   public int pos_x { get; set; }
   public int pos_y { get; set; }
   public bool window_is_maximized { get; set; }
+  public double zoom_level { get; set; }
 
   public static Settings get_instance () {
     if (instance == null) {

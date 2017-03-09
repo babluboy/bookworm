@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-07 22:09+0000\n"
+"POT-Creation-Date: 2017-03-09 19:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/constants.vala:54
+#: src/constants.vala:55
 msgid "About"
 msgstr ""
 
-#: src/constants.vala:74
+#: src/constants.vala:76
 msgid "All Files"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Contents"
 msgstr ""
 
-#: src/constants.vala:55
+#: src/constants.vala:56
 msgid "Font"
 msgstr ""
 
@@ -85,7 +85,7 @@ msgstr ""
 msgid "The content could not be read...."
 msgstr ""
 
-#: src/constants.vala:53
+#: src/constants.vala:54
 msgid "Unknown Book"
 msgstr ""
 
@@ -97,6 +97,6 @@ msgstr ""
 msgid "eBook Reader"
 msgstr ""
 
-#: src/constants.vala:75
+#: src/constants.vala:77
 msgid "ePUB Files"
 msgstr ""

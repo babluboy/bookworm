@@ -131,6 +131,7 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-defaultbook-d
 
 
 
-# install bookworm .desktop file so the Applications menu will see it
+# install app specific desktop, appdata and css files
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.desktop DESTINATION ${DATADIR}/applications)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.appdata.xml DESTINATION ${DATADIR}/appdata)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.app.css DESTINATION ${DATADIR}/bookworm)
