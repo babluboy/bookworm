@@ -1,6 +1,7 @@
 /* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
-* This file is part of Bookworm.
+* This file is part of Bookworm and is used as the single place for
+* holding all translatable strings and app constants
 *
 * Bookworm is free software: you can redistribute it
 * and/or modify it under the terms of the GNU General Public License as
@@ -39,7 +40,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
-	public const string TEXT_FOR_RENDERING_ISSUE = _("The content could not be read....");
+	public const string TEXT_FOR_RENDERING_ISSUE = _("Problem in opening selected book");
 	public const string TEXT_FOR_LIBRARY_BUTTON = _("Library");
 	public const string TEXT_FOR_RESUME_BUTTON = _("Resume");
 	public const string TEXT_FOR_INFO_TAB_CONTENTS = _("Contents");

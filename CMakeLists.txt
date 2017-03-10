@@ -32,6 +32,7 @@ set (SOURCE_LIST
     src/database.vala
     src/settings.vala
     src/bookinfo.vala
+    src/headerbar.vala
 )
 
 include (GSettings)
@@ -93,6 +94,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/database.vala
     src/settings.vala
     src/bookinfo.vala
+    src/headerbar.vala
 
 # tell what libraries to use when compiling
 PACKAGES

@@ -83,15 +83,20 @@ public class BookwormApp.ePubReader {
   public static string extractEBook(string eBookLocation){
     string extractionLocation = "";
     try{
-    debug("Initiated process for content extraction of ePub Book located at:"+eBookLocation);
-    //create temp location for extraction of eBook
-    extractionLocation = BookwormApp.Constants.EPUB_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
-    //check and create directory for extracting contents of ebook
-    BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
-    //unzip eBook contents into temp location
-    BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
+      debug("Initiated process for content extraction of ePub Book located at:"+eBookLocation);
+      //check if ebook is present at provided location
+      if("false" == BookwormApp.Utils.fileOperations("EXISTS", "", eBookLocation, "")){
+        warning("EBook not found at provided location:"+eBookLocation);
+        return "false";
+      }
+      //create temp location for extraction of eBook
+      extractionLocation = BookwormApp.Constants.EPUB_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
+      //check and create directory for extracting contents of ebook
+      BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
+      //unzip eBook contents into temp location
+      BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
     }catch(Error e){
-      warning("Issue in Content Extraction for ePub Book ["+eBookLocation+"]:%s"+e.message);
+      warning("Problem in Content Extraction for ePub Book ["+eBookLocation+"]:%s"+e.message);
       return "false";
     }
     debug("eBook contents extracted sucessfully into location:"+extractionLocation);
@@ -362,6 +367,9 @@ public class BookwormApp.ePubReader {
       int endOfTittleText = OpfContents.index_of("</dc:title>", startOfTitleText);
       if(startOfTitleText != -1 && endOfTittleText != -1 && endOfTittleText > startOfTitleText){
         string bookTitle = OpfContents.slice(startOfTitleText+1, endOfTittleText);
+        //Decode any HTML escape chars to normal chars
+        unichar accel_char;
+        Pango.parse_markup (bookTitle, bookTitle.length, 0, null, out bookTitle, out accel_char);
         aBook.setBookTitle(bookTitle);
         debug("Determined eBook Title as:"+bookTitle);
       }else{

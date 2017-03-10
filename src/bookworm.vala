@@ -1,6 +1,6 @@
 /* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
-* This file is part of Bookworm.
+* This file is part of Bookworm and is the main Application class
 *
 * Bookworm is free software: you can redistribute it
 * and/or modify it under the terms of the GNU General Public License as
@@ -35,7 +35,6 @@ namespace BookwormApp {
 		[CCode (array_length = false, array_null_terminated = true)]
 		public static string command_line_option_monitor = "";
 		public new OptionEntry[] options;
-		public Gtk.SearchEntry headerSearchBar;
 		public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
 
 		public BookwormApp.Settings settings;
@@ -43,7 +42,6 @@ namespace BookwormApp {
 		public Gtk.Box bookWormUIBox;
 		public static WebKit.WebView aWebView;
 		public ePubReader aReader;
-		public Gtk.HeaderBar headerbar;
 		public Granite.Widgets.Welcome welcomeWidget;
 		public Gtk.Box bookLibrary_ui_box;
 		public Gtk.Box bookReading_ui_box;
@@ -55,6 +53,8 @@ namespace BookwormApp {
 		public Gdk.Pixbuf bookSelectionPix;
 		public Gdk.Pixbuf bookSelectedPix;
 		public Gtk.Image bookSelectionImage;
+		public Gtk.InfoBar infobar;
+		public Gtk.Label infobarLabel;
 
 		public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 		public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
@@ -188,7 +188,7 @@ namespace BookwormApp {
 												 );
 
 				//add window components
-				create_headerbar(window);
+				window.set_titlebar (BookwormApp.AppHeaderBar.create_headerbar());
 				createWelcomeScreen();
 				bookWormUIBox = createBoookwormUI();
 				//load saved books from DB and add them to Library view
@@ -217,123 +217,6 @@ namespace BookwormApp {
 			}
 		}
 
-		private void create_headerbar(Gtk.Window window) {
-			debug("Starting creation of header bar..");
-			headerbar = new Gtk.HeaderBar();
-			headerbar.set_title(program_name);
-			headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
-			headerbar.set_show_close_button(true);
-			headerbar.spacing = Constants.SPACING_WIDGETS;
-			window.set_titlebar (headerbar);
-
-			//add menu items to header bar - content list button
-			library_view_button = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
-			library_view_button.get_style_context().add_class ("back-button");
-			library_view_button.valign = Gtk.Align.CENTER;
-			library_view_button.can_focus = false;
-			library_view_button.vexpand = false;
-
-			Gtk.Image content_list_button_image = new Gtk.Image ();
-			content_list_button_image.set_from_file (Constants.CONTENTS_VIEW_IMAGE_LOCATION);
-			content_list_button = new Gtk.Button ();
-			content_list_button.set_image (content_list_button_image);
-
-			Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", IconSize.BUTTON);
-			Gtk.Image menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", IconSize.BUTTON);
-			Gtk.Button textLargerButton = new Gtk.Button();
-			textLargerButton.set_image (menu_icon_text_large);
-			Gtk.Button textSmallerButton = new Gtk.Button();
-			textSmallerButton.set_image (menu_icon_text_small);
-			textSizeBox = new Gtk.Box(Orientation.HORIZONTAL, 0);
-			textSizeBox.get_style_context().add_class(Gtk.STYLE_CLASS_LINKED);
-			textSizeBox.pack_start(textSmallerButton, false, false);
-			textSizeBox.pack_start(textLargerButton, false, false);
-
-			headerbar.pack_start(library_view_button);
-			headerbar.pack_start(content_list_button);
-			headerbar.pack_start(textSizeBox);
-
-			//add menu items to header bar - Menu
-			Gtk.MenuButton appMenu;
-			Gtk.Menu settingsMenu;
-			Gtk.MenuItem showAbout;
-			showAbout = new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_ABOUT_ITEM);
-			showAbout.activate.connect (ShowAboutDialog);
-			appMenu = new Gtk.MenuButton ();
-			settingsMenu = new Gtk.Menu ();
-			settingsMenu.append (new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_FONT_ITEM));
-			settingsMenu.append (showAbout);
-			settingsMenu.show_all ();
-			var menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-			appMenu.set_image (menu_icon);
-			appMenu.popup = settingsMenu;
-			headerbar.pack_end (appMenu);
-
-			//Add a search entry to the header
-			headerSearchBar = new Gtk.SearchEntry();
-			headerSearchBar.set_text(Constants.TEXT_FOR_SEARCH_HEADERBAR);
-			headerbar.pack_end(headerSearchBar);
-			headerSearchBar.set_sensitive(false);
-			//Set actions for HeaderBar search
-			headerSearchBar.search_changed.connect (() => {
-
-			});
-			library_view_button.clicked.connect (() => {
-				//Set action of return to Library View if the current view is Reading View
-				if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-					//Update header to remove title of book being read
-					headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
-					//set UI in library view mode
-					BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-					updateLibraryViewForSelectionMode(null);
-					toggleUIState();
-				}
-
-				//Set action of return to Reading View if the current view is Content View
-				if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
-					//set UI in library view mode
-					BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-					BookwormApp.Book currentBookForContentList = libraryViewMap.get(locationOfEBookCurrentlyRead);
-					currentBookForContentList = BookwormApp.ePubReader.renderPage(aWebView, libraryViewMap.get(locationOfEBookCurrentlyRead), "");
-					libraryViewMap.set(locationOfEBookCurrentlyRead, currentBookForContentList);
-					toggleUIState();
-				}
-			});
-			content_list_button.clicked.connect (() => {
-				BookwormApp.Book aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
-				BookwormApp.Info.createTableOfContents(aBook);
-				//Set the mode to Content View Mode
-				BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
-				toggleUIState();
-			});
-			textLargerButton.clicked.connect (() => {
-				aWebView.set_zoom_level (aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);
-			});
-			textSmallerButton.clicked.connect (() => {
-				aWebView.set_zoom_level (aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
-			});
-			debug("Completed loading HeaderBar sucessfully...");
-		}
-
-		public virtual void ShowAboutDialog (){
-			Granite.Widgets.AboutDialog aboutDialog = new Granite.Widgets.AboutDialog();
-			aboutDialog.program_name = this.program_name;
-			aboutDialog.website = BookwormApp.Constants.TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL;
-			aboutDialog.website_label = BookwormApp.Constants.TEXT_FOR_ABOUT_DIALOG_WEBSITE;
-			aboutDialog.logo_icon_name = this.app_icon;
-			aboutDialog.version = this.build_version;
-			aboutDialog.authors = this.about_authors;
-			aboutDialog.comments = this.about_comments;
-			aboutDialog.license_type = this.about_license_type;
-			aboutDialog.translator_credits = this.about_translators;
-			aboutDialog.translate = this.translate_url;
-			aboutDialog.help = this.help_url;
-			aboutDialog.bug = this.bug_url;
-			aboutDialog.response.connect(() => {
-				aboutDialog.destroy ();
-			});
-		}
-
 		public Granite.Widgets.Welcome createWelcomeScreen(){
 			//Create a welcome screen for view of library with no books
 			welcomeWidget = new Granite.Widgets.Welcome (BookwormApp.Constants.TEXT_FOR_WELCOME_MESSAGE_TITLE, BookwormApp.Constants.TEXT_FOR_WELCOME_MESSAGE_SUBTITLE);
@@ -352,7 +235,7 @@ namespace BookwormApp {
 				//remove the welcome widget from main window
 				window.remove(welcomeWidget);
 				window.add(bookWormUIBox);
-				window.show_all();
+				bookWormUIBox.show_all();
 				toggleUIState();
 			});
 			return welcomeWidget;
@@ -400,9 +283,20 @@ namespace BookwormApp {
 			add_remove_footer_box.pack_start (add_book_button, false, true, 0);
 			add_remove_footer_box.pack_start (remove_book_button, false, true, 0);
 
+			//Create a MessageBar to show
+			infobar = new Gtk.InfoBar ();
+			infobarLabel = new Gtk.Label("");
+			Gtk.Container infobarContent = infobar.get_content_area ();
+			infobar.set_message_type (MessageType.INFO);
+			infobarContent.add (infobarLabel);
+			infobar.set_show_close_button (true);
+			infobar.response.connect(on_info_bar_closed);
+			infobar.hide();
+
 			//Create the UI for library view
 			bookLibrary_ui_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
 			//add all components to ui box for library view
+			bookLibrary_ui_box.pack_start (infobar, false, true, 0);
 			bookLibrary_ui_box.pack_start (library_scroll, true, true, 0);
 			bookLibrary_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
@@ -578,6 +472,11 @@ namespace BookwormApp {
 			return main_ui_box;
 		}
 
+		//Handle action for close of the InfoBar
+		private void on_info_bar_closed(){
+        infobar.hide();
+		}
+
 		public void loadBookwormState(){
 			//check and create required directory structure
 	    BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EPUB_EXTRACTION_LOCATION, "", "");
@@ -615,7 +514,6 @@ namespace BookwormApp {
 
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 			updateLibraryViewForSelectionMode(null);
-			window.show_all();
 			toggleUIState();
 		}
 
@@ -707,7 +605,7 @@ namespace BookwormApp {
 
 			//set the view mode to library view
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-			window.show_all();
+			library_grid.show_all();
 			toggleUIState();
 
 			//add listener for book objects based on mode
@@ -858,23 +756,34 @@ namespace BookwormApp {
 				//update the book into the Library view HashMap
 				libraryViewMap.set(lBook.getBookLocation(),lBook);
 			}
-			window.show_all();
+			library_grid.show_all();
 			toggleUIState();
 		}
 
 		public void readSelectedBook(owned BookwormApp.Book aBook){
 			//Extract and Parse the eBook (this will overwrite the contents already extracted)
 			aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
-			//render the contents of the current page of book
-			aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "");
-			//update book details to libraryView Map
-			libraryViewMap.set(aBook.getBookLocation(), aBook);
-			locationOfEBookCurrentlyRead = aBook.getBookLocation();
-			//Update header title
-			headerbar.subtitle = aBook.getBookTitle();
-			//change the application view to Book Reading mode
-			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-			toggleUIState();
+			//check if ebook was parsed sucessfully
+			if(!aBook.getIsBookParsed()){
+				StringBuilder warningMessage = new StringBuilder("");
+					warningMessage.append(BookwormApp.Constants.TEXT_FOR_RENDERING_ISSUE)
+												.append(" : ")
+												.append(aBook.getBookLocation());
+				infobarLabel.set_text(warningMessage.str);
+				infobar.set_message_type (MessageType.WARNING);
+				infobar.show();
+			}else{
+				//render the contents of the current page of book
+				aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "");
+				//update book details to libraryView Map
+				libraryViewMap.set(aBook.getBookLocation(), aBook);
+				locationOfEBookCurrentlyRead = aBook.getBookLocation();
+				//Update header title
+				BookwormApp.AppHeaderBar.get_headerbar().subtitle = aBook.getBookTitle();
+				//change the application view to Book Reading mode
+				BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+				toggleUIState();
+			}
 		}
 
 		public void updateLibraryViewFromDB(){
@@ -888,12 +797,16 @@ namespace BookwormApp {
 		}
 
 		public void toggleUIState(){
-
+			//hide the inforbar if there is no text in it
+			if(infobarLabel.get_text().length < 1){
+				infobar.hide();
+			}
+			
+			//UI for Library View
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
 				 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
 				 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]
 				){
-				//UI for Library View
 				content_list_button.set_visible(false);
 				library_view_button.set_visible(false);
 				bookLibrary_ui_box.set_visible(true);
@@ -915,7 +828,7 @@ namespace BookwormApp {
 			//Book Meta Data / Content View Mode
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
 				//UI for Reading View
-				window.show_all();
+				BookwormApp.Info.info_box.show_all();
 				content_list_button.set_visible(true);
 				library_view_button.set_visible(true);
 				library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_RESUME_BUTTON);

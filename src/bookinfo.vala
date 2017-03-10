@@ -18,7 +18,7 @@
 */
 using Gtk;
 using Gee;
-public class BookwormApp.Info:Gtk.Window{
+public class BookwormApp.Info:Gtk.Window {
   public static Box info_box;
   public static Gtk.Stack stack;
   public static Box content_box;
@@ -29,6 +29,7 @@ public class BookwormApp.Info:Gtk.Window{
   public static Gtk.Box createBookInfo(){
     debug("Starting to create BookInfo window components...");
     info_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+    info_box.set_border_width(BookwormApp.Constants.SPACING_WIDGETS);
 
     //define the stack for the tabbed view
     stack = new Gtk.Stack();
@@ -105,7 +106,7 @@ public class BookwormApp.Info:Gtk.Window{
     //Remove the existing content list Gtk.Box and add the current one
     content_scroll.get_child().destroy();
     content_scroll.add (content_box);
-    
+
     return aBook;
   }
 }
