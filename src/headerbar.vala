@@ -45,11 +45,15 @@ public class BookwormApp.AppHeaderBar {
     bookwormApp.content_list_button.set_image (content_list_button_image);
 
     Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", IconSize.BUTTON);
-    Gtk.Image menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", IconSize.BUTTON);
     Gtk.Button textLargerButton = new Gtk.Button();
     textLargerButton.set_image (menu_icon_text_large);
+    textLargerButton.set_halign(Gtk.Align.START);
+
+    Gtk.Image menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", IconSize.BUTTON);
     Gtk.Button textSmallerButton = new Gtk.Button();
     textSmallerButton.set_image (menu_icon_text_small);
+    textSmallerButton.set_halign(Gtk.Align.END);
+
     bookwormApp.textSizeBox = new Gtk.Box(Orientation.HORIZONTAL, 0);
     bookwormApp.textSizeBox.get_style_context().add_class(Gtk.STYLE_CLASS_LINKED);
     bookwormApp.textSizeBox.pack_start(textSmallerButton, false, false);
@@ -60,19 +64,23 @@ public class BookwormApp.AppHeaderBar {
     headerbar.pack_start(bookwormApp.textSizeBox);
 
     //add menu items to header bar - Menu
-    Gtk.MenuButton appMenu;
-    Gtk.Menu settingsMenu;
-    Gtk.MenuItem showAbout;
-    showAbout = new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_ABOUT_ITEM);
-    showAbout.activate.connect (ShowAboutDialog);
-    appMenu = new Gtk.MenuButton ();
-    settingsMenu = new Gtk.Menu ();
-    settingsMenu.append (new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_FONT_ITEM));
-    settingsMenu.append (showAbout);
-    settingsMenu.show_all ();
+    Gtk.MenuButton appMenu = new Gtk.MenuButton ();
     var menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
     appMenu.set_image (menu_icon);
+
+    Gtk.Menu settingsMenu = new Gtk.Menu ();
     appMenu.popup = settingsMenu;
+
+    Gtk.MenuItem prefferencesItem = new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_PREFERENCES_ITEM);
+    prefferencesItem.activate.connect (BookwormApp.AppDialog.createPreferencesDialog);
+    settingsMenu.append (prefferencesItem);
+
+    Gtk.MenuItem showAbout = new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_ABOUT_ITEM);
+    showAbout.activate.connect (ShowAboutDialog);
+    settingsMenu.append (showAbout);
+
+    settingsMenu.show_all ();
+
     headerbar.pack_end (appMenu);
 
     //Add a search entry to the header

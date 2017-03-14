@@ -48,13 +48,20 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_INFO_TAB_BOOKMARKS = _("Bookmarks");
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
 
+	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
+	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Colour Scheme");
+	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME_DAY_MODE = _("Day Mode");
+	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME_NIGHT_MODE = _("Night Mode");
+
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
 	public const double ZOOM_CHANGE_VALUE = 0.1;
+	public const string RGBA_HEX_WHITE = "#ffffff";
+	public const string RGBA_HEX_BLACK = "#002B36";
 
 	public const string TEXT_FOR_UNKNOWN_TITLE = _("Unknown Book");
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
-	public const string TEXT_FOR_PREF_MENU_FONT_ITEM = _("Font");
+	public const string TEXT_FOR_PREF_MENU_PREFERENCES_ITEM = _("Preferences");
 
 	public static const string CSS_LOCATION = "/usr/share/bookworm/com.github.babluboy.bookworm.app.css";
 	public static const string PREV_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-previous.svg";
@@ -77,12 +84,15 @@ namespace BookwormApp.Constants {
 	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
 	public static const string FILE_CHOOSER_FILTER_EPUB_FILES = _("ePUB Files");
 
+	public static const string BOOKWORM_READING_MODE[] = {"DAY MODE",
+																										 		"NIGHT MODE",
+																										   };
 	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE",
 																										 "READING_MODE",
 																										 "SELECTION_MODE",
 																										 "SELECTED_MODE",
 																										 "CONTENT_MODE",
-																										 };
+																										};
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
 	public static const string IDENTIFIER_FOR_PROPERTY_START = "~~";
 	public static const string IDENTIFIER_FOR_PROPERTY_END = "##\n";
@@ -91,4 +101,5 @@ namespace BookwormApp.Constants {
 	public const string EPUB_MIME_SPECIFICATION_CONTENT = "application/epub+zip";
 	public const string EPUB_META_INF_FILENAME = "META-INF/container.xml";
 	public const string[] TAG_NAME_WITH_PATHS = {"src=\"", "xlink:href=\"", "<link href=\""};
+	public const string JAVASCRIPT_FOR_WHITE_COLOR_FONT = "onload=\"javascript:document.getElementsByTagName('BODY')[0].style.color='white';\"";
 }

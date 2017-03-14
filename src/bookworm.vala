@@ -37,14 +37,16 @@ namespace BookwormApp {
 		public new OptionEntry[] options;
 		public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
 
-		public BookwormApp.Settings settings;
+		public static BookwormApp.Settings settings;
 		public Gtk.Window window;
 		public Gtk.Box bookWormUIBox;
 		public static WebKit.WebView aWebView;
 		public ePubReader aReader;
 		public Granite.Widgets.Welcome welcomeWidget;
 		public Gtk.Box bookLibrary_ui_box;
-		public Gtk.Box bookReading_ui_box;
+		public static Gtk.Box bookReading_ui_box;
+		public static Gtk.EventBox book_reading_footer_eventbox;
+		public static Gtk.Box book_reading_footer_box;
 		public Gtk.Button library_view_button;
 		public Gtk.Button content_list_button;
 		public Gtk.Box textSizeBox;
@@ -58,7 +60,7 @@ namespace BookwormApp {
 
 		public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 		public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
-		public string locationOfEBookCurrentlyRead = "";
+		public static string locationOfEBookCurrentlyRead = "";
 		public int countBooksAddedIntoLibraryRow = 0;
 
 		construct {
@@ -303,11 +305,12 @@ namespace BookwormApp {
 			//create the webview to display page content
 			WebKit.Settings webkitSettings = new WebKit.Settings();
 	    webkitSettings.set_allow_file_access_from_file_urls (true);
-	    webkitSettings.set_default_font_family("helvetica");
+	    webkitSettings.set_default_font_family("arial");
 			//webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
 	    webkitSettings.set_auto_load_images(true);
 	    aWebView = new WebKit.WebView.with_settings(webkitSettings);
 			aWebView.set_zoom_level(settings.zoom_level);
+			webkitSettings.set_enable_javascript(true);
 
 			//Set up Button for previous page
 			Gtk.Image back_button_image = new Gtk.Image ();
@@ -322,24 +325,26 @@ namespace BookwormApp {
 			forward_button.set_image (forward_button_image);
 
 			//Set up contents of the footer
-			Gtk.Box book_reading_footer_box = new Gtk.Box (Orientation.HORIZONTAL, 0);
+			book_reading_footer_eventbox = new Gtk.EventBox ();
+			book_reading_footer_box = new Gtk.Box (Orientation.HORIZONTAL, 0);
 			Gtk.Label pageNumberLabel = new Label("");
 			book_reading_footer_box.pack_start (back_button, false, true, 0);
 			book_reading_footer_box.pack_start (pageNumberLabel, true, true, 0);
 			book_reading_footer_box.pack_end (forward_button, false, true, 0);
+			book_reading_footer_box.set_border_width(BookwormApp.Constants.SPACING_BUTTONS);
+			book_reading_footer_eventbox.add(book_reading_footer_box);
 
 			//Create the Gtk Box to hold components for reading a selected book
-			bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+			bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
 			bookReading_ui_box.pack_start (aWebView, true, true, 0);
-      bookReading_ui_box.pack_start (book_reading_footer_box, false, true, 0);
-
+      bookReading_ui_box.pack_start (book_reading_footer_eventbox, false, true, 0);
 
 			//Add all ui components to the main UI box
 			Gtk.Box main_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
 			main_ui_box.pack_start(bookLibrary_ui_box, true, true, 0);
 			main_ui_box.pack_start(BookwormApp.Info.createBookInfo(), true, true, 0);
 			main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
-			main_ui_box.get_style_context().add_class ("containerBoxes");
+			main_ui_box.get_style_context().add_class ("box_white");
 
 			//Add all UI action listeners
 
@@ -484,7 +489,13 @@ namespace BookwormApp {
 			BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
 			//check if the database exists otherwise create database and required tables
 			bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
-
+			//Set the colour mode based on the user's last saved prefference setting
+			if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == settings.reading_profile){
+				applyProfile("NIGHT MODE");
+			}else{
+				//default to the Day Mode if no other mode is found in the settings
+				applyProfile("DAY MODE");
+			}
 			//Fetch details of Books from the database and update the grid
 			updateLibraryViewFromDB();
 		}
@@ -515,6 +526,29 @@ namespace BookwormApp {
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 			updateLibraryViewForSelectionMode(null);
 			toggleUIState();
+		}
+
+		public static void applyProfile(string profilename){
+			debug("Starting to apply profile["+profilename+"]...");
+			Gdk.RGBA rgba = Gdk.RGBA ();
+			bool parseRGBA;
+			switch(profilename){
+				case "NIGHT MODE":
+					parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_BLACK);
+					settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
+					break;
+				case "DAY MODE":
+					parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
+					settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[0];
+					break;
+				default:
+					break;
+			}
+			aWebView.set_background_color (rgba);
+			book_reading_footer_eventbox.override_background_color (Gtk.StateFlags.NORMAL, rgba);
+			book_reading_footer_box.override_background_color (Gtk.StateFlags.NORMAL, rgba);
+			bookReading_ui_box.override_background_color (Gtk.StateFlags.NORMAL, rgba);
+			debug("Completed applying profile["+profilename+"]...");
 		}
 
 		public ArrayList<string> selectBookFileChooser(){
@@ -801,7 +835,7 @@ namespace BookwormApp {
 			if(infobarLabel.get_text().length < 1){
 				infobar.hide();
 			}
-			
+
 			//UI for Library View
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
 				 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||

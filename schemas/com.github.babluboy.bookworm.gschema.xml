@@ -28,5 +28,9 @@
 				<default>1.0</default>
 				<summary>Save Zoom Level of WebView</summary>
 		</key>
+		<key name="reading-profile" type="s">
+				<default>"DAY MODE"</default>
+				<summary>Save the reading profile like Night Mode</summary>
+		</key>
   </schema>
 </schemalist>
