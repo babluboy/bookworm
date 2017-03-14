@@ -430,6 +430,7 @@ public class BookwormApp.ePubReader {
             contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
           }
         }
+
         string backgroundJS = "";
         //set font colour to white for Night Mode
         if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
@@ -439,6 +440,7 @@ public class BookwormApp.ePubReader {
         }
         contents.assign(contents.str.replace("<BODY", "<BODY "+backgroundJS));
         contents.assign(contents.str.replace("<body", "<body "+backgroundJS));
+
         //render the content on webview
         aWebView.load_html(contents.str, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
         break;

@@ -305,8 +305,7 @@ namespace BookwormApp {
 			//create the webview to display page content
 			WebKit.Settings webkitSettings = new WebKit.Settings();
 	    webkitSettings.set_allow_file_access_from_file_urls (true);
-	    webkitSettings.set_default_font_family("arial");
-			//webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
+	    //webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
 	    webkitSettings.set_auto_load_images(true);
 	    aWebView = new WebKit.WebView.with_settings(webkitSettings);
 			aWebView.set_zoom_level(settings.zoom_level);
@@ -529,6 +528,7 @@ namespace BookwormApp {
 		}
 
 		public static void applyProfile(string profilename){
+
 			debug("Starting to apply profile["+profilename+"]...");
 			Gdk.RGBA rgba = Gdk.RGBA ();
 			bool parseRGBA;
@@ -536,19 +536,19 @@ namespace BookwormApp {
 				case "NIGHT MODE":
 					parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_BLACK);
 					settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
+					Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 					break;
 				case "DAY MODE":
 					parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
 					settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[0];
+					Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
 					break;
 				default:
 					break;
 			}
 			aWebView.set_background_color (rgba);
-			book_reading_footer_eventbox.override_background_color (Gtk.StateFlags.NORMAL, rgba);
-			book_reading_footer_box.override_background_color (Gtk.StateFlags.NORMAL, rgba);
-			bookReading_ui_box.override_background_color (Gtk.StateFlags.NORMAL, rgba);
 			debug("Completed applying profile["+profilename+"]...");
+
 		}
 
 		public ArrayList<string> selectBookFileChooser(){

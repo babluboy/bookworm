@@ -37,20 +37,13 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
     prefBox.pack_start(colourScheme, false, false);
 
     Gtk.EventBox whiteEventBox = new Gtk.EventBox();
-    whiteEventBox.get_style_context().add_class ("box_white");
     Gtk.Button whiteProfilebutton = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME_DAY_MODE);
     whiteEventBox.add(whiteProfilebutton);
-    bool parseWhiteRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
-    whiteEventBox.override_background_color (Gtk.StateFlags.NORMAL, rgba);
     prefBox.pack_end(whiteEventBox, false, false);
 
     Gtk.EventBox blackEventBox = new Gtk.EventBox();
-    blackEventBox.get_style_context().add_class ("box_black");
     Gtk.Button blackProfilebutton = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME_NIGHT_MODE);
-    blackProfilebutton.get_style_context().add_class ("white_text");
     blackEventBox.add(blackProfilebutton);
-    bool parseBlackRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_BLACK);
-    blackEventBox.override_background_color (Gtk.StateFlags.NORMAL, rgba);
     prefBox.pack_end(blackEventBox, false, false);
 
     Gtk.Box content = dialog.get_content_area () as Gtk.Box;
