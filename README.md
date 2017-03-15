@@ -33,10 +33,16 @@ make
 
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormLibraryView.jpeg)
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormReadingView.jpeg)
+
 Bookworm in Night View Mode
+
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormNightLibraryView.jpeg)
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormNightReadingView.jpeg)
+
 Selection for deleting books from the library
+
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormBookSelection.jpeg)
+
 Welcome message for first time launch
+
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormWelcomeScreen.jpeg)
