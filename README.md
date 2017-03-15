@@ -5,7 +5,7 @@ Author: Siddhartha Das
 
 The goal of Bookworm is to provide a uniform user experience for multiple electronic document formats like epub,pdf, mobi, etc. Currently Bookworm is in a very draft stage with support for epub format only.
 
-##How to install bookworm:
+## How to install bookworm:
 
 ```shell
 sudo add-apt-repository ppa:bookworm-team/bookworm
@@ -33,7 +33,16 @@ make
 
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormLibraryView.jpeg)
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormReadingView.jpeg)
+
+Bookworm in Night View Mode
+
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormNightLibraryView.jpeg)
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormNightReadingView.jpeg)
+
+Selection for deleting books from the library
+
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormBookSelection.jpeg)
+
+Welcome message for first time launch
+
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormWelcomeScreen.jpeg)
