@@ -5,98 +5,109 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="16"
-   id="svg7384"
-   version="1.1"
-   width="16"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="bookworm-view-list-symbolic.svg">
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="654"
-     inkscape:window-height="480"
-     id="namedview18"
-     showgrid="false"
-     inkscape:zoom="14.75"
-     inkscape:cx="8"
-     inkscape:cy="8"
-     inkscape:window-x="0"
-     inkscape:window-y="30"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="layer12" />
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   width="16px"
+   height="16px"
+   id="svg5400"
+   version="1.1">
+  <defs
+     id="defs5402">
+    <linearGradient
+       id="linearGradient3821">
+      <stop
+         style="stop-color:#555555;stop-opacity:1;"
+         offset="0"
+         id="stop3823" />
+      <stop
+         style="stop-color:#666666;stop-opacity:1;"
+         offset="1"
+         id="stop3825" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient3821"
+       id="linearGradient4621"
+       gradientUnits="userSpaceOnUse"
+       x1="8"
+       y1="16"
+       x2="8"
+       y2="0"
+       gradientTransform="translate(1,2)" />
+    <linearGradient
+       xlink:href="#linearGradient3821"
+       id="linearGradient4629"
+       gradientUnits="userSpaceOnUse"
+       x1="8"
+       y1="16"
+       x2="8"
+       y2="0"
+       gradientTransform="translate(1,2)" />
+    <linearGradient
+       xlink:href="#linearGradient3821"
+       id="linearGradient4637"
+       gradientUnits="userSpaceOnUse"
+       x1="8"
+       y1="16"
+       x2="8"
+       y2="0"
+       gradientTransform="translate(1,2)" />
+    <linearGradient
+       xlink:href="#linearGradient3821"
+       id="linearGradient4645"
+       gradientUnits="userSpaceOnUse"
+       x1="8"
+       y1="16"
+       x2="8"
+       y2="0" />
+  </defs>
   <metadata
-     id="metadata90">
+     id="metadata5405">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>elementary Symbolic Icon Theme</dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <title
-     id="title9167">elementary Symbolic Icon Theme</title>
-  <defs
-     id="defs7386">
-    <filter
-       color-interpolation-filters="sRGB"
-       id="filter7554">
-      <feBlend
-         id="feBlend7556"
-         in2="BackgroundImage"
-         mode="darken" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       id="filter7554-7">
-      <feBlend
-         id="feBlend7556-6"
-         in2="BackgroundImage"
-         mode="darken" />
-    </filter>
-  </defs>
   <g
-     id="layer9"
-     label="status"
-     style="display:inline"
-     transform="translate(-273.00061,-88)" />
-  <g
-     id="layer10"
-     style="display:inline"
-     transform="translate(-273.00061,-88)" />
-  <g
-     id="layer13"
-     style="display:inline"
-     transform="translate(-273.00061,-88)" />
-  <g
-     id="layer14"
-     transform="translate(-273.00061,-88)" />
-  <g
-     id="layer15"
-     style="display:inline"
-     transform="translate(-273.00061,-88)" />
-  <g
-     id="g71291"
-     style="display:inline"
-     transform="translate(-273.00061,-88)" />
-  <g
-     id="layer12"
-     style="display:inline"
-     transform="translate(-273.00061,-88)">
+     id="layer1">
     <path
-       d="m 275.00061,91 0,1 12,0 0,-1 -12,0 z m 0,3 0,1 12,0 0,-1 -12,0 z m 0,3 0,1 12,0 0,-1 -12,0 z m 0,3 0,1 12,0 0,-1 -12,0 z"
-       id="rect2989-3"
-       style="opacity:0.7;color:#bebebe;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#bebebe;fill:url(#linearGradient4621);fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       d="m 3,6.5 -0.5,0 0,0.5 0,1 0,0.5 0.5,0 c 0,0 4.996916,0 10,0 l 0.5,0 0,-0.5 0,-1 0,-0.5 -0.5,0 c 0,0 -4.996916,0 -10,0 z"
+       id="path4545" />
+    <path
+       style="opacity:0.2;color:#bebebe;fill:#bebebe;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="M 7,7 7,7.5 7,7.5 7,7 z M 3,7 3,7.5 7,7.5 7,7 z m 4,0 0,0.5 6,0 0,-0.5 z"
+       id="rect31992" />
+    <path
+       id="path4559"
+       d="m 3,6.5 -0.5,0 0,0.5 0,1 0,0.5 0.5,0 c 0,0 4.996916,0 10,0 l 0.5,0 0,-0.5 0,-1 0,-0.5 -0.5,0 c 0,0 -4.996916,0 -10,0 z"
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;opacity:0.61000001;color:#bebebe;fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans" />
+    <path
+       id="path4623"
+       d="m 3,2.5 -0.5,0 0,0.5 0,1 0,0.5 0.5,0 c 0,0 4.996916,0 10,0 l 0.5,0 0,-0.5 0,-1 0,-0.5 -0.5,0 c 0,0 -4.996916,0 -10,0 z"
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#bebebe;fill:url(#linearGradient4629);fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans" />
+    <path
+       id="path4625"
+       d="M 7,3 7,3.5 7,3.5 7,3 z M 3,3 3,3.5 7,3.5 7,3 z m 4,0 0,0.5 6,0 0,-0.5 z"
+       style="opacity:0.2;color:#bebebe;fill:#bebebe;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible" />
+    <path
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;opacity:0.61000001;color:#bebebe;fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       d="m 3,2.5 -0.5,0 0,0.5 0,1 0,0.5 0.5,0 c 0,0 4.996916,0 10,0 l 0.5,0 0,-0.5 0,-1 0,-0.5 -0.5,0 c 0,0 -4.996916,0 -10,0 z"
+       id="path4627" />
+    <path
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#bebebe;fill:url(#linearGradient4637);fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       d="m 3,10.5 -0.5,0 0,0.5 0,1 0,0.5 0.5,0 c 0,0 4.996916,0 10,0 l 0.5,0 0,-0.5 0,-1 0,-0.5 -0.5,0 c 0,0 -4.996916,0 -10,0 z"
+       id="path4631" />
+    <path
+       style="opacity:0.2;color:#bebebe;fill:#bebebe;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible"
+       d="m 7,11 0,0.5 0,0 0,-0.5 z m -4,0 0,0.5 4,0 0,-0.5 z m 4,0 0,0.5 6,0 0,-0.5 z"
+       id="path4633" />
+    <path
+       id="path4635"
+       d="m 3,10.5 -0.5,0 0,0.5 0,1 0,0.5 0.5,0 c 0,0 4.996916,0 10,0 l 0.5,0 0,-0.5 0,-1 0,-0.5 -0.5,0 c 0,0 -4.996916,0 -10,0 z"
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;opacity:0.61000001;color:#bebebe;fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans" />
   </g>
 </svg>

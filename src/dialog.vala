@@ -30,21 +30,15 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		dialog.set_default_size (600, 200);
 		dialog.destroy.connect (Gtk.main_quit);
 
-    Gdk.RGBA rgba = Gdk.RGBA ();
-
     Gtk.Box prefBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
     Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
     prefBox.pack_start(colourScheme, false, false);
 
-    Gtk.EventBox whiteEventBox = new Gtk.EventBox();
-    Gtk.Button whiteProfilebutton = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME_DAY_MODE);
-    whiteEventBox.add(whiteProfilebutton);
-    prefBox.pack_end(whiteEventBox, false, false);
-
-    Gtk.EventBox blackEventBox = new Gtk.EventBox();
-    Gtk.Button blackProfilebutton = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME_NIGHT_MODE);
-    blackEventBox.add(blackProfilebutton);
-    prefBox.pack_end(blackEventBox, false, false);
+    Gtk.Switch nightModeSwitch = new Gtk.Switch ();
+    prefBox.pack_end(nightModeSwitch, false, false);
+    //Set the switch to on if the state is in Night Mode
+    if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile)
+      nightModeSwitch.set_active (true);
 
     Gtk.Box content = dialog.get_content_area () as Gtk.Box;
 		content.pack_start (prefBox, false, false, 0);
@@ -53,25 +47,24 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
     dialog.show_all ();
 
     //Set up Actions
-    blackProfilebutton.clicked.connect (() => {
-      BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[1]);
-      //call the rendered page if UI State is in reading mode
-      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-        BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-        currentBookForViewChange = BookwormApp.ePubReader.renderPage(BookwormApp.Bookworm.aWebView, BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-        BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-      }
-    });
-
-    whiteProfilebutton.clicked.connect (() => {
-      BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[0]);
-      //call the rendered page if UI State is in reading mode
-      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-        BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-        currentBookForViewChange = BookwormApp.ePubReader.renderPage(BookwormApp.Bookworm.aWebView, BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-        BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-      }
-    });
-
+    nightModeSwitch.notify["active"].connect (() => {
+			if (nightModeSwitch.active) {
+        BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[1]);
+        //call the rendered page if UI State is in reading mode
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+          BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+          currentBookForViewChange = BookwormApp.ePubReader.renderPage(BookwormApp.Bookworm.aWebView, BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
+        }
+			} else {
+        BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[0]);
+        //call the rendered page if UI State is in reading mode
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+          BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+          currentBookForViewChange = BookwormApp.ePubReader.renderPage(BookwormApp.Bookworm.aWebView, BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
+        }
+			}
+		});
 	}
 }

@@ -49,9 +49,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
-	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Colour Scheme");
-	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME_DAY_MODE = _("Day Mode");
-	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME_NIGHT_MODE = _("Night Mode");
+	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");
 
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;

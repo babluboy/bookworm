@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-14 22:50+0000\n"
+"POT-Creation-Date: 2017-03-15 00:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/constants.vala:63
+#: src/constants.vala:61
 msgid "About"
 msgstr ""
 
-#: src/constants.vala:84
+#: src/constants.vala:82
 msgid "All Files"
 msgstr ""
 
@@ -37,20 +37,12 @@ msgstr ""
 msgid "Build your library by adding eBooks"
 msgstr ""
 
-#: src/constants.vala:52
-msgid "Colour Scheme"
-msgstr ""
-
 #: src/constants.vala:47
 msgid "Content #"
 msgstr ""
 
 #: src/constants.vala:46
 msgid "Contents"
-msgstr ""
-
-#: src/constants.vala:53
-msgid "Day Mode"
 msgstr ""
 
 #: src/constants.vala:29
@@ -65,15 +57,11 @@ msgstr ""
 msgid "Looks like Bookworm has no books !"
 msgstr ""
 
-#: src/constants.vala:54
-msgid "Night Mode"
-msgstr ""
-
 #: src/constants.vala:37
 msgid "Not Available"
 msgstr ""
 
-#: src/constants.vala:51 src/constants.vala:64
+#: src/constants.vala:51 src/constants.vala:62
 msgid "Preferences"
 msgstr ""
 
@@ -97,7 +85,11 @@ msgstr ""
 msgid "Select an eBook to read"
 msgstr ""
 
-#: src/constants.vala:62
+#: src/constants.vala:52
+msgid "Turn on Night Mode"
+msgstr ""
+
+#: src/constants.vala:60
 msgid "Unknown Book"
 msgstr ""
 
@@ -109,6 +101,6 @@ msgstr ""
 msgid "eBook Reader"
 msgstr ""
 
-#: src/constants.vala:85
+#: src/constants.vala:83
 msgid "ePUB Files"
 msgstr ""
