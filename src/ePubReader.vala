@@ -383,6 +383,28 @@ public class BookwormApp.ePubReader {
     return aBook;
   }
 
+  public static string adjustPageContent (owned string pageContent){
+    string javaScriptInjectionPrefix = "onload=\"javascript:";
+    string javaScriptInjectionSuffix = "\"";
+    StringBuilder onloadJavaScript = new StringBuilder("");
+    //Set font colour to white if Night Mode is on
+    if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
+      onloadJavaScript.append("document.getElementsByTagName('BODY')[0].style.color='white';");
+    }else{
+      onloadJavaScript.append("document.getElementsByTagName('BODY')[0].style.color='black';");
+    }
+
+    //add onload javascript to body tag
+    if(pageContent.index_of("<BODY") != -1){
+      pageContent = pageContent.replace("<BODY", "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
+    }else if (pageContent.index_of("<body") != -1){
+      pageContent = pageContent.replace("<body", "<body "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
+    }else{
+      pageContent = "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix + ">" + pageContent + "</BODY>";
+    }
+    return pageContent;
+  }
+
   public static BookwormApp.Book renderPage (WebKit.WebView aWebView, owned BookwormApp.Book aBook, string direction){
     debug("Starting to renderPage for direction["+direction+"] on book located at "+aBook.getBookLocation());
     StringBuilder contents = new StringBuilder();
@@ -430,17 +452,8 @@ public class BookwormApp.ePubReader {
             contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
           }
         }
-
-        string backgroundJS = "";
-        //set font colour to white for Night Mode
-        if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
-          backgroundJS = "onload=\"javascript:document.getElementsByTagName('BODY')[0].style.color='white';\"";
-				}else{
-          backgroundJS = "onload=\"javascript:document.getElementsByTagName('BODY')[0].style.color='black';\"";
-        }
-        contents.assign(contents.str.replace("<BODY", "<BODY "+backgroundJS));
-        contents.assign(contents.str.replace("<body", "<body "+backgroundJS));
-
+        //update the content for required manipulation
+        contents.assign(adjustPageContent(contents.str));
         //render the content on webview
         aWebView.load_html(contents.str, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
         break;

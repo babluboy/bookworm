@@ -608,7 +608,7 @@ namespace BookwormApp {
 
 			if(!aBook.getIsBookCoverImagePresent()){
 				//use the default Book Cover Image
-				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION, 150, 200, false);
+				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string()), 150, 200, false);
 				aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 				aCoverImage.set_halign(Align.START);
 				aCoverImage.set_valign(Align.START);
@@ -673,7 +673,7 @@ namespace BookwormApp {
 					lOverlayImage.destroy();
 
 					if(!((BookwormApp.Book)book).getIsBookCoverImagePresent()){
-						Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION, 150, 200, false);
+						Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string()), 150, 200, false);
 						Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 						aCoverImage.set_halign(Align.START);
 						aCoverImage.set_valign(Align.START);
@@ -726,7 +726,7 @@ namespace BookwormApp {
 				lOverlayImage.destroy();
 
 				if(!lBook.getIsBookCoverImagePresent()){
-					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION, 150, 200, false);
+					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string()), 150, 200, false);
 					Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 					aCoverImage.set_halign(Align.START);
 					aCoverImage.set_valign(Align.START);

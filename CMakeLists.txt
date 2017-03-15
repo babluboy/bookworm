@@ -15,8 +15,8 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/bookworm")
 
 set (EXEC_NAME "bookworm")
-set (RELEASE_NAME "bookworm v0.2")
-set (VERSION "0.2")
+set (RELEASE_NAME "bookworm v0.3")
+set (VERSION "0.3")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 # Some definitions
@@ -131,9 +131,11 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-chec
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-defaultbook-darkborder.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
-
-
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-1.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-2.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-3.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-4.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-5.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 
 # install app specific desktop, appdata and css files
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.desktop DESTINATION ${DATADIR}/applications)

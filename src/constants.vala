@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "0.2";
+	public const string bookworm_version = "0.3";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017";
 	public const string app_icon = "bookworm";
@@ -72,7 +72,7 @@ namespace BookwormApp.Constants {
 	public static const string SELECTION_OPTION_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
 	public static const string SELECTION_CHECKED_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
 	public static const string HEADERBAR_PROPERTIES_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-open-menu.svg";
-	public static const string DEFAULT_COVER_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/256x256/apps/bookworm-defaultbook-darkborder.png";
+	public static const string DEFAULT_COVER_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/256x256/apps/bookworm-default-cover-N.png";
 	public static const string EPUB_EXTRACTION_LOCATION = "/tmp/bookworm/";
 	public static const string PREFIX_FOR_FILE_URL = "file:///";
 
