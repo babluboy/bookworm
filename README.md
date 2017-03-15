@@ -1,14 +1,14 @@
 # bookworm
-A simple ebook reader
+A simple eBook Reader application made for elementary OS
 
 Author: Siddhartha Das
 
-A simple eBook Reader application made for elementary OS. The goal of Bookworm is to provide a uniform user experience for multiple electronic document formats like epub,pdf, mobi, etc. Currently Bookworm is in a very draft stage with support for epub format only.
+The goal of Bookworm is to provide a uniform user experience for multiple electronic document formats like epub,pdf, mobi, etc. Currently Bookworm is in a very draft stage with support for epub format only.
 
 ##How to install bookworm:
 
 ```shell
-sudo add-apt-repository ppa:bablu-boy/bookworm-daily
+sudo add-apt-repository ppa:bookworm-team/bookworm
 sudo apt-get update
 sudo apt-get install bookworm
 ```
@@ -29,7 +29,11 @@ mkdir build && cd build
 cmake -DCMAKE_INSTALL_PREFIX=/usr ../
 make
 ```
-## Screenshot
+## Screenshots
 
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormLibraryView.jpeg)
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormReadingView.jpeg)
+![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormNightLibraryView.jpeg)
+![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormNightReadingView.jpeg)
+![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormBookSelection.jpeg)
+![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormWelcomeScreen.jpeg)
