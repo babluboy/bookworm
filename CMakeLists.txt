@@ -24,6 +24,7 @@ add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
 # define variable for sources
 set (SOURCE_LIST
+    src/main.vala
     src/bookworm.vala
     src/utils.vala
     src/constants.vala
@@ -87,6 +88,7 @@ set (GLOBAL_VALAC_OPTIONS
 )
 
 vala_precompile(VALA_C ${EXEC_NAME}
+    src/main.vala
     src/bookworm.vala
     src/utils.vala
     src/constants.vala

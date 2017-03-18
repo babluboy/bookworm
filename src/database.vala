@@ -265,6 +265,9 @@ public class BookwormApp.DB{
     Sqlite.Statement stmt;
     string update_book_to_database = "UPDATE "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" SET
                                       BOOK_LAST_READ_PAGE_NUMBER = ?,
+                                      BOOK_TITLE = ?,
+                                      BOOK_COVER_IMAGE_LOCATION = ?,
+                                      IS_BOOK_COVER_IMAGE_PRESENT = ?,
                                       modification_date = CAST(strftime('%s', 'now') AS INT)
                                       WHERE BOOK_LOCATION = ? ";
      int statusBookToDB = bookwormDB.prepare_v2 (update_book_to_database, update_book_to_database.length, out stmt);
@@ -274,7 +277,10 @@ public class BookwormApp.DB{
        return false;
      }
      stmt.bind_text (1, aBook.getBookPageNumber().to_string());
-     stmt.bind_text (2, aBook.getBookLocation());
+     stmt.bind_text (2, aBook.getBookTitle());
+     stmt.bind_text (3, aBook.getBookCoverLocation());
+     stmt.bind_text (4, aBook.getIsBookCoverImagePresent().to_string());
+     stmt.bind_text (5, aBook.getBookLocation());
 
      stmt.step ();
      stmt.reset ();

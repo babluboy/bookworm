@@ -29,12 +29,9 @@ namespace BookwormApp {
 		private static bool isBookwormRunning = false;
 		public int exitCodeForCommand = 0;
 		public static string bookworm_config_path = GLib.Environment.get_user_config_dir ()+"/bookworm";
-		public static bool command_line_option_version = false;
-		public static bool command_line_option_alert = false;
-		public static bool command_line_option_debug = false;
-		[CCode (array_length = false, array_null_terminated = true)]
-		public static string command_line_option_monitor = "";
-		public new OptionEntry[] options;
+
+		public static string[] commandLineArgs;
+		public unowned string[] startArgs;
 		public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
 
 		public static BookwormApp.Settings settings;
@@ -81,13 +78,11 @@ namespace BookwormApp {
 			about_translators = BookwormApp.Constants.translator_credits;
 			about_license_type = BookwormApp.Constants.about_license_type;
 
-			options = new OptionEntry[2];
-			options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
-			options[3] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
-			add_main_option_entries (options);
+
 		}
 
-		public Bookworm() {
+		private Bookworm() {
+			Object (application_id: BookwormApp.Constants.bookworm_id, flags: ApplicationFlags.HANDLES_COMMAND_LINE);
 			Intl.setlocale(LocaleCategory.MESSAGES, "");
 			Intl.textdomain(GETTEXT_PACKAGE);
 			Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
@@ -95,25 +90,9 @@ namespace BookwormApp {
 			debug ("Completed setting Internalization...");
 		}
 
-		public static int main (string[] args) {
-			Log.set_handler ("bookworm", GLib.LogLevelFlags.LEVEL_DEBUG, GLib.Log.default_handler);
-			if("--debug" in args){
-				Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
-				debug ("Bookworm Application running in debug mode - all debug messages will be displayed");
-			}
-			//application = new Bookworm();
-			application = getAppInstance();
-			//Workaround to get Granite's --about & Gtk's --help working together
-			if ("--help" in args || "-h" in args || "--monitor" in args || "--alert" in args || "--version" in args) {
-				return application.processCommandLine (args);
-			} else {
-				Gtk.init (ref args);
-				return application.run(args);
-			}
-		}
-
 		public static Bookworm getAppInstance(){
 			if(application == null){
+				//create an instance of bookworm
 				application = new Bookworm();
 			}else{
 				//do nothing, return the existing instance
@@ -122,18 +101,33 @@ namespace BookwormApp {
 		}
 
 		public override int command_line (ApplicationCommandLine command_line) {
-			activate();
+			commandLineArgs = command_line.get_arguments ();
+			if("--help" in commandLineArgs || "-h" in commandLineArgs || "--version" in commandLineArgs){
+				int res = processCommandLine (command_line);
+			}else{
+				activate();
+			}
 			return 0;
 		}
 
-		private int processCommandLine (string[] args) {
+		public int processCommandLine (ApplicationCommandLine command_line) {
+			bool command_line_option_version = false;
+			bool command_line_option_debug = false;
+			string command_line_option_path = "";
+
+			OptionEntry[] options = new OptionEntry[3];
+			options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
+			options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
+			options[2] = { "path", 0, 0, OptionArg.NONE, ref command_line_option_path, _("PATH"), _("Open multiple files with Bookworm")};
+			add_main_option_entries (options);
+			string[] args = command_line.get_arguments ();
+			startArgs = args;
 			try {
 				var opt_context = new OptionContext ("- bookworm");
 				opt_context.set_help_enabled (true);
 				opt_context.add_main_entries (options, null);
-				unowned string[] tmpArgs = args;
-				opt_context.parse (ref tmpArgs);
-			} catch (OptionError e) {
+				opt_context.parse (ref startArgs);
+			}catch (OptionError e) {
 				info ("Run '%s --help' to see a full list of available command line options.\n", args[0]);
 				info ("error: %s\n", e.message);
 				return 0;
@@ -143,17 +137,17 @@ namespace BookwormApp {
 				debug ("Bookworm running in debug mode...");
 			}
 			if(command_line_option_version){
-				print("\nbookworm version "+Constants.bookworm_version+" \n");
-				return 0;
-			}else{
-				activate();
+				print("bookworm version :"+Constants.bookworm_version+"\n");
 				return 0;
 			}
+			return 0;
 		}
 
 		public override void activate() {
 			//proceed if Bookworm is not running already
 			if(!isBookwormRunning){
+				print("No. of arguments:"+commandLineArgs.length.to_string());
+				
 				debug("Starting to activate Gtk Window for Bookworm...");
 				window = new Gtk.Window ();
 				add_window (window);
@@ -216,7 +210,14 @@ namespace BookwormApp {
 				});
 				isBookwormRunning = true;
 				debug("Sucessfully activated Gtk Window for Bookworm...");
+			}else{
+					//A instance of bookworm is already running
+					//TODO: Maximize the Bookworm window if it is minimized
 			}
+		}
+
+		public override void open (File[] files, string hint) {
+			debug("Starting open method with hint:"+hint);
 		}
 
 		public Granite.Widgets.Welcome createWelcomeScreen(){
@@ -607,8 +608,13 @@ namespace BookwormApp {
 			string bookCoverLocation;
 
 			if(!aBook.getIsBookCoverImagePresent()){
-				//use the default Book Cover Image
-				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string()), 150, 200, false);
+				//check if the default cover has been set and continue to use it
+				if(aBook.getBookCoverLocation() == null || aBook.getBookCoverLocation().length < 1){
+					//default Book Cover Image not set - select at random from the default covers
+					bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string());
+					aBook.setBookCoverLocation(bookCoverLocation);
+				}
+				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
 				aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 				aCoverImage.set_halign(Align.START);
 				aCoverImage.set_valign(Align.START);
@@ -629,7 +635,6 @@ namespace BookwormApp {
 				aOverlayImage.add(aCoverImage);
 				aEventBox.add(aOverlayImage);
 			}
-
 			library_grid.add (aEventBox);
 
 			//set gtk objects into Book objects
@@ -661,6 +666,7 @@ namespace BookwormApp {
 		}
 
 		public void updateLibraryViewForSelectionMode(owned BookwormApp.Book? lBook){
+			Gtk.Image aCoverImage;
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
 				//loop over HashMap of Book Objects and overlay selection image
 				foreach (var book in libraryViewMap.values){
@@ -673,8 +679,14 @@ namespace BookwormApp {
 					lOverlayImage.destroy();
 
 					if(!((BookwormApp.Book)book).getIsBookCoverImagePresent()){
-						Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string()), 150, 200, false);
-						Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+						//check if the default cover has been set and continue to use it
+						if(((BookwormApp.Book)book).getBookCoverLocation() == null || ((BookwormApp.Book)book).getBookCoverLocation().length < 1){
+							//default Book Cover Image not set - select at random from the default covers
+							string bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string());
+							((BookwormApp.Book)book).setBookCoverLocation(bookCoverLocation);
+						}
+						Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(((BookwormApp.Book)book).getBookCoverLocation(), 150, 200, false);
+						aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 						aCoverImage.set_halign(Align.START);
 						aCoverImage.set_valign(Align.START);
 						lOverlayImage.add(aCoverImage);//use the default Book Cover Image
@@ -687,7 +699,7 @@ namespace BookwormApp {
 						lEventBox.add(lOverlayImage);
 					}else{
 						Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(((BookwormApp.Book)book).getBookCoverLocation(), 150, 200, false);
-						Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+						aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 						aCoverImage.set_halign(Align.START);
 						aCoverImage.set_valign(Align.START);
 						lOverlayImage.add(aCoverImage);
@@ -726,8 +738,14 @@ namespace BookwormApp {
 				lOverlayImage.destroy();
 
 				if(!lBook.getIsBookCoverImagePresent()){
-					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string()), 150, 200, false);
-					Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+					//check if the default cover has been set and continue to use it
+					if(lBook.getBookCoverLocation() == null || lBook.getBookCoverLocation().length < 1){
+						//default Book Cover Image not set - select at random from the default covers
+						string bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string());
+						lBook.setBookCoverLocation(bookCoverLocation);
+					}
+					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(lBook.getBookCoverLocation(), 150, 200, false);
+					aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 					aCoverImage.set_halign(Align.START);
 					aCoverImage.set_valign(Align.START);
 					lOverlayImage.add(aCoverImage);//use the default Book Cover Image
@@ -758,7 +776,7 @@ namespace BookwormApp {
 					}
 				}else{
 					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(lBook.getBookCoverLocation(), 150, 200, false);
-					Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+					aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 					aCoverImage.set_halign(Align.START);
 					aCoverImage.set_valign(Align.START);
 					lOverlayImage.add(aCoverImage);

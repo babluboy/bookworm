@@ -4,6 +4,7 @@ Version=0.3
 GenericName=eBook Reader
 Comment=A simple ebook reader for Elementary OS
 Categories=GTK;Office
+MimeType=application/epub+zip;
 Exec=bookworm
 Icon=bookworm
 Type=Application
