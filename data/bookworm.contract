@@ -1,0 +1,5 @@
+[Contractor Entry]
+Name=Bookworm
+Description=eBook Reader
+MimeType=inode;application/epub+zip;
+Exec=bookworm %F

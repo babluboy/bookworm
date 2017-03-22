@@ -16,19 +16,19 @@
 * You should have received a copy of the GNU General Public License along
 * with Bookworm. If not, see http://www.gnu.org/licenses/.
 */
-
-  BookwormApp.Bookworm application;
-  public static int main (string[] args) {
-    Log.set_handler ("bookworm", GLib.LogLevelFlags.LEVEL_DEBUG, GLib.Log.default_handler);
-    if("--debug" in args){
-      Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
-      debug ("Bookworm Application running in debug mode - all debug messages will be displayed");
-    }
-    application = BookwormApp.Bookworm.getAppInstance();
-    if(application == null){
-      //no instance could be created
-      return 0;
-    }
+BookwormApp.Bookworm application;
+public static int main (string[] args) {
+  Log.set_handler ("bookworm", GLib.LogLevelFlags.LEVEL_DEBUG, GLib.Log.default_handler);
+  if("--debug" in args){
+    Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
+    debug ("Bookworm Application running in debug mode - all debug messages will be displayed");
+  }
+  application = application.getAppInstance();
+  //Workaround to get Granite's --about & Gtk's --help working together
+  if ("--help" in args || "-h" in args || "--version" in args) {
+    return application.processCommandLine (args);
+  } else {
     Gtk.init (ref args);
     return application.run(args);
   }
+}

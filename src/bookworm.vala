@@ -31,7 +31,10 @@ namespace BookwormApp {
 		public static string bookworm_config_path = GLib.Environment.get_user_config_dir ()+"/bookworm";
 
 		public static string[] commandLineArgs;
-		public unowned string[] startArgs;
+		private static bool command_line_option_version = false;
+		private static bool command_line_option_debug = false;
+		private static OptionEntry[] options;
+
 		public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
 
 		public static BookwormApp.Settings settings;
@@ -78,11 +81,13 @@ namespace BookwormApp {
 			about_translators = BookwormApp.Constants.translator_credits;
 			about_license_type = BookwormApp.Constants.about_license_type;
 
-
+			options = new OptionEntry[3];
+			options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
+			options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
+			add_main_option_entries (options);
 		}
 
 		private Bookworm() {
-			Object (application_id: BookwormApp.Constants.bookworm_id, flags: ApplicationFlags.HANDLES_COMMAND_LINE);
 			Intl.setlocale(LocaleCategory.MESSAGES, "");
 			Intl.textdomain(GETTEXT_PACKAGE);
 			Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
@@ -92,7 +97,6 @@ namespace BookwormApp {
 
 		public static Bookworm getAppInstance(){
 			if(application == null){
-				//create an instance of bookworm
 				application = new Bookworm();
 			}else{
 				//do nothing, return the existing instance
@@ -102,32 +106,18 @@ namespace BookwormApp {
 
 		public override int command_line (ApplicationCommandLine command_line) {
 			commandLineArgs = command_line.get_arguments ();
-			if("--help" in commandLineArgs || "-h" in commandLineArgs || "--version" in commandLineArgs){
-				int res = processCommandLine (command_line);
-			}else{
-				activate();
-			}
+			activate();
 			return 0;
 		}
 
-		public int processCommandLine (ApplicationCommandLine command_line) {
-			bool command_line_option_version = false;
-			bool command_line_option_debug = false;
-			string command_line_option_path = "";
-
-			OptionEntry[] options = new OptionEntry[3];
-			options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
-			options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
-			options[2] = { "path", 0, 0, OptionArg.NONE, ref command_line_option_path, _("PATH"), _("Open multiple files with Bookworm")};
-			add_main_option_entries (options);
-			string[] args = command_line.get_arguments ();
-			startArgs = args;
+		public int processCommandLine (string[] args) {
 			try {
 				var opt_context = new OptionContext ("- bookworm");
 				opt_context.set_help_enabled (true);
 				opt_context.add_main_entries (options, null);
-				opt_context.parse (ref startArgs);
-			}catch (OptionError e) {
+				unowned string[] tmpArgs = args;
+				opt_context.parse (ref tmpArgs);
+			} catch (OptionError e) {
 				info ("Run '%s --help' to see a full list of available command line options.\n", args[0]);
 				info ("error: %s\n", e.message);
 				return 0;
@@ -137,17 +127,18 @@ namespace BookwormApp {
 				debug ("Bookworm running in debug mode...");
 			}
 			if(command_line_option_version){
-				print("bookworm version :"+Constants.bookworm_version+"\n");
+				print("\nbookworm version "+Constants.bookworm_version+"\n");
+				return 0;
+			}else{
+				activate();
 				return 0;
 			}
-			return 0;
 		}
 
 		public override void activate() {
+			debug("Starting activate method");
 			//proceed if Bookworm is not running already
 			if(!isBookwormRunning){
-				print("No. of arguments:"+commandLineArgs.length.to_string());
-				
 				debug("Starting to activate Gtk Window for Bookworm...");
 				window = new Gtk.Window ();
 				add_window (window);
@@ -212,12 +203,17 @@ namespace BookwormApp {
 				debug("Sucessfully activated Gtk Window for Bookworm...");
 			}else{
 					//A instance of bookworm is already running
-					//TODO: Maximize the Bookworm window if it is minimized
+					//TODO: Show the Bookworm window if it is minimized
+					toggleUIState();
+					debug("A instance of bookworm is already running...");
 			}
+			addAndOpenBookSupport ();
+			debug("Ending activate method");
+			toggleUIState();
 		}
 
 		public override void open (File[] files, string hint) {
-			debug("Starting open method with hint:"+hint);
+
 		}
 
 		public Granite.Widgets.Welcome createWelcomeScreen(){
@@ -480,6 +476,30 @@ namespace BookwormApp {
 		//Handle action for close of the InfoBar
 		private void on_info_bar_closed(){
         infobar.hide();
+		}
+
+		public async void addAndOpenBookSupport (){
+			debug("Starting to adding book provided on commandline...");
+			//Add books to library if path is passed on commandline
+			if(commandLineArgs.length > 1){
+				foreach(string pathToSelectedBook in commandLineArgs){
+					if("bookworm" != pathToSelectedBook){//ignore the first command which is the application name
+						BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
+						aBookBeingAdded.setBookLocation(pathToSelectedBook);
+						//the book will be updated to the libraryView Map within the addBookToLibrary function
+						addBookToLibrary(aBookBeingAdded);
+						Idle.add (addAndOpenBookSupport.callback);
+						yield;
+					}
+				}
+				//open the book added if only one book path is present on command line
+				if(commandLineArgs.length == 2){
+					//if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
+						readSelectedBook(libraryViewMap.get(commandLineArgs[1]));
+					//}
+				}
+				debug("Completed adding book provided on commandline...");
+			}
 		}
 
 		public void loadBookwormState(){
