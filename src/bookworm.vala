@@ -202,14 +202,13 @@ namespace BookwormApp {
 				isBookwormRunning = true;
 				debug("Sucessfully activated Gtk Window for Bookworm...");
 			}else{
-					//A instance of bookworm is already running
-					//TODO: Show the Bookworm window if it is minimized
-					toggleUIState();
+					window.present();
 					debug("A instance of bookworm is already running...");
 			}
+			//check if any books needed to be added/opened - if an eBook was opened from Files
 			addAndOpenBookSupport ();
-			debug("Ending activate method");
 			toggleUIState();
+			debug("Ending activate method");
 		}
 
 		public override void open (File[] files, string hint) {
@@ -482,6 +481,16 @@ namespace BookwormApp {
 			debug("Starting to adding book provided on commandline...");
 			//Add books to library if path is passed on commandline
 			if(commandLineArgs.length > 1){
+				//handle the case if the welcome screen is shown
+				if(libraryViewMap.size == 0){
+					//remove the welcome widget from main window
+					window.remove(welcomeWidget);
+					//add the library view to the window
+					window.add(bookWormUIBox);
+					bookWormUIBox.show_all();
+					toggleUIState();
+				}
+				//loop through the command line and add books to library
 				foreach(string pathToSelectedBook in commandLineArgs){
 					if("bookworm" != pathToSelectedBook){//ignore the first command which is the application name
 						BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
@@ -494,9 +503,7 @@ namespace BookwormApp {
 				}
 				//open the book added if only one book path is present on command line
 				if(commandLineArgs.length == 2){
-					//if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
-						readSelectedBook(libraryViewMap.get(commandLineArgs[1]));
-					//}
+					readSelectedBook(libraryViewMap.get(commandLineArgs[1]));
 				}
 				debug("Completed adding book provided on commandline...");
 			}
