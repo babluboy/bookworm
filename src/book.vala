@@ -1,6 +1,7 @@
 /* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
-* This file is part of Bookworm.
+* This file is part of Bookworm and has the getter/setter methods
+* used for holding the state of the book
 *
 * Bookworm is free software: you can redistribute it
 * and/or modify it under the terms of the GNU General Public License as

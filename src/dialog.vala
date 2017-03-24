@@ -53,7 +53,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         //call the rendered page if UI State is in reading mode
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
           BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          currentBookForViewChange = BookwormApp.ePubReader.renderPage(BookwormApp.Bookworm.aWebView, BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+          currentBookForViewChange = BookwormApp.ePubReader.renderPage(BookwormApp.AppWindow.aWebView, BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
           BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
         }
 			} else {
@@ -61,7 +61,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         //call the rendered page if UI State is in reading mode
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
           BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          currentBookForViewChange = BookwormApp.ePubReader.renderPage(BookwormApp.Bookworm.aWebView, BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+          currentBookForViewChange = BookwormApp.ePubReader.renderPage(BookwormApp.AppWindow.aWebView, BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
           BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
         }
 			}

@@ -108,7 +108,7 @@ public class BookwormApp.AppHeaderBar {
         //set UI in library view mode
         bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
         BookwormApp.Book currentBookForContentList = bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead);
-        currentBookForContentList = BookwormApp.ePubReader.renderPage(bookwormApp.aWebView, bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead), "");
+        currentBookForContentList = BookwormApp.ePubReader.renderPage(BookwormApp.AppWindow.aWebView, bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead), "");
         bookwormApp.libraryViewMap.set(bookwormApp.locationOfEBookCurrentlyRead, currentBookForContentList);
         bookwormApp.toggleUIState();
       }
@@ -121,10 +121,10 @@ public class BookwormApp.AppHeaderBar {
       bookwormApp.toggleUIState();
     });
     textLargerButton.clicked.connect (() => {
-      bookwormApp.aWebView.set_zoom_level (bookwormApp.aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+      BookwormApp.AppWindow.aWebView.set_zoom_level (BookwormApp.AppWindow.aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);
     });
     textSmallerButton.clicked.connect (() => {
-      bookwormApp.aWebView.set_zoom_level (bookwormApp.aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+      BookwormApp.AppWindow.aWebView.set_zoom_level (BookwormApp.AppWindow.aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
     });
     debug("Completed loading HeaderBar sucessfully...");
     return headerbar;

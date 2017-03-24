@@ -539,4 +539,23 @@ namespace BookwormApp.Utils {
 			debug("Completed creating Table Of Contents....");
 			return tocHTML.str;
 		}
+
+		public static ArrayList<string> selectBookFileChooser(){
+			ArrayList<string> eBookLocationList = new ArrayList<string>();
+			//create a hashmap to hold details for the book
+			Gee.HashMap<string,string> bookDetailsMap = new Gee.HashMap<string,string>();
+	    //choose eBook using a File chooser dialog
+			Gtk.FileChooserDialog aFileChooserDialog = BookwormApp.Utils.new_file_chooser_dialog (Gtk.FileChooserAction.OPEN, "Select eBook", BookwormApp.Bookworm.window, true);
+	    aFileChooserDialog.show_all ();
+	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
+	      SList<string> uris = aFileChooserDialog.get_uris ();
+				foreach (unowned string uri in uris) {
+					eBookLocationList.add(File.new_for_uri(uri).get_path ());
+				}
+				aFileChooserDialog.close();
+	    }else{
+	      aFileChooserDialog.close();
+	    }
+			return eBookLocationList;
+		}
 }
