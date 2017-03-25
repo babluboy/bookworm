@@ -410,54 +410,52 @@ public class BookwormApp.ePubReader {
     StringBuilder contents = new StringBuilder();
     string baseLocationOfContents = aBook.getBaseLocationOfContents();
     int currentContentLocation = 0;
-    switch(direction){
 
-      default: // this case is for moving forward or backward
-        //check current content location of book
-        if(aBook.getBookPageNumber() != -1){
-          currentContentLocation = aBook.getBookPageNumber();
-          debug("Book has a CURRENT_LOCATION set at :"+currentContentLocation.to_string());
-          if(direction == "FORWARD" && currentContentLocation < (aBook.getBookContentList().size - 1)){
-            currentContentLocation++;
-            aBook.setBookPageNumber(currentContentLocation);
-          }else{
-            aBook.setIfPageForward(false);
-          }
-          if(direction == "BACKWARD" && currentContentLocation > 0){
-            currentContentLocation--;
-            aBook.setBookPageNumber(currentContentLocation);
-          }else{
-            aBook.setIfPageBackward(false);
-          }
-        }else{
-          aBook.setBookPageNumber(0);
-          currentContentLocation = 0;
-          debug("Book did not had a CURRENT_LOCATION set.");
-        }
-        if(aBook.getBookContentList().size > 0 && aBook.getBookContentList().size >= currentContentLocation){
-          debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));
-        }else{
-          //No content list extracted from eBook
-          warning("No contents determined for the book at location ["+currentContentLocation.to_string()+"], no rendering possible.");
-          aWebView.load_html(BookwormApp.Constants.TEXT_FOR_RENDERING_ISSUE, "");
-          return aBook;
-        }
-        contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(currentContentLocation), "", ""));
-        //find list of relative urls with src, href, etc and convert them to absolute ones
-        foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
-        string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
-          StringBuilder srcItemFullPath = new StringBuilder();
-          foreach(string srcItem in srcList){
-            srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
-            contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
-          }
-        }
-        //update the content for required manipulation
-        contents.assign(adjustPageContent(contents.str));
-        //render the content on webview
-        aWebView.load_html(contents.str, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
-        break;
+    //check current content location of book
+    if(aBook.getBookPageNumber() != -1){
+      currentContentLocation = aBook.getBookPageNumber();
+      debug("Book has a CURRENT_LOCATION set at :"+currentContentLocation.to_string());
+      if(direction == "FORWARD" && currentContentLocation < (aBook.getBookContentList().size - 1)){
+        currentContentLocation++;
+        aBook.setBookPageNumber(currentContentLocation);
+      }else{
+        aBook.setIfPageForward(false);
+      }
+      if(direction == "BACKWARD" && currentContentLocation > 0){
+        currentContentLocation--;
+        aBook.setBookPageNumber(currentContentLocation);
+      }else{
+        aBook.setIfPageBackward(false);
+      }
+    }else{
+      aBook.setBookPageNumber(0);
+      currentContentLocation = 0;
+      debug("Book did not had a CURRENT_LOCATION set.");
     }
+    if(aBook.getBookContentList().size > 0 && aBook.getBookContentList().size >= currentContentLocation){
+      debug("Rendering location ["+currentContentLocation.to_string()+"]"+aBook.getBookContentList().get(currentContentLocation));
+    }else{
+      //No content list extracted from eBook
+      warning("No contents determined for the book at location ["+currentContentLocation.to_string()+"], no rendering possible.");
+      aWebView.load_html(BookwormApp.Constants.TEXT_FOR_RENDERING_ISSUE, "");
+      return aBook;
+    }
+    contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(currentContentLocation), "", ""));
+    //find list of relative urls with src, href, etc and convert them to absolute ones
+    foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
+    string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
+      StringBuilder srcItemFullPath = new StringBuilder();
+      foreach(string srcItem in srcList){
+        srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
+        contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
+      }
+    }
+    //update the content for required manipulation
+    contents.assign(adjustPageContent(contents.str));
+    //render the content on webview
+    aWebView.load_html(contents.str, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
+    //set the focus to the webview to capture keypress events
+    aWebView.grab_focus();
     return aBook;
   }
 }

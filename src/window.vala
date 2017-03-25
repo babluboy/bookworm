@@ -30,6 +30,8 @@ public class BookwormApp.AppWindow {
   public static Gtk.EventBox book_reading_footer_eventbox;
   public static Gtk.Box book_reading_footer_box;
   public static Gtk.Box bookReading_ui_box;
+  public static Gtk.Button forward_button;
+  public static Gtk.Button back_button;
 
   public static Gtk.Box createBoookwormUI() {
     debug("Starting to create main window components...");
@@ -102,13 +104,13 @@ public class BookwormApp.AppWindow {
     //Set up Button for previous page
     Gtk.Image back_button_image = new Gtk.Image ();
     back_button_image.set_from_file (BookwormApp.Constants.PREV_PAGE_ICON_IMAGE_LOCATION);
-    Gtk.Button back_button = new Gtk.Button ();
+    back_button = new Gtk.Button ();
     back_button.set_image (back_button_image);
 
     //Set up Button for next page
     Gtk.Image forward_button_image = new Gtk.Image ();
     forward_button_image.set_from_file (BookwormApp.Constants.NEXT_PAGE_ICON_IMAGE_LOCATION);
-    Gtk.Button forward_button = new Gtk.Button ();
+    forward_button = new Gtk.Button ();
     forward_button.set_image (forward_button_image);
 
     //Set up contents of the footer
@@ -142,11 +144,10 @@ public class BookwormApp.AppWindow {
       currentBookForForward = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       debug("Initiating read forward for eBook:"+currentBookForForward.getBookLocation());
       currentBookForForward = BookwormApp.ePubReader.renderPage(aWebView, currentBookForForward, "FORWARD");
+      currentBookForForward = BookwormApp.Bookworm.controlNavigation(currentBookForForward);
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForForward.getBookLocation(), currentBookForForward);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForForward.getBookLocation();
-      //set the focus to the webview to capture keypress events
-      aWebView.grab_focus();
     });
     //Add action on the backward button for reading
     back_button.clicked.connect (() => {
@@ -155,11 +156,10 @@ public class BookwormApp.AppWindow {
       currentBookForReverse = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       debug("Initiating read previous for eBook:"+currentBookForReverse.getBookLocation());
       currentBookForReverse = BookwormApp.ePubReader.renderPage(aWebView, currentBookForReverse, "BACKWARD");
+      currentBookForReverse = BookwormApp.Bookworm.controlNavigation(currentBookForReverse);
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForReverse.getBookLocation(), currentBookForReverse);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForReverse.getBookLocation();
-      //set the focus to the webview to capture keypress events
-      aWebView.grab_focus();
     });
     //Add action for adding a book on the library view
     add_book_button.clicked.connect (() => {
@@ -200,6 +200,7 @@ public class BookwormApp.AppWindow {
           //get object for this ebook
           BookwormApp.Book aBookLeftKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
           aBookLeftKeyPress = BookwormApp.ePubReader.renderPage(aWebView, aBookLeftKeyPress, "BACKWARD");
+          aBookLeftKeyPress = BookwormApp.Bookworm.controlNavigation(aBookLeftKeyPress);
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookLeftKeyPress.getBookLocation(), aBookLeftKeyPress);
         }
@@ -207,6 +208,7 @@ public class BookwormApp.AppWindow {
           //get object for this ebook
           BookwormApp.Book aBookRightKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
           aBookRightKeyPress = BookwormApp.ePubReader.renderPage(aWebView, aBookRightKeyPress, "FORWARD");
+          aBookRightKeyPress = BookwormApp.Bookworm.controlNavigation(aBookRightKeyPress);
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookRightKeyPress.getBookLocation(), aBookRightKeyPress);
         }

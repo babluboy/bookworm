@@ -16,7 +16,7 @@ set (PKGDATADIR "${DATADIR}/bookworm")
 
 set (EXEC_NAME "bookworm")
 set (RELEASE_NAME "bookworm v0.3")
-set (VERSION "0.3")
+set (VERSION "0.4")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 # Some definitions
