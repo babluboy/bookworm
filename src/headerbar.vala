@@ -108,7 +108,7 @@ public class BookwormApp.AppHeaderBar {
         //set UI in library view mode
         bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
         BookwormApp.Book currentBookForContentList = bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead);
-        currentBookForContentList = BookwormApp.ePubReader.renderPage(BookwormApp.AppWindow.aWebView, bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead), "");
+        currentBookForContentList = BookwormApp.Bookworm.renderPage(bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead), "");
         bookwormApp.libraryViewMap.set(bookwormApp.locationOfEBookCurrentlyRead, currentBookForContentList);
         bookwormApp.toggleUIState();
       }

@@ -562,8 +562,10 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.AppWindow.infobar.set_message_type (MessageType.WARNING);
 			BookwormApp.AppWindow.infobar.show();
 		}else{
+			aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
+			aBook.setWasBookOpened(true);
 			//render the contents of the current page of book
-			aBook = BookwormApp.ePubReader.renderPage(BookwormApp.AppWindow.aWebView, aBook, "");
+			aBook = renderPage(aBook, "");
 			//update book details to libraryView Map
 			libraryViewMap.set(aBook.getBookLocation(), aBook);
 			locationOfEBookCurrentlyRead = aBook.getBookLocation();
@@ -631,9 +633,11 @@ public class BookwormApp.Bookworm:Granite.Application {
 
 	public async void saveBooksState (){
 			foreach (var book in libraryViewMap.values){
-				//Update the book details to the database
-				BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
-				debug("Completed saving the book data into DB");
+				//Update the book details to the database if it was opened in this session
+				if(((BookwormApp.Book)book).getWasBookOpened()){
+					BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
+					debug("Completed saving the book data into DB");
+				}
 				Idle.add (saveBooksState.callback);
 				yield;
 			}
@@ -673,7 +677,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 	public static BookwormApp.Book controlNavigation(owned BookwormApp.Book aBook){
 		int currentContentLocation = aBook.getBookPageNumber();
 		debug("In controlNavigation with currentContentLocation="+currentContentLocation.to_string());
-		//check if Book can be moved back
+		//check if Book can be moved back and disable back button otherwise
 		if(currentContentLocation > 0){
 			aBook.setIfPageBackward(true);
 			BookwormApp.AppWindow.back_button.set_sensitive(true);
@@ -681,7 +685,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			aBook.setIfPageBackward(false);
 			BookwormApp.AppWindow.back_button.set_sensitive(false);
 		}
-		//check if Book can be moved forward
+		//check if Book can be moved forward and disable forward button otherwise
 		if(currentContentLocation < (aBook.getBookContentList().size - 1)){
 			aBook.setIfPageForward(true);
 			BookwormApp.AppWindow.forward_button.set_sensitive(true);
@@ -689,6 +693,40 @@ public class BookwormApp.Bookworm:Granite.Application {
 			aBook.setIfPageForward(false);
 			BookwormApp.AppWindow.forward_button.set_sensitive(false);
 		}
+		return aBook;
+	}
+
+	public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, string direction){
+		int currentContentLocation = aBook.getBookPageNumber();;
+		//Handle the case when the page number of the book is not set
+    if(aBook.getBookPageNumber() == -1){
+			aBook.setBookPageNumber(0);
+      currentContentLocation = 0;
+		}
+		//set page number based on direction of navigation
+		switch(direction){
+			case "FORWARD"://This is for moving the book forward
+				if(aBook.getIfPageForward()){
+					currentContentLocation++;
+					aBook.setBookPageNumber(currentContentLocation);
+				}
+				break;
+
+			case "BACKWARD"://This is for moving the book backwards
+				if(aBook.getIfPageBackward()){
+					currentContentLocation--;
+	        aBook.setBookPageNumber(currentContentLocation);
+				}
+				break;
+
+			default://This is for opening the current page of the book
+				//No change of page number required
+				break;
+		}
+		//render the content on webview
+    BookwormApp.AppWindow.aWebView.load_html(BookwormApp.ePubReader.provideContent(aBook,currentContentLocation), BookwormApp.Constants.PREFIX_FOR_FILE_URL);
+    //set the focus to the webview to capture keypress events
+    BookwormApp.AppWindow.aWebView.grab_focus();
 		return aBook;
 	}
 }

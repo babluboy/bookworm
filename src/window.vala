@@ -143,7 +143,7 @@ public class BookwormApp.AppWindow {
       BookwormApp.Book currentBookForForward = new BookwormApp.Book();
       currentBookForForward = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       debug("Initiating read forward for eBook:"+currentBookForForward.getBookLocation());
-      currentBookForForward = BookwormApp.ePubReader.renderPage(aWebView, currentBookForForward, "FORWARD");
+      currentBookForForward = BookwormApp.Bookworm.renderPage(currentBookForForward, "FORWARD");
       currentBookForForward = BookwormApp.Bookworm.controlNavigation(currentBookForForward);
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForForward.getBookLocation(), currentBookForForward);
@@ -155,7 +155,7 @@ public class BookwormApp.AppWindow {
       BookwormApp.Book currentBookForReverse = new BookwormApp.Book();
       currentBookForReverse = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       debug("Initiating read previous for eBook:"+currentBookForReverse.getBookLocation());
-      currentBookForReverse = BookwormApp.ePubReader.renderPage(aWebView, currentBookForReverse, "BACKWARD");
+      currentBookForReverse = BookwormApp.Bookworm.renderPage(currentBookForReverse, "BACKWARD");
       currentBookForReverse = BookwormApp.Bookworm.controlNavigation(currentBookForReverse);
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForReverse.getBookLocation(), currentBookForReverse);
@@ -199,7 +199,7 @@ public class BookwormApp.AppWindow {
         if (ev.keyval == Gdk.Key.Left) {// Left Key pressed, move page backwards
           //get object for this ebook
           BookwormApp.Book aBookLeftKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          aBookLeftKeyPress = BookwormApp.ePubReader.renderPage(aWebView, aBookLeftKeyPress, "BACKWARD");
+          aBookLeftKeyPress = BookwormApp.Bookworm.renderPage(aBookLeftKeyPress, "BACKWARD");
           aBookLeftKeyPress = BookwormApp.Bookworm.controlNavigation(aBookLeftKeyPress);
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookLeftKeyPress.getBookLocation(), aBookLeftKeyPress);
@@ -207,7 +207,7 @@ public class BookwormApp.AppWindow {
         if (ev.keyval == Gdk.Key.Right) {// Right key pressed, move page forward
           //get object for this ebook
           BookwormApp.Book aBookRightKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          aBookRightKeyPress = BookwormApp.ePubReader.renderPage(aWebView, aBookRightKeyPress, "FORWARD");
+          aBookRightKeyPress = BookwormApp.Bookworm.renderPage(aBookRightKeyPress, "FORWARD");
           aBookRightKeyPress = BookwormApp.Bookworm.controlNavigation(aBookRightKeyPress);
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookRightKeyPress.getBookLocation(), aBookRightKeyPress);
@@ -244,7 +244,7 @@ public class BookwormApp.AppWindow {
           //Modify the URL by removing # at the end and see if it matches the content URL
           if(aBook.getBookContentList().contains(url_clicked_on_webview)){
             aBook.setBookPageNumber(aBook.getBookContentList().index_of(url_clicked_on_webview));
-            aBook = BookwormApp.ePubReader.renderPage(aWebView, aBook, "");
+            aBook = BookwormApp.Bookworm.renderPage(aBook, "");
             //update book details to libraryView Map
             BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
             //Set the mode back to Reading mode

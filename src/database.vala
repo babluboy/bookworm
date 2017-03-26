@@ -182,7 +182,7 @@ public class BookwormApp.DB{
                                        BOOK_PUBLISH_DATE,
                                        creation_date,
                                        modification_date
-                                FROM "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ORDER BY id";
+                                FROM "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ORDER BY modification_date DESC";
     int getAllBookStatus = bookwormDB.prepare_v2 (fetchLibraryQuery, -1, out stmt);
     assert (getAllBookStatus == Sqlite.OK);
     if (getAllBookStatus != Sqlite.OK) {
@@ -268,7 +268,7 @@ public class BookwormApp.DB{
                                       BOOK_TITLE = ?,
                                       BOOK_COVER_IMAGE_LOCATION = ?,
                                       IS_BOOK_COVER_IMAGE_PRESENT = ?,
-                                      modification_date = CAST(strftime('%s', 'now') AS INT)
+                                      modification_date = CAST(? AS INT)
                                       WHERE BOOK_LOCATION = ? ";
      int statusBookToDB = bookwormDB.prepare_v2 (update_book_to_database, update_book_to_database.length, out stmt);
      if (statusBookToDB != Sqlite.OK) {
@@ -280,7 +280,8 @@ public class BookwormApp.DB{
      stmt.bind_text (2, aBook.getBookTitle());
      stmt.bind_text (3, aBook.getBookCoverLocation());
      stmt.bind_text (4, aBook.getIsBookCoverImagePresent().to_string());
-     stmt.bind_text (5, aBook.getBookLocation());
+     stmt.bind_text (5, aBook.getBookLastModificationDate());
+     stmt.bind_text (6, aBook.getBookLocation());
 
      stmt.step ();
      stmt.reset ();

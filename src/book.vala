@@ -39,6 +39,7 @@ public class BookwormApp.Book{
   private Gtk.Overlay overlayImage;
   private Gtk.Image coverImage;
   private bool isBookSelected = false;
+  private bool wasBookOpened = false;
   private ArrayList<string> bookContentList = new ArrayList<string> ();
   private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
 
@@ -208,6 +209,14 @@ public class BookwormApp.Book{
   }
   public bool getIsBookSelected (){
     return isBookSelected;
+  }
+
+  //getter setter for determining if the book was read in this session
+  public void setWasBookOpened  (bool aWasBookOpened){
+    wasBookOpened = aWasBookOpened;
+  }
+  public bool getWasBookOpened (){
+    return wasBookOpened;
   }
 
   //print book details
