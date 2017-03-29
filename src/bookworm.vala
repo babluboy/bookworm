@@ -49,6 +49,9 @@ public class BookwormApp.Bookworm:Granite.Application {
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
 	public static string locationOfEBookCurrentlyRead = "";
 	public static int countBooksAddedIntoLibraryRow = 0;
+	public static string[] pathsOfBooksToBeAdded;
+	public static int noOfBooksAddedFromCommand = 0;
+	public static bool isBookBeingAddedToLibrary = false;
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;
@@ -192,8 +195,24 @@ public class BookwormApp.Bookworm:Granite.Application {
 				window.present();
 				debug("A instance of bookworm is already running...");
 		}
-		//check if any books needed to be added/opened - if an eBook was opened from Files
-		addAndOpenBookSupport ();
+		//check if any books needed to be added/opened - if eBook(s) were opened from Files
+		if(commandLineArgs.length > 1){
+			pathsOfBooksToBeAdded = new string[commandLineArgs.length];
+			pathsOfBooksToBeAdded = commandLineArgs;
+			//Display the progress bar
+			BookwormApp.AppWindow.bookAdditionBar.show();
+			isBookBeingAddedToLibrary = true;
+			//handle the case if the welcome screen is shown
+			if(libraryViewMap.size == 0){
+				//remove the welcome widget from main window
+				window.remove(welcomeWidget);
+				//add the library view to the window
+				window.add(bookWormUIBox);
+				bookWormUIBox.show_all();
+				toggleUIState();
+			}
+			addBooksToLibrary ();
+		}
 		toggleUIState();
 		debug("Ending activate method");
 	}
@@ -207,36 +226,31 @@ public class BookwormApp.Bookworm:Granite.Application {
       BookwormApp.AppWindow.infobar.hide();
 	}
 
-	public static async void addAndOpenBookSupport (){
-		debug("Starting to adding book provided on commandline...");
-		//Add books to library if path is passed on commandline
-		if(commandLineArgs.length > 1){
-			//handle the case if the welcome screen is shown
-			if(libraryViewMap.size == 0){
-				//remove the welcome widget from main window
-				window.remove(welcomeWidget);
-				//add the library view to the window
-				window.add(bookWormUIBox);
-				bookWormUIBox.show_all();
-				toggleUIState();
+	public static async void addBooksToLibrary (){
+		debug("Starting to add books....");
+		//loop through the command line and add books to library
+		foreach(string pathToSelectedBook in pathsOfBooksToBeAdded){
+			if("bookworm" != pathToSelectedBook){//ignore the first command which is the application name
+				BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
+				aBookBeingAdded.setBookLocation(pathToSelectedBook);
+				//the book will be updated to the libraryView Map within the addBookToLibrary function
+				addBookToLibrary(aBookBeingAdded);
+				noOfBooksAddedFromCommand++;
+				BookwormApp.AppWindow.bookAdditionBar.set_text (pathToSelectedBook);
+				BookwormApp.AppWindow.bookAdditionBar.set_pulse_step ((noOfBooksAddedFromCommand/(pathsOfBooksToBeAdded.length-1)));
+				BookwormApp.AppWindow.bookAdditionBar.pulse();
+				Idle.add (addBooksToLibrary.callback);
+				yield;
 			}
-			//loop through the command line and add books to library
-			foreach(string pathToSelectedBook in commandLineArgs){
-				if("bookworm" != pathToSelectedBook){//ignore the first command which is the application name
-					BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
-					aBookBeingAdded.setBookLocation(pathToSelectedBook);
-					//the book will be updated to the libraryView Map within the addBookToLibrary function
-					addBookToLibrary(aBookBeingAdded);
-					Idle.add (addAndOpenBookSupport.callback);
-					yield;
-				}
-			}
-			//open the book added if only one book path is present on command line
-			if(commandLineArgs.length == 2){
-				readSelectedBook(libraryViewMap.get(commandLineArgs[1]));
-			}
-			debug("Completed adding book provided on commandline...");
 		}
+		//open the book added if only one book path is present on command line
+		if(pathsOfBooksToBeAdded.length == 2 && "bookworm" == pathsOfBooksToBeAdded[0]){
+			readSelectedBook(libraryViewMap.get(commandLineArgs[1]));
+		}
+		debug("Completed adding book provided on commandline...");
+		//Hide the progress bar
+		BookwormApp.AppWindow.bookAdditionBar.hide();
+		isBookBeingAddedToLibrary = false;
 	}
 
 	public void loadBookwormState(){
@@ -604,6 +618,8 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
 			BookwormApp.Info.info_box.set_visible(false);
 			textSizeBox.set_visible(false);
+			if(!isBookBeingAddedToLibrary)
+				BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
 		//Reading Mode
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
@@ -615,6 +631,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(true);
 			BookwormApp.Info.info_box.set_visible(false);
 			textSizeBox.set_visible(true);
+			BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
 		//Book Meta Data / Content View Mode
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
@@ -628,6 +645,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.Info.info_box.set_visible(true);
 			BookwormApp.Info.stack.set_visible_child_name ("content-list");
 			textSizeBox.set_visible(false);
+			BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
 	}
 

@@ -32,6 +32,7 @@ public class BookwormApp.AppWindow {
   public static Gtk.Box bookReading_ui_box;
   public static Gtk.Button forward_button;
   public static Gtk.Button back_button;
+  public static Gtk.ProgressBar bookAdditionBar;
 
   public static Gtk.Box createBoookwormUI() {
     debug("Starting to create main window components...");
@@ -67,6 +68,11 @@ public class BookwormApp.AppWindow {
     Gtk.Button remove_book_button = new Gtk.Button ();
     remove_book_button.set_image (remove_book_image);
 
+    //Set up the progress bar for addition of books to library
+    bookAdditionBar = new Gtk.ProgressBar ();
+    bookAdditionBar.set_valign(Gtk.Align.CENTER);
+    bookAdditionBar.set_show_text (true);
+
     //Create a footer to select/add/remove books
     Gtk.Box add_remove_footer_box = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     add_remove_footer_box.set_border_width(BookwormApp.Constants.SPACING_BUTTONS);
@@ -74,6 +80,7 @@ public class BookwormApp.AppWindow {
     add_remove_footer_box.pack_start (select_book_button, false, true, 0);
     add_remove_footer_box.pack_start (add_book_button, false, true, 0);
     add_remove_footer_box.pack_start (remove_book_button, false, true, 0);
+    add_remove_footer_box.pack_end (bookAdditionBar, false, true, 0);
 
     //Create a MessageBar to show
     infobar = new Gtk.InfoBar ();
@@ -164,12 +171,16 @@ public class BookwormApp.AppWindow {
     //Add action for adding a book on the library view
     add_book_button.clicked.connect (() => {
       ArrayList<string> selectedEBooks = BookwormApp.Utils.selectBookFileChooser();
+      BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
+      int countOfBooksToBeAdded = 0;
       foreach(string pathToSelectedBook in selectedEBooks){
-        BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
-        aBookBeingAdded.setBookLocation(pathToSelectedBook);
-        //the book will be updated to the libraryView Map within the addBookToLibrary function
-        BookwormApp.Bookworm.addBookToLibrary(aBookBeingAdded);
+        BookwormApp.Bookworm.pathsOfBooksToBeAdded[countOfBooksToBeAdded] = pathToSelectedBook;
+        countOfBooksToBeAdded++;
       }
+      //Display the progress bar
+			BookwormApp.AppWindow.bookAdditionBar.show();
+			BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
+      BookwormApp.Bookworm.addBooksToLibrary ();
     });
     //Add action for putting library in select view
     select_book_button.clicked.connect (() => {
@@ -260,18 +271,23 @@ public class BookwormApp.AppWindow {
 
     //Add action for adding a book on the library view
     BookwormApp.Bookworm.welcomeWidget.activated.connect (() => {
-      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectBookFileChooser();
-      foreach(string pathToSelectedBook in selectedEBooks){
-        BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
-        aBookBeingAdded.setBookLocation(pathToSelectedBook);
-        //the book will be updated to the libraryView Map within the addBookToLibrary function
-        BookwormApp.Bookworm.addBookToLibrary(aBookBeingAdded);
-      }
       //remove the welcome widget from main window
       BookwormApp.Bookworm.window.remove(BookwormApp.Bookworm.welcomeWidget);
       BookwormApp.Bookworm.window.add(BookwormApp.Bookworm.bookWormUIBox);
       BookwormApp.Bookworm.bookWormUIBox.show_all();
       BookwormApp.Bookworm.toggleUIState();
+
+      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectBookFileChooser();
+      BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
+      int countOfBooksToBeAdded = 0;
+      foreach(string pathToSelectedBook in selectedEBooks){
+        BookwormApp.Bookworm.pathsOfBooksToBeAdded[countOfBooksToBeAdded] = pathToSelectedBook;
+        countOfBooksToBeAdded++;
+      }
+      //Display the progress bar
+			BookwormApp.AppWindow.bookAdditionBar.show();
+			BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
+      BookwormApp.Bookworm.addBooksToLibrary ();
     });
     return BookwormApp.Bookworm.welcomeWidget;
   }
