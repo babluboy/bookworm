@@ -108,7 +108,7 @@ namespace BookwormApp.Utils {
 		}catch (Error e){
 			warning("Error encountered in execution of sync command ["+cmd+"]: "+e.message);
 		}
-		debug("Completed execution of sync command ["+cmd+"]...");
+		debug("Completed execution of sync command ["+cmd+"] with output:"+std_out);
 		return std_out;
 	}
 
@@ -117,6 +117,13 @@ namespace BookwormApp.Utils {
 		try {
 			string baseName = File.new_for_path(fileName).get_basename();
 			grepOutput = execute_sync_command ("find \""+rootDirectoryToSearch+"\" -name \""+baseName+"\"");
+			/*
+			//check if the file found exists
+			File fileFound = File.new_for_path (grepOutput);
+			bool doesFileExist = fileFound.query_exists ();
+			if(!doesFileExist)
+				grepOutput = ""; //TODO: handle the no file found error
+			*/
 			return grepOutput;
 		}catch (Error e){
 			warning("Error encountered in getting full path for filename ["+fileName+"] searching within directory["+rootDirectoryToSearch+"]: "+e.message);
@@ -557,5 +564,13 @@ namespace BookwormApp.Utils {
 	      aFileChooserDialog.close();
 	    }
 			return eBookLocationList;
+		}
+
+		public static string decodeHTMLChars(string inputString){
+			string outputString = "";
+			unichar accel_char;
+			Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
+			outputString = Soup.URI.decode(outputString);
+			return outputString;
 		}
 }

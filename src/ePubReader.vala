@@ -270,10 +270,7 @@ public class BookwormApp.ePubReader {
               string[] navPointList = BookwormApp.Utils.multiExtractBetweenTwoStrings(navigationData, "<navPoint", "</navPoint>");
               if(navPointList.length > 0){
                 foreach(string navPointItem in navPointList){
-                  string tocText = BookwormApp.Utils.extractXMLTag(navPointItem, "<text>", "</text>");
-                  //Decode any HTML escape chars to normal chars
-                  unichar accel_char;
-                  Pango.parse_markup (tocText, tocText.length, 0, null, out tocText, out accel_char);
+                  string tocText = BookwormApp.Utils.decodeHTMLChars(BookwormApp.Utils.extractXMLTag(navPointItem, "<text>", "</text>"));
 
                   int tocNavStartPoint = navPointItem.index_of("src=\"");
                   int tocNavEndPoint = navPointItem.index_of("\"", tocNavStartPoint+("src=\"").length);
@@ -366,10 +363,7 @@ public class BookwormApp.ePubReader {
       int startOfTitleText = OpfContents.index_of(">", OpfContents.index_of("<dc:title"));
       int endOfTittleText = OpfContents.index_of("</dc:title>", startOfTitleText);
       if(startOfTitleText != -1 && endOfTittleText != -1 && endOfTittleText > startOfTitleText){
-        string bookTitle = OpfContents.slice(startOfTitleText+1, endOfTittleText);
-        //Decode any HTML escape chars to normal chars
-        unichar accel_char;
-        Pango.parse_markup (bookTitle, bookTitle.length, 0, null, out bookTitle, out accel_char);
+        string bookTitle = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfTitleText+1, endOfTittleText));
         aBook.setBookTitle(bookTitle);
         debug("Determined eBook Title as:"+bookTitle);
       }else{
@@ -408,8 +402,10 @@ public class BookwormApp.ePubReader {
   public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){
     StringBuilder contents = new StringBuilder();
     string baseLocationOfContents = aBook.getBaseLocationOfContents();
+    string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
     //fetch content from extracted book
-    contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(contentLocation), "", ""));
+    debug("Attempting to fetch content from location:"+bookLocationToRead);
+    contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
     //find list of relative urls with src, href, etc and convert them to absolute ones
     foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
     string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");

@@ -222,41 +222,27 @@ public class BookwormApp.AppWindow {
         WebKit.URIRequest aURIReq = aNavAction.get_request ();
 
         BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-        //Remove %20 and file:/// from the URL if present
-        string url_clicked_on_webview = aURIReq.get_uri().replace("%20"," ").replace(BookwormApp.Constants.PREFIX_FOR_FILE_URL, "").strip();
+        string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars(aURIReq.get_uri().strip());
         debug("URL Captured:"+url_clicked_on_webview);
-        //URL matches the content list of URLs
-        if(aBook.getBookContentList().contains(url_clicked_on_webview)){
-          aBook.setBookPageNumber(aBook.getBookContentList().index_of(url_clicked_on_webview));
-          //update book details to libraryView Map
-          BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-          //Set the mode back to Reading mode
-          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-          BookwormApp.Bookworm.toggleUIState();
-          debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBook.getBookPageNumber().to_string());
-        //URL does not match the Bookworm content URLs
-        }else{
-          //Remove '#' on the end of the URL if present and try to match contents (TODO: See how exact navigation can be done with #)
-          if(url_clicked_on_webview.index_of("#") != -1){
-            url_clicked_on_webview = url_clicked_on_webview.slice(0, url_clicked_on_webview.index_of("#"));
-          }
-          url_clicked_on_webview = BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), url_clicked_on_webview).strip();
-          //Modify the URL by removing # at the end and see if it matches the content URL
-          if(aBook.getBookContentList().contains(url_clicked_on_webview)){
-            aBook.setBookPageNumber(aBook.getBookContentList().index_of(url_clicked_on_webview));
-            aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+        if (url_clicked_on_webview.index_of("#") != -1){
+          url_clicked_on_webview = url_clicked_on_webview.slice(0, url_clicked_on_webview.index_of("#"));
+        }
+        url_clicked_on_webview = File.new_for_path(url_clicked_on_webview).get_basename();
+        int contentLocationPosition = 0;
+        foreach (string aBookContent in aBook.getBookContentList()) {
+          if(BookwormApp.Utils.decodeHTMLChars(aBookContent).index_of(url_clicked_on_webview) != -1){
+            debug("Matched Link Clicked to book content:"+BookwormApp.Utils.decodeHTMLChars(aBookContent));
+            aBook.setBookPageNumber(contentLocationPosition);
             //update book details to libraryView Map
             BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+            aBook = BookwormApp.Bookworm.renderPage(aBook, "");
             //Set the mode back to Reading mode
             BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
             BookwormApp.Bookworm.toggleUIState();
             debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBook.getBookPageNumber().to_string());
-          //URL is an external one and needs to be loaded on the User's browser
-          }else{
-            //TO-DO:
-            //(1)keep Bookworm on the same page and
-            //(2)open user's browser with the URL
+            break;
           }
+          contentLocationPosition++;
         }
       }
       return true;
