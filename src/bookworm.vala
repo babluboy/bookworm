@@ -237,8 +237,10 @@ public class BookwormApp.Bookworm:Granite.Application {
 				addBookToLibrary(aBookBeingAdded);
 				noOfBooksAddedFromCommand++;
 				BookwormApp.AppWindow.bookAdditionBar.set_text (pathToSelectedBook);
-				BookwormApp.AppWindow.bookAdditionBar.set_pulse_step ((noOfBooksAddedFromCommand/(pathsOfBooksToBeAdded.length-1)));
-				BookwormApp.AppWindow.bookAdditionBar.pulse();
+				if(pathsOfBooksToBeAdded.length > 1){
+					BookwormApp.AppWindow.bookAdditionBar.set_pulse_step ((noOfBooksAddedFromCommand/(pathsOfBooksToBeAdded.length-1)));
+					BookwormApp.AppWindow.bookAdditionBar.pulse();
+				}
 				Idle.add (addBooksToLibrary.callback);
 				yield;
 			}
@@ -274,17 +276,20 @@ public class BookwormApp.Bookworm:Granite.Application {
 	public static void removeSelectedBooksFromLibrary(){
 		ArrayList<string> listOfBooksToBeRemoved = new ArrayList<string> ();
 		//loop through the Library View Hashmap
-		foreach (var book in libraryViewMap.values){
+		foreach (BookwormApp.Book book in libraryViewMap.values){
 			//check if the book selection flag to true and remove book
-			if(((BookwormApp.Book)book).getIsBookSelected()){
+			if(book.getIsBookSelected()){
 				//hold the books to be deleted in a list
-				listOfBooksToBeRemoved.add(((BookwormApp.Book)book).getBookLocation());
-				Gtk.EventBox lEventBox = ((BookwormApp.Book)book).getEventBox();
-
+				listOfBooksToBeRemoved.add(book.getBookLocation());
+				Gtk.EventBox lEventBox = book.getEventBox();
 				//destroy the EventBox parent widget - this removes the book from the library grid
 				lEventBox.get_parent().destroy();
 				//destroy the EventBox widget
 				lEventBox.destroy();
+				//remove the cover image if it exists
+				if(book.getBookCoverLocation().index_of(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("-cover-N.png","")) == -1){
+					BookwormApp.Utils.execute_sync_command("rm \""+book.getBookCoverLocation()+"\"");
+				}
 			}
 		}
 		BookwormApp.AppWindow.library_grid.show_all();
