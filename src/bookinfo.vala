@@ -24,7 +24,9 @@ public class BookwormApp.Info:Gtk.Window {
   public static Box content_box;
   public static ScrolledWindow content_scroll;
   public static Box bookmark_box;
+  public static ScrolledWindow searchresults_scroll;
   public static Box searchresults_box;
+
 
   public static Gtk.Box createBookInfo(){
     debug("Starting to create BookInfo window components...");
@@ -51,13 +53,56 @@ public class BookwormApp.Info:Gtk.Window {
     stack.add_titled(bookmark_box, "bookmark-list", BookwormApp.Constants.TEXT_FOR_INFO_TAB_BOOKMARKS);
 
     searchresults_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
-    stack.add_titled(searchresults_box, "searchresults-list", BookwormApp.Constants.TEXT_FOR_INFO_TAB_SEARCHRESULTS);
+    searchresults_scroll = new ScrolledWindow (null, null);
+    searchresults_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+    searchresults_scroll.add (searchresults_box);
+    stack.add_titled(searchresults_scroll, "searchresults-list", BookwormApp.Constants.TEXT_FOR_INFO_TAB_SEARCHRESULTS);
 
     info_box.pack_start(switcher, false, true, 0);
     info_box.pack_start(stack, true, true, 0);
 
     return info_box;
     debug("Sucessfully created BookInfo window components...");
+  }
+
+  public static BookwormApp.Book populateSearchResults(owned BookwormApp.Book aBook){
+    Box searchresults_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+    Gtk.Label searchLabel = new Label("");
+    searchresults_box.pack_start(searchLabel,false,false,0);
+
+    HashMap<string,string> searchResultsMap = BookwormApp.ePubReader.searchBookContents(aBook, BookwormApp.AppHeaderBar.headerSearchBar.get_text());
+    if(searchResultsMap.size > 0){
+      string searchResultsLabeltext = BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_FOUND;
+      searchResultsLabeltext = searchResultsLabeltext.replace("$$$", BookwormApp.AppHeaderBar.headerSearchBar.get_text());
+      searchResultsLabeltext = searchResultsLabeltext.replace("&&&", aBook.getBookTitle());
+      searchLabel.set_text(searchResultsLabeltext);
+    }else{
+      string searchResultsLabeltext = BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_NOT_FOUND;
+      searchResultsLabeltext = searchResultsLabeltext.replace("$$$", BookwormApp.AppHeaderBar.headerSearchBar.get_text());
+      searchResultsLabeltext = searchResultsLabeltext.replace("&&&", aBook.getBookTitle());
+      searchLabel.set_text(searchResultsLabeltext);
+    }
+    foreach (var entry in searchResultsMap.entries) {
+      LinkButton searchResultLinkButton = new LinkButton.with_label (entry.key, entry.value);
+      searchResultLinkButton.halign = Align.START;
+      searchresults_box.pack_start(searchResultLinkButton,false,false,0);
+      searchResultLinkButton.activate_link.connect (() => {
+        aBook.setBookPageNumber(aBook.getBookContentList().index_of(searchResultLinkButton.get_uri ().strip()));
+        //update book details to libraryView Map
+        BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+        aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+        //Set the mode back to Reading mode
+        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+        BookwormApp.Bookworm.getAppInstance().toggleUIState();
+        return true;
+      });
+    }
+
+    //Remove the existing search results Gtk.Box and add the current one
+    searchresults_scroll.get_child().destroy();
+    searchresults_scroll.add (searchresults_box);
+
+    return aBook;
   }
 
   public static BookwormApp.Book createTableOfContents(owned BookwormApp.Book aBook){
@@ -82,8 +127,7 @@ public class BookwormApp.Info:Gtk.Window {
           });
         }
       }
-    }
-    else{
+    }else{
       //If Table Of Contents is not found, set the spine data into the Contents tab
       int contentNumber = 1;
       foreach(string contentPath in aBook.getBookContentList()){

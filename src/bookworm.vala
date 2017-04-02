@@ -286,7 +286,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 				lEventBox.get_parent().destroy();
 				//destroy the EventBox widget
 				lEventBox.destroy();
-				//remove the cover image if it exists
+				//remove the cover image if it exists (ignore default covers)
 				if(book.getBookCoverLocation().index_of(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("-cover-N.png","")) == -1){
 					BookwormApp.Utils.execute_sync_command("rm \""+book.getBookCoverLocation()+"\"");
 				}
@@ -593,6 +593,9 @@ public class BookwormApp.Bookworm:Granite.Application {
 			//change the application view to Book Reading mode
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
 			toggleUIState();
+			//clean the previous search result if any and reset the contents of the search entry
+			BookwormApp.Info.searchresults_scroll.get_child().destroy();
+			BookwormApp.AppHeaderBar.headerSearchBar.set_text(BookwormApp.Constants.TEXT_FOR_SEARCH_HEADERBAR);
 		}
 	}
 
@@ -719,8 +722,14 @@ public class BookwormApp.Bookworm:Granite.Application {
 		return aBook;
 	}
 
-	public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, string direction){
-		int currentContentLocation = aBook.getBookPageNumber();;
+	public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
+		int currentContentLocation = aBook.getBookPageNumber();
+		string searchText = "";
+		//handle loading page with search string
+		if(direction.index_of("SEARCH:") != -1){
+			searchText = direction.replace("SEARCH:", "");
+			direction = "SEARCH";
+		}
 		//Handle the case when the page number of the book is not set
     if(aBook.getBookPageNumber() == -1){
 			aBook.setBookPageNumber(0);
@@ -740,6 +749,12 @@ public class BookwormApp.Bookworm:Granite.Application {
 					currentContentLocation--;
 	        aBook.setBookPageNumber(currentContentLocation);
 				}
+				break;
+
+			case "SEARCH"://Load the page and scroll to the search text
+				//TODO: Scroll the page to where the search text is present
+				//WebKit.FindController awebkitController = BookwormApp.AppWindow.aWebView.get_find_controller ();
+				//awebkitController.search (searchText, WebKit.FindOptions.CASE_INSENSITIVE, 1);
 				break;
 
 			default://This is for opening the current page of the book

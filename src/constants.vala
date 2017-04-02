@@ -47,6 +47,8 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_INFO_TAB_CONTENT_PREFIX = _("Content #");
 	public const string TEXT_FOR_INFO_TAB_BOOKMARKS = _("Bookmarks");
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
+	public const string TEXT_FOR_SEARCH_RESULTS_FOUND = _("Found the following matches for '$$$' in &&&:");
+	public const string TEXT_FOR_SEARCH_RESULTS_NOT_FOUND = _("No matches found for '$$$' in &&&");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");

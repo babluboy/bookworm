@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-30 11:09+0100\n"
+"POT-Creation-Date: 2017-04-02 16:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/constants.vala:61
+#: src/constants.vala:63
 msgid "About"
 msgstr ""
 
-#: src/constants.vala:82
+#: src/constants.vala:84
 msgid "All Files"
 msgstr ""
 
@@ -45,6 +45,10 @@ msgstr ""
 msgid "Contents"
 msgstr ""
 
+#: src/constants.vala:50
+msgid "Found the following matches for '$$$' in &&&:"
+msgstr ""
+
 #: src/constants.vala:29
 msgid "Launchpad Translators"
 msgstr ""
@@ -57,11 +61,15 @@ msgstr ""
 msgid "Looks like Bookworm has no books !"
 msgstr ""
 
+#: src/constants.vala:51
+msgid "No matches found for '$$$' in &&&"
+msgstr ""
+
 #: src/constants.vala:37
 msgid "Not Available"
 msgstr ""
 
-#: src/constants.vala:51 src/constants.vala:62
+#: src/constants.vala:53 src/constants.vala:64
 msgid "Preferences"
 msgstr ""
 
@@ -85,11 +93,11 @@ msgstr ""
 msgid "Select an eBook to read"
 msgstr ""
 
-#: src/constants.vala:52
+#: src/constants.vala:54
 msgid "Turn on Night Mode"
 msgstr ""
 
-#: src/constants.vala:60
+#: src/constants.vala:62
 msgid "Unknown Book"
 msgstr ""
 
@@ -101,6 +109,6 @@ msgstr ""
 msgid "eBook Reader"
 msgstr ""
 
-#: src/constants.vala:83
+#: src/constants.vala:85
 msgid "ePUB Files"
 msgstr ""

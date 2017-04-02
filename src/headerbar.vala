@@ -87,10 +87,26 @@ public class BookwormApp.AppHeaderBar {
     headerSearchBar = new Gtk.SearchEntry();
     headerSearchBar.set_text(Constants.TEXT_FOR_SEARCH_HEADERBAR);
     headerbar.pack_end(headerSearchBar);
-    headerSearchBar.set_sensitive(false);
-    //Set actions for HeaderBar search
-    headerSearchBar.search_changed.connect (() => {
 
+    //Set actions for HeaderBar search
+    //Clear the default text on click of the search bar
+    headerSearchBar.button_press_event.connect ((evt) => {
+      if(Constants.TEXT_FOR_SEARCH_HEADERBAR == headerSearchBar.get_text()){
+        headerSearchBar.set_text("");
+      }
+      return false;
+    });
+
+    headerSearchBar.activate.connect (() => {
+      //Perform book search
+      if(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1] || bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
+        BookwormApp.Book aBook = bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead);
+        BookwormApp.Info.populateSearchResults(aBook);
+        //Set the mode to Info View Mode
+        bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
+        bookwormApp.toggleUIState();
+        BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name ("searchresults-list"));
+      }
     });
     bookwormApp.library_view_button.clicked.connect (() => {
       //Set action of return to Library View if the current view is Reading View
@@ -119,6 +135,7 @@ public class BookwormApp.AppHeaderBar {
       //Set the mode to Content View Mode
       bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
       bookwormApp.toggleUIState();
+      BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name ("content-list"));
     });
     textLargerButton.clicked.connect (() => {
       BookwormApp.AppWindow.aWebView.set_zoom_level (BookwormApp.AppWindow.aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);

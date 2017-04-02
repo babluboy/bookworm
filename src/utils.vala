@@ -573,4 +573,44 @@ namespace BookwormApp.Utils {
 			outputString = Soup.URI.decode(outputString);
 			return outputString;
 		}
+
+		public static string removeTagsFromText(string input){
+			debug("Starting execution of removeTagsFromText on text:"+input);
+			StringBuilder filteredInput = new StringBuilder(input.strip());
+			int posOfStartTag = filteredInput.str.index_of("<");
+			int posOfEndTag = filteredInput.str.index_of(">");
+			//handle the case when both start and end tags are present in the right order
+			if(posOfStartTag != -1 && posOfEndTag != -1 && posOfEndTag > posOfStartTag){
+				filteredInput.assign(filteredInput.str.replace(filteredInput.str.slice(posOfStartTag, posOfEndTag+1), ""));
+			}
+			posOfStartTag = filteredInput.str.index_of("<");
+	    posOfEndTag = filteredInput.str.index_of(">");
+	    //handle the case whenboth start and end tags are present but ">" is present before the "<"
+	    if(posOfStartTag != -1 && posOfEndTag != -1 && posOfStartTag > posOfEndTag){
+	      filteredInput.assign(filteredInput.str.replace(filteredInput.str.slice(0, posOfEndTag+1), ""));
+	      print("\nCase 1.1:"+filteredInput.str);
+	    }
+			posOfStartTag = filteredInput.str.index_of("<");
+			posOfEndTag = filteredInput.str.index_of(">");
+			//handle the case when only ">" is present
+	    if(posOfEndTag != -1 && posOfStartTag == -1){
+				filteredInput.assign(filteredInput.str.replace(filteredInput.str.slice(0, posOfEndTag+1), ""));
+			}
+			posOfStartTag = filteredInput.str.index_of("<");
+			posOfEndTag = filteredInput.str.index_of(">");
+			//handle the case when when only "<" is present
+			if(posOfStartTag != -1 && posOfEndTag == -1){
+				filteredInput.assign(filteredInput.str.replace(filteredInput.str.slice(posOfStartTag, filteredInput.str.length), ""));
+			}
+
+			if(filteredInput.str.index_of("<") != -1 || filteredInput.str.index_of(">") != -1){
+				filteredInput.assign(removeTagsFromText(filteredInput.str.strip()));
+			}
+			//remove any html escape characters if present
+			filteredInput.assign(decodeHTMLChars(filteredInput.str));
+			//remove any line feeds
+			filteredInput.assign(filteredInput.str.replace("\n",""));
+			debug("Completed execution of removeTagsFromText with text:"+filteredInput.str);
+			return filteredInput.str.strip();
+		}
 }
