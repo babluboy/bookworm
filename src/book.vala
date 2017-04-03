@@ -26,6 +26,7 @@ public class BookwormApp.Book{
   private string bookCoverLocation = "";
   private string bookExtractionLocation = "";
   private string bookTitle = "";
+  private string bookAuthor = "";
   private string opfFileLocation = "";
   private string baseLocationOfContents = "";
   private bool isBookCoverImagePresent = false;
@@ -106,6 +107,15 @@ public class BookwormApp.Book{
   public string getBookTitle (){
     return bookTitle;
   }
+
+  //getter setter for book author
+  public void setBookAuthor (string aBookAuthor){
+    bookAuthor = aBookAuthor;
+  }
+  public string getBookAuthor (){
+    return bookAuthor;
+  }
+
 
   //getter setter for location of books OPF file
   public void setOPFFileLocation (string aOPFFileLocation){

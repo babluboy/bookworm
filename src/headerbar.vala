@@ -85,20 +85,28 @@ public class BookwormApp.AppHeaderBar {
 
     //Add a search entry to the header
     headerSearchBar = new Gtk.SearchEntry();
-    headerSearchBar.set_text(Constants.TEXT_FOR_SEARCH_HEADERBAR);
+    headerSearchBar.set_text(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
     headerbar.pack_end(headerSearchBar);
 
     //Set actions for HeaderBar search
     //Clear the default text on click of the search bar
     headerSearchBar.button_press_event.connect ((evt) => {
-      if(Constants.TEXT_FOR_SEARCH_HEADERBAR == headerSearchBar.get_text()){
+      if(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH == headerSearchBar.get_text() ||
+         Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH == headerSearchBar.get_text()){
         headerSearchBar.set_text("");
       }
       return false;
     });
 
+    headerSearchBar.search_changed.connect (() => {
+      //Call the filter only if the Library View Mode is active and the default text is not present in the search box
+      if(!(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1] || bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4])){
+        BookwormApp.AppWindow.library_grid.invalidate_filter ();
+      }
+    });
+
     headerSearchBar.activate.connect (() => {
-      //Perform book search
+      //Perform book search only if the Reading View or Info View is active
       if(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1] || bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
         BookwormApp.Book aBook = bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead);
         BookwormApp.Info.populateSearchResults(aBook);

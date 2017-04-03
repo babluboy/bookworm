@@ -36,7 +36,8 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://github.com/babluboy/bookworm/wiki";
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
-	public const string TEXT_FOR_SEARCH_HEADERBAR = _("Search here...");
+	public const string TEXT_FOR_HEADERBAR_BOOK_SEARCH = _("Search this book...");
+	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search for Title, Author...");
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
