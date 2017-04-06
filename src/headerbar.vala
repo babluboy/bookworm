@@ -21,6 +21,8 @@ public class BookwormApp.AppHeaderBar {
   public static Gtk.HeaderBar headerbar;
   private static Gtk.Window window;
   public static Gtk.SearchEntry headerSearchBar;
+  public static Gtk.Button bookmark_inactive_button;
+  public static Gtk.Button bookmark_active_button;
 
   public static Gtk.HeaderBar create_headerbar() {
     debug("Starting creation of header bar..");
@@ -54,6 +56,18 @@ public class BookwormApp.AppHeaderBar {
     textSmallerButton.set_image (menu_icon_text_small);
     textSmallerButton.set_halign(Gtk.Align.END);
 
+    Gtk.Image bookmark_inactive_button_image = new Gtk.Image ();
+    bookmark_inactive_button_image.set_from_file (Constants.BOOKMARK_INACTIVE_IMAGE_LOCATION);
+    bookmark_inactive_button = new Gtk.Button ();
+    bookmark_inactive_button.set_image (bookmark_inactive_button_image);
+    bookmark_inactive_button.set_halign(Gtk.Align.CENTER);
+    Gtk.Image bookmark_active_button_image = new Gtk.Image ();
+    bookmark_active_button_image.set_from_file (Constants.BOOKMARK_ACTIVE_IMAGE_LOCATION);
+    bookmark_active_button = new Gtk.Button ();
+    bookmark_active_button.set_image (bookmark_active_button_image);
+    bookmark_active_button.set_halign(Gtk.Align.CENTER);
+
+
     bookwormApp.textSizeBox = new Gtk.Box(Orientation.HORIZONTAL, 0);
     bookwormApp.textSizeBox.get_style_context().add_class(Gtk.STYLE_CLASS_LINKED);
     bookwormApp.textSizeBox.pack_start(textSmallerButton, false, false);
@@ -62,6 +76,8 @@ public class BookwormApp.AppHeaderBar {
     headerbar.pack_start(bookwormApp.library_view_button);
     headerbar.pack_start(bookwormApp.content_list_button);
     headerbar.pack_start(bookwormApp.textSizeBox);
+    headerbar.pack_start(bookmark_inactive_button);
+    headerbar.pack_start(bookmark_active_button);
 
     //add menu items to header bar - Menu
     Gtk.MenuButton appMenu = new Gtk.MenuButton ();
@@ -150,6 +166,12 @@ public class BookwormApp.AppHeaderBar {
     });
     textSmallerButton.clicked.connect (() => {
       BookwormApp.AppWindow.aWebView.set_zoom_level (BookwormApp.AppWindow.aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+    });
+    bookmark_active_button.clicked.connect (() => {
+      BookwormApp.Bookworm.handleBookMark("ACTIVE_CLICKED");
+    });
+    bookmark_inactive_button.clicked.connect (() => {
+      BookwormApp.Bookworm.handleBookMark("INACTIVE_CLICKED");
     });
     debug("Completed loading HeaderBar sucessfully...");
     return headerbar;

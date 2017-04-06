@@ -48,7 +48,6 @@ public class BookwormApp.Bookworm:Granite.Application {
 	public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
 	public static string locationOfEBookCurrentlyRead = "";
-	public static int countBooksAddedIntoLibraryRow = 0;
 	public static string[] pathsOfBooksToBeAdded;
 	public static int noOfBooksAddedFromCommand = 0;
 	public static bool isBookBeingAddedToLibrary = false;
@@ -356,7 +355,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 	}
 
 	public static void updateLibraryView(owned BookwormApp.Book aBook){
-		debug("Updating Library [Current Row Count:"+countBooksAddedIntoLibraryRow.to_string()+"] for cover:"+aBook.getBookCoverLocation());
+		debug("Updating Library View for cover:"+aBook.getBookCoverLocation());
 		Gtk.EventBox aEventBox = new Gtk.EventBox();
 		aEventBox.set_name(aBook.getBookLocation());
 		Gtk.Overlay aOverlayImage = new Gtk.Overlay();
@@ -608,7 +607,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 		foreach (BookwormApp.Book book in listOfBooks){
 			//add the book to the UI
 			updateLibraryView(book);
-			//add book details to libraryView Map
+			//add book details to libraryView Map --TODO - remove libraryViewMap.set as it is being called as the last step in updateLibraryView function
 			libraryViewMap.set(book.getBookLocation(), book);
 		}
 	}
@@ -631,6 +630,8 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
 			BookwormApp.Info.info_box.set_visible(false);
 			textSizeBox.set_visible(false);
+			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
+			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
 			if(!isBookBeingAddedToLibrary)
 				BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
@@ -645,6 +646,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(true);
 			BookwormApp.Info.info_box.set_visible(false);
 			textSizeBox.set_visible(true);
+			handleBookMark("DISPLAY");
 			BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
 		//Book Meta Data / Content View Mode
@@ -660,6 +662,8 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.Info.info_box.set_visible(true);
 			BookwormApp.Info.stack.set_visible_child_name ("content-list");
 			textSizeBox.set_visible(false);
+			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
+			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
 			BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
 	}
@@ -772,6 +776,8 @@ public class BookwormApp.Bookworm:Granite.Application {
     BookwormApp.AppWindow.aWebView.load_html(BookwormApp.ePubReader.provideContent(aBook,currentContentLocation), BookwormApp.Constants.PREFIX_FOR_FILE_URL);
     //set the focus to the webview to capture keypress events
     BookwormApp.AppWindow.aWebView.grab_focus();
+		//set the bookmak icon on the header
+		handleBookMark("DISPLAY");
 		return aBook;
 	}
 
@@ -795,5 +801,42 @@ public class BookwormApp.Bookworm:Granite.Application {
 			}
 		}
 		return true;
+	}
+
+	public static void handleBookMark(string action){
+		//get the book being currently read
+		BookwormApp.Book aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
+		switch(action){
+			case "DISPLAY":
+				if(aBook.getBookmark().index_of(aBook.getBookPageNumber().to_string()) != -1){
+					//display bookmark as active
+					BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(true);
+					BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
+				}else{
+					//display bookmark as inactive
+					BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
+					BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(true);
+				}
+				break;
+			case "ACTIVE_CLICKED":
+				BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
+				BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(true);
+				//set the bookmark
+				aBook.setBookmark(aBook.getBookPageNumber(), action);
+				break;
+			case "INACTIVE_CLICKED":
+				BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(true);
+				BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
+				//set the bookmark
+				aBook.setBookmark(aBook.getBookPageNumber(), action);
+				break;
+			default:
+				break;
+		}
+		//update book details to libraryView Map
+		if(aBook != null){
+			debug("updating libraryViewMap with bookmark info...");
+			libraryViewMap.set(locationOfEBookCurrentlyRead, aBook);
+		}
 	}
 }

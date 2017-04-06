@@ -43,6 +43,7 @@ public class BookwormApp.Book{
   private bool wasBookOpened = false;
   private ArrayList<string> bookContentList = new ArrayList<string> ();
   private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
+  private StringBuilder bookmarks = new StringBuilder ("");
 
   //getter list for book id
   public void setBookId (int aBookId){
@@ -229,6 +230,23 @@ public class BookwormApp.Book{
     return wasBookOpened;
   }
 
+  //getter setter for bookmarks
+  public void setBookmark (int pageNumber, string action){
+    if("ACTIVE_CLICKED" == action){
+      bookmarks.assign(bookmarks.str.replace("**"+pageNumber.to_string()+"**", ""));
+    }
+    if("INACTIVE_CLICKED" == action){
+      bookmarks.append("**"+pageNumber.to_string()+"**");
+    }
+    if(pageNumber == -10){ //this is used to set the bookmark fetched from the DB
+      //set -10 as the "pageNumber" and the book mark data as "action" when setting this value from the DB
+      bookmarks.assign(action);
+    }
+  }
+  public string getBookmark (){
+    return bookmarks.str;
+  }
+
   //print book details
   public string to_string(){
     StringBuilder bookDetails = new StringBuilder();
@@ -246,6 +264,7 @@ public class BookwormApp.Book{
            .append("bookPageNumber=").append(bookPageNumber.to_string()).append(",\n")
            .append("ifPageForward=").append(ifPageForward.to_string()).append(",\n")
            .append("ifPageBackward=").append(ifPageBackward.to_string()).append(",\n")
+           .append("bookmarks=").append(bookmarks.str).append(",\n")
            .append("bookContentList=");
      for (int i=0; i<bookContentList.size;i++) {
         bookDetails.append("["+i.to_string()+"]="+bookContentList.get(i)+",");
