@@ -36,7 +36,8 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://github.com/babluboy/bookworm/wiki";
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
-	public const string TEXT_FOR_SEARCH_HEADERBAR = _("Search here...");
+	public const string TEXT_FOR_HEADERBAR_BOOK_SEARCH = _("Search this book...");
+	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search for Title, Author...");
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
@@ -46,7 +47,12 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_INFO_TAB_CONTENTS = _("Contents");
 	public const string TEXT_FOR_INFO_TAB_CONTENT_PREFIX = _("Content #");
 	public const string TEXT_FOR_INFO_TAB_BOOKMARKS = _("Bookmarks");
+	public const string TEXT_FOR_BOOKMARKS = _("Bookmark #NNN for Section PPP");
+	public const string TEXT_FOR_BOOKMARKS_FOUND = _("Click on a link to jump to bookmarked section");
+	public const string TEXT_FOR_BOOKMARKS_NOT_FOUND = _("No bookmarks set in BBB, click the bookworm icon on the header bar to boomark the page");
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
+	public const string TEXT_FOR_SEARCH_RESULTS_FOUND = _("Found the following matches for '$$$' in &&&:");
+	public const string TEXT_FOR_SEARCH_RESULTS_NOT_FOUND = _("No matches found for '$$$' in &&&");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");
@@ -68,6 +74,8 @@ namespace BookwormApp.Constants {
 	public static const string REMOVE_BOOK_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-remove.svg";
 	public static const string LIBRARY_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg";
 	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-list-symbolic.svg";
+	public static const string BOOKMARK_INACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-bookmark-inactive.svg";
+	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-bookmark-active.svg";
 	public static const string SELECTION_IMAGE_BUTTON_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection.svg";
 	public static const string SELECTION_OPTION_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
 	public static const string SELECTION_CHECKED_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";

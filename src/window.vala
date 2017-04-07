@@ -45,6 +45,7 @@ public class BookwormApp.AppWindow {
     library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
     library_grid.homogeneous = true;
     library_grid.set_valign(Gtk.Align.START);
+    library_grid.set_filter_func(BookwormApp.Bookworm.libraryViewFilter);
 
     library_scroll = new ScrolledWindow (null, null);
     library_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);

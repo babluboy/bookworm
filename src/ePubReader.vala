@@ -402,6 +402,7 @@ public class BookwormApp.ePubReader {
   public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){
     StringBuilder contents = new StringBuilder();
     string baseLocationOfContents = aBook.getBaseLocationOfContents();
+    //handle the case when the content list has html escape chars for the URI
     string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
     //fetch content from extracted book
     debug("Attempting to fetch content from location:"+bookLocationToRead);
@@ -419,6 +420,39 @@ public class BookwormApp.ePubReader {
     contents.assign(adjustPageContent(contents.str));
 
     return contents.str;
+  }
+
+  public static HashMap<string,string> searchBookContents(BookwormApp.Book aBook, string searchString){
+    HashMap<string,string> searchResultsMap = new HashMap<string,string>();
+    string bookSearchResults = BookwormApp.Utils.execute_sync_command("grep -i -r -o -P -w '.{0,50}"+BookwormApp.AppHeaderBar.headerSearchBar.get_text()+".{0,50}' \""+aBook.getBookExtractionLocation()+"\"");
+    string[] individualLines = bookSearchResults.strip().split ("\n",-1);
+    StringBuilder pageOfResult = new StringBuilder("");
+    StringBuilder contentOfResult = new StringBuilder("");
+    foreach (string aSearchResult in individualLines) {
+      if(aSearchResult.index_of(":") != -1 && aSearchResult.index_of(":") > 0 && aSearchResult.index_of(":") < aSearchResult.length){
+        pageOfResult.assign(aSearchResult.slice(0, aSearchResult.index_of(":")));
+        if(!(aBook.getBookContentList().contains(pageOfResult.str))){
+          //handle the case when the spine data has HTML Escape characters
+          foreach (string contentListURI in aBook.getBookContentList()) {
+            if(BookwormApp.Utils.decodeHTMLChars(contentListURI) == pageOfResult.str){
+              pageOfResult.assign(contentListURI);
+              break;
+            }
+          }
+          //If the location still could not be matched, then assign a blank location
+          if(!(aBook.getBookContentList().contains(pageOfResult.str))){
+            pageOfResult.assign("");
+          }
+        }
+
+        contentOfResult.assign(aSearchResult.slice(aSearchResult.index_of(":")+1, aSearchResult.length));
+        //ignore the results from ncx,opf file
+        if(pageOfResult.str.index_of("ncx") == -1 && pageOfResult.str.index_of("opf") == -1 && pageOfResult.str.length > 1){
+          searchResultsMap.set(pageOfResult.str, BookwormApp.Utils.removeTagsFromText(contentOfResult.str));
+        }
+      }
+    }
+    return searchResultsMap;
   }
 
 }

@@ -21,7 +21,7 @@ using Gee;
 
 public class BookwormApp.DB{
   public static const string BOOKWORM_TABLE_BASE_NAME = "BOOK_LIBRARY_TABLE";
-  public static const string BOOKWORM_TABLE_VERSION = "";
+  public static const string BOOKWORM_TABLE_VERSION = "1"; //Only integers allowed
   private static Sqlite.Database bookwormDB;
   private static string errmsg;
 
@@ -51,6 +51,7 @@ public class BookwormApp.DB{
 															 + "BOOK_TOC_DATA TEXT NOT NULL DEFAULT '', "
 															 + "BOOK_TOTAL_NUMBER_OF_PAGES TEXT NOT NULL DEFAULT '', "
 															 + "BOOK_LAST_READ_PAGE_NUMBER TEXT NOT NULL DEFAULT '', "
+                               + "BOOKMARKS TEXT NOT NULL DEFAULT '', "
                                + "creation_date INTEGER,"
                                + "modification_date INTEGER)";
 		int librarytableCreateStatus = bookwormDB.exec (create_library_table, null, out errmsg);
@@ -180,6 +181,7 @@ public class BookwormApp.DB{
                                        IS_BOOK_COVER_IMAGE_PRESENT,
                                        BOOK_LAST_READ_PAGE_NUMBER,
                                        BOOK_PUBLISH_DATE,
+                                       BOOKMARKS,
                                        creation_date,
                                        modification_date
                                 FROM "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ORDER BY modification_date DESC";
@@ -198,8 +200,9 @@ public class BookwormApp.DB{
       aBook.setIsBookCoverImagePresent((stmt.column_text (4) == "true") ? true:false);
       aBook.setBookPageNumber(int.parse(stmt.column_text(5)));
       aBook.setBookPublishDate(stmt.column_text (6));
-      aBook.setBookCreationDate(stmt.column_text (7));
-      aBook.setBookLastModificationDate(stmt.column_text (8));
+      aBook.setBookmark(-10, stmt.column_text (7));//-10 is a flag to set the bookmark string into the object
+      aBook.setBookCreationDate(stmt.column_text (8));
+      aBook.setBookLastModificationDate(stmt.column_text (9));
       debug("Book details fetched from DB:
                 id="+stmt.column_int(0).to_string()+
                 ",BOOK_LOCATION="+stmt.column_text (1)+
@@ -208,8 +211,9 @@ public class BookwormApp.DB{
                 ",IS_BOOK_COVER_IMAGE_PRESENT="+stmt.column_text (4)+
                 ",BOOK_LAST_READ_PAGE_NUMBER="+stmt.column_text (5)+
                 ",BOOK_PUBLISH_DATE="+stmt.column_text (6)+
-                ",creation_date="+stmt.column_text (7)+
-                ",modification_date="+stmt.column_text (8)
+                ",BOOKMARKS="+stmt.column_text (7)+
+                ",creation_date="+stmt.column_text (8)+
+                ",modification_date="+stmt.column_text (9)
             );
       //add book details to list
       listOfBooks.add(aBook);
@@ -268,6 +272,7 @@ public class BookwormApp.DB{
                                       BOOK_TITLE = ?,
                                       BOOK_COVER_IMAGE_LOCATION = ?,
                                       IS_BOOK_COVER_IMAGE_PRESENT = ?,
+                                      BOOKMARKS = ?,
                                       modification_date = CAST(? AS INT)
                                       WHERE BOOK_LOCATION = ? ";
      int statusBookToDB = bookwormDB.prepare_v2 (update_book_to_database, update_book_to_database.length, out stmt);
@@ -280,8 +285,9 @@ public class BookwormApp.DB{
      stmt.bind_text (2, aBook.getBookTitle());
      stmt.bind_text (3, aBook.getBookCoverLocation());
      stmt.bind_text (4, aBook.getIsBookCoverImagePresent().to_string());
-     stmt.bind_text (5, aBook.getBookLastModificationDate());
-     stmt.bind_text (6, aBook.getBookLocation());
+     stmt.bind_text (5, aBook.getBookmark());
+     stmt.bind_text (6, aBook.getBookLastModificationDate());
+     stmt.bind_text (7, aBook.getBookLocation());
 
      stmt.step ();
      stmt.reset ();

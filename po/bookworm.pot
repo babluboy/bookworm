@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-30 11:09+0100\n"
+"POT-Creation-Date: 2017-04-06 19:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/constants.vala:61
+#: src/constants.vala:67
 msgid "About"
 msgstr ""
 
-#: src/constants.vala:82
+#: src/constants.vala:90
 msgid "All Files"
 msgstr ""
 
@@ -29,67 +29,93 @@ msgstr ""
 msgid "An eBook Reader"
 msgstr ""
 
-#: src/constants.vala:48
+#: src/constants.vala:50
+msgid "Bookmark #NNN for Section PPP"
+msgstr ""
+
+#: src/constants.vala:49
 msgid "Bookmarks"
 msgstr ""
 
-#: src/constants.vala:41
+#: src/constants.vala:42
 msgid "Build your library by adding eBooks"
 msgstr ""
 
-#: src/constants.vala:47
+#: src/constants.vala:51
+msgid "Click on a link to jump to bookmarked section"
+msgstr ""
+
+#: src/constants.vala:48
 msgid "Content #"
 msgstr ""
 
-#: src/constants.vala:46
+#: src/constants.vala:47
 msgid "Contents"
+msgstr ""
+
+#: src/constants.vala:54
+msgid "Found the following matches for '$$$' in &&&:"
 msgstr ""
 
 #: src/constants.vala:29
 msgid "Launchpad Translators"
 msgstr ""
 
-#: src/constants.vala:44
+#: src/constants.vala:45
 msgid "Library"
 msgstr ""
 
-#: src/constants.vala:40
+#: src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
+msgstr ""
+
+#: src/constants.vala:52
+msgid ""
+"No bookmarks set in BBB, click the bookworm icon on the header bar to "
+"boomark the page"
+msgstr ""
+
+#: src/constants.vala:55
+msgid "No matches found for '$$$' in &&&"
 msgstr ""
 
 #: src/constants.vala:37
 msgid "Not Available"
 msgstr ""
 
-#: src/constants.vala:51 src/constants.vala:62
+#: src/constants.vala:57 src/constants.vala:68
 msgid "Preferences"
 msgstr ""
 
-#: src/constants.vala:43
+#: src/constants.vala:44
 msgid "Problem in opening selected book"
 msgstr ""
 
-#: src/constants.vala:45
+#: src/constants.vala:46
 msgid "Resume"
 msgstr ""
 
-#: src/constants.vala:49
+#: src/constants.vala:53
 msgid "Search Results"
 msgstr ""
 
-#: src/constants.vala:39
-msgid "Search here..."
+#: src/constants.vala:40
+msgid "Search for Title, Author..."
 msgstr ""
 
-#: src/constants.vala:42
+#: src/constants.vala:39
+msgid "Search this book..."
+msgstr ""
+
+#: src/constants.vala:43
 msgid "Select an eBook to read"
 msgstr ""
 
-#: src/constants.vala:52
+#: src/constants.vala:58
 msgid "Turn on Night Mode"
 msgstr ""
 
-#: src/constants.vala:60
+#: src/constants.vala:66
 msgid "Unknown Book"
 msgstr ""
 
@@ -101,6 +127,6 @@ msgstr ""
 msgid "eBook Reader"
 msgstr ""
 
-#: src/constants.vala:83
+#: src/constants.vala:91
 msgid "ePUB Files"
 msgstr ""

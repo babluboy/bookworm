@@ -129,6 +129,8 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-next.svg DE
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-previous.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-list-symbolic.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-add.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-bookmark-inactive.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-bookmark-active.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-remove.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-grid-symbolic.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-checked.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
