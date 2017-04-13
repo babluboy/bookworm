@@ -15,8 +15,8 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/bookworm")
 
 set (EXEC_NAME "bookworm")
-set (RELEASE_NAME "bookworm v0.3")
-set (VERSION "0.4")
+set (RELEASE_NAME "bookworm v0.5")
+set (VERSION "0.5")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 # Some definitions
@@ -36,6 +36,7 @@ set (SOURCE_LIST
     src/headerbar.vala
     src/dialog.vala
     src/window.vala
+    src/prefpopover.vala
 )
 
 include (GSettings)
@@ -101,6 +102,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/headerbar.vala
     src/dialog.vala
     src/window.vala
+    src/prefpopover.vala
 
 # tell what libraries to use when compiling
 PACKAGES
@@ -127,16 +129,18 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/128/bookworm.png DESTINATI
 #install bookworm specific icons in application specific folder - /usr/share/bookworm
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-next.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-previous.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-list-symbolic.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-add.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-bookmark-inactive.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-bookmark-active.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-remove.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-grid-symbolic.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-view-list-symbolic.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-inactive.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-active.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-checked.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-day.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-night.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-1.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-2.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-3.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)

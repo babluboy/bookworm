@@ -40,7 +40,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 	public static Granite.Widgets.Welcome welcomeWidget;
 	public static Gtk.Button library_view_button;
 	public static Gtk.Button content_list_button;
-	public static Gtk.Box textSizeBox;
+	public static Gtk.Button prefButton;
 	public static Gdk.Pixbuf bookSelectionPix;
 	public static Gdk.Pixbuf bookSelectedPix;
 	public static Gtk.Image bookSelectionImage;
@@ -629,7 +629,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(true);
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
 			BookwormApp.Info.info_box.set_visible(false);
-			textSizeBox.set_visible(false);
+			prefButton.set_visible(false);
 			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
 			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
 			if(!isBookBeingAddedToLibrary)
@@ -645,7 +645,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(false);
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(true);
 			BookwormApp.Info.info_box.set_visible(false);
-			textSizeBox.set_visible(true);
+			prefButton.set_visible(true);
 			handleBookMark("DISPLAY");
 			BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
@@ -661,7 +661,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
 			BookwormApp.Info.info_box.set_visible(true);
 			BookwormApp.Info.stack.set_visible_child_name ("content-list");
-			textSizeBox.set_visible(false);
+			prefButton.set_visible(false);
 			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
 			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
 			BookwormApp.AppWindow.bookAdditionBar.hide();

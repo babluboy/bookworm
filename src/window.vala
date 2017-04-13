@@ -110,16 +110,16 @@ public class BookwormApp.AppWindow {
     webkitSettings.set_enable_javascript(true);
 
     //Set up Button for previous page
-    Gtk.Image back_button_image = new Gtk.Image ();
-    back_button_image.set_from_file (BookwormApp.Constants.PREV_PAGE_ICON_IMAGE_LOCATION);
+    Gtk.Image back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
     back_button = new Gtk.Button ();
     back_button.set_image (back_button_image);
+    back_button.set_relief (ReliefStyle.NONE);
 
     //Set up Button for next page
-    Gtk.Image forward_button_image = new Gtk.Image ();
-    forward_button_image.set_from_file (BookwormApp.Constants.NEXT_PAGE_ICON_IMAGE_LOCATION);
+    Gtk.Image forward_button_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
     forward_button = new Gtk.Button ();
     forward_button.set_image (forward_button_image);
+    forward_button.set_relief (ReliefStyle.NONE);
 
     //Set up contents of the footer
     book_reading_footer_eventbox = new Gtk.EventBox ();

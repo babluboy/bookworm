@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-06 19:37+0100\n"
+"POT-Creation-Date: 2017-04-13 21:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: src/constants.vala:90
+#: src/constants.vala:92
 msgid "All Files"
 msgstr ""
 
@@ -127,6 +127,6 @@ msgstr ""
 msgid "eBook Reader"
 msgstr ""
 
-#: src/constants.vala:91
+#: src/constants.vala:93
 msgid "ePUB Files"
 msgstr ""
