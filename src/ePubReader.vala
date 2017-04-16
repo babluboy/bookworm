@@ -28,6 +28,7 @@ public class BookwormApp.ePubReader {
       string extractionLocation = extractEBook(aBook.getBookLocation());
       if("false" == extractionLocation){ //handle error condition
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_EXTRACTION_ISSUE);
         return aBook;
       }else{
         aBook.setBookExtractionLocation(extractionLocation);
@@ -36,12 +37,14 @@ public class BookwormApp.ePubReader {
       bool isEPubFormat = isEPubFormat(extractionLocation);
       if(!isEPubFormat){ //handle error condition
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_MIMETYPE_ISSUE);
         return aBook;
       }
       //Determine the location of OPF File
       string locationOfOPFFile = getOPFFileLocation(extractionLocation);
       if("false" == locationOfOPFFile){ //handle error condition
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
         return aBook;
       }
       string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
@@ -51,6 +54,7 @@ public class BookwormApp.ePubReader {
       ArrayList<string> manifestItemsList = parseManifestData(locationOfOPFFile);
       if("false" == manifestItemsList.get(0)){
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
         return aBook;
       }
 
@@ -58,13 +62,15 @@ public class BookwormApp.ePubReader {
       ArrayList<string> spineItemsList = parseSpineData(locationOfOPFFile);
       if("false" == spineItemsList.get(0)){
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
         return aBook;
       }
 
-      //Match Spine with Manifest to populate conetnt list for EPub Book
+      //Match Spine with Manifest to populate content list for EPub Book
       aBook = getContentList(aBook, manifestItemsList, spineItemsList);
       if(aBook.getBookContentList().size < 1){
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
         return aBook;
       }
 

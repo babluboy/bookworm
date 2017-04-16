@@ -103,7 +103,7 @@ public class BookwormApp.AppWindow {
     //create the webview to display page content
     WebKit.Settings webkitSettings = new WebKit.Settings();
     webkitSettings.set_allow_file_access_from_file_urls (true);
-    //webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
+    webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
     webkitSettings.set_auto_load_images(true);
     aWebView = new WebKit.WebView.with_settings(webkitSettings);
     aWebView.set_zoom_level(BookwormApp.Settings.get_instance().zoom_level);
@@ -189,11 +189,11 @@ public class BookwormApp.AppWindow {
       if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] || BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
         //UI is already in selection/selected mode - second click puts the view in normal mode
         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-        BookwormApp.Bookworm.updateLibraryViewForSelectionMode(null);
+        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
       }else{
         //UI is not in selection/selected mode - set the view mode to selection mode
         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[2];
-        BookwormApp.Bookworm.updateLibraryViewForSelectionMode(null);
+        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
       }
     });
 
@@ -226,39 +226,47 @@ public class BookwormApp.AppWindow {
         }
         return false;
     });
+
     //capture the url clicked on the webview and action the navigation type clicks
     aWebView.decide_policy.connect ((decision, type) => {
-      if(type == WebKit.PolicyDecisionType.NAVIGATION_ACTION){
-        WebKit.NavigationPolicyDecision aNavDecision = (WebKit.NavigationPolicyDecision)decision;
-        WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action();
-        WebKit.URIRequest aURIReq = aNavAction.get_request ();
-
-        BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-        string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars(aURIReq.get_uri().strip());
-        debug("URL Captured:"+url_clicked_on_webview);
-        if (url_clicked_on_webview.index_of("#") != -1){
-          url_clicked_on_webview = url_clicked_on_webview.slice(0, url_clicked_on_webview.index_of("#"));
-        }
-        url_clicked_on_webview = File.new_for_path(url_clicked_on_webview).get_basename();
-        int contentLocationPosition = 0;
-        foreach (string aBookContent in aBook.getBookContentList()) {
-          if(BookwormApp.Utils.decodeHTMLChars(aBookContent).index_of(url_clicked_on_webview) != -1){
-            debug("Matched Link Clicked to book content:"+BookwormApp.Utils.decodeHTMLChars(aBookContent));
-            aBook.setBookPageNumber(contentLocationPosition);
-            //update book details to libraryView Map
-            BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-            aBook = BookwormApp.Bookworm.renderPage(aBook, "");
-            //Set the mode back to Reading mode
-            BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-            BookwormApp.Bookworm.toggleUIState();
-            debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBook.getBookPageNumber().to_string());
-            break;
-          }
-          contentLocationPosition++;
-        }
-      }
-      return true;
-    });
+     if(type == WebKit.PolicyDecisionType.RESPONSE){
+       debug("Signal captured for Policy type WebKit.PolicyDecisionType.RESPONSE");
+     }
+     if(type == WebKit.PolicyDecisionType.NEW_WINDOW_ACTION){
+       debug("Signal captured for Policy type WebKit.PolicyDecisionType.NEW_WINDOW_ACTION");
+     }
+     if(type == WebKit.PolicyDecisionType.NAVIGATION_ACTION){
+       debug("Signal captured for Policy type WebKit.PolicyDecisionType.NAVIGATION_ACTION");
+       WebKit.NavigationPolicyDecision aNavDecision = (WebKit.NavigationPolicyDecision)decision;
+       WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action();
+       WebKit.URIRequest aURIReq = aNavAction.get_request ();
+       debug("URL Captured:"+aURIReq.get_uri().strip());
+       BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+       string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars(aURIReq.get_uri().strip());
+       debug("Cleaned URL Captured:"+url_clicked_on_webview);
+       if (url_clicked_on_webview.index_of("#") != -1){
+         url_clicked_on_webview = url_clicked_on_webview.slice(0, url_clicked_on_webview.index_of("#"));
+       }
+       url_clicked_on_webview = File.new_for_path(url_clicked_on_webview).get_basename();
+       int contentLocationPosition = 0;
+       foreach (string aBookContent in aBook.getBookContentList()) {
+         if(BookwormApp.Utils.decodeHTMLChars(aBookContent).index_of(url_clicked_on_webview) != -1){
+           debug("Matched Link Clicked to book content:"+BookwormApp.Utils.decodeHTMLChars(aBookContent));
+           aBook.setBookPageNumber(contentLocationPosition);
+           //update book details to libraryView Map
+           BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+           aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+           //Set the mode back to Reading mode
+           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+           BookwormApp.Bookworm.toggleUIState();
+           debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBook.getBookPageNumber().to_string());
+           break;
+         }
+         contentLocationPosition++;
+       }
+     }
+     return true;
+     });
 
     debug("Completed creation of main window components...");
     return main_ui_box;

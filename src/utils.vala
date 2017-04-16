@@ -588,7 +588,6 @@ namespace BookwormApp.Utils {
 	    //handle the case whenboth start and end tags are present but ">" is present before the "<"
 	    if(posOfStartTag != -1 && posOfEndTag != -1 && posOfStartTag > posOfEndTag){
 	      filteredInput.assign(filteredInput.str.replace(filteredInput.str.slice(0, posOfEndTag+1), ""));
-	      print("\nCase 1.1:"+filteredInput.str);
 	    }
 			posOfStartTag = filteredInput.str.index_of("<");
 			posOfEndTag = filteredInput.str.index_of(">");

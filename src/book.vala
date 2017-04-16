@@ -22,6 +22,7 @@ public class BookwormApp.Book{
 
   private int bookId = 0;
   private bool isBookParsedCorrectly = false;
+  private string parsingIssue = "";
   private string bookLocation = "";
   private string bookCoverLocation = "";
   private string bookExtractionLocation = "";
@@ -36,11 +37,12 @@ public class BookwormApp.Book{
   private int bookPageNumber = -1;
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
-  private Gtk.EventBox eventBox;
-  private Gtk.Overlay overlayImage;
-  private Gtk.Image coverImage;
+  //private Gtk.EventBox eventBox;
+  //private Gtk.Overlay overlayImage;
+  //private Gtk.Image coverImage;
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
+  private ArrayList<Gtk.Widget> bookWidgetsList = new ArrayList<Gtk.Widget> ();
   private ArrayList<string> bookContentList = new ArrayList<string> ();
   private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
   private StringBuilder bookmarks = new StringBuilder ("");
@@ -59,6 +61,14 @@ public class BookwormApp.Book{
   }
   public bool getIsBookParsed (){
     return isBookParsedCorrectly;
+  }
+
+  //getter list for book location
+  public void setParsingIssue (string aParsingIssue){
+    parsingIssue = aParsingIssue;
+  }
+  public string getParsingIssue (){
+    return parsingIssue;
   }
 
   //getter list for book location
@@ -190,30 +200,6 @@ public class BookwormApp.Book{
     return ifPageBackward;
   }
 
-  //getter setter for EventBox associated with this eBook
-  public void setEventBox (Gtk.EventBox aEventBox){
-    eventBox = aEventBox;
-  }
-  public Gtk.EventBox getEventBox (){
-    return eventBox;
-  }
-
-  //getter setter for OverLayImage associated with this eBook
-  public void setOverlayImage (Gtk.Overlay aOverlayImage){
-    overlayImage = aOverlayImage;
-  }
-  public Gtk.Overlay getOverlayImage (){
-    return overlayImage;
-  }
-
-  //getter setter for Cover Image associated with this eBook
-  public void setCoverImage (Gtk.Image aCoverImage){
-    coverImage = aCoverImage;
-  }
-  public Gtk.Image getCoverImage (){
-    return coverImage;
-  }
-
   //getter setter for determining if the book is selected
   public void setIsBookSelected  (bool aIsBookSelected){
     isBookSelected = aIsBookSelected;
@@ -245,6 +231,21 @@ public class BookwormApp.Book{
   }
   public string getBookmark (){
     return bookmarks.str;
+  }
+
+  //getter setter for list of Gtk Widgets used for a Book
+  //bookPlaceholderCoverImage - position=0
+  //aCoverImage               - position=1
+  //titleTextLabel            - position=2
+  //bookSelectedImage         - position=3
+  //bookSelectionImage        - position=4
+  //aEventBox                 - position=5
+  //aOverlayImage             - position=6
+  public void setBookWidgetList (Gtk.Widget aWidget){
+    bookWidgetsList.add(aWidget);
+  }
+  public ArrayList<Gtk.Widget> getBookWidgetList (){
+    return bookWidgetsList;
   }
 
   //print book details

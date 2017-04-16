@@ -18,9 +18,13 @@
 */
 using Gtk;
 public class BookwormApp.PreferencesMenu {
+  public static Gtk.Popover prefPopover;
 
   public static Gtk.Popover createPrefPopOver(Gtk.Button popWidget){
-    Gtk.Popover prefPopover = new Gtk.Popover (popWidget);
+    if(prefPopover != null){
+      return prefPopover;
+    }
+    prefPopover = new Gtk.Popover (popWidget);
 
     Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", IconSize.LARGE_TOOLBAR);
     Gtk.Button textLargerButton = new Gtk.Button();

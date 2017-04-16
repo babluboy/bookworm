@@ -280,7 +280,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			if(book.getIsBookSelected()){
 				//hold the books to be deleted in a list
 				listOfBooksToBeRemoved.add(book.getBookLocation());
-				Gtk.EventBox lEventBox = book.getEventBox();
+				Gtk.EventBox lEventBox = (Gtk.EventBox) book.getBookWidgetList().get(5);
 				//destroy the EventBox parent widget - this removes the book from the library grid
 				lEventBox.get_parent().destroy();
 				//destroy the EventBox widget
@@ -299,7 +299,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 		}
 
 		BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-		updateLibraryViewForSelectionMode(null);
+		BookwormApp.Library.updateLibraryViewForSelectionMode(null);
 		toggleUIState();
 	}
 
@@ -344,7 +344,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 				//set the name of the book being currently read
 				locationOfEBookCurrentlyRead = eBookLocation;
 				//add eBook cover image to library view
-				updateLibraryView(aBook);
+				BookwormApp.Library.updateLibraryView(aBook);
 				//insert book details to database
 				BookwormApp.DB.addBookToDataBase(aBook);
 				debug ("Completed adding book to ebook library. Number of books in library:"+libraryViewMap.size.to_string());
@@ -354,230 +354,13 @@ public class BookwormApp.Bookworm:Granite.Application {
 		}
 	}
 
-	public static void updateLibraryView(owned BookwormApp.Book aBook){
-		debug("Updating Library View for cover:"+aBook.getBookCoverLocation());
-		Gtk.EventBox aEventBox = new Gtk.EventBox();
-		aEventBox.set_name(aBook.getBookLocation());
-		Gtk.Overlay aOverlayImage = new Gtk.Overlay();
-		Gtk.Image aCoverImage;
-		string bookCoverLocation;
-
-		if(!aBook.getIsBookCoverImagePresent()){
-			//check if the default cover has been set and continue to use it
-			if(aBook.getBookCoverLocation() == null || aBook.getBookCoverLocation().length < 1){
-				//default Book Cover Image not set - select at random from the default covers
-				bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string());
-				aBook.setBookCoverLocation(bookCoverLocation);
-			}
-			Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
-			aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
-			aCoverImage.set_halign(Align.START);
-			aCoverImage.set_valign(Align.START);
-			aOverlayImage.add(aCoverImage);
-			Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+aBook.getBookTitle()+"</b>");
-			overlayTextLabel.set_xalign(0.0f);
-			overlayTextLabel.set_margin_start(12);
-			overlayTextLabel.set_use_markup (true);
-			overlayTextLabel.set_line_wrap (true);
-			aOverlayImage.add_overlay(overlayTextLabel);
-			aEventBox.add(aOverlayImage);
-		}else{
-			//use the cover image extracted from the epub file
-			Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
-			aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
-			aCoverImage.set_halign(Align.START);
-			aCoverImage.set_valign(Align.START);
-			aOverlayImage.add(aCoverImage);
-			aEventBox.add(aOverlayImage);
-		}
-		//register the book with the filter function
-		libraryViewFilter((Gtk.FlowBoxChild)aEventBox);
-		//add the book to the library view
-		BookwormApp.AppWindow.library_grid.add (aEventBox);
-
-		//set gtk objects into Book objects
-		aBook.setCoverImage (aCoverImage);
-		aBook.setEventBox(aEventBox);
-		aBook.setOverlayImage(aOverlayImage);
-
-		//set the view mode to library view
-		BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-		BookwormApp.AppWindow.library_grid.show_all();
-		toggleUIState();
-
-		//add listener for book objects based on mode
-		aEventBox.button_press_event.connect (() => {
-			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
-				aBook  = libraryViewMap.get(aEventBox.get_name());
-				debug("Initiated process for reading eBook:"+aBook.getBookLocation());
-				readSelectedBook(aBook);
-			}
-			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] || BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
-				BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[3];
-				aBook  = libraryViewMap.get(aEventBox.get_name());
-				updateLibraryViewForSelectionMode(aBook);
-			}
-			return true;
-		});
-		//add book details to libraryView Map
-		libraryViewMap.set(aBook.getBookLocation(), aBook);
-	}
-
-	public static void updateLibraryViewForSelectionMode(owned BookwormApp.Book? lBook){
-		Gtk.Image aCoverImage;
-		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
-			//loop over HashMap of Book Objects and overlay selection image
-			foreach (var book in libraryViewMap.values){
-				//set the book selection flag to false
-				((BookwormApp.Book)book).setIsBookSelected(false);
-				Gtk.EventBox lEventBox = ((BookwormApp.Book)book).getEventBox();
-				Gtk.Overlay lOverlayImage = ((BookwormApp.Book)book).getOverlayImage();
-				lEventBox.remove(lOverlayImage);
-				lOverlayImage.remove(((BookwormApp.Book)book).getCoverImage());
-				lOverlayImage.destroy();
-
-				if(!((BookwormApp.Book)book).getIsBookCoverImagePresent()){
-					//check if the default cover has been set and continue to use it
-					if(((BookwormApp.Book)book).getBookCoverLocation() == null || ((BookwormApp.Book)book).getBookCoverLocation().length < 1){
-						//default Book Cover Image not set - select at random from the default covers
-						string bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string());
-						((BookwormApp.Book)book).setBookCoverLocation(bookCoverLocation);
-					}
-					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(((BookwormApp.Book)book).getBookCoverLocation(), 150, 200, false);
-					aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
-					aCoverImage.set_halign(Align.START);
-					aCoverImage.set_valign(Align.START);
-					lOverlayImage.add(aCoverImage);//use the default Book Cover Image
-					Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+((BookwormApp.Book)book).getBookTitle()+"</b>");
-					overlayTextLabel.set_xalign(0.0f);
-					overlayTextLabel.set_margin_start(12);
-					overlayTextLabel.set_use_markup (true);
-					overlayTextLabel.set_line_wrap (true);
-					lOverlayImage.add_overlay(overlayTextLabel);
-					lEventBox.add(lOverlayImage);
-				}else{
-					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(((BookwormApp.Book)book).getBookCoverLocation(), 150, 200, false);
-					aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
-					aCoverImage.set_halign(Align.START);
-					aCoverImage.set_valign(Align.START);
-					lOverlayImage.add(aCoverImage);
-					lEventBox.add(lOverlayImage);
-				}
-				//update overlay image into book object
-				((BookwormApp.Book)book).setOverlayImage(lOverlayImage);
-				//update event box into book object
-				((BookwormApp.Book)book).setEventBox(lEventBox);
-			}
-		}
-		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2]){
-			//loop over HashMap of Book Objects and overlay selection image
-			foreach (var book in libraryViewMap.values){
-				Gtk.EventBox lEventBox = ((BookwormApp.Book)book).getEventBox();
-				Gtk.Overlay lOverlayImage = ((BookwormApp.Book)book).getOverlayImage();
-
-				bookSelectionPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_OPTION_IMAGE_LOCATION);
-				bookSelectionImage = new Gtk.Image.from_pixbuf(bookSelectionPix);
-				bookSelectionImage.set_halign(Align.START);
-				bookSelectionImage.set_valign(Align.START);
-				lOverlayImage.add_overlay(bookSelectionImage);
-
-				lEventBox.add(lOverlayImage);
-				//update overlay image into book object
-				((BookwormApp.Book)book).setOverlayImage(lOverlayImage);
-				//update event box into book object
-				((BookwormApp.Book)book).setEventBox(lEventBox);
-			}
-		}
-		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
-			Gtk.EventBox lEventBox = lBook.getEventBox();
-			Gtk.Overlay lOverlayImage = lBook.getOverlayImage();
-			lEventBox.remove(lOverlayImage);
-			lOverlayImage.remove(lBook.getCoverImage());
-			lOverlayImage.destroy();
-
-			if(!lBook.getIsBookCoverImagePresent()){
-				//check if the default cover has been set and continue to use it
-				if(lBook.getBookCoverLocation() == null || lBook.getBookCoverLocation().length < 1){
-					//default Book Cover Image not set - select at random from the default covers
-					string bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string());
-					lBook.setBookCoverLocation(bookCoverLocation);
-				}
-				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(lBook.getBookCoverLocation(), 150, 200, false);
-				aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
-				aCoverImage.set_halign(Align.START);
-				aCoverImage.set_valign(Align.START);
-				lOverlayImage.add(aCoverImage);//use the default Book Cover Image
-				Gtk.Label overlayTextLabel = new Gtk.Label("<b>"+lBook.getBookTitle()+"</b>");
-				overlayTextLabel.set_xalign(0.0f);
-				overlayTextLabel.set_margin_start(12);
-				overlayTextLabel.set_use_markup (true);
-				overlayTextLabel.set_line_wrap (true);
-				lOverlayImage.add_overlay(overlayTextLabel);
-
-				//add selection image to overlay
-				Gdk.Pixbuf bookSelectionPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_OPTION_IMAGE_LOCATION);
-				Gtk.Image bookSelectionImage = new Gtk.Image.from_pixbuf(bookSelectionPix);
-				bookSelectionImage.set_halign(Align.START);
-				bookSelectionImage.set_valign(Align.START);
-				lOverlayImage.add_overlay(bookSelectionImage);
-
-				if(!lBook.getIsBookSelected()){
-					//add selected image to overlay if it is not present
-					Gdk.Pixbuf bookSelectedPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_CHECKED_IMAGE_LOCATION);
-					Gtk.Image bookSelectedImage = new Gtk.Image.from_pixbuf(bookSelectedPix);
-					bookSelectedImage.set_halign(Align.START);
-					bookSelectedImage.set_valign(Align.START);
-					lOverlayImage.add_overlay(bookSelectedImage);
-					lBook.setIsBookSelected(true);
-				}else{
-					lBook.setIsBookSelected(false);
-				}
-			}else{
-				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(lBook.getBookCoverLocation(), 150, 200, false);
-				aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
-				aCoverImage.set_halign(Align.START);
-				aCoverImage.set_valign(Align.START);
-				lOverlayImage.add(aCoverImage);
-
-				//add selection image to overlay
-				Gdk.Pixbuf bookSelectionPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_OPTION_IMAGE_LOCATION);
-				Gtk.Image bookSelectionImage = new Gtk.Image.from_pixbuf(bookSelectionPix);
-				bookSelectionImage.set_halign(Align.START);
-				bookSelectionImage.set_valign(Align.START);
-				lOverlayImage.add_overlay(bookSelectionImage);
-
-				if(!lBook.getIsBookSelected()){
-					Gdk.Pixbuf bookSelectedPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_CHECKED_IMAGE_LOCATION);
-					Gtk.Image bookSelectedImage = new Gtk.Image.from_pixbuf(bookSelectedPix);
-					bookSelectedImage.set_halign(Align.START);
-					bookSelectedImage.set_valign(Align.START);
-					lOverlayImage.add_overlay(bookSelectedImage);
-					lBook.setIsBookSelected(true);
-				}else{
-					lBook.setIsBookSelected(false);
-				}
-			}
-			lEventBox.add(lOverlayImage);
-
-			//update overlay image into book object
-			lBook.setOverlayImage(lOverlayImage);
-			//update event box into book object
-			lBook.setEventBox(lEventBox);
-			//update the book into the Library view HashMap
-			libraryViewMap.set(lBook.getBookLocation(),lBook);
-		}
-		BookwormApp.AppWindow.library_grid.show_all();
-		toggleUIState();
-	}
-
 	public static void readSelectedBook(owned BookwormApp.Book aBook){
 		//Extract and Parse the eBook (this will overwrite the contents already extracted)
 		aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
 		//check if ebook was parsed sucessfully
 		if(!aBook.getIsBookParsed()){
 			StringBuilder warningMessage = new StringBuilder("");
-				warningMessage.append(BookwormApp.Constants.TEXT_FOR_RENDERING_ISSUE)
-											.append(" : ")
+				warningMessage.append(aBook.getParsingIssue())
 											.append(aBook.getBookLocation());
 			BookwormApp.AppWindow.infobarLabel.set_text(warningMessage.str);
 			BookwormApp.AppWindow.infobar.set_message_type (MessageType.WARNING);
@@ -606,9 +389,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 		ArrayList<BookwormApp.Book> listOfBooks = BookwormApp.DB.getBooksFromDB();
 		foreach (BookwormApp.Book book in listOfBooks){
 			//add the book to the UI
-			updateLibraryView(book);
-			//add book details to libraryView Map --TODO - remove libraryViewMap.set as it is being called as the last step in updateLibraryView function
-			libraryViewMap.set(book.getBookLocation(), book);
+			BookwormApp.Library.updateLibraryView(book);
 		}
 	}
 
@@ -808,7 +589,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 		BookwormApp.Book aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
 		switch(action){
 			case "DISPLAY":
-				if(aBook.getBookmark().index_of(aBook.getBookPageNumber().to_string()) != -1){
+				if(aBook != null && aBook.getBookmark() != null && aBook.getBookmark().index_of(aBook.getBookPageNumber().to_string()) != -1){
 					//display bookmark as active
 					BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(true);
 					BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);

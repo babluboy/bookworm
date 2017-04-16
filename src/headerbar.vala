@@ -130,7 +130,7 @@ public class BookwormApp.AppHeaderBar {
         headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
         //set UI in library view mode
         bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-        bookwormApp.updateLibraryViewForSelectionMode(null);
+        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
         bookwormApp.toggleUIState();
       }
 
