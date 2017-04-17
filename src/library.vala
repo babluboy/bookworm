@@ -91,10 +91,6 @@ public class BookwormApp.Library{
     aBook.setBookWidgetList(aEventBox);                 //position=5
     aBook.setBookWidgetList(aOverlayImage);             //position=6
 
-		//aBook.setCoverImage (aCoverImage);
-		//aBook.setEventBox(aEventBox);
-		//aBook.setOverlayImage(aOverlayImage);
-
 		//set the view mode to library view
 		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 		BookwormApp.AppWindow.library_grid.show_all();
@@ -121,55 +117,61 @@ public class BookwormApp.Library{
 	}
 
   public static void updateLibraryViewForSelectionMode(owned BookwormApp.Book? lBook){
-		Gtk.Image aCoverImage;
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
+      debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[0]");
 			//loop over HashMap of Book Objects and overlay selection image
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
-				//set the book selection flag to false
-				book.setIsBookSelected(false);
-				Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidgetList().get(6);
-        //set the order of the widgets to put the selection/selected badges at bottom
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(0), 0);
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(4), 1);
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(3), 2);
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(1), 3);
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(2), 4);
-			}
+				if(book.getBookWidgetList() != null && book.getBookWidgetList().size > 3){
+  				Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidgetList().get(6);
+          //set the order of the widgets to put the selection/selected badges at bottom
+          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(4), 1);
+          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(3), 2);
+          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(1), 3);
+          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(2), 4);
+        }
+      }
 		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2]){
+      debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[2]");
 			//loop over HashMap of Book Objects and overlay selection badge
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
-				Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidgetList().get(6);
-        //set the order of the widgets to put the selection badge on top
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(0), 0);
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(3), 1);
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(1), 2);
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(2), 3);
-        aOverlayImage.reorder_overlay(book.getBookWidgetList().get(4), 4);
+        if(book.getBookWidgetList() != null && book.getBookWidgetList().size > 3){
+          Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidgetList().get(6);
+          //set the order of the widgets to put the selection badge on top
+          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(3), 1);
+          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(1), 2);
+          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(2), 3);
+          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(4), 4);
+        }
 			}
 		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
-      Gtk.Overlay aOverlayImage = (Gtk.Overlay) lBook.getBookWidgetList().get(6);
-      if(!lBook.getIsBookSelected()){
-        //set the order of the widgets to put the selected badge on top
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(0), 0);
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(4), 1);
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(1), 2);
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(2), 3);
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(3), 4);
-        lBook.setIsBookSelected(true);
-      }else{
-        //set the order of the widgets to put the selection badge on top
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(0), 0);
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(3), 1);
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(1), 2);
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(2), 3);
-        aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(4), 4);
-        lBook.setIsBookSelected(false);
+      debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[3]");
+      if(lBook != null){
+        Gtk.Overlay aOverlayImage = (Gtk.Overlay) lBook.getBookWidgetList().get(6);
+        if(!lBook.getIsBookSelected()){
+          if(lBook.getBookWidgetList() != null && lBook.getBookWidgetList().size > 3){
+            //set the order of the widgets to put the selected badge on top
+            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(4), 1);
+            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(1), 2);
+            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(2), 3);
+            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(3), 4);
+          }
+          lBook.setIsBookSelected(true);
+        }else{
+          if(lBook.getBookWidgetList() != null && lBook.getBookWidgetList().size > 3){
+            //set the order of the widgets to put the selection badge on top
+            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(3), 1);
+            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(1), 2);
+            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(2), 3);
+            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(4), 4);
+          }
+          lBook.setIsBookSelected(false);
+        }
+        //update the book into the Library view HashMap
+        BookwormApp.Bookworm.libraryViewMap.set(lBook.getBookLocation(),lBook);
       }
 		}
-    //update the book into the Library view HashMap
-    BookwormApp.Bookworm.libraryViewMap.set(lBook.getBookLocation(),lBook);
 
 		BookwormApp.AppWindow.library_grid.show_all();
 		BookwormApp.Bookworm.toggleUIState();

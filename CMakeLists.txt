@@ -61,7 +61,7 @@ pkg_check_modules(DEPS REQUIRED
                   gtk+-3.0
                   gee-0.8
                   granite>=0.3.0
-                  webkit2gtk-4.0
+                  webkit2gtk-4.0>=2.14.1
                   sqlite3>=3.5.9
                  )
 
@@ -81,7 +81,6 @@ include(ValaPrecompile)
 
 set (BASIC_VALAC_OPTIONS
    -g
-   --vapidir=${CMAKE_CURRENT_SOURCE_DIR}/vapi
    --thread
    --target-glib=2.38
 )
@@ -111,7 +110,7 @@ PACKAGES
     gtk+-3.0
     gee-0.8
     granite>=0.3.0
-    webkit2gtk-4.0
+    webkit2gtk-4.0>=2.14.1
     sqlite3
 )
 
