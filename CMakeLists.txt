@@ -60,7 +60,7 @@ find_package(PkgConfig)
 pkg_check_modules(DEPS REQUIRED
                   gtk+-3.0
                   gee-0.8
-                  granite>=0.3.0
+                  granite
                   webkit2gtk-4.0>=2.14.1
                   sqlite3>=3.5.9
                  )
@@ -74,7 +74,7 @@ find_package(Vala REQUIRED)
 # make sure we use vala
 include(ValaVersion)
 # make sure it's the desired version of vala
-ensure_vala_version("0.16" MINIMUM)
+ensure_vala_version("0.26" MINIMUM)
 
 # files we want to compile
 include(ValaPrecompile)
@@ -109,7 +109,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
 PACKAGES
     gtk+-3.0
     gee-0.8
-    granite>=0.3.0
+    granite
     webkit2gtk-4.0>=2.14.1
     sqlite3
 )

@@ -35,7 +35,8 @@ public class BookwormApp.Bookworm:Granite.Application {
 	public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
 
 	public static BookwormApp.Settings settings;
-	public static Gtk.Window window;
+	public static Gtk.ApplicationWindow window;
+	public static Gtk.IconTheme default_theme;
 	public static Gtk.Box bookWormUIBox;
 	public static Granite.Widgets.Welcome welcomeWidget;
 	public static Gtk.Button library_view_button;
@@ -129,8 +130,8 @@ public class BookwormApp.Bookworm:Granite.Application {
 		//proceed if Bookworm is not running already
 		if(!isBookwormRunning){
 			debug("Starting to activate Gtk Window for Bookworm...");
-			window = new Gtk.Window ();
-			add_window (window);
+			window = new Gtk.ApplicationWindow (this);
+			default_theme = Gtk.IconTheme.get_default ();
 
 			//retrieve Settings
 			settings = BookwormApp.Settings.get_instance();
@@ -175,6 +176,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			}else{
 				window.add(bookWormUIBox);
 			}
+			add_window (window);
 			window.show_all();
 			toggleUIState();
 
