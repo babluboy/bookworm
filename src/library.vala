@@ -97,19 +97,29 @@ public class BookwormApp.Library{
 		BookwormApp.Bookworm.toggleUIState();
 
 		//add listener for book objects based on mode
-		aEventBox.button_press_event.connect (() => {
-			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
-				aBook  = BookwormApp.Bookworm.libraryViewMap.get(aEventBox.get_name());
-				debug("Initiated process for reading eBook:"+aBook.getBookLocation());
-				BookwormApp.Bookworm.readSelectedBook(aBook);
-			}
-			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
-         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
-				BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[3];
-				aBook  = BookwormApp.Bookworm.libraryViewMap.get(aEventBox.get_name());
-				updateLibraryViewForSelectionMode(aBook);
-			}
-			return true;
+		aEventBox.button_press_event.connect ((event) => {
+      //capture which mouse button was clicked on the book in the library
+      uint mouseButtonClicked;
+      event.get_button(out mouseButtonClicked);
+      //handle right button click for context menu
+      if (event.get_event_type ()  == Gdk.EventType.BUTTON_PRESS  &&  mouseButtonClicked == 3){
+        debug("Mouse right click");
+        return true;
+      }else{
+        //left button click for reading or selection of book
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
+  				aBook  = BookwormApp.Bookworm.libraryViewMap.get(aEventBox.get_name());
+  				debug("Initiated process for reading eBook:"+aBook.getBookLocation());
+  				BookwormApp.Bookworm.readSelectedBook(aBook);
+  			}
+  			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
+  				BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[3];
+  				aBook  = BookwormApp.Bookworm.libraryViewMap.get(aEventBox.get_name());
+  				updateLibraryViewForSelectionMode(aBook);
+  			}
+  			return true;
+      }
 		});
 		//add book details to libraryView Map
 		BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);

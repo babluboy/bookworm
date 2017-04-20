@@ -1,13 +1,12 @@
 [Desktop Entry]
 Name=Bookworm
-Version=0.4
+Version=0.4.3
 GenericName=eBook Reader
 Comment=A simple ebook reader for Elementary OS
-Categories=GTK;Office
+Categories=GTK;Office;Graphics;
 MimeType=application/epub+zip;
 Exec=bookworm %F
 Icon=bookworm
-Type=Application
 Terminal=false
 Type=Application
 X-GNOME-Gettext-Domain=bookworm

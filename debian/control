@@ -14,7 +14,7 @@ Build-Depends: cmake (>= 2.8),
 Standards-Version: 3.9.5
 Homepage: https://launchpad.net/bookworm
 
-Package: bookworm
+Package: com.github.babluboy.bookworm
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, unzip
-Description: Bookworm eBook Reader. Bookworm aims to be a reader centric eBook application with a simplistic user interface
+Description: Simple eBook user centric reader which displays multiple eBooks formats uniformly

@@ -178,6 +178,7 @@ public class BookwormApp.AppHeaderBar {
 
   public static void ShowAboutDialog (){
     Granite.Widgets.AboutDialog aboutDialog = new Granite.Widgets.AboutDialog();
+    aboutDialog.set_attached_to(BookwormApp.Bookworm.window);
     aboutDialog.program_name = BookwormApp.Constants.program_name;
     aboutDialog.website = BookwormApp.Constants.TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL;
     aboutDialog.website_label = BookwormApp.Constants.TEXT_FOR_ABOUT_DIALOG_WEBSITE;

@@ -57,6 +57,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 		application_id = BookwormApp.Constants.bookworm_id;
 		flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 		program_name = BookwormApp.Constants.program_name;
+		exec_name = "bookworm";
 		app_years = BookwormApp.Constants.app_years;
 		build_version = BookwormApp.Constants.bookworm_version;
 		app_icon = BookwormApp.Constants.app_icon;
@@ -131,7 +132,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 		if(!isBookwormRunning){
 			debug("Starting to activate Gtk Window for Bookworm...");
 			window = new Gtk.ApplicationWindow (this);
-			default_theme = Gtk.IconTheme.get_default ();
+			default_theme = Gtk.IconTheme.get_default();
 
 			//retrieve Settings
 			settings = BookwormApp.Settings.get_instance();
