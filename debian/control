@@ -1,4 +1,4 @@
-Source: bookworm
+Source: com.github.babluboy.bookworm
 Section: x11
 Priority: extra
 Maintainer: Siddhartha Das <bablu.boy@gmail.com>
@@ -17,4 +17,4 @@ Homepage: https://launchpad.net/bookworm
 Package: com.github.babluboy.bookworm
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, unzip
-Description: Simple eBook user centric reader which displays multiple eBooks formats uniformly
+Description: Simple user centric eBook reader which displays multiple eBooks formats uniformly

@@ -52,22 +52,22 @@ public class BookwormApp.AppWindow {
     library_scroll.add (library_grid);
 
     //Set up Button for selection of books
-    Gtk.Image select_book_image = new Gtk.Image ();
-    select_book_image.set_from_file (BookwormApp.Constants.SELECTION_IMAGE_BUTTON_LOCATION);
+    Gtk.Image select_book_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
     Gtk.Button select_book_button = new Gtk.Button ();
     select_book_button.set_image (select_book_image);
+    select_book_button.set_relief (ReliefStyle.NONE);
 
     //Set up Button for adding books
-    Gtk.Image add_book_image = new Gtk.Image ();
-    add_book_image.set_from_file (BookwormApp.Constants.ADD_BOOK_ICON_IMAGE_LOCATION);
+    Gtk.Image add_book_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
     Gtk.Button add_book_button = new Gtk.Button ();
     add_book_button.set_image (add_book_image);
+    add_book_button.set_relief (ReliefStyle.NONE);
 
     //Set up Button for removing books
-    Gtk.Image remove_book_image = new Gtk.Image ();
-    remove_book_image.set_from_file (BookwormApp.Constants.REMOVE_BOOK_ICON_IMAGE_LOCATION);
+    Gtk.Image remove_book_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
     Gtk.Button remove_book_button = new Gtk.Button ();
     remove_book_button.set_image (remove_book_image);
+    remove_book_button.set_relief (ReliefStyle.NONE);
 
     //Set up the progress bar for addition of books to library
     bookAdditionBar = new Gtk.ProgressBar ();
@@ -75,13 +75,12 @@ public class BookwormApp.AppWindow {
     bookAdditionBar.set_show_text (true);
 
     //Create a footer to select/add/remove books
-    Gtk.Box add_remove_footer_box = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
-    add_remove_footer_box.set_border_width(BookwormApp.Constants.SPACING_BUTTONS);
+    ActionBar add_remove_footer_box = new ActionBar();
     //Set up contents of the add/remove books footer label
-    add_remove_footer_box.pack_start (select_book_button, false, true, 0);
-    add_remove_footer_box.pack_start (add_book_button, false, true, 0);
-    add_remove_footer_box.pack_start (remove_book_button, false, true, 0);
-    add_remove_footer_box.pack_end (bookAdditionBar, false, true, 0);
+    add_remove_footer_box.pack_start (select_book_button);
+    add_remove_footer_box.pack_start (add_book_button);
+    add_remove_footer_box.pack_start (remove_book_button);
+    add_remove_footer_box.pack_end (bookAdditionBar);
 
     //Create a MessageBar to show
     infobar = new Gtk.InfoBar ();
@@ -95,6 +94,7 @@ public class BookwormApp.AppWindow {
 
     //Create the UI for library view
     bookLibrary_ui_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+    bookLibrary_ui_box.set_border_width (0);
     //add all components to ui box for library view
     bookLibrary_ui_box.pack_start (infobar, false, true, 0);
     bookLibrary_ui_box.pack_start (library_scroll, true, true, 0);
@@ -138,10 +138,11 @@ public class BookwormApp.AppWindow {
 
     //Add all ui components to the main UI box
     Gtk.Box main_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
+    main_ui_box.set_border_width (0);
     main_ui_box.pack_start(bookLibrary_ui_box, true, true, 0);
     main_ui_box.pack_start(BookwormApp.Info.createBookInfo(), true, true, 0);
     main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
-    main_ui_box.get_style_context().add_class ("box_white");
+    //main_ui_box.get_style_context().add_class ("box_white");
 
     //Add all UI action listeners
 

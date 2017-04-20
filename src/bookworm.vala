@@ -147,6 +147,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 				}
 			}
 			window.set_border_width (0);
+			window.get_style_context ().add_class ("rounded");
 			window.set_position (Gtk.WindowPosition.CENTER);
 			window.window_position = Gtk.WindowPosition.CENTER;
 			//set the minimum size of the window on minimize
