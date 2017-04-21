@@ -32,7 +32,7 @@ make
 ## Screenshots
 
 ![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormLibraryView.jpeg)
-![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormReadingView.jpeg)
+![screenshot](https://github.com/babluboy/bookworm/blob/master/screenshots/BookwormReading%20ViewWithPreferences.jpeg)
 
 Bookworm in Night View Mode
 
