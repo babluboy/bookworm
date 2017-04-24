@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-20 22:48+0100\n"
+"POT-Creation-Date: 2017-04-24 22:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/constants.vala:69
+#: src/constants.vala:74
 msgid "About"
 msgstr ""
 
-#: src/constants.vala:95
+#: src/constants.vala:100
 msgid "All Files"
 msgstr ""
 
@@ -51,6 +51,10 @@ msgstr ""
 
 #: src/constants.vala:49
 msgid "Contents"
+msgstr ""
+
+#: src/constants.vala:58
+msgid "Edit Info for"
 msgstr ""
 
 #: src/constants.vala:56
@@ -91,7 +95,7 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: src/constants.vala:59 src/constants.vala:70
+#: src/constants.vala:64 src/constants.vala:75
 msgid "Preferences"
 msgstr ""
 
@@ -121,12 +125,24 @@ msgstr ""
 msgid "Select an eBook to read"
 msgstr ""
 
-#: src/constants.vala:60
+#: src/constants.vala:65
 msgid "Turn on Night Mode"
 msgstr ""
 
-#: src/constants.vala:68
+#: src/constants.vala:73
 msgid "Unknown Book"
+msgstr ""
+
+#: src/constants.vala:59 src/constants.vala:62
+msgid "Update Cover Image"
+msgstr ""
+
+#: src/constants.vala:61
+msgid "Update Tags"
+msgstr ""
+
+#: src/constants.vala:60
+msgid "Update Title"
 msgstr ""
 
 #: src/constants.vala:35
@@ -135,8 +151,4 @@ msgstr ""
 
 #: src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
-
-#: src/constants.vala:96
-msgid "ePUB Files"
 msgstr ""

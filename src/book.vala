@@ -28,18 +28,18 @@ public class BookwormApp.Book{
   private string bookExtractionLocation = "";
   private string bookTitle = "";
   private string bookAuthor = "";
-  private string opfFileLocation = "";
-  private string baseLocationOfContents = "";
-  private bool isBookCoverImagePresent = false;
+  private string bookTags = "";
   private string bookPublishDate = "";
   private string bookCreationDate = "";
   private string bookLastModificationDate = "";
+  private int bookRating = 1;
+
+  private string opfFileLocation = "";
+  private string baseLocationOfContents = "";
+  private bool isBookCoverImagePresent = false;
   private int bookPageNumber = -1;
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
-  //private Gtk.EventBox eventBox;
-  //private Gtk.Overlay overlayImage;
-  //private Gtk.Image coverImage;
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
   private ArrayList<Gtk.Widget> bookWidgetsList = new ArrayList<Gtk.Widget> ();
@@ -119,12 +119,28 @@ public class BookwormApp.Book{
     return bookTitle;
   }
 
+  //getter list for book rating
+  public void setBookRating (int aBookRating){
+    bookRating = aBookRating;
+  }
+  public int getBookRating (){
+    return bookRating;
+  }
+
   //getter setter for book author
   public void setBookAuthor (string aBookAuthor){
     bookAuthor = aBookAuthor;
   }
   public string getBookAuthor (){
     return bookAuthor;
+  }
+
+  //getter setter for book tags
+  public void setBookTags (string aBookTags){
+    bookTags = aBookTags;
+  }
+  public string getBookTags (){
+    return bookTags;
   }
 
 
@@ -246,6 +262,9 @@ public class BookwormApp.Book{
   }
   public ArrayList<Gtk.Widget> getBookWidgetList (){
     return bookWidgetsList;
+  }
+  public void updateBookWidgetList (int position, Gtk.Widget aWidget){
+    bookWidgetsList.set(position, aWidget);
   }
 
   //print book details

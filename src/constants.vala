@@ -55,6 +55,11 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
 	public const string TEXT_FOR_SEARCH_RESULTS_FOUND = _("Found the following matches for '$$$' in &&&:");
 	public const string TEXT_FOR_SEARCH_RESULTS_NOT_FOUND = _("No matches found for '$$$' in &&&");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_HEADER = _("Edit Info for");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER_IMAGE = _("Update Cover Image");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TITLE = _("Update Title");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TAGS = _("Update Tags");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER = _("Update Cover Image");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");
@@ -93,8 +98,7 @@ namespace BookwormApp.Constants {
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
 	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
-	public static const string FILE_CHOOSER_FILTER_EPUB_FILES = _("ePUB Files");
-
+	
 	public static const string BOOKWORM_READING_MODE[] = {"DAY MODE",
 																										 		"NIGHT MODE",
 																										   };

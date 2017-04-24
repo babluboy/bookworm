@@ -74,9 +74,8 @@ public class BookwormApp.AppWindow {
     bookAdditionBar.set_valign(Gtk.Align.CENTER);
     bookAdditionBar.set_show_text (true);
 
-    //Create a footer to select/add/remove books
+    //Create a footer and add widgets for select/add/remove books
     ActionBar add_remove_footer_box = new ActionBar();
-    //Set up contents of the add/remove books footer label
     add_remove_footer_box.pack_start (select_book_button);
     add_remove_footer_box.pack_start (add_book_button);
     add_remove_footer_box.pack_start (remove_book_button);
@@ -92,10 +91,9 @@ public class BookwormApp.AppWindow {
     infobar.response.connect(BookwormApp.Bookworm.on_info_bar_closed);
     infobar.hide();
 
-    //Create the UI for library view
+    //Create the UI for library view and add all components to ui box for library view
     bookLibrary_ui_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     bookLibrary_ui_box.set_border_width (0);
-    //add all components to ui box for library view
     bookLibrary_ui_box.pack_start (infobar, false, true, 0);
     bookLibrary_ui_box.pack_start (library_scroll, true, true, 0);
     bookLibrary_ui_box.pack_start (add_remove_footer_box, false, true, 0);
@@ -110,31 +108,29 @@ public class BookwormApp.AppWindow {
     webkitSettings.set_enable_javascript(true);
 
     //Set up Button for previous page
-    Gtk.Image back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+    Gtk.Image back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
     back_button = new Gtk.Button ();
     back_button.set_image (back_button_image);
     back_button.set_relief (ReliefStyle.NONE);
 
     //Set up Button for next page
-    Gtk.Image forward_button_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+    Gtk.Image forward_button_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.MENU);
     forward_button = new Gtk.Button ();
     forward_button.set_image (forward_button_image);
     forward_button.set_relief (ReliefStyle.NONE);
 
     //Set up contents of the footer
-    book_reading_footer_eventbox = new Gtk.EventBox ();
-    book_reading_footer_box = new Gtk.Box (Orientation.HORIZONTAL, 0);
+    ActionBar book_reading_footer_box = new ActionBar();
     Gtk.Label pageNumberLabel = new Label("");
-    book_reading_footer_box.pack_start (back_button, false, true, 0);
-    book_reading_footer_box.pack_start (pageNumberLabel, true, true, 0);
-    book_reading_footer_box.pack_end (forward_button, false, true, 0);
-    book_reading_footer_box.set_border_width(BookwormApp.Constants.SPACING_BUTTONS);
-    book_reading_footer_eventbox.add(book_reading_footer_box);
+    book_reading_footer_box.pack_start (back_button);
+    book_reading_footer_box.pack_start (pageNumberLabel);
+    book_reading_footer_box.pack_end (forward_button);
 
     //Create the Gtk Box to hold components for reading a selected book
     bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
+    bookReading_ui_box.set_border_width (0);
     bookReading_ui_box.pack_start (aWebView, true, true, 0);
-    bookReading_ui_box.pack_start (book_reading_footer_eventbox, false, true, 0);
+    bookReading_ui_box.pack_start (book_reading_footer_box, false, true, 0);
 
     //Add all ui components to the main UI box
     Gtk.Box main_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
@@ -172,7 +168,7 @@ public class BookwormApp.AppWindow {
     });
     //Add action for adding a book on the library view
     add_book_button.clicked.connect (() => {
-      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectBookFileChooser();
+      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, BookwormApp.Utils.getFileTypeMapping("EBOOKS"), "EPUB");
       BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
       int countOfBooksToBeAdded = 0;
       foreach(string pathToSelectedBook in selectedEBooks){
@@ -287,7 +283,7 @@ public class BookwormApp.AppWindow {
       BookwormApp.Bookworm.bookWormUIBox.show_all();
       BookwormApp.Bookworm.toggleUIState();
 
-      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectBookFileChooser();
+      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, BookwormApp.Utils.getFileTypeMapping("EBOOKS"), "EPUB");
       BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
       int countOfBooksToBeAdded = 0;
       foreach(string pathToSelectedBook in selectedEBooks){

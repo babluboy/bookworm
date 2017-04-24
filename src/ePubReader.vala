@@ -74,8 +74,10 @@ public class BookwormApp.ePubReader {
         return aBook;
       }
 
-      //Determine Book Cover Image
-      aBook = setCoverImage(aBook, manifestItemsList);
+      //Try to determine Book Cover Image if it is not already available
+      if(!aBook.getIsBookCoverImagePresent()){
+        aBook = setCoverImage(aBook, manifestItemsList);
+      }
 
       //Determine Book Meta Data like Title, Author, etc
       aBook = setBookMetaData(aBook, locationOfOPFFile);
@@ -362,24 +364,44 @@ public class BookwormApp.ePubReader {
   }
 
   public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
-    debug("Initiated process for finding title of eBook located at:"+aBook.getBookExtractionLocation());
+    debug("Initiated process for finding meta data of eBook located at:"+aBook.getBookExtractionLocation());
     string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
-    //determine the title of the book
-    if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
-      int startOfTitleText = OpfContents.index_of(">", OpfContents.index_of("<dc:title"));
-      int endOfTittleText = OpfContents.index_of("</dc:title>", startOfTitleText);
-      if(startOfTitleText != -1 && endOfTittleText != -1 && endOfTittleText > startOfTitleText){
-        string bookTitle = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfTitleText+1, endOfTittleText));
-        aBook.setBookTitle(bookTitle);
-        debug("Determined eBook Title as:"+bookTitle);
+    //determine the title of the book if it is not already available
+    if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
+      if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
+        int startOfTitleText = OpfContents.index_of(">", OpfContents.index_of("<dc:title"));
+        int endOfTittleText = OpfContents.index_of("</dc:title>", startOfTitleText);
+        if(startOfTitleText != -1 && endOfTittleText != -1 && endOfTittleText > startOfTitleText){
+          string bookTitle = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfTitleText+1, endOfTittleText));
+          aBook.setBookTitle(bookTitle);
+          debug("Determined eBook Title as:"+bookTitle);
+        }else{
+          aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
+          debug("Could not determine eBook Title, default title set");
+        }
       }else{
         aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
         debug("Could not determine eBook Title, default title set");
       }
-    }else{
-      aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
-      debug("Could not determine eBook Title, default title set");
     }
+
+    //determine the author of the book
+    if(OpfContents.contains("<dc:creator") && OpfContents.contains("</dc:creator>")){
+      int startOfAuthorText = OpfContents.index_of(">", OpfContents.index_of("<dc:creator"));
+      int endOfAuthorText = OpfContents.index_of("</dc:creator>", startOfAuthorText);
+      if(startOfAuthorText != -1 && endOfAuthorText != -1 && endOfAuthorText > startOfAuthorText){
+        string bookAuthor = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfAuthorText+1, endOfAuthorText));
+        aBook.setBookAuthor(bookAuthor);
+        debug("Determined eBook Author as:"+bookAuthor);
+      }else{
+        aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
+        debug("Could not determine eBook Author, default Author set");
+      }
+    }else{
+      aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
+      debug("Could not determine eBook Author, default title set");
+    }
+
     return aBook;
   }
 

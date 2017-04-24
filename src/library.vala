@@ -51,6 +51,9 @@ public class BookwormApp.Library{
       titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
       titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
       titleTextLabel.set_max_width_chars(-1);
+    }else{
+      //remove the title label if the book has a cover image available
+      titleTextLabel.set_text("");
     }
     //Add selection option badge to the book for later use - add it below the cover to hide it
     Gdk.Pixbuf bookSelectionPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_OPTION_IMAGE_LOCATION);
@@ -91,6 +94,9 @@ public class BookwormApp.Library{
     aBook.setBookWidgetList(aEventBox);                 //position=5
     aBook.setBookWidgetList(aOverlayImage);             //position=6
 
+    //Create a popover context menu for the book
+    Gtk.Popover bookPopover = BookwormApp.AppDialog.createBookContextMenu(aBook);
+
 		//set the view mode to library view
 		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 		BookwormApp.AppWindow.library_grid.show_all();
@@ -103,7 +109,8 @@ public class BookwormApp.Library{
       event.get_button(out mouseButtonClicked);
       //handle right button click for context menu
       if (event.get_event_type ()  == Gdk.EventType.BUTTON_PRESS  &&  mouseButtonClicked == 3){
-        debug("Mouse right click");
+        bookPopover.set_visible (true);
+        bookPopover.show_all();
         return true;
       }else{
         //left button click for reading or selection of book
