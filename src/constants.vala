@@ -111,7 +111,6 @@ namespace BookwormApp.Constants {
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
 	public static const string IDENTIFIER_FOR_PROPERTY_START = "~~";
 	public static const string IDENTIFIER_FOR_PROPERTY_END = "##\n";
-
 	public const string EPUB_MIME_SPECIFICATION_FILENAME = "mimetype";
 	public const string EPUB_MIME_SPECIFICATION_CONTENT = "application/epub+zip";
 	public const string EPUB_META_INF_FILENAME = "META-INF/container.xml";

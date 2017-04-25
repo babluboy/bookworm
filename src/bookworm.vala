@@ -284,7 +284,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			if(book.getIsBookSelected()){
 				//hold the books to be deleted in a list
 				listOfBooksToBeRemoved.add(book.getBookLocation());
-				Gtk.EventBox lEventBox = (Gtk.EventBox) book.getBookWidgetList().get(5);
+				Gtk.EventBox lEventBox = (Gtk.EventBox) book.getBookWidget("BOOK_EVENTBOX");
 				//destroy the EventBox parent widget - this removes the book from the library grid
 				lEventBox.get_parent().destroy();
 				//destroy the EventBox widget

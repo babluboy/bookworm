@@ -26,7 +26,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 	public static Gtk.Popover createBookContextMenu (BookwormApp.Book aBook){
 		debug("Context Menu Popover initiated for book:"+aBook.getBookLocation());
-		Gtk.Popover bookContextPopover = new Gtk.Popover ((Gtk.EventBox) (aBook.getBookWidgetList().get(5)));
+		Gtk.Popover bookContextPopover = new Gtk.Popover ((Gtk.EventBox) (aBook.getBookWidget("BOOK_EVENTBOX")));
 
 		//Add the Menu title with the name of the book
 		StringBuilder contextTitle = new StringBuilder();
@@ -56,15 +56,23 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 	      aBook.setBookCoverLocation(bookwormCoverLocation);
 				aBook.setIsBookCoverImagePresent(true);
 				aBook.setWasBookOpened(true);
-				/*
+
 				//Refresh the library view to show the new cover image
 				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
 				Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 				aCoverImage.set_halign(Align.START);
 				aCoverImage.set_valign(Align.START);
-				aBook.updateBookWidgetList(1, aCoverImage);
-				BookwormApp.Library.updateLibraryViewForSelectionMode(null);
-				*/
+				aBook.setBookWidget("COVER_IMAGE", aCoverImage);
+				aBook.setIsBookCoverImagePresent(true);
+				BookwormApp.Library.replaceCoverImageOnBook(aBook);
+				//remove the text from the title widget
+				Gtk.Label titleTextLabel = (Gtk.Label) aBook.getBookWidget("TITLE_TEXT_LABEL");
+				titleTextLabel.set_text("");
+				aBook.setBookWidget("TITLE_TEXT_LABEL", titleTextLabel);
+				//refresh the library view
+				BookwormApp.AppWindow.library_grid.show_all();
+				BookwormApp.Bookworm.toggleUIState();
+
 				debug("Updated cover to image located at path:"+selectedCoverImagePath);
 			}
 		});

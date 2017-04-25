@@ -86,13 +86,13 @@ public class BookwormApp.Library{
 		BookwormApp.AppWindow.library_grid.add (aEventBox);
 
 		//set gtk widgets into the Book object for later manipulation
-    aBook.setBookWidgetList(bookPlaceholderCoverImage); //position=0
-    aBook.setBookWidgetList(aCoverImage);               //position=1
-    aBook.setBookWidgetList(titleTextLabel);            //position=2
-    aBook.setBookWidgetList(bookSelectedImage);         //position=3
-    aBook.setBookWidgetList(bookSelectionImage);        //position=4
-    aBook.setBookWidgetList(aEventBox);                 //position=5
-    aBook.setBookWidgetList(aOverlayImage);             //position=6
+    aBook.setBookWidget("PLACEHOLDER_COVER_IMAGE", bookPlaceholderCoverImage);
+    aBook.setBookWidget("COVER_IMAGE", aCoverImage);
+    aBook.setBookWidget("TITLE_TEXT_LABEL", titleTextLabel);
+    aBook.setBookWidget("SELECTED_BADGE_IMAGE", bookSelectedImage);
+    aBook.setBookWidget("SELECTION_BADGE_IMAGE", bookSelectionImage);
+    aBook.setBookWidget("BOOK_EVENTBOX", aEventBox);
+    aBook.setBookWidget("BOOK_OVERLAY_IMAGE", aOverlayImage);
 
     //Create a popover context menu for the book
     Gtk.Popover bookPopover = BookwormApp.AppDialog.createBookContextMenu(aBook);
@@ -133,56 +133,68 @@ public class BookwormApp.Library{
     debug("Completed updating Library View for book:"+aBook.getBookLocation());
 	}
 
+  public static void replaceCoverImageOnBook (owned BookwormApp.Book? book){
+    //remove the existing overlay image
+    Gtk.Overlay oldOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
+    oldOverlayImage.destroy();
+    //create a new overlay image
+    Gtk.Overlay lOverlayImage = new Gtk.Overlay();
+    lOverlayImage.add(book.getBookWidget("PLACEHOLDER_COVER_IMAGE"));
+    lOverlayImage.add_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"));
+    lOverlayImage.add_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"));
+    lOverlayImage.add_overlay(book.getBookWidget("COVER_IMAGE"));
+    lOverlayImage.add_overlay(book.getBookWidget("TITLE_TEXT_LABEL"));
+    book.setBookWidget("BOOK_OVERLAY_IMAGE", lOverlayImage);
+    //associate the eventbox with the new overlay image
+    Gtk.EventBox aEventBox = (Gtk.EventBox) book.getBookWidget("BOOK_EVENTBOX");
+    aEventBox.add(lOverlayImage);
+    book.setBookWidget("BOOK_EVENTBOX", aEventBox);
+    //update the libraryviewmap with the book object
+    BookwormApp.Bookworm.libraryViewMap.set(book.getBookLocation(), book);
+  }
+
   public static void updateLibraryViewForSelectionMode(owned BookwormApp.Book? lBook){
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[0]");
 			//loop over HashMap of Book Objects and overlay selection image
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
-				if(book.getBookWidgetList() != null && book.getBookWidgetList().size > 3){
-  				Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidgetList().get(6);
-          //set the order of the widgets to put the selection/selected badges at bottom
-          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(4), 1);
-          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(3), 2);
-          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(1), 3);
-          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(2), 4);
-        }
+				Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
+        //set the order of the widgets to put the selection/selected badges at bottom
+        aOverlayImage.reorder_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"), 1);
+        aOverlayImage.reorder_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"), 2);
+        aOverlayImage.reorder_overlay(book.getBookWidget("COVER_IMAGE"), 3);
+        aOverlayImage.reorder_overlay(book.getBookWidget("TITLE_TEXT_LABEL"), 4);
       }
 		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2]){
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[2]");
 			//loop over HashMap of Book Objects and overlay selection badge
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
-        if(book.getBookWidgetList() != null && book.getBookWidgetList().size > 3){
-          Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidgetList().get(6);
-          //set the order of the widgets to put the selection badge on top
-          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(3), 1);
-          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(1), 2);
-          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(2), 3);
-          aOverlayImage.reorder_overlay(book.getBookWidgetList().get(4), 4);
-        }
+        Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
+        //set the order of the widgets to put the selection badge on top
+        aOverlayImage.reorder_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"), 1);
+        aOverlayImage.reorder_overlay(book.getBookWidget("COVER_IMAGE"), 2);
+        aOverlayImage.reorder_overlay(book.getBookWidget("TITLE_TEXT_LABEL"), 3);
+        aOverlayImage.reorder_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"), 4);
 			}
 		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[3]");
       if(lBook != null){
-        Gtk.Overlay aOverlayImage = (Gtk.Overlay) lBook.getBookWidgetList().get(6);
+        Gtk.Overlay aOverlayImage = (Gtk.Overlay) lBook.getBookWidget("BOOK_OVERLAY_IMAGE");
         if(!lBook.getIsBookSelected()){
-          if(lBook.getBookWidgetList() != null && lBook.getBookWidgetList().size > 3){
-            //set the order of the widgets to put the selected badge on top
-            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(4), 1);
-            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(1), 2);
-            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(2), 3);
-            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(3), 4);
-          }
+          //set the order of the widgets to put the selected badge on top
+          aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTION_BADGE_IMAGE"), 1);
+          aOverlayImage.reorder_overlay(lBook.getBookWidget("COVER_IMAGE"), 2);
+          aOverlayImage.reorder_overlay(lBook.getBookWidget("TITLE_TEXT_LABEL"), 3);
+          aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTED_BADGE_IMAGE"), 4);
           lBook.setIsBookSelected(true);
         }else{
-          if(lBook.getBookWidgetList() != null && lBook.getBookWidgetList().size > 3){
-            //set the order of the widgets to put the selection badge on top
-            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(3), 1);
-            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(1), 2);
-            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(2), 3);
-            aOverlayImage.reorder_overlay(lBook.getBookWidgetList().get(4), 4);
-          }
+          //set the order of the widgets to put the selection badge on top
+          aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTED_BADGE_IMAGE"), 1);
+          aOverlayImage.reorder_overlay(lBook.getBookWidget("COVER_IMAGE"), 2);
+          aOverlayImage.reorder_overlay(lBook.getBookWidget("TITLE_TEXT_LABEL"), 3);
+          aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTION_BADGE_IMAGE"), 4);
           lBook.setIsBookSelected(false);
         }
         //update the book into the Library view HashMap

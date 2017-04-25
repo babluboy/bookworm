@@ -42,7 +42,7 @@ public class BookwormApp.Book{
   private bool ifPageBackward = true;
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
-  private ArrayList<Gtk.Widget> bookWidgetsList = new ArrayList<Gtk.Widget> ();
+  private HashMap<string,Gtk.Widget> bookWidgetsList = new HashMap<string,Gtk.Widget> ();
   private ArrayList<string> bookContentList = new ArrayList<string> ();
   private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
   private StringBuilder bookmarks = new StringBuilder ("");
@@ -250,21 +250,11 @@ public class BookwormApp.Book{
   }
 
   //getter setter for list of Gtk Widgets used for a Book
-  //bookPlaceholderCoverImage - position=0
-  //aCoverImage               - position=1
-  //titleTextLabel            - position=2
-  //bookSelectedImage         - position=3
-  //bookSelectionImage        - position=4
-  //aEventBox                 - position=5
-  //aOverlayImage             - position=6
-  public void setBookWidgetList (Gtk.Widget aWidget){
-    bookWidgetsList.add(aWidget);
+  public void setBookWidget (string name, Gtk.Widget aWidget){
+    bookWidgetsList.set(name, aWidget);
   }
-  public ArrayList<Gtk.Widget> getBookWidgetList (){
-    return bookWidgetsList;
-  }
-  public void updateBookWidgetList (int position, Gtk.Widget aWidget){
-    bookWidgetsList.set(position, aWidget);
+  public Gtk.Widget getBookWidget (string name){
+    return bookWidgetsList.get(name);
   }
 
   //print book details
@@ -285,6 +275,8 @@ public class BookwormApp.Book{
            .append("ifPageForward=").append(ifPageForward.to_string()).append(",\n")
            .append("ifPageBackward=").append(ifPageBackward.to_string()).append(",\n")
            .append("bookmarks=").append(bookmarks.str).append(",\n")
+           .append("author=").append(bookAuthor).append(",\n")
+           .append("ratings=").append(bookRating.to_string()).append(",\n")
            .append("bookContentList=");
      for (int i=0; i<bookContentList.size;i++) {
         bookDetails.append("["+i.to_string()+"]="+bookContentList.get(i)+",");
