@@ -581,6 +581,9 @@ public class BookwormApp.Bookworm:Granite.Application {
 			else if((aBook.getBookAuthor().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
 				return true;
 			}
+			else if((aBook.getBookTags().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
+				return true;
+			}
 			else{
 				return false;
 			}

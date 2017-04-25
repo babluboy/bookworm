@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "0.4.3";
+	public const string bookworm_version = "0.5";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017";
 	public const string app_icon = "bookworm";
@@ -37,7 +37,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
 	public const string TEXT_FOR_HEADERBAR_BOOK_SEARCH = _("Search this book...");
-	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search for Title, Author...");
+	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search for Title, Author and Tags");
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
@@ -98,7 +98,7 @@ namespace BookwormApp.Constants {
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
 	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
-	
+
 	public static const string BOOKWORM_READING_MODE[] = {"DAY MODE",
 																										 		"NIGHT MODE",
 																										   };
