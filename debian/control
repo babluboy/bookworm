@@ -12,8 +12,9 @@ Build-Depends: cmake (>= 2.8),
                libwebkit2gtk-4.0-dev,
                libsqlite3-dev
 
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Package: com.github.babluboy.bookworm
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, unzip
-Description: Bookworm is a simple user centric eBook reader which displays multiple eBooks formats uniformly
+Description: Bookworm
+ A simple user centric eBook reader which displays multiple eBooks formats uniformly
