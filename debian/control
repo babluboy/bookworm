@@ -1,6 +1,6 @@
 Source: com.github.babluboy.bookworm
-Section: x11
-Priority: extra
+Section: text
+Priority: optional
 Maintainer: Siddhartha Das <bablu.boy@gmail.com>
 Build-Depends: cmake (>= 2.8),
                debhelper (>= 9),
@@ -10,11 +10,10 @@ Build-Depends: cmake (>= 2.8),
                libgranite-dev (>= 0.3.0),
                libwebkit2gtk-4.0-37,
                libwebkit2gtk-4.0-dev,
-               libsqlite3-dev,
-Standards-Version: 3.9.5
-Homepage: https://launchpad.net/bookworm
+               libsqlite3-dev
 
+Standards-Version: 3.9.5
 Package: com.github.babluboy.bookworm
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, unzip
-Description: Simple user centric eBook reader which displays multiple eBooks formats uniformly
+Description: Bookworm is a simple user centric eBook reader which displays multiple eBooks formats uniformly

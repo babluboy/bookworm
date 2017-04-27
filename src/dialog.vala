@@ -33,6 +33,11 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		contextTitle.append(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_HEADER)
 							  .append(" ")
 								.append(aBook.getBookTitle());
+		//restrict the length of the label to 35 characters
+		if(contextTitle.str.length > 35){
+			contextTitle.assign(contextTitle.str.slice(0,35));
+			contextTitle.append("...");
+		}
 		Label contextTitleLabel = new Label(contextTitle.str);
 
 		//Add button for updating cover Image
