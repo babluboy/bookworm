@@ -428,25 +428,27 @@ public class BookwormApp.ePubReader {
   }
 
   public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){
+    debug("Attempting to fetch content from book at location:"+aBook.getBaseLocationOfContents());
     StringBuilder contents = new StringBuilder();
-    string baseLocationOfContents = aBook.getBaseLocationOfContents();
-    //handle the case when the content list has html escape chars for the URI
-    string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
-    //fetch content from extracted book
-    debug("Attempting to fetch content from location:"+bookLocationToRead);
-    contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
-    //find list of relative urls with src, href, etc and convert them to absolute ones
-    foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
-    string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
-      StringBuilder srcItemFullPath = new StringBuilder();
-      foreach(string srcItem in srcList){
-        srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
-        contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
+    if(contentLocation > -1){
+      string baseLocationOfContents = aBook.getBaseLocationOfContents();
+      //handle the case when the content list has html escape chars for the URI
+      string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
+      //fetch content from extracted book
+      contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
+      //find list of relative urls with src, href, etc and convert them to absolute ones
+      foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
+      string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
+        StringBuilder srcItemFullPath = new StringBuilder();
+        foreach(string srcItem in srcList){
+          srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
+          contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
+        }
       }
+      //update the content for required manipulation
+      contents.assign(adjustPageContent(contents.str));
     }
-    //update the content for required manipulation
-    contents.assign(adjustPageContent(contents.str));
-
+    debug("Completed fetching content from book at location:"+aBook.getBaseLocationOfContents() + "for page:" + contentLocation.to_string());
     return contents.str;
   }
 

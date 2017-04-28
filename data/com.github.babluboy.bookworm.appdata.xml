@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2017 Siddharth Das <bablu.boy@gmail.com> -->
+<!-- Copyright 2017 Siddhartha Das <bablu.boy@gmail.com> -->
 <component type="desktop">
   <id>com.github.babluboy.bookworm.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_group>bookworm</project_group>
   <project_license>GPL-3.0+</project_license>
   <name>Bookworm</name>
-  <summary>A simple ebook reader for Elementary OS</summary>
+  <summary>A simple, focused eBook reader</summary>
   <description>
-    <p>
-      A simple eBook Reader application made for elementary OS.The goal of Bookworm is to provide a uniform user experience for multiple electronic document formats like epub,pdf, mobi, etc.
-      Bookworm is currently under active development and only the EPUB format is supported.
-    </p>
+    <p>Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc.</p>
+    <p>Bookworm is currently under active development and this initial release supports only the EPUB format. PDF support will be added to the next version and support for other formats to follow.</p>
   </description>
   <screenshots>
       <screenshot type="default">
+          <caption>Bookworm Library View</caption>
+          <image>https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormLibraryView.jpeg</image>
+      </screenshot>
+      <screenshot type="default">
           <caption>Bookworm Reading View</caption>
-          <image>https://github.com/babluboy/bookworm/blob/master/screenshots/Bookworm-PreferencesPopUp.jpeg</image>
+          <image>https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormReadingView.jpeg</image>
       </screenshot>
   </screenshots>
   <provides>
@@ -25,7 +27,7 @@
   <releases>
 ​    <release version="0.5" date="2017-04-25">
 ​      <description>
-​        <p>Initial WIP Release</p>
+​        <p>Initial release with support for EPUB format</p>
 ​      </description>
 ​    </release>
 ​  </releases>

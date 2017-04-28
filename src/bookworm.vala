@@ -521,6 +521,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 	public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
 		int currentContentLocation = aBook.getBookPageNumber();
 		string searchText = "";
+
 		//handle loading page with search string
 		if(direction.index_of("SEARCH:") != -1){
 			searchText = direction.replace("SEARCH:", "");
@@ -563,6 +564,8 @@ public class BookwormApp.Bookworm:Granite.Application {
     BookwormApp.AppWindow.aWebView.grab_focus();
 		//set the bookmak icon on the header
 		handleBookMark("DISPLAY");
+		//set the navigation controls
+		aBook = BookwormApp.Bookworm.controlNavigation(aBook);
 		return aBook;
 	}
 

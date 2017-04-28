@@ -149,7 +149,6 @@ public class BookwormApp.AppWindow {
       currentBookForForward = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       debug("Initiating read forward for eBook:"+currentBookForForward.getBookLocation());
       currentBookForForward = BookwormApp.Bookworm.renderPage(currentBookForForward, "FORWARD");
-      currentBookForForward = BookwormApp.Bookworm.controlNavigation(currentBookForForward);
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForForward.getBookLocation(), currentBookForForward);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForForward.getBookLocation();
@@ -161,7 +160,6 @@ public class BookwormApp.AppWindow {
       currentBookForReverse = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       debug("Initiating read previous for eBook:"+currentBookForReverse.getBookLocation());
       currentBookForReverse = BookwormApp.Bookworm.renderPage(currentBookForReverse, "BACKWARD");
-      currentBookForReverse = BookwormApp.Bookworm.controlNavigation(currentBookForReverse);
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForReverse.getBookLocation(), currentBookForReverse);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForReverse.getBookLocation();
@@ -209,7 +207,6 @@ public class BookwormApp.AppWindow {
           //get object for this ebook
           BookwormApp.Book aBookLeftKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
           aBookLeftKeyPress = BookwormApp.Bookworm.renderPage(aBookLeftKeyPress, "BACKWARD");
-          aBookLeftKeyPress = BookwormApp.Bookworm.controlNavigation(aBookLeftKeyPress);
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookLeftKeyPress.getBookLocation(), aBookLeftKeyPress);
         }
@@ -217,7 +214,6 @@ public class BookwormApp.AppWindow {
           //get object for this ebook
           BookwormApp.Book aBookRightKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
           aBookRightKeyPress = BookwormApp.Bookworm.renderPage(aBookRightKeyPress, "FORWARD");
-          aBookRightKeyPress = BookwormApp.Bookworm.controlNavigation(aBookRightKeyPress);
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookRightKeyPress.getBookLocation(), aBookRightKeyPress);
         }

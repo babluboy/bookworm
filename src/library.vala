@@ -116,7 +116,6 @@ public class BookwormApp.Library{
         //left button click for reading or selection of book
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
   				aBook  = BookwormApp.Bookworm.libraryViewMap.get(aEventBox.get_name());
-  				debug("Initiated process for reading eBook:"+aBook.getBookLocation());
   				BookwormApp.Bookworm.readSelectedBook(aBook);
   			}
   			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
