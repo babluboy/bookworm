@@ -93,7 +93,7 @@ public class BookwormApp.AppHeaderBar {
     //Add a search entry to the header
     headerSearchBar = new Gtk.SearchEntry();
     headerSearchBar.set_max_width_chars(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH.length);
-    headerSearchBar.set_text(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
+    headerSearchBar.set_placeholder_text(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
     headerbar.pack_end(headerSearchBar);
 
     //Set actions for HeaderBar search

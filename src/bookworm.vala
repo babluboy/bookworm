@@ -385,7 +385,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			//clean the previous search result if any and reset the contents of the search entry
 			BookwormApp.Info.searchresults_scroll.get_child().destroy();
 			//set the default value of the header bar search
-			BookwormApp.AppHeaderBar.headerSearchBar.set_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
 		}
 	}
 
@@ -408,7 +408,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
 			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]
 			){
-			BookwormApp.AppHeaderBar.headerSearchBar.set_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
 			content_list_button.set_visible(false);
 			library_view_button.set_visible(false);
 			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(true);
@@ -423,7 +423,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 		//Reading Mode
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
 			//UI for Reading View
-			BookwormApp.AppHeaderBar.headerSearchBar.set_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
 			content_list_button.set_visible(true);
 			library_view_button.set_visible(true);
 			library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
@@ -437,7 +437,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 		//Book Meta Data / Content View Mode
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
 			//UI for Reading View
-			BookwormApp.AppHeaderBar.headerSearchBar.set_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
 			BookwormApp.Info.info_box.show_all();
 			content_list_button.set_visible(true);
 			library_view_button.set_visible(true);
