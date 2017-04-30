@@ -19,9 +19,9 @@ sudo apt-get install bookworm
 sudo apt-get build-dep granite-demo 
 sudo apt-get install libgranite-dev
 sudo apt-get install valac
-
 sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
 sudo apt-get install sqlite3 libsqlite3-dev
+sudo apt-get install poppler-utils libpoppler-glib-dev
 
 git clone https://github.com/babluboy/bookworm.git
 cd bookworm
