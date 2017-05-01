@@ -117,7 +117,7 @@ public class BookwormApp.Info:Gtk.Window {
     Gtk.Label searchLabel = new Label("");
     searchresults_box.pack_start(searchLabel,false,false,0);
 
-    HashMap<string,string> searchResultsMap = BookwormApp.ePubReader.searchBookContents(aBook, BookwormApp.AppHeaderBar.headerSearchBar.get_text());
+    HashMap<string,string> searchResultsMap = BookwormApp.contentHandler.searchBookContents(aBook, BookwormApp.AppHeaderBar.headerSearchBar.get_text());
     if(searchResultsMap.size > 0){
       string searchResultsLabeltext = BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_FOUND;
       searchResultsLabeltext = searchResultsLabeltext.replace("$$$", BookwormApp.AppHeaderBar.headerSearchBar.get_text());

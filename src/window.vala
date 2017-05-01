@@ -293,4 +293,13 @@ public class BookwormApp.AppWindow {
     });
     return BookwormApp.Bookworm.welcomeWidget;
   }
+
+  public static void showInfoBar(BookwormApp.Book aBook, MessageType aMessageType){
+    StringBuilder message = new StringBuilder("");
+    message.append(aBook.getParsingIssue())
+             .append(aBook.getBookLocation());
+    BookwormApp.AppWindow.infobarLabel.set_text(message.str);
+    BookwormApp.AppWindow.infobar.set_message_type (aMessageType);
+    BookwormApp.AppWindow.infobar.show();
+  }
 }

@@ -38,6 +38,8 @@ set (SOURCE_LIST
     src/window.vala
     src/prefpopover.vala
     src/library.vala
+    src/pdfReader.vala
+    src/contentHandler.vala
 )
 
 include (GSettings)
@@ -63,6 +65,7 @@ pkg_check_modules(DEPS REQUIRED
                   granite
                   webkit2gtk-4.0>=2.14.1
                   sqlite3>=3.5.9
+                  poppler-glib
                  )
 
 add_definitions(${DEPS_CFLAGS})
@@ -104,6 +107,8 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/window.vala
     src/prefpopover.vala
     src/library.vala
+    src/pdfReader.vala
+    src/contentHandler.vala
 
 # tell what libraries to use when compiling
 PACKAGES
@@ -112,6 +117,7 @@ PACKAGES
     granite
     webkit2gtk-4.0>=2.14.1
     sqlite3
+    poppler-glib
 )
 
 # tell cmake what to call the executable we just made

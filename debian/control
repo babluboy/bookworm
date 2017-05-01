@@ -10,11 +10,12 @@ Build-Depends: cmake (>= 2.8),
                libgranite-dev (>= 0.3.0),
                libwebkit2gtk-4.0-37,
                libwebkit2gtk-4.0-dev,
-               libsqlite3-dev
+               libsqlite3-dev,
+               libpoppler-glib-dev
 
 Standards-Version: 3.9.6
 Package: com.github.babluboy.bookworm
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, unzip
+Depends: ${misc:Depends}, ${shlibs:Depends}, unzip, poppler-utils
 Description: Bookworm
  A simple user centric eBook reader which displays multiple eBooks formats uniformly
