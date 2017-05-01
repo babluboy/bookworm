@@ -46,15 +46,12 @@ public class BookwormApp.AppHeaderBar {
     bookwormApp.content_list_button = new Gtk.Button ();
     bookwormApp.content_list_button.set_image (content_list_button_image);
 
-    Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", IconSize.BUTTON);
-    Gtk.Button textLargerButton = new Gtk.Button();
-    textLargerButton.set_image (menu_icon_text_large);
-    textLargerButton.set_halign(Gtk.Align.START);
+    Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+    bookwormApp.prefButton = new Gtk.Button();
+    bookwormApp.prefButton.set_image (menu_icon_text_large);
+    bookwormApp.prefButton.set_halign(Gtk.Align.START);
 
-    Gtk.Image menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", IconSize.BUTTON);
-    Gtk.Button textSmallerButton = new Gtk.Button();
-    textSmallerButton.set_image (menu_icon_text_small);
-    textSmallerButton.set_halign(Gtk.Align.END);
+    Gtk.Popover prefPopover = BookwormApp.PreferencesMenu.createPrefPopOver(bookwormApp.prefButton);
 
     Gtk.Image bookmark_inactive_button_image = new Gtk.Image ();
     bookmark_inactive_button_image.set_from_file (Constants.BOOKMARK_INACTIVE_IMAGE_LOCATION);
@@ -67,15 +64,9 @@ public class BookwormApp.AppHeaderBar {
     bookmark_active_button.set_image (bookmark_active_button_image);
     bookmark_active_button.set_halign(Gtk.Align.CENTER);
 
-
-    bookwormApp.textSizeBox = new Gtk.Box(Orientation.HORIZONTAL, 0);
-    bookwormApp.textSizeBox.get_style_context().add_class(Gtk.STYLE_CLASS_LINKED);
-    bookwormApp.textSizeBox.pack_start(textSmallerButton, false, false);
-    bookwormApp.textSizeBox.pack_start(textLargerButton, false, false);
-
     headerbar.pack_start(bookwormApp.library_view_button);
     headerbar.pack_start(bookwormApp.content_list_button);
-    headerbar.pack_start(bookwormApp.textSizeBox);
+    headerbar.pack_start(bookwormApp.prefButton);
     headerbar.pack_start(bookmark_inactive_button);
     headerbar.pack_start(bookmark_active_button);
 
@@ -101,7 +92,8 @@ public class BookwormApp.AppHeaderBar {
 
     //Add a search entry to the header
     headerSearchBar = new Gtk.SearchEntry();
-    headerSearchBar.set_text(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
+    headerSearchBar.set_max_width_chars(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH.length);
+    headerSearchBar.set_placeholder_text(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
     headerbar.pack_end(headerSearchBar);
 
     //Set actions for HeaderBar search
@@ -139,7 +131,7 @@ public class BookwormApp.AppHeaderBar {
         headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
         //set UI in library view mode
         bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-        bookwormApp.updateLibraryViewForSelectionMode(null);
+        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
         bookwormApp.toggleUIState();
       }
 
@@ -161,18 +153,20 @@ public class BookwormApp.AppHeaderBar {
       bookwormApp.toggleUIState();
       BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name ("content-list"));
     });
-    textLargerButton.clicked.connect (() => {
-      BookwormApp.AppWindow.aWebView.set_zoom_level (BookwormApp.AppWindow.aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+
+    bookwormApp.prefButton.clicked.connect (() => {
+      prefPopover.set_visible (true);
+      prefPopover.show_all();
     });
-    textSmallerButton.clicked.connect (() => {
-      BookwormApp.AppWindow.aWebView.set_zoom_level (BookwormApp.AppWindow.aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
-    });
+
     bookmark_active_button.clicked.connect (() => {
       BookwormApp.Bookworm.handleBookMark("ACTIVE_CLICKED");
     });
+
     bookmark_inactive_button.clicked.connect (() => {
       BookwormApp.Bookworm.handleBookMark("INACTIVE_CLICKED");
     });
+
     debug("Completed loading HeaderBar sucessfully...");
     return headerbar;
   }
@@ -185,6 +179,7 @@ public class BookwormApp.AppHeaderBar {
 
   public static void ShowAboutDialog (){
     Granite.Widgets.AboutDialog aboutDialog = new Granite.Widgets.AboutDialog();
+    aboutDialog.set_attached_to(BookwormApp.Bookworm.window);
     aboutDialog.program_name = BookwormApp.Constants.program_name;
     aboutDialog.website = BookwormApp.Constants.TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL;
     aboutDialog.website_label = BookwormApp.Constants.TEXT_FOR_ABOUT_DIALOG_WEBSITE;

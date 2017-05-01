@@ -22,25 +22,27 @@ public class BookwormApp.Book{
 
   private int bookId = 0;
   private bool isBookParsedCorrectly = false;
+  private string parsingIssue = "";
   private string bookLocation = "";
   private string bookCoverLocation = "";
   private string bookExtractionLocation = "";
   private string bookTitle = "";
   private string bookAuthor = "";
-  private string opfFileLocation = "";
-  private string baseLocationOfContents = "";
-  private bool isBookCoverImagePresent = false;
+  private string bookTags = "";
   private string bookPublishDate = "";
   private string bookCreationDate = "";
   private string bookLastModificationDate = "";
+  private int bookRating = 1;
+
+  private string opfFileLocation = "";
+  private string baseLocationOfContents = "";
+  private bool isBookCoverImagePresent = false;
   private int bookPageNumber = -1;
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
-  private Gtk.EventBox eventBox;
-  private Gtk.Overlay overlayImage;
-  private Gtk.Image coverImage;
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
+  private HashMap<string,Gtk.Widget> bookWidgetsList = new HashMap<string,Gtk.Widget> ();
   private ArrayList<string> bookContentList = new ArrayList<string> ();
   private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
   private StringBuilder bookmarks = new StringBuilder ("");
@@ -59,6 +61,14 @@ public class BookwormApp.Book{
   }
   public bool getIsBookParsed (){
     return isBookParsedCorrectly;
+  }
+
+  //getter list for book location
+  public void setParsingIssue (string aParsingIssue){
+    parsingIssue = aParsingIssue;
+  }
+  public string getParsingIssue (){
+    return parsingIssue;
   }
 
   //getter list for book location
@@ -109,12 +119,28 @@ public class BookwormApp.Book{
     return bookTitle;
   }
 
+  //getter list for book rating
+  public void setBookRating (int aBookRating){
+    bookRating = aBookRating;
+  }
+  public int getBookRating (){
+    return bookRating;
+  }
+
   //getter setter for book author
   public void setBookAuthor (string aBookAuthor){
     bookAuthor = aBookAuthor;
   }
   public string getBookAuthor (){
     return bookAuthor;
+  }
+
+  //getter setter for book tags
+  public void setBookTags (string aBookTags){
+    bookTags = aBookTags;
+  }
+  public string getBookTags (){
+    return bookTags;
   }
 
 
@@ -190,30 +216,6 @@ public class BookwormApp.Book{
     return ifPageBackward;
   }
 
-  //getter setter for EventBox associated with this eBook
-  public void setEventBox (Gtk.EventBox aEventBox){
-    eventBox = aEventBox;
-  }
-  public Gtk.EventBox getEventBox (){
-    return eventBox;
-  }
-
-  //getter setter for OverLayImage associated with this eBook
-  public void setOverlayImage (Gtk.Overlay aOverlayImage){
-    overlayImage = aOverlayImage;
-  }
-  public Gtk.Overlay getOverlayImage (){
-    return overlayImage;
-  }
-
-  //getter setter for Cover Image associated with this eBook
-  public void setCoverImage (Gtk.Image aCoverImage){
-    coverImage = aCoverImage;
-  }
-  public Gtk.Image getCoverImage (){
-    return coverImage;
-  }
-
   //getter setter for determining if the book is selected
   public void setIsBookSelected  (bool aIsBookSelected){
     isBookSelected = aIsBookSelected;
@@ -247,6 +249,14 @@ public class BookwormApp.Book{
     return bookmarks.str;
   }
 
+  //getter setter for list of Gtk Widgets used for a Book
+  public void setBookWidget (string name, Gtk.Widget aWidget){
+    bookWidgetsList.set(name, aWidget);
+  }
+  public Gtk.Widget getBookWidget (string name){
+    return bookWidgetsList.get(name);
+  }
+
   //print book details
   public string to_string(){
     StringBuilder bookDetails = new StringBuilder();
@@ -265,6 +275,8 @@ public class BookwormApp.Book{
            .append("ifPageForward=").append(ifPageForward.to_string()).append(",\n")
            .append("ifPageBackward=").append(ifPageBackward.to_string()).append(",\n")
            .append("bookmarks=").append(bookmarks.str).append(",\n")
+           .append("author=").append(bookAuthor).append(",\n")
+           .append("ratings=").append(bookRating.to_string()).append(",\n")
            .append("bookContentList=");
      for (int i=0; i<bookContentList.size;i++) {
         bookDetails.append("["+i.to_string()+"]="+bookContentList.get(i)+",");

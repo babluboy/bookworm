@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "0.4";
+	public const string bookworm_version = "0.5";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017";
 	public const string app_icon = "bookworm";
@@ -37,11 +37,13 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
 	public const string TEXT_FOR_HEADERBAR_BOOK_SEARCH = _("Search this book...");
-	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search for Title, Author...");
+	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search for Title, Author and Tags");
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
-	public const string TEXT_FOR_RENDERING_ISSUE = _("Problem in opening selected book");
+	public const string TEXT_FOR_EXTRACTION_ISSUE = _("Problem in extracting contents of book. Check if book is available at location : ");
+	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid Mime type dectected. Check book format at location : ");
+	public const string TEXT_FOR_CONTENT_ISSUE = _("Invalid content found. Ensure valid eBook file at location : ");
 	public const string TEXT_FOR_LIBRARY_BUTTON = _("Library");
 	public const string TEXT_FOR_RESUME_BUTTON = _("Resume");
 	public const string TEXT_FOR_INFO_TAB_CONTENTS = _("Contents");
@@ -53,6 +55,11 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
 	public const string TEXT_FOR_SEARCH_RESULTS_FOUND = _("Found the following matches for '$$$' in &&&:");
 	public const string TEXT_FOR_SEARCH_RESULTS_NOT_FOUND = _("No matches found for '$$$' in &&&");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_HEADER = _("Edit Info for");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER_IMAGE = _("Update Cover Image");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TITLE = _("Update Title");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TAGS = _("Update Tags");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER = _("Update Cover Image");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");
@@ -73,14 +80,17 @@ namespace BookwormApp.Constants {
 	public static const string ADD_BOOK_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-add.svg";
 	public static const string REMOVE_BOOK_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-remove.svg";
 	public static const string LIBRARY_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg";
-	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-list-symbolic.svg";
-	public static const string BOOKMARK_INACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-bookmark-inactive.svg";
-	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-bookmark-active.svg";
+	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-view-list-symbolic.png";
+	public static const string BOOKMARK_INACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-inactive.png";
+	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-active.png";
+	public static const string NIGHT_PROFILE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-profile-night.png";
+	public static const string DAY_PROFILE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-profile-day.png";
 	public static const string SELECTION_IMAGE_BUTTON_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection.svg";
 	public static const string SELECTION_OPTION_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
 	public static const string SELECTION_CHECKED_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
 	public static const string HEADERBAR_PROPERTIES_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-open-menu.svg";
 	public static const string DEFAULT_COVER_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/256x256/apps/bookworm-default-cover-N.png";
+	public static const string PLACEHOLDER_COVER_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/256x256/apps/bookworm-placeholder-cover.png";
 	public static const string EPUB_EXTRACTION_LOCATION = "/tmp/bookworm/";
 	public static const string PREFIX_FOR_FILE_URL = "file:///";
 
@@ -88,7 +98,6 @@ namespace BookwormApp.Constants {
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
 	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
-	public static const string FILE_CHOOSER_FILTER_EPUB_FILES = _("ePUB Files");
 
 	public static const string BOOKWORM_READING_MODE[] = {"DAY MODE",
 																										 		"NIGHT MODE",
@@ -102,7 +111,6 @@ namespace BookwormApp.Constants {
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
 	public static const string IDENTIFIER_FOR_PROPERTY_START = "~~";
 	public static const string IDENTIFIER_FOR_PROPERTY_END = "##\n";
-
 	public const string EPUB_MIME_SPECIFICATION_FILENAME = "mimetype";
 	public const string EPUB_MIME_SPECIFICATION_CONTENT = "application/epub+zip";
 	public const string EPUB_META_INF_FILENAME = "META-INF/container.xml";

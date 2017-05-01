@@ -28,6 +28,7 @@ public class BookwormApp.ePubReader {
       string extractionLocation = extractEBook(aBook.getBookLocation());
       if("false" == extractionLocation){ //handle error condition
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_EXTRACTION_ISSUE);
         return aBook;
       }else{
         aBook.setBookExtractionLocation(extractionLocation);
@@ -36,12 +37,14 @@ public class BookwormApp.ePubReader {
       bool isEPubFormat = isEPubFormat(extractionLocation);
       if(!isEPubFormat){ //handle error condition
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_MIMETYPE_ISSUE);
         return aBook;
       }
       //Determine the location of OPF File
       string locationOfOPFFile = getOPFFileLocation(extractionLocation);
       if("false" == locationOfOPFFile){ //handle error condition
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
         return aBook;
       }
       string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
@@ -51,6 +54,7 @@ public class BookwormApp.ePubReader {
       ArrayList<string> manifestItemsList = parseManifestData(locationOfOPFFile);
       if("false" == manifestItemsList.get(0)){
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
         return aBook;
       }
 
@@ -58,18 +62,22 @@ public class BookwormApp.ePubReader {
       ArrayList<string> spineItemsList = parseSpineData(locationOfOPFFile);
       if("false" == spineItemsList.get(0)){
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
         return aBook;
       }
 
-      //Match Spine with Manifest to populate conetnt list for EPub Book
+      //Match Spine with Manifest to populate content list for EPub Book
       aBook = getContentList(aBook, manifestItemsList, spineItemsList);
       if(aBook.getBookContentList().size < 1){
         aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
         return aBook;
       }
 
-      //Determine Book Cover Image
-      aBook = setCoverImage(aBook, manifestItemsList);
+      //Try to determine Book Cover Image if it is not already available
+      if(!aBook.getIsBookCoverImagePresent()){
+        aBook = setCoverImage(aBook, manifestItemsList);
+      }
 
       //Determine Book Meta Data like Title, Author, etc
       aBook = setBookMetaData(aBook, locationOfOPFFile);
@@ -356,24 +364,44 @@ public class BookwormApp.ePubReader {
   }
 
   public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
-    debug("Initiated process for finding title of eBook located at:"+aBook.getBookExtractionLocation());
+    debug("Initiated process for finding meta data of eBook located at:"+aBook.getBookExtractionLocation());
     string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
-    //determine the title of the book
-    if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
-      int startOfTitleText = OpfContents.index_of(">", OpfContents.index_of("<dc:title"));
-      int endOfTittleText = OpfContents.index_of("</dc:title>", startOfTitleText);
-      if(startOfTitleText != -1 && endOfTittleText != -1 && endOfTittleText > startOfTitleText){
-        string bookTitle = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfTitleText+1, endOfTittleText));
-        aBook.setBookTitle(bookTitle);
-        debug("Determined eBook Title as:"+bookTitle);
+    //determine the title of the book if it is not already available
+    if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
+      if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
+        int startOfTitleText = OpfContents.index_of(">", OpfContents.index_of("<dc:title"));
+        int endOfTittleText = OpfContents.index_of("</dc:title>", startOfTitleText);
+        if(startOfTitleText != -1 && endOfTittleText != -1 && endOfTittleText > startOfTitleText){
+          string bookTitle = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfTitleText+1, endOfTittleText));
+          aBook.setBookTitle(bookTitle);
+          debug("Determined eBook Title as:"+bookTitle);
+        }else{
+          aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
+          debug("Could not determine eBook Title, default title set");
+        }
       }else{
         aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
         debug("Could not determine eBook Title, default title set");
       }
-    }else{
-      aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
-      debug("Could not determine eBook Title, default title set");
     }
+
+    //determine the author of the book
+    if(OpfContents.contains("<dc:creator") && OpfContents.contains("</dc:creator>")){
+      int startOfAuthorText = OpfContents.index_of(">", OpfContents.index_of("<dc:creator"));
+      int endOfAuthorText = OpfContents.index_of("</dc:creator>", startOfAuthorText);
+      if(startOfAuthorText != -1 && endOfAuthorText != -1 && endOfAuthorText > startOfAuthorText){
+        string bookAuthor = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfAuthorText+1, endOfAuthorText));
+        aBook.setBookAuthor(bookAuthor);
+        debug("Determined eBook Author as:"+bookAuthor);
+      }else{
+        aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
+        debug("Could not determine eBook Author, default Author set");
+      }
+    }else{
+      aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
+      debug("Could not determine eBook Author, default title set");
+    }
+
     return aBook;
   }
 
@@ -400,25 +428,27 @@ public class BookwormApp.ePubReader {
   }
 
   public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){
+    debug("Attempting to fetch content from book at location:"+aBook.getBaseLocationOfContents());
     StringBuilder contents = new StringBuilder();
-    string baseLocationOfContents = aBook.getBaseLocationOfContents();
-    //handle the case when the content list has html escape chars for the URI
-    string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
-    //fetch content from extracted book
-    debug("Attempting to fetch content from location:"+bookLocationToRead);
-    contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
-    //find list of relative urls with src, href, etc and convert them to absolute ones
-    foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
-    string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
-      StringBuilder srcItemFullPath = new StringBuilder();
-      foreach(string srcItem in srcList){
-        srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
-        contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
+    if(contentLocation > -1){
+      string baseLocationOfContents = aBook.getBaseLocationOfContents();
+      //handle the case when the content list has html escape chars for the URI
+      string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
+      //fetch content from extracted book
+      contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
+      //find list of relative urls with src, href, etc and convert them to absolute ones
+      foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
+      string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
+        StringBuilder srcItemFullPath = new StringBuilder();
+        foreach(string srcItem in srcList){
+          srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
+          contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
+        }
       }
+      //update the content for required manipulation
+      contents.assign(adjustPageContent(contents.str));
     }
-    //update the content for required manipulation
-    contents.assign(adjustPageContent(contents.str));
-
+    debug("Completed fetching content from book at location:"+aBook.getBaseLocationOfContents() + "for page:" + contentLocation.to_string());
     return contents.str;
   }
 
