@@ -180,23 +180,43 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		dialog.set_default_size (600, 200);
 		dialog.destroy.connect (Gtk.main_quit);
 
-    Gtk.Box prefBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
-    Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
-    prefBox.pack_start(colourScheme, false, false);
-
-    Gtk.Switch nightModeSwitch = new Gtk.Switch ();
-    prefBox.pack_end(nightModeSwitch, false, false);
+		Gtk.Label localStorageLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_LOCAL_STORAGE);
+    Gtk.Switch localStorageSwitch = new Gtk.Switch ();
     //Set the switch to on if the state is in Night Mode
-    if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile)
+    if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
+      localStorageSwitch.set_active (true);
+		}
+		Gtk.Box localStorageBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		localStorageBox.pack_start(localStorageLabel, false, false);
+		localStorageBox.pack_end(localStorageSwitch, false, false);
+
+
+    Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
+    Gtk.Switch nightModeSwitch = new Gtk.Switch ();
+    //Set the switch to on if the state is in Night Mode
+    if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
       nightModeSwitch.set_active (true);
+		}
+		Gtk.Box prefBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		prefBox.pack_start(colourScheme, false, false);
+		prefBox.pack_end(nightModeSwitch, false, false);
 
     Gtk.Box content = dialog.get_content_area () as Gtk.Box;
-		content.pack_start (prefBox, false, false, 0);
 		content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
+		content.pack_start (prefBox, false, false, 0);
+		content.pack_start (localStorageBox, false, false, 0);
 
     dialog.show_all ();
 
     //Set up Actions
+		localStorageSwitch.notify["active"].connect (() => {
+			if (localStorageSwitch.active) {
+        BookwormApp.Bookworm.settings.is_local_storage_enabled = true;
+			}else{
+        BookwormApp.Bookworm.settings.is_local_storage_enabled = false;
+			}
+		});
+
     nightModeSwitch.notify["active"].connect (() => {
 			if (nightModeSwitch.active) {
         BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[1]);

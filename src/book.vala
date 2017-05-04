@@ -94,6 +94,9 @@ public class BookwormApp.Book{
   public ArrayList<string> getBookContentList (){
     return bookContentList;
   }
+  public void clearBookContentList (){
+    bookContentList.clear();
+  }
 
   //getter setter for Table Of Contents
   public void setTOC (HashMap<string,string> toc){

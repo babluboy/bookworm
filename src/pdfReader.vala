@@ -53,13 +53,23 @@ public class BookwormApp.pdfReader {
     string extractionLocation = "";
     try{
       debug("Initiated process for content extraction of PDF Book located at:"+eBookLocation);
-      //create temp location for extraction of eBook
-      extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
+      //create a location for extraction of eBook based on local storage prefference
+      if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
+        extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();
+      }else{
+        extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
+      }
       //check and create directory for extracting contents of ebook
       BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
       //extract eBook contents into temp location
-      //BookwormApp.Utils.execute_async_multiarg_command_pipes({"pdftohtml", "-c", eBookLocation, extractionLocation + "/" + File.new_for_path(eBookLocation).get_basename()+".html"});
-      BookwormApp.Utils.execute_async_multiarg_command_pipes({"pdftohtml", "-noframes", eBookLocation, extractionLocation + "/" + File.new_for_path(eBookLocation).get_basename()+".html"});
+      BookwormApp.Utils.execute_async_multiarg_command_pipes({"pdftohtml",
+                                                              "-noframes",
+                                                              "-zoom", "2.0",
+                                                              "-wbt", "20.0",
+                                                              "-nomerge",
+                                                              eBookLocation,
+                                                              extractionLocation + "/" + File.new_for_path(eBookLocation).get_basename()+".html"
+                                                            });
     }catch(GLib.Error e){
       warning("Problem in Content Extraction for PDF Book ["+eBookLocation+"]:%s"+e.message);
       return "false";
@@ -80,6 +90,8 @@ public class BookwormApp.pdfReader {
     }
 
     try {
+        // Clear the content list of any previous items
+        aBook.clearBookContentList();
         // Open file for reading and wrap returned FileInputStream into a
         // DataInputStream, so we can read line by line
         var dis = new DataInputStream (htmlFile.read ());

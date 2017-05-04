@@ -91,8 +91,12 @@ public class BookwormApp.ePubReader {
     string extractionLocation = "";
     try{
       debug("Initiated process for content extraction of ePub Book located at:"+eBookLocation);
-      //create temp location for extraction of eBook
-      extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
+      //create a location for extraction of eBook based on local storage prefference
+      if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
+        extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();
+      }else{
+        extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
+      }
       //check and create directory for extracting contents of ebook
       BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
       //unzip eBook contents into temp location
@@ -297,7 +301,8 @@ public class BookwormApp.ePubReader {
         }
       }
     }
-
+    // Clear the content list of any previous items
+    aBook.clearBookContentList();
     //loop over remaning spine items(ncx file will be ignored as it will not have a prefix of idref)
     foreach(string spineItem in spineItemsList){
       int startPosOfSpineItem = spineItem.index_of("idref=")+("idref=").length+1;

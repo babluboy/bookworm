@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-30 22:31+0100\n"
+"POT-Creation-Date: 2017-05-04 22:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/constants.vala:75
+#: src/constants.vala:76
 msgid "About"
 msgstr ""
 
-#: src/constants.vala:101
+#: src/constants.vala:102
 msgid "All Files"
 msgstr ""
 
@@ -59,6 +59,10 @@ msgstr ""
 
 #: src/constants.vala:59
 msgid "Edit Info for"
+msgstr ""
+
+#: src/constants.vala:67
+msgid "Enable content cache (opens books faster)"
 msgstr ""
 
 #: src/constants.vala:57
@@ -99,7 +103,7 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: src/constants.vala:65 src/constants.vala:76
+#: src/constants.vala:65 src/constants.vala:77
 msgid "Preferences"
 msgstr ""
 
@@ -133,7 +137,7 @@ msgstr ""
 msgid "Turn on Night Mode"
 msgstr ""
 
-#: src/constants.vala:74
+#: src/constants.vala:75
 msgid "Unknown Book"
 msgstr ""
 

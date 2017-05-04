@@ -21,7 +21,7 @@ using Gee;
 using Granite.Widgets;
 public const string GETTEXT_PACKAGE = "bookworm";
 
-public class BookwormApp.Bookworm:Granite.Application {
+public class BookwormApp.Bookworm : Granite.Application {
 	private static Bookworm application;
 	private static bool isBookwormRunning = false;
 	public int exitCodeForCommand = 0;
@@ -263,6 +263,7 @@ public class BookwormApp.Bookworm:Granite.Application {
     BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION, "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path, "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
+		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/books/", "", "");
 		//check if the database exists otherwise create database and required tables
 		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
 		//Set the colour mode based on the user's last saved prefference setting
@@ -296,7 +297,7 @@ public class BookwormApp.Bookworm:Granite.Application {
 			}
 		}
 		BookwormApp.AppWindow.library_grid.show_all();
-		//loop through the removed books and remove them from the Library View Hashmap and Database
+		//loop through the removed books and remove them from the Library View Hashmap, local cache and Database
 		foreach (string bookLocation in listOfBooksToBeRemoved) {
 			BookwormApp.DB.removeBookFromDB(libraryViewMap.get(bookLocation));
 			libraryViewMap.unset(bookLocation);
@@ -363,27 +364,35 @@ public class BookwormApp.Bookworm:Granite.Application {
 	}
 
 	public static void readSelectedBook(owned BookwormApp.Book aBook){
-		//Extract and Parse the eBook (this will overwrite the contents already extracted)
-		aBook = genericParser(aBook);
-		//check if ebook was parsed sucessfully
-		if(!aBook.getIsBookParsed()){
-			BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
+		//check if the extracted contents for the book exists
+		if(BookwormApp.Bookworm.settings.is_local_storage_enabled &&
+			"true" == BookwormApp.Utils.fileOperations("DIR_EXISTS", aBook.getBookExtractionLocation(), "", "") &&
+			 aBook.getBookContentList().size > 0
+		){
+			//do nothing - extraction of book not required
 		}else{
-			aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
-			aBook.setWasBookOpened(true);
-			//render the contents of the current page of book
-			aBook = renderPage(aBook, "");
-			//update book details to libraryView Map
-			libraryViewMap.set(aBook.getBookLocation(), aBook);
-			locationOfEBookCurrentlyRead = aBook.getBookLocation();
-			//Update header title
-			BookwormApp.AppHeaderBar.get_headerbar().subtitle = aBook.getBookTitle();
-			//change the application view to Book Reading mode
-			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-			toggleUIState();
-			//clean the previous search result if any and reset the contents of the search entry
-			BookwormApp.Info.searchresults_scroll.get_child().destroy();
+			//Extract and Parse the eBook (this will overwrite the contents already extracted)
+			aBook = genericParser(aBook);
+			//check if ebook was parsed sucessfully
+			if(!aBook.getIsBookParsed()){
+				BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
+			}
 		}
+		//update book to mark it has been opened in this session
+		aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
+		aBook.setWasBookOpened(true);
+		//update book details to libraryView Map
+		libraryViewMap.set(aBook.getBookLocation(), aBook);
+		locationOfEBookCurrentlyRead = aBook.getBookLocation();
+		//Update header title
+		BookwormApp.AppHeaderBar.get_headerbar().subtitle = aBook.getBookTitle();
+		//change the application view to Book Reading mode
+		BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+		toggleUIState();
+		//reset the contents of the search entry
+		BookwormApp.Info.searchresults_scroll.get_child().destroy();
+		//render the contents of the current page of book
+		aBook = renderPage(aBook, "");
 	}
 
 	public void updateLibraryViewFromDB(){

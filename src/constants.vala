@@ -64,6 +64,7 @@ namespace BookwormApp.Constants {
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");
+	public const string TEXT_FOR_PREFERENCES_LOCAL_STORAGE = _("Enable content cache (opens books faster)");
 
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;

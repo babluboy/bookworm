@@ -441,6 +441,11 @@ namespace BookwormApp.Utils {
 					result.assign("true");
 				}
 			}
+			if("DIR_EXISTS" == operation){
+				if(fileDir.query_exists ()){
+					result.assign("true");
+				}
+			}
 			if("IS_EXECUTABLE" == operation){
 				if(FileUtils.test (path+"/"+filename, FileTest.IS_EXECUTABLE)){
 					result.assign("true");
@@ -634,5 +639,24 @@ namespace BookwormApp.Utils {
 			filteredInput.assign(filteredInput.str.replace("\n",""));
 			debug("Completed execution of removeTagsFromText with text:"+filteredInput.str);
 			return filteredInput.str.strip();
+		}
+
+		public static string convertContentListToString(BookwormApp.Book aBook){
+			StringBuilder contentListString = new StringBuilder("");
+			ArrayList<string> contentList = aBook.getBookContentList();
+			foreach (string content in contentList) {
+				contentListString.append(content).append("~~##~~");
+			}
+			return contentListString.str;
+		}
+
+		public static BookwormApp.Book convertStringToContentList(owned BookwormApp.Book aBook, string contentListString){
+			string [] contentListArray = contentListString.split("~~##~~");
+			foreach (string content in contentListArray) {
+				if(content != null && content.length > 0){
+					aBook.setBookContentList (content);
+				}
+			}
+			return aBook;
 		}
 }

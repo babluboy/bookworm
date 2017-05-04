@@ -32,5 +32,9 @@
 				<default>"DAY MODE"</default>
 				<summary>Save the reading profile like Night Mode</summary>
 		</key>
+		<key name="is-local-storage-enabled" type="b">
+				<default>true</default>
+				<summary>Local storage for extracted contents of books</summary>
+		</key>
   </schema>
 </schemalist>

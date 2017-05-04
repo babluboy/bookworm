@@ -43,7 +43,7 @@ public class BookwormApp.contentHandler {
   }
 
   public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){
-    debug("Attempting to fetch content from book at location:"+aBook.getBaseLocationOfContents());
+    debug("Attempting to fetch content ["+aBook.getBookContentList().get(contentLocation)+"] from book at location:"+aBook.getBaseLocationOfContents());
     StringBuilder contents = new StringBuilder();
     if(contentLocation > -1){
       string baseLocationOfContents = aBook.getBaseLocationOfContents();
