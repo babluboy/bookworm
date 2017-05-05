@@ -40,6 +40,7 @@ set (SOURCE_LIST
     src/library.vala
     src/pdfReader.vala
     src/contentHandler.vala
+    src/cleanup.vala
 )
 
 include (GSettings)
@@ -109,6 +110,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/library.vala
     src/pdfReader.vala
     src/contentHandler.vala
+    src/cleanup.vala
 
 # tell what libraries to use when compiling
 PACKAGES

@@ -189,8 +189,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 			});
 			//Exit Application Event
 			window.destroy.connect (() => {
-				//save books information to database
-				saveBooksState();
+				//Perform close down activities
+				closeBookWorm();
 			});
 			isBookwormRunning = true;
 			debug("Sucessfully activated Gtk Window for Bookworm...");
@@ -222,11 +222,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 	public override void open (File[] files, string hint) {
 
-	}
-
-	//Handle action for close of the InfoBar
-	public static void on_info_bar_closed(){
-      BookwormApp.AppWindow.infobar.hide();
 	}
 
 	public static async void addBooksToLibrary (){
@@ -459,16 +454,17 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 	}
 
-	public async void saveBooksState (){
+	public async void closeBookWorm (){
 			foreach (var book in libraryViewMap.values){
 				//Update the book details to the database if it was opened in this session
 				if(((BookwormApp.Book)book).getWasBookOpened()){
 					BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
 					debug("Completed saving the book data into DB");
 				}
-				Idle.add (saveBooksState.callback);
+				Idle.add (closeBookWorm.callback);
 				yield;
 			}
+			BookwormApp.Cleanup.cleanUp();
 	}
 
 	public void saveWindowState(){

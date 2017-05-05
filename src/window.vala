@@ -88,7 +88,7 @@ public class BookwormApp.AppWindow {
     infobar.set_message_type (MessageType.INFO);
     infobarContent.add (infobarLabel);
     infobar.set_show_close_button (true);
-    infobar.response.connect(BookwormApp.Bookworm.on_info_bar_closed);
+    infobar.response.connect(on_info_bar_closed);
     infobar.hide();
 
     //Create the UI for library view and add all components to ui box for library view
@@ -302,4 +302,9 @@ public class BookwormApp.AppWindow {
     BookwormApp.AppWindow.infobar.set_message_type (aMessageType);
     BookwormApp.AppWindow.infobar.show();
   }
+
+  //Handle action for close of the InfoBar
+	public static void on_info_bar_closed(){
+      BookwormApp.AppWindow.infobar.hide();
+	}
 }
