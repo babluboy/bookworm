@@ -612,7 +612,7 @@ namespace BookwormApp.Utils {
 			int posOfStartTag = filteredInput.str.index_of("<");
 			int posOfEndTag = filteredInput.str.index_of(">");
 			//handle the case when both start and end tags are present in the right order
-			if(posOfStartTag != -1 && posOFFfEndTag != -1 && posOfEndTag > posOfStartTag){
+			if(posOfStartTag != -1 && posOfEndTag != -1 && posOfEndTag > posOfStartTag){
 				filteredInput.assign(filteredInput.str.replace(filteredInput.str.slice(posOfStartTag, posOfEndTag+1), ""));
 			}
 			posOfStartTag = filteredInput.str.index_of("<");
