@@ -596,10 +596,9 @@ namespace BookwormApp.Utils {
 		}
 
 		public static string decodeHTMLChars(string inputString){
-			string outputString = "";
-			unichar accel_char;
-			Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
-			outputString = Soup.URI.decode(outputString);
+			string outputString = Soup.URI.decode(inputString);
+			//unichar accel_char;
+			//Pango.parse_markup (outputString, outputString.length, 0, null, out outputString, out accel_char);
 			return outputString;
 		}
 
