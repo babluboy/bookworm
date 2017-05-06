@@ -602,6 +602,10 @@ namespace BookwormApp.Utils {
 			return outputString;
 		}
 
+		public static string decodeUri(string inputString) {
+			return Soup.URI.decode(inputString);
+		}
+
 		public static string removeTagsFromText(string input){
 			debug("Starting execution of removeTagsFromText on text:"+input);
 			StringBuilder filteredInput = new StringBuilder(input.strip());
