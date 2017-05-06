@@ -19,7 +19,7 @@
 			<default>800</default>
 			<summary>The saved height of the window.</summary>
 			<description></description>
-    </key>
+		</key>
 		<key name="window-is-maximized" type="b">
 				<default>false</default>
 				<summary>Save maximized state of window</summary>

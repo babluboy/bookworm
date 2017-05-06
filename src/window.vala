@@ -235,7 +235,7 @@ public class BookwormApp.AppWindow {
        WebKit.URIRequest aURIReq = aNavAction.get_request ();
        debug("URL Captured:"+aURIReq.get_uri().strip());
        BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-       string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars(aURIReq.get_uri().strip());
+       string url_clicked_on_webview = BookwormApp.Utils.decodeUri(aURIReq.get_uri().strip());
        debug("Cleaned URL Captured:"+url_clicked_on_webview);
        if (url_clicked_on_webview.index_of("#") != -1){
          url_clicked_on_webview = url_clicked_on_webview.slice(0, url_clicked_on_webview.index_of("#"));
@@ -243,7 +243,7 @@ public class BookwormApp.AppWindow {
        url_clicked_on_webview = File.new_for_path(url_clicked_on_webview).get_basename();
        int contentLocationPosition = 0;
        foreach (string aBookContent in aBook.getBookContentList()) {
-         if(BookwormApp.Utils.decodeHTMLChars(aBookContent).index_of(url_clicked_on_webview) != -1){
+         if(BookwormApp.Utils.decodeUri(aBookContent).index_of(url_clicked_on_webview) != -1){
            debug("Matched Link Clicked to book content:"+BookwormApp.Utils.decodeHTMLChars(aBookContent));
            aBook.setBookPageNumber(contentLocationPosition);
            //update book details to libraryView Map

@@ -48,7 +48,7 @@ public class BookwormApp.contentHandler {
     if(contentLocation > -1){
       string baseLocationOfContents = aBook.getBaseLocationOfContents();
       //handle the case when the content list has html escape chars for the URI
-      string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
+      string bookLocationToRead = BookwormApp.Utils.decodeUri(aBook.getBookContentList().get(contentLocation));
       //fetch content from extracted book
       contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
       //find list of relative urls with src, href, etc and convert them to absolute ones
@@ -79,7 +79,7 @@ public class BookwormApp.contentHandler {
         if(!(aBook.getBookContentList().contains(pageOfResult.str))){
           //handle the case when the spine data has HTML Escape characters
           foreach (string contentListURI in aBook.getBookContentList()) {
-            if(BookwormApp.Utils.decodeHTMLChars(contentListURI) == pageOfResult.str){
+            if(BookwormApp.Utils.decodeUri(contentListURI) == pageOfResult.str){
               pageOfResult.assign(contentListURI);
               break;
             }
