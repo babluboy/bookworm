@@ -519,6 +519,7 @@ namespace BookwormApp.Utils {
 			switch(fileType){
 				case "EBOOKS":
 					filterMap.set("*.epub", "EPUB");
+					filterMap.set("*.pdf", "PDF");
 					filterMap.set("*", BookwormApp.Constants.FILE_CHOOSER_FILTER_ALL_FILES);
 					break;
 				case "IMAGES":
@@ -657,6 +658,22 @@ namespace BookwormApp.Utils {
 					aBook.setBookContentList (content);
 				}
 			}
+			return aBook;
+		}
+
+		public static BookwormApp.Book setBookCoverImage (owned BookwormApp.Book aBook, string bookCoverImageLocation){
+			//copy cover image to bookworm cover image location
+      string coverImageFileName = File.new_for_commandline_arg(bookCoverImageLocation).get_basename();
+      string coverImageFileExtension = "";
+      if(coverImageFileName.index_of(".") != -1){
+        coverImageFileExtension = coverImageFileName.slice(coverImageFileName.last_index_of(".")+1, coverImageFileName.length);
+      }
+      string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+"/covers/"+aBook.getBookId().to_string()+"_cover."+coverImageFileExtension;
+      BookwormApp.Utils.execute_sync_command("cp \""+bookCoverImageLocation+"\" \""+bookwormCoverLocation+"\"");
+      //cover was extracted from the ebook contents
+      aBook.setIsBookCoverImagePresent(true);
+      aBook.setBookCoverLocation(bookwormCoverLocation);
+      debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
 			return aBook;
 		}
 }

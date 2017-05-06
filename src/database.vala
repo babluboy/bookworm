@@ -252,8 +252,9 @@ public class BookwormApp.DB{
     return listOfBooks;
   }
 
-  public static bool addBookToDataBase(BookwormApp.Book aBook){
+  public static int addBookToDataBase(BookwormApp.Book aBook){
     Sqlite.Statement stmt;
+    int insertedBookID = 0;
     string insert_data_to_database = "INSERT INTO "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+"(
                                                              BOOK_LOCATION,
                                                              BOOK_TITLE,
@@ -269,7 +270,7 @@ public class BookwormApp.DB{
      if (statusBookToDB != Sqlite.OK) {
        debug("Executed Query:"+insert_data_to_database);
        warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-       return false;
+       return -1;
      }
      stmt.bind_text (1, aBook.getBookLocation());
      stmt.bind_text (2, aBook.getBookTitle());
@@ -281,8 +282,22 @@ public class BookwormApp.DB{
 
      stmt.step ();
      stmt.reset ();
+     //fetch the id of the book just inserted into the DB
+     string fetchInsertedBookID = "SELECT id FROM " + BOOKWORM_TABLE_BASE_NAME + BOOKWORM_TABLE_VERSION +
+                                  " WHERE BOOK_LOCATION = ?";
+
+     int statusBookInsertedID = bookwormDB.prepare_v2 (fetchInsertedBookID, fetchInsertedBookID.length, out stmt);
+     if (statusBookInsertedID != Sqlite.OK) {
+       debug("Executed Query:"+fetchInsertedBookID);
+       warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+     }
+     stmt.bind_text (1, aBook.getBookLocation());
+     while (stmt.step () == ROW) {
+       insertedBookID = stmt.column_int(0);
+     }
+     stmt.reset ();
      debug("Added details to Database for book:"+aBook.getBookLocation());
-     return true;
+     return insertedBookID;
   }
 
   public static bool removeBookFromDB(BookwormApp.Book aBook){

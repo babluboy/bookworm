@@ -126,7 +126,7 @@ public class BookwormApp.pdfReader {
   }
 
   public static BookwormApp.Book setCoverImage(owned BookwormApp.Book aBook){
-    string bookCoverLocation;
+    string bookCoverLocation = "";
     //get the first html section
     string htmlForCover = BookwormApp.Utils.fileOperations("READ_FILE", aBook.getBookContentList().get(0), "", "");
     if(htmlForCover.index_of("<img src=\"") != -1){
@@ -134,16 +134,13 @@ public class BookwormApp.pdfReader {
       int endPosOfCoverImage = htmlForCover.index_of("\"/>", startPosOfCoverImage);
       if(startPosOfCoverImage != -1 && endPosOfCoverImage != -1 && endPosOfCoverImage > startPosOfCoverImage){
         bookCoverLocation = htmlForCover.slice(startPosOfCoverImage, endPosOfCoverImage);
-        //copy cover image to bookworm cover image location
-        File coverImageFile = File.new_for_commandline_arg(bookCoverLocation);
-        string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+"/covers/"+aBook.getBookLocation().replace("/", "_").replace(" ", "")+"_"+coverImageFile.get_basename();
-        BookwormApp.Utils.execute_sync_command("cp \""+bookCoverLocation+"\" \""+bookwormCoverLocation+"\"");
-        aBook.setBookCoverLocation(bookwormCoverLocation);
-        aBook.setIsBookCoverImagePresent(true);
-        debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
-      }else{
+      }
+      if(bookCoverLocation == null || bookCoverLocation.length < 1){
         aBook.setIsBookCoverImagePresent(false);
         debug("Cover image not found for book located at:"+aBook.getBookExtractionLocation());
+      }else{
+        //copy cover image to bookworm cover image cache
+        aBook = BookwormApp.Utils.setBookCoverImage(aBook, bookCoverLocation);
       }
     }
     return aBook;

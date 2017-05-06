@@ -24,7 +24,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 	}
 
-	public static Gtk.Popover createBookContextMenu (BookwormApp.Book aBook){
+	public static Gtk.Popover createBookContextMenu (owned BookwormApp.Book aBook){
 		debug("Context Menu Popover initiated for book:"+aBook.getBookLocation());
 		Gtk.Popover bookContextPopover = new Gtk.Popover ((Gtk.EventBox) (aBook.getBookWidget("BOOK_EVENTBOX")));
 
@@ -54,12 +54,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select Image"), BookwormApp.Bookworm.window, false, BookwormApp.Utils.getFileTypeMapping("IMAGES"), "JPG");
 			if(selectedFiles != null && selectedFiles.size > 0){
 				string selectedCoverImagePath = selectedFiles.get(0);
-				//copy cover image to bookworm cover image location
-	      File coverImageFile = File.new_for_commandline_arg(selectedCoverImagePath);
-	      string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+"/covers/"+aBook.getBookLocation().replace("/", "_").replace(" ", "")+"_"+coverImageFile.get_basename();
-	      BookwormApp.Utils.execute_sync_command("cp \""+selectedCoverImagePath+"\" \""+bookwormCoverLocation+"\"");
-	      aBook.setBookCoverLocation(bookwormCoverLocation);
-				aBook.setIsBookCoverImagePresent(true);
+				//copy cover image to bookworm cover image cache
+	      aBook = BookwormApp.Utils.setBookCoverImage(aBook, selectedCoverImagePath);
 				aBook.setWasBookOpened(true);
 
 				//Refresh the library view to show the new cover image
@@ -68,8 +64,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				aCoverImage.set_halign(Align.START);
 				aCoverImage.set_valign(Align.START);
 				aBook.setBookWidget("COVER_IMAGE", aCoverImage);
-				aBook.setIsBookCoverImagePresent(true);
-				BookwormApp.Library.replaceCoverImageOnBook(aBook);
+				BookwormApp.Library.replaceCoverImageOnBook(aBook); //book is updated into library view map in this function call
 				//remove the text from the title widget
 				Gtk.Label titleTextLabel = (Gtk.Label) aBook.getBookWidget("TITLE_TEXT_LABEL");
 				titleTextLabel.set_text("");

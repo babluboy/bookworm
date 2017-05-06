@@ -350,14 +350,8 @@ public class BookwormApp.ePubReader {
       aBook.setIsBookCoverImagePresent(false);
       debug("Cover image not found for book located at:"+aBook.getBookExtractionLocation());
     }else{
-      //cover was extracted from the ebook contents
-      aBook.setIsBookCoverImagePresent(true);
-      //copy cover image to bookworm cover image location
-      File coverImageFile = File.new_for_commandline_arg(bookCoverLocation);
-      string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+"/covers/"+aBook.getBookLocation().replace("/", "_").replace(" ", "")+"_"+coverImageFile.get_basename();
-      BookwormApp.Utils.execute_sync_command("cp \""+bookCoverLocation+"\" \""+bookwormCoverLocation+"\"");
-      aBook.setBookCoverLocation(bookwormCoverLocation);
-      debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
+      //copy cover image to bookworm cover image cache
+      aBook = BookwormApp.Utils.setBookCoverImage(aBook, bookCoverLocation);
     }
     return aBook;
   }

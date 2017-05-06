@@ -337,19 +337,27 @@ public class BookwormApp.Bookworm : Granite.Application {
 			string eBookLocation = aBook.getBookLocation();
 			File eBookFile = File.new_for_path (eBookLocation);
 			if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
-				//parse eBook
+				//insert book details to database and fetch the ID
+				int bookID = BookwormApp.DB.addBookToDataBase(aBook);
+				aBook.setBookId(bookID);
+				/*Other than location, nothing is inserted into the DB for the book at this time.
+				Mark book as opened in the session so that details for book are updated
+				into DB when the application is closed - eBook parsing happens after the initial insert
+				*/
+				aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
+				aBook.setWasBookOpened(true);
+				//parse eBook to populate cache and book meta data
 				aBook = genericParser(aBook);
 				if(!aBook.getIsBookParsed()){
+					BookwormApp.DB.removeBookFromDB(libraryViewMap.get(eBookLocation));
 					BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
 				}else{
+					//add eBook cover image to library view
+					BookwormApp.Library.updateLibraryView(aBook);
 					//add book details to libraryView Map
 					libraryViewMap.set(eBookLocation, aBook);
 					//set the name of the book being currently read
 					locationOfEBookCurrentlyRead = eBookLocation;
-					//add eBook cover image to library view
-					BookwormApp.Library.updateLibraryView(aBook);
-					//insert book details to database
-					BookwormApp.DB.addBookToDataBase(aBook);
 					debug ("Completed adding book to ebook library. Number of books in library:"+libraryViewMap.size.to_string());
 				}
 			}else{

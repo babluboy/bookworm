@@ -106,7 +106,8 @@ public class BookwormApp.AppWindow {
     aWebView = new WebKit.WebView.with_settings(webkitSettings);
     aWebView.set_zoom_level(BookwormApp.Settings.get_instance().zoom_level);
     webkitSettings.set_enable_javascript(true);
-
+    webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
+    
     //Set up Button for previous page
     Gtk.Image back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
     back_button = new Gtk.Button ();
