@@ -602,6 +602,13 @@ namespace BookwormApp.Utils {
 			return outputString;
 		}
 
+		public static string removeMarkUp(string inputString){
+			string outputString = Soup.URI.decode(inputString);
+			//replace the escape char for space present in HTML converted from PDF
+			outputString = outputString.replace("&#160;", " ").replace("#160;", " ").replace("&#160", " ");
+			return outputString;
+		}
+
 		public static string removeTagsFromText(string input){
 			debug("Starting execution of removeTagsFromText on text:"+input);
 			StringBuilder filteredInput = new StringBuilder(input.strip());
@@ -634,7 +641,7 @@ namespace BookwormApp.Utils {
 				filteredInput.assign(removeTagsFromText(filteredInput.str.strip()));
 			}
 			//remove any html escape characters if present
-			filteredInput.assign(decodeHTMLChars(filteredInput.str));
+			filteredInput.assign(removeMarkUp(filteredInput.str));
 			//remove any line feeds
 			filteredInput.assign(filteredInput.str.replace("\n",""));
 			debug("Completed execution of removeTagsFromText with text:"+filteredInput.str);

@@ -16,10 +16,10 @@
 * You should have received a copy of the GNU General Public License along
 * with Bookworm. If not, see http://www.gnu.org/licenses/.
 */
-
+using Gtk;
 using Gee;
 public class BookwormApp.Book{
-
+  //These variables are persisted in the database
   private int bookId = 0;
   private bool isBookParsedCorrectly = false;
   private string parsingIssue = "";
@@ -33,7 +33,10 @@ public class BookwormApp.Book{
   private string bookCreationDate = "";
   private string bookLastModificationDate = "";
   private int bookRating = 1;
+  private StringBuilder bookmarks = new StringBuilder ("");
+  private ArrayList<string> bookContentList = new ArrayList<string> ();
 
+  //These variables are only available for the current session (not persisted)
   private string opfFileLocation = "";
   private string baseLocationOfContents = "";
   private bool isBookCoverImagePresent = false;
@@ -43,9 +46,7 @@ public class BookwormApp.Book{
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
   private HashMap<string,Gtk.Widget> bookWidgetsList = new HashMap<string,Gtk.Widget> ();
-  private ArrayList<string> bookContentList = new ArrayList<string> ();
   private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
-  private StringBuilder bookmarks = new StringBuilder ("");
 
   //getter list for book id
   public void setBookId (int aBookId){

@@ -394,6 +394,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 		toggleUIState();
 		//reset the contents of the search entry
 		BookwormApp.Info.searchresults_scroll.get_child().destroy();
+		//set the max value and the current value of the page slider
+		BookwormApp.AppWindow.pageAdjustment.set_upper(aBook.getBookContentList().size);
+		BookwormApp.AppWindow.pageAdjustment.set_value(aBook.getBookPageNumber());
 		//render the contents of the current page of book
 		aBook = renderPage(aBook, "");
 	}
@@ -446,7 +449,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//Book Meta Data / Content View Mode
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
 			//UI for Reading View
-			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
 			BookwormApp.Info.info_box.show_all();
 			content_list_button.set_visible(true);
 			library_view_button.set_visible(true);
@@ -576,6 +579,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 		handleBookMark("DISPLAY");
 		//set the navigation controls
 		aBook = BookwormApp.Bookworm.controlNavigation(aBook);
+		//set the current value of the page slider
+		BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
 		return aBook;
 	}
 
