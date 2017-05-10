@@ -30,14 +30,16 @@ public class BookwormApp.contentHandler {
     }else{
       onloadJavaScript.append("document.getElementsByTagName('BODY')[0].style.color='black';");
     }
+    //Adjust page margin
+    string cssMargin = "<style>body{margin-right: "+BookwormApp.Bookworm.settings.reading_width+"%;margin-left: "+BookwormApp.Bookworm.settings.reading_width+"%;}</style>";
 
     //add onload javascript to body tag
     if(pageContent.index_of("<BODY") != -1){
-      pageContent = pageContent.replace("<BODY", "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
+      pageContent = pageContent.replace("<BODY", cssMargin + "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
     }else if (pageContent.index_of("<body") != -1){
-      pageContent = pageContent.replace("<body", "<body "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
+      pageContent = pageContent.replace("<body", cssMargin + "<body "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
     }else{
-      pageContent = "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix + ">" + pageContent + "</BODY>";
+      pageContent = cssMargin + "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix + ">" + pageContent + "</BODY>";
     }
     return pageContent;
   }

@@ -69,6 +69,7 @@ namespace BookwormApp.Constants {
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
 	public const double ZOOM_CHANGE_VALUE = 0.1;
+	public const int MARGIN_CHANGE_VALUE = 2;
 	public const string RGBA_HEX_WHITE = "#ffffff";
 	public const string RGBA_HEX_BLACK = "#002B36";
 

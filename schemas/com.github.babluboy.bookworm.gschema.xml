@@ -36,5 +36,9 @@
 				<default>true</default>
 				<summary>Local storage for extracted contents of books</summary>
 		</key>
+		<key name="reading-width" type="s">
+				<default>"1"</default>
+				<summary>Save the page width for reading</summary>
+		</key>
   </schema>
 </schemalist>
