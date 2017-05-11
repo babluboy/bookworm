@@ -31,7 +31,7 @@ public class BookwormApp.contentHandler {
       onloadJavaScript.append("document.getElementsByTagName('BODY')[0].style.color='black';");
     }
     //Adjust page margin
-    string cssMargin = "<style>body{margin-right: "+BookwormApp.Bookworm.settings.reading_width+"%;margin-left: "+BookwormApp.Bookworm.settings.reading_width+"%;}</style>";
+    string cssMargin = "<style>body{line-height: "+BookwormApp.Bookworm.settings.reading_line_height+"%;margin-right: "+BookwormApp.Bookworm.settings.reading_width+"%;margin-left: "+BookwormApp.Bookworm.settings.reading_width+"%;}</style>";
 
     //add onload javascript to body tag
     if(pageContent.index_of("<BODY") != -1){

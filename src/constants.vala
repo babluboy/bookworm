@@ -70,6 +70,7 @@ namespace BookwormApp.Constants {
 	public const int SPACING_BUTTONS = 6;
 	public const double ZOOM_CHANGE_VALUE = 0.1;
 	public const int MARGIN_CHANGE_VALUE = 2;
+	public const int LINE_HEIGHT_CHANGE_VALUE = 10;
 	public const string RGBA_HEX_WHITE = "#ffffff";
 	public const string RGBA_HEX_BLACK = "#002B36";
 
@@ -83,6 +84,10 @@ namespace BookwormApp.Constants {
 	public static const string ADD_BOOK_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-add.svg";
 	public static const string REMOVE_BOOK_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-remove.svg";
 	public static const string LIBRARY_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg";
+	public static const string MORE_LINE_HEIGHT_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-line-height-more.png";
+	public static const string LESS_LINE_HEIGHT_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-line-height-less.png";
+	public static const string MORE_LINE_WIDTH_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-width-more.png";
+	public static const string LESS_LINE_WIDTH_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-width-less.png";
 	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-view-list-symbolic.png";
 	public static const string BOOKMARK_INACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-inactive.png";
 	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-active.png";

@@ -175,14 +175,17 @@ public class BookwormApp.AppWindow {
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForReverse.getBookLocation();
     });
     //Add action for moving the pages for the page slider
-    pageSlider.value_changed.connect (() => {
+    pageSlider.change_value.connect ((scroll, new_value) => {
+      debug("Page Slider value change Initiated for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       BookwormApp.Book currentBookForSlider = new BookwormApp.Book();
       currentBookForSlider = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-      currentBookForSlider.setBookPageNumber(pageSlider.get_value ().to_string().to_int()-1);
+      currentBookForSlider.setBookPageNumber(new_value.to_string().to_int()-1);
       //update book details to libraryView Map
       currentBookForSlider = BookwormApp.Bookworm.renderPage(currentBookForSlider, "");
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForSlider.getBookLocation(), currentBookForSlider);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForSlider.getBookLocation();
+      debug("Page Slider value change action completed for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead+" and rendering completed for page number:"+currentBookForSlider.getBookPageNumber().to_string());
+      return true;
     });
     //Add action for adding a book on the library view
     add_book_button.clicked.connect (() => {

@@ -60,27 +60,49 @@ public class BookwormApp.PreferencesMenu {
     profileBox.pack_start(dayProfileButton, false, false);
     profileBox.pack_end(nightProfileButton, false, false);
 
-    Gtk.Image icon_margin_indent_more = new Gtk.Image.from_icon_name ("format-indent-more-symbolic", IconSize.MENU);
-    Gtk.Button marginIncreaseButton = new Gtk.Button();
-    marginIncreaseButton.set_image (icon_margin_indent_more);
-    marginIncreaseButton.set_halign(Gtk.Align.START);
-    marginIncreaseButton.set_relief (ReliefStyle.NONE);
-
-    Gtk.Image icon_margin_indent_less = new Gtk.Image.from_icon_name ("format-indent-less-symbolic", IconSize.MENU);
+    Gtk.Image icon_width_indent_less = new Gtk.Image ();
+    icon_width_indent_less.set_from_file (Constants.LESS_LINE_WIDTH_IMAGE_LOCATION);
     Gtk.Button marginDecreaseButton = new Gtk.Button();
-    marginDecreaseButton.set_image (icon_margin_indent_less);
-    marginDecreaseButton.set_halign(Gtk.Align.END);
+    marginDecreaseButton.set_image (icon_width_indent_less);
+    marginDecreaseButton.set_halign(Gtk.Align.START);
     marginDecreaseButton.set_relief (ReliefStyle.NONE);
+
+    Gtk.Image icon_width_indent_more = new Gtk.Image ();
+    icon_width_indent_more.set_from_file (Constants.MORE_LINE_WIDTH_IMAGE_LOCATION);
+    Gtk.Button marginIncreaseButton = new Gtk.Button();
+    marginIncreaseButton.set_image (icon_width_indent_more);
+    marginIncreaseButton.set_halign(Gtk.Align.END);
+    marginIncreaseButton.set_relief (ReliefStyle.NONE);
 
     Gtk.Box marginBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     marginBox.pack_start(marginIncreaseButton, false, false);
     marginBox.pack_end(marginDecreaseButton, false, false);
+
+    Gtk.Image icon_line_height_less = new Gtk.Image ();
+    icon_line_height_less.set_from_file (Constants.LESS_LINE_HEIGHT_IMAGE_LOCATION);
+    Gtk.Button heightDecreaseButton = new Gtk.Button();
+    heightDecreaseButton.set_image (icon_line_height_less);
+    heightDecreaseButton.set_halign(Gtk.Align.START);
+    heightDecreaseButton.set_relief (ReliefStyle.NONE);
+
+    Gtk.Image icon_line_height_more = new Gtk.Image ();
+    icon_line_height_more.set_from_file (Constants.MORE_LINE_HEIGHT_IMAGE_LOCATION);
+    Gtk.Button heightIncreaseButton = new Gtk.Button();
+    heightIncreaseButton.set_image (icon_line_height_more);
+    heightIncreaseButton.set_halign(Gtk.Align.START);
+    heightIncreaseButton.set_relief (ReliefStyle.NONE);
+
+    Gtk.Box lineHeightBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
+    lineHeightBox.pack_start(heightIncreaseButton, false, false);
+    lineHeightBox.pack_end(heightDecreaseButton, false, false);
 
     Gtk.Box prefBox = new Gtk.Box(Orientation.VERTICAL, BookwormApp.Constants.SPACING_BUTTONS);
     prefBox.set_border_width(BookwormApp.Constants.SPACING_WIDGETS);
     prefBox.pack_start(textSizeBox, false, false);
     prefBox.pack_start(new Gtk.HSeparator() , true, true, 0);
     prefBox.pack_start(marginBox, false, false);
+    prefBox.pack_start(new Gtk.HSeparator() , true, true, 0);
+    prefBox.pack_start(lineHeightBox, false, false);
     prefBox.pack_start(new Gtk.HSeparator() , true, true, 0);
     prefBox.pack_start(profileBox, false, false);
 
@@ -115,8 +137,8 @@ public class BookwormApp.PreferencesMenu {
       }
     });
 
-    marginIncreaseButton.clicked.connect (() => {
-      if(BookwormApp.Bookworm.settings.reading_width.to_int() < 40){
+    marginDecreaseButton.clicked.connect (() => {
+      if(BookwormApp.Bookworm.settings.reading_width.to_int() <= 40){
         BookwormApp.Bookworm.settings.reading_width = (BookwormApp.Bookworm.settings.reading_width.to_int() + BookwormApp.Constants.MARGIN_CHANGE_VALUE).to_string();
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
           BookwormApp.Book currentBookForMarginIncrease = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
@@ -126,13 +148,35 @@ public class BookwormApp.PreferencesMenu {
       }
     });
 
-    marginDecreaseButton.clicked.connect (() => {
-      if(BookwormApp.Bookworm.settings.reading_width.to_int() > 1){
+    marginIncreaseButton.clicked.connect (() => {
+      if(BookwormApp.Bookworm.settings.reading_width.to_int() >= 1){
         BookwormApp.Bookworm.settings.reading_width = (BookwormApp.Bookworm.settings.reading_width.to_int() - BookwormApp.Constants.MARGIN_CHANGE_VALUE).to_string();
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
           BookwormApp.Book currentBookForMarginDecrease = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
           currentBookForMarginDecrease = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
           BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForMarginDecrease);
+        }
+      }
+    });
+
+    heightDecreaseButton.clicked.connect (() => {
+      if(BookwormApp.Bookworm.settings.reading_line_height.to_int() >= 100){
+        BookwormApp.Bookworm.settings.reading_line_height = (BookwormApp.Bookworm.settings.reading_line_height.to_int() - BookwormApp.Constants.LINE_HEIGHT_CHANGE_VALUE).to_string();
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+          BookwormApp.Book currentBookForLineHeightDecrease = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+          currentBookForLineHeightDecrease = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForLineHeightDecrease);
+        }
+      }
+    });
+
+    heightIncreaseButton.clicked.connect (() => {
+      if(BookwormApp.Bookworm.settings.reading_line_height.to_int() <= 500){
+        BookwormApp.Bookworm.settings.reading_line_height = (BookwormApp.Bookworm.settings.reading_line_height.to_int() + BookwormApp.Constants.LINE_HEIGHT_CHANGE_VALUE).to_string();
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+          BookwormApp.Book currentBookForLineHeightIncrease = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+          currentBookForLineHeightIncrease = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForLineHeightIncrease);
         }
       }
     });
