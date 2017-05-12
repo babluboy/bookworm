@@ -9,7 +9,7 @@
   <summary>A simple, focused eBook reader</summary>
   <description>
     <p>Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc.</p>
-    <p>This version supports EPUB and PDF formats and support for other formats to follow.</p>
+    <p>This version supports EPUB and PDF formats and support for other formats to follow soon.</p>
   </description>
   <screenshots>
       <screenshot type="default">
@@ -25,6 +25,11 @@
     <binary>bookworm</binary>
   </provides>
   <releases>
+    <release version="0.7" date="2017-05-30">
+      ​<description>
+      ​ <p>Comics Support and UX improvements</p>
+      ​</description>
+    ​</release>
     <release version="0.6" date="2017-05-15">
       ​<description>
       ​ <p>PDF Support and UX improvements</p>

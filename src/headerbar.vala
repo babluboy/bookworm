@@ -45,11 +45,13 @@ public class BookwormApp.AppHeaderBar {
     bookwormApp.content_list_button = new Gtk.Button ();
     bookwormApp.content_list_button.set_image (content_list_button_image);
     bookwormApp.content_list_button.set_valign(Gtk.Align.CENTER);
+    bookwormApp.content_list_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_BOOK_INFO);
 
     Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
     bookwormApp.prefButton = new Gtk.Button();
     bookwormApp.prefButton.set_image (menu_icon_text_large);
     bookwormApp.prefButton.set_valign(Gtk.Align.CENTER);
+    bookwormApp.prefButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_READING_PREFERENCES);
 
     Gtk.Popover prefPopover = BookwormApp.PreferencesMenu.createPrefPopOver(bookwormApp.prefButton);
 
@@ -58,12 +60,14 @@ public class BookwormApp.AppHeaderBar {
     bookmark_inactive_button = new Gtk.Button ();
     bookmark_inactive_button.set_image (bookmark_inactive_button_image);
     bookmark_inactive_button.set_valign(Gtk.Align.CENTER);
+    bookmark_inactive_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_BOOKMARKS_ACTIVATE);
 
     Gtk.Image bookmark_active_button_image = new Gtk.Image ();
     bookmark_active_button_image.set_from_file (Constants.BOOKMARK_ACTIVE_IMAGE_LOCATION);
     bookmark_active_button = new Gtk.Button ();
     bookmark_active_button.set_image (bookmark_active_button_image);
     bookmark_active_button.set_valign(Gtk.Align.CENTER);
+    bookmark_active_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_BOOKMARKS_DEACTIVATE);
 
     headerbar.pack_start(bookwormApp.library_view_button);
     headerbar.pack_start(bookwormApp.content_list_button);

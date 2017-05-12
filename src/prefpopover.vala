@@ -31,12 +31,14 @@ public class BookwormApp.PreferencesMenu {
     textLargerButton.set_image (menu_icon_text_large);
     textLargerButton.set_halign(Gtk.Align.START);
     textLargerButton.set_relief (ReliefStyle.NONE);
+    textLargerButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_FONT_SIZE_INCREASE);
 
     Gtk.Image menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", IconSize.LARGE_TOOLBAR);
     Gtk.Button textSmallerButton = new Gtk.Button();
     textSmallerButton.set_image (menu_icon_text_small);
     textSmallerButton.set_halign(Gtk.Align.END);
     textSmallerButton.set_relief (ReliefStyle.NONE);
+    textSmallerButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_FONT_SIZE_DECREASE);
 
     Gtk.Box textSizeBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     textSizeBox.pack_start(textSmallerButton, false, false);
@@ -48,6 +50,7 @@ public class BookwormApp.PreferencesMenu {
     dayProfileButton.set_image (day_profile_image);
     dayProfileButton.set_halign(Gtk.Align.START);
     dayProfileButton.set_relief (ReliefStyle.NONE);
+    dayProfileButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LIGHT_MODE);
 
     Gtk.Image night_profile_image = new Gtk.Image ();
     night_profile_image.set_from_file (Constants.NIGHT_PROFILE_IMAGE_LOCATION);
@@ -55,6 +58,7 @@ public class BookwormApp.PreferencesMenu {
     nightProfileButton.set_image (night_profile_image);
     nightProfileButton.set_halign(Gtk.Align.END);
     nightProfileButton.set_relief (ReliefStyle.NONE);
+    nightProfileButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_DARK_MODE);
 
     Gtk.Box profileBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     profileBox.pack_start(dayProfileButton, false, false);
@@ -66,6 +70,7 @@ public class BookwormApp.PreferencesMenu {
     marginDecreaseButton.set_image (icon_width_indent_less);
     marginDecreaseButton.set_halign(Gtk.Align.START);
     marginDecreaseButton.set_relief (ReliefStyle.NONE);
+    marginDecreaseButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LINE_WIDTH_DECREASE);
 
     Gtk.Image icon_width_indent_more = new Gtk.Image ();
     icon_width_indent_more.set_from_file (Constants.MORE_LINE_WIDTH_IMAGE_LOCATION);
@@ -73,6 +78,7 @@ public class BookwormApp.PreferencesMenu {
     marginIncreaseButton.set_image (icon_width_indent_more);
     marginIncreaseButton.set_halign(Gtk.Align.END);
     marginIncreaseButton.set_relief (ReliefStyle.NONE);
+    marginIncreaseButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LINE_WIDTH_INCREASE);
 
     Gtk.Box marginBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     marginBox.pack_start(marginIncreaseButton, false, false);
@@ -84,6 +90,7 @@ public class BookwormApp.PreferencesMenu {
     heightDecreaseButton.set_image (icon_line_height_less);
     heightDecreaseButton.set_halign(Gtk.Align.START);
     heightDecreaseButton.set_relief (ReliefStyle.NONE);
+    heightDecreaseButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LINE_HEIGHT_DECREASE);
 
     Gtk.Image icon_line_height_more = new Gtk.Image ();
     icon_line_height_more.set_from_file (Constants.MORE_LINE_HEIGHT_IMAGE_LOCATION);
@@ -91,6 +98,7 @@ public class BookwormApp.PreferencesMenu {
     heightIncreaseButton.set_image (icon_line_height_more);
     heightIncreaseButton.set_halign(Gtk.Align.START);
     heightIncreaseButton.set_relief (ReliefStyle.NONE);
+    heightIncreaseButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LINE_HEIGHT_INCREASE);
 
     Gtk.Box lineHeightBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     lineHeightBox.pack_start(heightIncreaseButton, false, false);

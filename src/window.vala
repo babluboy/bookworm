@@ -58,18 +58,21 @@ public class BookwormApp.AppWindow {
     Gtk.Button select_book_button = new Gtk.Button ();
     select_book_button.set_image (select_book_image);
     select_book_button.set_relief (ReliefStyle.NONE);
+    select_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_SELECT_BOOK);
 
     //Set up Button for adding books
     Gtk.Image add_book_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
     Gtk.Button add_book_button = new Gtk.Button ();
     add_book_button.set_image (add_book_image);
     add_book_button.set_relief (ReliefStyle.NONE);
+    add_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_ADD_BOOK);
 
     //Set up Button for removing books
     Gtk.Image remove_book_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
     Gtk.Button remove_book_button = new Gtk.Button ();
     remove_book_button.set_image (remove_book_image);
     remove_book_button.set_relief (ReliefStyle.NONE);
+    remove_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_BOOK);
 
     //Set up the progress bar for addition of books to library
     bookAdditionBar = new Gtk.ProgressBar ();

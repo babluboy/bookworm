@@ -15,8 +15,8 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/bookworm")
 
 set (EXEC_NAME "bookworm")
-set (RELEASE_NAME "bookworm v0.5")
-set (VERSION "0.5")
+set (RELEASE_NAME "bookworm v0.7")
+set (VERSION "0.7")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 # Some definitions
