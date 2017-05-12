@@ -38,6 +38,9 @@ set (SOURCE_LIST
     src/window.vala
     src/prefpopover.vala
     src/library.vala
+    src/pdfReader.vala
+    src/contentHandler.vala
+    src/cleanup.vala
 )
 
 include (GSettings)
@@ -63,6 +66,7 @@ pkg_check_modules(DEPS REQUIRED
                   granite
                   webkit2gtk-4.0>=2.14.1
                   sqlite3>=3.5.9
+                  poppler-glib
                  )
 
 add_definitions(${DEPS_CFLAGS})
@@ -104,6 +108,9 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/window.vala
     src/prefpopover.vala
     src/library.vala
+    src/pdfReader.vala
+    src/contentHandler.vala
+    src/cleanup.vala
 
 # tell what libraries to use when compiling
 PACKAGES
@@ -112,6 +119,7 @@ PACKAGES
     granite
     webkit2gtk-4.0>=2.14.1
     sqlite3
+    poppler-glib
 )
 
 # tell cmake what to call the executable we just made
@@ -128,20 +136,24 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/48/bookworm.png DESTINATIO
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/64/bookworm.png DESTINATION share/icons/hicolor/64x64/apps)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/128/bookworm.png DESTINATION share/icons/hicolor/128x128/apps)
 #install bookworm specific icons in application specific folder - /usr/share/bookworm
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-next.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-previous.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-add.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-remove.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-grid-symbolic.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-view-list-symbolic.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-inactive.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-active.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-checked.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-day.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-night.png DESTINATION share/bookworm/icons/hicolor/24x24/actions)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-next.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-previous.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-add.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-remove.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-grid-symbolic.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-line-height-more.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-line-height-less.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-width-more.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-width-less.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-view-list-symbolic.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-inactive.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-active.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-checked.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-day.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-night.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-placeholder-cover.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-1.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-2.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)

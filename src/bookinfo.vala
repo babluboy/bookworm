@@ -67,6 +67,9 @@ public class BookwormApp.Info:Gtk.Window {
 
     //Check every time a tab is clicked and perform necessary actions
     stack.notify["visible-child"].connect ((sender, property) => {
+      if("content-list"==stack.get_visible_child_name()){
+        createTableOfContents();
+      }
       if("bookmark-list"==stack.get_visible_child_name()){
         populateBookmarks();
       }
@@ -117,7 +120,7 @@ public class BookwormApp.Info:Gtk.Window {
     Gtk.Label searchLabel = new Label("");
     searchresults_box.pack_start(searchLabel,false,false,0);
 
-    HashMap<string,string> searchResultsMap = BookwormApp.ePubReader.searchBookContents(aBook, BookwormApp.AppHeaderBar.headerSearchBar.get_text());
+    HashMap<string,string> searchResultsMap = BookwormApp.contentHandler.searchBookContents(aBook, BookwormApp.AppHeaderBar.headerSearchBar.get_text());
     if(searchResultsMap.size > 0){
       string searchResultsLabeltext = BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_FOUND;
       searchResultsLabeltext = searchResultsLabeltext.replace("$$$", BookwormApp.AppHeaderBar.headerSearchBar.get_text());
@@ -152,52 +155,73 @@ public class BookwormApp.Info:Gtk.Window {
     return aBook;
   }
 
-  public static BookwormApp.Book createTableOfContents(owned BookwormApp.Book aBook){
-    Box content_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
-    //Use Table Of Contents if present
-    if(aBook.getTOC().size > 0){
-      ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
-      foreach(HashMap<string,string> tocListItemMap in tocList){
-        foreach (var entry in tocListItemMap.entries) {
-          LinkButton contentLinkButton = new LinkButton.with_label (entry.key, entry.value);
-          contentLinkButton.halign = Align.START;
-          content_box.pack_start(contentLinkButton,false,false,0);
-          contentLinkButton.activate_link.connect (() => {
-            aBook.setBookPageNumber(aBook.getBookContentList().index_of(contentLinkButton.get_uri ().strip()));
-            //update book details to libraryView Map
-            BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-            aBook = BookwormApp.Bookworm.renderPage(aBook, "");
-            //Set the mode back to Reading mode
-            BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-            BookwormApp.Bookworm.getAppInstance().toggleUIState();
-            return true;
-          });
+  public static BookwormApp.Book createTableOfContents(){
+    Box content_box;
+    //get the book being currently read
+		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+    if(aBook != null){
+      //Return TOC if it has already been determined for the book - otherwise create TOC for the book
+      if(aBook.getBookWidget("TABLE_OF_CONTENTS_WIDGET") != null){
+        content_box = (Gtk.Box) (aBook.getBookWidget("TABLE_OF_CONTENTS_WIDGET"));
+        debug("found TABLE_OF_CONTENTS_WIDGET");
+      }else{
+        content_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+        //Use Table Of Contents if present
+        if(aBook.getTOC().size > 0){
+          ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
+          foreach(HashMap<string,string> tocListItemMap in tocList){
+            foreach (var entry in tocListItemMap.entries) {
+              LinkButton contentLinkButton = new LinkButton.with_label (entry.key, entry.value);
+              contentLinkButton.halign = Align.START;
+              content_box.pack_start(contentLinkButton,false,false,0);
+              contentLinkButton.activate_link.connect (() => {
+                aBook.setBookPageNumber(aBook.getBookContentList().index_of(contentLinkButton.get_uri ().strip()));
+                //update book details to libraryView Map
+                BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+                aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+                //Set the mode back to Reading mode
+                BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+                BookwormApp.Bookworm.getAppInstance().toggleUIState();
+                return true;
+              });
+            }
+          }
+        }else{
+          //If Table Of Contents is not found, set the spine data into the Contents tab
+          int contentNumber = 1;
+          foreach(string contentPath in aBook.getBookContentList()){
+            LinkButton contentLinkButton = new LinkButton.with_label (contentPath, BookwormApp.Constants.TEXT_FOR_INFO_TAB_CONTENT_PREFIX+contentNumber.to_string());
+            contentLinkButton.halign = Align.START;
+            content_box.pack_start(contentLinkButton,false,false,0);
+            contentNumber++;
+            contentLinkButton.activate_link.connect (() => {
+              aBook.setBookPageNumber(aBook.getBookContentList().index_of(contentLinkButton.get_uri ()));
+              //update book details to libraryView Map
+              BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+              aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+              //Set the mode back to Reading mode
+              BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+              BookwormApp.Bookworm.getAppInstance().toggleUIState();
+              return true;
+            });
+          }
         }
+        aBook.setBookWidget("TABLE_OF_CONTENTS_WIDGET", content_box);
       }
-    }else{
-      //If Table Of Contents is not found, set the spine data into the Contents tab
-      int contentNumber = 1;
-      foreach(string contentPath in aBook.getBookContentList()){
-        LinkButton contentLinkButton = new LinkButton.with_label (contentPath, BookwormApp.Constants.TEXT_FOR_INFO_TAB_CONTENT_PREFIX+contentNumber.to_string());
-        contentLinkButton.halign = Align.START;
-        content_box.pack_start(contentLinkButton,false,false,0);
-        contentNumber++;
-        contentLinkButton.activate_link.connect (() => {
-          aBook.setBookPageNumber(aBook.getBookContentList().index_of(contentLinkButton.get_uri ()));
-          //update book details to libraryView Map
-          BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-          aBook = BookwormApp.Bookworm.renderPage(aBook, "");
-          //Set the mode back to Reading mode
-          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-          BookwormApp.Bookworm.getAppInstance().toggleUIState();
-          return true;
-        });
+      //remove the current content widget from any existing parent (ViewPort is a default parent while adding to ScrollWindow)
+      content_box.unparent ();
+      if(content_scroll.get_child() != null){
+        //add a ref to the existing content widget so that it is not destoyed on removal
+        content_scroll.get_child().@ref();
+        //remove the existing content widget from the ScrollWindow
+        content_scroll.remove(content_scroll.get_child());
+        //add the current content widget to the ScrollWindow
+        content_scroll.add (content_box);
+      }else{
+        //No existing widget in the ScrollWindow, add the current content widget
+        content_scroll.add (content_box);
       }
     }
-    //Remove the existing content list Gtk.Box and add the current one
-    content_scroll.get_child().destroy();
-    content_scroll.add (content_box);
-
     return aBook;
   }
 }

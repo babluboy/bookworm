@@ -9,7 +9,7 @@
   <summary>A simple, focused eBook reader</summary>
   <description>
     <p>Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc.</p>
-    <p>Bookworm is currently under active development and this initial release supports only the EPUB format. PDF support will be added to the next version and support for other formats to follow.</p>
+    <p>This version supports EPUB and PDF formats and support for other formats to follow.</p>
   </description>
   <screenshots>
       <screenshot type="default">
@@ -25,10 +25,15 @@
     <binary>bookworm</binary>
   </provides>
   <releases>
+    <release version="0.6" date="2017-05-15">
+      ​<description>
+      ​ <p>PDF Support and UX improvements</p>
+      ​</description>
+    ​</release>
 ​    <release version="0.5" date="2017-04-25">
-​      <description>
-​        <p>Initial release with support for EPUB format</p>
-​      </description>
+​     <description>
+​       <p>Initial release with support for EPUB format</p>
+​     </description>
 ​    </release>
 ​  </releases>
   <developer_name>Siddhartha Das</developer_name>

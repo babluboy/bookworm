@@ -1,6 +1,6 @@
 /* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
-* This file is part of Bookworm.
+* This file is part of Bookworm and is used for parsing EPUB file formats
 *
 * Bookworm is free software: you can redistribute it
 * and/or modify it under the terms of the GNU General Public License as
@@ -17,7 +17,6 @@
 */
 
 using Gee;
-using Gtk;
 public class BookwormApp.ePubReader {
 
   public static BookwormApp.Book parseEPubBook (owned BookwormApp.Book aBook){
@@ -92,13 +91,12 @@ public class BookwormApp.ePubReader {
     string extractionLocation = "";
     try{
       debug("Initiated process for content extraction of ePub Book located at:"+eBookLocation);
-      //check if ebook is present at provided location
-      if("false" == BookwormApp.Utils.fileOperations("EXISTS", "", eBookLocation, "")){
-        warning("EBook not found at provided location:"+eBookLocation);
-        return "false";
+      //create a location for extraction of eBook based on local storage prefference
+      if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
+        extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();
+      }else{
+        extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
       }
-      //create temp location for extraction of eBook
-      extractionLocation = BookwormApp.Constants.EPUB_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
       //check and create directory for extracting contents of ebook
       BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
       //unzip eBook contents into temp location
@@ -303,7 +301,8 @@ public class BookwormApp.ePubReader {
         }
       }
     }
-
+    // Clear the content list of any previous items
+    aBook.clearBookContentList();
     //loop over remaning spine items(ncx file will be ignored as it will not have a prefix of idref)
     foreach(string spineItem in spineItemsList){
       int startPosOfSpineItem = spineItem.index_of("idref=")+("idref=").length+1;
@@ -349,16 +348,10 @@ public class BookwormApp.ePubReader {
     //check if cover was not found and assign flag
     if(bookCoverLocation == null || bookCoverLocation.length < 1){
       aBook.setIsBookCoverImagePresent(false);
-      debug("eBook cover image not found");
+      debug("Cover image not found for book located at:"+aBook.getBookExtractionLocation());
     }else{
-      //cover was extracted from the ebook contents
-      aBook.setIsBookCoverImagePresent(true);
-      //copy cover image to bookworm cover image location
-      File coverImageFile = File.new_for_commandline_arg(bookCoverLocation);
-      string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+"/covers/"+aBook.getBookLocation().replace("/", "_").replace(" ", "")+"_"+coverImageFile.get_basename();
-      BookwormApp.Utils.execute_sync_command("cp \""+bookCoverLocation+"\" \""+bookwormCoverLocation+"\"");
-      aBook.setBookCoverLocation(bookwormCoverLocation);
-      debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
+      //copy cover image to bookworm cover image cache
+      aBook = BookwormApp.Utils.setBookCoverImage(aBook, bookCoverLocation);
     }
     return aBook;
   }
@@ -404,85 +397,4 @@ public class BookwormApp.ePubReader {
 
     return aBook;
   }
-
-  public static string adjustPageContent (owned string pageContent){
-    string javaScriptInjectionPrefix = "onload=\"javascript:";
-    string javaScriptInjectionSuffix = "\"";
-    StringBuilder onloadJavaScript = new StringBuilder("");
-    //Set font colour to white if Night Mode is on
-    if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
-      onloadJavaScript.append("document.getElementsByTagName('BODY')[0].style.color='white';");
-    }else{
-      onloadJavaScript.append("document.getElementsByTagName('BODY')[0].style.color='black';");
-    }
-
-    //add onload javascript to body tag
-    if(pageContent.index_of("<BODY") != -1){
-      pageContent = pageContent.replace("<BODY", "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
-    }else if (pageContent.index_of("<body") != -1){
-      pageContent = pageContent.replace("<body", "<body "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
-    }else{
-      pageContent = "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix + ">" + pageContent + "</BODY>";
-    }
-    return pageContent;
-  }
-
-  public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){
-    debug("Attempting to fetch content from book at location:"+aBook.getBaseLocationOfContents());
-    StringBuilder contents = new StringBuilder();
-    if(contentLocation > -1){
-      string baseLocationOfContents = aBook.getBaseLocationOfContents();
-      //handle the case when the content list has html escape chars for the URI
-      string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
-      //fetch content from extracted book
-      contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
-      //find list of relative urls with src, href, etc and convert them to absolute ones
-      foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
-      string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
-        StringBuilder srcItemFullPath = new StringBuilder();
-        foreach(string srcItem in srcList){
-          srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
-          contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
-        }
-      }
-      //update the content for required manipulation
-      contents.assign(adjustPageContent(contents.str));
-    }
-    debug("Completed fetching content from book at location:"+aBook.getBaseLocationOfContents() + "for page:" + contentLocation.to_string());
-    return contents.str;
-  }
-
-  public static HashMap<string,string> searchBookContents(BookwormApp.Book aBook, string searchString){
-    HashMap<string,string> searchResultsMap = new HashMap<string,string>();
-    string bookSearchResults = BookwormApp.Utils.execute_sync_command("grep -i -r -o -P -w '.{0,50}"+BookwormApp.AppHeaderBar.headerSearchBar.get_text()+".{0,50}' \""+aBook.getBookExtractionLocation()+"\"");
-    string[] individualLines = bookSearchResults.strip().split ("\n",-1);
-    StringBuilder pageOfResult = new StringBuilder("");
-    StringBuilder contentOfResult = new StringBuilder("");
-    foreach (string aSearchResult in individualLines) {
-      if(aSearchResult.index_of(":") != -1 && aSearchResult.index_of(":") > 0 && aSearchResult.index_of(":") < aSearchResult.length){
-        pageOfResult.assign(aSearchResult.slice(0, aSearchResult.index_of(":")));
-        if(!(aBook.getBookContentList().contains(pageOfResult.str))){
-          //handle the case when the spine data has HTML Escape characters
-          foreach (string contentListURI in aBook.getBookContentList()) {
-            if(BookwormApp.Utils.decodeHTMLChars(contentListURI) == pageOfResult.str){
-              pageOfResult.assign(contentListURI);
-              break;
-            }
-          }
-          //If the location still could not be matched, then assign a blank location
-          if(!(aBook.getBookContentList().contains(pageOfResult.str))){
-            pageOfResult.assign("");
-          }
-        }
-
-        contentOfResult.assign(aSearchResult.slice(aSearchResult.index_of(":")+1, aSearchResult.length));
-        //ignore the results from ncx,opf file
-        if(pageOfResult.str.index_of("ncx") == -1 && pageOfResult.str.index_of("opf") == -1 && pageOfResult.str.length > 1){
-          searchResultsMap.set(pageOfResult.str, BookwormApp.Utils.removeTagsFromText(contentOfResult.str));
-        }
-      }
-    }
-    return searchResultsMap;
-  }
-
 }

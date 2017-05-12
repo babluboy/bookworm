@@ -33,6 +33,8 @@ public class BookwormApp.AppWindow {
   public static Gtk.Button forward_button;
   public static Gtk.Button back_button;
   public static Gtk.ProgressBar bookAdditionBar;
+  public static Adjustment pageAdjustment;
+  public static Scale pageSlider;
 
   public static Gtk.Box createBoookwormUI() {
     debug("Starting to create main window components...");
@@ -88,7 +90,7 @@ public class BookwormApp.AppWindow {
     infobar.set_message_type (MessageType.INFO);
     infobarContent.add (infobarLabel);
     infobar.set_show_close_button (true);
-    infobar.response.connect(BookwormApp.Bookworm.on_info_bar_closed);
+    infobar.response.connect(on_info_bar_closed);
     infobar.hide();
 
     //Create the UI for library view and add all components to ui box for library view
@@ -106,6 +108,7 @@ public class BookwormApp.AppWindow {
     aWebView = new WebKit.WebView.with_settings(webkitSettings);
     aWebView.set_zoom_level(BookwormApp.Settings.get_instance().zoom_level);
     webkitSettings.set_enable_javascript(true);
+    webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
 
     //Set up Button for previous page
     Gtk.Image back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
@@ -119,12 +122,19 @@ public class BookwormApp.AppWindow {
     forward_button.set_image (forward_button_image);
     forward_button.set_relief (ReliefStyle.NONE);
 
+    //Set up a slider for jumping pages
+    pageAdjustment = new Adjustment (0, 1, 100, 1, 0, 0);
+    pageSlider = new Gtk.Scale(Gtk.Orientation.HORIZONTAL, pageAdjustment);
+    pageSlider.set_digits (0);
+		pageSlider.set_valign (Gtk.Align.START);
+    pageSlider.set_hexpand(true);
+
     //Set up contents of the footer
     ActionBar book_reading_footer_box = new ActionBar();
-    Gtk.Label pageNumberLabel = new Label("");
     book_reading_footer_box.pack_start (back_button);
-    book_reading_footer_box.pack_start (pageNumberLabel);
+    book_reading_footer_box.pack_start (pageSlider);
     book_reading_footer_box.pack_end (forward_button);
+    book_reading_footer_box.set_center_widget(pageSlider);
 
     //Create the Gtk Box to hold components for reading a selected book
     bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
@@ -163,6 +173,19 @@ public class BookwormApp.AppWindow {
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForReverse.getBookLocation(), currentBookForReverse);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForReverse.getBookLocation();
+    });
+    //Add action for moving the pages for the page slider
+    pageSlider.change_value.connect ((scroll, new_value) => {
+      debug("Page Slider value change Initiated for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+      BookwormApp.Book currentBookForSlider = new BookwormApp.Book();
+      currentBookForSlider = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+      currentBookForSlider.setBookPageNumber(new_value.to_string().to_int()-1);
+      //update book details to libraryView Map
+      currentBookForSlider = BookwormApp.Bookworm.renderPage(currentBookForSlider, "");
+      BookwormApp.Bookworm.libraryViewMap.set(currentBookForSlider.getBookLocation(), currentBookForSlider);
+      BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForSlider.getBookLocation();
+      debug("Page Slider value change action completed for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead+" and rendering completed for page number:"+currentBookForSlider.getBookPageNumber().to_string());
+      return true;
     });
     //Add action for adding a book on the library view
     add_book_button.clicked.connect (() => {
@@ -293,4 +316,18 @@ public class BookwormApp.AppWindow {
     });
     return BookwormApp.Bookworm.welcomeWidget;
   }
+
+  public static void showInfoBar(BookwormApp.Book aBook, MessageType aMessageType){
+    StringBuilder message = new StringBuilder("");
+    message.append(aBook.getParsingIssue())
+             .append(aBook.getBookLocation());
+    BookwormApp.AppWindow.infobarLabel.set_text(message.str);
+    BookwormApp.AppWindow.infobar.set_message_type (aMessageType);
+    BookwormApp.AppWindow.infobar.show();
+  }
+
+  //Handle action for close of the InfoBar
+	public static void on_info_bar_closed(){
+      BookwormApp.AppWindow.infobar.hide();
+	}
 }

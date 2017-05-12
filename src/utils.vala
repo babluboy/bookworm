@@ -441,6 +441,11 @@ namespace BookwormApp.Utils {
 					result.assign("true");
 				}
 			}
+			if("DIR_EXISTS" == operation){
+				if(fileDir.query_exists ()){
+					result.assign("true");
+				}
+			}
 			if("IS_EXECUTABLE" == operation){
 				if(FileUtils.test (path+"/"+filename, FileTest.IS_EXECUTABLE)){
 					result.assign("true");
@@ -514,6 +519,7 @@ namespace BookwormApp.Utils {
 			switch(fileType){
 				case "EBOOKS":
 					filterMap.set("*.epub", "EPUB");
+					filterMap.set("*.pdf", "PDF");
 					filterMap.set("*", BookwormApp.Constants.FILE_CHOOSER_FILTER_ALL_FILES);
 					break;
 				case "IMAGES":
@@ -590,10 +596,16 @@ namespace BookwormApp.Utils {
 		}
 
 		public static string decodeHTMLChars(string inputString){
-			string outputString = "";
-			unichar accel_char;
-			Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
-			outputString = Soup.URI.decode(outputString);
+			string outputString = Soup.URI.decode(inputString);
+			//unichar accel_char;
+			//Pango.parse_markup (outputString, outputString.length, 0, null, out outputString, out accel_char);
+			return outputString;
+		}
+
+		public static string removeMarkUp(string inputString){
+			string outputString = Soup.URI.decode(inputString);
+			//replace the escape char for space present in HTML converted from PDF
+			outputString = outputString.replace("&#160;", " ").replace("#160;", " ").replace("&#160", " ");
 			return outputString;
 		}
 
@@ -629,10 +641,45 @@ namespace BookwormApp.Utils {
 				filteredInput.assign(removeTagsFromText(filteredInput.str.strip()));
 			}
 			//remove any html escape characters if present
-			filteredInput.assign(decodeHTMLChars(filteredInput.str));
+			filteredInput.assign(removeMarkUp(filteredInput.str));
 			//remove any line feeds
 			filteredInput.assign(filteredInput.str.replace("\n",""));
 			debug("Completed execution of removeTagsFromText with text:"+filteredInput.str);
 			return filteredInput.str.strip();
+		}
+
+		public static string convertContentListToString(BookwormApp.Book aBook){
+			StringBuilder contentListString = new StringBuilder("");
+			ArrayList<string> contentList = aBook.getBookContentList();
+			foreach (string content in contentList) {
+				contentListString.append(content).append("~~##~~");
+			}
+			return contentListString.str;
+		}
+
+		public static BookwormApp.Book convertStringToContentList(owned BookwormApp.Book aBook, string contentListString){
+			string [] contentListArray = contentListString.split("~~##~~");
+			foreach (string content in contentListArray) {
+				if(content != null && content.length > 0){
+					aBook.setBookContentList (content);
+				}
+			}
+			return aBook;
+		}
+
+		public static BookwormApp.Book setBookCoverImage (owned BookwormApp.Book aBook, string bookCoverImageLocation){
+			//copy cover image to bookworm cover image location
+      string coverImageFileName = File.new_for_commandline_arg(bookCoverImageLocation).get_basename();
+      string coverImageFileExtension = "";
+      if(coverImageFileName.index_of(".") != -1){
+        coverImageFileExtension = coverImageFileName.slice(coverImageFileName.last_index_of(".")+1, coverImageFileName.length);
+      }
+      string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+"/covers/"+aBook.getBookId().to_string()+"_cover."+coverImageFileExtension;
+      BookwormApp.Utils.execute_sync_command("cp \""+bookCoverImageLocation+"\" \""+bookwormCoverLocation+"\"");
+      //cover was extracted from the ebook contents
+      aBook.setIsBookCoverImagePresent(true);
+      aBook.setBookCoverLocation(bookwormCoverLocation);
+      debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
+			return aBook;
 		}
 }

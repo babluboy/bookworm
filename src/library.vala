@@ -148,7 +148,7 @@ public class BookwormApp.Library{
     Gtk.EventBox aEventBox = (Gtk.EventBox) book.getBookWidget("BOOK_EVENTBOX");
     aEventBox.add(lOverlayImage);
     book.setBookWidget("BOOK_EVENTBOX", aEventBox);
-    //update the libraryviewmap with the book object
+    //update the libraryview map with the book object
     BookwormApp.Bookworm.libraryViewMap.set(book.getBookLocation(), book);
   }
 
