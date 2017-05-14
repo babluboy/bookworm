@@ -349,7 +349,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 				//parse eBook to populate cache and book meta data
 				aBook = genericParser(aBook);
 				if(!aBook.getIsBookParsed()){
-					BookwormApp.DB.removeBookFromDB(libraryViewMap.get(eBookLocation));
+					BookwormApp.DB.removeBookFromDB(aBook);
 					BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
 				}else{
 					//add eBook cover image to library view
@@ -666,6 +666,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 					break;
 				case ".PDF":
 					aBook = BookwormApp.pdfReader.parsePDFBook(aBook);
+					break;
+				case ".CBR":
+					aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
 					break;
 				default:
 					aBook.setIsBookParsed(false);

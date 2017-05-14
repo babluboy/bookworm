@@ -42,7 +42,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
 	public const string TEXT_FOR_EXTRACTION_ISSUE = _("Problem in extracting contents of book. Check if book is available at location : ");
-	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid Mime type dectected. Check book format at location : ");
+	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid Mime type detected. Check book format at location : ");
 	public const string TEXT_FOR_CONTENT_ISSUE = _("Invalid content found. Ensure valid eBook file at location : ");
 	public const string TEXT_FOR_FORMAT_NOT_SUPPORTED = _("Bookworm does not support the format of the file found at location : ");
 	public const string TEXT_FOR_LIBRARY_BUTTON = _("Library");
