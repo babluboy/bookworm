@@ -1,5 +1,5 @@
 [Contractor Entry]
 Name=Bookworm
 Description=eBook Reader
-MimeType=application/epub+zip;application/pdf;application/x-pdf;
+MimeType=application/epub+zip;application/pdf;application/x-pdf;application/cbr;application/x-cbz;
 Exec=bookworm %F

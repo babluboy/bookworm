@@ -41,7 +41,7 @@
 				<summary>Save the page width for reading</summary>
 		</key>
 		<key name="reading-line-height" type="s">
-				<default>"100"</default>
+				<default>"150"</default>
 				<summary>Save the page line height for reading</summary>
 		</key>
   </schema>

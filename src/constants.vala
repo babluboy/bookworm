@@ -37,7 +37,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
 	public const string TEXT_FOR_HEADERBAR_BOOK_SEARCH = _("Search this book...");
-	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search for Title, Author and Tags");
+	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search by Title, Author and Tags");
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
@@ -60,6 +60,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER_IMAGE = _("Update Cover Image");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TITLE = _("Update Title");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TAGS = _("Update Tags");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_AUTHOR = _("Update Author");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER = _("Update Cover Image");
 
 	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");

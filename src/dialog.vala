@@ -105,6 +105,22 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			return false;
 		});
 
+		//Add text entry for updating book author
+		Gtk.Label updateAuthorLabel = new Gtk.Label(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_AUTHOR);
+		Gtk.Entry updateAuthorEntry = new Gtk.Entry ();
+		updateAuthorEntry.set_text (aBook.getBookAuthor());
+		Gtk.Box updateAuthorBox = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		updateAuthorBox.pack_start(updateAuthorLabel,false, true, 0);
+		updateAuthorBox.pack_end(updateAuthorEntry,false, true, 0);
+		//Add action for setting Book Title
+		updateAuthorEntry.focus_out_event.connect (() => {
+			if(updateAuthorEntry.get_text() != null && updateAuthorEntry.get_text().length > 0){
+				aBook.setBookAuthor(updateAuthorEntry.get_text());
+				aBook.setWasBookOpened(true);
+			}
+			return false;
+		});
+
 		//Add text entry for tags
 		Gtk.Label updateTagsLabel = new Gtk.Label(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TAGS);
 		Gtk.Entry updateTagsEntry = new Gtk.Entry ();
@@ -165,6 +181,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
     bookContextMenuBox.pack_start(new Gtk.HSeparator() , true, true, 0);
 		bookContextMenuBox.pack_start(updateCoverImageBox, false, false);
 		bookContextMenuBox.pack_start(updateTitleBox, false, false);
+		bookContextMenuBox.pack_start(updateAuthorBox, false, false);
 		bookContextMenuBox.pack_start(updateTagsBox, false, false);
 		bookContextMenuBox.pack_start(new Gtk.HSeparator() , true, true, 0);
 		bookContextMenuBox.pack_end(ratingBox, false, false);
