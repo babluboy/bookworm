@@ -24,11 +24,19 @@ public class BookwormApp.contentHandler {
     string javaScriptInjectionPrefix = "onload=\"javascript:";
     string javaScriptInjectionSuffix = "\"";
     StringBuilder onloadJavaScript = new StringBuilder("");
-    //Set font colour to white if Night Mode is on
-    if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
-      onloadJavaScript.append("document.getElementsByTagName('BODY')[0].style.color='white';");
+    //Set background and font colour based on profile
+    if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
+      onloadJavaScript.append("document.getElementsByTagName('body')[0].style.backgroundColor='#002b36';
+                               document.getElementsByTagName('BODY')[0].style.color='#93a1a1';
+                              ");
+    }else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
+      onloadJavaScript.append("document.getElementsByTagName('body')[0].style.backgroundColor='#fdf6e3';
+                               document.getElementsByTagName('BODY')[0].style.color='#586e75';
+                              ");
     }else{
-      onloadJavaScript.append("document.getElementsByTagName('BODY')[0].style.color='black';");
+      onloadJavaScript.append("document.getElementsByTagName('body')[0].style.backgroundColor='#fbfbfb';
+                               document.getElementsByTagName('BODY')[0].style.color='#000000';
+                              ");
     }
     //Adjust page margin
     string cssMargin = "<style>body{line-height: "+BookwormApp.Bookworm.settings.reading_line_height+"%;margin-right: "+BookwormApp.Bookworm.settings.reading_width+"%;margin-left: "+BookwormApp.Bookworm.settings.reading_width+"%;}</style>";

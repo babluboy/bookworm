@@ -218,7 +218,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
     Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
     Gtk.Switch nightModeSwitch = new Gtk.Switch ();
     //Set the switch to on if the state is in Night Mode
-    if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
+    if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
       nightModeSwitch.set_active (true);
 		}
 		Gtk.Box prefBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
@@ -243,7 +243,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
     nightModeSwitch.notify["active"].connect (() => {
 			if (nightModeSwitch.active) {
-        BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[1]);
+        BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[2]);
         //call the rendered page if UI State is in reading mode
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
           BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);

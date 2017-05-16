@@ -78,6 +78,7 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_DECREASE = _("Decrease line spacing");
 	public const string TOOLTIP_TEXT_FOR_LIGHT_MODE = _("Light theme");
 	public const string TOOLTIP_TEXT_FOR_DARK_MODE = _("Dark theme");
+	public const string TOOLTIP_TEXT_FOR_SEPIA_MODE = _("Sepia theme");
 
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
@@ -111,6 +112,7 @@ namespace BookwormApp.Constants {
 	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-active.png";
 	public static const string NIGHT_PROFILE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-profile-night.png";
 	public static const string DAY_PROFILE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-profile-day.png";
+	public static const string SEPIA_PROFILE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-profile-sepia.png";
 	public static const string SELECTION_IMAGE_BUTTON_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection.svg";
 	public static const string SELECTION_OPTION_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
 	public static const string SELECTION_CHECKED_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
@@ -126,7 +128,8 @@ namespace BookwormApp.Constants {
 	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
 
 	public static const string BOOKWORM_READING_MODE[] = {"DAY MODE",
-																										 		"NIGHT MODE",
+																										 		"SEPIA MODE",
+																												"NIGHT MODE"
 																										   };
 	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE",
 																										 "READING_MODE",

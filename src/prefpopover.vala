@@ -43,6 +43,7 @@ public class BookwormApp.PreferencesMenu {
     Gtk.Box textSizeBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     textSizeBox.pack_start(textSmallerButton, false, false);
     textSizeBox.pack_end(textLargerButton, false, false);
+    textSizeBox.set_halign(Gtk.Align.CENTER);
 
     Gtk.Image day_profile_image = new Gtk.Image ();
     day_profile_image.set_from_file (Constants.DAY_PROFILE_IMAGE_LOCATION);
@@ -51,6 +52,14 @@ public class BookwormApp.PreferencesMenu {
     dayProfileButton.set_halign(Gtk.Align.START);
     dayProfileButton.set_relief (ReliefStyle.NONE);
     dayProfileButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LIGHT_MODE);
+
+    Gtk.Image sepia_profile_image = new Gtk.Image ();
+    sepia_profile_image.set_from_file (Constants.SEPIA_PROFILE_IMAGE_LOCATION);
+    Gtk.Button sepiaProfileButton = new Gtk.Button();
+    sepiaProfileButton.set_image (sepia_profile_image);
+    sepiaProfileButton.set_halign(Gtk.Align.START);
+    sepiaProfileButton.set_relief (ReliefStyle.NONE);
+    sepiaProfileButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_SEPIA_MODE);
 
     Gtk.Image night_profile_image = new Gtk.Image ();
     night_profile_image.set_from_file (Constants.NIGHT_PROFILE_IMAGE_LOCATION);
@@ -62,7 +71,9 @@ public class BookwormApp.PreferencesMenu {
 
     Gtk.Box profileBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     profileBox.pack_start(dayProfileButton, false, false);
+    profileBox.pack_start(sepiaProfileButton, false, false);
     profileBox.pack_end(nightProfileButton, false, false);
+    profileBox.set_halign(Gtk.Align.CENTER);
 
     Gtk.Image icon_width_indent_less = new Gtk.Image ();
     icon_width_indent_less.set_from_file (Constants.LESS_LINE_WIDTH_IMAGE_LOCATION);
@@ -83,6 +94,7 @@ public class BookwormApp.PreferencesMenu {
     Gtk.Box marginBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     marginBox.pack_start(marginIncreaseButton, false, false);
     marginBox.pack_end(marginDecreaseButton, false, false);
+    marginBox.set_halign(Gtk.Align.CENTER);
 
     Gtk.Image icon_line_height_less = new Gtk.Image ();
     icon_line_height_less.set_from_file (Constants.LESS_LINE_HEIGHT_IMAGE_LOCATION);
@@ -103,6 +115,7 @@ public class BookwormApp.PreferencesMenu {
     Gtk.Box lineHeightBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
     lineHeightBox.pack_start(heightIncreaseButton, false, false);
     lineHeightBox.pack_end(heightDecreaseButton, false, false);
+    lineHeightBox.set_halign(Gtk.Align.CENTER);
 
     Gtk.Box prefBox = new Gtk.Box(Orientation.VERTICAL, BookwormApp.Constants.SPACING_BUTTONS);
     prefBox.set_border_width(BookwormApp.Constants.SPACING_WIDGETS);
@@ -135,8 +148,18 @@ public class BookwormApp.PreferencesMenu {
       }
     });
 
-    nightProfileButton.clicked.connect (() => {
+    sepiaProfileButton.clicked.connect (() => {
       BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[1]);
+      //call the rendered page if UI State is in reading mode
+      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+        BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+        currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+        BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
+      }
+    });
+
+    nightProfileButton.clicked.connect (() => {
+      BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[2]);
       //call the rendered page if UI State is in reading mode
       if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
         BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);

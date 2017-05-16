@@ -262,8 +262,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//check if the database exists otherwise create database and required tables
 		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
 		//Set the colour mode based on the user's last saved prefference setting
-		if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == settings.reading_profile){
+		if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == settings.reading_profile){
 			applyProfile("NIGHT MODE");
+		}else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == settings.reading_profile){
+			applyProfile("SEPIA MODE");
 		}else{
 			//default to the Day Mode if no other mode is found in the settings
 			applyProfile("DAY MODE");
@@ -310,8 +312,13 @@ public class BookwormApp.Bookworm : Granite.Application {
 		switch(profilename){
 			case "NIGHT MODE":
 				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_BLACK);
-				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
+				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[2];
 				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+				break;
+			case "SEPIA MODE":
+				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
+				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
+				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
 				break;
 			case "DAY MODE":
 				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
