@@ -62,6 +62,9 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TAGS = _("Update Tags");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_AUTHOR = _("Update Author");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER = _("Update Cover Image");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Exit full screen view");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING = _("Check Word Meaning");
 
 	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK = _("Remove selected books from library (eBook file will not be deleted)");
@@ -76,9 +79,12 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_LINE_WIDTH_DECREASE = _("Decrease line width");
 	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_INCREASE = _("Increase line spacing");
 	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_DECREASE = _("Decrease line spacing");
+	public const string TOOLTIP_TEXT_FOR_UPDATING_COVER_IMAGE = _("Update cover image");
 	public const string TOOLTIP_TEXT_FOR_LIGHT_MODE = _("Light theme");
 	public const string TOOLTIP_TEXT_FOR_DARK_MODE = _("Dark theme");
 	public const string TOOLTIP_TEXT_FOR_SEPIA_MODE = _("Sepia theme");
+	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view and Esc key to exit");
+	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Enter full screen view and Esc key to exit");
 
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");

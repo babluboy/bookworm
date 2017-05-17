@@ -46,6 +46,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.Button updateCoverImageButton = new Gtk.Button ();
 		updateCoverImageButton.set_image (updateImageIcon);
 		updateCoverImageButton.set_relief (ReliefStyle.NONE);
+		updateCoverImageButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_UPDATING_COVER_IMAGE);
 		Gtk.Box updateCoverImageBox = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		updateCoverImageBox.pack_start(updateCoverLabel,false, true, 0);
 		updateCoverImageBox.pack_start(updateCoverImageButton,false, true, 0);

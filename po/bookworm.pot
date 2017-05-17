@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-16 18:34+0100\n"
+"POT-Creation-Date: 2017-05-17 20:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/constants.vala:97
+#: src/constants.vala:103
 msgid "About"
 msgstr ""
 
-#: src/constants.vala:66
+#: src/constants.vala:69
 msgid "Add books to library"
 msgstr ""
 
-#: src/constants.vala:128
+#: src/constants.vala:134
 msgid "All Files"
 msgstr ""
 
@@ -49,15 +49,19 @@ msgstr ""
 msgid "Build your library by adding eBooks"
 msgstr ""
 
+#: src/constants.vala:67
+msgid "Check Word Meaning"
+msgstr ""
+
 #: src/constants.vala:54
 msgid "Click on a link to jump to bookmarked section"
 msgstr ""
 
-#: src/constants.vala:71
+#: src/constants.vala:74
 msgid "Click to bookmark this page"
 msgstr ""
 
-#: src/constants.vala:72
+#: src/constants.vala:75
 msgid "Click to remove this bookmark"
 msgstr ""
 
@@ -69,19 +73,19 @@ msgstr ""
 msgid "Contents"
 msgstr ""
 
-#: src/constants.vala:80
+#: src/constants.vala:84
 msgid "Dark theme"
 msgstr ""
 
-#: src/constants.vala:74
+#: src/constants.vala:77
 msgid "Decrease font size"
 msgstr ""
 
-#: src/constants.vala:78
+#: src/constants.vala:81
 msgid "Decrease line spacing"
 msgstr ""
 
-#: src/constants.vala:76
+#: src/constants.vala:79
 msgid "Decrease line width"
 msgstr ""
 
@@ -89,23 +93,35 @@ msgstr ""
 msgid "Edit Info for"
 msgstr ""
 
-#: src/constants.vala:86
+#: src/constants.vala:92
 msgid "Enable cache (opens books faster)"
+msgstr ""
+
+#: src/constants.vala:65
+msgid "Enter full screen view"
+msgstr ""
+
+#: src/constants.vala:86 src/constants.vala:87
+msgid "Enter full screen view and Esc key to exit"
+msgstr ""
+
+#: src/constants.vala:66
+msgid "Exit full screen view"
 msgstr ""
 
 #: src/constants.vala:57
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr ""
 
-#: src/constants.vala:73
+#: src/constants.vala:76
 msgid "Increase font size"
 msgstr ""
 
-#: src/constants.vala:77
+#: src/constants.vala:80
 msgid "Increase line spacing"
 msgstr ""
 
-#: src/constants.vala:75
+#: src/constants.vala:78
 msgid "Increase line width"
 msgstr ""
 
@@ -125,7 +141,7 @@ msgstr ""
 msgid "Library"
 msgstr ""
 
-#: src/constants.vala:79
+#: src/constants.vala:83
 msgid "Light theme"
 msgstr ""
 
@@ -147,7 +163,7 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: src/constants.vala:84 src/constants.vala:98
+#: src/constants.vala:90 src/constants.vala:104
 msgid "Preferences"
 msgstr ""
 
@@ -157,7 +173,7 @@ msgid ""
 "location : "
 msgstr ""
 
-#: src/constants.vala:67
+#: src/constants.vala:70
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 
@@ -177,7 +193,7 @@ msgstr ""
 msgid "Search this book..."
 msgstr ""
 
-#: src/constants.vala:69
+#: src/constants.vala:72
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr ""
 
@@ -185,23 +201,23 @@ msgstr ""
 msgid "Select an eBook to read"
 msgstr ""
 
-#: src/constants.vala:68
+#: src/constants.vala:71
 msgid "Select one or more books in library"
 msgstr ""
 
-#: src/constants.vala:81
+#: src/constants.vala:85
 msgid "Sepia theme"
 msgstr ""
 
-#: src/constants.vala:70
+#: src/constants.vala:73
 msgid "Set reading preferences"
 msgstr ""
 
-#: src/constants.vala:85
+#: src/constants.vala:91
 msgid "Turn on Night Mode"
 msgstr ""
 
-#: src/constants.vala:96
+#: src/constants.vala:102
 msgid "Unknown Book"
 msgstr ""
 
@@ -219,6 +235,10 @@ msgstr ""
 
 #: src/constants.vala:61
 msgid "Update Title"
+msgstr ""
+
+#: src/constants.vala:82
+msgid "Update cover image"
 msgstr ""
 
 #: src/constants.vala:35

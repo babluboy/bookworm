@@ -408,11 +408,13 @@ public class BookwormApp.Bookworm : Granite.Application {
 		aBook = renderPage(aBook, "");
 	}
 
-	public void updateLibraryViewFromDB(){
+	public async void updateLibraryViewFromDB(){
 		ArrayList<BookwormApp.Book> listOfBooks = BookwormApp.DB.getBooksFromDB();
 		foreach (BookwormApp.Book book in listOfBooks){
 			//add the book to the UI
 			BookwormApp.Library.updateLibraryView(book);
+			Idle.add (updateLibraryViewFromDB.callback);
+			yield;
 		}
 	}
 
