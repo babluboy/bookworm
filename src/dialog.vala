@@ -52,7 +52,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		updateCoverImageBox.pack_start(updateCoverImageButton,false, true, 0);
 		//Add action for setting cover image
 		updateCoverImageButton.clicked.connect (() => {
-			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select Image"), BookwormApp.Bookworm.window, false, BookwormApp.Utils.getFileTypeMapping("IMAGES"), "JPG");
+			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select Image"), BookwormApp.Bookworm.window, false, "IMAGES");
 			if(selectedFiles != null && selectedFiles.size > 0){
 				string selectedCoverImagePath = selectedFiles.get(0);
 				//copy cover image to bookworm cover image cache
@@ -87,7 +87,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		updateTitleBox.pack_end(updateTitleEntry,false, true, 0);
 		//Add action for setting Book Title
 		updateTitleEntry.focus_out_event.connect (() => {
-			if(updateTitleEntry.get_text() != null && updateTitleEntry.get_text().length > 0){
+			if(!aBook.getIsBookCoverImagePresent() && updateTitleEntry.get_text() != null && updateTitleEntry.get_text().length > 0){
 				aBook.setBookTitle(updateTitleEntry.get_text());
 				aBook.setWasBookOpened(true);
 				//refresh the library view

@@ -513,33 +513,10 @@ namespace BookwormApp.Utils {
 			debug("Completed creating Table Of Contents....");
 			return tocHTML.str;
 		}
-		//Utility function to provide a filter list of file types. This is used for file chooser dialog filter
-		public static Gee.HashMap<string, string> getFileTypeMapping(string fileType){
-			Gee.HashMap<string, string> filterMap = new Gee.HashMap<string, string>();
-			switch(fileType){
-				case "EBOOKS":
-					filterMap.set("*.epub", "EPUB");
-					filterMap.set("*.pdf", "PDF");
-					filterMap.set("*", BookwormApp.Constants.FILE_CHOOSER_FILTER_ALL_FILES);
-					break;
-				case "IMAGES":
-					filterMap.set("*.jpg", "JPG");
-					filterMap.set("*.jpeg", "JPEG");
-					filterMap.set("*.gif", "GIF");
-					filterMap.set("*.png", "PNG");
-					filterMap.set("*", BookwormApp.Constants.FILE_CHOOSER_FILTER_ALL_FILES);
-					break;
-				default:
-					filterMap.set("*", BookwormApp.Constants.FILE_CHOOSER_FILTER_ALL_FILES);
-					break;
-			}
-			return filterMap;
-		}
-
+		
 		// Create a GtkFileChooserDialog to perform the action desired
 		//The filterMap should be in the format: key=*.epub, value=ePUB, key=*.jpg, value=Images
-	  public Gtk.FileChooserDialog new_file_chooser_dialog (Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple, Gee.HashMap<string, string> filterMap, string defaultFilterName) {
-			bool isFilterSet = false;
+	  public Gtk.FileChooserDialog new_file_chooser_dialog (Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple, string filterType) {
 			Gtk.FileChooserDialog aFileChooserDialog = new Gtk.FileChooserDialog (title, parent, action);
 			aFileChooserDialog.set_select_multiple (select_multiple);
 			aFileChooserDialog.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
@@ -550,10 +527,9 @@ namespace BookwormApp.Utils {
 			    aFileChooserDialog.set_current_name("");
 			}
 			aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
-			debug("Setting File chooser to open on folder:"+BookwormApp.Utils.last_file_chooser_path);
 			if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){
 				bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
-				debug("Opening FileChooserDialog with path:"+BookwormApp.Utils.last_file_chooser_path+" returned status:"+aFileChooserDialogOpeningstatus.to_string());
+				debug("Opening FileChooserDialog with last used path:"+BookwormApp.Utils.last_file_chooser_path+" returned status:"+aFileChooserDialogOpeningstatus.to_string());
 			}else{
 				aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
 			}
@@ -563,25 +539,43 @@ namespace BookwormApp.Utils {
 			    return false;
 			});
 
-			foreach (var entry in filterMap.entries) {
-				Gtk.FileFilter files_filter = new Gtk.FileFilter ();
-				files_filter.set_filter_name (entry.value);
-				files_filter.add_pattern (entry.key);
-				aFileChooserDialog.add_filter (files_filter);
-				if((!isFilterSet) && defaultFilterName == entry.value){
-					aFileChooserDialog.set_filter (files_filter);
-					isFilterSet = true;
-				}
+			//Set File filters based on the required Filter Type
+			switch(filterType){
+				case "EBOOKS":
+					Gtk.FileFilter ebook_files_filter = new Gtk.FileFilter ();
+					//Add filter for supported eBook formats
+					ebook_files_filter.set_filter_name (BookwormApp.Constants.TEXT_FOR_FILE_CHOOSER_FILTER_BOOKS);
+					foreach (string pattern in BookwormApp.Constants.FILE_CHOOSER_FILTER_EBOOKS) {
+						ebook_files_filter.add_pattern (pattern);
+					}
+					aFileChooserDialog.add_filter (ebook_files_filter);
+					break;
+				case "IMAGES":
+					Gtk.FileFilter image_files_filter = new Gtk.FileFilter ();
+					//Add filter for supported eBook formats
+					image_files_filter.set_filter_name (BookwormApp.Constants.TEXT_FOR_FILE_CHOOSER_FILTER_IMAGES);
+					foreach (string pattern in BookwormApp.Constants.FILE_CHOOSER_FILTER_IMAGES) {
+						image_files_filter.add_pattern (pattern);
+					}
+					aFileChooserDialog.add_filter (image_files_filter);
+					break;
+				default:
+					break;
 			}
+			//Set the All Files filter
+			Gtk.FileFilter all_files_filter = new Gtk.FileFilter ();
+			all_files_filter.set_filter_name (BookwormApp.Constants.TEXT_FOR_FILE_CHOOSER_FILTER_ALL_FILES);
+			all_files_filter.add_pattern ("*");
+			aFileChooserDialog.add_filter (all_files_filter);
 			return aFileChooserDialog;
 	  }
 
-		public static ArrayList<string> selectFileChooser(Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple, Gee.HashMap<string, string> filterMap, string defaultFilterName){
+		public static ArrayList<string> selectFileChooser(Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple, string filterType){
 			ArrayList<string> eBookLocationList = new ArrayList<string>();
 			//create a hashmap to hold details for the book
 			Gee.HashMap<string,string> bookDetailsMap = new Gee.HashMap<string,string>();
 	    //choose eBook using a File chooser dialog
-			Gtk.FileChooserDialog aFileChooserDialog = BookwormApp.Utils.new_file_chooser_dialog (action, title, parent, select_multiple, filterMap, defaultFilterName);
+			Gtk.FileChooserDialog aFileChooserDialog = BookwormApp.Utils.new_file_chooser_dialog (action, title, parent, select_multiple, filterType);
 	    aFileChooserDialog.show_all ();
 	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
 	      SList<string> uris = aFileChooserDialog.get_uris ();

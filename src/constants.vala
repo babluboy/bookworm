@@ -65,6 +65,9 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view");
 	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Exit full screen view");
 	public const string TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING = _("Check Word Meaning");
+	public const string TEXT_FOR_FILE_CHOOSER_FILTER_BOOKS = _("Books");
+	public const string TEXT_FOR_FILE_CHOOSER_FILTER_IMAGES = _("Images");
+	public const string TEXT_FOR_FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
 
 	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK = _("Remove selected books from library (eBook file will not be deleted)");
@@ -131,7 +134,9 @@ namespace BookwormApp.Constants {
 	public static const int MAX_BOOK_COVER_PER_ROW = 6;
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
-	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
+	public static const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz"};
+	public static const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
+
 
 	public static const string BOOKWORM_READING_MODE[] = {"DAY MODE",
 																										 		"SEPIA MODE",
