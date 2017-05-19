@@ -262,8 +262,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//check if the database exists otherwise create database and required tables
 		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
 		//Set the colour mode based on the user's last saved prefference setting
-		if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == settings.reading_profile){
+		if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == settings.reading_profile){
 			applyProfile("NIGHT MODE");
+		}else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == settings.reading_profile){
+			applyProfile("SEPIA MODE");
 		}else{
 			//default to the Day Mode if no other mode is found in the settings
 			applyProfile("DAY MODE");
@@ -310,8 +312,13 @@ public class BookwormApp.Bookworm : Granite.Application {
 		switch(profilename){
 			case "NIGHT MODE":
 				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_BLACK);
-				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
+				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[2];
 				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+				break;
+			case "SEPIA MODE":
+				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
+				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
+				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
 				break;
 			case "DAY MODE":
 				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
@@ -349,7 +356,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 				//parse eBook to populate cache and book meta data
 				aBook = genericParser(aBook);
 				if(!aBook.getIsBookParsed()){
-					BookwormApp.DB.removeBookFromDB(libraryViewMap.get(eBookLocation));
+					BookwormApp.DB.removeBookFromDB(aBook);
 					BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
 				}else{
 					//add eBook cover image to library view
@@ -401,11 +408,13 @@ public class BookwormApp.Bookworm : Granite.Application {
 		aBook = renderPage(aBook, "");
 	}
 
-	public void updateLibraryViewFromDB(){
+	public async void updateLibraryViewFromDB(){
 		ArrayList<BookwormApp.Book> listOfBooks = BookwormApp.DB.getBooksFromDB();
 		foreach (BookwormApp.Book book in listOfBooks){
 			//add the book to the UI
 			BookwormApp.Library.updateLibraryView(book);
+			Idle.add (updateLibraryViewFromDB.callback);
+			yield;
 		}
 	}
 
@@ -666,6 +675,12 @@ public class BookwormApp.Bookworm : Granite.Application {
 					break;
 				case ".PDF":
 					aBook = BookwormApp.pdfReader.parsePDFBook(aBook);
+					break;
+				case ".CBR":
+					aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
+					break;
+				case ".CBZ":
+					aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
 					break;
 				default:
 					aBook.setIsBookParsed(false);

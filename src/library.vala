@@ -27,7 +27,7 @@ public class BookwormApp.Library{
     Gtk.Image bookSelectionImage;
     Gtk.Image bookSelectedImage;
 		string bookCoverLocation;
-
+    Gdk.Pixbuf aBookCover;
     Gdk.Pixbuf bookPlaceholderCoverPix = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.PLACEHOLDER_COVER_IMAGE_LOCATION, 150, 200, false);
     Gtk.Image bookPlaceholderCoverImage = new Gtk.Image.from_pixbuf(bookPlaceholderCoverPix);
 
@@ -37,8 +37,20 @@ public class BookwormApp.Library{
 			bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string());
 			aBook.setBookCoverLocation(bookCoverLocation);
 		}
-		Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
-		aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+    try{
+		    aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
+        aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+    }catch(GLib.Error e){
+      //Sometimes the path to the image selected by the parser is not a image
+      //This catch block assigns a default cover selected at random to cover this issue
+      bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("N", GLib.Random.int_range(1, 6).to_string());
+			aBook.setBookCoverLocation(bookCoverLocation);
+      aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
+      aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+      //set cover image present flag to false - this will add title text to the default cover
+      aBook.setIsBookCoverImagePresent(false);
+    }
+
 		aCoverImage.set_halign(Align.START);
 		aCoverImage.set_valign(Align.START);
 

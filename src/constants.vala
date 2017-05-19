@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "0.6";
+	public const string bookworm_version = "0.7";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017";
 	public const string app_icon = "bookworm";
@@ -37,12 +37,12 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
 	public const string TEXT_FOR_HEADERBAR_BOOK_SEARCH = _("Search this book...");
-	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search for Title, Author and Tags");
+	public const string TEXT_FOR_HEADERBAR_LIBRARY_SEARCH = _("Search by Title, Author and Tags");
 	public const string TEXT_FOR_WELCOME_MESSAGE_TITLE = _("Looks like Bookworm has no books !");
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
 	public const string TEXT_FOR_EXTRACTION_ISSUE = _("Problem in extracting contents of book. Check if book is available at location : ");
-	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid Mime type dectected. Check book format at location : ");
+	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid Mime type detected. Check book format at location : ");
 	public const string TEXT_FOR_CONTENT_ISSUE = _("Invalid content found. Ensure valid eBook file at location : ");
 	public const string TEXT_FOR_FORMAT_NOT_SUPPORTED = _("Bookworm does not support the format of the file found at location : ");
 	public const string TEXT_FOR_LIBRARY_BUTTON = _("Library");
@@ -60,7 +60,35 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER_IMAGE = _("Update Cover Image");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TITLE = _("Update Title");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TAGS = _("Update Tags");
+	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_AUTHOR = _("Update Author");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER = _("Update Cover Image");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Exit full screen view");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING = _("Check Word Meaning");
+	public const string TEXT_FOR_FILE_CHOOSER_FILTER_BOOKS = _("Books");
+	public const string TEXT_FOR_FILE_CHOOSER_FILTER_IMAGES = _("Images");
+	public const string TEXT_FOR_FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
+
+	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");
+	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK = _("Remove selected books from library (eBook file will not be deleted)");
+	public const string TOOLTIP_TEXT_FOR_SELECT_BOOK = _("Select one or more books in library");
+	public const string TOOLTIP_TEXT_FOR_BOOK_INFO = _("See Table of Contents, Bookmarks and Search Results");
+	public const string TOOLTIP_TEXT_FOR_READING_PREFERENCES = _("Set reading preferences");
+	public const string TOOLTIP_TEXT_FOR_BOOKMARKS_ACTIVATE = _("Click to bookmark this page");
+	public const string TOOLTIP_TEXT_FOR_BOOKMARKS_DEACTIVATE = _("Click to remove this bookmark");
+	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_INCREASE = _("Increase font size");
+	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_DECREASE = _("Decrease font size");
+	public const string TOOLTIP_TEXT_FOR_LINE_WIDTH_INCREASE = _("Increase line width");
+	public const string TOOLTIP_TEXT_FOR_LINE_WIDTH_DECREASE = _("Decrease line width");
+	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_INCREASE = _("Increase line spacing");
+	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_DECREASE = _("Decrease line spacing");
+	public const string TOOLTIP_TEXT_FOR_UPDATING_COVER_IMAGE = _("Update cover image");
+	public const string TOOLTIP_TEXT_FOR_LIGHT_MODE = _("Light theme");
+	public const string TOOLTIP_TEXT_FOR_DARK_MODE = _("Dark theme");
+	public const string TOOLTIP_TEXT_FOR_SEPIA_MODE = _("Sepia theme");
+	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view and Esc key to exit");
+	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Enter full screen view and Esc key to exit");
+
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");
@@ -93,6 +121,7 @@ namespace BookwormApp.Constants {
 	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-active.png";
 	public static const string NIGHT_PROFILE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-profile-night.png";
 	public static const string DAY_PROFILE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-profile-day.png";
+	public static const string SEPIA_PROFILE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-profile-sepia.png";
 	public static const string SELECTION_IMAGE_BUTTON_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection.svg";
 	public static const string SELECTION_OPTION_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
 	public static const string SELECTION_CHECKED_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
@@ -105,10 +134,13 @@ namespace BookwormApp.Constants {
 	public static const int MAX_BOOK_COVER_PER_ROW = 6;
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
-	public static const string FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
+	public static const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz"};
+	public static const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
+
 
 	public static const string BOOKWORM_READING_MODE[] = {"DAY MODE",
-																										 		"NIGHT MODE",
+																										 		"SEPIA MODE",
+																												"NIGHT MODE"
 																										   };
 	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE",
 																										 "READING_MODE",

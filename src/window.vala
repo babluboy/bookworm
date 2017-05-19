@@ -58,18 +58,21 @@ public class BookwormApp.AppWindow {
     Gtk.Button select_book_button = new Gtk.Button ();
     select_book_button.set_image (select_book_image);
     select_book_button.set_relief (ReliefStyle.NONE);
+    select_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_SELECT_BOOK);
 
     //Set up Button for adding books
     Gtk.Image add_book_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
     Gtk.Button add_book_button = new Gtk.Button ();
     add_book_button.set_image (add_book_image);
     add_book_button.set_relief (ReliefStyle.NONE);
+    add_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_ADD_BOOK);
 
     //Set up Button for removing books
     Gtk.Image remove_book_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
     Gtk.Button remove_book_button = new Gtk.Button ();
     remove_book_button.set_image (remove_book_image);
     remove_book_button.set_relief (ReliefStyle.NONE);
+    remove_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_BOOK);
 
     //Set up the progress bar for addition of books to library
     bookAdditionBar = new Gtk.ProgressBar ();
@@ -189,7 +192,7 @@ public class BookwormApp.AppWindow {
     });
     //Add action for adding a book on the library view
     add_book_button.clicked.connect (() => {
-      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, BookwormApp.Utils.getFileTypeMapping("EBOOKS"), "EPUB");
+      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, "EBOOKS");
       BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
       int countOfBooksToBeAdded = 0;
       foreach(string pathToSelectedBook in selectedEBooks){
@@ -220,9 +223,41 @@ public class BookwormApp.AppWindow {
       BookwormApp.Bookworm.removeSelectedBooksFromLibrary();
     });
     //handle context menu on the webview reader
-    aWebView.context_menu.connect (() => {
-      //TO-DO: Build context menu for reading ebook
-      return true;//stops webview default context menu from loading
+    aWebView.context_menu.connect ((context_menu, event, hit_test_result) => {
+      context_menu.remove_all();
+      Gtk.Action pageActionFullScreenEntry = new Gtk.Action ("FULL_SCREEN_READING_VIEW",
+                                              BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY,
+                                              BookwormApp.Constants.TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY,
+                                              null);
+      Gtk.Action pageActionFullScreenExit = new Gtk.Action ("FULL_SCREEN_READING_VIEW",
+                                              BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT,
+                                              BookwormApp.Constants.TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT,
+                                              null);
+      Gtk.Action pageActionWordMeaning = new Gtk.Action ("WORD_MEANING",
+                                              BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING,
+                                              null,
+                                              null);
+      pageActionWordMeaning.set_sensitive(false); //TODO: Implement word meaning
+      WebKit.ContextMenuItem pageContextMenuItemWordMeaning = new WebKit.ContextMenuItem (pageActionWordMeaning);
+      WebKit.ContextMenuItem pageContextMenuItemFullScreenEntry = new WebKit.ContextMenuItem (pageActionFullScreenEntry);
+      WebKit.ContextMenuItem pageContextMenuItemFullScreenExit = new WebKit.ContextMenuItem (pageActionFullScreenExit);
+      context_menu.append(pageContextMenuItemWordMeaning);
+      if(book_reading_footer_box.get_visible()){
+        context_menu.append(pageContextMenuItemFullScreenEntry);
+      }else{
+        context_menu.append(pageContextMenuItemFullScreenExit);
+      }
+
+      //Set Context menu items
+      pageActionFullScreenEntry.activate.connect (() => {
+        book_reading_footer_box.hide();
+        BookwormApp.Bookworm.window.fullscreen();
+      });
+      pageActionFullScreenExit.activate.connect (() => {
+        book_reading_footer_box.show();
+        BookwormApp.Bookworm.window.unfullscreen();
+      });
+      return false;
     });
     //capture key press events on the webview reader
     aWebView.key_press_event.connect ((ev) => {
@@ -239,6 +274,14 @@ public class BookwormApp.AppWindow {
           aBookRightKeyPress = BookwormApp.Bookworm.renderPage(aBookRightKeyPress, "FORWARD");
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookRightKeyPress.getBookLocation(), aBookRightKeyPress);
+        }
+        if (ev.keyval == Gdk.Key.Escape) {// Escape key pressed, remove full screen
+          book_reading_footer_box.show();
+          BookwormApp.Bookworm.window.unfullscreen();
+        }
+        if (ev.keyval == Gdk.Key.F11) {// F11 key pressed, enter or remove full screen
+          book_reading_footer_box.hide();
+          BookwormApp.Bookworm.window.fullscreen();
         }
         return false;
     });
@@ -302,7 +345,7 @@ public class BookwormApp.AppWindow {
       BookwormApp.Bookworm.bookWormUIBox.show_all();
       BookwormApp.Bookworm.toggleUIState();
 
-      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, BookwormApp.Utils.getFileTypeMapping("EBOOKS"), "EPUB");
+      ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, "EBOOKS");
       BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
       int countOfBooksToBeAdded = 0;
       foreach(string pathToSelectedBook in selectedEBooks){

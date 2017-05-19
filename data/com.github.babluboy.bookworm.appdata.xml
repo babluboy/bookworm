@@ -9,7 +9,14 @@
   <summary>A simple, focused eBook reader</summary>
   <description>
     <p>Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc.</p>
-    <p>This version supports EPUB and PDF formats and support for other formats to follow.</p>
+    <p>Manage your library with access to update book metadata and quickly find books with tag based filtering and metadata searching.</p>
+    <p>This version supports EPUB, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
+    <p>Key features for Bookworm v0.7:</p>
+    <ul>
+​      <li>Support for Comics (CBR and CBZ formats)</li>
+​      <li>Full screen reading view</li>
+      <li>Sepia colour profile for reading</li>
+​    </ul>
   </description>
   <screenshots>
       <screenshot type="default">
@@ -25,6 +32,11 @@
     <binary>bookworm</binary>
   </provides>
   <releases>
+    <release version="0.7" date="2017-05-30">
+      ​<description>
+      ​ <p>Comics Support and UX improvements</p>
+      ​</description>
+    ​</release>
     <release version="0.6" date="2017-05-15">
       ​<description>
       ​ <p>PDF Support and UX improvements</p>

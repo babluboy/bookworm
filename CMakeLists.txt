@@ -15,8 +15,8 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/bookworm")
 
 set (EXEC_NAME "bookworm")
-set (RELEASE_NAME "bookworm v0.5")
-set (VERSION "0.5")
+set (RELEASE_NAME "bookworm v0.7")
+set (VERSION "0.7")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 # Some definitions
@@ -41,6 +41,7 @@ set (SOURCE_LIST
     src/pdfReader.vala
     src/contentHandler.vala
     src/cleanup.vala
+    src/comicsReader.vala
 )
 
 include (GSettings)
@@ -111,6 +112,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/pdfReader.vala
     src/contentHandler.vala
     src/cleanup.vala
+    src/comicsReader.vala
 
 # tell what libraries to use when compiling
 PACKAGES
@@ -154,6 +156,7 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection.svg 
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-day.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-night.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-sepia.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-placeholder-cover.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-1.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-2.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
@@ -163,6 +166,6 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover
 
 # install app specific desktop, appdata and css files
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.desktop DESTINATION ${DATADIR}/applications)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.appdata.xml DESTINATION ${DATADIR}/appdata)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.appdata.xml DESTINATION ${DATADIR}/metainfo/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.app.css DESTINATION ${DATADIR}/bookworm)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/bookworm.contract DESTINATION share/contractor)

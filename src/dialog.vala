@@ -46,12 +46,13 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.Button updateCoverImageButton = new Gtk.Button ();
 		updateCoverImageButton.set_image (updateImageIcon);
 		updateCoverImageButton.set_relief (ReliefStyle.NONE);
+		updateCoverImageButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_UPDATING_COVER_IMAGE);
 		Gtk.Box updateCoverImageBox = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		updateCoverImageBox.pack_start(updateCoverLabel,false, true, 0);
 		updateCoverImageBox.pack_start(updateCoverImageButton,false, true, 0);
 		//Add action for setting cover image
 		updateCoverImageButton.clicked.connect (() => {
-			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select Image"), BookwormApp.Bookworm.window, false, BookwormApp.Utils.getFileTypeMapping("IMAGES"), "JPG");
+			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select Image"), BookwormApp.Bookworm.window, false, "IMAGES");
 			if(selectedFiles != null && selectedFiles.size > 0){
 				string selectedCoverImagePath = selectedFiles.get(0);
 				//copy cover image to bookworm cover image cache
@@ -86,7 +87,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		updateTitleBox.pack_end(updateTitleEntry,false, true, 0);
 		//Add action for setting Book Title
 		updateTitleEntry.focus_out_event.connect (() => {
-			if(updateTitleEntry.get_text() != null && updateTitleEntry.get_text().length > 0){
+			if(!aBook.getIsBookCoverImagePresent() && updateTitleEntry.get_text() != null && updateTitleEntry.get_text().length > 0){
 				aBook.setBookTitle(updateTitleEntry.get_text());
 				aBook.setWasBookOpened(true);
 				//refresh the library view
@@ -101,6 +102,22 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				aBook.setBookWidget("TITLE_TEXT_LABEL", titleTextLabel);
 				BookwormApp.AppWindow.library_grid.show_all();
 				BookwormApp.Bookworm.toggleUIState();
+			}
+			return false;
+		});
+
+		//Add text entry for updating book author
+		Gtk.Label updateAuthorLabel = new Gtk.Label(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_AUTHOR);
+		Gtk.Entry updateAuthorEntry = new Gtk.Entry ();
+		updateAuthorEntry.set_text (aBook.getBookAuthor());
+		Gtk.Box updateAuthorBox = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		updateAuthorBox.pack_start(updateAuthorLabel,false, true, 0);
+		updateAuthorBox.pack_end(updateAuthorEntry,false, true, 0);
+		//Add action for setting Book Title
+		updateAuthorEntry.focus_out_event.connect (() => {
+			if(updateAuthorEntry.get_text() != null && updateAuthorEntry.get_text().length > 0){
+				aBook.setBookAuthor(updateAuthorEntry.get_text());
+				aBook.setWasBookOpened(true);
 			}
 			return false;
 		});
@@ -165,6 +182,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
     bookContextMenuBox.pack_start(new Gtk.HSeparator() , true, true, 0);
 		bookContextMenuBox.pack_start(updateCoverImageBox, false, false);
 		bookContextMenuBox.pack_start(updateTitleBox, false, false);
+		bookContextMenuBox.pack_start(updateAuthorBox, false, false);
 		bookContextMenuBox.pack_start(updateTagsBox, false, false);
 		bookContextMenuBox.pack_start(new Gtk.HSeparator() , true, true, 0);
 		bookContextMenuBox.pack_end(ratingBox, false, false);
@@ -201,7 +219,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
     Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
     Gtk.Switch nightModeSwitch = new Gtk.Switch ();
     //Set the switch to on if the state is in Night Mode
-    if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
+    if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
       nightModeSwitch.set_active (true);
 		}
 		Gtk.Box prefBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
@@ -226,7 +244,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
     nightModeSwitch.notify["active"].connect (() => {
 			if (nightModeSwitch.active) {
-        BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[1]);
+        BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[2]);
         //call the rendered page if UI State is in reading mode
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
           BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
