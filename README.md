@@ -1,9 +1,9 @@
 # bookworm
-A simple eBook Reader application made for elementary OS
+A simple, focused eBook reader
 
 Author: Siddhartha Das
 
-The goal of Bookworm is to provide a uniform user experience for multiple electronic document formats like epub,pdf, mobi, etc. Currently Bookworm is in a very draft stage with support for epub format only.
+Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc. This version supports EPUB, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.
 
 ## How to install bookworm:
 
