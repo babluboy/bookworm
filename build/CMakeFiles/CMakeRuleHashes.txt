@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+621d70fb6e887daaa2ea13beb9dbeb6f bookworm_valac.stamp
+45bb50a11d0b95be6a6e997b26c33bd9 src/main.c

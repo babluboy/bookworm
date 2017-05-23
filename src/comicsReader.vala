@@ -34,6 +34,16 @@ public class BookwormApp.comicsReader {
       aBook = getContentList(aBook, extractionLocation);
 
     }
+    //Use the file name as book title
+    if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
+      string bookTitle = File.new_for_path(aBook.getBookLocation()).get_basename();
+      if(bookTitle.last_index_of(".") != -1){
+        bookTitle = bookTitle.slice(0, bookTitle.last_index_of("."));
+      }
+      aBook.setBookTitle(bookTitle);
+      debug("File name set as Title:"+bookTitle);
+    }
+
     aBook.setIsBookParsed(true);
     debug ("Sucessfully parsed Comic Book located at:"+aBook.getBookLocation());
     return aBook;

@@ -20,8 +20,29 @@ using Gtk;
 public class BookwormApp.Library{
 
   public static void updateLibraryView(owned BookwormApp.Book aBook){
-		debug("Started updating Library View for book:"+aBook.getBookLocation());
+    updateLibraryListView(aBook);
+    updateLibraryGridView(aBook);
+  }
 
+  public static void updateLibraryListView(owned BookwormApp.Book aBook){
+    debug("Started updating Library List View for book:"+aBook.getBookLocation());
+    BookwormApp.AppWindow.library_table_liststore.append (out BookwormApp.AppWindow.library_table_iter);
+		BookwormApp.AppWindow.library_table_liststore.set (BookwormApp.AppWindow.library_table_iter,
+                            0, aBook.getBookLocation(),
+                            1, BookwormApp.Utils.parseMarkUp(aBook.getBookTitle()),
+                            2, aBook.getBookAuthor(),
+                            3, aBook.getBookLastModificationDate(),
+                            4, aBook.getBookRating().to_string(),
+                            5, aBook.getBookTags()
+                          );
+    //add book details to libraryView Map
+		BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+    BookwormApp.Bookworm.libraryTreeModelFilter = new Gtk.TreeModelFilter (BookwormApp.AppWindow.library_table_liststore, null);
+    setFilterAndSort(BookwormApp.AppWindow.library_table_treeview, BookwormApp.Bookworm.libraryTreeModelFilter, SortType.DESCENDING);
+  }
+
+  public static void updateLibraryGridView(owned BookwormApp.Book aBook){
+		debug("Started updating Library Grid View for book:"+aBook.getBookLocation());
 		Gtk.Image aCoverImage;
     Gtk.Label titleTextLabel = new Gtk.Label("");
     Gtk.Image bookSelectionImage;
@@ -93,7 +114,7 @@ public class BookwormApp.Library{
     aEventBox.add(aOverlayImage);
 
 		//register the book with the filter function
-		BookwormApp.Bookworm.libraryViewFilter((Gtk.FlowBoxChild)aEventBox);
+		libraryViewFilter((Gtk.FlowBoxChild)aEventBox);
 		//add the book to the library view
 		BookwormApp.AppWindow.library_grid.add (aEventBox);
 
@@ -169,51 +190,126 @@ public class BookwormApp.Library{
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[0]");
 			//loop over HashMap of Book Objects and overlay selection image
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
-				Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
-        //set the order of the widgets to put the selection/selected badges at bottom
-        aOverlayImage.reorder_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"), 1);
-        aOverlayImage.reorder_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"), 2);
-        aOverlayImage.reorder_overlay(book.getBookWidget("COVER_IMAGE"), 3);
-        aOverlayImage.reorder_overlay(book.getBookWidget("TITLE_TEXT_LABEL"), 4);
+        if(BookwormApp.AppWindow.library_grid_scroll.get_visible()){
+  				Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
+          //set the order of the widgets to put the selection/selected badges at bottom
+          aOverlayImage.reorder_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"), 1);
+          aOverlayImage.reorder_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"), 2);
+          aOverlayImage.reorder_overlay(book.getBookWidget("COVER_IMAGE"), 3);
+          aOverlayImage.reorder_overlay(book.getBookWidget("TITLE_TEXT_LABEL"), 4);
+        }
       }
 		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2]){
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[2]");
 			//loop over HashMap of Book Objects and overlay selection badge
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
-        Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
-        //set the order of the widgets to put the selection badge on top
-        aOverlayImage.reorder_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"), 1);
-        aOverlayImage.reorder_overlay(book.getBookWidget("COVER_IMAGE"), 2);
-        aOverlayImage.reorder_overlay(book.getBookWidget("TITLE_TEXT_LABEL"), 3);
-        aOverlayImage.reorder_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"), 4);
+        if(BookwormApp.AppWindow.library_grid_scroll.get_visible()){
+          Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
+          //set the order of the widgets to put the selection badge on top
+          aOverlayImage.reorder_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"), 1);
+          aOverlayImage.reorder_overlay(book.getBookWidget("COVER_IMAGE"), 2);
+          aOverlayImage.reorder_overlay(book.getBookWidget("TITLE_TEXT_LABEL"), 3);
+          aOverlayImage.reorder_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"), 4);
+        }
 			}
 		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[3]");
       if(lBook != null){
-        Gtk.Overlay aOverlayImage = (Gtk.Overlay) lBook.getBookWidget("BOOK_OVERLAY_IMAGE");
-        if(!lBook.getIsBookSelected()){
-          //set the order of the widgets to put the selected badge on top
-          aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTION_BADGE_IMAGE"), 1);
-          aOverlayImage.reorder_overlay(lBook.getBookWidget("COVER_IMAGE"), 2);
-          aOverlayImage.reorder_overlay(lBook.getBookWidget("TITLE_TEXT_LABEL"), 3);
-          aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTED_BADGE_IMAGE"), 4);
-          lBook.setIsBookSelected(true);
-        }else{
-          //set the order of the widgets to put the selection badge on top
-          aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTED_BADGE_IMAGE"), 1);
-          aOverlayImage.reorder_overlay(lBook.getBookWidget("COVER_IMAGE"), 2);
-          aOverlayImage.reorder_overlay(lBook.getBookWidget("TITLE_TEXT_LABEL"), 3);
-          aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTION_BADGE_IMAGE"), 4);
-          lBook.setIsBookSelected(false);
+        if(BookwormApp.AppWindow.library_grid_scroll.get_visible()){
+          Gtk.Overlay aOverlayImage = (Gtk.Overlay) lBook.getBookWidget("BOOK_OVERLAY_IMAGE");
+          if(!lBook.getIsBookSelected()){
+            //set the order of the widgets to put the selected badge on top
+            aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTION_BADGE_IMAGE"), 1);
+            aOverlayImage.reorder_overlay(lBook.getBookWidget("COVER_IMAGE"), 2);
+            aOverlayImage.reorder_overlay(lBook.getBookWidget("TITLE_TEXT_LABEL"), 3);
+            aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTED_BADGE_IMAGE"), 4);
+            lBook.setIsBookSelected(true);
+          }else{
+            //set the order of the widgets to put the selection badge on top
+            aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTED_BADGE_IMAGE"), 1);
+            aOverlayImage.reorder_overlay(lBook.getBookWidget("COVER_IMAGE"), 2);
+            aOverlayImage.reorder_overlay(lBook.getBookWidget("TITLE_TEXT_LABEL"), 3);
+            aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTION_BADGE_IMAGE"), 4);
+            lBook.setIsBookSelected(false);
+          }
         }
         //update the book into the Library view HashMap
         BookwormApp.Bookworm.libraryViewMap.set(lBook.getBookLocation(),lBook);
       }
 		}
-
-		BookwormApp.AppWindow.library_grid.show_all();
+    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
+		  BookwormApp.AppWindow.library_grid.show_all();
+    }
 		BookwormApp.Bookworm.toggleUIState();
+	}
+
+  public static void setFilterAndSort(TreeView aTreeView, Gtk.TreeModelFilter aTreeModelFilter, SortType aSortType){
+		aTreeModelFilter.set_visible_func(filterTree);
+		Gtk.TreeModelSort aTreeModelSort = new TreeModelSort.with_model (aTreeModelFilter);
+		aTreeView.set_model(aTreeModelSort);
+		int noOfColumns = aTreeView.get_model().get_n_columns();
+		for(int count=0; count<noOfColumns; count++){
+			aTreeView.get_column(count).set_sort_column_id(count);
+			aTreeView.get_column(count).set_sort_order(aSortType);
+		}
+	}
+
+	public static bool filterTree(TreeModel model, TreeIter iter){
+		bool isFilterCriteriaMatch = true;
+		string modelValueString = "";
+		//If there is nothing to filter or the default help text then make the data visible
+		if ((BookwormApp.AppHeaderBar.headerSearchBar.get_text() == "")){
+				isFilterCriteriaMatch = true;
+		//extract data from the tree model and match againt the filter input
+		}else{
+      /* Filter on text visible on the tree view*/
+			GLib.Value modelValue;
+			int noOfColumns = model.get_n_columns();
+			for (int count = 0; count < noOfColumns; count++){
+				model.get_value (iter, count, out modelValue);
+				if(modelValue.strdup_contents().strip() != null){
+					//Attempt to get the value as a string - modelValueString will be empty if attempt fails
+					modelValueString = modelValue.strdup_contents().strip();
+					//Check the value of modelValueString and attempt to match to search string if it is not empty
+					if("" != modelValueString || modelValueString != null){
+						if ((modelValueString.up()).contains((BookwormApp.AppHeaderBar.headerSearchBar.get_text()).up())){
+							isFilterCriteriaMatch = true;
+							break;
+						}else{
+							isFilterCriteriaMatch =  false;
+						}
+					}
+				}
+				modelValue.unset();
+			}
+		}
+		return isFilterCriteriaMatch;
+	}
+
+  public static bool libraryViewFilter (FlowBoxChild aEventBoxBook) {
+		//execute filter only if the search text is not the default one or not blank
+		if(BookwormApp.AppHeaderBar.headerSearchBar.get_text() != BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH &&
+			 BookwormApp.AppHeaderBar.headerSearchBar.get_text().strip() != ""
+		){
+			BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get(((EventBox)aEventBoxBook.get_child()).get_name());
+			if((aBook.getBookLocation().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
+				return true;
+			}
+			else if((aBook.getBookTitle().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
+				return true;
+			}
+			else if((aBook.getBookAuthor().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
+				return true;
+			}
+			else if((aBook.getBookTags().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		return true;
 	}
 }

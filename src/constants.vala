@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "0.7";
+	public const string bookworm_version = "0.8";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017";
 	public const string app_icon = "bookworm";
@@ -68,6 +68,11 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_BOOKS = _("Books");
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_IMAGES = _("Images");
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
+	public const string TEXT_FOR_DEVICES_COLUMN_NAME_1 = _("Title");
+	public const string TEXT_FOR_DEVICES_COLUMN_NAME_2 = _("Author");
+	public const string TEXT_FOR_DEVICES_COLUMN_NAME_3 = _("Date Opened");
+	public const string TEXT_FOR_DEVICES_COLUMN_NAME_4 = _("Rating");
+	public const string TEXT_FOR_DEVICES_COLUMN_NAME_5 = _("Tags");
 
 	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK = _("Remove selected books from library (eBook file will not be deleted)");
@@ -142,11 +147,12 @@ namespace BookwormApp.Constants {
 																										 		"SEPIA MODE",
 																												"NIGHT MODE"
 																										   };
-	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE",
+	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE_GRID",
 																										 "READING_MODE",
 																										 "SELECTION_MODE",
 																										 "SELECTED_MODE",
 																										 "CONTENT_MODE",
+																										 "LIBRARY_MODE_LIST",
 																										};
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
 	public static const string IDENTIFIER_FOR_PROPERTY_START = "~~";

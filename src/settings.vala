@@ -30,6 +30,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
   public bool is_local_storage_enabled { get; set; }
   public string reading_width { get; set; }
   public string reading_line_height { get; set; }
+  public string library_view_mode { get; set; }
 
   public static Settings get_instance () {
     if (instance == null) {

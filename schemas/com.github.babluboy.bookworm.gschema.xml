@@ -44,5 +44,9 @@
 				<default>"150"</default>
 				<summary>Save the page line height for reading</summary>
 		</key>
+		<key name="library-view-mode" type="s">
+				<default>"LIBRARY_MODE_GRID"</default>
+				<summary>Save the library view mode</summary>
+		</key>
   </schema>
 </schemalist>

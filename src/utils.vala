@@ -319,10 +319,14 @@ namespace BookwormApp.Utils {
 		File fileDir = null;
 		File file = null;
 		try{
-			if(path != null || path.length > 1)
+			if(path != null || path.length > 1){
 				fileDir = File.new_for_commandline_arg(path);
-			if(filename != null && filename.length > 1)
+			}
+			if(filename != null && filename.length > 1){
 				file = File.new_for_path(path+"/"+filename);
+			}else{
+				file = File.new_for_path(path);
+			}
 			if("CREATEDIR" == operation){
 				//check if directory does not exists
 				if(!fileDir.query_exists ()){
@@ -513,7 +517,7 @@ namespace BookwormApp.Utils {
 			debug("Completed creating Table Of Contents....");
 			return tocHTML.str;
 		}
-		
+
 		// Create a GtkFileChooserDialog to perform the action desired
 		//The filterMap should be in the format: key=*.epub, value=ePUB, key=*.jpg, value=Images
 	  public Gtk.FileChooserDialog new_file_chooser_dialog (Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple, string filterType) {
@@ -589,10 +593,15 @@ namespace BookwormApp.Utils {
 			return eBookLocationList;
 		}
 
+		public static string parseMarkUp(string inputString){
+			string outputString = "";
+			unichar accel_char;
+			Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
+			return outputString;
+		}
+
 		public static string decodeHTMLChars(string inputString){
 			string outputString = Soup.URI.decode(inputString);
-			//unichar accel_char;
-			//Pango.parse_markup (outputString, outputString.length, 0, null, out outputString, out accel_char);
 			return outputString;
 		}
 

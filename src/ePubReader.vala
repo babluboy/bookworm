@@ -359,7 +359,7 @@ public class BookwormApp.ePubReader {
   public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
     debug("Initiated process for finding meta data of eBook located at:"+aBook.getBookExtractionLocation());
     string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
-    //determine the title of the book if it is not already available
+    //determine the title of the book from contents if it is not already available
     if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
       if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
         int startOfTitleText = OpfContents.index_of(">", OpfContents.index_of("<dc:title"));
@@ -368,14 +368,17 @@ public class BookwormApp.ePubReader {
           string bookTitle = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfTitleText+1, endOfTittleText));
           aBook.setBookTitle(bookTitle);
           debug("Determined eBook Title as:"+bookTitle);
-        }else{
-          aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
-          debug("Could not determine eBook Title, default title set");
         }
-      }else{
-        aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
-        debug("Could not determine eBook Title, default title set");
       }
+    }
+    //If the book title has still not been determined, use the file name as book title
+    if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
+      string bookTitle = File.new_for_path(aBook.getBookExtractionLocation()).get_basename();
+      if(bookTitle.last_index_of(".") != -1){
+        bookTitle = bookTitle.slice(0, bookTitle.last_index_of("."));
+      }
+      aBook.setBookTitle(bookTitle);
+      debug("File name set as Title:"+bookTitle);
     }
 
     //determine the author of the book

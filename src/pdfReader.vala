@@ -157,8 +157,13 @@ public class BookwormApp.pdfReader {
         aBook.setBookTitle(bookTitle);
         debug("Determined Title as:" + bookTitle + " for book located at:"+aBook.getBookExtractionLocation());
       }else{
-        aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
-        debug("Could not determine Title, default title set for book located at:"+aBook.getBookExtractionLocation());
+        //If the book title has not been determined, use the file name as book title
+        bookTitle = File.new_for_path(aBook.getBookLocation()).get_basename();
+        if(bookTitle.last_index_of(".") != -1){
+          bookTitle = bookTitle.slice(0, bookTitle.last_index_of("."));
+        }
+        aBook.setBookTitle(bookTitle);
+        debug("File name set as Title:"+bookTitle);
       }
     }
     return aBook;

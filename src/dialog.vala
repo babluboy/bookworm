@@ -81,27 +81,29 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		//Add text entry for updating book title
 		Gtk.Label updateTitleLabel = new Gtk.Label(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TITLE);
 		Gtk.Entry updateTitleEntry = new Gtk.Entry ();
-		updateTitleEntry.set_text (aBook.getBookTitle());
+		updateTitleEntry.set_text (BookwormApp.Utils.parseMarkUp(aBook.getBookTitle()));
 		Gtk.Box updateTitleBox = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		updateTitleBox.pack_start(updateTitleLabel,false, true, 0);
 		updateTitleBox.pack_end(updateTitleEntry,false, true, 0);
 		//Add action for setting Book Title
 		updateTitleEntry.focus_out_event.connect (() => {
-			if(!aBook.getIsBookCoverImagePresent() && updateTitleEntry.get_text() != null && updateTitleEntry.get_text().length > 0){
+			if(updateTitleEntry.get_text() != null && updateTitleEntry.get_text().length > 0){
 				aBook.setBookTitle(updateTitleEntry.get_text());
 				aBook.setWasBookOpened(true);
-				//refresh the library view
-				Gtk.Label titleTextLabel = (Gtk.Label) aBook.getBookWidget("TITLE_TEXT_LABEL");
-				titleTextLabel.set_text("<b>"+aBook.getBookTitle()+"</b>");
-				titleTextLabel.set_xalign(0.0f);
-				titleTextLabel.set_use_markup (true);
-				titleTextLabel.set_line_wrap (true);
-	      titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
-	      titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
-	      titleTextLabel.set_max_width_chars(-1);
-				aBook.setBookWidget("TITLE_TEXT_LABEL", titleTextLabel);
-				BookwormApp.AppWindow.library_grid.show_all();
-				BookwormApp.Bookworm.toggleUIState();
+				if(!aBook.getIsBookCoverImagePresent()){
+					//refresh the library view
+					Gtk.Label titleTextLabel = (Gtk.Label) aBook.getBookWidget("TITLE_TEXT_LABEL");
+					titleTextLabel.set_text("<b>"+aBook.getBookTitle()+"</b>");
+					titleTextLabel.set_xalign(0.0f);
+					titleTextLabel.set_use_markup (true);
+					titleTextLabel.set_line_wrap (true);
+		      titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
+		      titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
+		      titleTextLabel.set_max_width_chars(-1);
+					aBook.setBookWidget("TITLE_TEXT_LABEL", titleTextLabel);
+					BookwormApp.AppWindow.library_grid.show_all();
+					BookwormApp.Bookworm.toggleUIState();
+				}
 			}
 			return false;
 		});

@@ -15,8 +15,8 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/bookworm")
 
 set (EXEC_NAME "bookworm")
-set (RELEASE_NAME "bookworm v0.7")
-set (VERSION "0.7")
+set (RELEASE_NAME "bookworm v0.8")
+set (VERSION "0.8")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 add_subdirectory (po)
