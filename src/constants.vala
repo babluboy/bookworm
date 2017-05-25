@@ -68,11 +68,11 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_BOOKS = _("Books");
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_IMAGES = _("Images");
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
-	public const string TEXT_FOR_DEVICES_COLUMN_NAME_1 = _("Title");
-	public const string TEXT_FOR_DEVICES_COLUMN_NAME_2 = _("Author");
-	public const string TEXT_FOR_DEVICES_COLUMN_NAME_3 = _("Date Opened");
-	public const string TEXT_FOR_DEVICES_COLUMN_NAME_4 = _("Rating");
-	public const string TEXT_FOR_DEVICES_COLUMN_NAME_5 = _("Tags");
+	public const string TEXT_FOR_LIST_VIEW_COLUMN_NAME_TITLE = _("Title");
+	public const string TEXT_FOR_LIST_VIEW_COLUMN_NAME_AUTHOR = _("Author");
+	public const string TEXT_FOR_LIST_VIEW_COLUMN_NAME_MODIFIED_DATE = _("Last Opened");
+	public const string TEXT_FOR_LIST_VIEW_COLUMN_NAME_RATING = _("Rating");
+	public const string TEXT_FOR_LIST_VIEW_COLUMN_NAME_TAGS = _("Tags");
 
 	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK = _("Remove selected books from library (eBook file will not be deleted)");
@@ -121,6 +121,11 @@ namespace BookwormApp.Constants {
 	public static const string LESS_LINE_HEIGHT_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-line-height-less.png";
 	public static const string MORE_LINE_WIDTH_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-width-more.png";
 	public static const string LESS_LINE_WIDTH_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-width-less.png";
+	public static const string RATING_1_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_1.png";
+	public static const string RATING_2_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_2.png";
+	public static const string RATING_3_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_3.png";
+	public static const string RATING_4_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_4.png";
+	public static const string RATING_5_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_5.png";
 	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-view-list-symbolic.png";
 	public static const string BOOKMARK_INACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-inactive.png";
 	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-active.png";

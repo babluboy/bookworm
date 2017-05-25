@@ -47,6 +47,11 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static Gdk.Pixbuf bookSelectionPix;
 	public static Gdk.Pixbuf bookSelectedPix;
 	public static Gtk.Image bookSelectionImage;
+	public static Gdk.Pixbuf image_rating_1;
+	public static Gdk.Pixbuf image_rating_2;
+	public static Gdk.Pixbuf image_rating_3;
+	public static Gdk.Pixbuf image_rating_4;
+	public static Gdk.Pixbuf image_rating_5;
 
 	public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
@@ -167,7 +172,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 												cssProvider,
 												Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
 											 );
-
+			//load images/icons
+			loadImages();
 			//add window components
 			window.set_titlebar (BookwormApp.AppHeaderBar.create_headerbar());
 			BookwormApp.AppWindow.createWelcomeScreen();
@@ -223,6 +229,19 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public override void open (File[] files, string hint) {
+
+	}
+
+	public void loadImages(){
+		try{
+			image_rating_1 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_1_IMAGE_LOCATION);
+		  image_rating_2 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_2_IMAGE_LOCATION);
+		  image_rating_3 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_3_IMAGE_LOCATION);
+		  image_rating_4 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_4_IMAGE_LOCATION);
+		  image_rating_5 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_5_IMAGE_LOCATION);
+		}catch(GLib.Error e){
+			warning("Image could not be loaded. Error:"+e.message);
+		}
 
 	}
 

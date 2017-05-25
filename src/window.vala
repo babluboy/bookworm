@@ -56,16 +56,16 @@ public class BookwormApp.AppWindow {
     library_grid.set_filter_func(BookwormApp.Library.libraryViewFilter);
 
     //Create a treeview to display the list of books in the library
-    library_table_liststore = new Gtk.ListStore (6, typeof (string), typeof (string), typeof (string), typeof (string), typeof (string), typeof (string));
+    library_table_liststore = new Gtk.ListStore (6, typeof (string), typeof (string), typeof (string), typeof (string), typeof (Gdk.Pixbuf), typeof (string));
     library_table_treeview = new Gtk.TreeView();
     CellRendererText device_cell_txt = new CellRendererText ();
 		CellRendererPixbuf device_cell_pix = new CellRendererPixbuf ();
     library_table_treeview.insert_column_with_attributes (-1, "", device_cell_txt, "text", 0);
-    library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_DEVICES_COLUMN_NAME_1, device_cell_txt, "text", 1);
-		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_DEVICES_COLUMN_NAME_2, device_cell_txt, "text", 2);
-		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_DEVICES_COLUMN_NAME_3, device_cell_txt, "text", 3);
-		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_DEVICES_COLUMN_NAME_4, device_cell_txt, "text", 4);
-		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_DEVICES_COLUMN_NAME_5, device_cell_txt, "text", 5);
+    library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TITLE, device_cell_txt, "text", 1);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_AUTHOR, device_cell_txt, "text", 2);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_MODIFIED_DATE, device_cell_txt, "text", 3);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_RATING, device_cell_pix, "pixbuf", 4);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TAGS, device_cell_txt, "text", 5);
     //hide certain columns
     library_table_treeview.get_column (0).set_visible(false); //This column contains the path to the eBook file
 

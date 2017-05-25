@@ -26,13 +26,34 @@ public class BookwormApp.Library{
 
   public static void updateLibraryListView(owned BookwormApp.Book aBook){
     debug("Started updating Library List View for book:"+aBook.getBookLocation());
+    Gdk.Pixbuf image_rating;
+    switch (aBook.getBookRating().to_string()){
+      case "1":
+        image_rating = BookwormApp.Bookworm.image_rating_1;
+        break;
+      case "2":
+        image_rating = BookwormApp.Bookworm.image_rating_2;
+        break;
+      case "3":
+        image_rating = BookwormApp.Bookworm.image_rating_3;
+        break;
+      case "4":
+        image_rating = BookwormApp.Bookworm.image_rating_4;
+        break;
+      case "5":
+        image_rating = BookwormApp.Bookworm.image_rating_5;
+        break;
+      default:
+        image_rating = null;
+        break;
+    }
     BookwormApp.AppWindow.library_table_liststore.append (out BookwormApp.AppWindow.library_table_iter);
 		BookwormApp.AppWindow.library_table_liststore.set (BookwormApp.AppWindow.library_table_iter,
                             0, aBook.getBookLocation(),
                             1, BookwormApp.Utils.parseMarkUp(aBook.getBookTitle()),
                             2, aBook.getBookAuthor(),
-                            3, aBook.getBookLastModificationDate(),
-                            4, aBook.getBookRating().to_string(),
+                            3, new DateTime.from_unix_local(int64.parse(aBook.getBookLastModificationDate())).format("%Y-%m-%d %H:%M:%S "),
+                            4, image_rating,
                             5, aBook.getBookTags()
                           );
     //add book details to libraryView Map

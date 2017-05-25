@@ -67,7 +67,7 @@ public class BookwormApp.contentHandler {
         StringBuilder srcItemFullPath = new StringBuilder();
         foreach(string srcItem in srcList){
           srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
-          contents.assign(contents.str.replace(tagname+srcItem+"\"",tagname+srcItemFullPath.str+"\""));
+          contents.assign(contents.str.replace(tagname+srcItem+"\"",BookwormApp.Utils.encodeHTMLChars(tagname+srcItemFullPath.str)+"\""));
         }
       }
       //update the content for required manipulation

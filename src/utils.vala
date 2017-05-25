@@ -124,7 +124,7 @@ namespace BookwormApp.Utils {
 			if(!doesFileExist)
 				grepOutput = ""; //TODO: handle the no file found error
 			*/
-			return grepOutput;
+			return grepOutput.strip();
 		}catch (Error e){
 			warning("Error encountered in getting full path for filename ["+fileName+"] searching within directory["+rootDirectoryToSearch+"]: "+e.message);
 		}
@@ -602,6 +602,11 @@ namespace BookwormApp.Utils {
 
 		public static string decodeHTMLChars(string inputString){
 			string outputString = Soup.URI.decode(inputString);
+			return outputString;
+		}
+
+		public static string encodeHTMLChars(string inputString){
+			string outputString = inputString.replace("#", "%23");
 			return outputString;
 		}
 
