@@ -262,6 +262,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 			//default to the Day Mode if no other mode is found in the settings
 			applyProfile("DAY MODE");
 		}
+		//set the library view
+		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
 		//Fetch details of Books from the database and update the library view
 		updateLibraryViewFromDB();
 	}

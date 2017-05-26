@@ -73,6 +73,9 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_LIST_VIEW_COLUMN_NAME_MODIFIED_DATE = _("Last Opened");
 	public const string TEXT_FOR_LIST_VIEW_COLUMN_NAME_RATING = _("Rating");
 	public const string TEXT_FOR_LIST_VIEW_COLUMN_NAME_TAGS = _("Tags");
+	public const string TEXT_FOR_TIME_TODAY = _("Today");
+	public const string TEXT_FOR_TIME_YESTERDAY = _("Yesterday");
+	public const string TEXT_FOR_TIME_DAYS = _("Days");
 
 	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK = _("Remove selected books from library (eBook file will not be deleted)");

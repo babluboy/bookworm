@@ -58,14 +58,21 @@ public class BookwormApp.AppWindow {
     //Create a treeview to display the list of books in the library
     library_table_liststore = new Gtk.ListStore (6, typeof (string), typeof (string), typeof (string), typeof (string), typeof (Gdk.Pixbuf), typeof (string));
     library_table_treeview = new Gtk.TreeView();
-    CellRendererText device_cell_txt = new CellRendererText ();
-		CellRendererPixbuf device_cell_pix = new CellRendererPixbuf ();
-    library_table_treeview.insert_column_with_attributes (-1, "", device_cell_txt, "text", 0);
-    library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TITLE, device_cell_txt, "text", 1);
-		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_AUTHOR, device_cell_txt, "text", 2);
-		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_MODIFIED_DATE, device_cell_txt, "text", 3);
-		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_RATING, device_cell_pix, "pixbuf", 4);
-		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TAGS, device_cell_txt, "text", 5);
+    library_table_treeview.activate_on_single_click = true;
+    CellRendererText non_editable_cell_txt = new CellRendererText ();
+    CellRendererText title_cell_txt = new CellRendererText ();
+    title_cell_txt.editable = true;
+    CellRendererText author_cell_txt = new CellRendererText ();
+    author_cell_txt.editable = true;
+    CellRendererPixbuf rating_cell_pix = new CellRendererPixbuf ();
+    CellRendererText tags_cell_txt = new CellRendererText ();
+    tags_cell_txt.editable = true;
+    library_table_treeview.insert_column_with_attributes (-1, "", non_editable_cell_txt, "text", 0);
+    library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TITLE, title_cell_txt, "text", 1);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_AUTHOR, author_cell_txt, "text", 2);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_MODIFIED_DATE, non_editable_cell_txt, "text", 3);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_RATING, rating_cell_pix, "pixbuf", 4);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TAGS, tags_cell_txt, "text", 5);
     //hide certain columns
     library_table_treeview.get_column (0).set_visible(false); //This column contains the path to the eBook file
 
@@ -178,8 +185,6 @@ public class BookwormApp.AppWindow {
     main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
     //main_ui_box.get_style_context().add_class ("box_white");
 
-    //Add all UI action listeners
-
     //Add action to open a book for double clicking on row in library list view
     library_table_treeview.row_activated.connect ((path, column) => {
       Gtk.TreeIter iter;
@@ -190,6 +195,37 @@ public class BookwormApp.AppWindow {
         BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
         BookwormApp.Bookworm.readSelectedBook(aBook);
       }
+    });
+
+    //Add action to update tree view when editing is Completed
+    title_cell_txt.edited.connect((path, new_text) => {
+      updateLibraryListViewData(path, new_text, 1);
+    });
+    author_cell_txt.edited.connect((path, new_text) => {
+      updateLibraryListViewData(path, new_text, 2);
+    });
+    tags_cell_txt.edited.connect((path, new_text) => {
+      updateLibraryListViewData(path, new_text, 5);
+    });
+
+    //Add action to open the context menu on right click of tree view
+    library_table_treeview.button_press_event.connect ((event) => {
+      //capture which mouse button was clicked on the book in the library
+      uint mouseButtonClicked;
+      event.get_button(out mouseButtonClicked);
+      //handle right button click for context menu
+      if (event.get_event_type ()  == Gdk.EventType.BUTTON_PRESS  &&  mouseButtonClicked == 3){
+        /*TreeIter iter;
+        TreeModel model;
+  	    Value bookLocation;
+  	    TreeSelection selection = library_table_treeview.get_selection();
+        selection.get_selected (out model, out iter);
+        model.get_value (iter, 0, out bookLocation);
+        BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+        TODO:Set up the right click context
+        */
+      };
+      return false; //return false to propagate the action further i.e. row activation
     });
 
     //Add action on the forward button for reading
@@ -366,6 +402,27 @@ public class BookwormApp.AppWindow {
 
     debug("Completed creation of main window components...");
     return main_ui_box;
+  }
+
+  public static void updateLibraryListViewData(string path, string new_text, int column){
+    Gtk.TreeIter iter;
+    string bookLocation;
+    Gtk.TreePath treePath = new Gtk.TreePath.from_string (path);
+    bool tmp = BookwormApp.AppWindow.library_table_liststore.get_iter (out iter, treePath);
+    BookwormApp.AppWindow.library_table_liststore.set (iter, column, new_text);
+    BookwormApp.AppWindow.library_table_liststore.get (iter, 0, out bookLocation);
+    BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+    if(column == 1){
+      aBook.setBookTitle(new_text);
+    }
+    if(column == 2){
+      aBook.setBookAuthor(new_text);
+    }
+    if(column == 5){
+      aBook.setBookTags(new_text);
+    }
+    aBook.setWasBookOpened(true);
+    BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
   }
 
   public static Granite.Widgets.Welcome createWelcomeScreen(){

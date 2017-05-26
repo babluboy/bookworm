@@ -42,7 +42,14 @@ public class BookwormApp.AppHeaderBar {
     bookwormApp.library_mode_button = new Granite.Widgets.ModeButton();
     bookwormApp.library_mode_button.append (library_grid_button_image);
     bookwormApp.library_mode_button.append (library_list_button_image);
-    bookwormApp.library_mode_button.set_spacing(0);
+    bookwormApp.library_mode_button.valign = Gtk.Align.CENTER;
+    bookwormApp.library_mode_button.halign = Gtk.Align.START;
+    bookwormApp.library_mode_button.set_size_request (60, -1);
+    if(settings.library_view_mode == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
+      bookwormApp.library_mode_button.set_active (0);
+    }else{
+      bookwormApp.library_mode_button.set_active (1);
+    }
 
     bookwormApp.library_view_button = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
     bookwormApp.library_view_button.get_style_context().add_class ("back-button");

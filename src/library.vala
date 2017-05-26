@@ -26,7 +26,9 @@ public class BookwormApp.Library{
 
   public static void updateLibraryListView(owned BookwormApp.Book aBook){
     debug("Started updating Library List View for book:"+aBook.getBookLocation());
+    //set the rating image
     Gdk.Pixbuf image_rating;
+    string modifiedElapsedTime = "";
     switch (aBook.getBookRating().to_string()){
       case "1":
         image_rating = BookwormApp.Bookworm.image_rating_1;
@@ -47,12 +49,25 @@ public class BookwormApp.Library{
         image_rating = null;
         break;
     }
+    //calculate the time elapsed from last modified DateTime
+    TimeSpan timespan = (new DateTime.now_local()).difference (new DateTime.from_unix_local(int64.parse(aBook.getBookLastModificationDate())));
+    int64 daysElapsed = timespan/(86400000000);
+    if( timespan < TimeSpan.DAY){
+      modifiedElapsedTime = BookwormApp.Constants.TEXT_FOR_TIME_TODAY;
+    }else if(timespan < 2 * TimeSpan.DAY){
+      modifiedElapsedTime = BookwormApp.Constants.TEXT_FOR_TIME_YESTERDAY;
+    }else if(timespan < 30 * TimeSpan.DAY){
+      modifiedElapsedTime = daysElapsed.to_string()+ " " + BookwormApp.Constants.TEXT_FOR_TIME_DAYS;
+    }else{
+      modifiedElapsedTime = new DateTime.from_unix_local(int64.parse(aBook.getBookLastModificationDate())).format("%d %m %Y");
+    }
+
     BookwormApp.AppWindow.library_table_liststore.append (out BookwormApp.AppWindow.library_table_iter);
 		BookwormApp.AppWindow.library_table_liststore.set (BookwormApp.AppWindow.library_table_iter,
                             0, aBook.getBookLocation(),
                             1, BookwormApp.Utils.parseMarkUp(aBook.getBookTitle()),
                             2, aBook.getBookAuthor(),
-                            3, new DateTime.from_unix_local(int64.parse(aBook.getBookLastModificationDate())).format("%Y-%m-%d %H:%M:%S "),
+                            3, modifiedElapsedTime,
                             4, image_rating,
                             5, aBook.getBookTags()
                           );
@@ -60,6 +75,7 @@ public class BookwormApp.Library{
 		BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
     BookwormApp.Bookworm.libraryTreeModelFilter = new Gtk.TreeModelFilter (BookwormApp.AppWindow.library_table_liststore, null);
     setFilterAndSort(BookwormApp.AppWindow.library_table_treeview, BookwormApp.Bookworm.libraryTreeModelFilter, SortType.DESCENDING);
+    debug("Completed updating Library List View for book:"+aBook.getBookLocation());
   }
 
   public static void updateLibraryGridView(owned BookwormApp.Book aBook){
@@ -151,11 +167,6 @@ public class BookwormApp.Library{
     //Create a popover context menu for the book
     Gtk.Popover bookPopover = BookwormApp.AppDialog.createBookContextMenu(aBook);
 
-		//set the view mode to library view
-		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-		BookwormApp.AppWindow.library_grid.show_all();
-		BookwormApp.Bookworm.toggleUIState();
-
 		//add listener for book objects based on mode
 		aEventBox.button_press_event.connect ((event) => {
       //capture which mouse button was clicked on the book in the library
@@ -181,8 +192,9 @@ public class BookwormApp.Library{
   			return true;
       }
 		});
-		//add book details to libraryView Map
+    //add book details to libraryView Map
 		BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+    BookwormApp.AppWindow.library_grid.show_all();
     debug("Completed updating Library View for book:"+aBook.getBookLocation());
 	}
 
