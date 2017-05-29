@@ -31,6 +31,7 @@ public class BookwormApp.AppWindow {
   public static ScrolledWindow library_grid_scroll;
   public static ScrolledWindow library_list_scroll;
   public static WebKit.WebView aWebView;
+  public static WebKit.Settings webkitSettings;
   public static Gtk.EventBox book_reading_footer_eventbox;
   public static Gtk.Box book_reading_footer_box;
   public static Gtk.Box bookReading_ui_box;
@@ -55,8 +56,12 @@ public class BookwormApp.AppWindow {
     library_grid.set_valign(Gtk.Align.START);
     library_grid.set_filter_func(BookwormApp.Library.libraryViewFilter);
 
+    library_grid_scroll = new ScrolledWindow (null, null);
+    library_grid_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+    library_grid_scroll.add (library_grid);
+
     //Create a treeview to display the list of books in the library
-    library_table_liststore = new Gtk.ListStore (6, typeof (string), typeof (string), typeof (string), typeof (string), typeof (Gdk.Pixbuf), typeof (string));
+    library_table_liststore = new Gtk.ListStore (7, typeof (string), typeof (string), typeof (string), typeof (string), typeof (Gdk.Pixbuf), typeof (string), typeof (string));
     library_table_treeview = new Gtk.TreeView();
     library_table_treeview.activate_on_single_click = true;
     CellRendererText non_editable_cell_txt = new CellRendererText ();
@@ -75,10 +80,6 @@ public class BookwormApp.AppWindow {
 		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TAGS, tags_cell_txt, "text", 5);
     //hide certain columns
     library_table_treeview.get_column (0).set_visible(false); //This column contains the path to the eBook file
-
-    library_grid_scroll = new ScrolledWindow (null, null);
-    library_grid_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-    library_grid_scroll.add (library_grid);
 
     library_list_scroll = new ScrolledWindow (null, null);
     library_list_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -136,14 +137,17 @@ public class BookwormApp.AppWindow {
     bookLibrary_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
     //create the webview to display page content
-    WebKit.Settings webkitSettings = new WebKit.Settings();
+    webkitSettings = new WebKit.Settings();
     webkitSettings.set_allow_file_access_from_file_urls (true);
-    webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
+    webkitSettings.set_allow_universal_access_from_file_urls(true); //this gives launchpad build error
     webkitSettings.set_auto_load_images(true);
     aWebView = new WebKit.WebView.with_settings(webkitSettings);
     aWebView.set_zoom_level(BookwormApp.Settings.get_instance().zoom_level);
     webkitSettings.set_enable_javascript(true);
-    webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
+    //This is for setting the faont to the system font - Is this required ?
+    //webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
+    webkitSettings.set_default_font_size (BookwormApp.Bookworm.settings.reading_font_size);
+    webkitSettings.set_default_font_family(BookwormApp.Bookworm.settings.reading_font_name);
 
     //Set up Button for previous page
     Gtk.Image back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);

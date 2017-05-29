@@ -228,14 +228,38 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		prefBox.pack_start(colourScheme, false, false);
 		prefBox.pack_end(nightModeSwitch, false, false);
 
+		Gtk.Label fontChooserLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_FONT);
+		Gtk.FontButton fontButton = new Gtk.FontButton ();
+		fontButton.set_font_name(BookwormApp.Bookworm.settings.reading_font_name);
+		Gtk.Box fontBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		fontBox.pack_start(fontChooserLabel, false, false);
+		fontBox.pack_end(fontButton, false, false);
+
     Gtk.Box content = dialog.get_content_area () as Gtk.Box;
 		content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
 		content.pack_start (prefBox, false, false, 0);
 		content.pack_start (localStorageBox, false, false, 0);
+		content.pack_start (fontBox, false, false, 0);
 
     dialog.show_all ();
 
     //Set up Actions
+		fontButton.font_set.connect (() => {
+			// Emitted when a font has been chosen:
+			string selectedFontandSize = fontButton.get_font_name ();
+			string selectedFontFamily = "";
+			int selectedFontSize = 12;
+			if(selectedFontandSize.index_of(" ") != -1){
+				selectedFontFamily = selectedFontandSize.slice(0, selectedFontandSize.index_of(" ")).strip();
+				selectedFontSize = int.parse(selectedFontandSize.slice(selectedFontandSize.last_index_of(" "), selectedFontandSize.length));
+			}
+			BookwormApp.Bookworm.settings.reading_font_name = selectedFontandSize;
+			BookwormApp.Bookworm.settings.reading_font_name_family = selectedFontFamily;
+			BookwormApp.Bookworm.settings.reading_font_size = selectedFontSize;
+			BookwormApp.AppWindow.webkitSettings.set_default_font_family (selectedFontFamily);
+			BookwormApp.AppWindow.webkitSettings.set_default_font_size (selectedFontSize);
+		});
+
 		localStorageSwitch.notify["active"].connect (() => {
 			if (localStorageSwitch.active) {
         BookwormApp.Bookworm.settings.is_local_storage_enabled = true;

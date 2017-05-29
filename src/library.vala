@@ -69,7 +69,8 @@ public class BookwormApp.Library{
                             2, aBook.getBookAuthor(),
                             3, modifiedElapsedTime,
                             4, image_rating,
-                            5, aBook.getBookTags()
+                            5, aBook.getBookTags(),
+                            6, aBook.getBookRating().to_string()
                           );
     //add book details to libraryView Map
 		BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
@@ -283,9 +284,16 @@ public class BookwormApp.Library{
 		Gtk.TreeModelSort aTreeModelSort = new TreeModelSort.with_model (aTreeModelFilter);
 		aTreeView.set_model(aTreeModelSort);
 		int noOfColumns = aTreeView.get_model().get_n_columns();
-		for(int count=0; count<noOfColumns; count++){
-			aTreeView.get_column(count).set_sort_column_id(count);
-			aTreeView.get_column(count).set_sort_order(aSortType);
+    //only consider the cols 0-5 of the treeview. remaning columns are not displayed
+		for(int count=0; count<6; count++){
+      if(count == 4){
+        //set the sort value of the 4th column (rating images) to the 6th value of the ListStore (rating values)
+        aTreeView.get_column(count).set_sort_column_id(6);
+  			aTreeView.get_column(count).set_sort_order(aSortType);
+      }else{
+			  aTreeView.get_column(count).set_sort_column_id(count);
+			  aTreeView.get_column(count).set_sort_order(aSortType);
+      }
 		}
 	}
 

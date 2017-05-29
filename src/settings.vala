@@ -31,6 +31,9 @@ public class BookwormApp.Settings : Granite.Services.Settings {
   public string reading_width { get; set; }
   public string reading_line_height { get; set; }
   public string library_view_mode { get; set; }
+  public string reading_font_name { get; set; }
+  public string reading_font_name_family { get; set; }
+  public int reading_font_size { get; set; }
 
   public static Settings get_instance () {
     if (instance == null) {

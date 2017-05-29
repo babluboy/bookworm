@@ -32,7 +32,7 @@ public class BookwormApp.Book{
   private string bookPublishDate = "";
   private string bookCreationDate = "";
   private string bookLastModificationDate = "";
-  private int bookRating = 1;
+  private int bookRating = 0;
   private StringBuilder bookmarks = new StringBuilder ("");
   private ArrayList<string> bookContentList = new ArrayList<string> ();
 
