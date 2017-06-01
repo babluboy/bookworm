@@ -130,6 +130,8 @@ namespace BookwormApp.Constants {
 	public static const string RATING_3_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_3.png";
 	public static const string RATING_4_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_4.png";
 	public static const string RATING_5_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_5.png";
+	public static const string SELECTION_OPTION_IMAGE_SMALL_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-option.svg";
+	public static const string SELECTION_CHECKED_IMAGE_SMALL_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-checked.svg";
 	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-view-list-symbolic.png";
 	public static const string BOOKMARK_INACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-inactive.png";
 	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-active.png";
@@ -158,10 +160,12 @@ namespace BookwormApp.Constants {
 																										   };
 	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE_GRID",
 																										 "READING_MODE",
-																										 "SELECTION_MODE",
-																										 "SELECTED_MODE",
+																										 "GRID_SELECTION_MODE",
+																										 "GRID_SELECTED_MODE",
 																										 "CONTENT_MODE",
 																										 "LIBRARY_MODE_LIST",
+																										 "LIST_SELECTION_MODE",
+																										 "LIST_SELECTED_MODE"
 																										};
 	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
 	public static const string IDENTIFIER_FOR_PROPERTY_START = "~~";

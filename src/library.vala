@@ -26,6 +26,8 @@ public class BookwormApp.Library{
 
   public static void updateLibraryListView(owned BookwormApp.Book aBook){
     debug("Started updating Library List View for book:"+aBook.getBookLocation());
+    //set the selection image
+    //Gdk.Pixbuf image_selection = new Gdk.Pixbuf();
     //set the rating image
     Gdk.Pixbuf image_rating;
     string modifiedElapsedTime = "";
@@ -63,19 +65,39 @@ public class BookwormApp.Library{
     }
 
     BookwormApp.AppWindow.library_table_liststore.append (out BookwormApp.AppWindow.library_table_iter);
-		BookwormApp.AppWindow.library_table_liststore.set (BookwormApp.AppWindow.library_table_iter,
-                            0, aBook.getBookLocation(),
+    BookwormApp.AppWindow.library_table_liststore.set (BookwormApp.AppWindow.library_table_iter,
+                            0, null,
                             1, BookwormApp.Utils.parseMarkUp(aBook.getBookTitle()),
                             2, aBook.getBookAuthor(),
                             3, modifiedElapsedTime,
                             4, image_rating,
                             5, aBook.getBookTags(),
-                            6, aBook.getBookRating().to_string()
+                            6, aBook.getBookRating().to_string(),
+                            7, aBook.getBookLocation()
                           );
     //add book details to libraryView Map
 		BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
     BookwormApp.Bookworm.libraryTreeModelFilter = new Gtk.TreeModelFilter (BookwormApp.AppWindow.library_table_liststore, null);
-    setFilterAndSort(BookwormApp.AppWindow.library_table_treeview, BookwormApp.Bookworm.libraryTreeModelFilter, SortType.DESCENDING);
+    BookwormApp.Bookworm.libraryTreeModelFilter.set_visible_func(filterTree);
+		Gtk.TreeModelSort aTreeModelSort = new TreeModelSort.with_model (BookwormApp.Bookworm.libraryTreeModelFilter);
+		BookwormApp.AppWindow.library_table_treeview.set_model(aTreeModelSort);
+    //set treeview columns for sorting
+    BookwormApp.AppWindow.library_table_treeview.get_column(1).set_sort_column_id(1);
+    BookwormApp.AppWindow.library_table_treeview.get_column(1).set_sort_order(SortType.DESCENDING);
+
+    BookwormApp.AppWindow.library_table_treeview.get_column(2).set_sort_column_id(2);
+    BookwormApp.AppWindow.library_table_treeview.get_column(2).set_sort_order(SortType.DESCENDING);
+
+    BookwormApp.AppWindow.library_table_treeview.get_column(3).set_sort_column_id(3);
+    BookwormApp.AppWindow.library_table_treeview.get_column(3).set_sort_order(SortType.DESCENDING);
+
+    //6th item is the rating value corresponding to the image on the 4th item
+    BookwormApp.AppWindow.library_table_treeview.get_column(4).set_sort_column_id(6);
+    BookwormApp.AppWindow.library_table_treeview.get_column(4).set_sort_order(SortType.DESCENDING);
+
+    BookwormApp.AppWindow.library_table_treeview.get_column(5).set_sort_column_id(5);
+    BookwormApp.AppWindow.library_table_treeview.get_column(5).set_sort_order(SortType.DESCENDING);
+
     debug("Completed updating Library List View for book:"+aBook.getBookLocation());
   }
 
@@ -185,17 +207,23 @@ public class BookwormApp.Library{
   				BookwormApp.Bookworm.readSelectedBook(aBook);
   			}
   			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
-           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
+           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+        {
   				BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[3];
   				aBook  = BookwormApp.Bookworm.libraryViewMap.get(aEventBox.get_name());
-  				updateLibraryViewForSelectionMode(aBook);
+  				updateGridViewForSelection(aBook);
   			}
   			return true;
       }
 		});
     //add book details to libraryView Map
 		BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-    BookwormApp.AppWindow.library_grid.show_all();
+    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
+       BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+       BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+    {
+      BookwormApp.AppWindow.library_grid.show_all();
+    }
     debug("Completed updating Library View for book:"+aBook.getBookLocation());
 	}
 
@@ -218,10 +246,42 @@ public class BookwormApp.Library{
     //update the libraryview map with the book object
     BookwormApp.Bookworm.libraryViewMap.set(book.getBookLocation(), book);
   }
+  public static void updateListViewForSelection(owned BookwormApp.Book? lBook){
+    debug ("Updating List View Selection Badges for mode:"+BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE);
+    Gtk.TreeModelForeachFunc print_row = (model, path, iter) => {
+			GLib.Value bookLocationAtRow;
+			BookwormApp.AppWindow.library_table_liststore.get_value (iter, 7, out bookLocationAtRow);
+      BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocationAtRow);
+			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5]){
+        BookwormApp.AppWindow.library_table_liststore.set_value (iter, 0, BookwormApp.Bookworm.image_selection_transparent_small);
+        aBook.setIsBookSelected(false);
+      }
+      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6]){
+        BookwormApp.AppWindow.library_table_liststore.set_value (iter, 0, BookwormApp.Bookworm.image_selection_option_small);
+        aBook.setIsBookSelected(false);
+      }
+      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7] &&
+         (string) bookLocationAtRow == lBook.getBookLocation())
+      {
+        if(!lBook.getIsBookSelected()){
+          BookwormApp.AppWindow.library_table_liststore.set_value (iter, 0, BookwormApp.Bookworm.image_selection_checked_small);
+          aBook.setIsBookSelected(true);
+        }else{
+          BookwormApp.AppWindow.library_table_liststore.set_value (iter, 0, BookwormApp.Bookworm.image_selection_option_small);
+          aBook.setIsBookSelected(false);
+        }
+      }
+      //update the book into the Library view HashMap
+      BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(),aBook);
+			return false;
+		};
+		BookwormApp.AppWindow.library_table_liststore.foreach (print_row);
+  }
 
-  public static void updateLibraryViewForSelectionMode(owned BookwormApp.Book? lBook){
+  public static void updateGridViewForSelection(owned BookwormApp.Book? lBook){
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[0]");
+      Gee.HashMap<string, BookwormApp.Book> temp_libraryViewMap = new Gee.HashMap<string, BookwormApp.Book> ();
 			//loop over HashMap of Book Objects and overlay selection image
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
         if(BookwormApp.AppWindow.library_grid_scroll.get_visible()){
@@ -232,10 +292,18 @@ public class BookwormApp.Library{
           aOverlayImage.reorder_overlay(book.getBookWidget("COVER_IMAGE"), 3);
           aOverlayImage.reorder_overlay(book.getBookWidget("TITLE_TEXT_LABEL"), 4);
         }
+        temp_libraryViewMap.set(book.getBookLocation(),book);
+      }
+      //Iterate over all books and make the selection flag for each book as false
+      //This is to cover the scenario when a book was selected and the selection mode was changed without deleting the book
+      foreach (BookwormApp.Book aBook in temp_libraryViewMap.values){
+        aBook.setIsBookSelected(false);
+        BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(),aBook);
       }
 		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2]){
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[2]");
+      Gee.HashMap<string, BookwormApp.Book> temp_libraryViewMap = new Gee.HashMap<string, BookwormApp.Book> ();
 			//loop over HashMap of Book Objects and overlay selection badge
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
         if(BookwormApp.AppWindow.library_grid_scroll.get_visible()){
@@ -246,7 +314,14 @@ public class BookwormApp.Library{
           aOverlayImage.reorder_overlay(book.getBookWidget("TITLE_TEXT_LABEL"), 3);
           aOverlayImage.reorder_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"), 4);
         }
+        temp_libraryViewMap.set(book.getBookLocation(),book);
 			}
+      //Iterate over all books and make the selection flag for each book as false
+      //This is to cover the scenario when a book was selected and the selection mode was changed without deleting the book
+      foreach (BookwormApp.Book aBook in temp_libraryViewMap.values){
+        aBook.setIsBookSelected(false);
+        BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(),aBook);
+      }
 		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
       debug ("Updating Library View for Selection Badges BOOKWORM_UI_STATES[3]");
@@ -271,28 +346,6 @@ public class BookwormApp.Library{
         }
         //update the book into the Library view HashMap
         BookwormApp.Bookworm.libraryViewMap.set(lBook.getBookLocation(),lBook);
-      }
-		}
-    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
-		  BookwormApp.AppWindow.library_grid.show_all();
-    }
-		BookwormApp.Bookworm.toggleUIState();
-	}
-
-  public static void setFilterAndSort(TreeView aTreeView, Gtk.TreeModelFilter aTreeModelFilter, SortType aSortType){
-		aTreeModelFilter.set_visible_func(filterTree);
-		Gtk.TreeModelSort aTreeModelSort = new TreeModelSort.with_model (aTreeModelFilter);
-		aTreeView.set_model(aTreeModelSort);
-		int noOfColumns = aTreeView.get_model().get_n_columns();
-    //only consider the cols 0-5 of the treeview. remaning columns are not displayed
-		for(int count=0; count<6; count++){
-      if(count == 4){
-        //set the sort value of the 4th column (rating images) to the 6th value of the ListStore (rating values)
-        aTreeView.get_column(count).set_sort_column_id(6);
-  			aTreeView.get_column(count).set_sort_order(aSortType);
-      }else{
-			  aTreeView.get_column(count).set_sort_column_id(count);
-			  aTreeView.get_column(count).set_sort_order(aSortType);
       }
 		}
 	}

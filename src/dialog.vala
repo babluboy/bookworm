@@ -231,6 +231,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.Label fontChooserLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_FONT);
 		Gtk.FontButton fontButton = new Gtk.FontButton ();
 		fontButton.set_font_name(BookwormApp.Bookworm.settings.reading_font_name);
+		fontButton.set_show_style (false);
 		Gtk.Box fontBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		fontBox.pack_start(fontChooserLabel, false, false);
 		fontBox.pack_end(fontButton, false, false);
@@ -250,7 +251,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			string selectedFontFamily = "";
 			int selectedFontSize = 12;
 			if(selectedFontandSize.index_of(" ") != -1){
-				selectedFontFamily = selectedFontandSize.slice(0, selectedFontandSize.index_of(" ")).strip();
+				selectedFontFamily = selectedFontandSize.slice(0, selectedFontandSize.last_index_of(" ")).strip();
 				selectedFontSize = int.parse(selectedFontandSize.slice(selectedFontandSize.last_index_of(" "), selectedFontandSize.length));
 			}
 			BookwormApp.Bookworm.settings.reading_font_name = selectedFontandSize;

@@ -46,7 +46,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static Gtk.Button prefButton;
 	public static Gdk.Pixbuf bookSelectionPix;
 	public static Gdk.Pixbuf bookSelectedPix;
-	public static Gtk.Image bookSelectionImage;
+	public static Gdk.Pixbuf image_selection_option_small;
+	public static Gdk.Pixbuf image_selection_checked_small;
+	public static Gdk.Pixbuf image_selection_transparent_small;
+	public static Gdk.Pixbuf image_selection_scaled;
 	public static Gdk.Pixbuf image_rating_1;
 	public static Gdk.Pixbuf image_rating_2;
 	public static Gdk.Pixbuf image_rating_3;
@@ -234,6 +237,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 	public void loadImages(){
 		try{
+			image_selection_option_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_OPTION_IMAGE_SMALL_LOCATION);
+			image_selection_checked_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
+			image_selection_transparent_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
+			image_selection_transparent_small.fill(0x00000000);
 			image_rating_1 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_1_IMAGE_LOCATION);
 		  image_rating_2 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_2_IMAGE_LOCATION);
 		  image_rating_3 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_3_IMAGE_LOCATION);
@@ -279,7 +286,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 				yield;
 			}
 			BookwormApp.Cleanup.cleanUp();
-			debug("settings.library_view_mode:"+settings.library_view_mode);
 	}
 
 	public void saveWindowState(){
@@ -370,6 +376,23 @@ public class BookwormApp.Bookworm : Granite.Application {
 				}else{
 					//add eBook cover image to library view
 					BookwormApp.Library.updateLibraryView(aBook);
+					//Set to normal grid view if the current view is in any of the Grid View State
+					if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
+						 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+						 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+					{
+						BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+						BookwormApp.Library.updateGridViewForSelection(null);
+					}
+					//Set to normal list view if the current view is in any of the List View State
+					if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
+						 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+						 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+					{
+						BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
+						BookwormApp.Library.updateListViewForSelection(null);
+					}
+					toggleUIState();
 					//set the name of the book being currently read
 					locationOfEBookCurrentlyRead = eBookLocation;
 					debug ("Completed adding book to ebook library. Number of books in library:"+libraryViewMap.size.to_string());
@@ -382,9 +405,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 	public static void removeSelectedBooksFromLibrary(){
 		ArrayList<string> listOfBooksToBeRemoved = new ArrayList<string> ();
-		//loop through the Library View Hashmap
+		//loop through the Library View Hashmap and remove the selected books
 		foreach (BookwormApp.Book book in libraryViewMap.values){
-			//check if the book selection flag to true and remove book
+			//check if the book selection flag to true and add it to removal list
 			if(book.getIsBookSelected()){
 				//hold the books to be deleted in a list
 				listOfBooksToBeRemoved.add(book.getBookLocation());
@@ -399,32 +422,45 @@ public class BookwormApp.Bookworm : Granite.Application {
 				}
 			}
 		}
-		BookwormApp.AppWindow.library_grid.show_all();
 
-		//loop through the rows in the treeview and remove the selected books
-		ArrayList<Gtk.TreeIter ?> listOfItersToBeRemoved = new ArrayList<Gtk.TreeIter ?> ();
-		Gtk.TreeModelForeachFunc print_row = (model, path, iter) => {
-			GLib.Value bookLocationAtRow;
-			BookwormApp.AppWindow.library_table_liststore.get_value (iter, 0, out bookLocationAtRow);
-			if((string) bookLocationAtRow in listOfBooksToBeRemoved){
-				listOfItersToBeRemoved.add(iter);
+		if(listOfBooksToBeRemoved.size > 0){
+			//loop through the rows in the treeview and remove the selected books
+			ArrayList<Gtk.TreeIter ?> listOfItersToBeRemoved = new ArrayList<Gtk.TreeIter ?> ();
+			Gtk.TreeModelForeachFunc print_row = (model, path, iter) => {
+				GLib.Value bookLocationAtRow;
+				BookwormApp.AppWindow.library_table_liststore.get_value (iter, 7, out bookLocationAtRow);
+				if((string) bookLocationAtRow in listOfBooksToBeRemoved){
+					listOfItersToBeRemoved.add(iter);
+				}
+				return false;
+			};
+			BookwormApp.AppWindow.library_table_liststore.foreach (print_row);
+			foreach(Gtk.TreeIter iterToBeRemoved in listOfItersToBeRemoved){
+				BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
 			}
-			return false;
-		};
-		BookwormApp.AppWindow.library_table_liststore.foreach (print_row);
-		foreach(Gtk.TreeIter iterToBeRemoved in listOfItersToBeRemoved){
-			BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
 		}
-
 
 		//loop through the removed books and remove them from the Library View Hashmap, local cache and Database
 		foreach (string bookLocation in listOfBooksToBeRemoved) {
 			BookwormApp.DB.removeBookFromDB(libraryViewMap.get(bookLocation));
 			libraryViewMap.unset(bookLocation);
 		}
-
-		BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-		BookwormApp.Library.updateLibraryViewForSelectionMode(null);
+		//Set to normal grid view if the current view is in any of the Grid View State
+		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+		{
+			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+			BookwormApp.Library.updateGridViewForSelection(null);
+		}
+		//Set to normal list view if the current view is in any of the List View State
+		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+		{
+			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
+			BookwormApp.Library.updateListViewForSelection(null);
+		}
 		toggleUIState();
 	}
 
@@ -519,13 +555,21 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 		//Set-up UI for Library View
 		//Show the grid view or the list view based on state
-    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
+    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+		{
       BookwormApp.AppWindow.library_list_scroll.set_visible(false);
 			BookwormApp.AppWindow.library_grid_scroll.set_visible(true);
+			BookwormApp.AppWindow.library_grid.show_all();
     }
-		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5]){
+		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+		{
       BookwormApp.AppWindow.library_grid_scroll.set_visible(false);
 			BookwormApp.AppWindow.library_list_scroll.set_visible(true);
+			BookwormApp.AppWindow.library_table_treeview.show_all();
 		}
 
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||

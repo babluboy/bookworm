@@ -144,6 +144,8 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_2.png D
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_3.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_4.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_5.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-selection-checked.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-view-list-symbolic.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-inactive.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-active.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)

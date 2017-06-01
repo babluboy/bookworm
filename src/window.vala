@@ -60,10 +60,12 @@ public class BookwormApp.AppWindow {
     library_grid_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
     library_grid_scroll.add (library_grid);
 
-    //Create a treeview to display the list of books in the library
-    library_table_liststore = new Gtk.ListStore (7, typeof (string), typeof (string), typeof (string), typeof (string), typeof (Gdk.Pixbuf), typeof (string), typeof (string));
+    //Create a treeview and Liststore to display the list of books in the library
+    library_table_liststore = new Gtk.ListStore (8, typeof (Gdk.Pixbuf), typeof (string), typeof (string), typeof (string), typeof (Gdk.Pixbuf), typeof (string), typeof (string), typeof (string));
     library_table_treeview = new Gtk.TreeView();
     library_table_treeview.activate_on_single_click = true;
+    //Set up the various cell types for the library metadata
+    CellRendererPixbuf selection_cell_pix = new CellRendererPixbuf ();
     CellRendererText non_editable_cell_txt = new CellRendererText ();
     CellRendererText title_cell_txt = new CellRendererText ();
     title_cell_txt.editable = true;
@@ -72,14 +74,13 @@ public class BookwormApp.AppWindow {
     CellRendererPixbuf rating_cell_pix = new CellRendererPixbuf ();
     CellRendererText tags_cell_txt = new CellRendererText ();
     tags_cell_txt.editable = true;
-    library_table_treeview.insert_column_with_attributes (-1, "", non_editable_cell_txt, "text", 0);
+    //Set up Treeview columns
+    library_table_treeview.insert_column_with_attributes (-1, " ", selection_cell_pix, "pixbuf", 0);
     library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TITLE, title_cell_txt, "text", 1);
 		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_AUTHOR, author_cell_txt, "text", 2);
 		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_MODIFIED_DATE, non_editable_cell_txt, "text", 3);
 		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_RATING, rating_cell_pix, "pixbuf", 4);
 		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TAGS, tags_cell_txt, "text", 5);
-    //hide certain columns
-    library_table_treeview.get_column (0).set_visible(false); //This column contains the path to the eBook file
 
     library_list_scroll = new ScrolledWindow (null, null);
     library_list_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -194,9 +195,15 @@ public class BookwormApp.AppWindow {
       Gtk.TreeIter iter;
 	    Value bookLocation;
 	    library_table_liststore.get_iter (out iter, path);
-	    library_table_liststore.get_value (iter, 0, out bookLocation);
+	    library_table_liststore.get_value (iter, 7, out bookLocation);
+      BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+      {
+        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[7];
+        BookwormApp.Library.updateListViewForSelection(aBook);
+      }
 	    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5]){
-        BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
         BookwormApp.Bookworm.readSelectedBook(aBook);
       }
     });
@@ -283,18 +290,39 @@ public class BookwormApp.AppWindow {
     });
     //Add action for putting library in select view
     select_book_button.clicked.connect (() => {
-      //check if the mode is already in selection mode
-      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] || BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
-        //UI is already in selection/selected mode - second click puts the view in normal mode
-        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
-        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
+      //check if the library is in List View mode
+      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
+         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+      {
+        //check if the mode is already in selection mode
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+        {
+          //UI is already in selection/selected mode - second click puts the view in normal mode
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
+          BookwormApp.Library.updateListViewForSelection(null);
+        }else{
+          //UI is not in selection/selected mode - set the view mode to selection mode
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[6];
+          BookwormApp.Library.updateListViewForSelection(null);
+        }
       }else{
-        //UI is not in selection/selected mode - set the view mode to selection mode
-        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[2];
-        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
+        //check if the mode is already in selection mode
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+        {
+          //UI is already in selection/selected mode - second click puts the view in normal mode
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
+          BookwormApp.Library.updateGridViewForSelection(null);
+        }else{
+          //UI is not in selection/selected mode - set the view mode to selection mode
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[2];
+          BookwormApp.Library.updateGridViewForSelection(null);
+        }
       }
-    });
 
+    });
     //Add action for removing a selected book on the library view
     remove_book_button.clicked.connect (() => {
       BookwormApp.Bookworm.removeSelectedBooksFromLibrary();
@@ -414,7 +442,7 @@ public class BookwormApp.AppWindow {
     Gtk.TreePath treePath = new Gtk.TreePath.from_string (path);
     bool tmp = BookwormApp.AppWindow.library_table_liststore.get_iter (out iter, treePath);
     BookwormApp.AppWindow.library_table_liststore.set (iter, column, new_text);
-    BookwormApp.AppWindow.library_table_liststore.get (iter, 0, out bookLocation);
+    BookwormApp.AppWindow.library_table_liststore.get (iter, 7, out bookLocation);
     BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
     if(column == 1){
       aBook.setBookTitle(new_text);
