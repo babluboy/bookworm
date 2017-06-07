@@ -19,9 +19,11 @@
 using Gtk;
 using Gee;
 public class BookwormApp.AppDialog : Gtk.Dialog {
+	public static Gtk.ComboBoxText profileCombobox;
+	public static BookwormApp.Settings settings;
 
 	public AppDialog () {
-
+		settings = BookwormApp.Settings.get_instance();
 	}
 
 	public static Gtk.Popover createBookContextMenu (owned BookwormApp.Book aBook){
@@ -202,6 +204,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 	public static void createPreferencesDialog () {
 		AppDialog dialog = new AppDialog ();
+		string[] profileColorList = settings.list_of_profile_colors.split (",");
+
     dialog.title = BookwormApp.Constants.TEXT_FOR_PREFERENCES_DIALOG_TITLE;
 		dialog.border_width = 5;
 		dialog.set_default_size (600, 200);
@@ -209,7 +213,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		Gtk.Label localStorageLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_LOCAL_STORAGE);
     Gtk.Switch localStorageSwitch = new Gtk.Switch ();
-    //Set the switch to on if the state is in Night Mode
+    //Set the switch to on if caching is set by saved settings
     if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
       localStorageSwitch.set_active (true);
 		}
@@ -220,8 +224,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
     Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
     Gtk.Switch nightModeSwitch = new Gtk.Switch ();
-    //Set the switch to on if the state is in Night Mode
-    if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
+    //Set the switch to on if the Night Mode is set by saved settings
+    if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
       nightModeSwitch.set_active (true);
 		}
 		Gtk.Box prefBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
@@ -236,11 +240,52 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		fontBox.pack_start(fontChooserLabel, false, false);
 		fontBox.pack_end(fontButton, false, false);
 
+
+		//Gtk.Label customProfileLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION);
+		profileCombobox = new Gtk.ComboBoxText ();
+		StringBuilder profileNameText = new StringBuilder();
+		profileNameText.assign(BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION).append(" 1");
+		profileCombobox.append_text (profileNameText.str);
+		profileNameText.assign(BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION).append(" 2");
+		profileCombobox.append_text (profileNameText.str);
+		profileNameText.assign(BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION).append(" 3");
+		profileCombobox.append_text (profileNameText.str);
+
+		Gtk.Label backgroundColourLabel = new Gtk.Label ("Background Colour ");
+		Gtk.Entry backgroundColourEntry = new Gtk.Entry ();
+		backgroundColourEntry.set_width_chars (6);
+		Gtk.Box backgroundColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		backgroundColourBox.pack_start(backgroundColourLabel, false, false);
+		backgroundColourBox.pack_start(backgroundColourEntry, false, false);
+
+		Gtk.Label textColourLabel = new Gtk.Label ("Font Colour ");
+		Gtk.Entry textColourEntry = new Gtk.Entry ();
+		textColourEntry.set_width_chars (6);
+		Gtk.Box textColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		textColourBox.pack_start(textColourLabel, false, false);
+		textColourBox.pack_start(textColourEntry, false, false);
+
+		Gtk.LinkButton preferencesReset = new Gtk.LinkButton.with_label ("reset", BookwormApp.Constants.TEXT_FOR_PREFERENCES_VALUES_RESET);
+		Gtk.Box resetBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		resetBox.pack_end(preferencesReset, false, false);
+
+		//set the value for the first profile
+		profileCombobox.active = 0;
+		textColourEntry.set_text(profileColorList[0]);
+		backgroundColourEntry.set_text(profileColorList[1]);
+
+		Gtk.Box customProfileBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		customProfileBox.pack_start(profileCombobox, false, false);
+		customProfileBox.pack_end(textColourBox, false, false);
+		customProfileBox.pack_end(backgroundColourBox, false, false);
+
     Gtk.Box content = dialog.get_content_area () as Gtk.Box;
 		content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
 		content.pack_start (prefBox, false, false, 0);
 		content.pack_start (localStorageBox, false, false, 0);
 		content.pack_start (fontBox, false, false, 0);
+		content.pack_start (customProfileBox, false, false, 0);
+		content.pack_start (resetBox, false, false, 0);
 
     dialog.show_all ();
 
@@ -257,8 +302,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			BookwormApp.Bookworm.settings.reading_font_name = selectedFontandSize;
 			BookwormApp.Bookworm.settings.reading_font_name_family = selectedFontFamily;
 			BookwormApp.Bookworm.settings.reading_font_size = selectedFontSize;
-			BookwormApp.AppWindow.webkitSettings.set_default_font_family (selectedFontFamily);
-			BookwormApp.AppWindow.webkitSettings.set_default_font_size (selectedFontSize);
+			//call the rendered page if UI State is in reading mode
+			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+				BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+				currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+				BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
+			}
 		});
 
 		localStorageSwitch.notify["active"].connect (() => {
@@ -271,21 +320,111 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
     nightModeSwitch.notify["active"].connect (() => {
 			if (nightModeSwitch.active) {
-        BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[2]);
-        //call the rendered page if UI State is in reading mode
-        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-          BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-        }
+				BookwormApp.Bookworm.settings.is_dark_theme_enabled = true;
+				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 			}else{
-        BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[0]);
-        //call the rendered page if UI State is in reading mode
-        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-          BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-        }
+				BookwormApp.Bookworm.settings.is_dark_theme_enabled = false;
+				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
+			}
+		});
+		//Set text entry for text/background color based on selected profile
+		profileCombobox.changed.connect (() => {
+			if(profileCombobox.get_active_text().contains(" 1")){
+				textColourEntry.set_text(profileColorList[0]);
+				backgroundColourEntry.set_text(profileColorList[1]);
+			}
+			if(profileCombobox.get_active_text().contains(" 2")){
+				textColourEntry.set_text(profileColorList[2]);
+				backgroundColourEntry.set_text(profileColorList[3]);
+			}
+			if(profileCombobox.get_active_text().contains(" 3")){
+				textColourEntry.set_text(profileColorList[4]);
+				backgroundColourEntry.set_text(profileColorList[5]);
+			}
+		});
+		//Set profile color based on updates to text changes for text color
+		textColourEntry.changed.connect (() => {
+			if(profileCombobox.get_active_text().contains(" 1")){
+				profileColorList[0] = textColourEntry.get_text();
+			}
+			if(profileCombobox.get_active_text().contains(" 2")){
+				profileColorList[2] = textColourEntry.get_text();
+			}
+			if(profileCombobox.get_active_text().contains(" 3")){
+				profileColorList[4] = textColourEntry.get_text();
+			}
+		});
+		//Set profile color based on updates to text changes for background color
+		backgroundColourEntry.changed.connect (() => {
+			if(profileCombobox.get_active_text().contains(" 1")){
+				profileColorList[1] = backgroundColourEntry.get_text();
+			}
+			if(profileCombobox.get_active_text().contains(" 2")){
+				profileColorList[3] = backgroundColourEntry.get_text();
+			}
+			if(profileCombobox.get_active_text().contains(" 3")){
+				profileColorList[5] = backgroundColourEntry.get_text();
+			}
+		});
+		preferencesReset.activate_link.connect (() => {
+			//Reset Profile Colors
+			GLib.Settings bookwormSettings = new GLib.Settings (BookwormApp.Constants.bookworm_id);
+			string defaultProfileColors = (string) bookwormSettings.get_default_value ("list-of-profile-colors");
+			profileColorList = defaultProfileColors.split (",");
+			//set the text based on the selected profile
+			if(profileCombobox.get_active_text().contains(" 1")){
+				textColourEntry.set_text(profileColorList[0]);
+				backgroundColourEntry.set_text(profileColorList[1]);
+			}
+			if(profileCombobox.get_active_text().contains(" 2")){
+				textColourEntry.set_text(profileColorList[2]);
+				backgroundColourEntry.set_text(profileColorList[3]);
+			}
+			if(profileCombobox.get_active_text().contains(" 3")){
+				textColourEntry.set_text(profileColorList[4]);
+				backgroundColourEntry.set_text(profileColorList[5]);
+			}
+			//reset the settings value for profile colors
+			settings.list_of_profile_colors = defaultProfileColors;
+
+			//Reset Caching
+			localStorageSwitch.set_active (true);
+			BookwormApp.Bookworm.settings.is_local_storage_enabled = (bool) bookwormSettings.get_default_value ("is-local-storage-enabled");
+
+			//Reset Dark Theme
+			nightModeSwitch.set_active (false);
+			BookwormApp.Bookworm.settings.is_dark_theme_enabled = (bool) bookwormSettings.get_default_value ("is-dark-theme-enabled");
+
+			//Reset Font
+			BookwormApp.Bookworm.settings.reading_font_name = (string) bookwormSettings.get_default_value ("reading-font-name");
+			BookwormApp.Bookworm.settings.reading_font_name_family = (string) bookwormSettings.get_default_value ("reading-font-name-family");
+			BookwormApp.Bookworm.settings.reading_font_size = (int) bookwormSettings.get_default_value ("reading-font-size");
+			fontButton.set_font_name(BookwormApp.Bookworm.settings.reading_font_name);
+
+			//call the rendered page if UI State is in reading mode
+			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+				BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+				currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+				BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
+			}
+
+			return true;
+		});
+
+		dialog.response.connect (() => {
+			//build the profile color list to update the settings
+			StringBuilder listOfProfileColors = new StringBuilder();
+			foreach(string aProfileColor in profileColorList){
+				listOfProfileColors.append(aProfileColor).append(",");
+			}
+			settings.list_of_profile_colors = listOfProfileColors.str.slice(0, (listOfProfileColors.str.length-1));
+			//reload the css provider to reflect the updated css
+			BookwormApp.Bookworm.loadCSSProvider(BookwormApp.Bookworm.cssProvider);
+			//call the rendered page if UI State is in reading mode
+			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+				BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+				currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+				BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
 			}
 		});
 	}

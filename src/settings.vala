@@ -27,6 +27,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
   public bool window_is_maximized { get; set; }
   public double zoom_level { get; set; }
   public string reading_profile { get; set; }
+  public bool is_dark_theme_enabled { get; set; }
   public bool is_local_storage_enabled { get; set; }
   public string reading_width { get; set; }
   public string reading_line_height { get; set; }
@@ -34,6 +35,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
   public string reading_font_name { get; set; }
   public string reading_font_name_family { get; set; }
   public int reading_font_size { get; set; }
+  public string list_of_profile_colors { get; set; }
 
   public static Settings get_instance () {
     if (instance == null) {

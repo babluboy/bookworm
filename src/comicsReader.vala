@@ -32,7 +32,12 @@ public class BookwormApp.comicsReader {
       }
       //Store the list of comic book images in the correct order of reading
       aBook = getContentList(aBook, extractionLocation);
-
+      if(aBook.getBookContentList().size < 1){
+        //No content has been determined for the book
+        aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_EXTRACTION_ISSUE);
+        return aBook;
+      }
     }
     //Use the file name as book title
     if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){

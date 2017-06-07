@@ -37,6 +37,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static BookwormApp.Settings settings;
 	public static Gtk.ApplicationWindow window;
 	public static Gtk.IconTheme default_theme;
+	public static CssProvider cssProvider;
 	public static Gtk.Box bookWormUIBox;
 	public static Granite.Widgets.Welcome welcomeWidget;
 	public static Granite.Widgets.ModeButton library_mode_button;
@@ -62,6 +63,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string[] pathsOfBooksToBeAdded;
 	public static int noOfBooksAddedFromCommand = 0;
 	public static bool isBookBeingAddedToLibrary = false;
+	public static ArrayList<string> profileColourList = new ArrayList<string> ();
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;
@@ -143,7 +145,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 			debug("Starting to activate Gtk Window for Bookworm...");
 			window = new Gtk.ApplicationWindow (this);
 			default_theme = Gtk.IconTheme.get_default();
-
 			//retrieve Settings
 			settings = BookwormApp.Settings.get_instance();
 			//set window attributes from saved settings
@@ -162,19 +163,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 			window.window_position = Gtk.WindowPosition.CENTER;
 			//set the minimum size of the window on minimize
 			window.set_size_request (600, 350);
-
 			//set css provider
-			var cssProvider = new Gtk.CssProvider();
-			try{
-				cssProvider.load_from_path(BookwormApp.Constants.CSS_LOCATION);
-			}catch(GLib.Error e){
-				warning("Stylesheet could not be loaded. Error:"+e.message);
-			}
-			Gtk.StyleContext.add_provider_for_screen(
-												Gdk.Screen.get_default(),
-												cssProvider,
-												Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-											 );
+			cssProvider = new Gtk.CssProvider();
+			loadCSSProvider(cssProvider);
 			//load images/icons
 			loadImages();
 			//add window components
@@ -252,6 +243,28 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 	}
 
+	public static void loadCSSProvider(Gtk.CssProvider cssProvider){
+		try{
+			//cssProvider.load_from_path(BookwormApp.Constants.CSS_LOCATION);
+			string[] profileColorList = settings.list_of_profile_colors.split (",");
+			string dynamicCSSContent = BookwormApp.Constants.DYNAMIC_CSS_CONTENT
+																					 .replace("<profile_1_color>",profileColorList[0])
+																					 .replace("<profile_1_bgcolor>",profileColorList[1])
+																					 .replace("<profile_2_color>",profileColorList[2])
+																					 .replace("<profile_2_bgcolor>",profileColorList[3])
+																					 .replace("<profile_3_color>",profileColorList[4])
+																					 .replace("<profile_3_bgcolor>",profileColorList[5]);
+			cssProvider.load_from_data(dynamicCSSContent, dynamicCSSContent.length);
+		}catch(GLib.Error e){
+			warning("Stylesheet could not be loaded. Error:"+e.message);
+		}
+		Gtk.StyleContext.add_provider_for_screen(
+											Gdk.Screen.get_default(),
+											cssProvider,
+											Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+										 );
+	}
+
 	public void loadBookwormState(){
 		//check and create required directory structure
     BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION, "", "");
@@ -260,15 +273,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/books/", "", "");
 		//check if the database exists otherwise create database and required tables
 		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
-		//Set the colour mode based on the user's last saved prefference setting
-		if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == settings.reading_profile){
-			applyProfile("NIGHT MODE");
-		}else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == settings.reading_profile){
-			applyProfile("SEPIA MODE");
-		}else{
-			//default to the Day Mode if no other mode is found in the settings
-			applyProfile("DAY MODE");
-		}
 		//set the library view
 		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
 		//Fetch details of Books from the database and update the library view
@@ -465,31 +469,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public static void applyProfile(string profilename){
-		debug("Starting to apply profile["+profilename+"]...");
-		Gdk.RGBA rgba = Gdk.RGBA ();
-		bool parseRGBA;
-		switch(profilename){
-			case "NIGHT MODE":
-				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_BLACK);
-				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[2];
-				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
-				break;
-			case "SEPIA MODE":
-				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
-				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
-				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
-				break;
-			case "DAY MODE":
-				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
-				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[0];
-				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
-				break;
-			default:
-				break;
+		//turn on night mode based on the last saved settings
+		if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
+			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 		}
-		BookwormApp.AppWindow.aWebView.set_background_color (rgba);
-		debug("Completed applying profile["+profilename+"]...");
-
 	}
 
 	public static void readSelectedBook(owned BookwormApp.Book aBook){
@@ -500,7 +483,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//check if the extracted contents for the book exists
 		if(BookwormApp.Bookworm.settings.is_local_storage_enabled &&
 			"true" == BookwormApp.Utils.fileOperations("DIR_EXISTS", aBook.getBookExtractionLocation(), "", "") &&
-			aBook.getBookContentList().size > 0 &&
+			aBook.getBookContentList() != null && aBook.getBookContentList().size > 0 &&
+			aBook.getBookContentList().size >= aBook.getBookPageNumber() &&
 			"true" == BookwormApp.Utils.fileOperations("EXISTS", BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(aBook.getBookPageNumber())), "", "")
 		){
 			//extraction of book not required
@@ -743,25 +727,30 @@ public class BookwormApp.Bookworm : Granite.Application {
 		string ebookFileName = (File.new_for_path(aBook.getBookLocation()).get_basename());
 		if(ebookFileName.index_of(".") != -1){
 			string fileExtension = ebookFileName.substring(ebookFileName.last_index_of(".")).up();
-			debug ("extension found:"+fileExtension);
 			//parse file based on extension found
-			switch(fileExtension){
-				case ".EPUB":
-					aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
-					break;
-				case ".PDF":
-					aBook = BookwormApp.pdfReader.parsePDFBook(aBook);
-					break;
-				case ".CBR":
-					aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
-					break;
-				case ".CBZ":
-					aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
-					break;
-				default:
-					aBook.setIsBookParsed(false);
-					aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_FORMAT_NOT_SUPPORTED);
-					break;
+			try{
+				switch(fileExtension){
+					case ".EPUB":
+						aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
+						break;
+					case ".PDF":
+						aBook = BookwormApp.pdfReader.parsePDFBook(aBook);
+						break;
+					case ".CBR":
+						aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
+						break;
+					case ".CBZ":
+						aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
+						break;
+					default:
+						aBook.setIsBookParsed(false);
+						aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_FORMAT_NOT_SUPPORTED);
+						break;
+				}
+			}catch(GLib.Error e){
+				info ("Error while parsing book: %s\n", e.message);
+				aBook.setIsBookParsed(false);
+				aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_PARSING_ISSUE);
 			}
 		}
 		return aBook;

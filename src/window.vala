@@ -145,7 +145,7 @@ public class BookwormApp.AppWindow {
     aWebView = new WebKit.WebView.with_settings(webkitSettings);
     aWebView.set_zoom_level(BookwormApp.Settings.get_instance().zoom_level);
     webkitSettings.set_enable_javascript(true);
-    //This is for setting the faont to the system font - Is this required ?
+    //This is for setting the font to the system font - Is this required ?
     //webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
     webkitSettings.set_default_font_size (BookwormApp.Bookworm.settings.reading_font_size);
     webkitSettings.set_default_font_family(BookwormApp.Bookworm.settings.reading_font_name);

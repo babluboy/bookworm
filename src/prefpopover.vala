@@ -26,6 +26,8 @@ public class BookwormApp.PreferencesMenu {
     }
     prefPopover = new Gtk.Popover (popWidget);
 
+    StringBuilder profileNameText = new StringBuilder();
+
     Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", IconSize.LARGE_TOOLBAR);
     Gtk.Button textLargerButton = new Gtk.Button();
     textLargerButton.set_image (menu_icon_text_large);
@@ -45,34 +47,34 @@ public class BookwormApp.PreferencesMenu {
     textSizeBox.pack_end(textLargerButton, false, false);
     textSizeBox.set_halign(Gtk.Align.CENTER);
 
-    Gtk.Image day_profile_image = new Gtk.Image ();
-    day_profile_image.set_from_file (Constants.DAY_PROFILE_IMAGE_LOCATION);
-    Gtk.Button dayProfileButton = new Gtk.Button();
-    dayProfileButton.set_image (day_profile_image);
-    dayProfileButton.set_halign(Gtk.Align.START);
-    dayProfileButton.set_relief (ReliefStyle.NONE);
-    dayProfileButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LIGHT_MODE);
+    Gtk.Button profileButton1 = new Gtk.Button();
+    profileButton1.get_style_context().add_class ("PROFILE_BUTTON_1");
+    profileNameText.assign(BookwormApp.Constants.TEXT_FOR_PROFILE_BUTTON_LABEL);
+    profileButton1.set_label (profileNameText.append (" 1").str);
+    profileButton1.set_halign(Gtk.Align.START);
+    profileButton1.set_relief (ReliefStyle.NONE);
+    profileButton1.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_PROFILE);
 
-    Gtk.Image sepia_profile_image = new Gtk.Image ();
-    sepia_profile_image.set_from_file (Constants.SEPIA_PROFILE_IMAGE_LOCATION);
-    Gtk.Button sepiaProfileButton = new Gtk.Button();
-    sepiaProfileButton.set_image (sepia_profile_image);
-    sepiaProfileButton.set_halign(Gtk.Align.START);
-    sepiaProfileButton.set_relief (ReliefStyle.NONE);
-    sepiaProfileButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_SEPIA_MODE);
+    Gtk.Button profileButton2 = new Gtk.Button();
+    profileButton2.get_style_context().add_class ("PROFILE_BUTTON_2");
+    profileNameText.assign(BookwormApp.Constants.TEXT_FOR_PROFILE_BUTTON_LABEL);
+    profileButton2.set_label (profileNameText.append (" 2").str);
+    profileButton2.set_halign(Gtk.Align.START);
+    profileButton2.set_relief (ReliefStyle.NONE);
+    profileButton2.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_PROFILE);
 
-    Gtk.Image night_profile_image = new Gtk.Image ();
-    night_profile_image.set_from_file (Constants.NIGHT_PROFILE_IMAGE_LOCATION);
-    Gtk.Button nightProfileButton = new Gtk.Button();
-    nightProfileButton.set_image (night_profile_image);
-    nightProfileButton.set_halign(Gtk.Align.END);
-    nightProfileButton.set_relief (ReliefStyle.NONE);
-    nightProfileButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_DARK_MODE);
+    Gtk.Button profileButton3 = new Gtk.Button();
+    profileButton3.get_style_context().add_class ("PROFILE_BUTTON_3");
+    profileNameText.assign(BookwormApp.Constants.TEXT_FOR_PROFILE_BUTTON_LABEL);
+    profileButton3.set_label (profileNameText.append (" 3").str);
+    profileButton3.set_halign(Gtk.Align.END);
+    profileButton3.set_relief (ReliefStyle.NONE);
+    profileButton3.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_PROFILE);
 
-    Gtk.Box profileBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
-    profileBox.pack_start(dayProfileButton, false, false);
-    profileBox.pack_start(sepiaProfileButton, false, false);
-    profileBox.pack_end(nightProfileButton, false, false);
+    Gtk.Box profileBox = new Gtk.Box(Orientation.VERTICAL, BookwormApp.Constants.SPACING_BUTTONS);
+    profileBox.pack_start(profileButton1, false, false);
+    profileBox.pack_start(profileButton2, false, false);
+    profileBox.pack_end(profileButton3, false, false);
     profileBox.set_halign(Gtk.Align.CENTER);
 
     Gtk.Image icon_width_indent_less = new Gtk.Image ();
@@ -138,8 +140,8 @@ public class BookwormApp.PreferencesMenu {
       BookwormApp.AppWindow.aWebView.set_zoom_level (BookwormApp.AppWindow.aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
     });
 
-    dayProfileButton.clicked.connect (() => {
-      BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[0]);
+    profileButton1.clicked.connect (() => {
+      BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[0];
       //call the rendered page if UI State is in reading mode
       if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
         BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
@@ -148,8 +150,8 @@ public class BookwormApp.PreferencesMenu {
       }
     });
 
-    sepiaProfileButton.clicked.connect (() => {
-      BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[1]);
+    profileButton2.clicked.connect (() => {
+      BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
       //call the rendered page if UI State is in reading mode
       if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
         BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
@@ -158,8 +160,8 @@ public class BookwormApp.PreferencesMenu {
       }
     });
 
-    nightProfileButton.clicked.connect (() => {
-      BookwormApp.Bookworm.applyProfile(BookwormApp.Constants.BOOKWORM_READING_MODE[2]);
+    profileButton3.clicked.connect (() => {
+      BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[2];
       //call the rendered page if UI State is in reading mode
       if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
         BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
