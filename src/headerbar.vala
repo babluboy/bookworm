@@ -32,7 +32,7 @@ public class BookwormApp.AppHeaderBar {
     headerbar = new Gtk.HeaderBar();
 
     headerbar.set_title(BookwormApp.Constants.program_name);
-    headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
+    //headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
     headerbar.set_show_close_button(true);
     headerbar.spacing = Constants.SPACING_WIDGETS;
 
@@ -143,7 +143,7 @@ public class BookwormApp.AppHeaderBar {
       //Set action of return to Library View if the current view is Reading View
       if(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
         //Update header to remove title of book being read
-        headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
+        headerbar.title = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
         //set UI in library view mode
         bookwormApp.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
         bookwormApp.toggleUIState();

@@ -65,9 +65,9 @@ public class BookwormApp.contentHandler {
   }
 
   public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){
-    debug("Attempting to fetch content ["+aBook.getBookContentList().get(contentLocation)+"] from book at location:"+aBook.getBaseLocationOfContents());
+    debug("Attempting to fetch content at index["+contentLocation.to_string()+"] from book at location:"+aBook.getBaseLocationOfContents());
     StringBuilder contents = new StringBuilder();
-    if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size >= contentLocation){
+    if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
       string baseLocationOfContents = aBook.getBaseLocationOfContents();
       //handle the case when the content list has html escape chars for the URI
       string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));

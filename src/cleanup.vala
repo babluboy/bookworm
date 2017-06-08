@@ -16,9 +16,12 @@
 * You should have received a copy of the GNU General Public License along
 * with Bookworm. If not, see http://www.gnu.org/licenses/.
 */
+using Gee;
 public class BookwormApp.Cleanup {
-
+  public static ArrayList<string> bookIDList = new ArrayList<string> ();
   public static void cleanUp(){
+    //get list of Book IDs in DB
+    bookIDList = BookwormApp.DB.getBookIDListFromDB();
     cleanBookCacheContent();
     cleanBookCoverImages();
   }
@@ -36,10 +39,10 @@ public class BookwormApp.Cleanup {
       if(cacheFolder == null || cacheFolder.length < 1){
         folderMatched = true;
       }
-      foreach (var book in BookwormApp.Bookworm.libraryViewMap.values){
+      foreach (string bookData in bookIDList){
         if(cacheFolder != null && cacheFolder.length > 0){
           //check if the folder is part of a book in the library
-          if(((BookwormApp.Book)book).getBookExtractionLocation().index_of(cacheFolder) != -1){
+          if((bookData.split("::")[1]).index_of(cacheFolder) != -1){
             folderMatched = true;
             break;
           }
@@ -66,10 +69,10 @@ public class BookwormApp.Cleanup {
       if(cacheImage == null || cacheImage.length < 1){
         imageMatched = true;
       }
-      foreach (var book in BookwormApp.Bookworm.libraryViewMap.values){
+      foreach (string bookData in bookIDList){
         if(cacheImage != null && cacheImage.length > 0){
           //check if the folder is part of a book in the library
-          if(((BookwormApp.Book)book).getBookCoverLocation().index_of(cacheImage) != -1){
+          if(cacheImage.index_of((bookData.split("::")[0])) != -1){
             imageMatched = true;
             break;
           }

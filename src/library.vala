@@ -97,7 +97,7 @@ public class BookwormApp.Library{
 
     BookwormApp.AppWindow.library_table_treeview.get_column(5).set_sort_column_id(5);
     BookwormApp.AppWindow.library_table_treeview.get_column(5).set_sort_order(SortType.DESCENDING);
-
+    
     debug("Completed updating Library List View for book:"+aBook.getBookLocation());
   }
 

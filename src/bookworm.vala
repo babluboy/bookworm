@@ -480,6 +480,10 @@ public class BookwormApp.Bookworm : Granite.Application {
     if(aBook.getBookPageNumber() == -1){
 			aBook.setBookPageNumber(0);
 		}
+		//Handle the case when the page number of the book is outside limits
+    if(aBook.getBookPageNumber() >= aBook.getBookContentList().size){
+			aBook.setBookPageNumber(aBook.getBookContentList().size - 1);
+		}
 		//check if the extracted contents for the book exists
 		if(BookwormApp.Bookworm.settings.is_local_storage_enabled &&
 			"true" == BookwormApp.Utils.fileOperations("DIR_EXISTS", aBook.getBookExtractionLocation(), "", "") &&
@@ -506,7 +510,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			libraryViewMap.set(aBook.getBookLocation(), aBook);
 			locationOfEBookCurrentlyRead = aBook.getBookLocation();
 			//Update header title
-			BookwormApp.AppHeaderBar.get_headerbar().subtitle = aBook.getBookTitle();
+			BookwormApp.AppHeaderBar.get_headerbar().title = aBook.getBookTitle();
 			//change the application view to Book Reading mode
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
 			toggleUIState();

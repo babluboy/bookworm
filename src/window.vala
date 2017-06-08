@@ -190,12 +190,14 @@ public class BookwormApp.AppWindow {
     main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
     //main_ui_box.get_style_context().add_class ("box_white");
 
-    //Add action to open a book for double clicking on row in library list view
+    //Add action to open a book for clicking on row in library list view
     library_table_treeview.row_activated.connect ((path, column) => {
       Gtk.TreeIter iter;
 	    Value bookLocation;
-	    library_table_liststore.get_iter (out iter, path);
-	    library_table_liststore.get_value (iter, 7, out bookLocation);
+      TreeModel aTreeModel =  library_table_treeview.get_model ();
+	    aTreeModel.get_iter (out iter, path);
+	    aTreeModel.get_value (iter, 7, out bookLocation);
+
       BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
       if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
@@ -210,13 +212,31 @@ public class BookwormApp.AppWindow {
 
     //Add action to update tree view when editing is Completed
     title_cell_txt.edited.connect((path, new_text) => {
-      updateLibraryListViewData(path, new_text, 1);
+      Gtk.TreeIter iter;
+	    Value bookLocation;
+      TreeModel aTreeModel =  library_table_treeview.get_model ();
+      Gtk.TreePath aTreePath = new Gtk.TreePath.from_string (path);
+	    aTreeModel.get_iter (out iter, aTreePath);
+	    aTreeModel.get_value (iter, 7, out bookLocation);
+      updateLibraryListViewData((string) bookLocation, new_text, 1);
     });
     author_cell_txt.edited.connect((path, new_text) => {
-      updateLibraryListViewData(path, new_text, 2);
+      Gtk.TreeIter iter;
+	    Value bookLocation;
+      TreeModel aTreeModel =  library_table_treeview.get_model ();
+      Gtk.TreePath aTreePath = new Gtk.TreePath.from_string (path);
+	    aTreeModel.get_iter (out iter, aTreePath);
+	    aTreeModel.get_value (iter, 7, out bookLocation);
+      updateLibraryListViewData((string) bookLocation, new_text, 2);
     });
     tags_cell_txt.edited.connect((path, new_text) => {
-      updateLibraryListViewData(path, new_text, 5);
+      Gtk.TreeIter iter;
+	    Value bookLocation;
+      TreeModel aTreeModel =  library_table_treeview.get_model ();
+      Gtk.TreePath aTreePath = new Gtk.TreePath.from_string (path);
+	    aTreeModel.get_iter (out iter, aTreePath);
+	    aTreeModel.get_value (iter, 7, out bookLocation);
+      updateLibraryListViewData((string) bookLocation, new_text, 5);
     });
 
     //Add action to open the context menu on right click of tree view
@@ -436,26 +456,51 @@ public class BookwormApp.AppWindow {
     return main_ui_box;
   }
 
-  public static void updateLibraryListViewData(string path, string new_text, int column){
+  public static bool updateLibraryListViewData(string bookLocation, string new_text, int column){
+    debug("Started to update metadata in List View for book:"+bookLocation);
+    //iterate over the list store
     Gtk.TreeIter iter;
-    string bookLocation;
-    Gtk.TreePath treePath = new Gtk.TreePath.from_string (path);
-    bool tmp = BookwormApp.AppWindow.library_table_liststore.get_iter (out iter, treePath);
-    BookwormApp.AppWindow.library_table_liststore.set (iter, column, new_text);
-    BookwormApp.AppWindow.library_table_liststore.get (iter, 7, out bookLocation);
-    BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
-    if(column == 1){
-      aBook.setBookTitle(new_text);
+    string bookLocationforCurrentRow;
+    library_table_liststore.get_iter_first (out iter);
+    library_table_liststore.get (iter, 7, out bookLocationforCurrentRow);
+    if(bookLocation == bookLocationforCurrentRow) {
+      library_table_liststore.set (iter, column, new_text);
+      BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+      if(column == 1){
+        aBook.setBookTitle(new_text);
+      }
+      if(column == 2){
+        aBook.setBookAuthor(new_text);
+      }
+      if(column == 5){
+        aBook.setBookTags(new_text);
+      }
+      aBook.setWasBookOpened(true);
+      BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+      return true; //break out of the iterations
     }
-    if(column == 2){
-      aBook.setBookAuthor(new_text);
+    while(library_table_liststore.iter_next (ref iter)){
+      library_table_liststore.get (iter, 7, out bookLocationforCurrentRow);
+      if(bookLocation == bookLocationforCurrentRow) {
+        library_table_liststore.set (iter, column, new_text);
+        BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+        if(column == 1){
+          aBook.setBookTitle(new_text);
+        }
+        if(column == 2){
+          aBook.setBookAuthor(new_text);
+        }
+        if(column == 5){
+          aBook.setBookTags(new_text);
+        }
+        aBook.setWasBookOpened(true);
+        BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+        return true; //break out of the iterations
+      }
     }
-    if(column == 5){
-      aBook.setBookTags(new_text);
-    }
-    aBook.setWasBookOpened(true);
-    BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+    return true;
   }
+
 
   public static Granite.Widgets.Welcome createWelcomeScreen(){
     //Create a welcome screen for view of library with no books
