@@ -576,9 +576,7 @@ namespace BookwormApp.Utils {
 
 		public static ArrayList<string> selectFileChooser(Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple, string filterType){
 			ArrayList<string> eBookLocationList = new ArrayList<string>();
-			//create a hashmap to hold details for the book
-			Gee.HashMap<string,string> bookDetailsMap = new Gee.HashMap<string,string>();
-	    //choose eBook using a File chooser dialog
+			//choose eBook using a File chooser dialog
 			Gtk.FileChooserDialog aFileChooserDialog = BookwormApp.Utils.new_file_chooser_dialog (action, title, parent, select_multiple, filterType);
 	    aFileChooserDialog.show_all ();
 	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
@@ -591,6 +589,40 @@ namespace BookwormApp.Utils {
 	      aFileChooserDialog.close();
 	    }
 			return eBookLocationList;
+		}
+
+		public static ArrayList<string> selectDirChooser(string title, Gtk.Window? parent, bool select_multiple){
+			ArrayList<string> selectedDirList = new ArrayList<string>();
+			Gtk.FileChooserDialog aFileChooserDialog = new Gtk.FileChooserDialog (title, parent, Gtk.FileChooserAction.SELECT_FOLDER);
+			aFileChooserDialog.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+      aFileChooserDialog.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
+      aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
+			if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){
+				bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+			}else{
+				aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
+			}
+			Gtk.FileFilter all_files_filter = new Gtk.FileFilter ();
+			all_files_filter.set_filter_name (BookwormApp.Constants.TEXT_FOR_FILE_CHOOSER_FILTER_ALL_FILES);
+			all_files_filter.add_pattern ("*");
+			aFileChooserDialog.add_filter (all_files_filter);
+			aFileChooserDialog.show_all ();
+	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
+	      SList<string> uris = aFileChooserDialog.get_uris ();
+				foreach (unowned string uri in uris) {
+					selectedDirList.add(File.new_for_uri(uri).get_path ());
+				}
+				aFileChooserDialog.close();
+	    }else{
+	      aFileChooserDialog.close();
+	    }
+			aFileChooserDialog.key_press_event.connect ((ev) => {
+			    if (ev.keyval == 65307) // Esc key
+			        aFileChooserDialog.destroy ();
+			    return false;
+			});
+
+			return selectedDirList;
 		}
 
 		public static string parseMarkUp(string inputString){

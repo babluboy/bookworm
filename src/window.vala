@@ -212,31 +212,13 @@ public class BookwormApp.AppWindow {
 
     //Add action to update tree view when editing is Completed
     title_cell_txt.edited.connect((path, new_text) => {
-      Gtk.TreeIter iter;
-	    Value bookLocation;
-      TreeModel aTreeModel =  library_table_treeview.get_model ();
-      Gtk.TreePath aTreePath = new Gtk.TreePath.from_string (path);
-	    aTreeModel.get_iter (out iter, aTreePath);
-	    aTreeModel.get_value (iter, 7, out bookLocation);
-      updateLibraryListViewData((string) bookLocation, new_text, 1);
+      updateLibraryListViewData(path, new_text, 1);
     });
     author_cell_txt.edited.connect((path, new_text) => {
-      Gtk.TreeIter iter;
-	    Value bookLocation;
-      TreeModel aTreeModel =  library_table_treeview.get_model ();
-      Gtk.TreePath aTreePath = new Gtk.TreePath.from_string (path);
-	    aTreeModel.get_iter (out iter, aTreePath);
-	    aTreeModel.get_value (iter, 7, out bookLocation);
-      updateLibraryListViewData((string) bookLocation, new_text, 2);
+      updateLibraryListViewData(path, new_text, 2);
     });
     tags_cell_txt.edited.connect((path, new_text) => {
-      Gtk.TreeIter iter;
-	    Value bookLocation;
-      TreeModel aTreeModel =  library_table_treeview.get_model ();
-      Gtk.TreePath aTreePath = new Gtk.TreePath.from_string (path);
-	    aTreeModel.get_iter (out iter, aTreePath);
-	    aTreeModel.get_value (iter, 7, out bookLocation);
-      updateLibraryListViewData((string) bookLocation, new_text, 5);
+      updateLibraryListViewData(path, new_text, 5);
     });
 
     //Add action to open the context menu on right click of tree view
@@ -385,6 +367,7 @@ public class BookwormApp.AppWindow {
       return false;
     });
     //capture key press events on the webview reader
+    bool isControlKeyPressed = false;
     aWebView.key_press_event.connect ((ev) => {
         if (ev.keyval == Gdk.Key.Left) {// Left Key pressed, move page backwards
           //get object for this ebook
@@ -408,7 +391,23 @@ public class BookwormApp.AppWindow {
           book_reading_footer_box.hide();
           BookwormApp.Bookworm.window.fullscreen();
         }
+        if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {
+          isControlKeyPressed = true;
+        }
+        if (isControlKeyPressed && ev.keyval == Gdk.Key.plus){// Control and + keys pressed
+          aWebView.set_zoom_level (aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+        }
+        if (isControlKeyPressed && ev.keyval == Gdk.Key.minus){// Control and + keys pressed
+          aWebView.set_zoom_level (aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+        }
         return false;
+    });
+
+    aWebView.key_release_event.connect ((ev) => {
+      if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {
+        isControlKeyPressed = false;
+      }
+      return false;
     });
 
     //capture the url clicked on the webview and action the navigation type clicks
@@ -456,32 +455,24 @@ public class BookwormApp.AppWindow {
     return main_ui_box;
   }
 
-  public static bool updateLibraryListViewData(string bookLocation, string new_text, int column){
-    debug("Started to update metadata in List View for book:"+bookLocation);
+  public static bool updateLibraryListViewData(string path, string new_text, int column){
+    debug("Started to update metadata in List View on row:"+path+" for change:"+new_text+" on column:"+column.to_string());
+    //Determine the book whose meta data is being updated
+    Gtk.TreeIter sortedIter;
+    Value bookLocation;
+    TreeModel aTreeModel =  library_table_treeview.get_model ();
+    Gtk.TreePath aTreePath = new Gtk.TreePath.from_string (path);
+    aTreeModel.get_iter (out sortedIter, aTreePath);
+    aTreeModel.get_value (sortedIter, 7, out bookLocation);
+
     //iterate over the list store
     Gtk.TreeIter iter;
     string bookLocationforCurrentRow;
-    library_table_liststore.get_iter_first (out iter);
-    library_table_liststore.get (iter, 7, out bookLocationforCurrentRow);
-    if(bookLocation == bookLocationforCurrentRow) {
-      library_table_liststore.set (iter, column, new_text);
-      BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
-      if(column == 1){
-        aBook.setBookTitle(new_text);
-      }
-      if(column == 2){
-        aBook.setBookAuthor(new_text);
-      }
-      if(column == 5){
-        aBook.setBookTags(new_text);
-      }
-      aBook.setWasBookOpened(true);
-      BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-      return true; //break out of the iterations
-    }
-    while(library_table_liststore.iter_next (ref iter)){
+    bool iterExists = true;
+    iterExists = library_table_liststore.get_iter_first (out iter);
+    while(iterExists){
       library_table_liststore.get (iter, 7, out bookLocationforCurrentRow);
-      if(bookLocation == bookLocationforCurrentRow) {
+      if((string)bookLocation == bookLocationforCurrentRow) {
         library_table_liststore.set (iter, column, new_text);
         BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
         if(column == 1){
@@ -495,8 +486,10 @@ public class BookwormApp.AppWindow {
         }
         aBook.setWasBookOpened(true);
         BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+        debug("Completed updating metadata in List View for book:"+(string)bookLocation);
         return true; //break out of the iterations
       }
+      iterExists = library_table_liststore.iter_next (ref iter);
     }
     return true;
   }

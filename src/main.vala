@@ -25,7 +25,7 @@ public static int main (string[] args) {
   }
   application = application.getAppInstance();
   //Workaround to get Granite's --about & Gtk's --help working together
-  if ("--help" in args || "-h" in args || "--version" in args) {
+  if ("--help" in args || "-h" in args || "--version" in args || "--discover" in args) {
     return application.processCommandLine (args);
   } else {
     Gtk.init (ref args);

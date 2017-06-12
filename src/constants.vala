@@ -86,8 +86,8 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_READING_PREFERENCES = _("Set reading preferences");
 	public const string TOOLTIP_TEXT_FOR_BOOKMARKS_ACTIVATE = _("Click to bookmark this page");
 	public const string TOOLTIP_TEXT_FOR_BOOKMARKS_DEACTIVATE = _("Click to remove this bookmark");
-	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_INCREASE = _("Increase font size");
-	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_DECREASE = _("Decrease font size");
+	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_INCREASE = _("Increase font size (Ctrl +)");
+	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_DECREASE = _("Decrease font size (Ctrl -)");
 	public const string TOOLTIP_TEXT_FOR_LINE_WIDTH_INCREASE = _("Increase line width");
 	public const string TOOLTIP_TEXT_FOR_LINE_WIDTH_DECREASE = _("Decrease line width");
 	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_INCREASE = _("Increase line spacing");
@@ -96,15 +96,19 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_PROFILE = _("Set theme for this colour profile");
 	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view and Esc key to exit");
 	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Enter full screen view and Esc key to exit");
-
+	public const string TOOLTIP_TEXT_FOR_ADD_DIRECTORY = _("Add folder to scan for books");
+	public const string TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY = _("Remove displayed folder from book scan");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");
 	public const string TEXT_FOR_PREFERENCES_LOCAL_STORAGE = _("Enable cache (opens books faster)");
 	public const string TEXT_FOR_PREFERENCES_FONT = _("Set Font");
-	public const string TEXT_FOR_PROFILE_CUSTOMIZATION = _("Customize Reading Profile");
+	public const string TEXT_FOR_PROFILE_CUSTOMIZATION = _("Customize reading profile");
+	public const string TEXT_FOR_PROFILE_CUSTOMIZATION_FONT_COLOR = _("Text");
+	public const string TEXT_FOR_PROFILE_CUSTOMIZATION_BACKGROUND_COLOR = _("Background");
+	public const string TEXT_FOR_PREFERENCES_BOOKS_DISCOVERY = _("Add folders to scan for books");
 	public const string TEXT_FOR_PROFILE_BUTTON_LABEL = _("Profile");
-	public const string TEXT_FOR_PREFERENCES_VALUES_RESET = _("Reset to default");
+	public const string TEXT_FOR_PREFERENCES_VALUES_RESET = _("Reset to default values");
 
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
@@ -133,6 +137,7 @@ namespace BookwormApp.Constants {
 	public static const string RATING_3_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_3.png";
 	public static const string RATING_4_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_4.png";
 	public static const string RATING_5_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_5.png";
+	public static const string REMOVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-dir-remove.svg";
 	public static const string SELECTION_OPTION_IMAGE_SMALL_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-option.svg";
 	public static const string SELECTION_CHECKED_IMAGE_SMALL_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-checked.svg";
 	public static const string CONTENTS_VIEW_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/24x24/actions/bookworm-view-list-symbolic.png";

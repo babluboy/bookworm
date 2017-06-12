@@ -68,5 +68,9 @@
         <default>"#000000,#fbfbfb,#586e75,#fdf6e3,#93a1a1,#002b36"</default>
         <summary>List of profile colours. Three profiles with two colors each. First color is text color and second one is bgcolor</summary>
     </key>
+		<key name="list-of-scan-dirs" type="s">
+        <default>""</default>
+        <summary>List of directories to be scanned for new books</summary>
+    </key>
   </schema>
 </schemalist>

@@ -44,6 +44,7 @@ set (SOURCE_LIST
     src/contentHandler.vala
     src/cleanup.vala
     src/comicsReader.vala
+    src/backgroundTasks.vala
 )
 
 include (GSettings)
@@ -105,6 +106,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/contentHandler.vala
     src/cleanup.vala
     src/comicsReader.vala
+    src/backgroundTasks.vala
 
 # tell what libraries to use when compiling
 PACKAGES
@@ -146,6 +148,7 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_4.png D
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_5.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-selection-checked.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-dir-remove.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-view-list-symbolic.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-inactive.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-active.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)

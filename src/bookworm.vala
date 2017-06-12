@@ -30,6 +30,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string[] commandLineArgs;
 	private static bool command_line_option_version = false;
 	private static bool command_line_option_debug = false;
+	private static bool command_line_option_discover = false;
 	private static OptionEntry[] options;
 
 	public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
@@ -56,6 +57,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static Gdk.Pixbuf image_rating_3;
 	public static Gdk.Pixbuf image_rating_4;
 	public static Gdk.Pixbuf image_rating_5;
+	public static Gdk.Pixbuf image_remove;
 
 	public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
@@ -87,6 +89,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		options = new OptionEntry[3];
 		options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
 		options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
+		options[2] = { "discover", 0, 0, OptionArg.NONE, ref command_line_option_discover, _("Discover and books in directories except those specified in -x"), null };
 		add_main_option_entries (options);
 	}
 
@@ -129,8 +132,12 @@ public class BookwormApp.Bookworm : Granite.Application {
 		if(command_line_option_debug){
 			debug ("Bookworm running in debug mode...");
 		}
+
 		if(command_line_option_version){
 			print("\nbookworm version "+Constants.bookworm_version+"\n");
+			return 0;
+		}else if(command_line_option_discover){
+			BookwormApp.BackgroundTasks.performTasks();
 			return 0;
 		}else{
 			activate();
@@ -139,7 +146,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public override void activate() {
-		debug("Starting activate method");
 		//proceed if Bookworm is not running already
 		if(!isBookwormRunning){
 			debug("Starting to activate Gtk Window for Bookworm...");
@@ -237,10 +243,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 		  image_rating_3 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_3_IMAGE_LOCATION);
 		  image_rating_4 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_4_IMAGE_LOCATION);
 		  image_rating_5 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_5_IMAGE_LOCATION);
+			image_remove = new Gdk.Pixbuf.from_file (BookwormApp.Constants.REMOVE_IMAGE_LOCATION);
 		}catch(GLib.Error e){
 			warning("Image could not be loaded. Error:"+e.message);
 		}
-
 	}
 
 	public static void loadCSSProvider(Gtk.CssProvider cssProvider){
@@ -271,6 +277,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path, "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/books/", "", "");
+		//check last state and turn on dark theme
+		if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
+			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+		}
 		//check if the database exists otherwise create database and required tables
 		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
 		//set the library view
@@ -290,6 +300,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 				yield;
 			}
 			BookwormApp.Cleanup.cleanUp();
+			BookwormApp.BackgroundTasks.discoverBooks();
 	}
 
 	public void saveWindowState(){
@@ -466,13 +477,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 			BookwormApp.Library.updateListViewForSelection(null);
 		}
 		toggleUIState();
-	}
-
-	public static void applyProfile(string profilename){
-		//turn on night mode based on the last saved settings
-		if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
-			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
-		}
 	}
 
 	public static void readSelectedBook(owned BookwormApp.Book aBook){

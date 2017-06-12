@@ -20,10 +20,13 @@ using Gtk;
 using Gee;
 public class BookwormApp.AppDialog : Gtk.Dialog {
 	public static Gtk.ComboBoxText profileCombobox;
+	public static Gtk.ComboBoxText directoryComboBox;
+	public static StringBuilder scanDirList = new StringBuilder("");
 	public static BookwormApp.Settings settings;
 
 	public AppDialog () {
 		settings = BookwormApp.Settings.get_instance();
+		scanDirList.assign(BookwormApp.Bookworm.settings.list_of_scan_dirs);
 	}
 
 	public static Gtk.Popover createBookContextMenu (owned BookwormApp.Book aBook){
@@ -204,12 +207,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 	public static void createPreferencesDialog () {
 		AppDialog dialog = new AppDialog ();
+		dialog.set_transient_for(BookwormApp.Bookworm.window);
 		string[] profileColorList = settings.list_of_profile_colors.split (",");
 
     dialog.title = BookwormApp.Constants.TEXT_FOR_PREFERENCES_DIALOG_TITLE;
 		dialog.border_width = 5;
 		dialog.set_default_size (600, 200);
-		dialog.destroy.connect (Gtk.main_quit);
 
 		Gtk.Label localStorageLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_LOCAL_STORAGE);
     Gtk.Switch localStorageSwitch = new Gtk.Switch ();
@@ -220,7 +223,6 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.Box localStorageBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		localStorageBox.pack_start(localStorageLabel, false, false);
 		localStorageBox.pack_end(localStorageSwitch, false, false);
-
 
     Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
     Gtk.Switch nightModeSwitch = new Gtk.Switch ();
@@ -240,7 +242,6 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		fontBox.pack_start(fontChooserLabel, false, false);
 		fontBox.pack_end(fontButton, false, false);
 
-
 		//Gtk.Label customProfileLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION);
 		profileCombobox = new Gtk.ComboBoxText ();
 		StringBuilder profileNameText = new StringBuilder();
@@ -251,17 +252,17 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		profileNameText.assign(BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION).append(" 3");
 		profileCombobox.append_text (profileNameText.str);
 
-		Gtk.Label backgroundColourLabel = new Gtk.Label ("Background Colour ");
+		Gtk.Label backgroundColourLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION_BACKGROUND_COLOR);
 		Gtk.Entry backgroundColourEntry = new Gtk.Entry ();
 		backgroundColourEntry.set_width_chars (6);
-		Gtk.Box backgroundColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		Gtk.Box backgroundColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 		backgroundColourBox.pack_start(backgroundColourLabel, false, false);
 		backgroundColourBox.pack_start(backgroundColourEntry, false, false);
 
-		Gtk.Label textColourLabel = new Gtk.Label ("Font Colour ");
+		Gtk.Label textColourLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION_FONT_COLOR);
 		Gtk.Entry textColourEntry = new Gtk.Entry ();
 		textColourEntry.set_width_chars (6);
-		Gtk.Box textColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		Gtk.Box textColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 		textColourBox.pack_start(textColourLabel, false, false);
 		textColourBox.pack_start(textColourEntry, false, false);
 
@@ -274,20 +275,54 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		textColourEntry.set_text(profileColorList[0]);
 		backgroundColourEntry.set_text(profileColorList[1]);
 
+		Gtk.Label discoverBooksLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_BOOKS_DISCOVERY);
+		directoryComboBox = new Gtk.ComboBoxText ();
+		if(BookwormApp.Bookworm.settings.list_of_scan_dirs.length > 1){
+			string[] scanDirList = settings.list_of_scan_dirs.split ("~~");
+			foreach(string dir in scanDirList){
+				if(dir != null && dir.length > 1) {
+				 directoryComboBox.append_text (dir);
+			 	}
+			}
+		}
+		directoryComboBox.set_active(0);
+
+		//Set up Button for adding scan directory
+    Gtk.Image add_scan_directory_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
+    Gtk.Button add_scan_directory_button = new Gtk.Button ();
+    add_scan_directory_button.set_image (add_scan_directory_image);
+    add_scan_directory_button.set_relief (ReliefStyle.NONE);
+    add_scan_directory_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_ADD_DIRECTORY);
+
+    //Set up Button for removing scan directory
+    Gtk.Image remove_scan_directory_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
+    Gtk.Button remove_scan_directory_button = new Gtk.Button ();
+    remove_scan_directory_button.set_image (remove_scan_directory_image);
+    remove_scan_directory_button.set_relief (ReliefStyle.NONE);
+    remove_scan_directory_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY);
+
+
+		Gtk.Box discoverBooksBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 1);
+		discoverBooksBox.pack_start(discoverBooksLabel, false, false);
+		discoverBooksBox.pack_start(add_scan_directory_button, false, false);
+		discoverBooksBox.pack_start(remove_scan_directory_button, false, false);
+		discoverBooksBox.pack_end(directoryComboBox, false, false);
+
 		Gtk.Box customProfileBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		customProfileBox.pack_start(profileCombobox, false, false);
 		customProfileBox.pack_end(textColourBox, false, false);
 		customProfileBox.pack_end(backgroundColourBox, false, false);
 
-    Gtk.Box content = dialog.get_content_area () as Gtk.Box;
+    Gtk.Box content = dialog.get_content_area() as Gtk.Box;
 		content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
 		content.pack_start (prefBox, false, false, 0);
 		content.pack_start (localStorageBox, false, false, 0);
 		content.pack_start (fontBox, false, false, 0);
 		content.pack_start (customProfileBox, false, false, 0);
-		content.pack_start (resetBox, false, false, 0);
+		content.pack_start (discoverBooksBox, false, false, 0);
+		content.pack_end (resetBox, true, true, 5);
 
-    dialog.show_all ();
+		dialog.show_all ();
 
     //Set up Actions
 		fontButton.font_set.connect (() => {
@@ -364,6 +399,31 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
 				profileColorList[5] = backgroundColourEntry.get_text();
+			}
+		});
+		//Add folder to scan for books
+		add_scan_directory_button.clicked.connect (() => {
+			ArrayList<string> selectedDir = BookwormApp.Utils.selectDirChooser(_("Select folder"), BookwormApp.Bookworm.window, false);
+			TreeModel aTreeModel = directoryComboBox.get_model();
+			TreeIter iter;
+			aTreeModel.get_iter_first (out iter);
+			int numberOfDirs = aTreeModel.iter_n_children (iter);
+			foreach (string dir in selectedDir) {
+				directoryComboBox.append_text (dir);
+				scanDirList.append(dir).append("~~");
+				BookwormApp.Bookworm.settings.list_of_scan_dirs = scanDirList.str;
+				numberOfDirs++;
+				directoryComboBox.set_active(numberOfDirs);
+				debug("value of scanDirList after adding dir:"+scanDirList.str);
+			}
+		});
+		remove_scan_directory_button.clicked.connect (() => {
+			if(directoryComboBox.get_active_text().length > 1){
+				scanDirList.assign(scanDirList.str.replace(directoryComboBox.get_active_text ()+"~~", ""));
+				debug("value of scanDirList after removal of ["+directoryComboBox.get_active_text ()+"]:"+scanDirList.str);
+				BookwormApp.Bookworm.settings.list_of_scan_dirs = scanDirList.str;
+				int currentActiveID = directoryComboBox.get_active();
+				directoryComboBox.remove(currentActiveID);
 			}
 		});
 		preferencesReset.activate_link.connect (() => {
