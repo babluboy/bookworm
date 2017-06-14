@@ -288,7 +288,7 @@ public class BookwormApp.AppWindow {
       //Display the progress bar
 			BookwormApp.AppWindow.bookAdditionBar.show();
 			BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
-      BookwormApp.Bookworm.addBooksToLibrary ();
+      BookwormApp.Library.addBooksToLibrary ();
     });
     //Add action for putting library in select view
     select_book_button.clicked.connect (() => {
@@ -327,7 +327,7 @@ public class BookwormApp.AppWindow {
     });
     //Add action for removing a selected book on the library view
     remove_book_button.clicked.connect (() => {
-      BookwormApp.Bookworm.removeSelectedBooksFromLibrary();
+      BookwormApp.Library.removeSelectedBooksFromLibrary();
     });
     //handle context menu on the webview reader
     aWebView.context_menu.connect ((context_menu, event, hit_test_result) => {
@@ -519,7 +519,7 @@ public class BookwormApp.AppWindow {
       //Display the progress bar
 			BookwormApp.AppWindow.bookAdditionBar.show();
 			BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
-      BookwormApp.Bookworm.addBooksToLibrary ();
+      BookwormApp.Library.addBooksToLibrary ();
     });
     return BookwormApp.Bookworm.welcomeWidget;
   }

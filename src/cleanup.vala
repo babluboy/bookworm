@@ -24,6 +24,7 @@ public class BookwormApp.Cleanup {
     bookIDList = BookwormApp.DB.getBookIDListFromDB();
     cleanBookCacheContent();
     cleanBookCoverImages();
+    bookMonitor();
   }
 
   public static void cleanBookCacheContent(){
@@ -83,6 +84,17 @@ public class BookwormApp.Cleanup {
         BookwormApp.Utils.execute_sync_command("rm -f \"" + BookwormApp.Bookworm.bookworm_config_path + "/covers/" + cacheImage + "\"");
         debug ("Cache Image deleted:"+cacheImage);
       }
+    }
+  }
+
+  public static void bookMonitor(){
+    //Check and add book monitoring cron
+    string userCrontabContents = BookwormApp.Utils.execute_sync_command("crontab -l");
+    if(userCrontabContents.index_of("bookworm --discover") == -1){
+      BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.MONITOR_SCRIPT_LOCATION +
+                                             " " + BookwormApp.Bookworm.bookworm_config_path + "/user_crontab_backup.txt" +
+                                             " " + BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + "bookworm_user_crontab_temp.txt"
+                                            );
     }
   }
 

@@ -19,7 +19,6 @@
 using Gee;
 public class BookwormApp.BackgroundTasks {
   public static BookwormApp.Settings settings;
-  //public static string bookworm_config_path = GLib.Environment.get_user_config_dir ()+"/bookworm";
   public static void performTasks(){
     discoverBooks();
   }
@@ -29,7 +28,7 @@ public class BookwormApp.BackgroundTasks {
     BookwormApp.Settings settings = BookwormApp.Settings.get_instance();
     ArrayList<string> scanDirList = new ArrayList<string>();
     //find the folders to scan from the settings
-    if(BookwormApp.Bookworm.settings.list_of_scan_dirs.length > 1){
+    if(settings.list_of_scan_dirs.length > 1){
       debug(settings.list_of_scan_dirs);
 			string[] scanDirArray = settings.list_of_scan_dirs.split ("~~");
       foreach (string token in scanDirArray){
@@ -47,9 +46,9 @@ public class BookwormApp.BackgroundTasks {
     string findCmdOutput = BookwormApp.Utils.execute_sync_command(findCmd.str);
     if(findCmdOutput.contains("\n")){
       string[] findCmdOutputResults = findCmdOutput.strip().split ("\n",-1);
-      ArrayList<string> listOfBooks = BookwormApp.DB.getBookIDListFromDB();
       //check if the database exists otherwise create database and required tables
   		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(GLib.Environment.get_user_config_dir ()+"/bookworm");
+      ArrayList<string> listOfBooks = BookwormApp.DB.getBookIDListFromDB();
       foreach (string findResult in findCmdOutputResults) {
         bool noMatchFound = true;
         foreach (string book in listOfBooks) {
@@ -59,7 +58,7 @@ public class BookwormApp.BackgroundTasks {
           }
         }
         if(noMatchFound){
-          debug("Attempting to add book located at:"+findResult);
+          print("Attempting to add book located at:"+findResult);
           BookwormApp.Book aBook = new BookwormApp.Book();
           aBook.setBookLocation(findResult);
           File eBookFile = File.new_for_path (findResult);
@@ -74,11 +73,12 @@ public class BookwormApp.BackgroundTasks {
               BookwormApp.DB.removeBookFromDB(aBook);
             }else{
               BookwormApp.DB.updateBookToDataBase(aBook);
-              debug("Sucessfully added book located at:"+findResult);
+              print("Sucessfully added book located at:"+findResult);
             }
           }
         }
       }
     }
+    print("Completed process for discovery of books....\n");
   }
 }

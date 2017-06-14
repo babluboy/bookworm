@@ -58,6 +58,9 @@ public class BookwormApp.comicsReader {
     string extractionLocation = "";
     try{
       debug("Initiated process for content extraction of CBR Comics Book located at:"+eBookLocation);
+      if(BookwormApp.Bookworm.settings == null){
+        BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
+      }
       //create a location for extraction of eBook based on local storage prefference
       if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
         extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();

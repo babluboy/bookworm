@@ -122,6 +122,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
 	public const string TEXT_FOR_PREF_MENU_PREFERENCES_ITEM = _("Preferences");
 
+	public static const string MONITOR_SCRIPT_LOCATION = "/opt/bookworm/book_monitor.sh";
 	public static const string CSS_LOCATION = "/usr/share/bookworm/com.github.babluboy.bookworm.app.css";
 	public static const string PREV_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-previous.svg";
 	public static const string NEXT_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-next.svg";

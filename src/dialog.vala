@@ -236,6 +236,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		Gtk.Label fontChooserLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_FONT);
 		Gtk.FontButton fontButton = new Gtk.FontButton ();
+		fontButton.set_filter_func (filterFont);
 		fontButton.set_font_name(BookwormApp.Bookworm.settings.reading_font_name);
 		fontButton.set_show_style (false);
 		Gtk.Box fontBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
@@ -328,10 +329,9 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		fontButton.font_set.connect (() => {
 			// Emitted when a font has been chosen:
 			string selectedFontandSize = fontButton.get_font_name ();
-			string selectedFontFamily = "";
+			string selectedFontFamily = fontButton.get_font_family().get_name();
 			int selectedFontSize = 12;
 			if(selectedFontandSize.index_of(" ") != -1){
-				selectedFontFamily = selectedFontandSize.slice(0, selectedFontandSize.last_index_of(" ")).strip();
 				selectedFontSize = int.parse(selectedFontandSize.slice(selectedFontandSize.last_index_of(" "), selectedFontandSize.length));
 			}
 			BookwormApp.Bookworm.settings.reading_font_name = selectedFontandSize;
@@ -487,5 +487,13 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
 			}
 		});
+
+	}
+
+	public static bool filterFont (Pango.FontFamily family, Pango.FontFace face) {
+		if (face.get_face_name () != "Regular"){
+			return false;
+		}
+		return true;
 	}
 }

@@ -168,3 +168,10 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.des
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.appdata.xml DESTINATION ${DATADIR}/metainfo/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.app.css DESTINATION ${DATADIR}/bookworm)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/bookworm.contract DESTINATION share/contractor)
+
+# install support scripts for bookworm
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/book_monitor.sh
+    PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE
+    DESTINATION /opt/bookworm
+)
