@@ -20,7 +20,7 @@ sudo apt-get build-dep granite-demo
 sudo apt-get install libgranite-dev
 sudo apt-get install valac
 sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
-sudo apt-get install sqlite3 libsqlite3-dev
+sudo apt-get install libsqlite3-dev
 sudo apt-get install poppler-utils libpoppler-glib-dev
 
 git clone https://github.com/babluboy/bookworm.git
@@ -31,14 +31,15 @@ make
 ```
 ## Screenshots
 
-![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormLibraryView.jpeg)
-![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormReadingView.jpeg)
+![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormLibraryView.png)
+![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormReadingView.png)
 
-Bookworm in Night View Mode
+Bookworm Dark Mode
+![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormLibraryViewDarkMode.png)
+![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormReadingViewDarkMode.png)
 
-![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormLibraryViewNightView.jpeg)
-![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormReadingViewNightView.jpeg)
+Library List View
+![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/LibraryListView.png)
 
-Selection for deleting books from the library
-
-![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/BookwormLibraryViewSelectionMode.jpeg)
+Bookworm Preferences
+![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/PreferencesDialog.png)

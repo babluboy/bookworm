@@ -142,75 +142,51 @@ public class BookwormApp.PreferencesMenu {
 
     profileButton1.clicked.connect (() => {
       BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[0];
-      //call the rendered page if UI State is in reading mode
-      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-        BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-        currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-        BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-      }
+      //Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
     });
 
     profileButton2.clicked.connect (() => {
       BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
-      //call the rendered page if UI State is in reading mode
-      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-        BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-        currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-        BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-      }
+      //Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
     });
 
     profileButton3.clicked.connect (() => {
       BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[2];
-      //call the rendered page if UI State is in reading mode
-      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-        BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-        currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-        BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-      }
+      //Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
     });
 
     marginDecreaseButton.clicked.connect (() => {
       if(BookwormApp.Bookworm.settings.reading_width.to_int() <= 40){
         BookwormApp.Bookworm.settings.reading_width = (BookwormApp.Bookworm.settings.reading_width.to_int() + BookwormApp.Constants.MARGIN_CHANGE_VALUE).to_string();
-        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-          BookwormApp.Book currentBookForMarginIncrease = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          currentBookForMarginIncrease = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForMarginIncrease);
-        }
+        //Refresh the page if it is open
+  			BookwormApp.contentHandler.refreshCurrentPage();
       }
     });
 
     marginIncreaseButton.clicked.connect (() => {
       if(BookwormApp.Bookworm.settings.reading_width.to_int() >= 1){
         BookwormApp.Bookworm.settings.reading_width = (BookwormApp.Bookworm.settings.reading_width.to_int() - BookwormApp.Constants.MARGIN_CHANGE_VALUE).to_string();
-        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-          BookwormApp.Book currentBookForMarginDecrease = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          currentBookForMarginDecrease = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForMarginDecrease);
-        }
+        //Refresh the page if it is open
+  			BookwormApp.contentHandler.refreshCurrentPage();
       }
     });
 
     heightDecreaseButton.clicked.connect (() => {
       if(BookwormApp.Bookworm.settings.reading_line_height.to_int() >= 100){
         BookwormApp.Bookworm.settings.reading_line_height = (BookwormApp.Bookworm.settings.reading_line_height.to_int() - BookwormApp.Constants.LINE_HEIGHT_CHANGE_VALUE).to_string();
-        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-          BookwormApp.Book currentBookForLineHeightDecrease = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          currentBookForLineHeightDecrease = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForLineHeightDecrease);
-        }
+        //Refresh the page if it is open
+  			BookwormApp.contentHandler.refreshCurrentPage();
       }
     });
 
     heightIncreaseButton.clicked.connect (() => {
       if(BookwormApp.Bookworm.settings.reading_line_height.to_int() <= 500){
         BookwormApp.Bookworm.settings.reading_line_height = (BookwormApp.Bookworm.settings.reading_line_height.to_int() + BookwormApp.Constants.LINE_HEIGHT_CHANGE_VALUE).to_string();
-        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-          BookwormApp.Book currentBookForLineHeightIncrease = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          currentBookForLineHeightIncrease = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-          BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForLineHeightIncrease);
-        }
+        //Refresh the page if it is open
+  			BookwormApp.contentHandler.refreshCurrentPage();
       }
     });
 

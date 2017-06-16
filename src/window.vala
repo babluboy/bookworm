@@ -265,10 +265,15 @@ public class BookwormApp.AppWindow {
     });
     //Add action for moving the pages for the page slider
     pageSlider.change_value.connect ((scroll, new_value) => {
-      debug("Page Slider value change Initiated for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+      debug("Page Slider value change ["+new_value.to_string()+"] Initiated for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       BookwormApp.Book currentBookForSlider = new BookwormApp.Book();
       currentBookForSlider = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-      currentBookForSlider.setBookPageNumber(new_value.to_string().to_int()-1);
+      if((new_value.to_string().to_int()-1) > (currentBookForSlider.getBookContentList().size)){
+        //this is for the scenario where the slider crosses the max value
+        currentBookForSlider.setBookPageNumber(currentBookForSlider.getBookContentList().size-1);
+      }else{
+        currentBookForSlider.setBookPageNumber(new_value.to_string().to_int()-1);
+      }
       //update book details to libraryView Map
       currentBookForSlider = BookwormApp.Bookworm.renderPage(currentBookForSlider, "");
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForSlider.getBookLocation(), currentBookForSlider);

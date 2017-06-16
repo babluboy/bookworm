@@ -23,6 +23,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 	public static Gtk.ComboBoxText directoryComboBox;
 	public static StringBuilder scanDirList = new StringBuilder("");
 	public static BookwormApp.Settings settings;
+	public static string[] profileColorList;
 
 	public AppDialog () {
 		settings = BookwormApp.Settings.get_instance();
@@ -207,8 +208,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 	public static void createPreferencesDialog () {
 		AppDialog dialog = new AppDialog ();
+		Gdk.Color bgcolor;
+		Gdk.Color txtcolor;
 		dialog.set_transient_for(BookwormApp.Bookworm.window);
-		string[] profileColorList = settings.list_of_profile_colors.split (",");
+		profileColorList = settings.list_of_profile_colors.split (",");
 
     dialog.title = BookwormApp.Constants.TEXT_FOR_PREFERENCES_DIALOG_TITLE;
 		dialog.border_width = 5;
@@ -243,7 +246,6 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		fontBox.pack_start(fontChooserLabel, false, false);
 		fontBox.pack_end(fontButton, false, false);
 
-		//Gtk.Label customProfileLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION);
 		profileCombobox = new Gtk.ComboBoxText ();
 		StringBuilder profileNameText = new StringBuilder();
 		profileNameText.assign(BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION).append(" 1");
@@ -254,18 +256,18 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		profileCombobox.append_text (profileNameText.str);
 
 		Gtk.Label backgroundColourLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION_BACKGROUND_COLOR);
-		Gtk.Entry backgroundColourEntry = new Gtk.Entry ();
-		backgroundColourEntry.set_width_chars (6);
+		Gtk.ColorButton backgroundColourButton = new Gtk.ColorButton ();
+		backgroundColourButton.set_relief (ReliefStyle.HALF);
 		Gtk.Box backgroundColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 		backgroundColourBox.pack_start(backgroundColourLabel, false, false);
-		backgroundColourBox.pack_start(backgroundColourEntry, false, false);
+		backgroundColourBox.pack_start(backgroundColourButton, false, false);
 
 		Gtk.Label textColourLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION_FONT_COLOR);
-		Gtk.Entry textColourEntry = new Gtk.Entry ();
-		textColourEntry.set_width_chars (6);
+		Gtk.ColorButton textColourButton = new Gtk.ColorButton ();
+		textColourButton.set_relief (ReliefStyle.HALF);
 		Gtk.Box textColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 		textColourBox.pack_start(textColourLabel, false, false);
-		textColourBox.pack_start(textColourEntry, false, false);
+		textColourBox.pack_start(textColourButton, false, false);
 
 		Gtk.LinkButton preferencesReset = new Gtk.LinkButton.with_label ("reset", BookwormApp.Constants.TEXT_FOR_PREFERENCES_VALUES_RESET);
 		Gtk.Box resetBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -273,8 +275,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		//set the value for the first profile
 		profileCombobox.active = 0;
-		textColourEntry.set_text(profileColorList[0]);
-		backgroundColourEntry.set_text(profileColorList[1]);
+		Gdk.Color.parse (profileColorList[0], out txtcolor);
+		textColourButton.set_color (txtcolor);
+		Gdk.Color.parse (profileColorList[1], out bgcolor);
+		backgroundColourButton.set_color (bgcolor);
 
 		Gtk.Label discoverBooksLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_BOOKS_DISCOVERY);
 		directoryComboBox = new Gtk.ComboBoxText ();
@@ -337,12 +341,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			BookwormApp.Bookworm.settings.reading_font_name = selectedFontandSize;
 			BookwormApp.Bookworm.settings.reading_font_name_family = selectedFontFamily;
 			BookwormApp.Bookworm.settings.reading_font_size = selectedFontSize;
-			//call the rendered page if UI State is in reading mode
-			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-				BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-				currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-				BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-			}
+			//Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
 		});
 
 		localStorageSwitch.notify["active"].connect (() => {
@@ -365,42 +365,55 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		//Set text entry for text/background color based on selected profile
 		profileCombobox.changed.connect (() => {
 			if(profileCombobox.get_active_text().contains(" 1")){
-				textColourEntry.set_text(profileColorList[0]);
-				backgroundColourEntry.set_text(profileColorList[1]);
+				Gdk.Color.parse (profileColorList[0], out txtcolor);
+				textColourButton.set_color (txtcolor);
+				Gdk.Color.parse (profileColorList[1], out bgcolor);
+				backgroundColourButton.set_color (bgcolor);
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				textColourEntry.set_text(profileColorList[2]);
-				backgroundColourEntry.set_text(profileColorList[3]);
+				Gdk.Color.parse (profileColorList[2], out txtcolor);
+				textColourButton.set_color (txtcolor);
+				Gdk.Color.parse (profileColorList[3], out bgcolor);
+				backgroundColourButton.set_color (bgcolor);
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				textColourEntry.set_text(profileColorList[4]);
-				backgroundColourEntry.set_text(profileColorList[5]);
+				Gdk.Color.parse (profileColorList[4], out txtcolor);
+				textColourButton.set_color (txtcolor);
+				Gdk.Color.parse (profileColorList[5], out bgcolor);
+				backgroundColourButton.set_color (bgcolor);
 			}
 		});
-		//Set profile color based on updates to text changes for text color
-		textColourEntry.changed.connect (() => {
+
+		textColourButton.color_set.connect (() => {
 			if(profileCombobox.get_active_text().contains(" 1")){
-				profileColorList[0] = textColourEntry.get_text();
+				profileColorList[0] = rgba_to_hex(textColourButton.rgba,false, true);
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				profileColorList[2] = textColourEntry.get_text();
+				profileColorList[2] = rgba_to_hex(textColourButton.rgba,false, true);
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				profileColorList[4] = textColourEntry.get_text();
+				profileColorList[4] = rgba_to_hex(textColourButton.rgba,false, true);
 			}
+			updateProfileColorToSettings();
+			//Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
 		});
-		//Set profile color based on updates to text changes for background color
-		backgroundColourEntry.changed.connect (() => {
+
+		backgroundColourButton.color_set.connect (() => {
 			if(profileCombobox.get_active_text().contains(" 1")){
-				profileColorList[1] = backgroundColourEntry.get_text();
+				profileColorList[1] = rgba_to_hex(backgroundColourButton.rgba,false, true);
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				profileColorList[3] = backgroundColourEntry.get_text();
+				profileColorList[3] = rgba_to_hex(backgroundColourButton.rgba,false, true);
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				profileColorList[5] = backgroundColourEntry.get_text();
+				profileColorList[5] = rgba_to_hex(backgroundColourButton.rgba,false, true);
 			}
+			updateProfileColorToSettings();
+			//Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
 		});
+
 		//Add folder to scan for books
 		add_scan_directory_button.clicked.connect (() => {
 			ArrayList<string> selectedDir = BookwormApp.Utils.selectDirChooser(_("Select folder"), BookwormApp.Bookworm.window, false);
@@ -433,16 +446,22 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			profileColorList = defaultProfileColors.split (",");
 			//set the text based on the selected profile
 			if(profileCombobox.get_active_text().contains(" 1")){
-				textColourEntry.set_text(profileColorList[0]);
-				backgroundColourEntry.set_text(profileColorList[1]);
+				Gdk.Color.parse (profileColorList[0], out txtcolor);
+				textColourButton.set_color (txtcolor);
+				Gdk.Color.parse (profileColorList[1], out bgcolor);
+				backgroundColourButton.set_color (bgcolor);
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				textColourEntry.set_text(profileColorList[2]);
-				backgroundColourEntry.set_text(profileColorList[3]);
+				Gdk.Color.parse (profileColorList[2], out txtcolor);
+				textColourButton.set_color (txtcolor);
+				Gdk.Color.parse (profileColorList[3], out bgcolor);
+				backgroundColourButton.set_color (bgcolor);
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				textColourEntry.set_text(profileColorList[4]);
-				backgroundColourEntry.set_text(profileColorList[5]);
+				Gdk.Color.parse (profileColorList[4], out txtcolor);
+				textColourButton.set_color (txtcolor);
+				Gdk.Color.parse (profileColorList[5], out bgcolor);
+				backgroundColourButton.set_color (bgcolor);
 			}
 			//reset the settings value for profile colors
 			settings.list_of_profile_colors = defaultProfileColors;
@@ -461,33 +480,27 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			BookwormApp.Bookworm.settings.reading_font_size = (int) bookwormSettings.get_default_value ("reading-font-size");
 			fontButton.set_font_name(BookwormApp.Bookworm.settings.reading_font_name);
 
-			//call the rendered page if UI State is in reading mode
-			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-				BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-				currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-				BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-			}
+			//Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
 
 			return true;
 		});
 
 		dialog.response.connect (() => {
-			//build the profile color list to update the settings
-			StringBuilder listOfProfileColors = new StringBuilder();
-			foreach(string aProfileColor in profileColorList){
-				listOfProfileColors.append(aProfileColor).append(",");
-			}
-			settings.list_of_profile_colors = listOfProfileColors.str.slice(0, (listOfProfileColors.str.length-1));
-			//reload the css provider to reflect the updated css
-			BookwormApp.Bookworm.loadCSSProvider(BookwormApp.Bookworm.cssProvider);
-			//call the rendered page if UI State is in reading mode
-			if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-				BookwormApp.Book currentBookForViewChange = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-				currentBookForViewChange = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-				BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForViewChange);
-			}
+			updateProfileColorToSettings();
 		});
 
+	}
+
+	public static void updateProfileColorToSettings(){
+		//build the profile color list to update the settings
+		StringBuilder listOfProfileColors = new StringBuilder();
+		foreach(string aProfileColor in profileColorList){
+			listOfProfileColors.append(aProfileColor).append(",");
+		}
+		settings.list_of_profile_colors = listOfProfileColors.str.slice(0, (listOfProfileColors.str.length-1));
+		//reload the css provider to reflect the updated css
+		BookwormApp.Bookworm.loadCSSProvider(BookwormApp.Bookworm.cssProvider);
 	}
 
 	public static bool filterFont (Pango.FontFamily family, Pango.FontFace face) {
@@ -496,4 +509,19 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		}
 		return true;
 	}
+
+	public static string rgba_to_hex (Gdk.RGBA color, bool alpha = false, bool prefix_hash = true){
+		/* Converts the color in RGBA to hex */
+		string hex = "";
+		if (alpha){
+			hex = "%02x%02x%02x%02x".printf((uint)(Math.round(color.red*255)),(uint)(Math.round(color.green*255)),(uint)(Math.round(color.blue*255)),(uint)(Math.round(color.alpha*255))).up();
+		}else{
+			hex = "%02x%02x%02x".printf((uint)(Math.round(color.red*255)),(uint)(Math.round(color.green*255)),(uint)(Math.round(color.blue*255))).up();
+		}
+		if (prefix_hash){
+			hex = "#" + hex;
+		}
+		return hex;
+	}
+
 }

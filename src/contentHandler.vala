@@ -125,4 +125,12 @@ public class BookwormApp.contentHandler {
     }
     return searchResultsMap;
   }
+
+  public static void refreshCurrentPage(){
+    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+      BookwormApp.Book currentBookForRefresh = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+      currentBookForRefresh = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+      BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForRefresh);
+    }
+  }
 }
