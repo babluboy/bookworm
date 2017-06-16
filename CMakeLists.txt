@@ -42,7 +42,6 @@ set (SOURCE_LIST
     src/library.vala
     src/pdfReader.vala
     src/contentHandler.vala
-    src/cleanup.vala
     src/comicsReader.vala
     src/backgroundTasks.vala
 )
@@ -64,7 +63,7 @@ pkg_check_modules(DEPS REQUIRED
                  )
 
 add_definitions(${DEPS_CFLAGS})
-link_libraries(${DEPS_LIBRARIES})
+link_libraries(${DEPS_LIBRARIES} -lm)
 link_directories(${DEPS_LIBRARY_DIRS})
 
 # make sure we have vala
@@ -104,7 +103,6 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/library.vala
     src/pdfReader.vala
     src/contentHandler.vala
-    src/cleanup.vala
     src/comicsReader.vala
     src/backgroundTasks.vala
 
@@ -171,7 +169,7 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/bookworm.contract DESTINATION sh
 
 # install support scripts for bookworm
 install(
-    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/book_monitor.sh
-    PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE
-    DESTINATION /opt/bookworm
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/bookworm_daily_job
+    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+    DESTINATION /etc/cron.daily
 )

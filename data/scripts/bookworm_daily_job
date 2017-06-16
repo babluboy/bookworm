@@ -1,0 +1,5 @@
+#!/bin/sh
+#Written by Siddhartha Das (bablu.boy@gmail.com) as part of Bookworm (eBook Reader)
+#This script looks at folders chosen by user in bookworm and adds any book
+#in those folders into Bookworm library
+/usr/bin/bookworm --discover

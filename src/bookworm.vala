@@ -89,7 +89,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		options = new OptionEntry[3];
 		options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
 		options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
-		options[2] = { "discover", 0, 0, OptionArg.NONE, ref command_line_option_discover, _("Discover and books in directories except those specified in -x"), null };
+		options[2] = { "discover", 0, 0, OptionArg.NONE, ref command_line_option_discover, _("Automatically add new books from watched folders"), null };
 		add_main_option_entries (options);
 	}
 
@@ -299,8 +299,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 				Idle.add (closeBookWorm.callback);
 				yield;
 			}
-			//cleanup unused cached content and cover images
-			BookwormApp.Cleanup.cleanUp();
 	}
 
 	public void saveWindowState(){
