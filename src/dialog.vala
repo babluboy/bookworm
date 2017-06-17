@@ -414,7 +414,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			BookwormApp.contentHandler.refreshCurrentPage();
 		});
 
-		//Add folder to scan for books
+
 		add_scan_directory_button.clicked.connect (() => {
 			ArrayList<string> selectedDir = BookwormApp.Utils.selectDirChooser(_("Select folder"), BookwormApp.Bookworm.window, false);
 			TreeModel aTreeModel = directoryComboBox.get_model();
@@ -430,6 +430,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				debug("value of scanDirList after adding dir:"+scanDirList.str);
 			}
 		});
+		//Remove selected watched folder
 		remove_scan_directory_button.clicked.connect (() => {
 			if(directoryComboBox.get_active_text().length > 1){
 				scanDirList.assign(scanDirList.str.replace(directoryComboBox.get_active_text ()+"~~", ""));

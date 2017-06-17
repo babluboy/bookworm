@@ -167,9 +167,9 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.app
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.app.css DESTINATION ${DATADIR}/bookworm)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/bookworm.contract DESTINATION share/contractor)
 
-# install support scripts for bookworm
+# install scripts
 install(
-    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/bookworm_daily_job
-    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-    DESTINATION /etc/cron.daily
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/book_monitor.sh
+    PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE
+    DESTINATION /opt/bookworm
 )

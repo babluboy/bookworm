@@ -157,4 +157,15 @@ public class BookwormApp.BackgroundTasks {
       }
     }
   }
+
+  public static void taskScheduler(){
+    //Check and add book monitoring cron
+    string userCrontabContents = BookwormApp.Utils.execute_sync_command("crontab -l");
+    if(userCrontabContents.index_of("bookworm --discover") == -1){
+      BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.MONITOR_SCRIPT_LOCATION +
+                                             " " + BookwormApp.Bookworm.bookworm_config_path + "/user_crontab_backup.txt" +
+                                             " " + BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + "bookworm_user_crontab_temp.txt"
+                                            );
+    }
+  }
 }

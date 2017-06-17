@@ -299,6 +299,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 				Idle.add (closeBookWorm.callback);
 				yield;
 			}
+			BookwormApp.BackgroundTasks.taskScheduler();
 	}
 
 	public void saveWindowState(){
