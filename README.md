@@ -43,3 +43,5 @@ Library List View
 
 Bookworm Preferences
 ![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/PreferencesDialog.png)
+
+Translation Status [![Translation status](https://hosted.weblate.org/widgets/bookworm/-/svg-badge.svg)](https://hosted.weblate.org/engage/bookworm/?utm_source=widget)
