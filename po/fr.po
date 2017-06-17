@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-06-17 14:37+0000\n"
+"PO-Revision-Date: 2017-06-17 15:52+0000\n"
 "Last-Translator: Siddhartha Das <bablu.boy@gmail.com>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
@@ -71,7 +71,7 @@ msgstr "Recherche par titre, auteur et balises"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
-msgstr "On dirait que Bookworm n'a pas de livres!"
+msgstr "On dirait que Bookworm n'a pas de livres !"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
