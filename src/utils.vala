@@ -124,7 +124,7 @@ namespace BookwormApp.Utils {
 			if(!doesFileExist)
 				grepOutput = ""; //TODO: handle the no file found error
 			*/
-			return grepOutput;
+			return grepOutput.strip();
 		}catch (Error e){
 			warning("Error encountered in getting full path for filename ["+fileName+"] searching within directory["+rootDirectoryToSearch+"]: "+e.message);
 		}
@@ -319,10 +319,14 @@ namespace BookwormApp.Utils {
 		File fileDir = null;
 		File file = null;
 		try{
-			if(path != null || path.length > 1)
+			if(path != null || path.length > 1){
 				fileDir = File.new_for_commandline_arg(path);
-			if(filename != null && filename.length > 1)
+			}
+			if(filename != null && filename.length > 1){
 				file = File.new_for_path(path+"/"+filename);
+			}else{
+				file = File.new_for_path(path);
+			}
 			if("CREATEDIR" == operation){
 				//check if directory does not exists
 				if(!fileDir.query_exists ()){
@@ -513,7 +517,7 @@ namespace BookwormApp.Utils {
 			debug("Completed creating Table Of Contents....");
 			return tocHTML.str;
 		}
-		
+
 		// Create a GtkFileChooserDialog to perform the action desired
 		//The filterMap should be in the format: key=*.epub, value=ePUB, key=*.jpg, value=Images
 	  public Gtk.FileChooserDialog new_file_chooser_dialog (Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple, string filterType) {
@@ -572,9 +576,7 @@ namespace BookwormApp.Utils {
 
 		public static ArrayList<string> selectFileChooser(Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple, string filterType){
 			ArrayList<string> eBookLocationList = new ArrayList<string>();
-			//create a hashmap to hold details for the book
-			Gee.HashMap<string,string> bookDetailsMap = new Gee.HashMap<string,string>();
-	    //choose eBook using a File chooser dialog
+			//choose eBook using a File chooser dialog
 			Gtk.FileChooserDialog aFileChooserDialog = BookwormApp.Utils.new_file_chooser_dialog (action, title, parent, select_multiple, filterType);
 	    aFileChooserDialog.show_all ();
 	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
@@ -589,10 +591,54 @@ namespace BookwormApp.Utils {
 			return eBookLocationList;
 		}
 
+		public static ArrayList<string> selectDirChooser(string title, Gtk.Window? parent, bool select_multiple){
+			ArrayList<string> selectedDirList = new ArrayList<string>();
+			Gtk.FileChooserDialog aFileChooserDialog = new Gtk.FileChooserDialog (title, parent, Gtk.FileChooserAction.SELECT_FOLDER);
+			aFileChooserDialog.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+      aFileChooserDialog.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
+      aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
+			if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){
+				bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+			}else{
+				aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
+			}
+			Gtk.FileFilter all_files_filter = new Gtk.FileFilter ();
+			all_files_filter.set_filter_name (BookwormApp.Constants.TEXT_FOR_FILE_CHOOSER_FILTER_ALL_FILES);
+			all_files_filter.add_pattern ("*");
+			aFileChooserDialog.add_filter (all_files_filter);
+			aFileChooserDialog.show_all ();
+	    if (aFileChooserDialog.run () == Gtk.ResponseType.ACCEPT) {
+	      SList<string> uris = aFileChooserDialog.get_uris ();
+				foreach (unowned string uri in uris) {
+					selectedDirList.add(File.new_for_uri(uri).get_path ());
+				}
+				aFileChooserDialog.close();
+	    }else{
+	      aFileChooserDialog.close();
+	    }
+			aFileChooserDialog.key_press_event.connect ((ev) => {
+			    if (ev.keyval == 65307) // Esc key
+			        aFileChooserDialog.destroy ();
+			    return false;
+			});
+
+			return selectedDirList;
+		}
+
+		public static string parseMarkUp(string inputString){
+			string outputString = "";
+			unichar accel_char;
+			Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
+			return outputString;
+		}
+
 		public static string decodeHTMLChars(string inputString){
 			string outputString = Soup.URI.decode(inputString);
-			//unichar accel_char;
-			//Pango.parse_markup (outputString, outputString.length, 0, null, out outputString, out accel_char);
+			return outputString;
+		}
+
+		public static string encodeHTMLChars(string inputString){
+			string outputString = inputString.replace("#", "%23");
 			return outputString;
 		}
 

@@ -23,25 +23,41 @@ public class BookwormApp.AppHeaderBar {
   public static Gtk.SearchEntry headerSearchBar;
   public static Gtk.Button bookmark_inactive_button;
   public static Gtk.Button bookmark_active_button;
+  public static BookwormApp.Settings settings;
 
   public static Gtk.HeaderBar create_headerbar() {
     debug("Starting creation of header bar..");
+    settings = BookwormApp.Settings.get_instance();
     BookwormApp.Bookworm bookwormApp = BookwormApp.Bookworm.getAppInstance();
     headerbar = new Gtk.HeaderBar();
 
     headerbar.set_title(BookwormApp.Constants.program_name);
-    headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
+    //headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
     headerbar.set_show_close_button(true);
     headerbar.spacing = Constants.SPACING_WIDGETS;
 
     //add menu items to header bar - content list button
+    Gtk.Image library_list_button_image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+    Gtk.Image library_grid_button_image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+    bookwormApp.library_mode_button = new Granite.Widgets.ModeButton();
+    bookwormApp.library_mode_button.append (library_grid_button_image);
+    bookwormApp.library_mode_button.append (library_list_button_image);
+    bookwormApp.library_mode_button.valign = Gtk.Align.CENTER;
+    bookwormApp.library_mode_button.halign = Gtk.Align.START;
+    bookwormApp.library_mode_button.set_size_request (60, -1);
+    if(settings.library_view_mode == BookwormApp.Constants.BOOKWORM_UI_STATES[0]){
+      bookwormApp.library_mode_button.set_active (0);
+    }else{
+      bookwormApp.library_mode_button.set_active (1);
+    }
+
     bookwormApp.library_view_button = new Gtk.Button.with_label (BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
     bookwormApp.library_view_button.get_style_context().add_class ("back-button");
     bookwormApp.library_view_button.valign = Gtk.Align.CENTER;
     bookwormApp.library_view_button.can_focus = false;
     bookwormApp.library_view_button.vexpand = false;
 
-    Gtk.Image content_list_button_image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+    Gtk.Image content_list_button_image = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
     bookwormApp.content_list_button = new Gtk.Button ();
     bookwormApp.content_list_button.set_image (content_list_button_image);
     bookwormApp.content_list_button.set_valign(Gtk.Align.CENTER);
@@ -69,6 +85,8 @@ public class BookwormApp.AppHeaderBar {
     bookmark_active_button.set_valign(Gtk.Align.CENTER);
     bookmark_active_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_BOOKMARKS_DEACTIVATE);
 
+    headerbar.add(bookwormApp.library_mode_button);
+    //headerbar.pack_start(bookwormApp.libraryView_button);
     headerbar.pack_start(bookwormApp.library_view_button);
     headerbar.pack_start(bookwormApp.content_list_button);
     headerbar.pack_start(bookwormApp.prefButton);
@@ -105,6 +123,7 @@ public class BookwormApp.AppHeaderBar {
     headerSearchBar.search_changed.connect (() => {
       //Call the filter only if the Library View Mode is active
       if(!(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1] || bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4])){
+        BookwormApp.Bookworm.libraryTreeModelFilter.refilter();
         BookwormApp.AppWindow.library_grid.invalidate_filter ();
       }
     });
@@ -124,10 +143,9 @@ public class BookwormApp.AppHeaderBar {
       //Set action of return to Library View if the current view is Reading View
       if(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
         //Update header to remove title of book being read
-        headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
+        headerbar.title = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
         //set UI in library view mode
-        bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
+        bookwormApp.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
         bookwormApp.toggleUIState();
       }
 
@@ -160,6 +178,16 @@ public class BookwormApp.AppHeaderBar {
 
     bookmark_inactive_button.clicked.connect (() => {
       BookwormApp.Bookworm.handleBookMark("INACTIVE_CLICKED");
+    });
+
+    bookwormApp.library_mode_button.mode_changed.connect ((widget) => {
+      if(widget == library_grid_button_image){
+        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+      }else{
+        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
+      }
+      settings.library_view_mode = BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE;
+      BookwormApp.Bookworm.toggleUIState();
     });
 
     debug("Completed loading HeaderBar sucessfully...");

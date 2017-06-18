@@ -29,12 +29,16 @@
 				<summary>Save Zoom Level of WebView</summary>
 		</key>
 		<key name="reading-profile" type="s">
-				<default>"DAY MODE"</default>
+				<default>"PROFILE1"</default>
 				<summary>Save the reading profile</summary>
 		</key>
 		<key name="is-local-storage-enabled" type="b">
 				<default>true</default>
 				<summary>Local storage for extracted contents of books</summary>
+		</key>
+		<key name="is-dark-theme-enabled" type="b">
+				<default>false</default>
+				<summary>Enable dark theme</summary>
 		</key>
 		<key name="reading-width" type="s">
 				<default>"1"</default>
@@ -44,5 +48,29 @@
 				<default>"150"</default>
 				<summary>Save the page line height for reading</summary>
 		</key>
+		<key name="reading-font-name" type="s">
+				<default>"georgia"</default>
+				<summary>Save the choosen font for reading</summary>
+		</key>
+		<key name="reading-font-name-family" type="s">
+				<default>"georgia 12"</default>
+				<summary>Save the choosen font for reading</summary>
+		</key>
+		<key name="reading-font-size" type="i">
+				<default>12</default>
+				<summary>Save the choosen font size for reading</summary>
+		</key>
+		<key name="library-view-mode" type="s">
+				<default>"LIBRARY_MODE_GRID"</default>
+				<summary>Save the library view mode</summary>
+		</key>
+		<key name="list-of-profile-colors" type="s">
+        <default>"#000000,#fbfbfb,#586e75,#fdf6e3,#93a1a1,#002b36"</default>
+        <summary>List of profile colours. Three profiles with two colors each. First color is text color and second one is bgcolor</summary>
+    </key>
+		<key name="list-of-scan-dirs" type="s">
+        <default>""</default>
+        <summary>List of directories to be scanned for new books</summary>
+    </key>
   </schema>
 </schemalist>

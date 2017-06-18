@@ -24,9 +24,14 @@ public class BookwormApp.AppWindow {
   public static Gtk.InfoBar infobar;
   public static Gtk.Box bookLibrary_ui_box;
   public static Gtk.FlowBox library_grid;
+  public static Gtk.ListStore library_table_liststore;
+  public static TreeIter library_table_iter;
+  public static Gtk.TreeView library_table_treeview;
   public static Gtk.Label infobarLabel;
-  public static ScrolledWindow library_scroll;
+  public static ScrolledWindow library_grid_scroll;
+  public static ScrolledWindow library_list_scroll;
   public static WebKit.WebView aWebView;
+  public static WebKit.Settings webkitSettings;
   public static Gtk.EventBox book_reading_footer_eventbox;
   public static Gtk.Box book_reading_footer_box;
   public static Gtk.Box bookReading_ui_box;
@@ -35,11 +40,13 @@ public class BookwormApp.AppWindow {
   public static Gtk.ProgressBar bookAdditionBar;
   public static Adjustment pageAdjustment;
   public static Scale pageSlider;
+  public static BookwormApp.Settings settings;
 
   public static Gtk.Box createBoookwormUI() {
     debug("Starting to create main window components...");
+    settings = BookwormApp.Settings.get_instance();
 
-    //Create a box to display the book library
+    //Create a grid to display the book library
     library_grid = new Gtk.FlowBox();
     library_grid.set_border_width (BookwormApp.Constants.SPACING_WIDGETS);
     library_grid.column_spacing = BookwormApp.Constants.SPACING_WIDGETS;
@@ -47,11 +54,37 @@ public class BookwormApp.AppWindow {
     library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
     library_grid.homogeneous = true;
     library_grid.set_valign(Gtk.Align.START);
-    library_grid.set_filter_func(BookwormApp.Bookworm.libraryViewFilter);
+    library_grid.set_filter_func(BookwormApp.Library.libraryViewFilter);
 
-    library_scroll = new ScrolledWindow (null, null);
-    library_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-    library_scroll.add (library_grid);
+    library_grid_scroll = new ScrolledWindow (null, null);
+    library_grid_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+    library_grid_scroll.add (library_grid);
+
+    //Create a treeview and Liststore to display the list of books in the library
+    library_table_liststore = new Gtk.ListStore (8, typeof (Gdk.Pixbuf), typeof (string), typeof (string), typeof (string), typeof (Gdk.Pixbuf), typeof (string), typeof (string), typeof (string));
+    library_table_treeview = new Gtk.TreeView();
+    library_table_treeview.activate_on_single_click = true;
+    //Set up the various cell types for the library metadata
+    CellRendererPixbuf selection_cell_pix = new CellRendererPixbuf ();
+    CellRendererText non_editable_cell_txt = new CellRendererText ();
+    CellRendererText title_cell_txt = new CellRendererText ();
+    title_cell_txt.editable = true;
+    CellRendererText author_cell_txt = new CellRendererText ();
+    author_cell_txt.editable = true;
+    CellRendererPixbuf rating_cell_pix = new CellRendererPixbuf ();
+    CellRendererText tags_cell_txt = new CellRendererText ();
+    tags_cell_txt.editable = true;
+    //Set up Treeview columns
+    library_table_treeview.insert_column_with_attributes (-1, " ", selection_cell_pix, "pixbuf", 0);
+    library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TITLE, title_cell_txt, "text", 1);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_AUTHOR, author_cell_txt, "text", 2);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_MODIFIED_DATE, non_editable_cell_txt, "text", 3);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_RATING, rating_cell_pix, "pixbuf", 4);
+		library_table_treeview.insert_column_with_attributes (-1, BookwormApp.Constants.TEXT_FOR_LIST_VIEW_COLUMN_NAME_TAGS, tags_cell_txt, "text", 5);
+
+    library_list_scroll = new ScrolledWindow (null, null);
+    library_list_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+    library_list_scroll.add (library_table_treeview);
 
     //Set up Button for selection of books
     Gtk.Image select_book_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
@@ -100,18 +133,22 @@ public class BookwormApp.AppWindow {
     bookLibrary_ui_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     bookLibrary_ui_box.set_border_width (0);
     bookLibrary_ui_box.pack_start (infobar, false, true, 0);
-    bookLibrary_ui_box.pack_start (library_scroll, true, true, 0);
+    bookLibrary_ui_box.pack_start (library_grid_scroll, true, true, 0);
+    bookLibrary_ui_box.pack_start (library_list_scroll, true, true, 0);
     bookLibrary_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
     //create the webview to display page content
-    WebKit.Settings webkitSettings = new WebKit.Settings();
+    webkitSettings = new WebKit.Settings();
     webkitSettings.set_allow_file_access_from_file_urls (true);
-    webkitSettings.set_allow_universal_access_from_file_urls(true); //launchpad error
+    webkitSettings.set_allow_universal_access_from_file_urls(true); //this gives launchpad build error
     webkitSettings.set_auto_load_images(true);
     aWebView = new WebKit.WebView.with_settings(webkitSettings);
     aWebView.set_zoom_level(BookwormApp.Settings.get_instance().zoom_level);
     webkitSettings.set_enable_javascript(true);
-    webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
+    //This is for setting the font to the system font - Is this required ?
+    //webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
+    webkitSettings.set_default_font_size (BookwormApp.Bookworm.settings.reading_font_size);
+    webkitSettings.set_default_font_family(BookwormApp.Bookworm.settings.reading_font_name);
 
     //Set up Button for previous page
     Gtk.Image back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
@@ -153,7 +190,56 @@ public class BookwormApp.AppWindow {
     main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
     //main_ui_box.get_style_context().add_class ("box_white");
 
-    //Add all UI action listeners
+    //Add action to open a book for clicking on row in library list view
+    library_table_treeview.row_activated.connect ((path, column) => {
+      Gtk.TreeIter iter;
+	    Value bookLocation;
+      TreeModel aTreeModel =  library_table_treeview.get_model ();
+	    aTreeModel.get_iter (out iter, path);
+	    aTreeModel.get_value (iter, 7, out bookLocation);
+
+      BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+      {
+        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[7];
+        BookwormApp.Library.updateListViewForSelection(aBook);
+      }
+	    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5]){
+        BookwormApp.Bookworm.readSelectedBook(aBook);
+      }
+    });
+
+    //Add action to update tree view when editing is Completed
+    title_cell_txt.edited.connect((path, new_text) => {
+      updateLibraryListViewData(path, new_text, 1);
+    });
+    author_cell_txt.edited.connect((path, new_text) => {
+      updateLibraryListViewData(path, new_text, 2);
+    });
+    tags_cell_txt.edited.connect((path, new_text) => {
+      updateLibraryListViewData(path, new_text, 5);
+    });
+
+    //Add action to open the context menu on right click of tree view
+    library_table_treeview.button_press_event.connect ((event) => {
+      //capture which mouse button was clicked on the book in the library
+      uint mouseButtonClicked;
+      event.get_button(out mouseButtonClicked);
+      //handle right button click for context menu
+      if (event.get_event_type ()  == Gdk.EventType.BUTTON_PRESS  &&  mouseButtonClicked == 3){
+        /*TreeIter iter;
+        TreeModel model;
+  	    Value bookLocation;
+  	    TreeSelection selection = library_table_treeview.get_selection();
+        selection.get_selected (out model, out iter);
+        model.get_value (iter, 0, out bookLocation);
+        BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+        TODO:Set up the right click context
+        */
+      };
+      return false; //return false to propagate the action further i.e. row activation
+    });
 
     //Add action on the forward button for reading
     forward_button.clicked.connect (() => {
@@ -179,10 +265,15 @@ public class BookwormApp.AppWindow {
     });
     //Add action for moving the pages for the page slider
     pageSlider.change_value.connect ((scroll, new_value) => {
-      debug("Page Slider value change Initiated for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+      debug("Page Slider value change ["+new_value.to_string()+"] Initiated for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       BookwormApp.Book currentBookForSlider = new BookwormApp.Book();
       currentBookForSlider = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-      currentBookForSlider.setBookPageNumber(new_value.to_string().to_int()-1);
+      if((new_value.to_string().to_int()-1) > (currentBookForSlider.getBookContentList().size)){
+        //this is for the scenario where the slider crosses the max value
+        currentBookForSlider.setBookPageNumber(currentBookForSlider.getBookContentList().size-1);
+      }else{
+        currentBookForSlider.setBookPageNumber(new_value.to_string().to_int()-1);
+      }
       //update book details to libraryView Map
       currentBookForSlider = BookwormApp.Bookworm.renderPage(currentBookForSlider, "");
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForSlider.getBookLocation(), currentBookForSlider);
@@ -202,25 +293,46 @@ public class BookwormApp.AppWindow {
       //Display the progress bar
 			BookwormApp.AppWindow.bookAdditionBar.show();
 			BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
-      BookwormApp.Bookworm.addBooksToLibrary ();
+      BookwormApp.Library.addBooksToLibrary ();
     });
     //Add action for putting library in select view
     select_book_button.clicked.connect (() => {
-      //check if the mode is already in selection mode
-      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] || BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]){
-        //UI is already in selection/selected mode - second click puts the view in normal mode
-        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
+      //check if the library is in List View mode
+      if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
+         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+      {
+        //check if the mode is already in selection mode
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+        {
+          //UI is already in selection/selected mode - second click puts the view in normal mode
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
+          BookwormApp.Library.updateListViewForSelection(null);
+        }else{
+          //UI is not in selection/selected mode - set the view mode to selection mode
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[6];
+          BookwormApp.Library.updateListViewForSelection(null);
+        }
       }else{
-        //UI is not in selection/selected mode - set the view mode to selection mode
-        BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[2];
-        BookwormApp.Library.updateLibraryViewForSelectionMode(null);
+        //check if the mode is already in selection mode
+        if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+        {
+          //UI is already in selection/selected mode - second click puts the view in normal mode
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
+          BookwormApp.Library.updateGridViewForSelection(null);
+        }else{
+          //UI is not in selection/selected mode - set the view mode to selection mode
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[2];
+          BookwormApp.Library.updateGridViewForSelection(null);
+        }
       }
-    });
 
+    });
     //Add action for removing a selected book on the library view
     remove_book_button.clicked.connect (() => {
-      BookwormApp.Bookworm.removeSelectedBooksFromLibrary();
+      BookwormApp.Library.removeSelectedBooksFromLibrary();
     });
     //handle context menu on the webview reader
     aWebView.context_menu.connect ((context_menu, event, hit_test_result) => {
@@ -260,6 +372,7 @@ public class BookwormApp.AppWindow {
       return false;
     });
     //capture key press events on the webview reader
+    bool isControlKeyPressed = false;
     aWebView.key_press_event.connect ((ev) => {
         if (ev.keyval == Gdk.Key.Left) {// Left Key pressed, move page backwards
           //get object for this ebook
@@ -283,7 +396,23 @@ public class BookwormApp.AppWindow {
           book_reading_footer_box.hide();
           BookwormApp.Bookworm.window.fullscreen();
         }
+        if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {
+          isControlKeyPressed = true;
+        }
+        if (isControlKeyPressed && ev.keyval == Gdk.Key.plus){// Control and + keys pressed
+          aWebView.set_zoom_level (aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+        }
+        if (isControlKeyPressed && ev.keyval == Gdk.Key.minus){// Control and + keys pressed
+          aWebView.set_zoom_level (aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+        }
         return false;
+    });
+
+    aWebView.key_release_event.connect ((ev) => {
+      if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {
+        isControlKeyPressed = false;
+      }
+      return false;
     });
 
     //capture the url clicked on the webview and action the navigation type clicks
@@ -331,6 +460,46 @@ public class BookwormApp.AppWindow {
     return main_ui_box;
   }
 
+  public static bool updateLibraryListViewData(string path, string new_text, int column){
+    debug("Started to update metadata in List View on row:"+path+" for change:"+new_text+" on column:"+column.to_string());
+    //Determine the book whose meta data is being updated
+    Gtk.TreeIter sortedIter;
+    Value bookLocation;
+    TreeModel aTreeModel =  library_table_treeview.get_model ();
+    Gtk.TreePath aTreePath = new Gtk.TreePath.from_string (path);
+    aTreeModel.get_iter (out sortedIter, aTreePath);
+    aTreeModel.get_value (sortedIter, 7, out bookLocation);
+
+    //iterate over the list store
+    Gtk.TreeIter iter;
+    string bookLocationforCurrentRow;
+    bool iterExists = true;
+    iterExists = library_table_liststore.get_iter_first (out iter);
+    while(iterExists){
+      library_table_liststore.get (iter, 7, out bookLocationforCurrentRow);
+      if((string)bookLocation == bookLocationforCurrentRow) {
+        library_table_liststore.set (iter, column, new_text);
+        BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+        if(column == 1){
+          aBook.setBookTitle(new_text);
+        }
+        if(column == 2){
+          aBook.setBookAuthor(new_text);
+        }
+        if(column == 5){
+          aBook.setBookTags(new_text);
+        }
+        aBook.setWasBookOpened(true);
+        BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+        debug("Completed updating metadata in List View for book:"+(string)bookLocation);
+        return true; //break out of the iterations
+      }
+      iterExists = library_table_liststore.iter_next (ref iter);
+    }
+    return true;
+  }
+
+
   public static Granite.Widgets.Welcome createWelcomeScreen(){
     //Create a welcome screen for view of library with no books
     BookwormApp.Bookworm.welcomeWidget = new Granite.Widgets.Welcome (BookwormApp.Constants.TEXT_FOR_WELCOME_MESSAGE_TITLE, BookwormApp.Constants.TEXT_FOR_WELCOME_MESSAGE_SUBTITLE);
@@ -355,7 +524,7 @@ public class BookwormApp.AppWindow {
       //Display the progress bar
 			BookwormApp.AppWindow.bookAdditionBar.show();
 			BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
-      BookwormApp.Bookworm.addBooksToLibrary ();
+      BookwormApp.Library.addBooksToLibrary ();
     });
     return BookwormApp.Bookworm.welcomeWidget;
   }

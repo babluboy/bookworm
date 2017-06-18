@@ -1,13 +1,15 @@
-/*
-GtkBox.box_white {
-  background-color: white;
-  border-color: white;
+GtkButton.PROFILE_BUTTON_1 {
+  color: #000000;
+  background-color: #fbfbfb;
+  border-color: #B0C4DE;
 }
-GtkBox.box_black {
-  background-color: black;
-  border-color: black;
+GtkButton.PROFILE_BUTTON_2 {
+  color: #586e75;
+  background-color: #fdf6e3;
+  border-color: #B0C4DE;
 }
-GtkButton.white_text {
-  color: white;
+GtkButton.PROFILE_BUTTON_3 {
+  color: #93a1a1;
+  background-color: #002b36;
+  border-color: #B0C4DE;
 }
-*/

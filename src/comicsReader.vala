@@ -32,8 +32,23 @@ public class BookwormApp.comicsReader {
       }
       //Store the list of comic book images in the correct order of reading
       aBook = getContentList(aBook, extractionLocation);
-
+      if(aBook.getBookContentList().size < 1){
+        //No content has been determined for the book
+        aBook.setIsBookParsed(false);
+        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_EXTRACTION_ISSUE);
+        return aBook;
+      }
     }
+    //Use the file name as book title
+    if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
+      string bookTitle = File.new_for_path(aBook.getBookLocation()).get_basename();
+      if(bookTitle.last_index_of(".") != -1){
+        bookTitle = bookTitle.slice(0, bookTitle.last_index_of("."));
+      }
+      aBook.setBookTitle(bookTitle);
+      debug("File name set as Title:"+bookTitle);
+    }
+
     aBook.setIsBookParsed(true);
     debug ("Sucessfully parsed Comic Book located at:"+aBook.getBookLocation());
     return aBook;
@@ -43,6 +58,9 @@ public class BookwormApp.comicsReader {
     string extractionLocation = "";
     try{
       debug("Initiated process for content extraction of CBR Comics Book located at:"+eBookLocation);
+      if(BookwormApp.Bookworm.settings == null){
+        BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
+      }
       //create a location for extraction of eBook based on local storage prefference
       if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
         extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();

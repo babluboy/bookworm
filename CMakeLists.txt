@@ -15,9 +15,11 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/bookworm")
 
 set (EXEC_NAME "bookworm")
-set (RELEASE_NAME "bookworm v0.7")
-set (VERSION "0.7")
+set (RELEASE_NAME "bookworm v0.8")
+set (VERSION "0.8")
 set (VERSION_INFO "Bookworm - An eBook Reader")
+
+add_subdirectory (po)
 
 # Some definitions
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
@@ -40,22 +42,12 @@ set (SOURCE_LIST
     src/library.vala
     src/pdfReader.vala
     src/contentHandler.vala
-    src/cleanup.vala
     src/comicsReader.vala
+    src/backgroundTasks.vala
 )
 
 include (GSettings)
 add_schema ("schemas/com.github.babluboy.bookworm.gschema.xml")
-
-# custom command to update pot template files
-set (_pot_file po/${PROJECT_NAME}.pot)
-add_custom_command (OUTPUT ${_pot_file}
-    COMMAND xgettext --language=C --keyword=_ --escape --sort-output -o po/bookworm.pot src/constants.vala
-    DEPENDS ${SOURCE_LIST}
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMENT "Extract translatable messages to ${_pot_file}")
-
-add_custom_target (pot_file ALL DEPENDS ${_pot_file})
 
 # we're about to use pkgconfig to make sure dependencies are installed so let's find pkgconfig first
 find_package(PkgConfig)
@@ -71,7 +63,7 @@ pkg_check_modules(DEPS REQUIRED
                  )
 
 add_definitions(${DEPS_CFLAGS})
-link_libraries(${DEPS_LIBRARIES})
+link_libraries(${DEPS_LIBRARIES} -lm)
 link_directories(${DEPS_LIBRARY_DIRS})
 
 # make sure we have vala
@@ -111,8 +103,8 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/library.vala
     src/pdfReader.vala
     src/contentHandler.vala
-    src/cleanup.vala
     src/comicsReader.vala
+    src/backgroundTasks.vala
 
 # tell what libraries to use when compiling
 PACKAGES
@@ -147,6 +139,14 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-line-height-mo
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-line-height-less.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-width-more.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-width-less.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_1.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_2.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_3.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_4.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_5.png DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-selection-checked.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-dir-remove.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-view-list-symbolic.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-inactive.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-active.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
@@ -154,9 +154,6 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-chec
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-day.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-night.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-profile-sepia.png DESTINATION share/bookworm/icons/hicolor/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-placeholder-cover.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-1.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-2.png DESTINATION share/bookworm/icons/hicolor/256x256/apps/)
@@ -169,3 +166,10 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.des
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.appdata.xml DESTINATION ${DATADIR}/metainfo/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.app.css DESTINATION ${DATADIR}/bookworm)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/bookworm.contract DESTINATION share/contractor)
+
+# install scripts
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/book_monitor.sh
+    PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE
+    DESTINATION /opt/bookworm
+)

@@ -30,6 +30,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string[] commandLineArgs;
 	private static bool command_line_option_version = false;
 	private static bool command_line_option_debug = false;
+	private static bool command_line_option_discover = false;
 	private static OptionEntry[] options;
 
 	public StringBuilder spawn_async_with_pipes_output = new StringBuilder("");
@@ -37,14 +38,26 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static BookwormApp.Settings settings;
 	public static Gtk.ApplicationWindow window;
 	public static Gtk.IconTheme default_theme;
+	public static CssProvider cssProvider;
 	public static Gtk.Box bookWormUIBox;
 	public static Granite.Widgets.Welcome welcomeWidget;
+	public static Granite.Widgets.ModeButton library_mode_button;
+	public static Gtk.TreeModelFilter libraryTreeModelFilter;
 	public static Gtk.Button library_view_button;
 	public static Gtk.Button content_list_button;
 	public static Gtk.Button prefButton;
 	public static Gdk.Pixbuf bookSelectionPix;
 	public static Gdk.Pixbuf bookSelectedPix;
-	public static Gtk.Image bookSelectionImage;
+	public static Gdk.Pixbuf image_selection_option_small;
+	public static Gdk.Pixbuf image_selection_checked_small;
+	public static Gdk.Pixbuf image_selection_transparent_small;
+	public static Gdk.Pixbuf image_selection_scaled;
+	public static Gdk.Pixbuf image_rating_1;
+	public static Gdk.Pixbuf image_rating_2;
+	public static Gdk.Pixbuf image_rating_3;
+	public static Gdk.Pixbuf image_rating_4;
+	public static Gdk.Pixbuf image_rating_5;
+	public static Gdk.Pixbuf image_remove;
 
 	public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
@@ -52,6 +65,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string[] pathsOfBooksToBeAdded;
 	public static int noOfBooksAddedFromCommand = 0;
 	public static bool isBookBeingAddedToLibrary = false;
+	public static ArrayList<string> profileColourList = new ArrayList<string> ();
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;
@@ -75,6 +89,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		options = new OptionEntry[3];
 		options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
 		options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
+		options[2] = { "discover", 0, 0, OptionArg.NONE, ref command_line_option_discover, _("Automatically add new books from watched folders"), null };
 		add_main_option_entries (options);
 	}
 
@@ -117,8 +132,12 @@ public class BookwormApp.Bookworm : Granite.Application {
 		if(command_line_option_debug){
 			debug ("Bookworm running in debug mode...");
 		}
+
 		if(command_line_option_version){
 			print("\nbookworm version "+Constants.bookworm_version+"\n");
+			return 0;
+		}else if(command_line_option_discover){
+			BookwormApp.BackgroundTasks.performTasks();
 			return 0;
 		}else{
 			activate();
@@ -127,13 +146,11 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public override void activate() {
-		debug("Starting activate method");
 		//proceed if Bookworm is not running already
 		if(!isBookwormRunning){
 			debug("Starting to activate Gtk Window for Bookworm...");
 			window = new Gtk.ApplicationWindow (this);
 			default_theme = Gtk.IconTheme.get_default();
-
 			//retrieve Settings
 			settings = BookwormApp.Settings.get_instance();
 			//set window attributes from saved settings
@@ -152,20 +169,11 @@ public class BookwormApp.Bookworm : Granite.Application {
 			window.window_position = Gtk.WindowPosition.CENTER;
 			//set the minimum size of the window on minimize
 			window.set_size_request (600, 350);
-
 			//set css provider
-			var cssProvider = new Gtk.CssProvider();
-			try{
-				cssProvider.load_from_path(BookwormApp.Constants.CSS_LOCATION);
-			}catch(GLib.Error e){
-				warning("Stylesheet could not be loaded. Error:"+e.message);
-			}
-			Gtk.StyleContext.add_provider_for_screen(
-												Gdk.Screen.get_default(),
-												cssProvider,
-												Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-											 );
-
+			cssProvider = new Gtk.CssProvider();
+			loadCSSProvider(cssProvider);
+			//load images/icons
+			loadImages();
 			//add window components
 			window.set_titlebar (BookwormApp.AppHeaderBar.create_headerbar());
 			BookwormApp.AppWindow.createWelcomeScreen();
@@ -214,7 +222,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 				bookWormUIBox.show_all();
 				toggleUIState();
 			}
-			addBooksToLibrary ();
+			BookwormApp.Library.addBooksToLibrary ();
 		}
 		toggleUIState();
 		debug("Ending activate method");
@@ -224,33 +232,43 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 	}
 
-	public static async void addBooksToLibrary (){
-		debug("Starting to add books....");
-		//loop through the command line and add books to library
-		foreach(string pathToSelectedBook in pathsOfBooksToBeAdded){
-			if("bookworm" != pathToSelectedBook){//ignore the first command which is the application name
-				BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
-				aBookBeingAdded.setBookLocation(pathToSelectedBook);
-				//the book will be updated to the libraryView Map within the addBookToLibrary function
-				addBookToLibrary(aBookBeingAdded);
-				noOfBooksAddedFromCommand++;
-				BookwormApp.AppWindow.bookAdditionBar.set_text (pathToSelectedBook);
-				if(pathsOfBooksToBeAdded.length > 1){
-					BookwormApp.AppWindow.bookAdditionBar.set_pulse_step ((noOfBooksAddedFromCommand/(pathsOfBooksToBeAdded.length-1)));
-					BookwormApp.AppWindow.bookAdditionBar.pulse();
-				}
-				Idle.add (addBooksToLibrary.callback);
-				yield;
-			}
+	public void loadImages(){
+		try{
+			image_selection_option_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_OPTION_IMAGE_SMALL_LOCATION);
+			image_selection_checked_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
+			image_selection_transparent_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
+			image_selection_transparent_small.fill(0x00000000);
+			image_rating_1 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_1_IMAGE_LOCATION);
+		  image_rating_2 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_2_IMAGE_LOCATION);
+		  image_rating_3 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_3_IMAGE_LOCATION);
+		  image_rating_4 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_4_IMAGE_LOCATION);
+		  image_rating_5 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_5_IMAGE_LOCATION);
+			image_remove = new Gdk.Pixbuf.from_file (BookwormApp.Constants.REMOVE_IMAGE_LOCATION);
+		}catch(GLib.Error e){
+			warning("Image could not be loaded. Error:"+e.message);
 		}
-		//open the book added if only one book path is present on command line
-		if(pathsOfBooksToBeAdded.length == 2 && "bookworm" == pathsOfBooksToBeAdded[0]){
-			readSelectedBook(libraryViewMap.get(commandLineArgs[1]));
+	}
+
+	public static void loadCSSProvider(Gtk.CssProvider cssProvider){
+		try{
+			//cssProvider.load_from_path(BookwormApp.Constants.CSS_LOCATION);
+			string[] profileColorList = settings.list_of_profile_colors.split (",");
+			string dynamicCSSContent = BookwormApp.Constants.DYNAMIC_CSS_CONTENT
+																					 .replace("<profile_1_color>",profileColorList[0])
+																					 .replace("<profile_1_bgcolor>",profileColorList[1])
+																					 .replace("<profile_2_color>",profileColorList[2])
+																					 .replace("<profile_2_bgcolor>",profileColorList[3])
+																					 .replace("<profile_3_color>",profileColorList[4])
+																					 .replace("<profile_3_bgcolor>",profileColorList[5]);
+			cssProvider.load_from_data(dynamicCSSContent, dynamicCSSContent.length);
+		}catch(GLib.Error e){
+			warning("Stylesheet could not be loaded. Error:"+e.message);
 		}
-		debug("Completed adding book provided on commandline...");
-		//Hide the progress bar
-		BookwormApp.AppWindow.bookAdditionBar.hide();
-		isBookBeingAddedToLibrary = false;
+		Gtk.StyleContext.add_provider_for_screen(
+											Gdk.Screen.get_default(),
+											cssProvider,
+											Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+										 );
 	}
 
 	public void loadBookwormState(){
@@ -259,219 +277,16 @@ public class BookwormApp.Bookworm : Granite.Application {
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path, "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/books/", "", "");
+		//check last state and turn on dark theme
+		if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
+			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+		}
 		//check if the database exists otherwise create database and required tables
 		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
-		//Set the colour mode based on the user's last saved prefference setting
-		if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == settings.reading_profile){
-			applyProfile("NIGHT MODE");
-		}else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == settings.reading_profile){
-			applyProfile("SEPIA MODE");
-		}else{
-			//default to the Day Mode if no other mode is found in the settings
-			applyProfile("DAY MODE");
-		}
-		//Fetch details of Books from the database and update the grid
-		updateLibraryViewFromDB();
-	}
-
-	public static void removeSelectedBooksFromLibrary(){
-		ArrayList<string> listOfBooksToBeRemoved = new ArrayList<string> ();
-		//loop through the Library View Hashmap
-		foreach (BookwormApp.Book book in libraryViewMap.values){
-			//check if the book selection flag to true and remove book
-			if(book.getIsBookSelected()){
-				//hold the books to be deleted in a list
-				listOfBooksToBeRemoved.add(book.getBookLocation());
-				Gtk.EventBox lEventBox = (Gtk.EventBox) book.getBookWidget("BOOK_EVENTBOX");
-				//destroy the EventBox parent widget - this removes the book from the library grid
-				lEventBox.get_parent().destroy();
-				//destroy the EventBox widget
-				lEventBox.destroy();
-				//remove the cover image if it exists (ignore default covers)
-				if(book.getBookCoverLocation().index_of(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("-cover-N.png","")) == -1){
-					BookwormApp.Utils.execute_sync_command("rm \""+book.getBookCoverLocation()+"\"");
-				}
-			}
-		}
-		BookwormApp.AppWindow.library_grid.show_all();
-		//loop through the removed books and remove them from the Library View Hashmap, local cache and Database
-		foreach (string bookLocation in listOfBooksToBeRemoved) {
-			BookwormApp.DB.removeBookFromDB(libraryViewMap.get(bookLocation));
-			libraryViewMap.unset(bookLocation);
-		}
-
-		BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-		BookwormApp.Library.updateLibraryViewForSelectionMode(null);
-		toggleUIState();
-	}
-
-	public static void applyProfile(string profilename){
-		debug("Starting to apply profile["+profilename+"]...");
-		Gdk.RGBA rgba = Gdk.RGBA ();
-		bool parseRGBA;
-		switch(profilename){
-			case "NIGHT MODE":
-				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_BLACK);
-				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[2];
-				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
-				break;
-			case "SEPIA MODE":
-				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
-				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[1];
-				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
-				break;
-			case "DAY MODE":
-				parseRGBA = rgba.parse (BookwormApp.Constants.RGBA_HEX_WHITE);
-				settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[0];
-				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
-				break;
-			default:
-				break;
-		}
-		BookwormApp.AppWindow.aWebView.set_background_color (rgba);
-		debug("Completed applying profile["+profilename+"]...");
-
-	}
-
-	public static void addBookToLibrary(owned BookwormApp.Book aBook){
-		//check if book already exists in the library
-		if(libraryViewMap.has_key(aBook.getBookLocation())){
-			//TO-DO: Set a message for the user
-			//TO-DO: Bring the book to the first position in the library view
-		}else{
-			debug("Initiated process to add eBook to library from path:"+aBook.getBookLocation());
-			//check if the selected eBook exists
-			string eBookLocation = aBook.getBookLocation();
-			File eBookFile = File.new_for_path (eBookLocation);
-			if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
-				//insert book details to database and fetch the ID
-				int bookID = BookwormApp.DB.addBookToDataBase(aBook);
-				aBook.setBookId(bookID);
-				/*Other than location, nothing is inserted into the DB for the book at this time.
-				Mark book as opened in the session so that details for book are updated
-				into DB when the application is closed - eBook parsing happens after the initial insert
-				*/
-				aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
-				aBook.setWasBookOpened(true);
-				//parse eBook to populate cache and book meta data
-				aBook = genericParser(aBook);
-				if(!aBook.getIsBookParsed()){
-					BookwormApp.DB.removeBookFromDB(aBook);
-					BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
-				}else{
-					//add eBook cover image to library view
-					BookwormApp.Library.updateLibraryView(aBook);
-					//add book details to libraryView Map
-					libraryViewMap.set(eBookLocation, aBook);
-					//set the name of the book being currently read
-					locationOfEBookCurrentlyRead = eBookLocation;
-					debug ("Completed adding book to ebook library. Number of books in library:"+libraryViewMap.size.to_string());
-				}
-			}else{
-				debug("No ebook found for adding to library");
-			}
-		}
-	}
-
-	public static void readSelectedBook(owned BookwormApp.Book aBook){
-		//check if the extracted contents for the book exists
-		if(BookwormApp.Bookworm.settings.is_local_storage_enabled &&
-			"true" == BookwormApp.Utils.fileOperations("DIR_EXISTS", aBook.getBookExtractionLocation(), "", "") &&
-			 aBook.getBookContentList().size > 0
-		){
-			//do nothing - extraction of book not required
-		}else{
-			//Extract and Parse the eBook (this will overwrite the contents already extracted)
-			aBook = genericParser(aBook);
-			//check if ebook was parsed sucessfully
-			if(!aBook.getIsBookParsed()){
-				BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
-			}
-		}
-		//update book to mark it has been opened in this session
-		aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
-		aBook.setWasBookOpened(true);
-		//update book details to libraryView Map
-		libraryViewMap.set(aBook.getBookLocation(), aBook);
-		locationOfEBookCurrentlyRead = aBook.getBookLocation();
-		//Update header title
-		BookwormApp.AppHeaderBar.get_headerbar().subtitle = aBook.getBookTitle();
-		//change the application view to Book Reading mode
-		BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-		toggleUIState();
-		//reset the contents of the search entry
-		BookwormApp.Info.searchresults_scroll.get_child().destroy();
-		//set the max value and the current value of the page slider
-		BookwormApp.AppWindow.pageAdjustment.set_upper(aBook.getBookContentList().size);
-		BookwormApp.AppWindow.pageAdjustment.set_value(aBook.getBookPageNumber());
-		//render the contents of the current page of book
-		aBook = renderPage(aBook, "");
-	}
-
-	public async void updateLibraryViewFromDB(){
-		ArrayList<BookwormApp.Book> listOfBooks = BookwormApp.DB.getBooksFromDB();
-		foreach (BookwormApp.Book book in listOfBooks){
-			//add the book to the UI
-			BookwormApp.Library.updateLibraryView(book);
-			Idle.add (updateLibraryViewFromDB.callback);
-			yield;
-		}
-	}
-
-	public static void toggleUIState(){
-		//hide the inforbar if there is no text in it
-		if(BookwormApp.AppWindow.infobarLabel.get_text().length < 1){
-			BookwormApp.AppWindow.infobar.hide();
-		}
-
-		//UI for Library View
-		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
-			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
-			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3]
-			){
-			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
-			content_list_button.set_visible(false);
-			library_view_button.set_visible(false);
-			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(true);
-			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
-			BookwormApp.Info.info_box.set_visible(false);
-			prefButton.set_visible(false);
-			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
-			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
-			if(!isBookBeingAddedToLibrary)
-				BookwormApp.AppWindow.bookAdditionBar.hide();
-		}
-		//Reading Mode
-		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-			//UI for Reading View
-			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
-			content_list_button.set_visible(true);
-			library_view_button.set_visible(true);
-			library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
-			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(false);
-			BookwormApp.AppWindow.bookReading_ui_box.set_visible(true);
-			BookwormApp.Info.info_box.set_visible(false);
-			prefButton.set_visible(true);
-			handleBookMark("DISPLAY");
-			BookwormApp.AppWindow.bookAdditionBar.hide();
-		}
-		//Book Meta Data / Content View Mode
-		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
-			//UI for Reading View
-			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
-			BookwormApp.Info.info_box.show_all();
-			content_list_button.set_visible(true);
-			library_view_button.set_visible(true);
-			library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_RESUME_BUTTON);
-			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(false);
-			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
-			BookwormApp.Info.info_box.set_visible(true);
-			BookwormApp.Info.stack.set_visible_child_name ("content-list");
-			prefButton.set_visible(false);
-			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
-			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
-			BookwormApp.AppWindow.bookAdditionBar.hide();
-		}
+		//set the library view
+		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
+		//Fetch details of Books from the database and update the library view
+		BookwormApp.Library.updateLibraryViewFromDB();
 	}
 
 	public async void closeBookWorm (){
@@ -484,7 +299,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 				Idle.add (closeBookWorm.callback);
 				yield;
 			}
-			BookwormApp.Cleanup.cleanUp();
+			BookwormApp.BackgroundTasks.taskScheduler();
 	}
 
 	public void saveWindowState(){
@@ -518,6 +333,134 @@ public class BookwormApp.Bookworm : Granite.Application {
 		*/
 	}
 
+	public static void readSelectedBook(owned BookwormApp.Book aBook){
+		//Handle the case when the page number of the book is not set
+    if(aBook.getBookPageNumber() == -1){
+			aBook.setBookPageNumber(0);
+		}
+		//Handle the case when the page number of the book is outside limits
+    if(aBook.getBookPageNumber() >= aBook.getBookContentList().size){
+			aBook.setBookPageNumber(aBook.getBookContentList().size - 1);
+		}
+		//check if the extracted contents for the book exists
+		if(BookwormApp.Bookworm.settings.is_local_storage_enabled &&
+			"true" == BookwormApp.Utils.fileOperations("DIR_EXISTS", aBook.getBookExtractionLocation(), "", "") &&
+			aBook.getBookContentList() != null && aBook.getBookContentList().size > 0 &&
+			aBook.getBookContentList().size >= aBook.getBookPageNumber() &&
+			"true" == BookwormApp.Utils.fileOperations("EXISTS", BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(aBook.getBookPageNumber())), "", "")
+		){
+			//extraction of book not required
+			aBook.setIsBookParsed(true);
+		}else{
+			//Extract and Parse the eBook (this will overwrite the contents already extracted)
+			aBook = genericParser(aBook);
+			//If ebook was not parsed sucessfully, show the warning info banner message
+			if(!aBook.getIsBookParsed()){
+				BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
+			}
+		}
+		//progress in opening the book for reading if it has been parsed sucessfully
+		if(aBook.getIsBookParsed()){
+			//update book to mark it has been opened in this session
+			aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
+			aBook.setWasBookOpened(true);
+			//update book details to libraryView Map
+			libraryViewMap.set(aBook.getBookLocation(), aBook);
+			locationOfEBookCurrentlyRead = aBook.getBookLocation();
+			//Update header title
+			BookwormApp.AppHeaderBar.get_headerbar().title = aBook.getBookTitle();
+			//change the application view to Book Reading mode
+			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+			toggleUIState();
+			//reset the contents of the search entry
+			BookwormApp.Info.searchresults_scroll.get_child().destroy();
+			//set the max value and the current value of the page slider
+			BookwormApp.AppWindow.pageAdjustment.set_upper(aBook.getBookContentList().size);
+			BookwormApp.AppWindow.pageAdjustment.set_value(aBook.getBookPageNumber());
+			//render the contents of the current page of book
+			aBook = renderPage(aBook, "");
+		}
+	}
+
+	public static void toggleUIState(){
+		debug("Initited toggleUIState with BOOKWORM_CURRENT_STATE:"+BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE);
+		//hide the inforbar if there is no text in it
+		if(BookwormApp.AppWindow.infobarLabel.get_text().length < 1){
+			BookwormApp.AppWindow.infobar.hide();
+		}
+
+		//Set-up UI for Library View
+		//Show the grid view or the list view based on state
+    if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+		{
+      BookwormApp.AppWindow.library_list_scroll.set_visible(false);
+			BookwormApp.AppWindow.library_grid_scroll.set_visible(true);
+			BookwormApp.AppWindow.library_grid.show_all();
+    }
+		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+		{
+      BookwormApp.AppWindow.library_grid_scroll.set_visible(false);
+			BookwormApp.AppWindow.library_list_scroll.set_visible(true);
+			BookwormApp.AppWindow.library_table_treeview.show_all();
+		}
+
+		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
+			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3] ||
+			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5]
+			){
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
+			library_mode_button.set_visible(true);
+			content_list_button.set_visible(false);
+			library_view_button.set_visible(false);
+			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(true);
+			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
+			BookwormApp.Info.info_box.set_visible(false);
+			prefButton.set_visible(false);
+			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
+			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
+			if(!isBookBeingAddedToLibrary)
+				BookwormApp.AppWindow.bookAdditionBar.hide();
+		}
+		//Set-up UI for Reading Mode
+		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+			//UI for Reading View
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
+			library_mode_button.set_visible(false);
+			content_list_button.set_visible(true);
+			library_view_button.set_visible(true);
+			library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_LIBRARY_BUTTON);
+			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(false);
+			BookwormApp.AppWindow.bookReading_ui_box.set_visible(true);
+			BookwormApp.Info.info_box.set_visible(false);
+			prefButton.set_visible(true);
+			handleBookMark("DISPLAY");
+			BookwormApp.AppWindow.bookAdditionBar.hide();
+		}
+		//Set-up UI for Book Meta Data / Content View Mode
+		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
+			//UI for Reading View
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
+			BookwormApp.Info.info_box.show_all();
+			library_mode_button.set_visible(false);
+			content_list_button.set_visible(true);
+			library_view_button.set_visible(true);
+			library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_RESUME_BUTTON);
+			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(false);
+			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
+			BookwormApp.Info.info_box.set_visible(true);
+			BookwormApp.Info.stack.set_visible_child_name ("content-list");
+			prefButton.set_visible(false);
+			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
+			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
+			BookwormApp.AppWindow.bookAdditionBar.hide();
+		}
+	}
+
 	public static BookwormApp.Book controlNavigation(owned BookwormApp.Book aBook){
 		int currentContentLocation = aBook.getBookPageNumber();
 		debug("In controlNavigation with currentContentLocation="+currentContentLocation.to_string());
@@ -543,16 +486,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
 		int currentContentLocation = aBook.getBookPageNumber();
 		string searchText = "";
-
 		//handle loading page with search string
 		if(direction.index_of("SEARCH:") != -1){
 			searchText = direction.replace("SEARCH:", "");
 			direction = "SEARCH";
-		}
-		//Handle the case when the page number of the book is not set
-    if(aBook.getBookPageNumber() == -1){
-			aBook.setBookPageNumber(0);
-      currentContentLocation = 0;
 		}
 		//set page number based on direction of navigation
 		switch(direction){
@@ -591,31 +528,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//set the current value of the page slider
 		BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
 		return aBook;
-	}
-
-	public static bool libraryViewFilter (FlowBoxChild aEventBoxBook) {
-		//execute filter only if the search text is not the default one or not blank
-		if(BookwormApp.AppHeaderBar.headerSearchBar.get_text() != BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH &&
-			 BookwormApp.AppHeaderBar.headerSearchBar.get_text().strip() != ""
-		){
-			BookwormApp.Book aBook  = libraryViewMap.get(((EventBox)aEventBoxBook.get_child()).get_name());
-			if((aBook.getBookLocation().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
-				return true;
-			}
-			else if((aBook.getBookTitle().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
-				return true;
-			}
-			else if((aBook.getBookAuthor().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
-				return true;
-			}
-			else if((aBook.getBookTags().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-		return true;
 	}
 
 	public static void handleBookMark(string action){
@@ -667,27 +579,33 @@ public class BookwormApp.Bookworm : Granite.Application {
 		string ebookFileName = (File.new_for_path(aBook.getBookLocation()).get_basename());
 		if(ebookFileName.index_of(".") != -1){
 			string fileExtension = ebookFileName.substring(ebookFileName.last_index_of(".")).up();
-			debug ("extension found:"+fileExtension);
 			//parse file based on extension found
-			switch(fileExtension){
-				case ".EPUB":
-					aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
-					break;
-				case ".PDF":
-					aBook = BookwormApp.pdfReader.parsePDFBook(aBook);
-					break;
-				case ".CBR":
-					aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
-					break;
-				case ".CBZ":
-					aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
-					break;
-				default:
-					aBook.setIsBookParsed(false);
-					aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_FORMAT_NOT_SUPPORTED);
-					break;
+			try{
+				switch(fileExtension){
+					case ".EPUB":
+						aBook = BookwormApp.ePubReader.parseEPubBook(aBook);
+						break;
+					case ".PDF":
+						aBook = BookwormApp.pdfReader.parsePDFBook(aBook);
+						break;
+					case ".CBR":
+						aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
+						break;
+					case ".CBZ":
+						aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
+						break;
+					default:
+						aBook.setIsBookParsed(false);
+						aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_FORMAT_NOT_SUPPORTED);
+						break;
+				}
+			}catch(GLib.Error e){
+				info ("Error while parsing book: %s\n", e.message);
+				aBook.setIsBookParsed(false);
+				aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_PARSING_ISSUE);
 			}
 		}
 		return aBook;
 	}
+
 }

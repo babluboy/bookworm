@@ -356,4 +356,21 @@ public class BookwormApp.DB{
      return true;
   }
 
+  public static ArrayList<string> getBookIDListFromDB(){
+    ArrayList<string> bookIDList = new ArrayList<string> ();
+    Statement stmt;
+    string fetchBookIDListQuery = "SELECT id,BOOK_LOCATION FROM "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ORDER BY id DESC";
+    int getIDListStatus = bookwormDB.prepare_v2 (fetchBookIDListQuery, -1, out stmt);
+    assert (getIDListStatus == Sqlite.OK);
+    if (getIDListStatus != Sqlite.OK) {
+      debug("Executed Query:"+fetchBookIDListQuery);
+	 		warning ("Error in fetching book ID List from database: %s\n", errmsg);
+	 	}
+    while (stmt.step () == ROW) {
+      bookIDList.add(stmt.column_int(0).to_string()+"::"+stmt.column_text (1));
+    }
+    stmt.reset ();
+    return bookIDList;
+  }
+
 }
