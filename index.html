@@ -33,7 +33,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link href="gridstack-demo.css" rel="stylesheet">
+    <link href="css/gridstack-demo.css" rel="stylesheet">
 </head>
 
 <body id="page-top" class="index">
@@ -59,11 +59,11 @@
                         <li class="page-scroll">
                             <a href="#install">Install</a>
                         </li>
-                        <li>
+                        <li class="page-scroll">
                             <a href="#translate">Translate</a>
                         </li>
                         <li>
-                            <a href="https://github.com/troolee/gridstack.js">Issues</a>
+                            <a href="https://github.com/babluboy/bookworm/issues" target="_blank"x>Issues</a>
                         </li>
                     </ul>
                 </div>
@@ -73,7 +73,7 @@
         </nav>
     </section>
 
-
+    <!-- Introduction Section -->
     <header>
         <div class="container">
             <div class="row">
@@ -96,6 +96,7 @@
         </div>
     </header>
 
+    <!-- Features Section -->
     <section id="features">
         <div class="container">
             <div class="row">
@@ -120,17 +121,19 @@
                         <img align="center" height="auto" width=33%" src="images/Bookmarks.png"> </img>
                         <img align="center" height="auto" width=33%" src="images/SearchResults.png"> </img>
                 </p>
-                <p>4. The preference button [<i class="fa fa-cog"></i>] on the header bar provides some further customizations:
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Contents: A table of contents to easily jump to a chapter</li>
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Bookmarks: The clickable list of bookmarks to jump to a bookmarked page of the book</li>
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Search Results: A clickable list of lines contaning the search phrase found in the book</li>
-                        <img align="center" height="auto" width=60%" src="images/PreferencesDialog.png"> </img>
+                <p>4. The preference button [<i class="fa fa-cog"></i>] on the header bar provides further customization options:
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Night Mode: Enable Dark Theme</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Cache: This preserves the contents extracted from eBook for opening the book quickly for subsequent reading</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Font: Select font family from available fonts on the system and font size for reading</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Customize Reading Profile: The text and background color for all three reading profiles can be customized</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Add folders to watch: Multiple folders can be added (and removed) to automatically add supported eBooks into the library</li>
+                        <img align="center" height="auto" width=50%" src="images/PreferencesDialog.png"> </img>
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Grid Section -->
+    <!-- Install Section -->
     <section id="install" class="darklue">
         <div class="container">
             <div class="row">
@@ -140,12 +143,39 @@
                 </div>
             </div>
 
-            <p>For more samples and documentation please visit <a href="https://github.com/troolee/gridstack.js">https://github.com/troolee/gridstack.js</a>.</p>
+            <p>Bookworm is currently developed for Elementary OS but there are plans to make it distro agnostic using Snaps/Flatpacks in the future</p>
+            <p>
+                    If you are using Elementary OS then Bookworm is available on Appcenter for installation <br>
+                    <a href="https://appcenter.elementary.io/com.github.babluboy.bookworm"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter"></a>
+            </p>
 
+            <p>&nbsp; </p>
+
+            <p>
+                   Bookworm is available as a PPA for Ubuntu (16.04 / Xenial) and other Ubuntu based systems. Open Terminal and run the following comands for installation
+                   <pre>
+  sudo add-apt-repository ppa:bookworm-team/bookworm
+  sudo apt-get update
+  sudo apt-get install bookworm
+                   </pre>
+            </p>
+            <p>&nbsp; </p>
+            <p>If you want to build Bookworm from source with the required dependent packages, please open terminal and execute the following commands
+                    <pre>
+  sudo apt build-dep granite-demo 
+  sudo apt install libgranite-dev valac libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev libsqlite3-dev poppler-utils libpoppler-glib-dev git
+  git clone https://github.com/babluboy/bookworm.git
+  cd bookworm
+  mkdir build && cd build 
+  cmake -DCMAKE_INSTALL_PREFIX=/usr ../
+  make
+  sudo make install
+                    </pre>
+            </p>
         </div>
     </section>
 
-<!-- Portfolio Grid Section -->
+<!-- Translation Section -->
     <section id="translate">
         <div class="container">
             <div class="row">
@@ -153,12 +183,15 @@
                     <h2>Translate</h2>
                     <hr class="star-primary">
                 </div>
-            </div>
-
-            <h3>Basic Usage</h3>
-
-           
-            <p>For more samples and documentation please visit <a href="https://github.com/troolee/gridstack.js">https://github.com/troolee/gridstack.js</a>.</p>
+            </div>          
+            <p>
+                    Bookworm uses Weblate translation. You can contribute by translating Bookworm to your favourite languages and make the user experience better. Use the badge below to navigate to the simple online translation site for Bookworm <br>
+                    <div align="center">
+                        <a href="https://hosted.weblate.org/engage/bookworm/?utm_source=widget">
+                            <img src="https://hosted.weblate.org/widgets/bookworm/-/287x66-grey.png" alt="Translation status" />
+                        </a>
+                    </div>
+            </p>
 
         </div>
     </section>
@@ -191,38 +224,13 @@
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="freelancer/js/classie.js"></script>
-    <script src="freelancer/js/cbpAnimatedHeader.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="freelancer/js/freelancer.js"></script>
+    <script src="js/freelancer.js"></script>
 
-    <script src="dist/gridstack.js"></script>
-    <script src="dist/gridstack.jQueryUI.js"></script>
-    <script type="text/javascript">
-        hljs.initHighlightingOnLoad();
-        $(function () {
-            $('.grid-stack').gridstack({
-                width: 12,
-                alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
-                resizable: {
-                    handles: 'e, se, s, sw, w'
-                }
-            });
-        });
-    </script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-1891156-8', 'auto');
-  ga('send', 'pageview');
-
-</script>
 </body>
-
 </html>
