@@ -268,6 +268,7 @@ msgid "Sepia theme"
 msgstr "Sepia Thema"
 
 #: ../src/constants.vala:89 ../src/constants.vala:90
+#, fuzzy
 msgid "Enter full screen view and Esc key to exit"
 msgstr "Öffne Vollbildmodus und Esc zum beenden"
 
