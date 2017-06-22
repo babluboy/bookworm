@@ -101,7 +101,8 @@ header {
 
 header .container {
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    margin: 30px 0;
 }
 
 header img {
@@ -125,7 +126,7 @@ header .intro-text .skills {
 @media(min-width:768px) {
     header .container {
         padding-top: 20px;
-        padding-bottom: 10px;
+        padding-bottom: px;
     }
 
     header .intro-text .name {
@@ -456,4 +457,9 @@ footer .footer-below {
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
+}
+
+/* Modifications by Sid */
+div.row {
+    margin: 3em;
 }
