@@ -19,21 +19,21 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "0.8";
+	public const string bookworm_version = "0.9";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017";
 	public const string app_icon = "bookworm";
 	public const string[] about_authors = {"Siddhartha Das <bablu.boy@gmail.com>"};
 	public const string about_comments = _("An eBook Reader");
 	public const Gtk.License about_license_type = Gtk.License.GPL_3_0;
-	public const string translator_credits = _("Launchpad Translators");
-	public const string main_url = "https://github.com/babluboy/bookworm/wiki";
+	public const string translator_credits = _("Weblate Translators");
+	public const string main_url = "https://babluboy.github.io/bookworm";
 	public const string bug_url = "https://github.com/babluboy/bookworm/issues";
 	public const string help_url = "https://github.com/babluboy/bookworm/wiki";
-	public const string translate_url = "https://translations.launchpad.net/bookworm";
+	public const string translate_url = "https://hosted.weblate.org/projects/bookworm/bookworm/";
 
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = _("Website");
-	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://github.com/babluboy/bookworm/wiki";
+	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://babluboy.github.io/bookworm";
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
 	public const string TEXT_FOR_HEADERBAR_BOOK_SEARCH = _("Search this book...");
@@ -86,8 +86,8 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_READING_PREFERENCES = _("Set reading preferences");
 	public const string TOOLTIP_TEXT_FOR_BOOKMARKS_ACTIVATE = _("Click to bookmark this page");
 	public const string TOOLTIP_TEXT_FOR_BOOKMARKS_DEACTIVATE = _("Click to remove this bookmark");
-	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_INCREASE = _("Increase font size (Ctrl +)");
-	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_DECREASE = _("Decrease font size (Ctrl -)");
+	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_INCREASE = _("Increase font size (Ctrl + Shift + '+')");
+	public const string TOOLTIP_TEXT_FOR_FONT_SIZE_DECREASE = _("Decrease font size (Ctrl + '-')");
 	public const string TOOLTIP_TEXT_FOR_LINE_WIDTH_INCREASE = _("Increase line width");
 	public const string TOOLTIP_TEXT_FOR_LINE_WIDTH_DECREASE = _("Decrease line width");
 	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_INCREASE = _("Increase line spacing");
@@ -156,7 +156,7 @@ namespace BookwormApp.Constants {
 	public static const int MAX_BOOK_COVER_PER_ROW = 6;
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
-	public static const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz"};
+	public static const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc"};
 	public static const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
 
 
@@ -180,7 +180,6 @@ namespace BookwormApp.Constants {
 	public const string EPUB_MIME_SPECIFICATION_CONTENT = "application/epub+zip";
 	public const string EPUB_META_INF_FILENAME = "META-INF/container.xml";
 	public const string[] TAG_NAME_WITH_PATHS = {"src=\"", "xlink:href=\"", "<link href=\""};
-	public const string JAVASCRIPT_FOR_WHITE_COLOR_FONT = "onload=\"javascript:document.getElementsByTagName('BODY')[0].style.color='white';\"";
 	public const string DYNAMIC_CSS_CONTENT = "
 															GtkButton.PROFILE_BUTTON_1 {
 																color: <profile_1_color>;

@@ -16,6 +16,6 @@ Build-Depends: cmake (>= 2.8),
 Standards-Version: 3.9.6
 Package: com.github.babluboy.bookworm
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, unzip, poppler-utils, unrar
+Depends: ${misc:Depends}, ${shlibs:Depends}, poppler-utils, unrar, p7zip-full
 Description: Bookworm
  A simple user centric eBook reader which displays multiple eBooks formats uniformly

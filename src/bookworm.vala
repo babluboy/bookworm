@@ -594,6 +594,12 @@ public class BookwormApp.Bookworm : Granite.Application {
 					case ".CBZ":
 						aBook = BookwormApp.comicsReader.parseComicsBook(aBook, fileExtension);
 						break;
+					case ".MOBI":
+						aBook = BookwormApp.mobiReader.parseMobiBook(aBook);
+						break;
+					case ".PRC":
+						aBook = BookwormApp.mobiReader.parseMobiBook(aBook);
+						break;
 					default:
 						aBook.setIsBookParsed(false);
 						aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_FORMAT_NOT_SUPPORTED);

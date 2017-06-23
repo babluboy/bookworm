@@ -17,9 +17,9 @@
 */
 
 using Gee;
-public class BookwormApp.ePubReader {
+public class BookwormApp.mobiReader {
 
-  public static BookwormApp.Book parseEPubBook (owned BookwormApp.Book aBook){
+  public static BookwormApp.Book parseMobiBook (owned BookwormApp.Book aBook){
     //Only parse the eBook if it has not been parsed already
     if(!aBook.getIsBookParsed()){
       debug ("Starting to parse EPub Book located at:"+aBook.getBookLocation());
@@ -103,7 +103,6 @@ public class BookwormApp.ePubReader {
       //check and create directory for extracting contents of ebook
       BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
       //unzip eBook contents into extraction location
-      //BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
       BookwormApp.Utils.execute_sync_command("7z x \"" + eBookLocation + "\" -o\""+ extractionLocation +"\" -y");
     }catch(Error e){
       warning("Problem in Content Extraction for ePub Book ["+eBookLocation+"]:%s"+e.message);
