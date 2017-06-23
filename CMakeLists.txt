@@ -15,8 +15,8 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/bookworm")
 
 set (EXEC_NAME "bookworm")
-set (RELEASE_NAME "bookworm v0.8")
-set (VERSION "0.8")
+set (RELEASE_NAME "bookworm v0.9")
+set (VERSION "0.9")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 add_subdirectory (po)
@@ -44,6 +44,7 @@ set (SOURCE_LIST
     src/contentHandler.vala
     src/comicsReader.vala
     src/backgroundTasks.vala
+    src/mobiReader.vala
 )
 
 include (GSettings)
@@ -105,6 +106,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/contentHandler.vala
     src/comicsReader.vala
     src/backgroundTasks.vala
+    src/mobiReader.vala
 
 # tell what libraries to use when compiling
 PACKAGES

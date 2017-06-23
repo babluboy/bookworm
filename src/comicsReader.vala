@@ -75,7 +75,8 @@ public class BookwormApp.comicsReader {
           BookwormApp.Utils.execute_sync_command("unrar e \"" + eBookLocation + "\" \""+ extractionLocation + "/images/" +"\"");
           break;
         case ".CBZ":
-          BookwormApp.Utils.execute_sync_command("unzip -j -o \"" + eBookLocation + "\" -d \""+ extractionLocation + "/images/" +"\"");
+          //BookwormApp.Utils.execute_sync_command("unzip -j -o \"" + eBookLocation + "\" -d \""+ extractionLocation + "/images/" +"\"");
+          BookwormApp.Utils.execute_sync_command("7z e \"" + eBookLocation + "\" -o\""+ extractionLocation + "/images/"  +"\" -y");
           break;
         default:
           break;

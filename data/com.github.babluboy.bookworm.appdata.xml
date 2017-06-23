@@ -9,15 +9,15 @@
   <summary>A simple, focused eBook reader</summary>
   <description>
     <p>Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc.</p>
-    <p>Manage your library by updating book metadata and tags to then quickly find books with tag based filtering and metadata searching.</p>
-    <p>This version supports EPUB, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
-    <p>New features for Bookworm v0.8 include:</p>
+    <p>Manage your library by tagging and updating metadata on books, to quickly find books using metadata searching and tag based filtering.</p>
+    <p>This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
+    <p>New features for Bookworm v0.9 include:</p>
     <ul>
-​      <li>List view for the library for metadata sorting</li>
-​      <li>Color customizations via preferences for the three reading profiles</li>
-      <li>Font customization via preferences</li>
-      <li>Add folder in preferences to load new books automatically</li>
-      <li>Shortcuts for text zooming using Ctrl/+ and Ctrl/-</li>
+​      <li>Added support for .mobi and .prc formats</li>
+​      <li>xxx</li>
+      <li>xxx</li>
+      <li>xxx</li>
+      <li>xxx</li>
 ​    </ul>
   </description>
   <screenshots>
@@ -34,6 +34,11 @@
     <binary>bookworm</binary>
   </provides>
   <releases>
+    <release version="0.9" date="2017-07-31">
+      ​<description>
+      ​ <p>Support mobi format and UX improvements</p>
+      ​</description>
+    ​</release>
     <release version="0.8" date="2017-06-18">
       ​<description>
       ​ <p>UX improvements for List View and other preference customizations</p>
@@ -56,7 +61,7 @@
 ​    </release>
 ​  </releases>
   <developer_name>Siddhartha Das</developer_name>
-  <url type="homepage">https://github.com/babluboy/bookworm/wiki</url>
+  <url type="homepage">https://babluboy.github.io/bookworm</url>
   <url type="bugtracker">https://github.com/babluboy/bookworm/issues</url>
   <url type="help">https://github.com/babluboy/bookworm/wiki</url>
   <update_contact>bablu.boy_AT_gmail.com</update_contact>
