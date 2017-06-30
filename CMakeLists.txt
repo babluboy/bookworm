@@ -131,7 +131,7 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/32/bookworm.png DESTINATIO
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/48/bookworm.png DESTINATION share/icons/hicolor/48x48/apps)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/64/bookworm.png DESTINATION share/icons/hicolor/64x64/apps)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/128/bookworm.png DESTINATION share/icons/hicolor/128x128/apps)
-#install bookworm specific icons in application specific folder - /usr/share/bookworm
+#install bookworm application specific icons in application specific folder - /usr/share/bookworm
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-next.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-previous.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-add.svg DESTINATION share/bookworm/icons/hicolor/16x16/actions/)
@@ -174,4 +174,34 @@ install(
     FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/book_monitor.sh
     PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE
     DESTINATION /opt/bookworm
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_dict.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_html.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_index.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_k8proc.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_ncx.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_opf.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_split.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_uncompress.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_unpack.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
+)
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_utils.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION /opt/bookworm/mobi_lib
 )

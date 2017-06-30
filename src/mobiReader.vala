@@ -22,7 +22,7 @@ public class BookwormApp.mobiReader {
   public static BookwormApp.Book parseMobiBook (owned BookwormApp.Book aBook){
     //Only parse the eBook if it has not been parsed already
     if(!aBook.getIsBookParsed()){
-      debug ("Starting to parse EPub Book located at:"+aBook.getBookLocation());
+      debug ("Starting to parse Mobi Book located at:"+aBook.getBookLocation());
       //Extract the content of the EPub
       string extractionLocation = extractEBook(aBook.getBookLocation());
       if("false" == extractionLocation){ //handle error condition
@@ -32,13 +32,7 @@ public class BookwormApp.mobiReader {
       }else{
         aBook.setBookExtractionLocation(extractionLocation);
       }
-      //Check if the EPUB mime type is correct
-      bool isEPubFormat = isEPubFormat(extractionLocation);
-      if(!isEPubFormat){ //handle error condition
-        aBook.setIsBookParsed(false);
-        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_MIMETYPE_ISSUE);
-        return aBook;
-      }
+      /*
       //Determine the location of OPF File
       string locationOfOPFFile = getOPFFileLocation(extractionLocation);
       if("false" == locationOfOPFFile){ //handle error condition
@@ -80,7 +74,7 @@ public class BookwormApp.mobiReader {
 
       //Determine Book Meta Data like Title, Author, etc
       aBook = setBookMetaData(aBook, locationOfOPFFile);
-
+      */
       aBook.setIsBookParsed(true);
       debug ("Sucessfully parsed EPub Book located at:"+aBook.getBookLocation());
     }
@@ -90,7 +84,7 @@ public class BookwormApp.mobiReader {
   public static string extractEBook(string eBookLocation){
     string extractionLocation = "";
     try{
-      debug("Initiated process for content extraction of ePub Book located at:"+eBookLocation);
+      debug("Initiated process for content extraction of mobi Book located at:"+eBookLocation);
       //create a location for extraction of eBook based on local storage prefference
       if(BookwormApp.Bookworm.settings == null){
         BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
@@ -103,89 +97,26 @@ public class BookwormApp.mobiReader {
       //check and create directory for extracting contents of ebook
       BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
       //unzip eBook contents into extraction location
-      BookwormApp.Utils.execute_sync_command("7z x \"" + eBookLocation + "\" -o\""+ extractionLocation +"\" -y");
+      BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.MOBIUNPACK_SCRIPT_LOCATION + " \"" + eBookLocation + "\" \""+ extractionLocation +"/\"");
     }catch(Error e){
-      warning("Problem in Content Extraction for ePub Book ["+eBookLocation+"]:%s"+e.message);
+      warning("Problem in Content Extraction for mobi Book ["+eBookLocation+"]:%s"+e.message);
       return "false";
     }
     debug("eBook contents extracted sucessfully into location:"+extractionLocation);
     return extractionLocation;
   }
 
-  public static bool isEPubFormat (string extractionLocation){
-    bool ePubFormat = false;
-    debug("Checking if mime type is valid ePub for contents at:"+extractionLocation);
-    try{
-      string ePubMimeContents = BookwormApp.Utils.fileOperations("READ", extractionLocation, BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME, "");
-      if("false" == ePubMimeContents){
-        //Mime Content File was not found at expected location
-        warning("Mime Content file could not be located at expected location:"+extractionLocation+"/"+BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME);
-        return false;
-      }
-      debug("Mime Contents found in file :"+extractionLocation+"/"+BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME+" is:"+ ePubMimeContents);
-      if(ePubMimeContents.strip() != BookwormApp.Constants.EPUB_MIME_SPECIFICATION_CONTENT){
-          debug("Mime Contents in file :"+extractionLocation+"/"+BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME+" is not :"+ BookwormApp.Constants.EPUB_MIME_SPECIFICATION_CONTENT+". No further parsing will be done.");
-          return false;
-      }else{
-        //mime content is as expected
-        ePubFormat = true;
-      }
-    }catch(Error e){
-      warning("Issue in determining mime type for contents at ["+extractionLocation+"]:%s"+e.message);
-      return false;
-    }
-    debug("Sucessfully validated MIME type....");
-    return ePubFormat;
-  }
-
   public static string getOPFFileLocation(string extractionLocation){
     string locationOfOPFFile = "false";
     try{
-      //read the META-INF/container.xml file
-      string metaInfContents = BookwormApp.Utils.fileOperations("READ", extractionLocation, BookwormApp.Constants.EPUB_META_INF_FILENAME, "");
-      if("false" == metaInfContents){
-        //META-INF/container.xml File was not found at expected location
-        warning("META-INF/container.xml file could not be located at expected location:"+extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME);
-        return "false";
-      }
-      //locate the content of first occurence of "rootfiles"
-      int startPosOfRootFiles = metaInfContents.index_of("<rootfiles>")+("<rootfiles>").length;
-      int endPosOfRootFiles = metaInfContents.index_of("</rootfiles>",startPosOfRootFiles+1);
-      if((startPosOfRootFiles - +("<rootfiles>").length) != -1 && endPosOfRootFiles != -1 && endPosOfRootFiles>startPosOfRootFiles){
-        string rootfiles = metaInfContents.slice(startPosOfRootFiles, endPosOfRootFiles);
-        //locate the content of "rootfile" tag
-        int startPosOfRootFile = rootfiles.index_of("<rootfile")+("<rootfile").length;
-        int endPosOfRootFile = rootfiles.index_of(">",startPosOfRootFile+1);
-        if((startPosOfRootFile - +("<rootfile").length) != -1 && endPosOfRootFile != -1 && endPosOfRootFile>startPosOfRootFile){
-          string rootfile = rootfiles.slice(startPosOfRootFile, endPosOfRootFile);
-          //locate the content of "full-path" id
-          int startPosOfContentOPFFile = rootfile.index_of("full-path=\"")+("full-path=\"").length;
-          int endPosOfContentOPFFile = rootfile.index_of("\"", startPosOfContentOPFFile+1);
-          if((startPosOfContentOPFFile - ("full-path=\"").length) != -1 && endPosOfContentOPFFile != -1 && endPosOfContentOPFFile > startPosOfContentOPFFile){
-            string ContentOPFFilePath = rootfile.slice(startPosOfContentOPFFile,endPosOfContentOPFFile);
-            debug("CONTENT.OPF file relative path [Fetched from file:"+ extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+"] is:"+ ContentOPFFilePath);
-            locationOfOPFFile = extractionLocation + "/" + ContentOPFFilePath;
-          }else{
-            warning("Parsing of META-INF/container.xml file at location:"+
-                    extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
-                    " has problems[startPosOfContentOPFFile="+startPosOfContentOPFFile.to_string()+
-                    ", endPosOfContentOPFFile="+endPosOfContentOPFFile.to_string()+"].");
-            return "false";
-          }
-        }else{
-          warning("Parsing of META-INF/container.xml file at location:"+
-                  extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
-                  " has problems[startPosOfRootFile="+startPosOfRootFile.to_string()+
-                  ", endPosOfRootFile="+endPosOfRootFile.to_string()+"].");
-          return "false";
-        }
+      //Check if the "mobi7" folder is present
+      string isMobiExtractionFolderPresent = BookwormApp.Utils.fileOperations("DIR_EXISTS", extractionLocation+"/mobi7", "", "");
+      if("false" != isMobiExtractionFolderPresent){
+
       }else{
-        warning("Parsing of META-INF/container.xml file at location:"+
-                extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
-                " has problems[startPosOfRootFiles="+startPosOfRootFiles.to_string()+
-                ", endPosOfRootFiles="+endPosOfRootFiles.to_string()+"].");
         return "false";
       }
+
     }catch(Error e){
       warning("Issue in determining location of OPF File at ["+extractionLocation+"]:%s"+e.message);
       return "false";

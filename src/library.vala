@@ -441,7 +441,12 @@ public class BookwormApp.Library{
 			};
 			BookwormApp.AppWindow.library_table_liststore.foreach (print_row);
 			foreach(Gtk.TreeIter iterToBeRemoved in listOfItersToBeRemoved){
-				BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
+        //remove item for list store - vala_36 compatibility wrapper
+        #if VALA_0_36
+	         BookwormApp.AppWindow.library_table_liststore.remove (ref iterToBeRemoved);
+        #else
+	         BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
+        #endif
 			}
 		}
 
