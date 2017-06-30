@@ -18,7 +18,7 @@
 
 using Gee;
 public class BookwormApp.mobiReader {
-
+  public static string OpfContents = "";
   public static BookwormApp.Book parseMobiBook (owned BookwormApp.Book aBook){
     //Only parse the eBook if it has not been parsed already
     if(!aBook.getIsBookParsed()){
@@ -32,7 +32,7 @@ public class BookwormApp.mobiReader {
       }else{
         aBook.setBookExtractionLocation(extractionLocation);
       }
-      /*
+
       //Determine the location of OPF File
       string locationOfOPFFile = getOPFFileLocation(extractionLocation);
       if("false" == locationOfOPFFile){ //handle error condition
@@ -74,9 +74,9 @@ public class BookwormApp.mobiReader {
 
       //Determine Book Meta Data like Title, Author, etc
       aBook = setBookMetaData(aBook, locationOfOPFFile);
-      */
+
       aBook.setIsBookParsed(true);
-      debug ("Sucessfully parsed EPub Book located at:"+aBook.getBookLocation());
+      debug ("Sucessfully parsed Mobi Book located at:"+aBook.getBookLocation());
     }
     return aBook;
   }
@@ -112,7 +112,8 @@ public class BookwormApp.mobiReader {
       //Check if the "mobi7" folder is present
       string isMobiExtractionFolderPresent = BookwormApp.Utils.fileOperations("DIR_EXISTS", extractionLocation+"/mobi7", "", "");
       if("false" != isMobiExtractionFolderPresent){
-
+        //check for presence of .opf file
+        locationOfOPFFile = BookwormApp.Utils.execute_sync_command("find " + "\"" + extractionLocation+"/mobi7/" + "\"" + " -iname *.OPF").strip();
       }else{
         return "false";
       }
@@ -127,8 +128,9 @@ public class BookwormApp.mobiReader {
 
   public static ArrayList<string> parseManifestData (string locationOfOPFFile){
     ArrayList<string> manifestItemsList = new ArrayList<string> ();
-    //read contents from content.opf file
-    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
+    //read contents from content.opf file - using cat command as the reading of file is not working - check !
+    //string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
+    OpfContents = BookwormApp.Utils.execute_sync_command("cat \""+locationOfOPFFile + "\"");
     if("false" == OpfContents){
       //OPF Contents could not be read from file
       warning("OPF contents could not be read from file:"+locationOfOPFFile);
@@ -153,8 +155,6 @@ public class BookwormApp.mobiReader {
 
   public static ArrayList<string> parseSpineData (string locationOfOPFFile){
     ArrayList<string> spineItemsList = new ArrayList<string> ();
-    //read contents from content.opf file
-    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
     if("false" == OpfContents){
       //OPF Contents could not be read from file
       warning("OPF contents could not be read from file:"+locationOfOPFFile);
@@ -269,15 +269,14 @@ public class BookwormApp.mobiReader {
     debug("Initiated process for cover image extraction of eBook located at:"+aBook.getBookExtractionLocation());
     string bookCoverLocation = "";
     //determine the location of the book's cover image
-    for (int i = 0; i < manifestItemsList.size; i++) {
-        if (manifestItemsList[i].down().contains("media-type=\"image") && manifestItemsList[i].down().contains("cover")) {
-            int startIndexOfCoverLocation = manifestItemsList[i].index_of("href=\"")+6;
-            int endIndexOfCoverLocation = manifestItemsList[i].index_of("\"", startIndexOfCoverLocation+1);
-            if(startIndexOfCoverLocation != -1 && endIndexOfCoverLocation != -1 && endIndexOfCoverLocation > startIndexOfCoverLocation){
-              bookCoverLocation = aBook.getBaseLocationOfContents() + manifestItemsList[i].slice(startIndexOfCoverLocation, endIndexOfCoverLocation);
-            }
-            break;
-        }
+    if(OpfContents.contains("<meta name=\"Cover ThumbNail Image\"") && OpfContents.contains("content=\"")){
+      int startOfCoverImageLocation = OpfContents.index_of("content=\"", OpfContents.index_of("<meta name=\"Cover ThumbNail Image\""));
+      int endOfCoverImageLocation = OpfContents.index_of("\" />", startOfCoverImageLocation);
+      if(startOfCoverImageLocation != -1 && endOfCoverImageLocation != -1 && endOfCoverImageLocation > startOfCoverImageLocation){
+        bookCoverLocation = aBook.getBaseLocationOfContents() +
+                            BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfCoverImageLocation + "content=\"".length, endOfCoverImageLocation));
+        debug("Determined eBook Cover Image Location as:"+bookCoverLocation);
+      }
     }
     //check if cover was not found and assign flag
     if(bookCoverLocation == null || bookCoverLocation.length < 1){
@@ -292,7 +291,6 @@ public class BookwormApp.mobiReader {
 
   public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
     debug("Initiated process for finding meta data of eBook located at:"+aBook.getBookExtractionLocation());
-    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
     //determine the title of the book from contents if it is not already available
     if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
       if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
