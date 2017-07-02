@@ -45,9 +45,12 @@ public class BookwormApp.contentHandler {
     //Adjust page margin
     string cssOverride = "<style>
                                 *{
+                                  /* Control line spacing */
                                   line-height: "+BookwormApp.Bookworm.settings.reading_line_height+"%;
-                                  margin-right: "+BookwormApp.Bookworm.settings.reading_width+"%;
-                                  margin-left: "+BookwormApp.Bookworm.settings.reading_width+"%;
+                                  /* Control page margins */
+                                  margin:auto;
+                                  max-width: "+(100 - (BookwormApp.Bookworm.settings.reading_width).to_int()).to_string()+"%;
+                                  /* Control fonts */
                                   font-family: "+BookwormApp.Bookworm.settings.reading_font_name_family+" !important;
                                   font-size: "+BookwormApp.Bookworm.settings.reading_font_size.to_string()+"px !important;
                                 }

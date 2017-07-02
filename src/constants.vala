@@ -113,10 +113,13 @@ namespace BookwormApp.Constants {
 	public const int SPACING_WIDGETS = 12;
 	public const int SPACING_BUTTONS = 6;
 	public const double ZOOM_CHANGE_VALUE = 0.1;
-	public const int MARGIN_CHANGE_VALUE = 2;
+	public const int MARGIN_CHANGE_VALUE = 1;
 	public const int LINE_HEIGHT_CHANGE_VALUE = 10;
-	public const string RGBA_HEX_WHITE = "#ffffff";
-	public const string RGBA_HEX_BLACK = "#002B36";
+	public static const int MAX_BOOK_COVER_PER_ROW = 6;
+	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
+	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
+	//public const string RGBA_HEX_WHITE = "#ffffff";
+	//public const string RGBA_HEX_BLACK = "#002B36";
 
 	public const string TEXT_FOR_UNKNOWN_TITLE = _("Unknown Book");
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
@@ -154,9 +157,6 @@ namespace BookwormApp.Constants {
 	public static const string EBOOK_EXTRACTION_LOCATION = "/tmp/bookworm/";
 	public static const string PREFIX_FOR_FILE_URL = "file:///";
 
-	public static const int MAX_BOOK_COVER_PER_ROW = 6;
-	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
-	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
 	public static const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc"};
 	public static const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
 

@@ -103,8 +103,7 @@ public class BookwormApp.ePubReader {
       //check and create directory for extracting contents of ebook
       BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
       //unzip eBook contents into extraction location
-      //BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
-      BookwormApp.Utils.execute_sync_command("7z x \"" + eBookLocation + "\" -o\""+ extractionLocation +"\" -y");
+      BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
     }catch(Error e){
       warning("Problem in Content Extraction for ePub Book ["+eBookLocation+"]:%s"+e.message);
       return "false";
