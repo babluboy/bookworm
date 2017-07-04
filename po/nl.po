@@ -2,41 +2,48 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
+"PO-Revision-Date: 2017-07-02 14:04+0000\n"
+"Last-Translator: Noah Loomans <noahloomans@gmail.com>\n"
+"Language-Team: Dutch "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.16-dev\n"
 
 #: ../src/dialog.vala:55
 msgid "Select Image"
-msgstr ""
+msgstr "Selecteer afbeelding"
 
 #: ../src/bookworm.vala:76
 msgid "Display version number"
-msgstr ""
+msgstr "Versienummer weergeven"
 
 #: ../src/bookworm.vala:77
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Bookworm in debug modus uitvoeren"
 
 #: ../src/window.vala:195 ../src/window.vala:348
 msgid "Select eBook"
-msgstr ""
+msgstr "Selecteer e-boek"
 
 #: ../src/utils.vala:522
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleer"
 
 #: ../src/utils.vala:524
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: ../src/utils.vala:526
 msgid "Save"
-msgstr ""
+msgstr "Opslaan"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Een e-boek lezer"
 
 #: ../src/constants.vala:29
 msgid "Launchpad Translators"
@@ -44,81 +51,87 @@ msgstr ""
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr ""
+msgstr "Website"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "Niet beschikbaar"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "e-boek lezer"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr ""
+msgstr "Zoeken in dit boek..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Zoek bij titel, auteur en labels"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
-msgstr ""
+msgstr "Het lijkt er op dat Bookworm geen boeken heeft!"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Bouw jouw bibliotheek door e-boeken toe te voegen"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Selecteer een e-boek om te lezen"
 
 #: ../src/constants.vala:44
 msgid ""
 "Problem in extracting contents of book. Check if book is available at "
 "location : "
 msgstr ""
+"Er is een probleem opgetreden tijdens het uitlezen van het boek. Controleer "
+"of het boek op de volgende locatie is: "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
 msgstr ""
+"Ongeldige MIME type gedetecteerd. Controller het boek formaat op de volgende "
+"locatie: "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure valid eBook file at location : "
 msgstr ""
+"Ongeldige inhoud gevonden. Controller of het e-boek gelig is op de volgende "
+"locatie: "
 
 #: ../src/constants.vala:47
 msgid "Bookworm does not support the format of the file found at location : "
-msgstr ""
+msgstr "Bookworm ondersteunt niet het formaat van het bestand op de locatie: "
 
 #: ../src/constants.vala:48
 msgid "Library"
-msgstr ""
+msgstr "Bibliotheek"
 
 #: ../src/constants.vala:49
 msgid "Resume"
-msgstr ""
+msgstr "Hervat"
 
 #: ../src/constants.vala:50
 msgid "Contents"
-msgstr ""
+msgstr "Inhoud"
 
 #: ../src/constants.vala:51
 msgid "Content #"
-msgstr ""
+msgstr "Inhoud #"
 
 #: ../src/constants.vala:52
 msgid "Bookmarks"
-msgstr ""
+msgstr "Bladwijzers"
 
 #: ../src/constants.vala:53
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Bladwijzer #NNN voor sectie PPP"
 
 #: ../src/constants.vala:54
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Klik op een link om naar de gebladwijzerde sectie te springen"
 
 #: ../src/constants.vala:55
 msgid ""
