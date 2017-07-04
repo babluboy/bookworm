@@ -106,6 +106,9 @@ public class BookwormApp.Book{
   public ArrayList<HashMap<string,string>> getTOC (){
     return TOCMap;
   }
+  public void clearTOC (){
+    TOCMap.clear();
+  }
 
   //getter setter for temp location of ebook contents
   public void setBookExtractionLocation (string aBookExtractionLocation){

@@ -1,6 +1,8 @@
 /* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
-* This file is part of Bookworm and is used for parsing EPUB file formats
+* This file is part of Bookworm and is used for parsing MOBI file formats
+* The Mobi unpack utility mobi_unpack.py (v0.47) by adamselene
+* is used to extract the contents of the mobi file
 *
 * Bookworm is free software: you can redistribute it
 * and/or modify it under the terms of the GNU General Public License as
@@ -96,7 +98,7 @@ public class BookwormApp.mobiReader {
       }
       //check and create directory for extracting contents of ebook
       BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
-      //unzip eBook contents into extraction location
+      //extract eBook contents into extraction location
       BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.MOBIUNPACK_SCRIPT_LOCATION + " \"" + eBookLocation + "\" \""+ extractionLocation +"/\"");
     }catch(Error e){
       warning("Problem in Content Extraction for mobi Book ["+eBookLocation+"]:%s"+e.message);
@@ -131,7 +133,7 @@ public class BookwormApp.mobiReader {
     //read contents from content.opf file - using cat command as the reading of file is not working - check !
     //string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
     OpfContents = BookwormApp.Utils.execute_sync_command("cat \""+locationOfOPFFile + "\"");
-    if("false" == OpfContents){
+    if(OpfContents.contains("No such file or directory")){
       //OPF Contents could not be read from file
       warning("OPF contents could not be read from file:"+locationOfOPFFile);
       manifestItemsList.add("false");
@@ -155,12 +157,6 @@ public class BookwormApp.mobiReader {
 
   public static ArrayList<string> parseSpineData (string locationOfOPFFile){
     ArrayList<string> spineItemsList = new ArrayList<string> ();
-    if("false" == OpfContents){
-      //OPF Contents could not be read from file
-      warning("OPF contents could not be read from file:"+locationOfOPFFile);
-      spineItemsList.add("false");
-      return spineItemsList;
-    }
     string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
     //check TOC id in Spine data and add as first item to Spine List
     int startTOCPosition = spineData.index_of("toc=\"");
@@ -177,7 +173,7 @@ public class BookwormApp.mobiReader {
     }
     if(spineItemsList.size < 1){
       //OPF Contents could not be read from file
-      warning("OPF contents could not be read from file:"+locationOfOPFFile);
+      warning("Spine contents could not be read from file:"+locationOfOPFFile);
       spineItemsList.add("false");
       return spineItemsList;
     }
@@ -191,7 +187,7 @@ public class BookwormApp.mobiReader {
     //extract location of ncx file if present on the first index of the Spine List
     if(spineItemsList.get(0).contains("toc=\"")){
       int tocRefStartPos = spineItemsList.get(0).index_of("toc=\"")+("toc=\"").length;
-      if((tocRefStartPos-("toc=\"").length) != -1){
+      if((tocRefStartPos-("toc=\"").length) != -1 && spineItemsList.get(0).length > tocRefStartPos){
         bufferForSpineData.assign(spineItemsList.get(0).slice(tocRefStartPos, spineItemsList.get(0).length));
       }else{
         bufferForSpineData.assign("");
@@ -211,17 +207,11 @@ public class BookwormApp.mobiReader {
               if(navPointList.length > 0){
                 foreach(string navPointItem in navPointList){
                   string tocText = BookwormApp.Utils.decodeHTMLChars(BookwormApp.Utils.extractXMLTag(navPointItem, "<text>", "</text>"));
-
                   int tocNavStartPoint = navPointItem.index_of("src=\"");
                   int tocNavEndPoint = navPointItem.index_of("\"", tocNavStartPoint+("src=\"").length);
                   if(tocNavStartPoint != -1 && tocNavEndPoint != -1 && tocNavEndPoint>tocNavStartPoint){
                     string tocNavLocation = navPointItem.slice(tocNavStartPoint+("src=\"").length, tocNavEndPoint).strip();
-                    if(tocNavLocation.index_of("#") != -1){
-        							tocNavLocation = tocNavLocation.slice(0, tocNavLocation.index_of("#"));
-        						}
-                    tocNavLocation = BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(), tocNavLocation);
                     if(tocNavLocation.length>0){
-                      debug("tocText="+tocText+", tocNavLocation="+tocNavLocation);
                       HashMap<string,string> TOCMapItem = new HashMap<string,string>();
                       TOCMapItem.set(tocNavLocation, tocText);
                       aBook.setTOC(TOCMapItem);
@@ -255,7 +245,67 @@ public class BookwormApp.mobiReader {
             if(startPosOfContentItem != -1 && endPosOfContentItem != -1 && endPosOfContentItem>startPosOfContentItem){
               bufferForLocationOfContentData.assign(manifestItem.slice(startPosOfContentItem, endPosOfContentItem));
               debug("SpineData="+bufferForSpineData.str+" | LocationOfContentData="+bufferForLocationOfContentData.str);
-              aBook.setBookContentList(aBook.getBaseLocationOfContents()+bufferForLocationOfContentData.str);
+              //split the content data in the html file based on the position IDs in the .ncx file
+              string locationOfBookHTMLFile = aBook.getBaseLocationOfContents()+bufferForLocationOfContentData.str;
+              File mobiHTMLFile = File.new_for_path (locationOfBookHTMLFile);
+              if (!mobiHTMLFile.query_exists ()) {
+                  warning ("Main HTML File for book doesn't exist at location:"+locationOfBookHTMLFile);
+                  //handle condition of not being able to split file
+              }else{//HTML File exists - split HTML file
+                StringBuilder mobiHTMLContent = new StringBuilder();
+                mobiHTMLContent.assign(BookwormApp.Utils.fileOperations("READ_FILE", locationOfBookHTMLFile, "", ""));
+                int splitStartPos = 0;
+                int splitEndPos = mobiHTMLContent.str.length;
+                StringBuilder tocIDValue = new StringBuilder("");
+                StringBuilder splitFileName = new StringBuilder("_(Start)");
+                StringBuilder splitHTMLContent = new StringBuilder("");
+                StringBuilder splitPosIdentifierString = new StringBuilder("");
+                StringBuilder tocName  = new StringBuilder("");
+                HashMap<string,string> TOCMapItemUpdated = new HashMap<string,string>();
+                //Loop through the table of contents and split into smaller HTML files
+                if(aBook.getTOC().size > 0){
+                  ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
+                  foreach(HashMap<string,string> tocListItemMap in tocList){
+                    foreach (var entry in tocListItemMap.entries) {
+                      //get the value of the bookmarkID from the content list
+                      debug("parsing bookmark value:"+entry.key);
+                      tocIDValue.assign(entry.key.slice(entry.key.index_of("#")+1, entry.key.length));
+                      splitPosIdentifierString.assign("<a id=\""+tocIDValue.str+"\"");
+                      //check if bookmark id is present in html data
+                      if(mobiHTMLContent.str.index_of(splitPosIdentifierString.str) != -1){
+                        splitHTMLContent.assign(mobiHTMLContent.str.slice(splitStartPos, mobiHTMLContent.str.index_of(splitPosIdentifierString.str)));
+                        splitHTMLContent.prepend("<html><body>");
+                        splitHTMLContent.append("</body></html>");
+                        //write the split data to file
+                        BookwormApp.Utils.fileOperations("WRITE", aBook.getBaseLocationOfContents()+"split_html", splitFileName.str +".html", splitHTMLContent.str);
+                        //set book content list
+                        aBook.setBookContentList(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html");
+                        //set TOC name and path to split html file
+                        TOCMapItemUpdated.set(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html", tocName.str);
+                        //Set the next start position, chapter name and file name
+                        splitStartPos = mobiHTMLContent.str.index_of(splitPosIdentifierString.str);
+                        splitFileName.assign(tocIDValue.str);
+                        tocName.assign(entry.value);
+                      }
+                    }
+                  }
+                }
+                //check if any contents are left from the main html file and write it into the last split file
+                if(splitEndPos > splitStartPos){
+                  splitHTMLContent.assign(mobiHTMLContent.str.slice(splitStartPos, splitEndPos));
+                  splitHTMLContent.prepend("<html><body>");
+                  splitHTMLContent.append("</body></html>");
+                  //write the split data to file
+                  BookwormApp.Utils.fileOperations("WRITE", aBook.getBaseLocationOfContents()+"split_html", splitFileName.str +".html", splitHTMLContent.str);
+                  //set book content list
+                  aBook.setBookContentList(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html");
+                  //set TOC name and path to split html file
+                  TOCMapItemUpdated.set(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html", tocName.str);
+                }
+                //update the toc into book meta data
+                aBook.clearTOC();
+                aBook.setTOC(TOCMapItemUpdated);
+              }
             }
             break;
           }
@@ -329,7 +379,6 @@ public class BookwormApp.mobiReader {
       aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
       debug("Could not determine eBook Author, default title set");
     }
-
     return aBook;
   }
 }
