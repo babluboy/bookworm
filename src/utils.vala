@@ -116,13 +116,14 @@ namespace BookwormApp.Utils {
 		string grepOutput = "";
 		try {
 			string baseName = File.new_for_path(fileName).get_basename();
-			grepOutput = execute_sync_command ("find \""+rootDirectoryToSearch+"\" -name \""+baseName+"\"");
+			grepOutput = execute_sync_command ("find \""+rootDirectoryToSearch+"\" -name \""+baseName+"\"").strip();
+			//check if there are more than one result - return the first one
+			if(grepOutput.contains("\n")){
+				string[] listOfFilePaths = getListOfRepeatingSegments(grepOutput, "\n");
+				grepOutput = listOfFilePaths[0];
+			}
 			/*
-			//check if the file found exists
-			File fileFound = File.new_for_path (grepOutput);
-			bool doesFileExist = fileFound.query_exists ();
-			if(!doesFileExist)
-				grepOutput = ""; //TODO: handle the no file found error
+			TODO: handle the no file found error
 			*/
 			return grepOutput.strip();
 		}catch (Error e){
@@ -702,6 +703,33 @@ namespace BookwormApp.Utils {
 			foreach (string content in contentListArray) {
 				if(content != null && content.length > 0){
 					aBook.setBookContentList (content);
+				}
+			}
+			return aBook;
+		}
+
+		public static string convertTOCToString(BookwormApp.Book aBook){
+			StringBuilder tocString = new StringBuilder("");
+			ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
+			foreach(HashMap<string,string> tocListItemMap in tocList){
+				foreach (var entry in tocListItemMap.entries) {
+					tocString.append(entry.key).append("~~##~~").append(entry.value);
+				}
+				tocString.append("~~^^~~");
+			}
+			return tocString.str;
+		}
+
+		public static BookwormApp.Book convertStringToTOC(owned BookwormApp.Book aBook, string tocString){
+			//break the string into TOC List
+			string [] tocStringArray = tocString.split("~~^^~~");
+			//add data to the TOC details to the book
+			foreach (string tocItemStr in tocStringArray) {
+				string [] tocItemStringArray = tocItemStr.split("~~##~~");
+				if(tocItemStringArray.length == 2) {
+					HashMap<string,string> tocListItemMap = new HashMap<string,string> ();
+					tocListItemMap.set(tocItemStringArray[0], tocItemStringArray[1]);
+					aBook.setTOC(tocListItemMap);
 				}
 			}
 			return aBook;

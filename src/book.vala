@@ -35,6 +35,7 @@ public class BookwormApp.Book{
   private int bookRating = 0;
   private StringBuilder bookmarks = new StringBuilder ("");
   private ArrayList<string> bookContentList = new ArrayList<string> ();
+  private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
 
   //These variables are only available for the current session (not persisted)
   private string opfFileLocation = "";
@@ -46,8 +47,7 @@ public class BookwormApp.Book{
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
   private HashMap<string,Gtk.Widget> bookWidgetsList = new HashMap<string,Gtk.Widget> ();
-  private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
-
+  
   //getter list for book id
   public void setBookId (int aBookId){
     bookId = aBookId;

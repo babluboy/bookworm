@@ -202,6 +202,7 @@ public class BookwormApp.DB{
                                        RATINGS,
                                        CONTENT_EXTRACTION_LOCATION,
                                        CONTENT_DATA_LIST,
+                                       BOOK_TOC_DATA,
                                        creation_date,
                                        modification_date
                                 FROM "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ORDER BY modification_date DESC";
@@ -226,8 +227,9 @@ public class BookwormApp.DB{
       aBook.setBookRating(int.parse(stmt.column_text(10)));
       aBook.setBookExtractionLocation(stmt.column_text (11));
       aBook = BookwormApp.Utils.convertStringToContentList(aBook, stmt.column_text (12));
-      aBook.setBookCreationDate(stmt.column_text (13));
-      aBook.setBookLastModificationDate(stmt.column_text (14));
+      aBook = BookwormApp.Utils.convertStringToTOC(aBook, stmt.column_text (13));
+      aBook.setBookCreationDate(stmt.column_text (14));
+      aBook.setBookLastModificationDate(stmt.column_text (15));
       debug("Book details fetched from DB:
                 id="+stmt.column_int(0).to_string()+
                 ",BOOK_LOCATION="+stmt.column_text (1)+
@@ -242,8 +244,9 @@ public class BookwormApp.DB{
                 ",RATINGS="+stmt.column_text (10)+
                 ",CONTENT_EXTRACTION_LOCATION="+stmt.column_text (11)+
                 ",CONTENT_DATA_LIST="+stmt.column_text (12)+
-                ",creation_date="+stmt.column_text (13)+
-                ",modification_date="+stmt.column_text (14)
+                ",BOOK_TOC_DATA="+stmt.column_text (13)+
+                ",creation_date="+stmt.column_text (14)+
+                ",modification_date="+stmt.column_text (15)
             );
       //add book details to list
       listOfBooks.add(aBook);
@@ -329,6 +332,7 @@ public class BookwormApp.DB{
                                       RATINGS = ?,
                                       CONTENT_EXTRACTION_LOCATION = ?,
                                       CONTENT_DATA_LIST = ?,
+                                      BOOK_TOC_DATA = ?,
                                       modification_date = CAST(? AS INT)
                                       WHERE BOOK_LOCATION = ? ";
      int statusBookToDB = bookwormDB.prepare_v2 (update_book_to_database, update_book_to_database.length, out stmt);
@@ -347,8 +351,9 @@ public class BookwormApp.DB{
      stmt.bind_text (8, aBook.getBookRating().to_string());
      stmt.bind_text (9, aBook.getBookExtractionLocation());
      stmt.bind_text (10, BookwormApp.Utils.convertContentListToString(aBook));
-     stmt.bind_text (11, aBook.getBookLastModificationDate());
-     stmt.bind_text (12, aBook.getBookLocation());
+     stmt.bind_text (11, BookwormApp.Utils.convertTOCToString(aBook));
+     stmt.bind_text (12, aBook.getBookLastModificationDate());
+     stmt.bind_text (13, aBook.getBookLocation());
 
      stmt.step ();
      stmt.reset ();

@@ -24,25 +24,26 @@ public class BookwormApp.contentHandler {
 
   public static string adjustPageContent (owned string pageContent){
     settings = BookwormApp.Settings.get_instance();
-    string javaScriptInjectionPrefix = "onload=\"javascript:";
-    string javaScriptInjectionSuffix = "\"";
-    StringBuilder onloadJavaScript = new StringBuilder("");
+    string cssForTextAndBackgroundColor = "";
     //Set background and font colour based on profile
     string[] profileColorList = settings.list_of_profile_colors.split (",");
     if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
-      onloadJavaScript.append("document.getElementsByTagName('body')[0].style.backgroundColor='"+profileColorList[5]+"';
-                               document.getElementsByTagName('BODY')[0].style.color='"+profileColorList[4]+"';
-                              ");
+      cssForTextAndBackgroundColor = "
+                                        background-color: "+ profileColorList[5] +" !important;
+                                        color: "+ profileColorList[4] +" !important;
+                                     ";
     }else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
-      onloadJavaScript.append("document.getElementsByTagName('body')[0].style.backgroundColor='"+profileColorList[3]+"';
-                               document.getElementsByTagName('BODY')[0].style.color='"+profileColorList[2]+"';
-                              ");
+      cssForTextAndBackgroundColor = "
+                                        background-color: "+ profileColorList[3] +" !important;
+                                        color: "+ profileColorList[2] +" !important;
+                                     ";
     }else{
-      onloadJavaScript.append("document.getElementsByTagName('body')[0].style.backgroundColor='"+profileColorList[1]+"';
-                               document.getElementsByTagName('BODY')[0].style.color='"+profileColorList[0]+"';
-                              ");
+      cssForTextAndBackgroundColor = "
+                                        background-color: "+ profileColorList[1] +" !important;
+                                        color: "+ profileColorList[0] +" !important;
+                                     ";
     }
-    //Adjust page margin
+    //Set up CSS for book as per preference settings - this will override any css in the book contents
     string cssOverride = "<style>
                                 *{
                                   /* Control line spacing */
@@ -53,16 +54,17 @@ public class BookwormApp.contentHandler {
                                   /* Control fonts */
                                   font-family: "+BookwormApp.Bookworm.settings.reading_font_name_family+" !important;
                                   font-size: "+BookwormApp.Bookworm.settings.reading_font_size.to_string()+"px !important;
+                                  "+cssForTextAndBackgroundColor+"
                                 }
                           </style>";
 
     //add onload javascript to body tag
     if(pageContent.index_of("<BODY") != -1){
-      pageContent = pageContent.replace("<BODY", cssOverride + "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
+      pageContent = pageContent.replace("<BODY", cssOverride + "<BODY ");
     }else if (pageContent.index_of("<body") != -1){
-      pageContent = pageContent.replace("<body", cssOverride + "<body "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix);
+      pageContent = pageContent.replace("<body", cssOverride + "<body ");
     }else{
-      pageContent = cssOverride + "<BODY "+ javaScriptInjectionPrefix + onloadJavaScript.str + javaScriptInjectionSuffix + ">" + pageContent + "</BODY>";
+      pageContent = cssOverride + "<BODY>" + pageContent + "</BODY>";
     }
     return pageContent;
   }

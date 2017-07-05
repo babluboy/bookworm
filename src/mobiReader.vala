@@ -184,6 +184,7 @@ public class BookwormApp.mobiReader {
   public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, ArrayList<string> manifestItemsList, ArrayList<string> spineItemsList){
     StringBuilder bufferForSpineData = new StringBuilder("");
     StringBuilder bufferForLocationOfContentData = new StringBuilder("");
+    ArrayList<string> tocList = new ArrayList<string> ();
     //extract location of ncx file if present on the first index of the Spine List
     if(spineItemsList.get(0).contains("toc=\"")){
       int tocRefStartPos = spineItemsList.get(0).index_of("toc=\"")+("toc=\"").length;
@@ -212,9 +213,7 @@ public class BookwormApp.mobiReader {
                   if(tocNavStartPoint != -1 && tocNavEndPoint != -1 && tocNavEndPoint>tocNavStartPoint){
                     string tocNavLocation = navPointItem.slice(tocNavStartPoint+("src=\"").length, tocNavEndPoint).strip();
                     if(tocNavLocation.length>0){
-                      HashMap<string,string> TOCMapItem = new HashMap<string,string>();
-                      TOCMapItem.set(tocNavLocation, tocText);
-                      aBook.setTOC(TOCMapItem);
+                      tocList.add(tocNavLocation + "~~$$~~" + tocText);
                     }
                   }
                 }
@@ -261,32 +260,33 @@ public class BookwormApp.mobiReader {
                 StringBuilder splitHTMLContent = new StringBuilder("");
                 StringBuilder splitPosIdentifierString = new StringBuilder("");
                 StringBuilder tocName  = new StringBuilder("");
-                HashMap<string,string> TOCMapItemUpdated = new HashMap<string,string>();
+
                 //Loop through the table of contents and split into smaller HTML files
-                if(aBook.getTOC().size > 0){
-                  ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
-                  foreach(HashMap<string,string> tocListItemMap in tocList){
-                    foreach (var entry in tocListItemMap.entries) {
-                      //get the value of the bookmarkID from the content list
-                      debug("parsing bookmark value:"+entry.key);
-                      tocIDValue.assign(entry.key.slice(entry.key.index_of("#")+1, entry.key.length));
-                      splitPosIdentifierString.assign("<a id=\""+tocIDValue.str+"\"");
-                      //check if bookmark id is present in html data
-                      if(mobiHTMLContent.str.index_of(splitPosIdentifierString.str) != -1){
-                        splitHTMLContent.assign(mobiHTMLContent.str.slice(splitStartPos, mobiHTMLContent.str.index_of(splitPosIdentifierString.str)));
-                        splitHTMLContent.prepend("<html><body>");
-                        splitHTMLContent.append("</body></html>");
-                        //write the split data to file
-                        BookwormApp.Utils.fileOperations("WRITE", aBook.getBaseLocationOfContents()+"split_html", splitFileName.str +".html", splitHTMLContent.str);
-                        //set book content list
-                        aBook.setBookContentList(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html");
-                        //set TOC name and path to split html file
-                        TOCMapItemUpdated.set(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html", tocName.str);
-                        //Set the next start position, chapter name and file name
-                        splitStartPos = mobiHTMLContent.str.index_of(splitPosIdentifierString.str);
-                        splitFileName.assign(tocIDValue.str);
-                        tocName.assign(entry.value);
-                      }
+                if(tocList.size > 0){
+                  foreach(string tocItem in tocList){
+                    string[] tocItemAttributes = tocItem.split ("~~$$~~", -1);
+                    //get the value of the bookmarkID from the content list
+                    debug("parsing bookmark value:"+tocItemAttributes[0]);
+                    tocIDValue.assign(tocItemAttributes[0].slice(tocItemAttributes[0].index_of("#")+1, tocItemAttributes[0].length));
+                    splitPosIdentifierString.assign("<a id=\""+tocIDValue.str+"\"");
+                    //check if bookmark id is present in html data
+                    if(mobiHTMLContent.str.index_of(splitPosIdentifierString.str) != -1){
+                      splitHTMLContent.assign(mobiHTMLContent.str.slice(splitStartPos, mobiHTMLContent.str.index_of(splitPosIdentifierString.str)));
+                      splitHTMLContent.prepend("<html><body>");
+                      splitHTMLContent.append("</body></html>");
+                      //write the split data to file
+                      BookwormApp.Utils.fileOperations("WRITE", aBook.getBaseLocationOfContents()+"split_html", splitFileName.str +".html", splitHTMLContent.str);
+                      //set book content list
+                      aBook.setBookContentList(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html");
+                      //set TOC name and path to split html file
+                      HashMap<string,string> TOCMapItemUpdated = new HashMap<string,string>();
+                      TOCMapItemUpdated.set(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html", tocName.str);
+                      aBook.setTOC(TOCMapItemUpdated);
+                      debug("Updating TOC:"+aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html"+"::"+tocName.str);
+                      //Set the next start position, chapter name and file name
+                      splitStartPos = mobiHTMLContent.str.index_of(splitPosIdentifierString.str);
+                      splitFileName.assign(tocIDValue.str);
+                      tocName.assign(tocItemAttributes[1]);
                     }
                   }
                 }
@@ -300,11 +300,10 @@ public class BookwormApp.mobiReader {
                   //set book content list
                   aBook.setBookContentList(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html");
                   //set TOC name and path to split html file
-                  TOCMapItemUpdated.set(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html", tocName.str);
+                  HashMap<string,string> TOCMapItem = new HashMap<string,string>();
+                  TOCMapItem.set(aBook.getBaseLocationOfContents()+"split_html/" + splitFileName.str +".html", tocName.str);
+                  aBook.setTOC(TOCMapItem);
                 }
-                //update the toc into book meta data
-                aBook.clearTOC();
-                aBook.setTOC(TOCMapItemUpdated);
               }
             }
             break;
