@@ -142,6 +142,8 @@ public class BookwormApp.AppHeaderBar {
     bookwormApp.library_view_button.clicked.connect (() => {
       //Set action of return to Library View if the current view is Reading View
       if(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+        //Get the current scroll position of the book and add it to the book object
+        (BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead)).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
         //Update header to remove title of book being read
         headerbar.title = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
         //set UI in library view mode

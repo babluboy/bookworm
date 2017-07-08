@@ -32,7 +32,10 @@ public class BookwormApp.Book{
   private string bookPublishDate = "";
   private string bookCreationDate = "";
   private string bookLastModificationDate = "";
+  private int bookPageNumber = -1;
+  private int bookScrollPosition = -1;
   private int bookRating = 0;
+  private bool isBookCoverImagePresent = false;
   private StringBuilder bookmarks = new StringBuilder ("");
   private ArrayList<string> bookContentList = new ArrayList<string> ();
   private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
@@ -40,14 +43,12 @@ public class BookwormApp.Book{
   //These variables are only available for the current session (not persisted)
   private string opfFileLocation = "";
   private string baseLocationOfContents = "";
-  private bool isBookCoverImagePresent = false;
-  private int bookPageNumber = -1;
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
   private HashMap<string,Gtk.Widget> bookWidgetsList = new HashMap<string,Gtk.Widget> ();
-  
+
   //getter list for book id
   public void setBookId (int aBookId){
     bookId = aBookId;
@@ -205,6 +206,14 @@ public class BookwormApp.Book{
   }
   public int getBookPageNumber (){
     return bookPageNumber;
+  }
+
+  //getter setter for eBook vertical scroll position
+  public void setBookScrollPos (int aBookScrollPos){
+    bookScrollPosition = aBookScrollPos;
+  }
+  public int getBookScrollPos (){
+    return bookScrollPosition;
   }
 
   //getter setter if eBook pageForward is possible

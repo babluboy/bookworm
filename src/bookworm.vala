@@ -66,6 +66,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static int noOfBooksAddedFromCommand = 0;
 	public static bool isBookBeingAddedToLibrary = false;
 	public static ArrayList<string> profileColourList = new ArrayList<string> ();
+	public static bool isPageScrollRequired = false;
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;
@@ -206,7 +207,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 				window.present();
 				debug("A instance of bookworm is already running...");
 		}
-		//check if any books needed to be added/opened - if eBook(s) were opened from Files
+		//check if any books needed to be added/opened - if eBook(s) were opened from File Explorer using Bookworm
 		if(commandLineArgs.length > 1){
 			pathsOfBooksToBeAdded = new string[commandLineArgs.length];
 			pathsOfBooksToBeAdded = commandLineArgs;
@@ -290,6 +291,11 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public async void closeBookWorm (){
+			//If Bookworm was closed while in Reading mode, update the page scroll position of the book being read
+			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]) {
+				(libraryViewMap.get(locationOfEBookCurrentlyRead)).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
+			}
+
 			foreach (var book in libraryViewMap.values){
 				//Update the book details to the database if it was opened in this session
 				if(((BookwormApp.Book)book).getWasBookOpened()){
@@ -337,6 +343,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//Handle the case when the page number of the book is not set
     if(aBook.getBookPageNumber() == -1){
 			aBook.setBookPageNumber(0);
+		}else{
+			//This book was previously being read, so it should be opened at the last reading position
+			//Enable the flag which will scroll the page to the last read position
+			isPageScrollRequired = true;
 		}
 		//Handle the case when the page number of the book is outside limits
     if(aBook.getBookPageNumber() >= aBook.getBookContentList().size){

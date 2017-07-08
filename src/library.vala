@@ -503,7 +503,7 @@ public class BookwormApp.Library{
 				yield;
 			}
 		}
-		//open the book added if only one book path is present on command line
+		//open the book added, if only one book path is present on command line
 		if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length == 2 &&
       "bookworm" == BookwormApp.Bookworm.pathsOfBooksToBeAdded[0])
     {
@@ -518,6 +518,8 @@ public class BookwormApp.Library{
 	public static void addBookToLibrary(owned BookwormApp.Book aBook){
 		//check if book already exists in the library
 		if(BookwormApp.Bookworm.libraryViewMap.has_key(aBook.getBookLocation())){
+      //Enable the flag which will scroll the page to the last read position
+      BookwormApp.Bookworm.isPageScrollRequired = true;
 			//TO-DO: Set a message for the user
 			//TO-DO: Bring the book to the first position in the library view
 		}else{

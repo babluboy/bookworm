@@ -21,7 +21,7 @@ using Gee;
 
 public class BookwormApp.DB{
   public static const string BOOKWORM_TABLE_BASE_NAME = "BOOK_LIBRARY_TABLE";
-  public static const string BOOKWORM_TABLE_VERSION = "4"; //Only integers allowed
+  public static const string BOOKWORM_TABLE_VERSION = "5"; //Only integers allowed
   private static Sqlite.Database bookwormDB;
   private static string errmsg;
 
@@ -51,11 +51,12 @@ public class BookwormApp.DB{
 															 + "BOOK_TOC_DATA TEXT NOT NULL DEFAULT '', "
 															 + "BOOK_TOTAL_NUMBER_OF_PAGES TEXT NOT NULL DEFAULT '', "
 															 + "BOOK_LAST_READ_PAGE_NUMBER TEXT NOT NULL DEFAULT '', "
-                               + "BOOKMARKS TEXT NOT NULL DEFAULT '', "
-                               + "TAGS TEXT NOT NULL DEFAULT '', "
-                               + "RATINGS TEXT NOT NULL DEFAULT '', "
-                               + "CONTENT_EXTRACTION_LOCATION TEXT NOT NULL DEFAULT '', "
-                               + "CONTENT_DATA_LIST TEXT NOT NULL DEFAULT '', "
+                               + "BOOKMARKS TEXT NOT NULL DEFAULT '', " //Added in table v1
+                               + "TAGS TEXT NOT NULL DEFAULT '', " //Added in table v3
+                               + "RATINGS TEXT NOT NULL DEFAULT '', " //Added in table v3
+                               + "CONTENT_EXTRACTION_LOCATION TEXT NOT NULL DEFAULT '', " //Added in table v4
+                               + "CONTENT_DATA_LIST TEXT NOT NULL DEFAULT '', " //Added in table v4
+                               + "BOOK_LAST_SCROLL_POSITION TEXT NOT NULL DEFAULT '', " //Added in table v5
                                + "creation_date INTEGER,"
                                + "modification_date INTEGER)";
 		int librarytableCreateStatus = bookwormDB.exec (create_library_table, null, out errmsg);
@@ -131,7 +132,18 @@ public class BookwormApp.DB{
 
        //This block is for copying any initial version to current version
        string sync_to_latest_table = "";
-       string initial_list_of_columns = "id,BOOK_LOCATION,BOOK_TITLE,BOOK_AUTHOR,BOOK_COVER_IMAGE_LOCATION,IS_BOOK_COVER_IMAGE_PRESENT,BOOK_PUBLISH_DATE,BOOK_TOC_DATA,BOOK_TOTAL_NUMBER_OF_PAGES,BOOK_LAST_READ_PAGE_NUMBER,creation_date,modification_date";
+       string initial_list_of_columns = "id,
+                                         BOOK_LOCATION,
+                                         BOOK_TITLE,
+                                         BOOK_AUTHOR,
+                                         BOOK_COVER_IMAGE_LOCATION,
+                                         IS_BOOK_COVER_IMAGE_PRESENT,
+                                         BOOK_PUBLISH_DATE,
+                                         BOOK_TOC_DATA,
+                                         BOOK_TOTAL_NUMBER_OF_PAGES,
+                                         BOOK_LAST_READ_PAGE_NUMBER,
+                                         creation_date,
+                                         modification_date";
        if("" == library_table_version){
          sync_to_latest_table = "INSERT INTO "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ("
            + initial_list_of_columns + ")" +
@@ -150,6 +162,12 @@ public class BookwormApp.DB{
             "SELECT "
             + initial_list_of_columns + ",BOOKMARKS,TAGS,RATINGS" +
             " FROM BOOK_LIBRARY_TABLE3";
+        } else if("4" == library_table_version) {
+          sync_to_latest_table = "INSERT INTO "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ("
+            + initial_list_of_columns + ",BOOKMARKS,TAGS,RATINGS,CONTENT_EXTRACTION_LOCATION,CONTENT_DATA_LIST)" +
+            "SELECT "
+            + initial_list_of_columns + ",BOOKMARKS,TAGS,RATINGS,CONTENT_EXTRACTION_LOCATION,CONTENT_DATA_LIST" +
+            " FROM BOOK_LIBRARY_TABLE4";
         }
 
        int syncTableStatus = bookwormDB.prepare_v2 (sync_to_latest_table, sync_to_latest_table.length, out stmt);
@@ -203,6 +221,7 @@ public class BookwormApp.DB{
                                        CONTENT_EXTRACTION_LOCATION,
                                        CONTENT_DATA_LIST,
                                        BOOK_TOC_DATA,
+                                       BOOK_LAST_SCROLL_POSITION,
                                        creation_date,
                                        modification_date
                                 FROM "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ORDER BY modification_date DESC";
@@ -228,8 +247,9 @@ public class BookwormApp.DB{
       aBook.setBookExtractionLocation(stmt.column_text (11));
       aBook = BookwormApp.Utils.convertStringToContentList(aBook, stmt.column_text (12));
       aBook = BookwormApp.Utils.convertStringToTOC(aBook, stmt.column_text (13));
-      aBook.setBookCreationDate(stmt.column_text (14));
-      aBook.setBookLastModificationDate(stmt.column_text (15));
+      aBook.setBookScrollPos(int.parse(stmt.column_text(14)));
+      aBook.setBookCreationDate(stmt.column_text (15));
+      aBook.setBookLastModificationDate(stmt.column_text (16));
       debug("Book details fetched from DB:
                 id="+stmt.column_int(0).to_string()+
                 ",BOOK_LOCATION="+stmt.column_text (1)+
@@ -245,8 +265,9 @@ public class BookwormApp.DB{
                 ",CONTENT_EXTRACTION_LOCATION="+stmt.column_text (11)+
                 ",CONTENT_DATA_LIST="+stmt.column_text (12)+
                 ",BOOK_TOC_DATA="+stmt.column_text (13)+
-                ",creation_date="+stmt.column_text (14)+
-                ",modification_date="+stmt.column_text (15)
+                ",BOOK_LAST_SCROLL_POSITION="+stmt.column_text (14)+
+                ",creation_date="+stmt.column_text (15)+
+                ",modification_date="+stmt.column_text (16)
             );
       //add book details to list
       listOfBooks.add(aBook);
@@ -333,6 +354,7 @@ public class BookwormApp.DB{
                                       CONTENT_EXTRACTION_LOCATION = ?,
                                       CONTENT_DATA_LIST = ?,
                                       BOOK_TOC_DATA = ?,
+                                      BOOK_LAST_SCROLL_POSITION = ?,
                                       modification_date = CAST(? AS INT)
                                       WHERE BOOK_LOCATION = ? ";
      int statusBookToDB = bookwormDB.prepare_v2 (update_book_to_database, update_book_to_database.length, out stmt);
@@ -352,8 +374,9 @@ public class BookwormApp.DB{
      stmt.bind_text (9, aBook.getBookExtractionLocation());
      stmt.bind_text (10, BookwormApp.Utils.convertContentListToString(aBook));
      stmt.bind_text (11, BookwormApp.Utils.convertTOCToString(aBook));
-     stmt.bind_text (12, aBook.getBookLastModificationDate());
-     stmt.bind_text (13, aBook.getBookLocation());
+     stmt.bind_text (12, aBook.getBookScrollPos().to_string());
+     stmt.bind_text (13, aBook.getBookLastModificationDate());
+     stmt.bind_text (14, aBook.getBookLocation());
 
      stmt.step ();
      stmt.reset ();

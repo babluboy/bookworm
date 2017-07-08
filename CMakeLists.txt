@@ -58,7 +58,7 @@ pkg_check_modules(DEPS REQUIRED
                   gtk+-3.0
                   gee-0.8
                   granite
-                  webkit2gtk-4.0>=2.14.1
+                  webkit2gtk-4.0>=2.16.0
                   sqlite3>=3.5.9
                   poppler-glib
                  )
@@ -113,7 +113,7 @@ PACKAGES
     gtk+-3.0
     gee-0.8
     granite
-    webkit2gtk-4.0>=2.14.1
+    webkit2gtk-4.0>=2.16.0
     sqlite3
     poppler-glib
 )

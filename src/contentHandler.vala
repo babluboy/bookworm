@@ -25,6 +25,7 @@ public class BookwormApp.contentHandler {
   public static string adjustPageContent (owned string pageContent){
     settings = BookwormApp.Settings.get_instance();
     string cssForTextAndBackgroundColor = "";
+    string onLoadJavaScript = "";
     //Set background and font colour based on profile
     string[] profileColorList = settings.list_of_profile_colors.split (",");
     if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
@@ -58,13 +59,21 @@ public class BookwormApp.contentHandler {
                                 }
                           </style>";
 
-    //add onload javascript to body tag
+    //Scroll to the previous vertical position - this should be used:
+    //(1)when the book is re-opened from the library and
+    //(2) when a book existing in the library is opened from File Explorer using Bookworm
+    //The flag for applying the javascript is set from the above two locations
+    if(BookwormApp.Bookworm.isPageScrollRequired){
+      onLoadJavaScript = "onload=\"window.scrollTo(0,"+(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead)).getBookScrollPos().to_string()+")\"";
+      BookwormApp.Bookworm.isPageScrollRequired = false; // stop this function being called subsequently
+    }
+    //add onload javascript and css to body tag
     if(pageContent.index_of("<BODY") != -1){
-      pageContent = pageContent.replace("<BODY", cssOverride + "<BODY ");
+      pageContent = pageContent.replace("<BODY", cssOverride + "<BODY " + onLoadJavaScript);
     }else if (pageContent.index_of("<body") != -1){
-      pageContent = pageContent.replace("<body", cssOverride + "<body ");
+      pageContent = pageContent.replace("<body", cssOverride + "<body " + onLoadJavaScript);
     }else{
-      pageContent = cssOverride + "<BODY>" + pageContent + "</BODY>";
+      pageContent = cssOverride + "<BODY " + onLoadJavaScript + ">" + pageContent + "</BODY>";
     }
     return pageContent;
   }
@@ -137,5 +146,26 @@ public class BookwormApp.contentHandler {
       currentBookForRefresh = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
       BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForRefresh);
     }
+  }
+
+  public static int getScrollPos(){
+    //This function is responsible for returning the vertical scroll position of the webview
+    //This should be called when the user leaves reading a book :
+    //(1) Header Bar Return to Library and (2) Close Bookworm while in reading mode
+		int scrollPos = -1;
+		var loop = new MainLoop();
+		BookwormApp.AppWindow.aWebView.run_javascript.begin("document.title = window.scrollY;", null, (obj, res) => {
+			try{
+				BookwormApp.AppWindow.aWebView.run_javascript.end(res);
+			}
+			catch(GLib.Error e){
+				warning("Could not get scroll-pos, javascript error: " + e.message);
+			}
+			scrollPos = int.parse(BookwormApp.AppWindow.aWebView.get_title());
+			loop.quit();
+		});
+		loop.run();
+    debug("Scroll position determined as:"+scrollPos.to_string());
+		return scrollPos;
   }
 }
