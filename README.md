@@ -1,9 +1,11 @@
-# bookworm
+# Bookworm [![Translation status](https://hosted.weblate.org/widgets/bookworm/-/svg-badge.svg)](https://hosted.weblate.org/engage/bookworm/?utm_source=widget)
 A simple, focused eBook reader
 
 Author: Siddhartha Das
 
 Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc. This version supports EPUB, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.
+
+Check the Bookworm website for details on features, shortcuts, etc. : https://babluboy.github.io/bookworm/
 
 ## How to install bookworm:
 
@@ -45,4 +47,3 @@ Library List View
 Bookworm Preferences
 ![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/master/screenshots/PreferencesDialog.png)
 
-Translation Status [![Translation status](https://hosted.weblate.org/widgets/bookworm/-/svg-badge.svg)](https://hosted.weblate.org/engage/bookworm/?utm_source=widget)
