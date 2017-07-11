@@ -237,6 +237,16 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		prefBox.pack_start(colourScheme, false, false);
 		prefBox.pack_end(nightModeSwitch, false, false);
 
+		Gtk.Label showLibraryAtStartLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_SKIP_LIBRARY);
+    Gtk.Switch showLibraryAtStartSwitch = new Gtk.Switch ();
+    //Set the switch to skip the library view and go straight to the last book being read
+    if(BookwormApp.Bookworm.settings.is_show_library_on_start){
+      showLibraryAtStartSwitch.set_active (true);
+		}
+		Gtk.Box showLibraryAtStartBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		showLibraryAtStartBox.pack_start(showLibraryAtStartLabel, false, false);
+		showLibraryAtStartBox.pack_end(showLibraryAtStartSwitch, false, false);
+
 		Gtk.Label fontChooserLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_FONT);
 		Gtk.FontButton fontButton = new Gtk.FontButton ();
 		fontButton.set_filter_func (filterFont);
@@ -322,6 +332,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
 		content.pack_start (prefBox, false, false, 0);
 		content.pack_start (localStorageBox, false, false, 0);
+		content.pack_start (showLibraryAtStartBox, false, false, 0);
 		content.pack_start (fontBox, false, false, 0);
 		content.pack_start (customProfileBox, false, false, 0);
 		content.pack_start (discoverBooksBox, false, false, 0);
@@ -350,6 +361,14 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         BookwormApp.Bookworm.settings.is_local_storage_enabled = true;
 			}else{
         BookwormApp.Bookworm.settings.is_local_storage_enabled = false;
+			}
+		});
+
+		showLibraryAtStartSwitch.notify["active"].connect (() => {
+			if (showLibraryAtStartSwitch.active) {
+        BookwormApp.Bookworm.settings.is_show_library_on_start = true;
+			}else{
+        BookwormApp.Bookworm.settings.is_show_library_on_start = false;
 			}
 		});
 

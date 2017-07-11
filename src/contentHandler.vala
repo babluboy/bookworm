@@ -168,4 +168,50 @@ public class BookwormApp.contentHandler {
     debug("Scroll position determined as:"+scrollPos.to_string());
 		return scrollPos;
   }
+
+  public static void performStartUpActions(){
+    //open the book added, if only one book path is present on command line
+    //if this book was not in the library, then the library view will be shown
+    if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length == 2 &&
+      "bookworm" == BookwormApp.Bookworm.pathsOfBooksToBeAdded[0])
+    {
+      BookwormApp.Book requestedBook = null;
+      //Check if the requested book is available in the library
+      if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(BookwormApp.Bookworm.commandLineArgs[1].strip()) != -1){
+        //pick the book from the Initial ArrayList used for holding the books in the library
+        //as the BookwormApp.Bookworm.libraryViewMap would not have finished loading
+        foreach (BookwormApp.Book aBook in BookwormApp.Library.listOfBooksInLibraryOnLoad) {
+          if(BookwormApp.Bookworm.commandLineArgs[1].strip() == aBook.getBookLocation()){
+            requestedBook = aBook;
+            break;
+          }
+        }
+      }else{
+        //pick the book from the BookwormApp.Bookworm.libraryViewMap as it would have been added
+        //as part of the code above to create a new book and add it to the BookwormApp.Bookworm.libraryViewMap
+        requestedBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.commandLineArgs[1].strip());
+      }
+      if(requestedBook != null){
+        //set the name of the book being currently read
+        BookwormApp.Bookworm.locationOfEBookCurrentlyRead = BookwormApp.Bookworm.commandLineArgs[1].strip();
+        //Initiate Reading the book
+        BookwormApp.Bookworm.readSelectedBook(requestedBook);
+      }
+    }else{
+      //check and continue the last book being read - if "Always show library on start is false"
+      if((!BookwormApp.Bookworm.settings.is_show_library_on_start) && (BookwormApp.Bookworm.settings.book_being_read != "")){
+        //check if the library contains the book being read last
+        if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(BookwormApp.Bookworm.settings.book_being_read) != -1){
+          //Initiate Reading the book
+          BookwormApp.Book lastReadBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.settings.book_being_read);
+          if(lastReadBook != null){
+            //set the name of the book being currently read
+            BookwormApp.Bookworm.locationOfEBookCurrentlyRead = BookwormApp.Bookworm.settings.book_being_read;
+            //Initiate Reading the book
+            BookwormApp.Bookworm.readSelectedBook(lastReadBook);
+          }
+        }
+      }
+    }
+  }
 }

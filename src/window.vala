@@ -281,7 +281,7 @@ public class BookwormApp.AppWindow {
       debug("Page Slider value change action completed for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead+" and rendering completed for page number:"+currentBookForSlider.getBookPageNumber().to_string());
       return true;
     });
-    //Add action for adding a book on the library view
+    //Add action for adding book(s) on the library view
     add_book_button.clicked.connect (() => {
       ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, "EBOOKS");
       BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
