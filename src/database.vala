@@ -271,6 +271,8 @@ public class BookwormApp.DB{
             );
       //add book details to list
       listOfBooks.add(aBook);
+      //build the string of book paths in the library
+      BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.append(aBook.getBookLocation());
     }
     stmt.reset ();
     return listOfBooks;

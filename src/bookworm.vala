@@ -67,6 +67,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static bool isBookBeingAddedToLibrary = false;
 	public static ArrayList<string> profileColourList = new ArrayList<string> ();
 	public static bool isPageScrollRequired = false;
+	public static StringBuilder pathsOfBooksInLibraryOnLoadStr = new StringBuilder("");
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;
@@ -223,8 +224,11 @@ public class BookwormApp.Bookworm : Granite.Application {
 				bookWormUIBox.show_all();
 				toggleUIState();
 			}
+			//Update the library view with books - this returns control back immediately
 			BookwormApp.Library.addBooksToLibrary ();
 		}
+		//Perform post start up actions
+		BookwormApp.contentHandler.performStartUpActions();
 		toggleUIState();
 		debug("Ending activate method");
 	}
@@ -286,25 +290,34 @@ public class BookwormApp.Bookworm : Granite.Application {
 		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
 		//set the library view
 		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
-		//Fetch details of Books from the database and update the library view
+		//Fetch details of Books from the database
+		BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB();
+		//Update the library view
 		BookwormApp.Library.updateLibraryViewFromDB();
 	}
 
 	public async void closeBookWorm (){
-			//If Bookworm was closed while in Reading mode, update the page scroll position of the book being read
+			//If Bookworm was closed while in Reading mode - save book details for subsequent read
 			if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]) {
+				//Save the page scroll position of the book being read
 				(libraryViewMap.get(locationOfEBookCurrentlyRead)).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
+				//Save the path to the book being read
+				settings.book_being_read = locationOfEBookCurrentlyRead;
+			}else{
+				//Bookworm was not in reading view during close - remove path of book read last
+				settings.book_being_read = "";
 			}
-
+			//release the control so that the window is closed
+			Idle.add (closeBookWorm.callback);
+			yield;
+			//Update the book details to the database if it was opened in this session
 			foreach (var book in libraryViewMap.values){
-				//Update the book details to the database if it was opened in this session
 				if(((BookwormApp.Book)book).getWasBookOpened()){
 					BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
 					debug("Completed saving the book data into DB");
 				}
-				Idle.add (closeBookWorm.callback);
-				yield;
 			}
+			//Check and create a task scheduler cron job if not already present
 			BookwormApp.BackgroundTasks.taskScheduler();
 	}
 

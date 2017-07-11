@@ -18,7 +18,8 @@
 */
 using Gtk;
 using Gee;
-public class BookwormApp.Library{
+public class BookwormApp.Library {
+  public static ArrayList<BookwormApp.Book> listOfBooksInLibraryOnLoad = new ArrayList<BookwormApp.Book>();
 
   public static void updateLibraryView(owned BookwormApp.Book aBook){
     updateLibraryListView(aBook);
@@ -475,9 +476,8 @@ public class BookwormApp.Library{
 	}
 
   public static async void updateLibraryViewFromDB(){
-		ArrayList<BookwormApp.Book> listOfBooks = BookwormApp.DB.getBooksFromDB();
-		foreach (BookwormApp.Book book in listOfBooks){
-			//add the book to the UI
+		foreach (BookwormApp.Book book in listOfBooksInLibraryOnLoad){
+			//add the book to the UI - both grid and list view
 			BookwormApp.Library.updateLibraryView(book);
 			Idle.add (updateLibraryViewFromDB.callback);
 			yield;
@@ -486,89 +486,86 @@ public class BookwormApp.Library{
 
   public static async void addBooksToLibrary (){
 		debug("Starting to add books....");
+    double progress = 0d;
 		//loop through the command line and add books to library
 		foreach(string pathToSelectedBook in BookwormApp.Bookworm.pathsOfBooksToBeAdded){
-			if("bookworm" != pathToSelectedBook){//ignore the first command which is the application name
-				BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
-				aBookBeingAdded.setBookLocation(pathToSelectedBook);
-				//the book will be updated to the libraryView Map within the addBookToLibrary function
-				addBookToLibrary(aBookBeingAdded);
-				BookwormApp.Bookworm.noOfBooksAddedFromCommand++;
-				BookwormApp.AppWindow.bookAdditionBar.set_text (pathToSelectedBook);
-				if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 1){
-					BookwormApp.AppWindow.bookAdditionBar.set_pulse_step ((BookwormApp.Bookworm.noOfBooksAddedFromCommand/(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length-1)));
-					BookwormApp.AppWindow.bookAdditionBar.pulse();
-				}
-				Idle.add (addBooksToLibrary.callback);
-				yield;
+      Idle.add (addBooksToLibrary.callback);
+      //set progress for the UI Book addition progress bar
+      BookwormApp.Bookworm.noOfBooksAddedFromCommand++;
+      progress = ((double) BookwormApp.Bookworm.noOfBooksAddedFromCommand)/BookwormApp.Bookworm.pathsOfBooksToBeAdded.length;
+      BookwormApp.AppWindow.bookAdditionBar.set_text (_("Added ") + ((int)(BookwormApp.AppWindow.bookAdditionBar.get_fraction()*100)).to_string() + "% : " + File.new_for_path(BookwormApp.Bookworm.locationOfEBookCurrentlyRead).get_basename());
+      BookwormApp.AppWindow.bookAdditionBar.set_fraction (progress);
+      //Return control back for any further actions
+      yield;
+			if("bookworm" != pathToSelectedBook.strip()){  //ignore the first command which is the application name
+        //check if book already exists in the library
+        if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(pathToSelectedBook.strip()) != -1){
+    		  //Enable the flag which will scroll the page to the last read position
+          BookwormApp.Bookworm.isPageScrollRequired = true;
+          //set the name of the book being currently read
+  				BookwormApp.Bookworm.locationOfEBookCurrentlyRead = pathToSelectedBook.strip();
+        }else{
+          //book does not exist in library - create a new instance for the book
+  				BookwormApp.Book aBookBeingAdded = new BookwormApp.Book();
+  				aBookBeingAdded.setBookLocation(pathToSelectedBook.strip());
+  				//the book will be updated to the libraryViewMap within the addBookToLibrary function
+          //however the libraryViewMap will only be fully populated when all books are added to it
+  				addBookToLibrary(aBookBeingAdded);
+        }
 			}
 		}
-		//open the book added, if only one book path is present on command line
-		if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length == 2 &&
-      "bookworm" == BookwormApp.Bookworm.pathsOfBooksToBeAdded[0])
-    {
-			BookwormApp.Bookworm.readSelectedBook(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.commandLineArgs[1]));
-		}
 		debug("Completed adding book provided on commandline...");
-		//Hide the progress bar
+		//Hide the progress bar on completion of adding books
 		BookwormApp.AppWindow.bookAdditionBar.hide();
 		BookwormApp.Bookworm.isBookBeingAddedToLibrary = false;
 	}
 
 	public static void addBookToLibrary(owned BookwormApp.Book aBook){
-		//check if book already exists in the library
-		if(BookwormApp.Bookworm.libraryViewMap.has_key(aBook.getBookLocation())){
-      //Enable the flag which will scroll the page to the last read position
-      BookwormApp.Bookworm.isPageScrollRequired = true;
-			//TO-DO: Set a message for the user
-			//TO-DO: Bring the book to the first position in the library view
-		}else{
-			debug("Initiated process to add eBook to library from path:"+aBook.getBookLocation());
-			//check if the selected eBook exists
-			string eBookLocation = aBook.getBookLocation();
-			File eBookFile = File.new_for_path (eBookLocation);
-			if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
-				//insert book details to database and fetch the ID
-				int bookID = BookwormApp.DB.addBookToDataBase(aBook);
-				aBook.setBookId(bookID);
-				/*Other than location, nothing is inserted into the DB for the book at this time.
-				Mark book as opened in the session so that details for book are updated
-				into DB when the application is closed - eBook parsing happens after the initial insert
-				*/
-				aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
-				aBook.setWasBookOpened(true);
-				//parse eBook to populate cache and book meta data
-				aBook = BookwormApp.Bookworm.genericParser(aBook);
-				if(!aBook.getIsBookParsed()){
-					BookwormApp.DB.removeBookFromDB(aBook);
-					BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
-				}else{
-					//add eBook cover image to library view
-					BookwormApp.Library.updateLibraryView(aBook);
-					//Set to normal grid view if the current view is in any of the Grid View State
-					if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
-						 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
-						 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
-					{
-						BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-						BookwormApp.Library.updateGridViewForSelection(null);
-					}
-					//Set to normal list view if the current view is in any of the List View State
-					if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
-						 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
-						 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
-					{
-						BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
-						BookwormApp.Library.updateListViewForSelection(null);
-					}
-					BookwormApp.Bookworm.toggleUIState();
-					//set the name of the book being currently read
-					BookwormApp.Bookworm.locationOfEBookCurrentlyRead = eBookLocation;
-					debug ("Completed adding book to ebook library. Number of books in library:"+BookwormApp.Bookworm.libraryViewMap.size.to_string());
-				}
+		debug("Initiated process to add eBook to library from path:"+aBook.getBookLocation());
+		//check if the selected eBook exists
+		string eBookLocation = aBook.getBookLocation();
+		File eBookFile = File.new_for_path (eBookLocation);
+		if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
+			//insert book details to database and fetch the ID
+			int bookID = BookwormApp.DB.addBookToDataBase(aBook);
+			aBook.setBookId(bookID);
+			/*Other than location, nothing is inserted into the DB for the book at this time.
+			Mark book as opened in the session so that details for book are updated
+			into DB when the application is closed - eBook parsing happens after the initial insert
+			*/
+			aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
+			aBook.setWasBookOpened(true);
+			//parse eBook to populate cache and book meta data
+			aBook = BookwormApp.Bookworm.genericParser(aBook);
+			if(!aBook.getIsBookParsed()){
+				BookwormApp.DB.removeBookFromDB(aBook);
+				BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
 			}else{
-				debug("No ebook found for adding to library");
+				//add eBook cover image to library view
+				BookwormApp.Library.updateLibraryView(aBook);
+				//Set to normal grid view if the current view is in any of the Grid View State
+				if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
+					 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
+					 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
+				{
+					BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+					BookwormApp.Library.updateGridViewForSelection(null);
+				}
+				//Set to normal list view if the current view is in any of the List View State
+				if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
+					 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
+					 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
+				{
+					BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
+					BookwormApp.Library.updateListViewForSelection(null);
+				}
+				BookwormApp.Bookworm.toggleUIState();
+				//set the name of the book being currently read
+				BookwormApp.Bookworm.locationOfEBookCurrentlyRead = eBookLocation;
+				debug ("Completed adding book to ebook library. Number of books in library:"+BookwormApp.Bookworm.libraryViewMap.size.to_string());
 			}
+		}else{
+			debug("No ebook found for adding to library");
 		}
 	}
 }

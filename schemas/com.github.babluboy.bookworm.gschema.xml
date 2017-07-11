@@ -36,6 +36,10 @@
 				<default>true</default>
 				<summary>Local storage for extracted contents of books</summary>
 		</key>
+		<key name="is-show-library-on-start" type="b">
+				<default>false</default>
+				<summary>Always show the library view on start</summary>
+		</key>
 		<key name="is-dark-theme-enabled" type="b">
 				<default>false</default>
 				<summary>Enable dark theme</summary>
@@ -72,5 +76,9 @@
         <default>""</default>
         <summary>List of directories to be scanned for new books</summary>
     </key>
+		<key name="book-being-read" type="s">
+				<default>""</default>
+				<summary>Save the path of the book being read if the user closes the app while reading</summary>
+		</key>
   </schema>
 </schemalist>
