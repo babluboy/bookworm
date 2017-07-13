@@ -28,8 +28,6 @@ public class BookwormApp.Library {
 
   public static void updateLibraryListView(owned BookwormApp.Book aBook){
     debug("Started updating Library List View for book:"+aBook.getBookLocation());
-    //set the selection image
-    //Gdk.Pixbuf image_selection = new Gdk.Pixbuf();
     //set the rating image
     Gdk.Pixbuf image_rating;
     string modifiedElapsedTime = "";
@@ -113,6 +111,7 @@ public class BookwormApp.Library {
     Gdk.Pixbuf aBookCover;
     Gdk.Pixbuf bookPlaceholderCoverPix = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.PLACEHOLDER_COVER_IMAGE_LOCATION, 150, 200, false);
     Gtk.Image bookPlaceholderCoverImage = new Gtk.Image.from_pixbuf(bookPlaceholderCoverPix);
+    Gtk.ProgressBar bookProgressBar = new Gtk.ProgressBar ();
 
 		//Add a default cover selected at random if no cover exists
 		if(aBook.getBookCoverLocation() == null || aBook.getBookCoverLocation().length < 1) {
@@ -162,6 +161,14 @@ public class BookwormApp.Library {
     bookSelectedImage.set_halign(Align.START);
     bookSelectedImage.set_valign(Align.START);
 
+    //Set the value of the progress bar
+    double progress = 0.0;
+    bookProgressBar.set_halign(Align.CENTER);
+    bookProgressBar.set_valign(Align.END);
+    bookProgressBar.set_visible(false);
+    //protect the progress bar against the show_all called on the library view
+    bookProgressBar.set_no_show_all(true);
+
     //Create a Overlay to hold the images in the right order
     Gtk.Overlay aOverlayImage = new Gtk.Overlay();
     aOverlayImage.add(bookPlaceholderCoverImage);
@@ -169,6 +176,7 @@ public class BookwormApp.Library {
     aOverlayImage.add_overlay(bookSelectedImage);
     aOverlayImage.add_overlay(aCoverImage);
     aOverlayImage.add_overlay(titleTextLabel);
+    aOverlayImage.add_overlay(bookProgressBar);//this will be invisble untill mouse enters
 
     //Add the overlaid images to a EventBox to allow mouse click actions to be captures
     Gtk.EventBox aEventBox = new Gtk.EventBox();
@@ -192,7 +200,22 @@ public class BookwormApp.Library {
     //Create a popover context menu for the book
     Gtk.Popover bookPopover = BookwormApp.AppDialog.createBookContextMenu(aBook);
 
-		//add listener for book objects based on mode
+    //add mouse enter listener for book object
+    aEventBox.enter_notify_event.connect (() => {
+      //calculate the progress of the book
+      progress = ((double)aBook.getBookPageNumber()+1)/aBook.getBookContentList().size;
+      bookProgressBar.set_fraction (progress);
+      bookProgressBar.set_visible(true);
+      return false;
+    });
+
+    //add mouse exit listener for book object
+    aEventBox.leave_notify_event.connect (() => {
+      bookProgressBar.set_visible(false);
+      return false;
+    });
+
+		//add mouse click listener for book objects based on mode
 		aEventBox.button_press_event.connect ((event) => {
       //capture which mouse button was clicked on the book in the library
       uint mouseButtonClicked;
