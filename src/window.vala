@@ -396,7 +396,7 @@ public class BookwormApp.AppWindow {
           book_reading_footer_box.hide();
           BookwormApp.Bookworm.window.fullscreen();
         }
-        if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {
+        if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {//Capture Ctrl key press
           isControlKeyPressed = true;
         }
         if (isControlKeyPressed && ev.keyval == Gdk.Key.plus){// Control and + keys pressed
@@ -404,6 +404,19 @@ public class BookwormApp.AppWindow {
         }
         if (isControlKeyPressed && ev.keyval == Gdk.Key.minus){// Control and + keys pressed
           aWebView.set_zoom_level (aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
+        }
+        if (isControlKeyPressed && (ev.keyval == Gdk.Key.D || ev.keyval == Gdk.Key.d)){// Control and D keys pressed - toggle bookmark
+          //Check if bookmark for the page is not set - set bookmark
+  				if(BookwormApp.AppHeaderBar.bookmark_inactive_button.get_visible()){
+  					BookwormApp.Bookworm.handleBookMark("INACTIVE_CLICKED");
+            debug("Shortcut executed for Bookmark with action - INACTIVE_CLICKED");
+            isControlKeyPressed = false; //stop the action re-executing immediately
+  				}else{
+  					//Bookmark for the page is set - unset bookmark
+            BookwormApp.Bookworm.handleBookMark("ACTIVE_CLICKED");
+            debug("Shortcut executed for Bookmark with action - ACTIVE_CLICKED");
+            isControlKeyPressed = false; //stop the action re-executing immediately
+  				}
         }
         return false;
     });

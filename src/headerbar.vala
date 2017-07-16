@@ -86,7 +86,6 @@ public class BookwormApp.AppHeaderBar {
     bookmark_active_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_BOOKMARKS_DEACTIVATE);
 
     headerbar.add(bookwormApp.library_mode_button);
-    //headerbar.pack_start(bookwormApp.libraryView_button);
     headerbar.pack_start(bookwormApp.library_view_button);
     headerbar.pack_start(bookwormApp.content_list_button);
     headerbar.pack_start(bookwormApp.prefButton);
