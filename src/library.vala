@@ -133,15 +133,15 @@ public class BookwormApp.Library {
       aBook.setIsBookCoverImagePresent(false);
     }
 
-		aCoverImage.set_halign(Align.START);
-		aCoverImage.set_valign(Align.START);
+		aCoverImage.set_halign(Align.CENTER);
+		aCoverImage.set_valign(Align.CENTER);
 
     //Add title of the book if Default Cover is being used
     if(!aBook.getIsBookCoverImagePresent()){
 			titleTextLabel.set_text("<b>"+aBook.getBookTitle()+"</b>");
-			titleTextLabel.set_xalign(0.0f);
 			titleTextLabel.set_use_markup (true);
 			titleTextLabel.set_line_wrap (true);
+      titleTextLabel.set_justify (Justification.CENTER);
       titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
       titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
       titleTextLabel.set_max_width_chars(-1);
@@ -149,16 +149,16 @@ public class BookwormApp.Library {
       //remove the title label if the book has a cover image available
       titleTextLabel.set_text("");
     }
-    //Add selection option badge to the book for later use - add it below the cover to hide it
+    //Add selection option badge to the book for later use
     Gdk.Pixbuf bookSelectionPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_OPTION_IMAGE_LOCATION);
     bookSelectionImage = new Gtk.Image.from_pixbuf(bookSelectionPix);
-    bookSelectionImage.set_halign(Align.START);
+    bookSelectionImage.set_halign(Align.CENTER);
     bookSelectionImage.set_valign(Align.START);
 
     //Add selection checked badge to the book for later use
     Gdk.Pixbuf bookSelectedPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_CHECKED_IMAGE_LOCATION);
     bookSelectedImage = new Gtk.Image.from_pixbuf(bookSelectedPix);
-    bookSelectedImage.set_halign(Align.START);
+    bookSelectedImage.set_halign(Align.CENTER);
     bookSelectedImage.set_valign(Align.START);
 
     //Set the value of the progress bar
@@ -311,6 +311,9 @@ public class BookwormApp.Library {
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
         if(BookwormApp.AppWindow.library_grid_scroll.get_visible()){
   				Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
+          //Align the selection badges to the center so that they are not visible
+          book.getBookWidget("SELECTION_BADGE_IMAGE").set_halign(Align.CENTER);
+          book.getBookWidget("SELECTED_BADGE_IMAGE").set_halign(Align.CENTER);
           //set the order of the widgets to put the selection/selected badges at bottom
           aOverlayImage.reorder_overlay(book.getBookWidget("SELECTION_BADGE_IMAGE"), 1);
           aOverlayImage.reorder_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"), 2);
@@ -333,6 +336,9 @@ public class BookwormApp.Library {
 			foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
         if(BookwormApp.AppWindow.library_grid_scroll.get_visible()){
           Gtk.Overlay aOverlayImage = (Gtk.Overlay) book.getBookWidget("BOOK_OVERLAY_IMAGE");
+          //Align the selection badges to the right to make visible but the selected badges should be centered to keep hidden
+          book.getBookWidget("SELECTION_BADGE_IMAGE").set_halign(Align.START);
+          book.getBookWidget("SELECTED_BADGE_IMAGE").set_halign(Align.CENTER);
           //set the order of the widgets to put the selection badge on top
           aOverlayImage.reorder_overlay(book.getBookWidget("SELECTED_BADGE_IMAGE"), 1);
           aOverlayImage.reorder_overlay(book.getBookWidget("COVER_IMAGE"), 2);
@@ -354,6 +360,9 @@ public class BookwormApp.Library {
         if(BookwormApp.AppWindow.library_grid_scroll.get_visible()){
           Gtk.Overlay aOverlayImage = (Gtk.Overlay) lBook.getBookWidget("BOOK_OVERLAY_IMAGE");
           if(!lBook.getIsBookSelected()){
+            //Align the selected badges to the right to make visible but keep the selection badge centered to keep hidden
+            lBook.getBookWidget("SELECTED_BADGE_IMAGE").set_halign(Align.START);
+            lBook.getBookWidget("SELECTION_BADGE_IMAGE").set_halign(Align.CENTER);
             //set the order of the widgets to put the selected badge on top
             aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTION_BADGE_IMAGE"), 1);
             aOverlayImage.reorder_overlay(lBook.getBookWidget("COVER_IMAGE"), 2);
@@ -362,6 +371,9 @@ public class BookwormApp.Library {
             lBook.setIsBookSelected(true);
           }else{
             //set the order of the widgets to put the selection badge on top
+            //Align the selection badges to the right to make visible but keep the selected badges centered to keep hidden
+            lBook.getBookWidget("SELECTION_BADGE_IMAGE").set_halign(Align.START);
+            lBook.getBookWidget("SELECTED_BADGE_IMAGE").set_halign(Align.CENTER);
             aOverlayImage.reorder_overlay(lBook.getBookWidget("SELECTED_BADGE_IMAGE"), 1);
             aOverlayImage.reorder_overlay(lBook.getBookWidget("COVER_IMAGE"), 2);
             aOverlayImage.reorder_overlay(lBook.getBookWidget("TITLE_TEXT_LABEL"), 3);

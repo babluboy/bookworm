@@ -46,7 +46,7 @@ public class BookwormApp.AppWindow {
     debug("Starting to create main window components...");
     settings = BookwormApp.Settings.get_instance();
 
-    //Create a grid to display the book library
+    //Create a grid to display the books cover images in library
     library_grid = new Gtk.FlowBox();
     library_grid.set_border_width (BookwormApp.Constants.SPACING_WIDGETS);
     library_grid.column_spacing = BookwormApp.Constants.SPACING_WIDGETS;
@@ -188,7 +188,6 @@ public class BookwormApp.AppWindow {
     main_ui_box.pack_start(bookLibrary_ui_box, true, true, 0);
     main_ui_box.pack_start(BookwormApp.Info.createBookInfo(), true, true, 0);
     main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
-    //main_ui_box.get_style_context().add_class ("box_white");
 
     //Add action to open a book for clicking on row in library list view
     library_table_treeview.row_activated.connect ((path, column) => {
