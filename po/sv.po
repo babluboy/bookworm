@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-07-15 14:11+0000\n"
+"PO-Revision-Date: 2017-07-16 04:45+0000\n"
 "Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/sv/>\n"
@@ -55,7 +55,7 @@ msgstr "Webbplats"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr "Inte tillgänglig"
+msgstr "Otillgänglig"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
@@ -87,16 +87,16 @@ msgid ""
 "location : "
 msgstr ""
 "Problem med att extrahera innehållet i boken. Kontrollera om boken är "
-"tillgänglig på platsen: "
+"tillgänglig på platsen : "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
-msgstr "Ogiltig Mime-typ upptäckt. Kontrollera bokformat på platsen: "
+msgstr "Ogiltig Mime-typ upptäckt. Kontrollera bokformat på platsen : "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure valid eBook file at location : "
 msgstr ""
-"Ogiltigt innehåll hittades. Se till att giltig e-bokfil finns på platsen: "
+"Ogiltigt innehåll hittades. Se till att giltig e-bokfil finns på platsen : "
 
 #: ../src/constants.vala:47
 msgid "Bookworm does not support the format of the file found at location : "
