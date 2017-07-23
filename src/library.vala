@@ -446,7 +446,7 @@ public class BookwormApp.Library {
 
   public static void removeSelectedBooksFromLibrary(){
 		ArrayList<string> listOfBooksToBeRemoved = new ArrayList<string> ();
-		//loop through the Library View Hashmap and remove the selected books
+		//loop through the Library View Hashmap and remove the selected books from the Library View Model
 		foreach (BookwormApp.Book book in BookwormApp.Bookworm.libraryViewMap.values){
 			//check if the book selection flag to true and add it to removal list
 			if(book.getIsBookSelected()){
@@ -461,6 +461,9 @@ public class BookwormApp.Library {
 				if(book.getBookCoverLocation().index_of(BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("-cover-N.png","")) == -1){
 					BookwormApp.Utils.execute_sync_command("rm \""+book.getBookCoverLocation()+"\"");
 				}
+        //update the onloadBookList - this is to enable re-adding the book within the same session
+        BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.assign(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.replace(book.getBookLocation(), ""));
+        BookwormApp.Library.listOfBooksInLibraryOnLoad.remove(book);
 			}
 		}
 
@@ -520,18 +523,27 @@ public class BookwormApp.Library {
 	}
 
   public static async void addBooksToLibrary (){
-		debug("Starting to add books....");
+		debug("Starting to add "+BookwormApp.Bookworm.pathsOfBooksToBeAdded.length.to_string()+" books....");
     double progress = 0d;
 		//loop through the command line and add books to library
 		foreach(string pathToSelectedBook in BookwormApp.Bookworm.pathsOfBooksToBeAdded){
-      Idle.add (addBooksToLibrary.callback);
+      //Set async callback only if multiple books are being added
+      //If only one book is being added, complete parsing and adding the book,
+      //so that it will be added to the BookwormApp.Bookworm.libraryViewMap and opened on the BookwormApp.contentHandler.performStartUpActions method
+      if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 2){
+        Idle.add (addBooksToLibrary.callback);
+      }
       //set progress for the UI Book addition progress bar
       BookwormApp.Bookworm.noOfBooksAddedFromCommand++;
       progress = ((double) BookwormApp.Bookworm.noOfBooksAddedFromCommand)/BookwormApp.Bookworm.pathsOfBooksToBeAdded.length;
       BookwormApp.AppWindow.bookAdditionBar.set_text (_("Added ") + ((int)(BookwormApp.AppWindow.bookAdditionBar.get_fraction()*100)).to_string() + "% : " + File.new_for_path(BookwormApp.Bookworm.locationOfEBookCurrentlyRead).get_basename());
       BookwormApp.AppWindow.bookAdditionBar.set_fraction (progress);
-      //Return control back for any further actions
-      yield;
+      //Return control back for any further actions only if multiple books are being added
+      //If only one book is being added, complete parsing and adding the book,
+      //so that it will be added to the BookwormApp.Bookworm.libraryViewMap and opened on the BookwormApp.contentHandler.performStartUpActions method
+      if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 2){
+        yield;
+      }
 			if("bookworm" != pathToSelectedBook.strip()){  //ignore the first command which is the application name
         //check if book already exists in the library
         if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(pathToSelectedBook.strip()) != -1){
@@ -546,6 +558,9 @@ public class BookwormApp.Library {
   				//the book will be updated to the libraryViewMap within the addBookToLibrary function
           //however the libraryViewMap will only be fully populated when all books are added to it
   				addBookToLibrary(aBookBeingAdded);
+          //update the onloadBookList - this is to prevent re-adding the book within the same session
+          BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.append(aBookBeingAdded.getBookLocation());
+          BookwormApp.Library.listOfBooksInLibraryOnLoad.add(aBookBeingAdded);
         }
 			}
 		}

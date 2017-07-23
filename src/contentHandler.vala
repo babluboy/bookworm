@@ -188,9 +188,10 @@ public class BookwormApp.contentHandler {
         }
       }else{
         //pick the book from the BookwormApp.Bookworm.libraryViewMap as it would have been added
-        //as part of the code above to create a new book and add it to the BookwormApp.Bookworm.libraryViewMap
+        //as part of the code above to create a new book
         requestedBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.commandLineArgs[1].strip());
       }
+      debug("Bookworm opened for single book["+requestedBook.getBookLocation()+"] - proceed to reading view...");
       if(requestedBook != null){
         //set the name of the book being currently read
         BookwormApp.Bookworm.locationOfEBookCurrentlyRead = BookwormApp.Bookworm.commandLineArgs[1].strip();

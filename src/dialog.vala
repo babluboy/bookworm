@@ -490,6 +490,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			localStorageSwitch.set_active (true);
 			BookwormApp.Bookworm.settings.is_local_storage_enabled = (bool) bookwormSettings.get_default_value ("is-local-storage-enabled");
 
+			//Reset Library at start option
+			showLibraryAtStartSwitch.set_active (false);
+			BookwormApp.Bookworm.settings.is_show_library_on_start = (bool) bookwormSettings.get_default_value ("is-show-library-on-start");;
+
 			//Reset Dark Theme
 			nightModeSwitch.set_active (false);
 			BookwormApp.Bookworm.settings.is_dark_theme_enabled = (bool) bookwormSettings.get_default_value ("is-dark-theme-enabled");

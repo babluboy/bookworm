@@ -13,11 +13,12 @@
     <p>This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
     <p>New features for Bookworm v0.9 include:</p>
     <ul>
-​      <li>Added support for .mobi and .prc formats</li>
-​      <li>xxx</li>
-      <li>xxx</li>
-      <li>xxx</li>
-      <li>xxx</li>
+​      <li>Added support for .mobi (Kindle) format</li>
+​      <li>Added prefference to control library view on start</li>
+      <li>Automatically scroll to exact last read page position</li>
+      <li>Added a progress bar on hover of the book cover</li>
+      <li>Keyboard shortcut (Ctrl+D) for bookmarking</li>
+      <li>Squashed some bugs</li>
 ​    </ul>
   </description>
   <screenshots>
@@ -34,7 +35,7 @@
     <binary>bookworm</binary>
   </provides>
   <releases>
-    <release version="0.9" date="2017-07-31">
+    <release version="0.9" date="2017-07-23">
       ​<description>
       ​ <p>Support mobi format and UX improvements</p>
       ​</description>
