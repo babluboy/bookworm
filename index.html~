@@ -135,7 +135,6 @@
                         <div class="indent50">
                             <li>&nbsp;&nbsp;&nbsp;&nbsp;Night Mode: Enable Dark Theme</li>
                             <li>&nbsp;&nbsp;&nbsp;&nbsp;Cache: This preserves the contents extracted from eBook for opening the book quickly for subsequent reading</li>
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Library View at start: Always show the library view when Bookworm is opened</li>
                             <li>&nbsp;&nbsp;&nbsp;&nbsp;Font: Select font family from available fonts on the system and font size for reading</li>
                             <li>&nbsp;&nbsp;&nbsp;&nbsp;Customize Reading Profile: The text and background color for all three reading profiles can be customized</li>
                             <li>&nbsp;&nbsp;&nbsp;&nbsp;Add folders to watch: Multiple folders can be added (and removed) to automatically add supported eBooks into the library</li>
