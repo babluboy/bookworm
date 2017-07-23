@@ -6,6 +6,7 @@
 
 body {
     overflow-x: hidden;
+    padding:0;margin:0;
 }
 
 p {
@@ -102,7 +103,7 @@ header {
 header .container {
     padding-top: 10px;
     padding-bottom: 5px;
-    margin: 30px 0;
+    margin: 10px 0;
 }
 
 header img {
@@ -123,10 +124,10 @@ header .intro-text .skills {
     font-weight: 300;
 }
 
-@media(min-width:768px) {
+@media(min-width:100px) {
     header .container {
-        padding-top: 20px;
-        padding-bottom: px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     header .intro-text .name {
@@ -138,9 +139,9 @@ header .intro-text .skills {
     }
 }
 
-@media(min-width:768px) {
+@media(min-width:200px) {
     .navbar-fixed-top {
-        padding: 25px 0;
+        padding: 10px 0;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
@@ -462,4 +463,10 @@ footer .footer-below {
 /* Modifications by Sid */
 div.row {
     margin: 3em;
+}
+.navbar {
+    margin-bottom: 0; !important;
+}
+div.indent50 { 
+    margin-left:50px; 
 }

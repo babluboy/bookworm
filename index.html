@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Bookworm is a eBook reader supporting multiple eBook formats">
-    <meta name="keywords" content="bookworm, epub, pdf, cbr, cbz, mobi">
+    <meta name="keywords" content="bookworm, ebook, elementary os, epub, pdf, cbr, cbz, mobi">
     <meta name="author" content="Siddhartha Das">
 
     <title>Bookworm</title>
@@ -44,29 +44,24 @@
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header page-scroll">
-                    <a class="navbar-brand" href="#top"><image src="images/bookworm.png" style="vertical-align:middle"></a>
+                    <a class="navbar-brand" href="#top"><image src="images/bookworm.png" style="vertical-align:top"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="hidden">
-                            <a href="#page-top"></a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#features">Features</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#install">Install</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#translate">Translate</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/babluboy/bookworm/issues" target="_blank"x>Issues</a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="page-scroll">
+                        <a href="#features">Features</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#install">Install</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#translate">Translate</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/babluboy/bookworm/issues" target="_blank"x>Issues</a>
+                    </li>
+                </ul>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
@@ -107,6 +102,19 @@
             </div>
 
             <div class="row">
+                <p> The current version of Bookworm (v0.9) supports eBooks in the following file formats:<br>
+                     <div class="indent50">
+                        <b>
+                            <li>EPUB</li>
+                            <li>PDF</li>
+                            <li>MOBI</li>
+                            <li>CBR</li>
+                            <li>CBZ</li>
+                        </b>
+                    </div>
+                </p>
+                <p> </p>
+                <p> Here are some details on the key features for library management and reading in Bookworm </p>
                 <p> 1. Toggle between a grid view and a list view for the library. Editing the book metadata is possible in both views however the list view allows sorting of  metadata. Filtering is possible using the search bar in the library view.<br>
                     <img align="center" height="auto" width=85%" src="images/LibraryListView.png"> </img>
                 </p>
@@ -114,20 +122,24 @@
                     <img align="center" height="95%" width=85%" src="images/BookwormReadingView.png"> </img>
                 </p>
                 <p>3. The info button [<i class="fa fa-info-circle"></i>] provides information in three tabs:
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Contents: A table of contents to easily jump to a chapter</li>
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Bookmarks: The clickable list of bookmarks to jump to a bookmarked page of the book</li>
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Search Results: A clickable list of lines contaning the search phrase found in the book</li>
-                        <img align="center" height="auto" width=33%" src="images/Contents.png"> </img>
-                        <img align="center" height="auto" width=33%" src="images/Bookmarks.png"> </img>
-                        <img align="center" height="auto" width=33%" src="images/SearchResults.png"> </img>
+                        <div class="indent50">
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Contents: A table of contents to easily jump to a chapter</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Bookmarks: The clickable list of bookmarks to jump to a bookmarked page of the book</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Search Results: A clickable list of lines contaning the search phrase found in the book</li>
+                            <img align="center" height="auto" width=33%" src="images/Contents.png"> </img>
+                            <img align="center" height="auto" width=33%" src="images/Bookmarks.png"> </img>
+                            <img align="center" height="auto" width=33%" src="images/SearchResults.png"> </img>
+                        </div>
                 </p>
                 <p>4. The preference button [<i class="fa fa-cog"></i>] on the header bar provides further customization options:
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Night Mode: Enable Dark Theme</li>
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Cache: This preserves the contents extracted from eBook for opening the book quickly for subsequent reading</li>
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Font: Select font family from available fonts on the system and font size for reading</li>
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Customize Reading Profile: The text and background color for all three reading profiles can be customized</li>
-                        <li>&nbsp;&nbsp;&nbsp;&nbsp;Add folders to watch: Multiple folders can be added (and removed) to automatically add supported eBooks into the library</li>
-                        <img style="middle" height="auto" width=50%" src="images/PreferencesDialog.png"> </img>
+                        <div class="indent50">
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Night Mode: Enable Dark Theme</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Cache: This preserves the contents extracted from eBook for opening the book quickly for subsequent reading</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Font: Select font family from available fonts on the system and font size for reading</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Customize Reading Profile: The text and background color for all three reading profiles can be customized</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Add folders to watch: Multiple folders can be added (and removed) to automatically add supported eBooks into the library</li>
+                            <img style="middle" height="auto" width=50%" src="images/PreferencesDialog.png"> </img>
+                        </div>
                 </p>
             </div>
             <div>
@@ -156,11 +168,16 @@
                         <td>F11</td>
                         <td>Enter Full Screen</td>
                       </tr>
-                       <tr>
+                      <tr>
                         <td>Reading View</td>
                         <td>Esc</td>
                         <td>Exit Full Screen</td>
                       </tr>
+                      <tr>
+                        <td>Reading View</td>
+                        <td>Ctrl + D</td>
+                        <td>Add/Remove Bookmark</td>
+                      </tr
                     </tbody>
                   </table>
             </div>
@@ -250,7 +267,7 @@
         </a>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
