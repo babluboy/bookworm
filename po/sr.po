@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-07-11 08:43+0000\n"
+"PO-Revision-Date: 2017-07-24 10:26+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/sr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 
 #: ../src/dialog.vala:55
 msgid "Select Image"
-msgstr ""
+msgstr "Одабери слику"
 
 #: ../src/bookworm.vala:76
 msgid "Display version number"
@@ -24,7 +24,7 @@ msgstr "Прикажи верзију"
 
 #: ../src/bookworm.vala:77
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Покрени Bookworm у режиму за отклањање грешака"
 
 #: ../src/window.vala:195 ../src/window.vala:348
 msgid "Select eBook"
@@ -48,7 +48,7 @@ msgstr "Читач еКњига"
 
 #: ../src/constants.vala:29
 msgid "Launchpad Translators"
-msgstr ""
+msgstr "Launchpad преводиоци"
 
 #: ../src/constants.vala:35
 msgid "Website"
@@ -56,19 +56,19 @@ msgstr "Веб локација"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "Није доступан"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "Читач еКњига"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr ""
+msgstr "Претражи ову књигу ..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Претражи по наслову, аутору и ознакама"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
@@ -76,7 +76,7 @@ msgstr "Изгледа да \"Bookworm\" нема књига!"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Креирај твоју библиотеку додајући еКњиге"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
@@ -87,18 +87,21 @@ msgid ""
 "Problem in extracting contents of book. Check if book is available at "
 "location : "
 msgstr ""
+"Проблем приликом преузимања садржаја књиге. Провери да ли је књига "
+"расположива на: "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
-msgstr ""
+msgstr "Отхривен неважећи Mime тип. Провери формат књиге на: "
 
 #: ../src/constants.vala:46
+#, fuzzy
 msgid "Invalid content found. Ensure valid eBook file at location : "
-msgstr ""
+msgstr "Пронађен наважећи формат. Преузми еКњигу подржаног формата са: "
 
 #: ../src/constants.vala:47
 msgid "Bookworm does not support the format of the file found at location : "
-msgstr ""
+msgstr "Bookworm не подржава формат датотеке пронађене на: "
 
 #: ../src/constants.vala:48
 msgid "Library"
@@ -106,15 +109,16 @@ msgstr "Библиотека"
 
 #: ../src/constants.vala:49
 msgid "Resume"
-msgstr ""
+msgstr "Настави"
 
 #: ../src/constants.vala:50
 msgid "Contents"
-msgstr ""
+msgstr "Садржај"
 
 #: ../src/constants.vala:51
+#, fuzzy
 msgid "Content #"
-msgstr ""
+msgstr "Садржај #"
 
 #: ../src/constants.vala:52
 msgid "Bookmarks"
@@ -126,25 +130,27 @@ msgstr "Обележивач #NNN за поглавље PPP"
 
 #: ../src/constants.vala:54
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Кликни на везу за прелазак на означено поглавље"
 
 #: ../src/constants.vala:55
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"Није постављен обележивач на BBB, кликни на bookworm икону у траци заглавља "
+"да обележиш страницу"
 
 #: ../src/constants.vala:56
 msgid "Search Results"
-msgstr ""
+msgstr "Резултати претраге"
 
 #: ../src/constants.vala:57
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Пронађене следеће подударности за  '$$$' у &&&:"
 
 #: ../src/constants.vala:58
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Нису пронађене подударности за '$$$' у &&&"
 
 #: ../src/constants.vala:59
 msgid "Edit Info for"
@@ -274,8 +280,9 @@ msgid "Turn on Night Mode"
 msgstr "Укључи ноћни режим"
 
 #: ../src/constants.vala:95
+#, fuzzy
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Омогући кеш (књиге се брже отварају)"
 
 #: ../src/constants.vala:105
 msgid "Unknown Book"
