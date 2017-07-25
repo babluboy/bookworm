@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-07-24 10:26+0000\n"
+"PO-Revision-Date: 2017-07-25 07:52+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/sr/>\n"
@@ -95,7 +95,6 @@ msgid "Invalid Mime type detected. Check book format at location : "
 msgstr "Отхривен неважећи Mime тип. Провери формат књиге на: "
 
 #: ../src/constants.vala:46
-#, fuzzy
 msgid "Invalid content found. Ensure valid eBook file at location : "
 msgstr "Пронађен наважећи формат. Преузми еКњигу подржаног формата са: "
 
@@ -116,7 +115,6 @@ msgid "Contents"
 msgstr "Садржај"
 
 #: ../src/constants.vala:51
-#, fuzzy
 msgid "Content #"
 msgstr "Садржај #"
 
@@ -146,7 +144,7 @@ msgstr "Резултати претраге"
 
 #: ../src/constants.vala:57
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Пронађене следеће подударности за  '$$$' у &&&:"
+msgstr "Пронађене следеће подударности за '$$$' у &&&:"
 
 #: ../src/constants.vala:58
 msgid "No matches found for '$$$' in &&&"
@@ -226,12 +224,10 @@ msgid "Click to remove this bookmark"
 msgstr "Кликни да уклониш овај обележивач"
 
 #: ../src/constants.vala:79
-#, fuzzy
 msgid "Increase font size"
 msgstr "Повећај величину писма"
 
 #: ../src/constants.vala:80
-#, fuzzy
 msgid "Decrease font size"
 msgstr "Смањи величину писма"
 
@@ -280,7 +276,6 @@ msgid "Turn on Night Mode"
 msgstr "Укључи ноћни режим"
 
 #: ../src/constants.vala:95
-#, fuzzy
 msgid "Enable cache (opens books faster)"
 msgstr "Омогући кеш (књиге се брже отварају)"
 
