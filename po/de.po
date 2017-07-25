@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-06-21 17:40+0000\n"
-"Last-Translator: kaiklede <kai.klede+github@gmail.com>\n"
+"PO-Revision-Date: 2017-07-25 23:20+0000\n"
+"Last-Translator: Nik. <nik.paulussen@outlook.com>\n"
 "Language-Team: German "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/de/>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15-dev\n"
+"X-Generator: Weblate 2.16-dev\n"
 
 #: ../src/dialog.vala:55
 msgid "Select Image"
@@ -270,7 +270,7 @@ msgstr "Sepia Thema"
 #: ../src/constants.vala:89 ../src/constants.vala:90
 #, fuzzy
 msgid "Enter full screen view and Esc key to exit"
-msgstr "Öffne Vollbildmodus und Esc zum beenden"
+msgstr "Vollbildmodus öffnen (ESC zum beenden)"
 
 #: ../src/constants.vala:93 ../src/constants.vala:107
 msgid "Preferences"
