@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-06-17 15:52+0000\n"
-"Last-Translator: Siddhartha Das <bablu.boy@gmail.com>\n"
+"PO-Revision-Date: 2017-07-26 19:20+0000\n"
+"Last-Translator: Anne017 <anneonyme017@openmailbox.org>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
@@ -11,11 +11,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.15-dev\n"
+"X-Generator: Weblate 2.16-dev\n"
 
 #: ../src/dialog.vala:55
 msgid "Select Image"
-msgstr "Sélectionner l'image"
+msgstr "Sélectionner une image"
 
 #: ../src/bookworm.vala:76
 msgid "Display version number"
@@ -23,7 +23,7 @@ msgstr "Afficher le numéro de version"
 
 #: ../src/bookworm.vala:77
 msgid "Run Bookworm in debug mode"
-msgstr "Courir Bookworm en mode débogage"
+msgstr "Lancer Bookworm en mode débogage"
 
 #: ../src/window.vala:195 ../src/window.vala:348
 msgid "Select eBook"
@@ -39,15 +39,15 @@ msgstr "Ouvrir"
 
 #: ../src/utils.vala:526
 msgid "Save"
-msgstr "sauvegarder"
+msgstr "Enregistrer"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr "Un lecteur de livres électroniques"
+msgstr "Une liseuse de livres électroniques"
 
 #: ../src/constants.vala:29
 msgid "Launchpad Translators"
-msgstr "Traducteurs de launchpad"
+msgstr "Traducteurs sous Launchpad"
 
 #: ../src/constants.vala:35
 msgid "Website"
@@ -59,19 +59,19 @@ msgstr "Indisponible"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr "lecteur ebook"
+msgstr "Liseuse de livres électroniques"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr "Chercher dans ce livre ..."
+msgstr "Chercher dans ce livre..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr "Recherche par titre, auteur et balises"
+msgstr "Rechercher par titre, auteur et mots-clés"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
-msgstr "On dirait que Bookworm n'a pas de livres !"
+msgstr "On dirait bien que Bookworm ne contient pas de livres !"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
@@ -79,7 +79,7 @@ msgstr "Créez votre bibliothèque en ajoutant des livres électroniques"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr "Sélectionnez un eBook pour lire"
+msgstr "Sélectionnez un livre électronique pour le lire"
 
 #: ../src/constants.vala:44
 msgid ""
