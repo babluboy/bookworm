@@ -103,7 +103,7 @@ header {
 header .container {
     padding-top: 10px;
     padding-bottom: 5px;
-    margin: 10px 0;
+    margin: 10px auto;
 }
 
 header img {
@@ -469,4 +469,7 @@ div.row {
 }
 div.indent50 { 
     margin-left:50px; 
+}
+.navbar-brand {
+    margin-top: -5px
 }
