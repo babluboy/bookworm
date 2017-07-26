@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-07-26 19:20+0000\n"
-"Last-Translator: anonymous <>\n"
+"PO-Revision-Date: 2017-07-26 19:39+0000\n"
+"Last-Translator: Anne017 <anneonyme017@openmailbox.org>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
@@ -92,18 +92,19 @@ msgstr ""
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
 msgstr ""
-"Type de Mime invalide détecté. Vérifier le format du livre à l'emplacement: "
+"Type de Mime invalide détecté. Vérifiez le format du livre à l'emplacement : "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure valid eBook file at location : "
 msgstr ""
-"Contenu invalide trouvé. Assurez-vous que le fichier eBook valide à "
-"l'emplacement: "
+"Contenu invalide trouvé. Assurez-vous que le livre électronique est valide à "
+"l'emplacement : "
 
 #: ../src/constants.vala:47
 msgid "Bookworm does not support the format of the file found at location : "
 msgstr ""
-"Bookworm ne prend pas en charge le format du fichier trouvé à l'emplacement: "
+"Bookworm ne prend pas en charge le format du fichier trouvé à l'emplacement :"
+" "
 
 #: ../src/constants.vala:48
 msgid "Library"
@@ -123,23 +124,23 @@ msgstr "Contenu #"
 
 #: ../src/constants.vala:52
 msgid "Bookmarks"
-msgstr "Signets"
+msgstr "Marque-pages"
 
 #: ../src/constants.vala:53
 msgid "Bookmark #NNN for Section PPP"
-msgstr "Signet #NNN pour la section PPP"
+msgstr "Ajouter un marque-page dans #NNN pour la section PPP"
 
 #: ../src/constants.vala:54
 msgid "Click on a link to jump to bookmarked section"
-msgstr "Cliquez sur un lien pour accéder à la section de favoris"
+msgstr "Cliquez sur un lien pour accéder à la section des marque-pages"
 
 #: ../src/constants.vala:55
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
-"Aucun marquage défini dans BBB, cliquez sur l'icône du logiciel de lecture "
-"sur la barre d'en-tête pour mettre la page en favoris"
+"Aucun marque-page défini dans BBB, cliquez sur l'icône du logiciel dans la "
+"barre supérieure pour ajouter un marque-page à cette page"
 
 #: ../src/constants.vala:56
 msgid "Search Results"
@@ -147,11 +148,11 @@ msgstr "Résultats de la recherche"
 
 #: ../src/constants.vala:57
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Trouver les résultats suivants pour '$$$' dans &&&:"
+msgstr "Trouver les occurrences  du mot « $$$ » dans &&& :"
 
 #: ../src/constants.vala:58
 msgid "No matches found for '$$$' in &&&"
-msgstr "Aucun résultat trouvé pour '$$$' dans &&&"
+msgstr "Aucune occurrence trouvée pour « $$$ » dans &&&"
 
 #: ../src/constants.vala:59
 msgid "Edit Info for"
@@ -159,7 +160,7 @@ msgstr "Modifier l'information pour"
 
 #: ../src/constants.vala:60 ../src/constants.vala:64
 msgid "Update Cover Image"
-msgstr "Mettre à jour l'image de couverture"
+msgstr "Mettre à jour l'image de la couverture"
 
 #: ../src/constants.vala:61
 msgid "Update Title"
@@ -167,11 +168,11 @@ msgstr "Mettre à jour le titre"
 
 #: ../src/constants.vala:62
 msgid "Update Tags"
-msgstr "Tags de mise à jour"
+msgstr "Mettre à jour les mots-clés"
 
 #: ../src/constants.vala:63
 msgid "Update Author"
-msgstr "Auteur de mise à jour"
+msgstr "Mettre à jour l'auteur"
 
 #: ../src/constants.vala:65
 msgid "Enter full screen view"
@@ -183,7 +184,7 @@ msgstr "Quitter la vue en plein écran"
 
 #: ../src/constants.vala:67
 msgid "Check Word Meaning"
-msgstr "Vérifiez la signification du mot"
+msgstr "Vérifier la signification du mot"
 
 #: ../src/constants.vala:68
 msgid "Books"
@@ -204,16 +205,17 @@ msgstr "Ajouter des livres à la bibliothèque"
 #: ../src/constants.vala:73
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Supprimez les livres sélectionnés de la bibliothèque (le fichier eBook ne "
-"sera pas supprimé)"
+"Supprimer les livres sélectionnés de la bibliothèque (le livre électronique "
+"ne sera pas supprimé)"
 
 #: ../src/constants.vala:74
 msgid "Select one or more books in library"
-msgstr "Sélectionnez un ou plusieurs livres dans la bibliothèque"
+msgstr "Sélectionner un ou plusieurs livres dans la bibliothèque"
 
 #: ../src/constants.vala:75
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr "Voir la table des matières, les signets et les résultats de recherche"
+msgstr ""
+"Voir la table des matières, les marque-pages et les résultats de recherche"
 
 #: ../src/constants.vala:76
 msgid "Set reading preferences"
@@ -221,11 +223,11 @@ msgstr "Définir les préférences de lecture"
 
 #: ../src/constants.vala:77
 msgid "Click to bookmark this page"
-msgstr "Cliquez ici pour enregistrer cette page"
+msgstr "Cliquez ici pour ajouter un marque-page"
 
 #: ../src/constants.vala:78
 msgid "Click to remove this bookmark"
-msgstr "Cliquez pour supprimer ce signet"
+msgstr "Cliquez pour supprimer ce marque-page"
 
 #: ../src/constants.vala:79
 msgid "Increase font size"
@@ -253,11 +255,11 @@ msgstr "Diminuer l'espacement des lignes"
 
 #: ../src/constants.vala:85
 msgid "Update cover image"
-msgstr "Mettre à jour l'image de couverture"
+msgstr "Mettre à jour l'image de la couverture"
 
 #: ../src/constants.vala:86
 msgid "Light theme"
-msgstr "Thème léger"
+msgstr "Thème lumineux"
 
 #: ../src/constants.vala:87
 msgid "Dark theme"
@@ -269,7 +271,7 @@ msgstr "Thème Sépia"
 
 #: ../src/constants.vala:89 ../src/constants.vala:90
 msgid "Enter full screen view and Esc key to exit"
-msgstr "Entrez la vue en plein écran et la touche Esc pour quitter"
+msgstr "Passer en vue en plein écran (appuyez sur la touche Esc pour sortir)"
 
 #: ../src/constants.vala:93 ../src/constants.vala:107
 msgid "Preferences"
@@ -281,7 +283,7 @@ msgstr "Activer le mode nuit"
 
 #: ../src/constants.vala:95
 msgid "Enable cache (opens books faster)"
-msgstr "Activer le cache (ouvre des livres plus rapidement)"
+msgstr "Activer le cache (ouvre les livres plus rapidement)"
 
 #: ../src/constants.vala:105
 msgid "Unknown Book"
@@ -289,4 +291,4 @@ msgstr "Livre inconnu"
 
 #: ../src/constants.vala:106
 msgid "About"
-msgstr "Sur"
+msgstr "À propos"
