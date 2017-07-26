@@ -470,3 +470,6 @@ div.row {
 div.indent50 { 
     margin-left:50px; 
 }
+.navbar-brand {
+    margin-top: -5px
+}
