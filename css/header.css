@@ -193,7 +193,7 @@ header .intro-text .skills {
     padding: 0;
 }
 .intro-text {
-    margin-top: 100px;
+    margin-top: 60px;
 }
 section {
     padding: 100px 0;
@@ -472,6 +472,9 @@ footer .footer-below {
     transform: rotate(90deg);
 }
 
+.jumbo-images img {
+    max-width: 90%;
+}
 /* Modifications by Sid */
 div.row {
     margin: 3em;
