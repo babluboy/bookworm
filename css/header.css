@@ -6,7 +6,10 @@
 
 body {
     overflow-x: hidden;
-    padding:0;margin:0;
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    text-align: justify;
 }
 
 p {
@@ -185,7 +188,13 @@ header .intro-text .skills {
 .navbar-inverse {
     border: 0;
 }
-
+.navbar-brand {
+    margin-top: -5px;
+    padding: 0;
+}
+.intro-text {
+    margin-top: 100px;
+}
 section {
     padding: 100px 0;
 }
@@ -201,6 +210,9 @@ section.success {
 }
 
 @media(max-width:767px) {
+    .intro-text {
+        margin-top: 25px;
+    }
     section {
         padding: 75px 0;
     }
@@ -469,8 +481,4 @@ div.row {
 }
 div.indent50 { 
     margin-left:50px; 
-}
-.navbar-brand {
-    margin-top: -5px;
-    padding: 0;
 }
