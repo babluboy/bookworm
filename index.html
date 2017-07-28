@@ -15,15 +15,13 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-    <!-- Custom CSS -->
-    <link href="css/header.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">  -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
     <link href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="css/simpleLightbox.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,46 +29,53 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Custom CSS -->
+    <link href="css/header.css" rel="stylesheet">
+
+
     <link href="css/gridstack-demo.css" rel="stylesheet">
 </head>
 
 <body id="page-top" class="index">
 
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                <div id="navbar" class="navbar-collapse collapse">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header page-scroll">
-                        <a class="navbar-brand" href="#top"><image src="images/bookworm.png" style="vertical-align:top"></a>
-                    </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="page-scroll">
-                            <a href="#features">Features</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#install">Install</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#translate">Translate</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/babluboy/bookworm/issues" target="_blank"x>Issues</a>
-                        </li>
-                    </ul>
+            <div id="navbar" class="navbar-collapse collapse">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <a class="navbar-brand" href="#top">
+                        <image src="images/bookworm.png" style="vertical-align:top">
+                    </a>
                 </div>
-                <!-- /.navbar-collapse -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="page-scroll">
+                        <a href="#features">Features</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#install">Install</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#translate">Translate</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/babluboy/bookworm/issues" target="_blank" x>Issues</a>
+                    </li>
+                </ul>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
     <!-- Introduction Section -->
     <header>
@@ -86,11 +91,13 @@
                     </div>
                 </div>
                 <div class="col-lg-30">
-                        <p>
-                            <img align="center" height="auto" width=85%" src="images/BookwormLibraryView.png"> </img>
-                            Read the books you love without having to worry about different format complexities like epub, pdf, mobi, cbr, etc.
-                        </p>
-                 </div>
+                    <div class="text-center jumbo-images">
+                        <img align="center" src="images/BookwormLibraryView.png">
+                    </div>
+                    <p>
+                        Read the books you love without having to worry about different format complexities like epub, pdf, mobi, cbr, etc.
+                    </p>
+                </div>
             </div>
         </div>
     </header>
@@ -107,84 +114,116 @@
 
             <div class="row">
                 <p> The current version of Bookworm (v0.9) supports eBooks in the following file formats:<br>
-                     <div class="indent50">
-                        <b>
-                            <li>EPUB</li>
-                            <li>PDF</li>
-                            <li>MOBI</li>
-                            <li>CBR</li>
-                            <li>CBZ</li>
-                        </b>
-                    </div>
+                    <ol class="rect-list">
+                        <li>EPUB</li>
+                        <li>PDF</li>
+                        <li>MOBI</li>
+                        <li>CBR</li>
+                        <li>CBZ</li>
+                    </ol>
                 </p>
                 <p> </p>
                 <p> Here are some details on the key features for library management and reading in Bookworm </p>
-                <p> 1. Toggle between a grid view and a list view for the library. Editing the book metadata is possible in both views however the list view allows sorting of  metadata. Filtering is possible using the search bar in the library view.<br>
-                    <img align="center" height="auto" width=85%" src="images/LibraryListView.png"> </img>
+                <p>
+                    1. Toggle between a grid view and a list view for the library. Editing the book metadata is possible in both views however
+                    the list view allows sorting of metadata. Filtering is possible using the search bar in the library view.<br>
                 </p>
-                <p>2. An easy, simple layout to read books irrespective of the ebook format (epub, pdf, cbr, mobi, etc). A preference menu [<i class="fa fa-font"></i>] allows essential adjustments for text zoom in/out, margin increase/decrease and line width increase/decrease. Bookworm comes with three reading profiles of light, sepia and dark. Multiple pages of the book can be bookmarked [ <i class="fa fa-bookmark"></i> ]. Full screen mode is supported on right click or with the shortcut F11.<br>
-                    <img align="center" height="95%" width=85%" src="images/BookwormReadingView.png"> </img>
-                </p>
-                <p>3. The info button [<i class="fa fa-info-circle"></i>] provides information in three tabs:
-                        <div class="indent50">
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Contents: A table of contents to easily jump to a chapter</li>
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Bookmarks: The clickable list of bookmarks to jump to a bookmarked page of the book</li>
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Search Results: A clickable list of lines contaning the search phrase found in the book</li>
-                            <img align="center" height="auto" width=33%" src="images/Contents.png"> </img>
-                            <img align="center" height="auto" width=33%" src="images/Bookmarks.png"> </img>
-                            <img align="center" height="auto" width=33%" src="images/SearchResults.png"> </img>
-                        </div>
-                </p>
-                <p>4. The preference button [<i class="fa fa-cog"></i>] on the header bar provides further customization options:
-                        <div class="indent50">
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Night Mode: Enable Dark Theme</li>
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Cache: This preserves the contents extracted from eBook for opening the book quickly for subsequent reading</li>
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Library View at start: Always show the library view when Bookworm is opened</li>
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Font: Select font family from available fonts on the system and font size for reading</li>
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Customize Reading Profile: The text and background color for all three reading profiles can be customized</li>
-                            <li>&nbsp;&nbsp;&nbsp;&nbsp;Add folders to watch: Multiple folders can be added (and removed) to automatically add supported eBooks into the library</li>
-                            <img style="middle" height="auto" width=50%" src="images/PreferencesDialog.png"> </img>
-                        </div>
-                </p>
+                <div class="text-center jumbo-images">
+                    <img src="images/LibraryListView.png">
+                </div>
+                <p>2. An easy, simple layout to read books irrespective of the ebook format (epub, pdf, cbr, mobi, etc). A preference
+                    menu [<i class="fa fa-font"></i>] allows essential adjustments for text zoom in/out, margin increase/decrease
+                    and line width increase/decrease. Bookworm comes with three reading profiles of light, sepia and dark.
+                    Multiple pages of the book can be bookmarked [ <i class="fa fa-bookmark"></i> ]. Full screen mode is
+                    supported on right click or with the shortcut F11.<br> </p>
+                <div class="text-center jumbo-images">
+                    <img src="images/BookwormReadingView.png">
+                </div>
+                <p>3. The info button [<i class="fa fa-info-circle"></i>] provides information in three tabs:</p>
+                <div class="indent50">
+                    <ol class="rect-list">
+                        <li>Contents: A table of contents to easily jump to a chapter</li>
+                        <li>Bookmarks: The clickable list of bookmarks to jump to a bookmarked page of the
+                            book</li>
+                        <li>Search Results: A clickable list of lines contaning the search phrase found in
+                            the book</li>
+                    </ol>
+                </div>
+
+                <div class="row image-gallery">
+                    <div class="col-md-4">
+                        <a href="images/Contents.png" class="thumbnail" data-lightbox="Bookworm">
+                            <img src="images/Contents.png">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="images/Bookmarks.png" class="thumbnail" data-ligtbox="sfsdfd">
+                            <img src="images/Bookmarks.png">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="images/SearchResults.png" class="thumbnail" data-ligtbox="dfdsf">
+                            <img src="images/SearchResults.png">
+                        </a>
+                    </div>
+                </div>
+
+                <p>4. The preference button [<i class="fa fa-cog"></i>] on the header bar provides further customization options:</p>
+                <div class="indent50">
+                    <ol class="rect-list">
+                        <li>Night Mode: Enable Dark Theme</li>
+                        <li>Cache: This preserves the contents extracted from eBook for opening the book
+                            quickly for subsequent reading</li>
+                        <li>Library View at start: Always show the library view when Bookworm is opened</li>
+                        <li>Font: Select font family from available fonts on the system and font size for
+                            reading</li>
+                        <li>Customize Reading Profile: The text and background color for all three reading
+                            profiles can be customized</li>
+                        <li>Add folders to watch: Multiple folders can be added (and removed) to automatically
+                            add supported eBooks into the library</li>
+                    </ol>
+                </div>
+                <div class="text-center jumbo-images">
+                    <img src="images/PreferencesDialog.png">
+                </div>
             </div>
             <div>
                 <p> Bookworm has the following shortcuts
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Location</th>
-                        <th>Shortcut</th>
-                        <th>Function</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Reading View</td>
-                        <td>Ctrl + '-'</td>
-                        <td>Decrease Font Size</td>
-                      </tr>
-                      <tr>
-                        <td>Reading View</td>
-                        <td>Ctrl + Shift + '+'</td>
-                        <td>Increase Font Size</td>
-                      </tr>
-                      <tr>
-                        <td>Reading View</td>
-                        <td>F11</td>
-                        <td>Enter Full Screen</td>
-                      </tr>
-                      <tr>
-                        <td>Reading View</td>
-                        <td>Esc</td>
-                        <td>Exit Full Screen</td>
-                      </tr>
-                      <tr>
-                        <td>Reading View</td>
-                        <td>Ctrl + D</td>
-                        <td>Add/Remove Bookmark</td>
-                      </tr
-                    </tbody>
-                  </table>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Shortcut</th>
+                                <th>Function</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Reading View</td>
+                                <td>Ctrl + '-'</td>
+                                <td>Decrease Font Size</td>
+                            </tr>
+                            <tr>
+                                <td>Reading View</td>
+                                <td>Ctrl + Shift + '+'</td>
+                                <td>Increase Font Size</td>
+                            </tr>
+                            <tr>
+                                <td>Reading View</td>
+                                <td>F11</td>
+                                <td>Enter Full Screen</td>
+                            </tr>
+                            <tr>
+                                <td>Reading View</td>
+                                <td>Esc</td>
+                                <td>Exit Full Screen</td>
+                            </tr>
+                            <tr>
+                                <td>Reading View</td>
+                                <td>Ctrl + D</td>
+                                <td>Add/Remove Bookmark</td>
+                            </tr </tbody>
+                    </table>
             </div>
         </div>
     </section>
@@ -199,39 +238,40 @@
                 </div>
             </div>
 
-            <p>Bookworm is currently developed for Elementary OS but there are plans to make it distro agnostic using Snaps/Flatpacks in the future</p>
+            <p>Bookworm is currently developed for Elementary OS but there are plans to make it distro agnostic using Snaps/Flatpacks
+                in the future</p>
             <p>
-                    If you are using Elementary OS then Bookworm is available on Appcenter for installation <br>
-                    <a href="https://appcenter.elementary.io/com.github.babluboy.bookworm"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter"></a>
-            </p>
-
-            <p>&nbsp; </p>
-
-            <p>
-                   Bookworm is available as a PPA for Ubuntu (16.04 / Xenial) and other Ubuntu based systems. Open Terminal and run the following comands for installation
-                   <pre>
-  sudo add-apt-repository ppa:bookworm-team/bookworm
-  sudo apt-get update
-  sudo apt-get install bookworm
-                   </pre>
+                If you are using Elementary OS then Bookworm is available on Appcenter for installation <br>
+                <a href="https://appcenter.elementary.io/com.github.babluboy.bookworm"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter"></a>
             </p>
             <p>&nbsp; </p>
-            <p>If you want to build Bookworm from source with the required dependent packages, please open terminal and execute the following commands
-                    <pre>
-  sudo apt build-dep granite-demo 
-  sudo apt install libgranite-dev valac libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev libsqlite3-dev poppler-utils libpoppler-glib-dev git
-  git clone https://github.com/babluboy/bookworm.git
-  cd bookworm
-  mkdir build && cd build 
-  cmake -DCMAKE_INSTALL_PREFIX=/usr ../
-  make
-  sudo make install
-                    </pre>
+            <p>
+                Bookworm is available as a PPA for Ubuntu (16.04 / Xenial) and other Ubuntu based systems. Open Terminal and run the following
+                comands for installation
+                <pre>
+sudo add-apt-repository ppa:bookworm-team/bookworm
+sudo apt-get update
+sudo apt-get install bookworm
+                </pre>
+            </p>
+            <p>&nbsp; </p>
+            <p>If you want to build Bookworm from source with the required dependent packages, please open terminal and execute
+                the following commands
+                <pre>
+sudo apt build-dep granite-demo 
+sudo apt install libgranite-dev valac libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev libsqlite3-dev poppler-utils libpoppler-glib-dev git
+git clone https://github.com/babluboy/bookworm.git
+cd bookworm
+mkdir build && cd build 
+cmake -DCMAKE_INSTALL_PREFIX=/usr ../
+make
+sudo make install
+                </pre>
             </p>
         </div>
     </section>
 
-<!-- Translation Section -->
+    <!-- Translation Section -->
     <section id="translate">
         <div class="container">
             <div class="row">
@@ -239,16 +279,17 @@
                     <h2>Translate</h2>
                     <hr class="star-primary">
                 </div>
-            </div>          
+            </div>
             <p>
-                    Bookworm uses Weblate translation. You can contribute by translating Bookworm to your favourite languages and make the user experience better. Use the badge below to navigate to the simple online translation site for Bookworm <br>
-                    <div align="center">
-                        <a href="https://hosted.weblate.org/engage/bookworm/?utm_source=widget">
-                            <img src="https://hosted.weblate.org/widgets/bookworm/-/287x66-grey.png" alt="Translation status" />
-                        </a>
-                    </div>
+                Bookworm uses Weblate translation. You can contribute by translating Bookworm to your favourite languages and make the user
+                experience better. Use the badge below to navigate to the simple online translation site for Bookworm <br>
             </p>
 
+            <div align="center">
+                <a href="https://hosted.weblate.org/engage/bookworm/?utm_source=widget">
+                    <img src="https://hosted.weblate.org/widgets/bookworm/-/287x66-grey.png" alt="Translation status" />
+                </a>
+            </div>
         </div>
     </section>
 
@@ -273,6 +314,7 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/simpleLightbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -289,4 +331,5 @@
     <script src="js/freelancer.js"></script>
 
 </body>
+
 </html>
