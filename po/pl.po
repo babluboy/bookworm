@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-07-27 01:28+0000\n"
-"Last-Translator: Bogdan Szczurek <thebodzio@gmail.com>\n"
+"PO-Revision-Date: 2017-07-30 11:22+0000\n"
+"Last-Translator: Adam Chrapkowski <adam.chrapkowski@gmail.com>\n"
 "Language-Team: Polish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/pl/>\n"
 "Language: pl\n"
@@ -68,7 +68,7 @@ msgstr "Szukaj w książce…"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr "Szukaj tytułu, autora lub tagów"
+msgstr "Szukaj wg tytułu, autora lub tagów"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
