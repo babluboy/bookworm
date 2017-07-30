@@ -58,6 +58,21 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static Gdk.Pixbuf image_rating_4;
 	public static Gdk.Pixbuf image_rating_5;
 	public static Gdk.Pixbuf image_remove;
+	public static Gtk.Image select_book_image;
+	public static Gtk.Image add_book_image;
+	public static Gtk.Image remove_book_image;
+	public static Gtk.Image updateImageIcon;
+	public static Gtk.Image add_scan_directory_image;
+	public static Gtk.Image remove_scan_directory_image;
+	public static Gtk.Image library_list_button_image;
+	public static Gtk.Image library_grid_button_image;
+	public static Gtk.Image content_list_button_image;
+	public static Gtk.Image menu_icon_text_large;
+	public static Gtk.Image menu_icon;
+	public static Gtk.Image pref_menu_icon_text_large;
+	public static Gtk.Image pref_menu_icon_text_small;
+	public static Gtk.Image back_button_image;
+	public static Gtk.Image forward_button_image;
 
 	public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
@@ -249,6 +264,90 @@ public class BookwormApp.Bookworm : Granite.Application {
 		  image_rating_4 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_4_IMAGE_LOCATION);
 		  image_rating_5 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_5_IMAGE_LOCATION);
 			image_remove = new Gdk.Pixbuf.from_file (BookwormApp.Constants.REMOVE_IMAGE_LOCATION);
+
+			if (Gtk.IconTheme.get_default ().has_icon ("object-select-symbolic")) {
+	      select_book_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
+	    }else{
+				select_book_image = new Gtk.Image.from_file (BookwormApp.Constants.SELECT_BOOK_ICON_IMAGE_LOCATION);
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("list-add-symbolic")) {
+	      add_book_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
+	    }else{
+				add_book_image = new Gtk.Image.from_file (BookwormApp.Constants.ADD_BOOK_ICON_IMAGE_LOCATION);
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("list-remove-symbolic")) {
+	      remove_book_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
+	    }else{
+				remove_book_image = new Gtk.Image.from_file (BookwormApp.Constants.REMOVE_BOOK_ICON_IMAGE_LOCATION);
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("list-add-symbolic")) {
+	      add_scan_directory_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
+	    }else{
+				add_scan_directory_image = new Gtk.Image.from_file (BookwormApp.Constants.ADD_BOOK_ICON_IMAGE_LOCATION);
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("list-remove-symbolic")) {
+	      remove_scan_directory_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
+	    }else{
+				remove_scan_directory_image = new Gtk.Image.from_file (BookwormApp.Constants.REMOVE_BOOK_ICON_IMAGE_LOCATION);
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("view-list-symbolic")) {
+	      library_list_button_image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+	    }else{
+				library_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.LIBRARY_VIEW_LIST_IMAGE_LOCATION, 16, 16, true));
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("view-grid-symbolic")) {
+	      library_grid_button_image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+	    }else{
+				library_grid_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.LIBRARY_VIEW_GRID_IMAGE_LOCATION, 16, 16, true));
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("help-info-symbolic")) {
+	      content_list_button_image = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+	    }else{
+				content_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.BOOK_INFO_IMAGE_LOCATION, 24, 24, true));
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("format-text-larger-symbolic")) {
+	      menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+	    }else{
+				menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true));
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("open-menu")) {
+	      menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+	    }else{
+				menu_icon = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.HEADERBAR_PROPERTIES_IMAGE_LOCATION, 24, 24, true));
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("format-text-larger-symbolic")) {
+	      pref_menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+	    }else{
+				pref_menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true));
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("format-text-smaller-symbolic")) {
+	      pref_menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+	    }else{
+				pref_menu_icon_text_small = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.TEXT_SMALLER_IMAGE_ICON_LOCATION, 24, 24, true));
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("go-previous-symbolic")) {
+	      back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
+	    }else{
+				back_button_image = new Gtk.Image.from_file (BookwormApp.Constants.PREV_PAGE_ICON_IMAGE_LOCATION);
+			}
+
+			if (Gtk.IconTheme.get_default ().has_icon ("go-next-symbolic")) {
+	      forward_button_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.MENU);
+	    }else{
+				forward_button_image = new Gtk.Image.from_file (BookwormApp.Constants.NEXT_PAGE_ICON_IMAGE_LOCATION);
+			}
 		}catch(GLib.Error e){
 			warning("Image could not be loaded. Error:"+e.message);
 		}

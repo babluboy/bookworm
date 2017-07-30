@@ -28,16 +28,14 @@ public class BookwormApp.PreferencesMenu {
 
     StringBuilder profileNameText = new StringBuilder();
 
-    Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", IconSize.LARGE_TOOLBAR);
     Gtk.Button textLargerButton = new Gtk.Button();
-    textLargerButton.set_image (menu_icon_text_large);
+    textLargerButton.set_image (BookwormApp.Bookworm.pref_menu_icon_text_large);
     textLargerButton.set_halign(Gtk.Align.START);
     textLargerButton.set_relief (ReliefStyle.NONE);
     textLargerButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_FONT_SIZE_INCREASE);
 
-    Gtk.Image menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", IconSize.LARGE_TOOLBAR);
     Gtk.Button textSmallerButton = new Gtk.Button();
-    textSmallerButton.set_image (menu_icon_text_small);
+    textSmallerButton.set_image (BookwormApp.Bookworm.pref_menu_icon_text_small);
     textSmallerButton.set_halign(Gtk.Align.END);
     textSmallerButton.set_relief (ReliefStyle.NONE);
     textSmallerButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_FONT_SIZE_DECREASE);

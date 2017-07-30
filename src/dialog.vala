@@ -48,7 +48,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		//Add button for updating cover Image
 		Gtk.Label updateCoverLabel = new Gtk.Label(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER);
-		Gtk.Image updateImageIcon = new Gtk.Image.from_icon_name ("insert-image", Gtk.IconSize.MENU);
+		Gtk.Image updateImageIcon = null;
+		if (Gtk.IconTheme.get_default ().has_icon ("insert-image")) {
+			updateImageIcon = new Gtk.Image.from_icon_name ("insert-image", Gtk.IconSize.MENU);
+		}else{
+			updateImageIcon = new Gtk.Image.from_file (BookwormApp.Constants.UPDATE_IMAGE_ICON_LOCATION);
+		}
 		Gtk.Button updateCoverImageButton = new Gtk.Button ();
 		updateCoverImageButton.set_image (updateImageIcon);
 		updateCoverImageButton.set_relief (ReliefStyle.NONE);
@@ -152,7 +157,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		ratingBox.set_halign(Align.CENTER);
 		//set up the widgets for the rating
 		for(int i=0; i<5; i++){
-			Gtk.Image rating_star_image = new Gtk.Image.from_icon_name ("help-about-symbolic", Gtk.IconSize.MENU);
+			Gtk.Image rating_star_image = null;
+			if (Gtk.IconTheme.get_default ().has_icon ("help-about-symbolic")) {
+				rating_star_image = new Gtk.Image.from_icon_name ("help-about-symbolic", Gtk.IconSize.MENU);
+			}else{
+				rating_star_image = new Gtk.Image.from_file (BookwormApp.Constants.RATING_NONE_IMAGE_ICON_LOCATION);
+			}
 			Gtk.Button rating_star_button = new Gtk.Button ();
 			rating_star_button.set_image (rating_star_image);
 			rating_star_button.set_relief (ReliefStyle.NONE);
@@ -161,25 +171,41 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			//Add action for rating button
 			rating_star_button.clicked.connect (() => {
 				//set rating star clicked to active rating image
-				rating_star_button.set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+				if (Gtk.IconTheme.get_default ().has_icon ("help-about")) {
+					rating_star_button.set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+				}else{
+					rating_star_button.set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION));
+				}
 				int ratingClicked = bookRatingList.index_of(rating_star_button);
 				aBook.setBookRating(ratingClicked+1);
 				aBook.setWasBookOpened(true);
 				debug("Book Rating Set to:"+(ratingClicked+1).to_string());
 				//Adjust rating display: set all stars with lower rating to active rating image
 				for(int j=0; j<ratingClicked; j++){
-					((Gtk.Button)bookRatingList.get(j)).set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+					if (Gtk.IconTheme.get_default ().has_icon ("help-about")) {
+						((Gtk.Button)bookRatingList.get(j)).set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+					}else{
+						((Gtk.Button)bookRatingList.get(j)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION));
+					}
 				}
 				//Adjust rating display: set all stars with higher rating to in-active rating image
 				for(int k=ratingClicked+1; k<5; k++){
-					((Gtk.Button)bookRatingList.get(k)).set_image(new Gtk.Image.from_icon_name ("help-about-symbolic", Gtk.IconSize.MENU));
+					if (Gtk.IconTheme.get_default ().has_icon ("help-about-symbolic")) {
+						((Gtk.Button)bookRatingList.get(k)).set_image(new Gtk.Image.from_icon_name ("help-about-symbolic", Gtk.IconSize.MENU));
+					}else{
+						((Gtk.Button)bookRatingList.get(k)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_NONE_IMAGE_ICON_LOCATION));
+					}
 				}
 			});
 		}
 		//If any rating was given then represent the set_name
 		if(aBook.getBookRating() > 0){
 			for(int l=0; l<(aBook.getBookRating()); l++){
-				((Gtk.Button)bookRatingList.get(l)).set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+				if (Gtk.IconTheme.get_default ().has_icon ("help-about")) {
+					((Gtk.Button)bookRatingList.get(l)).set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+				}else{
+					((Gtk.Button)bookRatingList.get(l)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION));
+				}
 			}
 		}
 
@@ -303,16 +329,14 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		directoryComboBox.set_active(0);
 
 		//Set up Button for adding scan directory
-    Gtk.Image add_scan_directory_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
     Gtk.Button add_scan_directory_button = new Gtk.Button ();
-    add_scan_directory_button.set_image (add_scan_directory_image);
+    add_scan_directory_button.set_image (BookwormApp.Bookworm.add_scan_directory_image);
     add_scan_directory_button.set_relief (ReliefStyle.NONE);
     add_scan_directory_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_ADD_DIRECTORY);
 
     //Set up Button for removing scan directory
-    Gtk.Image remove_scan_directory_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
     Gtk.Button remove_scan_directory_button = new Gtk.Button ();
-    remove_scan_directory_button.set_image (remove_scan_directory_image);
+    remove_scan_directory_button.set_image (BookwormApp.Bookworm.remove_scan_directory_image);
     remove_scan_directory_button.set_relief (ReliefStyle.NONE);
     remove_scan_directory_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY);
 

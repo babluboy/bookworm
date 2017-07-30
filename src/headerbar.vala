@@ -37,11 +37,9 @@ public class BookwormApp.AppHeaderBar {
     headerbar.spacing = Constants.SPACING_WIDGETS;
 
     //add menu items to header bar - content list button
-    Gtk.Image library_list_button_image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-    Gtk.Image library_grid_button_image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
     bookwormApp.library_mode_button = new Granite.Widgets.ModeButton();
-    bookwormApp.library_mode_button.append (library_grid_button_image);
-    bookwormApp.library_mode_button.append (library_list_button_image);
+    bookwormApp.library_mode_button.append (BookwormApp.Bookworm.library_grid_button_image);
+    bookwormApp.library_mode_button.append (BookwormApp.Bookworm.library_list_button_image);
     bookwormApp.library_mode_button.valign = Gtk.Align.CENTER;
     bookwormApp.library_mode_button.halign = Gtk.Align.START;
     bookwormApp.library_mode_button.set_size_request (60, -1);
@@ -57,15 +55,13 @@ public class BookwormApp.AppHeaderBar {
     bookwormApp.library_view_button.can_focus = false;
     bookwormApp.library_view_button.vexpand = false;
 
-    Gtk.Image content_list_button_image = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
     bookwormApp.content_list_button = new Gtk.Button ();
-    bookwormApp.content_list_button.set_image (content_list_button_image);
+    bookwormApp.content_list_button.set_image (BookwormApp.Bookworm.content_list_button_image);
     bookwormApp.content_list_button.set_valign(Gtk.Align.CENTER);
     bookwormApp.content_list_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_BOOK_INFO);
 
-    Gtk.Image menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
     bookwormApp.prefButton = new Gtk.Button();
-    bookwormApp.prefButton.set_image (menu_icon_text_large);
+    bookwormApp.prefButton.set_image (BookwormApp.Bookworm.menu_icon_text_large);
     bookwormApp.prefButton.set_valign(Gtk.Align.CENTER);
     bookwormApp.prefButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_READING_PREFERENCES);
 
@@ -94,8 +90,7 @@ public class BookwormApp.AppHeaderBar {
 
     //add menu items to header bar - Menu
     Gtk.MenuButton appMenu = new Gtk.MenuButton ();
-    var menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-    appMenu.set_image (menu_icon);
+    appMenu.set_image (BookwormApp.Bookworm.menu_icon);
 
     Gtk.Menu settingsMenu = new Gtk.Menu ();
     appMenu.popup = settingsMenu;
@@ -182,7 +177,7 @@ public class BookwormApp.AppHeaderBar {
     });
 
     bookwormApp.library_mode_button.mode_changed.connect ((widget) => {
-      if(widget == library_grid_button_image){
+      if(widget == BookwormApp.Bookworm.library_grid_button_image){
         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
       }else{
         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
