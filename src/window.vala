@@ -86,24 +86,21 @@ public class BookwormApp.AppWindow {
     library_list_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
     library_list_scroll.add (library_table_treeview);
 
-    //Set up Button for selection of books
-    Gtk.Image select_book_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
+    //Set up Button for selecting books
     Gtk.Button select_book_button = new Gtk.Button ();
-    select_book_button.set_image (select_book_image);
+    select_book_button.set_image (BookwormApp.Bookworm.select_book_image);
     select_book_button.set_relief (ReliefStyle.NONE);
     select_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_SELECT_BOOK);
 
     //Set up Button for adding books
-    Gtk.Image add_book_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
     Gtk.Button add_book_button = new Gtk.Button ();
-    add_book_button.set_image (add_book_image);
+    add_book_button.set_image (BookwormApp.Bookworm.add_book_image);
     add_book_button.set_relief (ReliefStyle.NONE);
     add_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_ADD_BOOK);
 
     //Set up Button for removing books
-    Gtk.Image remove_book_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
     Gtk.Button remove_book_button = new Gtk.Button ();
-    remove_book_button.set_image (remove_book_image);
+    remove_book_button.set_image (BookwormApp.Bookworm.remove_book_image);
     remove_book_button.set_relief (ReliefStyle.NONE);
     remove_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_BOOK);
 
@@ -151,15 +148,13 @@ public class BookwormApp.AppWindow {
     webkitSettings.set_default_font_family(BookwormApp.Bookworm.settings.reading_font_name);
 
     //Set up Button for previous page
-    Gtk.Image back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
     back_button = new Gtk.Button ();
-    back_button.set_image (back_button_image);
+    back_button.set_image (BookwormApp.Bookworm.back_button_image);
     back_button.set_relief (ReliefStyle.NONE);
 
     //Set up Button for next page
-    Gtk.Image forward_button_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.MENU);
     forward_button = new Gtk.Button ();
-    forward_button.set_image (forward_button_image);
+    forward_button.set_image (BookwormApp.Bookworm.forward_button_image);
     forward_button.set_relief (ReliefStyle.NONE);
 
     //Set up a slider for jumping pages
