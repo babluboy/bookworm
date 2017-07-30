@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-07-26 18:35+0000\n"
+"PO-Revision-Date: 2017-07-30 09:29+0000\n"
 "Last-Translator: Nurlan Musayev <nurlancik1@gmail.com>\n"
 "Language-Team: Russian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/ru/>\n"
@@ -44,7 +44,7 @@ msgstr "Сохранить"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Программа для чтения электронных книг"
 
 #: ../src/constants.vala:29
 msgid "Launchpad Translators"
@@ -60,7 +60,7 @@ msgstr "Недоступно"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "Программа для чтения электронных книг"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
@@ -118,7 +118,7 @@ msgstr "Содержание"
 
 #: ../src/constants.vala:51
 msgid "Content #"
-msgstr ""
+msgstr "Содержание #"
 
 #: ../src/constants.vala:52
 msgid "Bookmarks"
