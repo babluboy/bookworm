@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-07-25 22:12+0000\n"
-"Last-Translator: Victor Oliveira <victor.dias.oliveira@gmail.com>\n"
+"PO-Revision-Date: 2017-08-03 17:53+0000\n"
+"Last-Translator: Rafael Neri <rafepel@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -14,12 +14,10 @@ msgstr ""
 "X-Generator: Weblate 2.16-dev\n"
 
 #: ../src/dialog.vala:55
-#, fuzzy
 msgid "Select Image"
 msgstr "Selecionar Imagem"
 
 #: ../src/bookworm.vala:76
-#, fuzzy
 msgid "Display version number"
 msgstr "Exibir o número da versão"
 
@@ -110,11 +108,11 @@ msgstr "Biblioteca"
 
 #: ../src/constants.vala:49
 msgid "Resume"
-msgstr ""
+msgstr "Continuar"
 
 #: ../src/constants.vala:50
 msgid "Contents"
-msgstr ""
+msgstr "Conteúdo"
 
 #: ../src/constants.vala:51
 msgid "Content #"
@@ -130,7 +128,7 @@ msgstr ""
 
 #: ../src/constants.vala:54
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Clique no link para ir para a seção marcada como favorita"
 
 #: ../src/constants.vala:55
 msgid ""
@@ -148,7 +146,7 @@ msgstr ""
 
 #: ../src/constants.vala:58
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Não foi possível encontrar '$$$' em &&&"
 
 #: ../src/constants.vala:59
 msgid "Edit Info for"
