@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-08-04 16:57+0000\n"
+"PO-Revision-Date: 2017-08-04 16:59+0000\n"
 "Last-Translator: aydın özek <aydinozekk@gmail.com>\n"
 "Language-Team: Kurdish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/ku/>\n"
@@ -284,7 +284,7 @@ msgstr "(Pêşbîr çalak bike (pirtûk zûtirîn vedibe"
 
 #: ../src/constants.vala:105
 msgid "Unknown Book"
-msgstr "Pirtûkê Nenas"
+msgstr "Pirtûka Nenas"
 
 #: ../src/constants.vala:106
 msgid "About"
