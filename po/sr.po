@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-07-25 08:55+0000\n"
-"Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
+"PO-Revision-Date: 2017-08-04 17:33+0000\n"
+"Last-Translator: Marko Kajzer <kayzherir0n1337@gmail.com>\n"
 "Language-Team: Serbian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/sr/>\n"
 "Language: sr\n"
@@ -64,7 +64,7 @@ msgstr "Читач еКњига"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr "Претражи ову књигу ..."
+msgstr "Претражи ову књигу..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
