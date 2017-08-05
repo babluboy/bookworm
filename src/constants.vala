@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "0.9";
+	public const string bookworm_version = "0.9.1";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017";
 	public const string app_icon = "bookworm";
@@ -126,8 +126,8 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
 	public const string TEXT_FOR_PREF_MENU_PREFERENCES_ITEM = _("Preferences");
 
-	public static const string MONITOR_SCRIPT_LOCATION = "/opt/bookworm/book_monitor.sh";
-	public static const string MOBIUNPACK_SCRIPT_LOCATION = "/opt/bookworm/mobi_lib/mobi_unpack.py";
+	public static const string MONITOR_SCRIPT_LOCATION = "/usr/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.monitor.sh";
+	public static const string MOBIUNPACK_SCRIPT_LOCATION = "/usr/share/bookworm/scripts/mobi_lib/mobi_unpack.py";
 	public static const string CSS_LOCATION = "/usr/share/bookworm/com.github.babluboy.bookworm.app.css";
 	public static const string PREV_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-previous.svg";
 	public static const string NEXT_PAGE_ICON_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-next.svg";
@@ -149,7 +149,6 @@ namespace BookwormApp.Constants {
 	public static const string RATING_3_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_3.png";
 	public static const string RATING_4_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_4.png";
 	public static const string RATING_5_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_5.png";
-	public static const string REMOVE_IMAGE_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-dir-remove.svg";
 	public static const string UPDATE_IMAGE_ICON_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-insert-image.svg";
 	public static const string SELECTION_OPTION_IMAGE_SMALL_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-option.svg";
 	public static const string SELECTION_CHECKED_IMAGE_SMALL_LOCATION = "/usr/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-checked.svg";

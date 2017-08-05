@@ -57,7 +57,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static Gdk.Pixbuf image_rating_3;
 	public static Gdk.Pixbuf image_rating_4;
 	public static Gdk.Pixbuf image_rating_5;
-	public static Gdk.Pixbuf image_remove;
 	public static Gtk.Image select_book_image;
 	public static Gtk.Image add_book_image;
 	public static Gtk.Image remove_book_image;
@@ -263,8 +262,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		  image_rating_3 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_3_IMAGE_LOCATION);
 		  image_rating_4 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_4_IMAGE_LOCATION);
 		  image_rating_5 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_5_IMAGE_LOCATION);
-			image_remove = new Gdk.Pixbuf.from_file (BookwormApp.Constants.REMOVE_IMAGE_LOCATION);
-
+			
 			if (Gtk.IconTheme.get_default ().has_icon ("object-select-symbolic")) {
 	      select_book_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
 	    }else{
