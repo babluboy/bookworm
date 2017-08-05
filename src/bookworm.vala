@@ -30,6 +30,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string[] commandLineArgs;
 	private static bool command_line_option_version = false;
 	private static bool command_line_option_debug = false;
+	private static bool command_line_option_info = false;
 	private static bool command_line_option_discover = false;
 	private static OptionEntry[] options;
 
@@ -102,19 +103,20 @@ public class BookwormApp.Bookworm : Granite.Application {
 		about_translators = BookwormApp.Constants.translator_credits;
 		about_license_type = BookwormApp.Constants.about_license_type;
 
-		options = new OptionEntry[3];
+		options = new OptionEntry[4];
 		options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
 		options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
-		options[2] = { "discover", 0, 0, OptionArg.NONE, ref command_line_option_discover, _("Automatically add new books from watched folders"), null };
+		options[2] = { "info", 0, 0, OptionArg.NONE, ref command_line_option_info, _("Run Bookworm in info mode"), null };
+		options[3] = { "discover", 0, 0, OptionArg.NONE, ref command_line_option_discover, _("Automatically add new books from watched folders"), null };
 		add_main_option_entries (options);
 	}
 
 	private Bookworm() {
+		info ("Started setting Internalization...");
 		Intl.setlocale(LocaleCategory.MESSAGES, "");
 		Intl.textdomain(GETTEXT_PACKAGE);
 		Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
-		Intl.bindtextdomain(GETTEXT_PACKAGE, "./locale");
-		debug ("Completed setting Internalization...");
+		info ("Completed setting Internalization...");
 	}
 
 	public static Bookworm getAppInstance(){
@@ -148,7 +150,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 		if(command_line_option_debug){
 			debug ("Bookworm running in debug mode...");
 		}
-
+		if(command_line_option_info){
+			debug ("Bookworm running in info mode...");
+		}
 		if(command_line_option_version){
 			print("\nbookworm version "+Constants.bookworm_version+"\n");
 			return 0;
@@ -262,7 +266,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		  image_rating_3 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_3_IMAGE_LOCATION);
 		  image_rating_4 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_4_IMAGE_LOCATION);
 		  image_rating_5 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_5_IMAGE_LOCATION);
-			
+
 			if (Gtk.IconTheme.get_default ().has_icon ("object-select-symbolic")) {
 	      select_book_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
 	    }else{
