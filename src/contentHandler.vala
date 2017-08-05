@@ -26,6 +26,7 @@ public class BookwormApp.contentHandler {
     settings = BookwormApp.Settings.get_instance();
     string cssForTextAndBackgroundColor = "";
     string onLoadJavaScript = "";
+    int endPosOfBodyTag = -1;
     //Set background and font colour based on profile
     string[] profileColorList = settings.list_of_profile_colors.split (",");
     if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
@@ -57,8 +58,16 @@ public class BookwormApp.contentHandler {
                                   font-size: "+BookwormApp.Bookworm.settings.reading_font_size.to_string()+"px !important;
                                   "+cssForTextAndBackgroundColor+"
                                 }
+                                .two_page {
+                                  /* Control two page view */
+                                  -webkit-column-count: 2;
+                                  -webkit-column-gap: 40px;
+                                  -webkit-column-rule-style: solid;
+                                  column-rule-style: solid;
+                                  -webkit-column-rule-width: 1px;
+                                  column-rule-color: lightgrey;
+                                }
                           </style>";
-
     //Scroll to the previous vertical position - this should be used:
     //(1)when the book is re-opened from the library and
     //(2) when a book existing in the library is opened from File Explorer using Bookworm
@@ -70,10 +79,20 @@ public class BookwormApp.contentHandler {
     //add onload javascript and css to body tag
     if(pageContent.index_of("<BODY") != -1){
       pageContent = pageContent.replace("<BODY", cssOverride + "<BODY " + onLoadJavaScript);
+      endPosOfBodyTag = pageContent.index_of(">", pageContent.index_of("<BODY"));
     }else if (pageContent.index_of("<body") != -1){
       pageContent = pageContent.replace("<body", cssOverride + "<body " + onLoadJavaScript);
+      endPosOfBodyTag = pageContent.index_of(">", pageContent.index_of("<body"));
     }else{
       pageContent = cssOverride + "<BODY " + onLoadJavaScript + ">" + pageContent + "</BODY>";
+      endPosOfBodyTag = pageContent.index_of(">", pageContent.index_of("<BODY"));
+    }
+    //add a div element for two page view just after the body tag
+    //int posOfBodyTagEnd = pageContent.index_of(">", pageContent.index_of("<BODY"));
+    if(endPosOfBodyTag != -1){
+      StringBuilder pageContentStrBuilder = new StringBuilder(pageContent);
+      pageContentStrBuilder.insert(endPosOfBodyTag+1, "<div class=\"two_page\">");
+      pageContent = pageContentStrBuilder.str;
     }
     return pageContent;
   }
