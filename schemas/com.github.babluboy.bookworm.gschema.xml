@@ -64,6 +64,10 @@
 				<default>12</default>
 				<summary>Save the choosen font size for reading</summary>
 		</key>
+		<key name="is-two-page-enabled" type="b">
+				<default>false</default>
+				<summary>Enable two page view</summary>
+		</key>
 		<key name="library-view-mode" type="s">
 				<default>"LIBRARY_MODE_GRID"</default>
 				<summary>Save the library view mode</summary>
@@ -80,5 +84,9 @@
 				<default>""</default>
 				<summary>Save the path of the book being read if the user closes the app while reading</summary>
 		</key>
+		<key name="reading-css-template" type="s">
+        <default>" &lt;style&gt; *{/* Control line spacing */ line-height: $READING_LINE_HEIGHT%; /* Control page margins */ margin:auto; max-width: $READING_WIDTH%; /* Control fonts */ font-family: $FONT_FAMILY !important; font-size: $FONT_SIZEpx !important; /* Control text and background color */ $TEXT_AND_BACKGROUND_COLOR } .two_page { /* Control two page view */ -webkit-column-count: 2; -webkit-column-gap: 40px; -webkit-column-rule-style: solid; column-rule-style: solid; -webkit-column-rule-width: 1px; column-rule-color: lightgrey; }	&lt;/style&gt;"</default>
+        <summary>This template is used for applying CSS to control the reading view</summary>
+    </key>
   </schema>
 </schemalist>

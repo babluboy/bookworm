@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-05 16:53+0100\n"
+"POT-Creation-Date: 2017-08-06 08:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Select Image"
 msgstr ""
 
-#: ../src/dialog.vala:462
+#: ../src/dialog.vala:483
 msgid "Select folder"
 msgstr ""
 
@@ -33,19 +33,19 @@ msgstr ""
 msgid "Select eBook"
 msgstr ""
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Display version number"
 msgstr ""
 
-#: ../src/bookworm.vala:108
+#: ../src/bookworm.vala:109
 msgid "Run Bookworm in debug mode"
 msgstr ""
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:110
 msgid "Run Bookworm in info mode"
 msgstr ""
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:111
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgstr ""
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: ../src/constants.vala:102 ../src/constants.vala:127
+#: ../src/constants.vala:102 ../src/constants.vala:128
 msgid "Preferences"
 msgstr ""
 
@@ -328,38 +328,42 @@ msgid "Always show library on start"
 msgstr ""
 
 #: ../src/constants.vala:106
-msgid "Set Font"
+msgid "Enable two page reading"
 msgstr ""
 
 #: ../src/constants.vala:107
-msgid "Customize reading profile"
+msgid "Set Font"
 msgstr ""
 
 #: ../src/constants.vala:108
-msgid "Text"
+msgid "Customize reading profile"
 msgstr ""
 
 #: ../src/constants.vala:109
-msgid "Background"
+msgid "Text"
 msgstr ""
 
 #: ../src/constants.vala:110
-msgid "Add folders to scan for books"
+msgid "Background"
 msgstr ""
 
 #: ../src/constants.vala:111
-msgid "Profile"
+msgid "Add folders to scan for books"
 msgstr ""
 
 #: ../src/constants.vala:112
+msgid "Profile"
+msgstr ""
+
+#: ../src/constants.vala:113
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:125
+#: ../src/constants.vala:126
 msgid "Unknown Book"
 msgstr ""
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "About"
 msgstr ""
 

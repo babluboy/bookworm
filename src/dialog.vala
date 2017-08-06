@@ -263,6 +263,16 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		prefBox.pack_start(colourScheme, false, false);
 		prefBox.pack_end(nightModeSwitch, false, false);
 
+		Gtk.Label twoPageViewLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_TWO_PAGE);
+    Gtk.Switch twoPageViewSwitch = new Gtk.Switch ();
+    //Set the switch to on if two-page-view is set by saved settings
+    if(BookwormApp.Bookworm.settings.is_two_page_enabled){
+      twoPageViewSwitch.set_active (true);
+		}
+		Gtk.Box twoPageViewBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		twoPageViewBox.pack_start(twoPageViewLabel, false, false);
+		twoPageViewBox.pack_end(twoPageViewSwitch, false, false);
+
 		Gtk.Label showLibraryAtStartLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_SKIP_LIBRARY);
     Gtk.Switch showLibraryAtStartSwitch = new Gtk.Switch ();
     //Set the switch to skip the library view and go straight to the last book being read
@@ -357,6 +367,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		content.pack_start (prefBox, false, false, 0);
 		content.pack_start (localStorageBox, false, false, 0);
 		content.pack_start (showLibraryAtStartBox, false, false, 0);
+		content.pack_start (twoPageViewBox, false, false, 0);
 		content.pack_start (fontBox, false, false, 0);
 		content.pack_start (customProfileBox, false, false, 0);
 		content.pack_start (discoverBooksBox, false, false, 0);
@@ -394,6 +405,16 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			}else{
         BookwormApp.Bookworm.settings.is_show_library_on_start = false;
 			}
+		});
+
+		twoPageViewSwitch.notify["active"].connect (() => {
+			if (twoPageViewSwitch.active) {
+        BookwormApp.Bookworm.settings.is_two_page_enabled = true;
+			}else{
+        BookwormApp.Bookworm.settings.is_two_page_enabled = false;
+			}
+			//Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
 		});
 
     nightModeSwitch.notify["active"].connect (() => {
@@ -509,6 +530,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			}
 			//reset the settings value for profile colors
 			settings.list_of_profile_colors = defaultProfileColors;
+
+			//Reset Two-Page-View
+			twoPageViewSwitch.set_active (false);
+			BookwormApp.Bookworm.settings.is_two_page_enabled = (bool) bookwormSettings.get_default_value ("is-two-page-enabled");
 
 			//Reset Caching
 			localStorageSwitch.set_active (true);

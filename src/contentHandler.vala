@@ -46,28 +46,11 @@ public class BookwormApp.contentHandler {
                                      ";
     }
     //Set up CSS for book as per preference settings - this will override any css in the book contents
-    string cssOverride = "<style>
-                                *{
-                                  /* Control line spacing */
-                                  line-height: "+BookwormApp.Bookworm.settings.reading_line_height+"%;
-                                  /* Control page margins */
-                                  margin:auto;
-                                  max-width: "+(100 - (BookwormApp.Bookworm.settings.reading_width).to_int()).to_string()+"%;
-                                  /* Control fonts */
-                                  font-family: "+BookwormApp.Bookworm.settings.reading_font_name_family+" !important;
-                                  font-size: "+BookwormApp.Bookworm.settings.reading_font_size.to_string()+"px !important;
-                                  "+cssForTextAndBackgroundColor+"
-                                }
-                                .two_page {
-                                  /* Control two page view */
-                                  -webkit-column-count: 2;
-                                  -webkit-column-gap: 40px;
-                                  -webkit-column-rule-style: solid;
-                                  column-rule-style: solid;
-                                  -webkit-column-rule-width: 1px;
-                                  column-rule-color: lightgrey;
-                                }
-                          </style>";
+    string cssOverride = BookwormApp.Bookworm.CSSTemplate.replace("$READING_LINE_HEIGHT", BookwormApp.Bookworm.settings.reading_line_height)
+                                                         .replace("$READING_WIDTH", (100 - (BookwormApp.Bookworm.settings.reading_width).to_int()).to_string())
+                                                         .replace("$FONT_FAMILY", BookwormApp.Bookworm.settings.reading_font_name_family)
+                                                         .replace("$FONT_SIZE", BookwormApp.Bookworm.settings.reading_font_size.to_string())
+                                                         .replace("$TEXT_AND_BACKGROUND_COLOR", cssForTextAndBackgroundColor);
     //Scroll to the previous vertical position - this should be used:
     //(1)when the book is re-opened from the library and
     //(2) when a book existing in the library is opened from File Explorer using Bookworm
@@ -87,9 +70,8 @@ public class BookwormApp.contentHandler {
       pageContent = cssOverride + "<BODY " + onLoadJavaScript + ">" + pageContent + "</BODY>";
       endPosOfBodyTag = pageContent.index_of(">", pageContent.index_of("<BODY"));
     }
-    //add a div element for two page view just after the body tag
-    //int posOfBodyTagEnd = pageContent.index_of(">", pageContent.index_of("<BODY"));
-    if(endPosOfBodyTag != -1){
+    //If two page view id required - add a div element for two page view just after the body tag
+    if(BookwormApp.Bookworm.settings.is_two_page_enabled && endPosOfBodyTag != -1){
       StringBuilder pageContentStrBuilder = new StringBuilder(pageContent);
       pageContentStrBuilder.insert(endPosOfBodyTag+1, "<div class=\"two_page\">");
       pageContent = pageContentStrBuilder.str;

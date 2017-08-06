@@ -77,6 +77,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
 	public static string locationOfEBookCurrentlyRead = "";
+	public static string CSSTemplate = "";
 	public static string[] pathsOfBooksToBeAdded;
 	public static int noOfBooksAddedFromCommand = 0;
 	public static bool isBookBeingAddedToLibrary = false;
@@ -383,6 +384,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path, "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/books/", "", "");
+		//Load CSS template for reading view
+		CSSTemplate = settings.reading_css_template;
 		//check last state and turn on dark theme
 		if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
 			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
