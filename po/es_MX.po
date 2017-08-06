@@ -8,41 +8,44 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-06 08:49+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2017-08-06 12:40+0000\n"
+"Last-Translator: Alain Meza <alainhuntt@gmail.com>\n"
+"Language-Team: Spanish (Mexico) "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/es_MX/>\n"
 "Language: es_MX\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.16-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
-msgstr ""
+msgstr "Seleccionar imagen"
 
 #: ../src/dialog.vala:483
 msgid "Select folder"
-msgstr ""
+msgstr "Seleccionar carpeta"
 
 #: ../src/library.vala:539
 msgid "Added "
-msgstr ""
+msgstr "Agregado "
 
 #: ../src/window.vala:280 ../src/window.vala:524
 msgid "Select eBook"
-msgstr ""
+msgstr "Seleccionar eBook"
 
 #: ../src/bookworm.vala:108
 msgid "Display version number"
-msgstr ""
+msgstr "Mostrar version"
 
 #: ../src/bookworm.vala:109
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Ejecutar Bookworm en modo debug"
 
 #: ../src/bookworm.vala:110
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Ejecutar Bookworm en modo informacion"
 
 #: ../src/bookworm.vala:111
 msgid "Automatically add new books from watched folders"
@@ -50,27 +53,27 @@ msgstr ""
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Un Lector de eBook"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Weblate Translators"
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr ""
+msgstr "Sitio web"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "No disponible"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "Lector eBook"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr ""
+msgstr "Buscar libros en..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
