@@ -1,290 +1,384 @@
+# Portuguese translations for PACKAGE package.
+# Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# sid <sid@sid-latitude-e4300>, 2017.
+#
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-20 00:45+0200\n"
-"PO-Revision-Date: 2017-08-03 17:53+0000\n"
-"Last-Translator: Rafael Neri <rafepel@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/pt_BR/>\n"
+"POT-Creation-Date: 2017-08-08 22:27+0100\n"
+"PO-Revision-Date: 2017-08-08 22:36+0100\n"
+"Last-Translator: sid <sid@sid-latitude-e4300>\n"
+"Language-Team: Brazilian Portuguese\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.16-dev\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../src/dialog.vala:55
+#: ../src/dialog.vala:66
 msgid "Select Image"
-msgstr "Selecionar Imagem"
+msgstr ""
 
-#: ../src/bookworm.vala:76
-msgid "Display version number"
-msgstr "Exibir o número da versão"
+#: ../src/dialog.vala:483
+msgid "Select folder"
+msgstr ""
 
-#: ../src/bookworm.vala:77
-msgid "Run Bookworm in debug mode"
-msgstr "Rodar Bookworm no modo debug"
+#: ../src/library.vala:539
+msgid "Added "
+msgstr ""
 
-#: ../src/window.vala:195 ../src/window.vala:348
+#: ../src/window.vala:280 ../src/window.vala:524
 msgid "Select eBook"
-msgstr "Selecionar eBook"
+msgstr ""
 
-#: ../src/utils.vala:522
-msgid "Cancel"
-msgstr "Cancelar"
+#: ../src/bookworm.vala:108
+msgid "Display version number"
+msgstr ""
 
-#: ../src/utils.vala:524
-msgid "Open"
-msgstr "Abrir"
+#: ../src/bookworm.vala:109
+msgid "Run Bookworm in debug mode"
+msgstr ""
 
-#: ../src/utils.vala:526
-msgid "Save"
-msgstr "Salvar"
+#: ../src/bookworm.vala:110
+msgid "Run Bookworm in info mode"
+msgstr ""
+
+#: ../src/bookworm.vala:111
+msgid "Automatically add new books from watched folders"
+msgstr ""
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr "Um Leitor de eBook"
+msgstr ""
 
 #: ../src/constants.vala:29
-msgid "Launchpad Translators"
-msgstr "Tradutores do Launchpad"
+msgid "Weblate Translators"
+msgstr ""
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr "Website"
+msgstr ""
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr "Não disponível"
+msgstr ""
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr "Leitor de eBook"
+msgstr ""
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr "Procure este livro..."
+msgstr ""
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr "Buscar por título, autor e marcadores"
+msgstr ""
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
-msgstr "Aparentemente, o Bookworm não possui livros!"
+msgstr ""
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr "Construa sua biblioteca adicionando eBooks"
+msgstr ""
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr "Selecione um eBook para ler"
+msgstr ""
 
 #: ../src/constants.vala:44
 msgid ""
-"Problem in extracting contents of book. Check if book is available at "
+"Problem in extracting contents of book. Ensure valid eBook file at "
 "location : "
 msgstr ""
-"Erro ao extrair os conteúdos do livro. Verifique se o livro está disponível "
-"em: "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
-msgstr "Tipo inválido detectado. Verifique o formato do livro em : "
+msgstr ""
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure valid eBook file at location : "
 msgstr ""
-"Conteúdo inválido encontrado. Certifique se o arquivo do eBook é válido: "
 
 #: ../src/constants.vala:47
-msgid "Bookworm does not support the format of the file found at location : "
-msgstr "Bookworm não suporta o formato do arquivo : "
+msgid "eBook could not be parsed. Ensure valid eBook file at location : "
+msgstr ""
 
 #: ../src/constants.vala:48
-msgid "Library"
-msgstr "Biblioteca"
+msgid "Bookworm does not support the format of the file found at location : "
+msgstr ""
 
 #: ../src/constants.vala:49
-msgid "Resume"
-msgstr "Continuar"
+msgid ""
+"Requested content could not be fetched. Please remove and add eBook file at "
+"location : "
+msgstr ""
 
 #: ../src/constants.vala:50
-msgid "Contents"
-msgstr "Conteúdo"
+msgid "Library"
+msgstr ""
 
 #: ../src/constants.vala:51
-msgid "Content #"
+msgid "Resume"
 msgstr ""
 
 #: ../src/constants.vala:52
-msgid "Bookmarks"
-msgstr "Favoritos"
+msgid "Contents"
+msgstr ""
 
 #: ../src/constants.vala:53
-msgid "Bookmark #NNN for Section PPP"
+msgid "Content #"
 msgstr ""
 
 #: ../src/constants.vala:54
-msgid "Click on a link to jump to bookmarked section"
-msgstr "Clique no link para ir para a seção marcada como favorita"
+msgid "Bookmarks"
+msgstr ""
 
 #: ../src/constants.vala:55
+msgid "Bookmark #NNN for Section PPP"
+msgstr ""
+
+#: ../src/constants.vala:56
+msgid "Click on a link to jump to bookmarked section"
+msgstr ""
+
+#: ../src/constants.vala:57
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
 
-#: ../src/constants.vala:56
+#: ../src/constants.vala:58
 msgid "Search Results"
 msgstr ""
 
-#: ../src/constants.vala:57
+#: ../src/constants.vala:59
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr ""
 
-#: ../src/constants.vala:58
+#: ../src/constants.vala:60
 msgid "No matches found for '$$$' in &&&"
-msgstr "Não foi possível encontrar '$$$' em &&&"
+msgstr ""
 
-#: ../src/constants.vala:59
+#: ../src/constants.vala:61
 msgid "Edit Info for"
 msgstr ""
 
-#: ../src/constants.vala:60 ../src/constants.vala:64
+#: ../src/constants.vala:62 ../src/constants.vala:66
 msgid "Update Cover Image"
-msgstr "Atualizar Imagem de Capa"
-
-#: ../src/constants.vala:61
-msgid "Update Title"
-msgstr "Atualizar Título"
-
-#: ../src/constants.vala:62
-msgid "Update Tags"
-msgstr "Atualizar Marcadores"
+msgstr ""
 
 #: ../src/constants.vala:63
-msgid "Update Author"
-msgstr "Atualizar Autor"
+msgid "Update Title"
+msgstr ""
+
+#: ../src/constants.vala:64
+msgid "Update Tags"
+msgstr ""
 
 #: ../src/constants.vala:65
-msgid "Enter full screen view"
-msgstr "Entrar em tela cheia"
-
-#: ../src/constants.vala:66
-msgid "Exit full screen view"
-msgstr "Sair da tela cheia"
+msgid "Update Author"
+msgstr ""
 
 #: ../src/constants.vala:67
-msgid "Check Word Meaning"
-msgstr "Verificar significado da palavra"
+msgid "Enter full screen view (F11)"
+msgstr ""
 
 #: ../src/constants.vala:68
-msgid "Books"
-msgstr "Livros"
+msgid "Exit full screen view (Esc)"
+msgstr ""
 
 #: ../src/constants.vala:69
-msgid "Images"
-msgstr "Imagens"
+msgid "Check Word Meaning"
+msgstr ""
 
 #: ../src/constants.vala:70
-msgid "All Files"
-msgstr "Todos os arquivos"
+msgid "Books"
+msgstr ""
+
+#: ../src/constants.vala:71
+msgid "Images"
+msgstr ""
 
 #: ../src/constants.vala:72
-msgid "Add books to library"
-msgstr "Adicionar livros à biblioteca"
+msgid "All Files"
+msgstr ""
 
 #: ../src/constants.vala:73
-msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr "Remover livros selecionados da biblioteca (eBook não será deletado)"
+msgid "Title"
+msgstr ""
 
 #: ../src/constants.vala:74
-msgid "Select one or more books in library"
-msgstr "Selecionar um ou mais livros na biblioteca"
+msgid "Author"
+msgstr ""
 
 #: ../src/constants.vala:75
-msgid "See Table of Contents, Bookmarks and Search Results"
+msgid "Last Opened"
 msgstr ""
 
 #: ../src/constants.vala:76
-msgid "Set reading preferences"
-msgstr "Configurar preferências de leitura"
+msgid "Rating"
+msgstr ""
 
 #: ../src/constants.vala:77
-msgid "Click to bookmark this page"
-msgstr "Clique para adicionar essa página aos Favoritos"
+msgid "Tags"
+msgstr ""
 
 #: ../src/constants.vala:78
-msgid "Click to remove this bookmark"
-msgstr "Clique para remover este favorito"
+msgid "Today"
+msgstr ""
 
 #: ../src/constants.vala:79
-msgid "Increase font size"
-msgstr "Aumentar tamanho da fonte"
+msgid "Yesterday"
+msgstr ""
 
 #: ../src/constants.vala:80
-msgid "Decrease font size"
-msgstr "Reduzir tamanho da fonte"
-
-#: ../src/constants.vala:81
-msgid "Increase line width"
+msgid "Days"
 msgstr ""
 
 #: ../src/constants.vala:82
-msgid "Decrease line width"
+msgid "Add books to library"
 msgstr ""
 
 #: ../src/constants.vala:83
-msgid "Increase line spacing"
+msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 
 #: ../src/constants.vala:84
-msgid "Decrease line spacing"
+msgid "Select one or more books in library"
 msgstr ""
 
 #: ../src/constants.vala:85
-msgid "Update cover image"
-msgstr "Atualizar Imagem de capa"
+msgid "See Table of Contents, Bookmarks and Search Results"
+msgstr ""
 
 #: ../src/constants.vala:86
-msgid "Light theme"
-msgstr "Tema Claro"
+msgid "Set reading preferences"
+msgstr ""
 
 #: ../src/constants.vala:87
-msgid "Dark theme"
-msgstr "Tema Escuro"
+msgid "Click to bookmark this page"
+msgstr ""
 
 #: ../src/constants.vala:88
-msgid "Sepia theme"
-msgstr "Tema Sepia"
+msgid "Click to remove this bookmark"
+msgstr ""
 
-#: ../src/constants.vala:89 ../src/constants.vala:90
+#: ../src/constants.vala:89
+msgid "Increase font size (Ctrl + Shift + '+')"
+msgstr ""
+
+#: ../src/constants.vala:90
+msgid "Decrease font size (Ctrl + '-')"
+msgstr ""
+
+#: ../src/constants.vala:91
+msgid "Increase line width"
+msgstr ""
+
+#: ../src/constants.vala:92
+msgid "Decrease line width"
+msgstr ""
+
+#: ../src/constants.vala:93
+msgid "Increase line spacing"
+msgstr ""
+
+#: ../src/constants.vala:94
+msgid "Decrease line spacing"
+msgstr ""
+
+#: ../src/constants.vala:95
+msgid "Update cover image"
+msgstr ""
+
+#: ../src/constants.vala:96
+msgid "Set theme for this colour profile"
+msgstr ""
+
+#: ../src/constants.vala:97 ../src/constants.vala:98
 msgid "Enter full screen view and Esc key to exit"
 msgstr ""
 
-#: ../src/constants.vala:93 ../src/constants.vala:107
-#, fuzzy
+#: ../src/constants.vala:99
+msgid "Add folder to scan for books"
+msgstr ""
+
+#: ../src/constants.vala:100
+msgid "Remove displayed folder from book scan"
+msgstr ""
+
+#: ../src/constants.vala:102 ../src/constants.vala:128
 msgid "Preferences"
-msgstr "Preferências"
+msgstr ""
 
-#: ../src/constants.vala:94
-#, fuzzy
+#: ../src/constants.vala:103
 msgid "Turn on Night Mode"
-msgstr "Ativar modo noturno"
+msgstr ""
 
-#: ../src/constants.vala:95
-#, fuzzy
+#: ../src/constants.vala:104
 msgid "Enable cache (opens books faster)"
-msgstr "Ativar cache (Permite abrir os livros mais rapido)"
+msgstr ""
 
 #: ../src/constants.vala:105
-#, fuzzy
-msgid "Unknown Book"
-msgstr "Livro Desconhecido"
+msgid "Always show library on start"
+msgstr ""
 
 #: ../src/constants.vala:106
-#, fuzzy
+msgid "Enable two page reading"
+msgstr ""
+
+#: ../src/constants.vala:107
+msgid "Set Font"
+msgstr ""
+
+#: ../src/constants.vala:108
+msgid "Customize reading profile"
+msgstr ""
+
+#: ../src/constants.vala:109
+msgid "Text"
+msgstr ""
+
+#: ../src/constants.vala:110
+msgid "Background"
+msgstr ""
+
+#: ../src/constants.vala:111
+msgid "Add folders to scan for books"
+msgstr ""
+
+#: ../src/constants.vala:112
+msgid "Profile"
+msgstr ""
+
+#: ../src/constants.vala:113
+msgid "Reset to default values"
+msgstr ""
+
+#: ../src/constants.vala:126
+msgid "Unknown Book"
+msgstr ""
+
+#: ../src/constants.vala:127
 msgid "About"
-msgstr "Sobre"
+msgstr ""
+
+#: ../src/utils.vala:527 ../src/utils.vala:598
+msgid "Cancel"
+msgstr ""
+
+#: ../src/utils.vala:529 ../src/utils.vala:599
+msgid "Open"
+msgstr ""
+
+#: ../src/utils.vala:531
+msgid "Save"
+msgstr ""
+
+#: ../src/mobiReader.vala:311
+msgid "Book"
+msgstr ""
