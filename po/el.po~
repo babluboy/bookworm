@@ -1,0 +1,292 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-20 00:45+0200\n"
+"PO-Revision-Date: 2017-08-03 11:43+0000\n"
+"Last-Translator: tony <tonyzet988@gmail.com>\n"
+"Language-Team: Greek "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/el/>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.16-dev\n"
+
+#: ../src/dialog.vala:55
+msgid "Select Image"
+msgstr "Επιλογή Εικόνας"
+
+#: ../src/bookworm.vala:76
+msgid "Display version number"
+msgstr "Προβολή αριθμού έκδοσης"
+
+#: ../src/bookworm.vala:77
+msgid "Run Bookworm in debug mode"
+msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
+
+#: ../src/window.vala:195 ../src/window.vala:348
+msgid "Select eBook"
+msgstr "Επιλογή Βιβλίου"
+
+#: ../src/utils.vala:522
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: ../src/utils.vala:524
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: ../src/utils.vala:526
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: ../src/constants.vala:27
+msgid "An eBook Reader"
+msgstr "Ένας αναγνώστης ηλεκτρονικών βιβλίων"
+
+#: ../src/constants.vala:29
+msgid "Launchpad Translators"
+msgstr "Μεταφραστές από το Launchpad"
+
+#: ../src/constants.vala:35
+msgid "Website"
+msgstr "Ιστοσελίδα"
+
+#: ../src/constants.vala:37
+msgid "Not Available"
+msgstr "Μη διαθέσιμο"
+
+#: ../src/constants.vala:38
+msgid "eBook Reader"
+msgstr "Αναγνώστης βιβλίων"
+
+#: ../src/constants.vala:39
+msgid "Search this book..."
+msgstr "Αναζήτηση του βιβλίου..."
+
+#: ../src/constants.vala:40
+msgid "Search by Title, Author and Tags"
+msgstr "Αναζήτηση  βάσει Τίτλου, Συγγραφέα και Ετικετών"
+
+#: ../src/constants.vala:41
+msgid "Looks like Bookworm has no books !"
+msgstr "Φαίνεται ότι το Bookworm δεν έχει κανένα βιβλίο!"
+
+#: ../src/constants.vala:42
+msgid "Build your library by adding eBooks"
+msgstr "Εμπλουτίστε τη βιβλιοθήκη σας προσθέτοντας Βιβλία"
+
+#: ../src/constants.vala:43
+msgid "Select an eBook to read"
+msgstr "Επιλέξτε ένα βιβλίο για ανάγνωση"
+
+#: ../src/constants.vala:44
+msgid ""
+"Problem in extracting contents of book. Check if book is available at "
+"location : "
+msgstr ""
+"Παρουσιάστηκε πρόβλημα στην εξαγωγή των περιεχομένων του βιβλίου. Ελέγξτε αν "
+"το βιβλίο είναι διαθέσιμο στην τοποθεσία: "
+
+#: ../src/constants.vala:45
+msgid "Invalid Mime type detected. Check book format at location : "
+msgstr ""
+"Εντοπίστηκε μη έγκυρος τύπος Mime. Ελέγξτε το μορφότυπο του βιβλίου στην "
+"τοποθεσία: "
+
+#: ../src/constants.vala:46
+msgid "Invalid content found. Ensure valid eBook file at location : "
+msgstr ""
+"Εντοπίστηκε μη έγκυρο περιεχόμενο. Εξασφαλίστε την ύπαρξη έγκυρου αρχείου "
+"βιβλίου στην τοποθεσία: "
+
+#: ../src/constants.vala:47
+msgid "Bookworm does not support the format of the file found at location : "
+msgstr "Το Bookworm δεν υποστηρίζει το μορφότυπο του αρχείου στην τοποθεσία: "
+
+#: ../src/constants.vala:48
+msgid "Library"
+msgstr "Βιβλιοθήκη"
+
+#: ../src/constants.vala:49
+msgid "Resume"
+msgstr "Συνέχεια"
+
+#: ../src/constants.vala:50
+msgid "Contents"
+msgstr "Περιεχόμενα"
+
+#: ../src/constants.vala:51
+msgid "Content #"
+msgstr "Περιεχόμενο #"
+
+#: ../src/constants.vala:52
+msgid "Bookmarks"
+msgstr "Σελιδοδείκτες"
+
+#: ../src/constants.vala:53
+msgid "Bookmark #NNN for Section PPP"
+msgstr "Σελιδοδείκτης #NNN για την Ενότητα PPP"
+
+#: ../src/constants.vala:54
+msgid "Click on a link to jump to bookmarked section"
+msgstr "Κάντε κλικ σε ένα σύνδεσμο για να μεταφερθείτε στη σημειωμένη ενότητα"
+
+#: ../src/constants.vala:55
+msgid ""
+"No bookmarks set in BBB, click the bookworm icon on the header bar to "
+"boomark the page"
+msgstr ""
+"Κανένας σελιδοδείκτης στο BBB, κάντε κλικ στο εικονίδιο του bookworm στην "
+"πάνω μπάρα για να προσθέσετε σελιδοδείκτη στη σελίδα"
+
+#: ../src/constants.vala:56
+msgid "Search Results"
+msgstr "Αποτελέσματα αναζήτησης"
+
+#: ../src/constants.vala:57
+msgid "Found the following matches for '$$$' in &&&:"
+msgstr "Βρέθηκαν τα ακόλουθα αποτελέσματα για '$$$' στο &&&:"
+
+#: ../src/constants.vala:58
+msgid "No matches found for '$$$' in &&&"
+msgstr "Κανένα αποτέλεσμα για '$$$' στο &&&"
+
+#: ../src/constants.vala:59
+msgid "Edit Info for"
+msgstr "Επεξεργασία πληροφοριών για"
+
+#: ../src/constants.vala:60 ../src/constants.vala:64
+msgid "Update Cover Image"
+msgstr "Ενημέρωση Eξώφυλλου"
+
+#: ../src/constants.vala:61
+msgid "Update Title"
+msgstr "Ενημέρωση Τίτλου"
+
+#: ../src/constants.vala:62
+msgid "Update Tags"
+msgstr "Ενημέρωση Ετικετών"
+
+#: ../src/constants.vala:63
+msgid "Update Author"
+msgstr "Ενημέρωση Συγγραφέα"
+
+#: ../src/constants.vala:65
+msgid "Enter full screen view"
+msgstr "Είσοδος σε προβολή πλήρους οθόνης"
+
+#: ../src/constants.vala:66
+msgid "Exit full screen view"
+msgstr "Έξοδος από προβολή πλήρους οθόνης"
+
+#: ../src/constants.vala:67
+msgid "Check Word Meaning"
+msgstr "Έλεγχος Σημασίας Λέξης"
+
+#: ../src/constants.vala:68
+msgid "Books"
+msgstr "Βιβλία"
+
+#: ../src/constants.vala:69
+msgid "Images"
+msgstr "Εικόνες"
+
+#: ../src/constants.vala:70
+msgid "All Files"
+msgstr "Όλα τα αρχεία"
+
+#: ../src/constants.vala:72
+msgid "Add books to library"
+msgstr "Προσθήκη βιβλίων στη βιβλιοθήκη"
+
+#: ../src/constants.vala:73
+msgid "Remove selected books from library (eBook file will not be deleted)"
+msgstr ""
+"Αφαίρεση επιλεγμένων βιβλίων από τη βιβλιοθήκη (δεν θα διαγραφεί κανένα "
+"αρχείο βιβλίου)"
+
+#: ../src/constants.vala:74
+msgid "Select one or more books in library"
+msgstr "Επιλογή ενός ή περισσοτέρων βιβλίων από τη βιβλιοθήκη"
+
+#: ../src/constants.vala:75
+msgid "See Table of Contents, Bookmarks and Search Results"
+msgstr "Προβολή Πίνακα Περιεχομένων, Σελιδοδεικτών και Αποτελεσμάτων Αναζήτησης"
+
+#: ../src/constants.vala:76
+msgid "Set reading preferences"
+msgstr "Ορισμός προτιμήσεων ανάγνωσης"
+
+#: ../src/constants.vala:77
+msgid "Click to bookmark this page"
+msgstr "Κάντε κλικ για να προσθέσετε σελιδοδείκτη στη σελίδα"
+
+#: ../src/constants.vala:78
+msgid "Click to remove this bookmark"
+msgstr "Κάντε κλικ για να αφαιρέσετε αυτό το σελιδοδείκτη"
+
+#: ../src/constants.vala:79
+msgid "Increase font size"
+msgstr "Αύξηση μεγέθους γραμματοσειράς"
+
+#: ../src/constants.vala:80
+msgid "Decrease font size"
+msgstr "Μείωση μεγέθους γραμματοσειράς"
+
+#: ../src/constants.vala:81
+msgid "Increase line width"
+msgstr "Αύξηση πλάτους γραμμής"
+
+#: ../src/constants.vala:82
+msgid "Decrease line width"
+msgstr "Μείωση πλάτους γραμμής"
+
+#: ../src/constants.vala:83
+msgid "Increase line spacing"
+msgstr "Αύξηση της απόστασης μεταξύ γραμμών"
+
+#: ../src/constants.vala:84
+msgid "Decrease line spacing"
+msgstr "Μείωση της απόστασης μεταξύ γραμμών"
+
+#: ../src/constants.vala:85
+msgid "Update cover image"
+msgstr "Ενημέρωση εξώφυλλου"
+
+#: ../src/constants.vala:86
+msgid "Light theme"
+msgstr "Ανοικτό θέμα"
+
+#: ../src/constants.vala:87
+msgid "Dark theme"
+msgstr "Σκοτεινό θέμα"
+
+#: ../src/constants.vala:88
+msgid "Sepia theme"
+msgstr "Σέπια θέμα"
+
+#: ../src/constants.vala:89 ../src/constants.vala:90
+msgid "Enter full screen view and Esc key to exit"
+msgstr "Μπείτε σε προβολή πλήρους οθόνης και το πλήκτρο Esc για έξοδο"
+
+#: ../src/constants.vala:93 ../src/constants.vala:107
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: ../src/constants.vala:94
+msgid "Turn on Night Mode"
+msgstr "Ενεργοποίηση Νυκτερινής Λειτουργίας"
+
+#: ../src/constants.vala:95
+msgid "Enable cache (opens books faster)"
+msgstr "Ενεργοποίηση κρυφής μνήμης (ταχύτερο άνοιγμα βιβλίων)"
+
+#: ../src/constants.vala:105
+msgid "Unknown Book"
+msgstr "Άγνωστο Βιβλίο"
+
+#: ../src/constants.vala:106
+msgid "About"
+msgstr "Περί"

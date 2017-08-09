@@ -1,0 +1,295 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-20 00:45+0200\n"
+"PO-Revision-Date: 2017-07-30 16:03+0000\n"
+"Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
+"Language-Team: Sardinian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/sc/>\n"
+"Language: sc\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.16-dev\n"
+
+#: ../src/dialog.vala:55
+msgid "Select Image"
+msgstr "Ischerta un'immàgine"
+
+#: ../src/bookworm.vala:76
+msgid "Display version number"
+msgstr "Ammustra su nùmeru de versione"
+
+#: ../src/bookworm.vala:77
+msgid "Run Bookworm in debug mode"
+msgstr "Allughe Bookworm in modalidade de depuratzione (debug)"
+
+#: ../src/window.vala:195 ../src/window.vala:348
+msgid "Select eBook"
+msgstr "Ischerta unu e-libru"
+
+#: ../src/utils.vala:522
+msgid "Cancel"
+msgstr "Annulla"
+
+#: ../src/utils.vala:524
+msgid "Open"
+msgstr "Aberi"
+
+#: ../src/utils.vala:526
+msgid "Save"
+msgstr "Sarva"
+
+#: ../src/constants.vala:27
+msgid "An eBook Reader"
+msgstr "Unu leghidore de libros eletrònicos"
+
+#: ../src/constants.vala:29
+msgid "Launchpad Translators"
+msgstr "Tradutores de Launchpad"
+
+#: ../src/constants.vala:35
+msgid "Website"
+msgstr "Situ web"
+
+#: ../src/constants.vala:37
+msgid "Not Available"
+msgstr "Non disponìbile"
+
+#: ../src/constants.vala:38
+msgid "eBook Reader"
+msgstr "leghidore de libros eletrònicos"
+
+#: ../src/constants.vala:39
+msgid "Search this book..."
+msgstr "Chirca in custu libru..."
+
+#: ../src/constants.vala:40
+msgid "Search by Title, Author and Tags"
+msgstr "Chirca pro tìtulu, autore e etichetas"
+
+#: ../src/constants.vala:41
+msgid "Looks like Bookworm has no books !"
+msgstr "Paret chi Bookworm non tengiat libros!"
+
+#: ../src/constants.vala:42
+msgid "Build your library by adding eBooks"
+msgstr "Ammània sa libreria tua agiunghende libros eletrònicos"
+
+#: ../src/constants.vala:43
+msgid "Select an eBook to read"
+msgstr "Ischerta unu libru de lèghere"
+
+#: ../src/constants.vala:44
+msgid ""
+"Problem in extracting contents of book. Check if book is available at "
+"location : "
+msgstr ""
+"B'est istadu unu problema cun s'estratzione de cuntenutu de su libru. "
+"Verìfica chi su libru siat disponìbile in sa positzione : "
+
+#: ../src/constants.vala:45
+msgid "Invalid Mime type detected. Check book format at location : "
+msgstr ""
+"Casta de Mime non vàlida agatada. Verìfica su formatu de su libru in sa "
+"positzione : "
+
+#: ../src/constants.vala:46
+msgid "Invalid content found. Ensure valid eBook file at location : "
+msgstr ""
+"Cuntenutu non vàlidu agatadu. Verìfica chi bi siet unu documentu-libru "
+"eletrònicu vàlidu in sa positzione : "
+
+#: ../src/constants.vala:47
+msgid "Bookworm does not support the format of the file found at location : "
+msgstr ""
+"Bookworm non suportat su formatu de su documentu agatadu in sa positzione : "
+
+#: ../src/constants.vala:48
+msgid "Library"
+msgstr "Libreria"
+
+#: ../src/constants.vala:49
+msgid "Resume"
+msgstr "Sighi"
+
+#: ../src/constants.vala:50
+msgid "Contents"
+msgstr "Cuntenutu"
+
+#: ../src/constants.vala:51
+msgid "Content #"
+msgstr "Cuntenutu #"
+
+#: ../src/constants.vala:52
+msgid "Bookmarks"
+msgstr "Sinnalibros"
+
+#: ../src/constants.vala:53
+msgid "Bookmark #NNN for Section PPP"
+msgstr "Pone unu sinnalibru in #NNN pro sa setzione PPP"
+
+#: ../src/constants.vala:54
+msgid "Click on a link to jump to bookmarked section"
+msgstr "Incarca in unu ligàmene pro andare a sa setzione sinnalada"
+
+#: ../src/constants.vala:55
+msgid ""
+"No bookmarks set in BBB, click the bookworm icon on the header bar to "
+"boomark the page"
+msgstr ""
+"Perunu sinnalibru impostadu in BBB, incarca in s'icona de su sòrighe de "
+"biblioteca in sa barra in artu pro pònnere unu sinnalibru in sa pàgina"
+
+#: ../src/constants.vala:56
+msgid "Search Results"
+msgstr "Risultados de sa chirca"
+
+#: ../src/constants.vala:57
+msgid "Found the following matches for '$$$' in &&&:"
+msgstr "Agatados custos risultados pro '$$$' in &&&:"
+
+#: ../src/constants.vala:58
+msgid "No matches found for '$$$' in &&&"
+msgstr "Perunu risultadu agatadu pro '$$$' in &&&"
+
+#: ../src/constants.vala:59
+msgid "Edit Info for"
+msgstr "Acontza sas informatziones pro"
+
+#: ../src/constants.vala:60 ../src/constants.vala:64
+msgid "Update Cover Image"
+msgstr "Agiorna s'immàgine de cobertedda"
+
+#: ../src/constants.vala:61
+msgid "Update Title"
+msgstr "Agiorna su tìtulu"
+
+#: ../src/constants.vala:62
+msgid "Update Tags"
+msgstr "Agiorna sas etichetas"
+
+#: ../src/constants.vala:63
+msgid "Update Author"
+msgstr "Agiorna s'autore"
+
+#: ../src/constants.vala:65
+msgid "Enter full screen view"
+msgstr "Intra in sa vista a ischermu intreu"
+
+#: ../src/constants.vala:66
+msgid "Exit full screen view"
+msgstr "Essi dae sa vista a ischermu intreu"
+
+#: ../src/constants.vala:67
+msgid "Check Word Meaning"
+msgstr "Verìfica su significadu de sa paràula"
+
+#: ../src/constants.vala:68
+msgid "Books"
+msgstr "Libros"
+
+#: ../src/constants.vala:69
+msgid "Images"
+msgstr "Immàgines"
+
+#: ../src/constants.vala:70
+msgid "All Files"
+msgstr "Totu sos documentos"
+
+#: ../src/constants.vala:72
+msgid "Add books to library"
+msgstr "Agiunghe libros a sa libreria"
+
+#: ../src/constants.vala:73
+msgid "Remove selected books from library (eBook file will not be deleted)"
+msgstr ""
+"Boga sos libros ischertados dae sa libreria (su documentu de su libru "
+"eletrònicu no at a èssere iscantzelladu)"
+
+#: ../src/constants.vala:74
+msgid "Select one or more books in library"
+msgstr "Ischerta unu o prus libros in sa libreria"
+
+#: ../src/constants.vala:75
+msgid "See Table of Contents, Bookmarks and Search Results"
+msgstr ""
+"Abbista sa tàula de sos cuntenutos, sos sinnalibros e sos risultados de "
+"chirca"
+
+#: ../src/constants.vala:76
+msgid "Set reading preferences"
+msgstr "Imposta sas preferèntzias de leghidura"
+
+#: ../src/constants.vala:77
+msgid "Click to bookmark this page"
+msgstr "Incarca pro pònnere unu sinnalibru in custa pàgina"
+
+#: ../src/constants.vala:78
+msgid "Click to remove this bookmark"
+msgstr "Incarca pro bogare custu sinnalibru"
+
+#: ../src/constants.vala:79
+msgid "Increase font size"
+msgstr "Ismànnia sa mannària de sos caràteres"
+
+#: ../src/constants.vala:80
+msgid "Decrease font size"
+msgstr "Mìnima sa mannària de sos caràteres"
+
+#: ../src/constants.vala:81
+msgid "Increase line width"
+msgstr "Ismànnia sa largària de sa lìnia"
+
+#: ../src/constants.vala:82
+msgid "Decrease line width"
+msgstr "Mìnima sa largària de sa lìnia"
+
+#: ../src/constants.vala:83
+msgid "Increase line spacing"
+msgstr "Ismànnia s'ispàtziu intre sas lìnias"
+
+#: ../src/constants.vala:84
+msgid "Decrease line spacing"
+msgstr "Mìnima s'ispàtziu intre sas lìnias"
+
+#: ../src/constants.vala:85
+msgid "Update cover image"
+msgstr "Agiorna s'immàgine de cobertedda"
+
+#: ../src/constants.vala:86
+msgid "Light theme"
+msgstr "Tema craru"
+
+#: ../src/constants.vala:87
+msgid "Dark theme"
+msgstr "Tema iscuru"
+
+#: ../src/constants.vala:88
+msgid "Sepia theme"
+msgstr "Tema sèpia"
+
+#: ../src/constants.vala:89 ../src/constants.vala:90
+msgid "Enter full screen view and Esc key to exit"
+msgstr "Intra in sa vista a ischermu intreu e incarca sa tecla Esc pro essire"
+
+#: ../src/constants.vala:93 ../src/constants.vala:107
+msgid "Preferences"
+msgstr "Preferèntzias"
+
+#: ../src/constants.vala:94
+msgid "Turn on Night Mode"
+msgstr "Allughe sa modalidade noturna"
+
+#: ../src/constants.vala:95
+msgid "Enable cache (opens books faster)"
+msgstr "Abìlita sa cache (aberit sos libros prus in presse)"
+
+#: ../src/constants.vala:105
+msgid "Unknown Book"
+msgstr "Libru disconnotu"
+
+#: ../src/constants.vala:106
+msgid "About"
+msgstr "A pitzu de"

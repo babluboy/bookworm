@@ -62,19 +62,20 @@ public class BookwormApp.contentHandler {
     //add onload javascript and css to body tag
     if(pageContent.index_of("<BODY") != -1){
       pageContent = pageContent.replace("<BODY", cssOverride + "<BODY " + onLoadJavaScript);
-      endPosOfBodyTag = pageContent.index_of(">", pageContent.index_of("<BODY"));
+      endPosOfBodyTag = pageContent.index_of("</BODY>", pageContent.index_of("<BODY"));
     }else if (pageContent.index_of("<body") != -1){
       pageContent = pageContent.replace("<body", cssOverride + "<body " + onLoadJavaScript);
-      endPosOfBodyTag = pageContent.index_of(">", pageContent.index_of("<body"));
+      endPosOfBodyTag = pageContent.index_of("</body>", pageContent.index_of("<body"));
     }else{
       pageContent = cssOverride + "<BODY " + onLoadJavaScript + ">" + pageContent + "</BODY>";
-      endPosOfBodyTag = pageContent.index_of(">", pageContent.index_of("<BODY"));
+      endPosOfBodyTag = pageContent.index_of("</BODY>", pageContent.index_of("<BODY"));
     }
-    //If two page view id required - add a div element for two page view just after the body tag
+    //If two page view id required - add a script to set the CSS for two-page if there are more than 500 chars
     if(BookwormApp.Bookworm.settings.is_two_page_enabled && endPosOfBodyTag != -1){
       StringBuilder pageContentStrBuilder = new StringBuilder(pageContent);
-      pageContentStrBuilder.insert(endPosOfBodyTag+1, "<div class=\"two_page\">");
+      pageContentStrBuilder.insert(endPosOfBodyTag, "<script> var lengthOfData = document.getElementsByTagName(\"BODY\")[0].innerHTML.length; if(lengthOfData > 500){ document.getElementsByTagName(\"BODY\")[0].className = \"two_page\"; } </script>");
       pageContent = pageContentStrBuilder.str;
+      debug (pageContent);
     }
     return pageContent;
   }
