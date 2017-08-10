@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-10 03:53+0200\n"
-"PO-Revision-Date: 2017-08-10 02:20+0000\n"
+"PO-Revision-Date: 2017-08-10 02:32+0000\n"
 "Last-Translator: Andrei Shevchuk <andrei@shvchk.com>\n"
 "Language-Team: Russian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/ru/>\n"
@@ -25,7 +25,7 @@ msgstr "Выбрать папку"
 
 #: ../src/library.vala:539
 msgid "Added "
-msgstr "Добавлено"
+msgstr "Добавлено "
 
 #: ../src/window.vala:280 ../src/window.vala:524
 msgid "Select eBook"
@@ -177,7 +177,7 @@ msgstr "Изменить информацию для"
 
 #: ../src/constants.vala:62 ../src/constants.vala:66
 msgid "Update Cover Image"
-msgstr "Обновить изображение обложки"
+msgstr "Изменить обложку"
 
 #: ../src/constants.vala:63
 msgid "Update Title"
@@ -303,7 +303,7 @@ msgstr "Уменьшить межстрочный интервал"
 
 #: ../src/constants.vala:95
 msgid "Update cover image"
-msgstr "Обновить изображение обложки"
+msgstr "Изменить обложку"
 
 #: ../src/constants.vala:96
 msgid "Set theme for this colour profile"
