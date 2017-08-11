@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-09 12:22+0100\n"
-"PO-Revision-Date: 2017-08-11 06:58+0000\n"
+"PO-Revision-Date: 2017-08-11 07:08+0000\n"
 "Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/sv/>\n"
@@ -47,7 +47,7 @@ msgstr "Lägg automatiskt till nya böcker från bevakade mappar"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr "En e-bokläsare"
+msgstr "En e-bokläsplatta"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
@@ -63,7 +63,7 @@ msgstr "Otillgänglig"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr "E-bokläsare"
+msgstr "E-bokläsplatta"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
@@ -71,7 +71,7 @@ msgstr "Sök i denna bok..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr "Sök efter titel, författare och etiketter"
+msgstr "Sök efter titel, författare och taggar"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
@@ -110,7 +110,7 @@ msgstr ""
 
 #: ../src/constants.vala:48
 msgid "Bookworm does not support the format of the file found at location : "
-msgstr "Bookworm stöder inte formatet på filen som finns på platsen : "
+msgstr "Bookworm stöder inte formatet av filen funnen på platsen : "
 
 #: ../src/constants.vala:49
 msgid ""
@@ -166,7 +166,7 @@ msgstr "Fann följande matchningar för \"$$$\" i &&&:"
 
 #: ../src/constants.vala:60
 msgid "No matches found for '$$$' in &&&"
-msgstr "Inga matchningar funna för '$$$' i &&&"
+msgstr "Inga matchningar funna för \"$$$\" i &&&"
 
 #: ../src/constants.vala:61
 msgid "Edit Info for"
@@ -182,11 +182,11 @@ msgstr "Uppdatera titeln"
 
 #: ../src/constants.vala:64
 msgid "Update Tags"
-msgstr "Uppdatera etiketter"
+msgstr "Uppdatera taggar"
 
 #: ../src/constants.vala:65
 msgid "Update Author"
-msgstr "Uppdatera författaren"
+msgstr "Uppdatera författare"
 
 #: ../src/constants.vala:67
 msgid "Enter full screen view (F11)"
@@ -251,7 +251,7 @@ msgstr "Lägg till böcker till bibliotek"
 #: ../src/constants.vala:83
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Ta bort valda böcker från bibliotek (e-bokfil kommer inte att tas bort)"
+"Ta bort valda böcker från biblioteket (e-bokfil kommer inte att tas bort)"
 
 #: ../src/constants.vala:84
 msgid "Select one or more books in library"
@@ -299,7 +299,7 @@ msgstr "Minska radavståndet"
 
 #: ../src/constants.vala:95
 msgid "Update cover image"
-msgstr "Uppdatera omslagsbild"
+msgstr "Uppdatera omslagsbilden"
 
 #: ../src/constants.vala:96
 msgid "Set theme for this colour profile"
@@ -339,7 +339,7 @@ msgstr "Aktivera två sidläsning"
 
 #: ../src/constants.vala:107
 msgid "Set Font"
-msgstr "Ange teckensnitt"
+msgstr "Ange typsnitt"
 
 #: ../src/constants.vala:108
 msgid "Customize reading profile"
