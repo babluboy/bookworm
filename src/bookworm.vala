@@ -84,6 +84,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static ArrayList<string> profileColourList = new ArrayList<string> ();
 	public static bool isPageScrollRequired = false;
 	public static StringBuilder pathsOfBooksInLibraryOnLoadStr = new StringBuilder("");
+	public static StringBuilder onLoadJavaScript = new StringBuilder("");
+	public static string jsFunctions = "<script> function setTwoPageView() {var lengthOfData = document.getElementsByTagName(\"BODY\")[0].innerText.length; if(lengthOfData > 500){ document.getElementsByTagName(\"BODY\")[0].className = \"two_page\"; }} </script>";
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;

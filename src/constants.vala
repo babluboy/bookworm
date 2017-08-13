@@ -100,7 +100,7 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY = _("Remove displayed folder from book scan");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
-	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Night Mode");
+	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Dark Mode");
 	public const string TEXT_FOR_PREFERENCES_LOCAL_STORAGE = _("Enable cache (opens books faster)");
 	public const string TEXT_FOR_PREFERENCES_SKIP_LIBRARY = _("Always show library on start");
 	public const string TEXT_FOR_PREFERENCES_TWO_PAGE = _("Enable two page reading");

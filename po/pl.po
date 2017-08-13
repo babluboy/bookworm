@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 12:22+0100\n"
+"POT-Creation-Date: 2017-08-13 22:06+0100\n"
 "PO-Revision-Date: 2017-07-30 11:22+0000\n"
 "Last-Translator: Adam Chrapkowski <adam.chrapkowski@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -31,20 +31,20 @@ msgstr ""
 msgid "Select eBook"
 msgstr "Wybierz e-booka"
 
-#: ../src/bookworm.vala:108
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Wyświetl wersję"
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Uruchom Bookworm w trybie debugowania"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:112
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Uruchom Bookworm w trybie debugowania"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -335,7 +335,8 @@ msgid "Preferences"
 msgstr "Preferencje"
 
 #: ../src/constants.vala:103
-msgid "Turn on Night Mode"
+#, fuzzy
+msgid "Turn on Dark Mode"
 msgstr "Włącz tryb nocny"
 
 #: ../src/constants.vala:104

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 12:22+0100\n"
+"POT-Creation-Date: 2017-08-13 22:06+0100\n"
 "PO-Revision-Date: 2017-07-25 08:58+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://hosted.weblate.org/projects/bookworm/"
@@ -37,20 +37,20 @@ msgstr ""
 msgid "Select eBook"
 msgstr "Odaberi eKnjigu"
 
-#: ../src/bookworm.vala:108
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Prikaži verziju"
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Pokreni Bookworm u režimu za otklanjanje grešaka"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:112
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Pokreni Bookworm u režimu za otklanjanje grešaka"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -335,7 +335,8 @@ msgid "Preferences"
 msgstr "Željene postavke"
 
 #: ../src/constants.vala:103
-msgid "Turn on Night Mode"
+#, fuzzy
+msgid "Turn on Dark Mode"
 msgstr "Uključi noćni režim"
 
 #: ../src/constants.vala:104
