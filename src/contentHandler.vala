@@ -22,11 +22,12 @@ using Gee;
 public class BookwormApp.contentHandler {
   public static BookwormApp.Settings settings;
 
-  public static string adjustPageContent (owned string pageContent){
+
+  public static string adjustPageContent (owned string pageContentStr){
     settings = BookwormApp.Settings.get_instance();
     string cssForTextAndBackgroundColor = "";
-    string onLoadJavaScript = "";
-    int endPosOfBodyTag = -1;
+    StringBuilder pageContent = new StringBuilder(pageContentStr);
+    BookwormApp.Bookworm.onLoadJavaScript.assign("onload=\"");
     //Set background and font colour based on profile
     string[] profileColorList = settings.list_of_profile_colors.split (",");
     if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
@@ -56,28 +57,25 @@ public class BookwormApp.contentHandler {
     //(2) when a book existing in the library is opened from File Explorer using Bookworm
     //The flag for applying the javascript is set from the above two locations
     if(BookwormApp.Bookworm.isPageScrollRequired){
-      onLoadJavaScript = "onload=\"window.scrollTo(0,"+(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead)).getBookScrollPos().to_string()+")\"";
+      BookwormApp.Bookworm.onLoadJavaScript.append(" window.scrollTo(0,"+(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead)).getBookScrollPos().to_string()+");");
       BookwormApp.Bookworm.isPageScrollRequired = false; // stop this function being called subsequently
     }
-    //add onload javascript and css to body tag
-    if(pageContent.index_of("<BODY") != -1){
-      pageContent = pageContent.replace("<BODY", cssOverride + "<BODY " + onLoadJavaScript);
-      endPosOfBodyTag = pageContent.index_of("</BODY>", pageContent.index_of("<BODY"));
-    }else if (pageContent.index_of("<body") != -1){
-      pageContent = pageContent.replace("<body", cssOverride + "<body " + onLoadJavaScript);
-      endPosOfBodyTag = pageContent.index_of("</body>", pageContent.index_of("<body"));
-    }else{
-      pageContent = cssOverride + "<BODY " + onLoadJavaScript + ">" + pageContent + "</BODY>";
-      endPosOfBodyTag = pageContent.index_of("</BODY>", pageContent.index_of("<BODY"));
-    }
     //If two page view id required - add a script to set the CSS for two-page if there are more than 500 chars
-    if(BookwormApp.Bookworm.settings.is_two_page_enabled && endPosOfBodyTag != -1){
-      StringBuilder pageContentStrBuilder = new StringBuilder(pageContent);
-      pageContentStrBuilder.insert(endPosOfBodyTag, "<script> var lengthOfData = document.getElementsByTagName(\"BODY\")[0].innerHTML.length; if(lengthOfData > 500){ document.getElementsByTagName(\"BODY\")[0].className = \"two_page\"; } </script>");
-      pageContent = pageContentStrBuilder.str;
-      debug (pageContent);
+    if(BookwormApp.Bookworm.settings.is_two_page_enabled){
+      BookwormApp.Bookworm.onLoadJavaScript.append(" setTwoPageView();");
     }
-    return pageContent;
+    //complete the onload javascript string
+    BookwormApp.Bookworm.onLoadJavaScript.append("\"");
+
+    //add onload javascript and css to body tag
+    if(pageContent.str.index_of("<BODY") != -1){
+      pageContent.assign(pageContent.str.replace("<BODY", BookwormApp.Bookworm.jsFunctions + cssOverride + "<BODY " + BookwormApp.Bookworm.onLoadJavaScript.str));
+    }else if (pageContent.str.index_of("<body") != -1){
+      pageContent.assign(pageContent.str.replace("<body", BookwormApp.Bookworm.jsFunctions + cssOverride + "<body " + BookwormApp.Bookworm.onLoadJavaScript.str));
+    }else{
+      pageContent.assign(BookwormApp.Bookworm.jsFunctions + cssOverride + "<BODY " + BookwormApp.Bookworm.onLoadJavaScript.str + ">" + pageContent.str + "</BODY>");
+    }
+    return pageContent.str;
   }
 
   public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){

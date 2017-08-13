@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-08 22:27+0100\n"
+"POT-Creation-Date: 2017-08-13 22:06+0100\n"
 "PO-Revision-Date: 2017-08-08 22:34+0100\n"
 "Last-Translator: sid <sid@sid-latitude-e4300>\n"
 "Language-Team: Afar\n"
@@ -32,19 +32,19 @@ msgstr ""
 msgid "Select eBook"
 msgstr ""
 
-#: ../src/bookworm.vala:108
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr ""
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr ""
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
 msgstr ""
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -315,7 +315,7 @@ msgid "Preferences"
 msgstr ""
 
 #: ../src/constants.vala:103
-msgid "Turn on Night Mode"
+msgid "Turn on Dark Mode"
 msgstr ""
 
 #: ../src/constants.vala:104

@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 12:22+0100\n"
+"POT-Creation-Date: 2017-08-13 22:06+0100\n"
 "PO-Revision-Date: 2017-08-11 10:04+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
-"Language-Team: Sardinian "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/sc/>\n"
+"Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,20 +29,20 @@ msgstr "Annantu "
 msgid "Select eBook"
 msgstr "Ischerta unu e-libru"
 
-#: ../src/bookworm.vala:108
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Ammustra su nùmeru de versione"
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Allughe Bookworm in modalidade de depuratzione (debug)"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:112
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Allughe Bookworm in modalidade de depuratzione (debug)"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr "Annanghe automaticamente libros noos dae sas cartellas abbistadas"
 
@@ -334,7 +334,8 @@ msgid "Preferences"
 msgstr "Preferèntzias"
 
 #: ../src/constants.vala:103
-msgid "Turn on Night Mode"
+#, fuzzy
+msgid "Turn on Dark Mode"
 msgstr "Allughe sa modalidade noturna"
 
 #: ../src/constants.vala:104
