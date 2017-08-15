@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-13 22:06+0100\n"
-"PO-Revision-Date: 2017-08-11 10:04+0000\n"
+"PO-Revision-Date: 2017-08-13 12:04+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sc/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.16-dev\n"
+"X-Generator: Weblate 2.16\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -87,13 +87,12 @@ msgid "Select an eBook to read"
 msgstr "Ischerta unu libru de lèghere"
 
 #: ../src/constants.vala:44
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure valid eBook file at "
 "location : "
 msgstr ""
 "B'est istadu unu problema cun s'estratzione de cuntenutu de su libru. "
-"Verìfica chi su libru siat disponìbile in sa positzione : "
+"Verìfica chi bi siet unu documentu vàlidu in sa positzione : "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
