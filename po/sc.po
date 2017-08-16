@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-13 22:06+0100\n"
-"PO-Revision-Date: 2017-08-13 12:04+0000\n"
+"PO-Revision-Date: 2017-08-17 16:47+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
-"Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/sc/>\n"
+"Language-Team: Sardinian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.16\n"
+"X-Generator: Weblate 2.17-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -40,7 +40,7 @@ msgstr "Allughe Bookworm in modalidade de depuratzione (debug)"
 #: ../src/bookworm.vala:112
 #, fuzzy
 msgid "Run Bookworm in info mode"
-msgstr "Allughe Bookworm in modalidade de depuratzione (debug)"
+msgstr "Allughe Bookworm in modalidade \"info\""
 
 #: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
