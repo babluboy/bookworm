@@ -176,20 +176,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 			default_theme = Gtk.IconTheme.get_default();
 			//retrieve Settings
 			settings = BookwormApp.Settings.get_instance();
-			//set window attributes from saved settings
-			if(settings.window_is_maximized){
-				window.maximize();
-			}else{
-				if(settings.window_width > 0 && settings.window_height > 0){
-					window.set_default_size(settings.window_width, settings.window_height);
-				}else{
-					window.set_default_size(1200, 700);
-				}
-			}
+			//set window attributes
 			window.set_border_width (0);
 			window.get_style_context ().add_class ("rounded");
-			window.set_position (Gtk.WindowPosition.CENTER);
-			window.window_position = Gtk.WindowPosition.CENTER;
 			//set the minimum size of the window on minimize
 			window.set_size_request (600, 350);
 			//set css provider
@@ -386,6 +375,22 @@ public class BookwormApp.Bookworm : Granite.Application {
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path, "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/books/", "", "");
+		//Set the window to the last saved position
+		if(settings.pos_x == 0 && settings.pos_y == 0){
+			window.set_position (Gtk.WindowPosition.CENTER);
+		}else{
+			window.move(settings.pos_x, settings.pos_y);
+		}
+		//set window size to the last saved height/width
+		if(settings.window_is_maximized){
+			window.maximize();
+		}else{
+			if(settings.window_width > 0 && settings.window_height > 0){
+				window.set_default_size(settings.window_width, settings.window_height);
+			}else{
+				window.set_default_size(1200, 700);
+			}
+		}
 		//Load CSS template for reading view
 		CSSTemplate = settings.reading_css_template;
 		//check last state and turn on dark theme
@@ -448,14 +453,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 			settings.window_is_maximized = false;
 		}
 		settings.zoom_level = BookwormApp.AppWindow.aWebView.get_zoom_level();
-		/*
-		debug("Window state saved in Settings with values
-					 width="+width.to_string()+",
-					 height="+height.to_string()+",
-					 x="+x.to_string()+",
-					 y="+y.to_string()
-				 );
-		*/
 	}
 
 	public static void readSelectedBook(owned BookwormApp.Book aBook){

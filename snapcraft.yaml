@@ -6,13 +6,15 @@ description: |
   Manage your library by tagging and updating metadata on books, to quickly find books using metadata searching and tag based filtering.
   This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.
 
+icon: /usr/share/icons/hicolor/24x24/apps/bookworm.png
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
 
 apps:
   bookworm:
     command: desktop-launch bookworm
-    plugs: [home, x11, unity7, office]
+    desktop: usr/share/applications/com.github.babluboy.bookworm.desktop
+    plugs: [home, x11, unity7, gsettings]
 
 parts:
     bookworm:

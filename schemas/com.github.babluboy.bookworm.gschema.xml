@@ -1,28 +1,32 @@
 <schemalist>
 	<schema id="com.github.babluboy.bookworm" path="/com/github/babluboy/bookworm/" gettext-domain="bookworm">
 		<key name="pos-x" type="i">
-			<default>920</default>
-			<summary>The saved width of the window.</summary>
-			<description></description>
+			<default>0</default>
+			<summary>Save x co-ordinate of window position</summary>
 		</key>
 		<key name="pos-y" type="i">
-			<default>920</default>
-			<summary>The saved width of the window.</summary>
-			<description></description>
+			<default>0</default>
+			<summary>Save x co-ordinate of window position</summary>
 		</key>
 		<key name="window-width" type="i">
 			<default>1200</default>
 			<summary>The saved width of the window.</summary>
-			<description></description>
 		</key>
 		<key name="window-height" type="i">
 			<default>800</default>
 			<summary>The saved height of the window.</summary>
-			<description></description>
     </key>
 		<key name="window-is-maximized" type="b">
 				<default>false</default>
 				<summary>Save maximized state of window</summary>
+		</key>
+		<key name="window-position-x" type="i">
+				<default>0</default>
+				<summary>Save x co-ordinate of window position</summary>
+		</key>
+		<key name="window-position-y" type="i">
+				<default>0</default>
+				<summary>Save y co-ordinate of window position</summary>
 		</key>
 		<key name="zoom-level" type="d">
 				<default>1.0</default>
