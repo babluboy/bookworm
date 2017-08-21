@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
-"PO-Revision-Date: 2017-08-21 15:06+0000\n"
-"Last-Translator: Bruno Gonçalves <bigbruno@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
-"bookworm/bookworm/pt_BR/>\n"
+"PO-Revision-Date: 2017-09-05 22:07+0000\n"
+"Last-Translator: Tiago Rinaldi <trinaldi@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,9 +159,8 @@ msgid "Search Results"
 msgstr "Resultado da pesquisa"
 
 #: ../src/constants.vala:59
-#, fuzzy
 msgid "Searching for '$$$' in &&&:"
-msgstr "Não foi possível encontrar '$$$' em &&&"
+msgstr "Buscando '$$$' em &&&:"
 
 #: ../src/constants.vala:60
 msgid "Found the following matches for '$$$' in &&&:"
