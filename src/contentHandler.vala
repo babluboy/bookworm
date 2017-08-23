@@ -113,6 +113,7 @@ public class BookwormApp.contentHandler {
     string[] individualLines = bookSearchResults.strip().split ("\n",-1);
     StringBuilder pageOfResult = new StringBuilder("");
     StringBuilder contentOfResult = new StringBuilder("");
+    int searchResultCount = 1;
     foreach (string aSearchResult in individualLines) {
       if(aSearchResult.index_of(":") != -1 && aSearchResult.index_of(":") > 0 && aSearchResult.index_of(":") < aSearchResult.length){
         pageOfResult.assign(aSearchResult.slice(0, aSearchResult.index_of(":")));
@@ -133,9 +134,10 @@ public class BookwormApp.contentHandler {
         contentOfResult.assign(aSearchResult.slice(aSearchResult.index_of(":")+1, aSearchResult.length));
         //ignore the results from ncx,opf file
         if(pageOfResult.str.index_of("ncx") == -1 && pageOfResult.str.index_of("opf") == -1 && pageOfResult.str.length > 1){
-          searchResultsMap.set(pageOfResult.str, BookwormApp.Utils.removeTagsFromText(contentOfResult.str));
+          searchResultsMap.set(searchResultCount.to_string()+"~~"+pageOfResult.str, BookwormApp.Utils.removeTagsFromText(contentOfResult.str));
         }
       }
+      searchResultCount++;
     }
     return searchResultsMap;
   }
