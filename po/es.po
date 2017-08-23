@@ -2,25 +2,24 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-13 22:06+0100\n"
-"PO-Revision-Date: 2017-06-17 15:26+0000\n"
-"Last-Translator: Siddhartha Das <bablu.boy@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/es/>\n"
+"PO-Revision-Date: 2017-08-23 23:14+0000\n"
+"Last-Translator: Ricardo Ruiz <riki319@gmail.com>\n"
+"Language-Team: Spanish "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15-dev\n"
+"X-Generator: Weblate 2.17-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
 msgstr "Seleccionar imagen"
 
 #: ../src/dialog.vala:483
-#, fuzzy
 msgid "Select folder"
-msgstr "Seleccionar imagen"
+msgstr "Seleccionar carpeta"
 
 #: ../src/library.vala:539
 msgid "Added "
@@ -39,9 +38,8 @@ msgid "Run Bookworm in debug mode"
 msgstr "Ejecutar el ratón de biblioteca en modo de depuración"
 
 #: ../src/bookworm.vala:112
-#, fuzzy
 msgid "Run Bookworm in info mode"
-msgstr "Ejecutar el ratón de biblioteca en modo de depuración"
+msgstr "Ejecutar Bookworm en modo de depuración"
 
 #: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
@@ -52,9 +50,8 @@ msgid "An eBook Reader"
 msgstr "Un lector de libros electrónicos"
 
 #: ../src/constants.vala:29
-#, fuzzy
 msgid "Weblate Translators"
-msgstr "Traductores de Launchpad"
+msgstr "Traductores de Weblate"
 
 #: ../src/constants.vala:35
 msgid "Website"
@@ -89,13 +86,12 @@ msgid "Select an eBook to read"
 msgstr "Seleccione un eBook para leer"
 
 #: ../src/constants.vala:44
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure valid eBook file at "
 "location : "
 msgstr ""
-"Problema en la extracción del contenido del libro. Compruebe si el libro "
-"está disponible en el lugar: "
+"Problema en la extracción del contenido del libro. Compruebe si un válido "
+"libro está disponible en la ruta: "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
@@ -110,7 +106,6 @@ msgstr ""
 "válido en la ubicación: "
 
 #: ../src/constants.vala:47
-#, fuzzy
 msgid "eBook could not be parsed. Ensure valid eBook file at location : "
 msgstr ""
 "Se encontró contenido no válido. Asegúrese de que el archivo de eBook sea "
