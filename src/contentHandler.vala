@@ -109,35 +109,20 @@ public class BookwormApp.contentHandler {
 
   public static HashMap<string,string> searchBookContents(BookwormApp.Book aBook, string searchString){
     HashMap<string,string> searchResultsMap = new HashMap<string,string>();
-    string bookSearchResults = BookwormApp.Utils.execute_sync_command("grep -i -r -o -P -w '.{0,50}"+BookwormApp.AppHeaderBar.headerSearchBar.get_text()+".{0,50}' \""+aBook.getBookExtractionLocation()+"\"");
-    string[] individualLines = bookSearchResults.strip().split ("\n",-1);
-    StringBuilder pageOfResult = new StringBuilder("");
-    StringBuilder contentOfResult = new StringBuilder("");
+    StringBuilder bookSearchResults = new StringBuilder ("");
     int searchResultCount = 1;
-    foreach (string aSearchResult in individualLines) {
-      if(aSearchResult.index_of(":") != -1 && aSearchResult.index_of(":") > 0 && aSearchResult.index_of(":") < aSearchResult.length){
-        pageOfResult.assign(aSearchResult.slice(0, aSearchResult.index_of(":")));
-        if(!(aBook.getBookContentList().contains(pageOfResult.str))){
-          //handle the case when the spine data has HTML Escape characters
-          foreach (string contentListURI in aBook.getBookContentList()) {
-            if(BookwormApp.Utils.decodeHTMLChars(contentListURI) == pageOfResult.str){
-              pageOfResult.assign(contentListURI);
-              break;
-            }
-          }
-          //If the location still could not be matched, then assign a blank location
-          if(!(aBook.getBookContentList().contains(pageOfResult.str))){
-            pageOfResult.assign("");
-          }
-        }
-
-        contentOfResult.assign(aSearchResult.slice(aSearchResult.index_of(":")+1, aSearchResult.length));
-        //ignore the results from ncx,opf file
-        if(pageOfResult.str.index_of("ncx") == -1 && pageOfResult.str.index_of("opf") == -1 && pageOfResult.str.length > 1){
-          searchResultsMap.set(searchResultCount.to_string()+"~~"+pageOfResult.str, BookwormApp.Utils.removeTagsFromText(contentOfResult.str));
+    foreach (string aBookContentFile in aBook.getBookContentList()) {
+      bookSearchResults.assign("");
+      //execute search
+      bookSearchResults.assign(BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.SEARCH_SCRIPT_LOCATION + " \"" + aBookContentFile + "\" \"" + BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "\""));
+      //process search results
+      if(bookSearchResults.str.strip().length > 0){
+        string[] individualLines = bookSearchResults.str.strip().split ("\n",-1);
+        foreach ( string individualLine in individualLines) {
+          searchResultsMap.set(searchResultCount.to_string()+"~~"+aBookContentFile, individualLine.strip());
+          searchResultCount++;
         }
       }
-      searchResultCount++;
     }
     return searchResultsMap;
   }
