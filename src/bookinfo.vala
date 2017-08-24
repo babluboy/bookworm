@@ -133,7 +133,7 @@ public class BookwormApp.Info:Gtk.Window {
       searchLabel.set_text(searchResultsLabeltext);
     }
     foreach (var entry in searchResultsMap.entries) {
-      LinkButton searchResultLinkButton = new LinkButton.with_label (entry.key.slice(entry.key.index_of("~~")+2, entry.key.length), entry.value);
+      LinkButton searchResultLinkButton = new LinkButton.with_label (entry.key.slice(entry.key.index_of("~~")+2, entry.key.length), BookwormApp.Utils.parseMarkUp(entry.value));
       searchResultLinkButton.halign = Align.START;
       searchresults_box.pack_start(searchResultLinkButton,false,false,0);
       searchResultLinkButton.activate_link.connect (() => {
