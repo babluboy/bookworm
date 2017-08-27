@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-13 22:06+0100\n"
-"PO-Revision-Date: 2017-08-24 13:15+0000\n"
+"PO-Revision-Date: 2017-08-28 10:45+0000\n"
 "Last-Translator: Florian <floflr@zaclys.net>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
@@ -48,12 +48,11 @@ msgstr ""
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr "Une liseuse de livres électroniques"
+msgstr "Un lecteur de livres électroniques"
 
 #: ../src/constants.vala:29
-#, fuzzy
 msgid "Weblate Translators"
-msgstr "Traducteurs sous Launchpad"
+msgstr "Traducteurs Weblate"
 
 #: ../src/constants.vala:35
 msgid "Website"
@@ -65,7 +64,7 @@ msgstr "Indisponible"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr "Liseuse de livres électroniques"
+msgstr "Lecteur de livres électroniques"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
@@ -88,13 +87,12 @@ msgid "Select an eBook to read"
 msgstr "Sélectionnez un livre électronique pour le lire"
 
 #: ../src/constants.vala:44
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure valid eBook file at "
 "location : "
 msgstr ""
-"Problème d'extraction du contenu du livre. Assurez-vous que le livre est à "
-"l'emplacement : "
+"Problème d'extraction du contenu du livre. Assurez-vous que le fichier eBook "
+"est à l'emplacement : "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
@@ -111,7 +109,7 @@ msgstr ""
 #, fuzzy
 msgid "eBook could not be parsed. Ensure valid eBook file at location : "
 msgstr ""
-"Contenu invalide trouvé. Assurez-vous que le livre électronique est valide à "
+"eBook n'a pas pu être analysé. Assurez-vous que le fichier eBook est à "
 "l'emplacement : "
 
 #: ../src/constants.vala:48
@@ -121,13 +119,12 @@ msgstr ""
 "l'emplacement : "
 
 #: ../src/constants.vala:49
-#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add eBook file at "
 "location : "
 msgstr ""
-"Contenu invalide trouvé. Assurez-vous que le livre électronique est valide à "
-"l'emplacement : "
+"Le contenu demandé n'a pas pu être récupéré. Supprimez et ajoutez le fichier "
+"eBook à l'emplacement : "
 
 #: ../src/constants.vala:50
 msgid "Library"
@@ -198,14 +195,12 @@ msgid "Update Author"
 msgstr "Mettre à jour l'auteur"
 
 #: ../src/constants.vala:67
-#, fuzzy
 msgid "Enter full screen view (F11)"
-msgstr "Entrer en mode plein écran"
+msgstr "Passer en mode plein écran (F11)"
 
 #: ../src/constants.vala:68
-#, fuzzy
 msgid "Exit full screen view (Esc)"
-msgstr "Quitter la vue en plein écran (Esc)"
+msgstr "Quitter le mode plein écran (Esc)"
 
 #: ../src/constants.vala:69
 msgid "Check Word Meaning"
@@ -232,8 +227,9 @@ msgid "Author"
 msgstr "Auteur"
 
 #: ../src/constants.vala:75
+#, fuzzy
 msgid "Last Opened"
-msgstr ""
+msgstr "Dernier ouvert"
 
 #: ../src/constants.vala:76
 msgid "Rating"
@@ -245,11 +241,11 @@ msgstr "Tags"
 
 #: ../src/constants.vala:78
 msgid "Today"
-msgstr ""
+msgstr "Aujourd'hui"
 
 #: ../src/constants.vala:79
 msgid "Yesterday"
-msgstr ""
+msgstr "Hier"
 
 #: ../src/constants.vala:80
 msgid "Days"
@@ -287,14 +283,12 @@ msgid "Click to remove this bookmark"
 msgstr "Cliquez pour supprimer ce marque-page"
 
 #: ../src/constants.vala:89
-#, fuzzy
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr "Augmenter la taille de la police"
+msgstr "Augmenter la taille de la police (Ctrl + Shift + '+')"
 
 #: ../src/constants.vala:90
-#, fuzzy
 msgid "Decrease font size (Ctrl + '-')"
-msgstr "Diminuer la taille de la police"
+msgstr "Diminuer la taille de la police (Ctrl + '-')"
 
 #: ../src/constants.vala:91
 msgid "Increase line width"
@@ -326,7 +320,7 @@ msgstr "Passer en vue en plein écran (appuyez sur la touche Esc pour sortir)"
 
 #: ../src/constants.vala:99
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Ajouter un dossier pour rechercher des livres"
 
 #: ../src/constants.vala:100
 msgid "Remove displayed folder from book scan"
@@ -346,12 +340,14 @@ msgid "Enable cache (opens books faster)"
 msgstr "Activer le cache (ouvre les livres plus rapidement)"
 
 #: ../src/constants.vala:105
+#, fuzzy
 msgid "Always show library on start"
 msgstr "Afficher toujours la bibliothèque au démarrage"
 
 #: ../src/constants.vala:106
+#, fuzzy
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Activer les deux pages de lecture"
 
 #: ../src/constants.vala:107
 msgid "Set Font"
@@ -380,7 +376,7 @@ msgstr "Profil"
 
 #: ../src/constants.vala:113
 msgid "Reset to default values"
-msgstr ""
+msgstr "Rétablir les valeurs par défaut"
 
 #: ../src/constants.vala:126
 msgid "Unknown Book"
