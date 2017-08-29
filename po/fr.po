@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-13 22:06+0100\n"
-"PO-Revision-Date: 2017-08-28 10:45+0000\n"
-"Last-Translator: Florian <floflr@zaclys.net>\n"
+"PO-Revision-Date: 2017-08-30 14:38+0000\n"
+"Last-Translator: Aris <aris@papatheodorou.net>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
@@ -43,8 +43,9 @@ msgid "Run Bookworm in info mode"
 msgstr "Lancer Bookworm en mode débogage"
 
 #: ../src/bookworm.vala:113
+#, fuzzy
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Ajouter automatiquement les nouveaux livres depuis les dossiers"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
@@ -311,8 +312,9 @@ msgid "Update cover image"
 msgstr "Mettre à jour l'image de la couverture"
 
 #: ../src/constants.vala:96
+#, fuzzy
 msgid "Set theme for this colour profile"
-msgstr ""
+msgstr "Choisir ce profile de couleurs"
 
 #: ../src/constants.vala:97 ../src/constants.vala:98
 msgid "Enter full screen view and Esc key to exit"
@@ -323,8 +325,9 @@ msgid "Add folder to scan for books"
 msgstr "Ajouter un dossier pour rechercher des livres"
 
 #: ../src/constants.vala:100
+#, fuzzy
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Retirer les dossiers suivant de la recherche de livres"
 
 #: ../src/constants.vala:102 ../src/constants.vala:128
 msgid "Preferences"
