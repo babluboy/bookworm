@@ -241,7 +241,7 @@ public class BookwormApp.AppWindow {
       BookwormApp.Book currentBookForForward = new BookwormApp.Book();
       currentBookForForward = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       debug("Initiating read forward for eBook:"+currentBookForForward.getBookLocation());
-      currentBookForForward = BookwormApp.Bookworm.renderPage(currentBookForForward, "FORWARD");
+      currentBookForForward = BookwormApp.contentHandler.renderPage(currentBookForForward, "FORWARD");
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForForward.getBookLocation(), currentBookForForward);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForForward.getBookLocation();
@@ -252,7 +252,7 @@ public class BookwormApp.AppWindow {
       BookwormApp.Book currentBookForReverse = new BookwormApp.Book();
       currentBookForReverse = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
       debug("Initiating read previous for eBook:"+currentBookForReverse.getBookLocation());
-      currentBookForReverse = BookwormApp.Bookworm.renderPage(currentBookForReverse, "BACKWARD");
+      currentBookForReverse = BookwormApp.contentHandler.renderPage(currentBookForReverse, "BACKWARD");
       //update book details to libraryView Map
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForReverse.getBookLocation(), currentBookForReverse);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForReverse.getBookLocation();
@@ -269,7 +269,7 @@ public class BookwormApp.AppWindow {
         currentBookForSlider.setBookPageNumber(new_value.to_string().to_int()-1);
       }
       //update book details to libraryView Map
-      currentBookForSlider = BookwormApp.Bookworm.renderPage(currentBookForSlider, "");
+      currentBookForSlider = BookwormApp.contentHandler.renderPage(currentBookForSlider, "");
       BookwormApp.Bookworm.libraryViewMap.set(currentBookForSlider.getBookLocation(), currentBookForSlider);
       BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForSlider.getBookLocation();
       debug("Page Slider value change action completed for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead+" and rendering completed for page number:"+currentBookForSlider.getBookPageNumber().to_string());
@@ -371,14 +371,14 @@ public class BookwormApp.AppWindow {
         if (ev.keyval == Gdk.Key.Left) {// Left Key pressed, move page backwards
           //get object for this ebook
           BookwormApp.Book aBookLeftKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          aBookLeftKeyPress = BookwormApp.Bookworm.renderPage(aBookLeftKeyPress, "BACKWARD");
+          aBookLeftKeyPress = BookwormApp.contentHandler.renderPage(aBookLeftKeyPress, "BACKWARD");
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookLeftKeyPress.getBookLocation(), aBookLeftKeyPress);
         }
         if (ev.keyval == Gdk.Key.Right) {// Right key pressed, move page forward
           //get object for this ebook
           BookwormApp.Book aBookRightKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          aBookRightKeyPress = BookwormApp.Bookworm.renderPage(aBookRightKeyPress, "FORWARD");
+          aBookRightKeyPress = BookwormApp.contentHandler.renderPage(aBookRightKeyPress, "FORWARD");
           //update book details to libraryView Map
           BookwormApp.Bookworm.libraryViewMap.set(aBookRightKeyPress.getBookLocation(), aBookRightKeyPress);
         }
@@ -402,12 +402,12 @@ public class BookwormApp.AppWindow {
         if (isControlKeyPressed && (ev.keyval == Gdk.Key.D || ev.keyval == Gdk.Key.d)){// Control and D keys pressed - toggle bookmark
           //Check if bookmark for the page is not set - set bookmark
   				if(BookwormApp.AppHeaderBar.bookmark_inactive_button.get_visible()){
-  					BookwormApp.Bookworm.handleBookMark("INACTIVE_CLICKED");
+  					BookwormApp.contentHandler.handleBookMark("INACTIVE_CLICKED");
             debug("Shortcut executed for Bookmark with action - INACTIVE_CLICKED");
             isControlKeyPressed = false; //stop the action re-executing immediately
   				}else{
   					//Bookmark for the page is set - unset bookmark
-            BookwormApp.Bookworm.handleBookMark("ACTIVE_CLICKED");
+            BookwormApp.contentHandler.handleBookMark("ACTIVE_CLICKED");
             debug("Shortcut executed for Bookmark with action - ACTIVE_CLICKED");
             isControlKeyPressed = false; //stop the action re-executing immediately
   				}
@@ -450,7 +450,7 @@ public class BookwormApp.AppWindow {
            aBook.setBookPageNumber(contentLocationPosition);
            //update book details to libraryView Map
            BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-           aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+           aBook = BookwormApp.contentHandler.renderPage(aBook, "");
            //Set the mode back to Reading mode
            BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
            BookwormApp.Bookworm.toggleUIState();

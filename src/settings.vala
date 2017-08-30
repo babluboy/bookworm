@@ -40,8 +40,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
   public string list_of_scan_dirs { get; set; }
   public string book_being_read { get; set; }
   public bool is_two_page_enabled { get; set; }
-  public string reading_css_template { get; set; }
-
+  
   public static Settings get_instance () {
     if (instance == null) {
         instance = new Settings ();

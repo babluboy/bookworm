@@ -98,7 +98,7 @@ public class BookwormApp.Info:Gtk.Window {
             aBook.setBookPageNumber(int.parse(bookmarkLinkButton.get_uri ().strip()));
             //update book details to libraryView Map
             BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-            aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+            aBook = BookwormApp.contentHandler.renderPage(aBook, "");
             //Set the mode back to Reading mode
             BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
             BookwormApp.Bookworm.getAppInstance().toggleUIState();
@@ -133,14 +133,14 @@ public class BookwormApp.Info:Gtk.Window {
       searchLabel.set_text(searchResultsLabeltext);
     }
     foreach (var entry in searchResultsMap.entries) {
-      LinkButton searchResultLinkButton = new LinkButton.with_label (entry.key.slice(entry.key.index_of("~~")+2, entry.key.length), BookwormApp.Utils.parseMarkUp(entry.value));
+      LinkButton searchResultLinkButton = new LinkButton.with_label (entry.key.slice(entry.key.index_of("~~")+2, entry.key.length), entry.value);
       searchResultLinkButton.halign = Align.START;
       searchresults_box.pack_start(searchResultLinkButton,false,false,0);
       searchResultLinkButton.activate_link.connect (() => {
         aBook.setBookPageNumber(aBook.getBookContentList().index_of(searchResultLinkButton.get_uri ().strip()));
         //update book details to libraryView Map
         BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-        aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+        aBook = BookwormApp.contentHandler.renderPage(aBook, "SEARCH:"+BookwormApp.AppHeaderBar.headerSearchBar.get_text());
         //Set the mode back to Reading mode
         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
         BookwormApp.Bookworm.getAppInstance().toggleUIState();
@@ -178,7 +178,7 @@ public class BookwormApp.Info:Gtk.Window {
                 aBook.setBookPageNumber(aBook.getBookContentList().index_of(contentLinkButton.get_uri ().strip()));
                 //update book details to libraryView Map
                 BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-                aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+                aBook = BookwormApp.contentHandler.renderPage(aBook, "");
                 //Set the mode back to Reading mode
                 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
                 BookwormApp.Bookworm.getAppInstance().toggleUIState();
@@ -198,7 +198,7 @@ public class BookwormApp.Info:Gtk.Window {
               aBook.setBookPageNumber(aBook.getBookContentList().index_of(contentLinkButton.get_uri ()));
               //update book details to libraryView Map
               BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-              aBook = BookwormApp.Bookworm.renderPage(aBook, "");
+              aBook = BookwormApp.contentHandler.renderPage(aBook, "");
               //Set the mode back to Reading mode
               BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
               BookwormApp.Bookworm.getAppInstance().toggleUIState();

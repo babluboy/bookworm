@@ -22,8 +22,92 @@ using Gee;
 public class BookwormApp.contentHandler {
   public static BookwormApp.Settings settings;
 
+  public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
+    debug("Starting to render page contents for book ["+aBook.getBookTitle()+"] for direction ["+direction+"]");
+    int currentContentLocation = aBook.getBookPageNumber();
+		string searchText = "";
+		//handle loading page with search string
+		if(direction.index_of("SEARCH:") != -1){
+			searchText = direction.replace("SEARCH:", "");
+			direction = "SEARCH";
+		}
+		//set page number based on direction of navigation
+		switch(direction){
+			case "FORWARD"://This is for moving the book forward
+				if(aBook.getIfPageForward()){
+					currentContentLocation++;
+					aBook.setBookPageNumber(currentContentLocation);
+				}
+				break;
 
-  public static string adjustPageContent (owned string pageContentStr){
+			case "BACKWARD"://This is for moving the book backwards
+				if(aBook.getIfPageBackward()){
+					currentContentLocation--;
+	        aBook.setBookPageNumber(currentContentLocation);
+				}
+				break;
+
+			case "SEARCH"://Load the page and scroll to the search text
+				//Scroll the page to where the search text is present
+
+				break;
+
+			default://This is for opening the current page of the book
+				//No change of page number required
+				break;
+		}
+		string bookContent = BookwormApp.contentHandler.provideContent(aBook,currentContentLocation, direction);
+    //render the content on webview
+    BookwormApp.AppWindow.aWebView.load_html(bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
+    //set the focus to the webview to capture keypress events
+    BookwormApp.AppWindow.aWebView.grab_focus();
+		//set the bookmak icon on the header
+		handleBookMark("DISPLAY");
+		//set the navigation controls
+		aBook = BookwormApp.Bookworm.controlNavigation(aBook);
+		//set the current value of the page slider
+		BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
+		return aBook;
+	}
+
+  public static void handleBookMark(string action){
+		//get the book being currently read
+		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+		switch(action){
+			case "DISPLAY":
+				if(aBook != null && aBook.getBookmark() != null && aBook.getBookmark().index_of(aBook.getBookPageNumber().to_string()) != -1){
+					//display bookmark as active
+					BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(true);
+					BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
+				}else{
+					//display bookmark as inactive
+					BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
+					BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(true);
+				}
+				break;
+			case "ACTIVE_CLICKED":
+				BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
+				BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(true);
+				//set the bookmark
+				aBook.setBookmark(aBook.getBookPageNumber(), action);
+				break;
+			case "INACTIVE_CLICKED":
+				BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(true);
+				BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
+				//set the bookmark
+				aBook.setBookmark(aBook.getBookPageNumber(), action);
+				break;
+			default:
+				break;
+		}
+		//update book details to libraryView Map
+		if(aBook != null){
+			debug("updating libraryViewMap with bookmark info...");
+			BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, aBook);
+		}
+	}
+
+  public static string adjustPageContent (owned string pageContentStr, string mode){
     settings = BookwormApp.Settings.get_instance();
     string cssForTextAndBackgroundColor = "";
     StringBuilder pageContent = new StringBuilder(pageContentStr);
@@ -47,11 +131,11 @@ public class BookwormApp.contentHandler {
                                      ";
     }
     //Set up CSS for book as per preference settings - this will override any css in the book contents
-    string cssOverride = BookwormApp.Bookworm.CSSTemplate.replace("$READING_LINE_HEIGHT", BookwormApp.Bookworm.settings.reading_line_height)
-                                                         .replace("$READING_WIDTH", (100 - (BookwormApp.Bookworm.settings.reading_width).to_int()).to_string())
-                                                         .replace("$FONT_FAMILY", BookwormApp.Bookworm.settings.reading_font_name_family)
-                                                         .replace("$FONT_SIZE", BookwormApp.Bookworm.settings.reading_font_size.to_string())
-                                                         .replace("$TEXT_AND_BACKGROUND_COLOR", cssForTextAndBackgroundColor);
+    string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts.replace("$READING_LINE_HEIGHT", BookwormApp.Bookworm.settings.reading_line_height)
+                                     .replace("$READING_WIDTH", (100 - (BookwormApp.Bookworm.settings.reading_width).to_int()).to_string())
+                                     .replace("$FONT_FAMILY", BookwormApp.Bookworm.settings.reading_font_name_family)
+                                     .replace("$FONT_SIZE", BookwormApp.Bookworm.settings.reading_font_size.to_string())
+                                     .replace("$TEXT_AND_BACKGROUND_COLOR", cssForTextAndBackgroundColor);
     //Scroll to the previous vertical position - this should be used:
     //(1)when the book is re-opened from the library and
     //(2) when a book existing in the library is opened from File Explorer using Bookworm
@@ -64,21 +148,25 @@ public class BookwormApp.contentHandler {
     if(BookwormApp.Bookworm.settings.is_two_page_enabled){
       BookwormApp.Bookworm.onLoadJavaScript.append(" setTwoPageView();");
     }
+    //Highlight and Scroll To Search String on page if required
+    if("SEARCH" == mode){
+      BookwormApp.Bookworm.onLoadJavaScript.append(" highlightText('"  +BookwormApp.AppHeaderBar.headerSearchBar.get_text()+"');");
+    }
     //complete the onload javascript string
     BookwormApp.Bookworm.onLoadJavaScript.append("\"");
 
     //add onload javascript and css to body tag
     if(pageContent.str.index_of("<BODY") != -1){
-      pageContent.assign(pageContent.str.replace("<BODY", BookwormApp.Bookworm.jsFunctions + cssOverride + "<BODY " + BookwormApp.Bookworm.onLoadJavaScript.str));
+      pageContent.assign(pageContent.str.replace("<BODY", currentBookwormScripts + "<BODY " + BookwormApp.Bookworm.onLoadJavaScript.str));
     }else if (pageContent.str.index_of("<body") != -1){
-      pageContent.assign(pageContent.str.replace("<body", BookwormApp.Bookworm.jsFunctions + cssOverride + "<body " + BookwormApp.Bookworm.onLoadJavaScript.str));
+      pageContent.assign(pageContent.str.replace("<body", currentBookwormScripts + "<body " + BookwormApp.Bookworm.onLoadJavaScript.str));
     }else{
-      pageContent.assign(BookwormApp.Bookworm.jsFunctions + cssOverride + "<BODY " + BookwormApp.Bookworm.onLoadJavaScript.str + ">" + pageContent.str + "</BODY>");
+      pageContent.assign(currentBookwormScripts + "<BODY " + BookwormApp.Bookworm.onLoadJavaScript.str + ">" + pageContent.str + "</BODY>");
     }
     return pageContent.str;
   }
 
-  public static string provideContent (owned BookwormApp.Book aBook, int contentLocation){
+  public static string provideContent (owned BookwormApp.Book aBook, int contentLocation, string mode){
     debug("Attempting to fetch content at index["+contentLocation.to_string()+"] from book at location:"+aBook.getBaseLocationOfContents());
     StringBuilder contents = new StringBuilder();
     if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
@@ -97,7 +185,7 @@ public class BookwormApp.contentHandler {
         }
       }
       //update the content for required manipulation
-      contents.assign(adjustPageContent(contents.str));
+      contents.assign(adjustPageContent(contents.str, mode));
     }else{
       //requested content not available
       aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_NOT_FOUND_ISSUE);
@@ -130,7 +218,7 @@ public class BookwormApp.contentHandler {
   public static void refreshCurrentPage(){
     if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
       BookwormApp.Book currentBookForRefresh = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-      currentBookForRefresh = BookwormApp.Bookworm.renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
+      currentBookForRefresh = renderPage(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
       BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForRefresh);
     }
   }
