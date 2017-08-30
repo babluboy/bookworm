@@ -77,7 +77,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
 	public static string locationOfEBookCurrentlyRead = "";
-	public static string CSSTemplate = "";
 	public static string[] pathsOfBooksToBeAdded;
 	public static int noOfBooksAddedFromCommand = 0;
 	public static bool isBookBeingAddedToLibrary = false;
@@ -85,7 +84,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static bool isPageScrollRequired = false;
 	public static StringBuilder pathsOfBooksInLibraryOnLoadStr = new StringBuilder("");
 	public static StringBuilder onLoadJavaScript = new StringBuilder("");
-	public static string jsFunctions = "<script> function setTwoPageView() {var lengthOfData = document.getElementsByTagName(\"BODY\")[0].innerText.length; if(lengthOfData > 500){ document.getElementsByTagName(\"BODY\")[0].className = \"two_page\"; }} </script>";
+	public static string bookwormScripts = "";
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;
@@ -391,8 +390,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 				window.set_default_size(1200, 700);
 			}
 		}
-		//Load CSS template for reading view
-		CSSTemplate = settings.reading_css_template;
 		//check last state and turn on dark theme
 		if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
 			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
@@ -405,6 +402,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 		BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB();
 		//Update the library view
 		BookwormApp.Library.updateLibraryViewFromDB();
+		//load scripts data
+		bookwormScripts = BookwormApp.Utils.fileOperations("READ_FILE", BookwormApp.Constants.HTML_SCRIPT_LOCATION, "", "");
 	}
 
 	public async void closeBookWorm (){
@@ -504,7 +503,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			BookwormApp.AppWindow.pageAdjustment.set_upper(aBook.getBookContentList().size);
 			BookwormApp.AppWindow.pageAdjustment.set_value(aBook.getBookPageNumber());
 			//render the contents of the current page of book
-			aBook = renderPage(aBook, "");
+			aBook = BookwormApp.contentHandler.renderPage(aBook, "");
 		}
 	}
 
@@ -564,7 +563,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(true);
 			BookwormApp.Info.info_box.set_visible(false);
 			prefButton.set_visible(true);
-			handleBookMark("DISPLAY");
+			BookwormApp.contentHandler.handleBookMark("DISPLAY");
 			BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
 		//Set-up UI for Book Meta Data / Content View Mode
@@ -607,90 +606,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 			BookwormApp.AppWindow.forward_button.set_sensitive(false);
 		}
 		return aBook;
-	}
-
-	public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
-		int currentContentLocation = aBook.getBookPageNumber();
-		string searchText = "";
-		//handle loading page with search string
-		if(direction.index_of("SEARCH:") != -1){
-			searchText = direction.replace("SEARCH:", "");
-			direction = "SEARCH";
-		}
-		//set page number based on direction of navigation
-		switch(direction){
-			case "FORWARD"://This is for moving the book forward
-				if(aBook.getIfPageForward()){
-					currentContentLocation++;
-					aBook.setBookPageNumber(currentContentLocation);
-				}
-				break;
-
-			case "BACKWARD"://This is for moving the book backwards
-				if(aBook.getIfPageBackward()){
-					currentContentLocation--;
-	        aBook.setBookPageNumber(currentContentLocation);
-				}
-				break;
-
-			case "SEARCH"://Load the page and scroll to the search text
-				//TODO: Scroll the page to where the search text is present
-				//WebKit.FindController awebkitController = BookwormApp.AppWindow.aWebView.get_find_controller ();
-				//awebkitController.search (searchText, WebKit.FindOptions.CASE_INSENSITIVE, 1);
-				break;
-
-			default://This is for opening the current page of the book
-				//No change of page number required
-				break;
-		}
-		//render the content on webview
-    BookwormApp.AppWindow.aWebView.load_html(BookwormApp.contentHandler.provideContent(aBook,currentContentLocation), BookwormApp.Constants.PREFIX_FOR_FILE_URL);
-    //set the focus to the webview to capture keypress events
-    BookwormApp.AppWindow.aWebView.grab_focus();
-		//set the bookmak icon on the header
-		handleBookMark("DISPLAY");
-		//set the navigation controls
-		aBook = BookwormApp.Bookworm.controlNavigation(aBook);
-		//set the current value of the page slider
-		BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
-		return aBook;
-	}
-
-	public static void handleBookMark(string action){
-		//get the book being currently read
-		BookwormApp.Book aBook = libraryViewMap.get(locationOfEBookCurrentlyRead);
-		switch(action){
-			case "DISPLAY":
-				if(aBook != null && aBook.getBookmark() != null && aBook.getBookmark().index_of(aBook.getBookPageNumber().to_string()) != -1){
-					//display bookmark as active
-					BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(true);
-					BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
-				}else{
-					//display bookmark as inactive
-					BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
-					BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(true);
-				}
-				break;
-			case "ACTIVE_CLICKED":
-				BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
-				BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(true);
-				//set the bookmark
-				aBook.setBookmark(aBook.getBookPageNumber(), action);
-				break;
-			case "INACTIVE_CLICKED":
-				BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(true);
-				BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
-				//set the bookmark
-				aBook.setBookmark(aBook.getBookPageNumber(), action);
-				break;
-			default:
-				break;
-		}
-		//update book details to libraryView Map
-		if(aBook != null){
-			debug("updating libraryViewMap with bookmark info...");
-			libraryViewMap.set(locationOfEBookCurrentlyRead, aBook);
-		}
 	}
 
 	public static BookwormApp.Book genericParser(owned BookwormApp.Book aBook){

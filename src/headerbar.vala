@@ -150,7 +150,7 @@ public class BookwormApp.AppHeaderBar {
         //set UI in library view mode
         bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
         BookwormApp.Book currentBookForContentList = bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead);
-        currentBookForContentList = BookwormApp.Bookworm.renderPage(bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead), "");
+        currentBookForContentList = BookwormApp.contentHandler.renderPage(bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead), "");
         bookwormApp.libraryViewMap.set(bookwormApp.locationOfEBookCurrentlyRead, currentBookForContentList);
         bookwormApp.toggleUIState();
       }
@@ -169,11 +169,11 @@ public class BookwormApp.AppHeaderBar {
     });
 
     bookmark_active_button.clicked.connect (() => {
-      BookwormApp.Bookworm.handleBookMark("ACTIVE_CLICKED");
+      BookwormApp.contentHandler.handleBookMark("ACTIVE_CLICKED");
     });
 
     bookmark_inactive_button.clicked.connect (() => {
-      BookwormApp.Bookworm.handleBookMark("INACTIVE_CLICKED");
+      BookwormApp.contentHandler.handleBookMark("INACTIVE_CLICKED");
     });
 
     bookwormApp.library_mode_button.mode_changed.connect ((widget) => {
