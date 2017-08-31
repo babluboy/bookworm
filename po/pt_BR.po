@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-30 13:51+0100\n"
+"POT-Creation-Date: 2017-08-31 21:56+0100\n"
 "PO-Revision-Date: 2017-08-21 15:06+0000\n"
 "Last-Translator: Bruno Gonçalves <bigbruno@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -25,7 +25,7 @@ msgstr "Selecionar pasta"
 msgid "Added "
 msgstr "Adicionado "
 
-#: ../src/window.vala:280 ../src/window.vala:524
+#: ../src/window.vala:280 ../src/window.vala:545
 msgid "Select eBook"
 msgstr "Selecionar eBook"
 

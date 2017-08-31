@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-30 13:51+0100\n"
+"POT-Creation-Date: 2017-08-31 21:56+0100\n"
 "PO-Revision-Date: 2017-08-16 06:34+0000\n"
 "Last-Translator: MichaZ <trans@zoelfel.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Verzeichnis wählen"
 msgid "Added "
 msgstr "Hinzugefügt "
 
-#: ../src/window.vala:280 ../src/window.vala:524
+#: ../src/window.vala:280 ../src/window.vala:545
 msgid "Select eBook"
 msgstr "E-Book auswählen"
 

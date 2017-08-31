@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-30 14:20+0100\n"
+"POT-Creation-Date: 2017-08-31 21:56+0100\n"
 "PO-Revision-Date: 2017-08-24 13:15+0000\n"
 "Last-Translator: Pedro Calogero <sp200091@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Seleccionar carpeta"
 msgid "Added "
 msgstr "Agregado "
 
-#: ../src/window.vala:280 ../src/window.vala:524
+#: ../src/window.vala:280 ../src/window.vala:545
 msgid "Select eBook"
 msgstr "Seleccionar eBook"
 

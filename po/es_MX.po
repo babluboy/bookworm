@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-30 13:51+0100\n"
+"POT-Creation-Date: 2017-08-31 21:56+0100\n"
 "PO-Revision-Date: 2017-08-06 12:40+0000\n"
 "Last-Translator: Alain Meza <alainhuntt@gmail.com>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/"
@@ -31,7 +31,7 @@ msgstr "Seleccionar carpeta"
 msgid "Added "
 msgstr "Agregado "
 
-#: ../src/window.vala:280 ../src/window.vala:524
+#: ../src/window.vala:280 ../src/window.vala:545
 msgid "Select eBook"
 msgstr "Seleccionar eBook"
 

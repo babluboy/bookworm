@@ -422,6 +422,27 @@ public class BookwormApp.AppWindow {
       return false;
     });
 
+    //capture key press on the library widget - toggle between list and grid view
+    bookLibrary_ui_box.add_events (Gdk.EventMask.KEY_PRESS_MASK);
+    bookLibrary_ui_box.can_focus = true;
+    bookLibrary_ui_box.key_press_event.connect ((ev) => {
+      if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {//Capture Ctrl key press
+        isControlKeyPressed = true;
+      }
+      if (isControlKeyPressed && (ev.keyval == Gdk.Key.L || ev.keyval == Gdk.Key.l)){// Control and D keys pressed - toggle bookmark
+        isControlKeyPressed = false; //stop the action re-executing immediately
+        if(settings.library_view_mode == BookwormApp.Constants.BOOKWORM_UI_STATES[5]){
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+        }else{
+          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
+        }
+        settings.library_view_mode = BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE;
+        BookwormApp.Bookworm.toggleUIState();
+
+      }
+      return false;
+    });
+
     //capture the url clicked on the webview and action the navigation type clicks
     aWebView.decide_policy.connect ((decision, type) => {
      if(type == WebKit.PolicyDecisionType.RESPONSE){

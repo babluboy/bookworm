@@ -523,7 +523,8 @@ public class BookwormApp.Bookworm : Granite.Application {
       BookwormApp.AppWindow.library_list_scroll.set_visible(false);
 			BookwormApp.AppWindow.library_grid_scroll.set_visible(true);
 			BookwormApp.AppWindow.library_grid.show_all();
-    }
+			BookwormApp.AppWindow.bookLibrary_ui_box.grab_focus();
+		}
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
 			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
 			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
@@ -531,6 +532,7 @@ public class BookwormApp.Bookworm : Granite.Application {
       BookwormApp.AppWindow.library_grid_scroll.set_visible(false);
 			BookwormApp.AppWindow.library_list_scroll.set_visible(true);
 			BookwormApp.AppWindow.library_table_treeview.show_all();
+			BookwormApp.AppWindow.library_table_treeview.grab_focus();
 		}
 
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
