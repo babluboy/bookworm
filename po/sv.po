@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 21:56+0100\n"
+"POT-Creation-Date: 2017-08-31 22:25+0100\n"
 "PO-Revision-Date: 2017-08-11 07:08+0000\n"
 "Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Välj mapp"
 msgid "Added "
 msgstr "Lade till "
 
-#: ../src/window.vala:280 ../src/window.vala:545
+#: ../src/window.vala:280 ../src/window.vala:557
 msgid "Select eBook"
 msgstr "Välj e-bok"
 

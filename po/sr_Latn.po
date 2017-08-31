@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 21:56+0100\n"
+"POT-Creation-Date: 2017-08-31 22:25+0100\n"
 "PO-Revision-Date: 2017-07-25 08:58+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://hosted.weblate.org/projects/bookworm/"
@@ -33,7 +33,7 @@ msgstr "Odaberi sliku"
 msgid "Added "
 msgstr ""
 
-#: ../src/window.vala:280 ../src/window.vala:545
+#: ../src/window.vala:280 ../src/window.vala:557
 msgid "Select eBook"
 msgstr "Odaberi eKnjigu"
 

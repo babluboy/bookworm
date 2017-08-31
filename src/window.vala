@@ -368,6 +368,18 @@ public class BookwormApp.AppWindow {
     //capture key press events on the webview reader
     bool isControlKeyPressed = false;
     aWebView.key_press_event.connect ((ev) => {
+        if ((ev.keyval == Gdk.Key.B || ev.keyval == Gdk.Key.b)) {// B Key pressed, return to Library View
+          //Set action of return to Library View if the current view is Reading View
+          if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+            //Get the current scroll position of the book and add it to the book object
+            (BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead)).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
+            //Update header to remove title of book being read
+            BookwormApp.AppHeaderBar.headerbar.title = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
+            //set UI in library view mode
+            BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
+            BookwormApp.Bookworm.toggleUIState();
+          }
+        }
         if (ev.keyval == Gdk.Key.Left) {// Left Key pressed, move page backwards
           //get object for this ebook
           BookwormApp.Book aBookLeftKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
