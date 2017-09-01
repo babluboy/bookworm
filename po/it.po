@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-31 22:25+0100\n"
 "PO-Revision-Date: 2017-09-01 11:13+0000\n"
-"Last-Translator: anonymous <>\n"
+"Last-Translator: Alessio Sacco <alessiosacco95@gmail.com>\n"
 "Language-Team: Italian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/it/>\n"
 "Language: it\n"
@@ -96,8 +96,7 @@ msgstr ""
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
 msgstr ""
-"Trovato formato mime invalido. Controlla il formato del libro alla posizione:"
-" "
+"Trovato mime type invalido. Controlla il formato del libro alla posizione: "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure valid eBook file at location : "
