@@ -1,0 +1,16 @@
+language: generic
+
+services:
+ - docker
+
+env:
+ - DEPENDENCY_PACKAGES="cmake libgee-0.8-dev libgranite-dev  debhelper libgtk-3-dev libgranite-dev libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev libsqlite3-dev libpoppler-glib-dev valac"
+
+install:
+ - docker pull elementary/docker:loki
+ - docker run -v "$PWD":/tmp/build-dir elementary/docker:loki /bin/sh -c "apt-get update && apt-get -y install $DEPENDENCY_PACKAGES && cd /tmp/build-dir && cmake . && env CTEST_OUTPUT_ON_FAILURE=true make"
+ - docker pull elementary/docker:loki-unstable
+ - docker run -v "$PWD":/tmp/build-dir elementary/docker:loki-unstable /bin/sh -c "apt-get update && apt-get -y install $DEPENDENCY_PACKAGES && cd /tmp/build-dir && cmake . && env CTEST_OUTPUT_ON_FAILURE=true make"
+
+script:
+ - echo BUILDS PASSED
