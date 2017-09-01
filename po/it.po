@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-31 22:25+0100\n"
-"PO-Revision-Date: 2017-09-01 11:11+0000\n"
-"Last-Translator: Alessio Sacco <alessiosacco95@gmail.com>\n"
+"PO-Revision-Date: 2017-09-01 11:12+0000\n"
+"Last-Translator: anonymous <>\n"
 "Language-Team: Italian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/it/>\n"
 "Language: it\n"
@@ -35,19 +35,19 @@ msgstr "Mostra il numero di versione"
 
 #: ../src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Esegui Bookworm in modalità di debug"
 
 #: ../src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Esegui Bookworm in info mode"
 
 #: ../src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Aggiungi automaticamente nuovi ebooks dalle cartelle monitorate"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Un lettore di eBook"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
