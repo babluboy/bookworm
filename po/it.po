@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-31 22:25+0100\n"
-"PO-Revision-Date: 2017-09-01 11:16+0000\n"
-"Last-Translator: Alessio Sacco <alessiosacco95@gmail.com>\n"
+"PO-Revision-Date: 2017-09-01 11:18+0000\n"
+"Last-Translator: anonymous <>\n"
 "Language-Team: Italian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/it/>\n"
 "Language: it\n"
@@ -134,97 +134,99 @@ msgstr "Contenuti"
 
 #: ../src/constants.vala:53
 msgid "Content #"
-msgstr ""
+msgstr "Contenuto #"
 
 #: ../src/constants.vala:54
 msgid "Bookmarks"
-msgstr ""
+msgstr "Segnalibri"
 
 #: ../src/constants.vala:55
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Segnalibro #NNN per la sezione PPP"
 
 #: ../src/constants.vala:56
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Clicca un collegamento per andare alla sezione del segnalibro"
 
 #: ../src/constants.vala:57
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"Nessun segnalibro impostato in BBB, clicca l'icona di Bookworm sulla barra "
+"superiore per impostare un segnalibro sulla pagina"
 
 #: ../src/constants.vala:58
 msgid "Search Results"
-msgstr ""
+msgstr "Risultati della ricerca"
 
 #: ../src/constants.vala:59
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Trovati i seguenti risultati per '$$$' in &&&:"
 
 #: ../src/constants.vala:60
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Nessun risultato trovato per '$$$' in &&&"
 
 #: ../src/constants.vala:61
 msgid "Edit Info for"
-msgstr ""
+msgstr "Modifica le informazioni per"
 
 #: ../src/constants.vala:62 ../src/constants.vala:66
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Aggiorna la copertina"
 
 #: ../src/constants.vala:63
 msgid "Update Title"
-msgstr ""
+msgstr "Aggiorna il titolo"
 
 #: ../src/constants.vala:64
 msgid "Update Tags"
-msgstr ""
+msgstr "Aggiorna i Tag"
 
 #: ../src/constants.vala:65
 msgid "Update Author"
-msgstr ""
+msgstr "Aggiorna l'autore"
 
 #: ../src/constants.vala:67
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "Mostra a schermo intero (F11)"
 
 #: ../src/constants.vala:68
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "Esci dalla modalità a schermo intero (Esc)"
 
 #: ../src/constants.vala:69
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Controlla il significato della parola"
 
 #: ../src/constants.vala:70
 msgid "Books"
-msgstr ""
+msgstr "Libri"
 
 #: ../src/constants.vala:71
 msgid "Images"
-msgstr ""
+msgstr "Immagini"
 
 #: ../src/constants.vala:72
 msgid "All Files"
-msgstr ""
+msgstr "Tutti i file"
 
 #: ../src/constants.vala:73
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: ../src/constants.vala:74
 msgid "Author"
-msgstr ""
+msgstr "Autore"
 
 #: ../src/constants.vala:75
 msgid "Last Opened"
-msgstr ""
+msgstr "Ultima apertura"
 
 #: ../src/constants.vala:76
 msgid "Rating"
-msgstr ""
+msgstr "Voto"
 
 #: ../src/constants.vala:77
 msgid "Tags"
