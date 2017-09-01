@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-31 22:25+0100\n"
-"PO-Revision-Date: 2017-09-01 07:10+0000\n"
+"PO-Revision-Date: 2017-09-01 15:29+0000\n"
 "Last-Translator: Tomáš Mládek <tomas0mladek@gmail.com>\n"
 "Language-Team: Czech "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/cs/>\n"
@@ -85,17 +85,19 @@ msgstr "Vytvořte svou knihovnu přidáním e-knih"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Vybrat e-knihu ke čtení"
 
 #: ../src/constants.vala:44
 msgid ""
 "Problem in extracting contents of book. Ensure valid eBook file at "
 "location : "
 msgstr ""
+"Problém v extrahování obsahu knihy. Ujistěte se, že se platný eBook soubor "
+"nachází na : "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
-msgstr ""
+msgstr "Zjištěn neplatný typ Mime. Zkontrolujte formát knihy na místě: "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure valid eBook file at location : "
