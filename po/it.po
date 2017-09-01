@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-31 22:25+0100\n"
-"PO-Revision-Date: 2017-09-01 11:12+0000\n"
-"Last-Translator: Alessio Sacco <alessiosacco95@gmail.com>\n"
+"PO-Revision-Date: 2017-09-01 11:13+0000\n"
+"Last-Translator: anonymous <>\n"
 "Language-Team: Italian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/it/>\n"
 "Language: it\n"
@@ -55,45 +55,49 @@ msgstr "Traduttori di Weblate"
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr ""
+msgstr "Sito web"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "Non disponibile"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "Lettore di eBook"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr ""
+msgstr "Cerca questo libro..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Cerca per Titolo, Autore e Tag"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
-msgstr ""
+msgstr "Bookworm non ha libri!"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Costruisci la tua biblioteca aggiungendo eBook"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Seleziona un eBook da leggere"
 
 #: ../src/constants.vala:44
 msgid ""
 "Problem in extracting contents of book. Ensure valid eBook file at "
 "location : "
 msgstr ""
+"Si è verificato un problema durante l'estrazione dei contenuti del libro. "
+"Verifica che sia presente un file eBook valido nella posizione: "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
 msgstr ""
+"Trovato formato mime invalido. Controlla il formato del libro alla posizione:"
+" "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure valid eBook file at location : "
