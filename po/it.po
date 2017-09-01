@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-31 22:25+0100\n"
 "PO-Revision-Date: 2017-09-01 11:15+0000\n"
-"Last-Translator: Alessio Sacco <alessiosacco95@gmail.com>\n"
+"Last-Translator: anonymous <>\n"
 "Language-Team: Italian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/it/>\n"
 "Language: it\n"
@@ -110,13 +110,15 @@ msgstr ""
 
 #: ../src/constants.vala:48
 msgid "Bookworm does not support the format of the file found at location : "
-msgstr ""
+msgstr "Bookworm non supporta il formato del file presente alla posizione: "
 
 #: ../src/constants.vala:49
 msgid ""
 "Requested content could not be fetched. Please remove and add eBook file at "
 "location : "
 msgstr ""
+"Impossibile prendere il contenuto richiesto. Per favore rimuovere e "
+"aggiungere il file eBook alla posizione: "
 
 #: ../src/constants.vala:50
 msgid "Library"
