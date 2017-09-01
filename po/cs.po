@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-31 22:25+0100\n"
-"PO-Revision-Date: 2017-09-01 07:05+0000\n"
+"PO-Revision-Date: 2017-09-01 07:10+0000\n"
 "Last-Translator: Tomáš Mládek <tomas0mladek@gmail.com>\n"
 "Language-Team: Czech "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/cs/>\n"
@@ -28,7 +28,7 @@ msgstr "Přidáno "
 #: ../src/window.vala:280 ../src/window.vala:557
 #, fuzzy
 msgid "Select eBook"
-msgstr "Vybrat eBook"
+msgstr "Vybrat e-knihu"
 
 #: ../src/bookworm.vala:109
 msgid "Display version number"
@@ -48,7 +48,7 @@ msgstr "Automaticky přidat nové knihy ze sledovaných složek"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Čtečka elektronických knih"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
@@ -56,31 +56,32 @@ msgstr ""
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr ""
+msgstr "Webová stránka"
 
 #: ../src/constants.vala:37
+#, fuzzy
 msgid "Not Available"
-msgstr ""
+msgstr "Nedostupný"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "Čtečka e-knih"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr ""
+msgstr "Vyhledávat v této knize..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Hledat dle názvu, autora a značky"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
-msgstr ""
+msgstr "Vypadá to, že Bookworm nemá žádné knihy!"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Vytvořte svou knihovnu přidáním e-knih"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
