@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 22:25+0100\n"
+"POT-Creation-Date: 2017-09-05 08:59+0100\n"
 "PO-Revision-Date: 2017-07-13 23:01+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -22,28 +22,28 @@ msgstr "选择图像"
 msgid "Select folder"
 msgstr "选择图像"
 
-#: ../src/library.vala:539
+#: ../src/library.vala:540
 msgid "Added "
 msgstr ""
 
-#: ../src/window.vala:280 ../src/window.vala:557
+#: ../src/window.vala:279 ../src/window.vala:556
 msgid "Select eBook"
 msgstr "选择电子书"
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr "显示版本号"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "运行 Bookworm (调试模式)"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:112
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "运行 Bookworm (调试模式)"
 
-#: ../src/bookworm.vala:112
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr ""
 

@@ -25,12 +25,12 @@ public class BookwormApp.contentHandler {
   public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
     debug("Starting to render page contents for book ["+aBook.getBookTitle()+"] for direction ["+direction+"]");
     int currentContentLocation = aBook.getBookPageNumber();
-		string searchText = "";
+		//string searchText = "";
 		//handle loading page with search string
-		if(direction.index_of("SEARCH:") != -1){
+		/*if(direction.index_of("SEARCH:") != -1){
 			searchText = direction.replace("SEARCH:", "");
 			direction = "SEARCH";
-		}
+		}*/
 		//set page number based on direction of navigation
 		switch(direction){
 			case "FORWARD"://This is for moving the book forward
@@ -48,7 +48,6 @@ public class BookwormApp.contentHandler {
 				break;
 
 			case "SEARCH"://Load the page and scroll to the search text
-				//Scroll the page to where the search text is present
 
 				break;
 
@@ -150,7 +149,13 @@ public class BookwormApp.contentHandler {
     }
     //Highlight and Scroll To Search String on page if required
     if("SEARCH" == mode){
-      BookwormApp.Bookworm.onLoadJavaScript.append(" highlightText('"  +BookwormApp.AppHeaderBar.headerSearchBar.get_text()+"');");
+      if(BookwormApp.Bookworm.bookTextSearchString.length > 1){
+        string[] searchTokens = BookwormApp.Bookworm.bookTextSearchString.split("#~~#");
+        if(searchTokens.length == 2){
+          searchTokens[1] = searchTokens[1].replace("\"", "&quot;").replace("'", "&#39;");
+          BookwormApp.Bookworm.onLoadJavaScript.append(" highlightText(encodeURIComponent('"+searchTokens[1]+"'));");
+        }
+      }
     }
     //complete the onload javascript string
     BookwormApp.Bookworm.onLoadJavaScript.append("\"");

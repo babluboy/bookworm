@@ -133,6 +133,7 @@ public class BookwormApp.AppHeaderBar {
         BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name ("searchresults-list"));
       }
     });
+
     bookwormApp.library_view_button.clicked.connect (() => {
       //Set action of return to Library View if the current view is Reading View
       if(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){

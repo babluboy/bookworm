@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 22:25+0100\n"
+"POT-Creation-Date: 2017-09-05 08:59+0100\n"
 "PO-Revision-Date: 2017-08-24 13:15+0000\n"
 "Last-Translator: Pedro Calogero <sp200091@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
@@ -21,27 +21,27 @@ msgstr "Seleccionar imagen"
 msgid "Select folder"
 msgstr "Seleccionar carpeta"
 
-#: ../src/library.vala:539
+#: ../src/library.vala:540
 msgid "Added "
 msgstr "Agregado "
 
-#: ../src/window.vala:280 ../src/window.vala:557
+#: ../src/window.vala:279 ../src/window.vala:556
 msgid "Select eBook"
 msgstr "Seleccionar eBook"
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Mostrar número de versión"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Ejecutar Bookworm en modo de depuración"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
 msgstr "Ejecutar Bookworm en modo de depuración"
 
-#: ../src/bookworm.vala:112
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr "Agregar automaticamente libros nuevos desde las carpetas vigiladas"
 

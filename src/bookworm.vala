@@ -85,6 +85,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static StringBuilder pathsOfBooksInLibraryOnLoadStr = new StringBuilder("");
 	public static StringBuilder onLoadJavaScript = new StringBuilder("");
 	public static string bookwormScripts = "";
+	public static string bookTextSearchString = "";
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;

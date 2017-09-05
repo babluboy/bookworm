@@ -48,11 +48,10 @@ public class BookwormApp.AppWindow {
 
     //Create a grid to display the books cover images in library
     library_grid = new Gtk.FlowBox();
-    library_grid.set_border_width (BookwormApp.Constants.SPACING_WIDGETS);
-    library_grid.column_spacing = BookwormApp.Constants.SPACING_WIDGETS;
+    library_grid.set_border_width (0);
+    library_grid.column_spacing = 0;
     library_grid.row_spacing = BookwormApp.Constants.SPACING_WIDGETS;
     library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-    library_grid.homogeneous = true;
     library_grid.set_valign(Gtk.Align.START);
     library_grid.set_filter_func(BookwormApp.Library.libraryViewFilter);
 

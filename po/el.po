@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 22:25+0100\n"
+"POT-Creation-Date: 2017-09-05 08:59+0100\n"
 "PO-Revision-Date: 2017-08-03 11:43+0000\n"
 "Last-Translator: tony <tonyzet988@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -22,28 +22,28 @@ msgstr "Επιλογή Εικόνας"
 msgid "Select folder"
 msgstr "Επιλογή Εικόνας"
 
-#: ../src/library.vala:539
+#: ../src/library.vala:540
 msgid "Added "
 msgstr ""
 
-#: ../src/window.vala:280 ../src/window.vala:557
+#: ../src/window.vala:279 ../src/window.vala:556
 msgid "Select eBook"
 msgstr "Επιλογή Βιβλίου"
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Προβολή αριθμού έκδοσης"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:112
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
 
-#: ../src/bookworm.vala:112
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr ""
 

@@ -180,6 +180,7 @@ public class BookwormApp.Library {
 
     //Add the overlaid images to a EventBox to allow mouse click actions to be captures
     Gtk.EventBox aEventBox = new Gtk.EventBox();
+    aEventBox.set_border_width (BookwormApp.Constants.SPACING_WIDGETS/2);
 		aEventBox.set_name(aBook.getBookLocation());
     aEventBox.add(aOverlayImage);
 

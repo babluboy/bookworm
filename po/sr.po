@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 22:25+0100\n"
+"POT-Creation-Date: 2017-09-05 08:59+0100\n"
 "PO-Revision-Date: 2017-07-25 08:55+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bookworm/"
@@ -23,28 +23,28 @@ msgstr "Одабери слику"
 msgid "Select folder"
 msgstr "Одабери слику"
 
-#: ../src/library.vala:539
+#: ../src/library.vala:540
 msgid "Added "
 msgstr ""
 
-#: ../src/window.vala:280 ../src/window.vala:557
+#: ../src/window.vala:279 ../src/window.vala:556
 msgid "Select eBook"
 msgstr "Одабери еКњигу"
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Прикажи верзију"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Покрени Bookworm у режиму за отклањање грешака"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:112
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Покрени Bookworm у режиму за отклањање грешака"
 
-#: ../src/bookworm.vala:112
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr ""
 

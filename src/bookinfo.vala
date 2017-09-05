@@ -140,7 +140,8 @@ public class BookwormApp.Info:Gtk.Window {
         aBook.setBookPageNumber(aBook.getBookContentList().index_of(searchResultLinkButton.get_uri ().strip()));
         //update book details to libraryView Map
         BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-        aBook = BookwormApp.contentHandler.renderPage(aBook, "SEARCH:"+BookwormApp.AppHeaderBar.headerSearchBar.get_text());
+        BookwormApp.Bookworm.bookTextSearchString = BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "#~~#" + searchResultLinkButton.get_label();
+        aBook = BookwormApp.contentHandler.renderPage(aBook, "SEARCH");
         //Set the mode back to Reading mode
         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
         BookwormApp.Bookworm.getAppInstance().toggleUIState();

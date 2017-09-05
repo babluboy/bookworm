@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 22:25+0100\n"
+"POT-Creation-Date: 2017-09-05 08:59+0100\n"
 "PO-Revision-Date: 2017-08-19 07:52+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
@@ -22,27 +22,27 @@ msgstr "Абраць выяву"
 msgid "Select folder"
 msgstr "Абраць каталог"
 
-#: ../src/library.vala:539
+#: ../src/library.vala:540
 msgid "Added "
 msgstr "Дададзеная "
 
-#: ../src/window.vala:280 ../src/window.vala:557
+#: ../src/window.vala:279 ../src/window.vala:556
 msgid "Select eBook"
 msgstr "Абраць электронную кнігу"
 
-#: ../src/bookworm.vala:109
+#: ../src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Паказаць нумар версіі"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Запусціць Bookworm у рэжыме адладкі"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
 msgstr "Запусціць Bookworm у інфармацыйным рэжыме"
 
-#: ../src/bookworm.vala:112
+#: ../src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr "Аўтаматычна дадаваць новыя кнігі з тэчак, што адсочваюцца"
 

@@ -6,9 +6,16 @@
     }
   }
 
-  function highlightText(searchText) {
-      findAndReplace(searchText, "<span class='bookworm_search_result_highlight'>"+searchText+"</span>");
+  function highlightText(highlightText) {
+      highlightText = decodeURIComponent (highlightText);
+      findAndReplace(highlightText, "<span class='bookworm_search_result_highlight'>"+highlightText+"</span>");
       var resultText = document.getElementsByClassName("bookworm_search_result_highlight")[0];
+      resultText.scrollIntoView();
+  }
+
+  function scrollToSearchText(searchText) {
+      findAndReplace(searchText, "<span class='bookworm_search_result_scroll'>"+searchText+"</span>");
+      var resultText = document.getElementsByClassName("bookworm_search_result_scroll")[0];
       resultText.scrollIntoView();
   }
 
@@ -33,6 +40,11 @@
           }
           var parent = currentNode.parentNode,
               frag = (function(){
+                    var matchedResult = new RegExp(searchText, 'ig').exec(currentNode.data);
+                    replacement = replacement.replace(searchText, matchedResult[0]),
+                    wrap = document.createElement('div'),
+                    frag = document.createDocumentFragment();
+                    wrap.innerHTML = html;
                   var html = currentNode.data.replace(regex, replacement),
                       wrap = document.createElement('div'),
                       frag = document.createDocumentFragment();
