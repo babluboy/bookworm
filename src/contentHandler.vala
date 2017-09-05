@@ -200,24 +200,20 @@ public class BookwormApp.contentHandler {
     return contents.str;
   }
 
-  public static HashMap<string,string> searchBookContents(BookwormApp.Book aBook, string searchString){
-    HashMap<string,string> searchResultsMap = new HashMap<string,string>();
+  public static void searchHTMLContents(){
     StringBuilder bookSearchResults = new StringBuilder ("");
     int searchResultCount = 1;
-    foreach (string aBookContentFile in aBook.getBookContentList()) {
-      bookSearchResults.assign("");
-      //execute search
-      bookSearchResults.assign(BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.SEARCH_SCRIPT_LOCATION + " \"" + aBookContentFile + "\" \"" + BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "\""));
-      //process search results
-      if(bookSearchResults.str.strip().length > 0){
-        string[] individualLines = bookSearchResults.str.strip().split ("\n",-1);
-        foreach ( string individualLine in individualLines) {
-          searchResultsMap.set(searchResultCount.to_string()+"~~"+aBookContentFile, individualLine.strip());
-          searchResultCount++;
-        }
+    BookwormApp.Bookworm.searchResultsMap.clear();
+    //execute search
+    bookSearchResults.assign(BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.SEARCH_SCRIPT_LOCATION + " \"" + BookwormApp.Bookworm.aContentFileToBeSearched.str + "\" \"" + BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "\""));
+    //process search results
+    if(bookSearchResults.str.strip().length > 0){
+      string[] individualLines = bookSearchResults.str.strip().split ("\n",-1);
+      foreach ( string individualLine in individualLines) {
+        BookwormApp.Bookworm.searchResultsMap.set(searchResultCount.to_string()+"~~"+BookwormApp.Bookworm.aContentFileToBeSearched.str, individualLine.strip());
+        searchResultCount++;
       }
     }
-    return searchResultsMap;
   }
 
   public static void refreshCurrentPage(){

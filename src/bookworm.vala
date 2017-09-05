@@ -86,6 +86,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static StringBuilder onLoadJavaScript = new StringBuilder("");
 	public static string bookwormScripts = "";
 	public static string bookTextSearchString = "";
+	public static HashMap<string,string> searchResultsMap = new HashMap<string,string>();
+  public static StringBuilder aContentFileToBeSearched = new StringBuilder ("");
 
 	construct {
 		application_id = BookwormApp.Constants.bookworm_id;
@@ -514,9 +516,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		if(BookwormApp.AppWindow.infobarLabel.get_text().length < 1){
 			BookwormApp.AppWindow.infobar.hide();
 		}
-
-		//Set-up UI for Library View
-		//Show the grid view or the list view based on state
+		//Set-up UI specific for Library Grid View Mode
     if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
 			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
 			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])
@@ -526,21 +526,22 @@ public class BookwormApp.Bookworm : Granite.Application {
 			BookwormApp.AppWindow.library_grid.show_all();
 			BookwormApp.AppWindow.bookLibrary_ui_box.grab_focus();
 		}
+		//Set-up UI specific for Library List View Mode
 		if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
 			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
 			 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
 		{
-      BookwormApp.AppWindow.library_grid_scroll.set_visible(false);
-			BookwormApp.AppWindow.library_list_scroll.set_visible(true);
-			BookwormApp.AppWindow.library_table_treeview.show_all();
-			BookwormApp.AppWindow.library_table_treeview.grab_focus();
+	      BookwormApp.AppWindow.library_grid_scroll.set_visible(false);
+				BookwormApp.AppWindow.library_list_scroll.set_visible(true);
+				BookwormApp.AppWindow.library_table_treeview.show_all();
+				BookwormApp.AppWindow.library_table_treeview.grab_focus();
 		}
-
+		//Set-up UI for Library View Mode (List or Grid)
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
 			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
 			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3] ||
-			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5]
-			){
+			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5])
+		{
 			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
 			library_mode_button.set_visible(true);
 			content_list_button.set_visible(false);
@@ -556,7 +557,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//Set-up UI for Reading Mode
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-			//UI for Reading View
 			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
 			library_mode_button.set_visible(false);
 			content_list_button.set_visible(true);
@@ -571,17 +571,16 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//Set-up UI for Book Meta Data / Content View Mode
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
-			//UI for Reading View
 			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
 			BookwormApp.Info.info_box.show_all();
 			library_mode_button.set_visible(false);
-			content_list_button.set_visible(true);
+			content_list_button.set_visible(false);
 			library_view_button.set_visible(true);
 			library_view_button.set_label(BookwormApp.Constants.TEXT_FOR_RESUME_BUTTON);
 			BookwormApp.AppWindow.bookLibrary_ui_box.set_visible(false);
 			BookwormApp.AppWindow.bookReading_ui_box.set_visible(false);
 			BookwormApp.Info.info_box.set_visible(true);
-			BookwormApp.Info.stack.set_visible_child_name ("content-list");
+			BookwormApp.Info.stack.set_visible_child_name (settings.current_info_tab);
 			prefButton.set_visible(false);
 			BookwormApp.AppHeaderBar.bookmark_active_button.set_visible(false);
 			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);

@@ -126,7 +126,7 @@ public class BookwormApp.AppHeaderBar {
       //Perform book search only if the Reading View or Info View is active
       if(bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1] || bookwormApp.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
         BookwormApp.Book aBook = bookwormApp.libraryViewMap.get(bookwormApp.locationOfEBookCurrentlyRead);
-        BookwormApp.Info.populateSearchResults(aBook);
+        BookwormApp.Info.populateSearchResults();
         //Set the mode to Info View Mode
         bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
         bookwormApp.toggleUIState();
@@ -161,7 +161,12 @@ public class BookwormApp.AppHeaderBar {
       //Set the mode to Content View Mode
       bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
       bookwormApp.toggleUIState();
-      BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name ("content-list"));
+      //Refresh bookmark info if the current tab is Bookmarks
+      if("bookmark-list"==settings.current_info_tab){
+        BookwormApp.Info.populateBookmarks();
+      }
+      //Open the Info section for the last viewed tab
+      BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name (settings.current_info_tab));
     });
 
     bookwormApp.prefButton.clicked.connect (() => {

@@ -367,7 +367,7 @@ public class BookwormApp.AppWindow {
     //capture key press events on the webview reader
     bool isControlKeyPressed = false;
     aWebView.key_press_event.connect ((ev) => {
-        if ((ev.keyval == Gdk.Key.B || ev.keyval == Gdk.Key.b)) {// B Key pressed, return to Library View
+        if ((ev.keyval == Gdk.Key.L || ev.keyval == Gdk.Key.l)) {// B Key pressed, return to Library View
           //Set action of return to Library View if the current view is Reading View
           if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
             //Get the current scroll position of the book and add it to the book object
@@ -440,7 +440,7 @@ public class BookwormApp.AppWindow {
       if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {//Capture Ctrl key press
         isControlKeyPressed = true;
       }
-      if (isControlKeyPressed && (ev.keyval == Gdk.Key.L || ev.keyval == Gdk.Key.l)){// Control and D keys pressed - toggle bookmark
+      if (isControlKeyPressed && (ev.keyval == Gdk.Key.V || ev.keyval == Gdk.Key.v)){// Control and V keys pressed - toggle Library View
         isControlKeyPressed = false; //stop the action re-executing immediately
         if(settings.library_view_mode == BookwormApp.Constants.BOOKWORM_UI_STATES[5]){
           BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];

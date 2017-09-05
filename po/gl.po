@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-05 08:59+0100\n"
+"POT-Creation-Date: 2017-09-05 22:25+0100\n"
 "PO-Revision-Date: 2017-09-03 00:04+0000\n"
 "Last-Translator: Pablo Mariño <pablo.marino.boga@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bookworm/"
@@ -29,19 +29,19 @@ msgstr "Engadido "
 msgid "Select eBook"
 msgstr "Escolle un eBook"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:112
 msgid "Display version number"
 msgstr "Ver o numero da version"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:113
 msgid "Run Bookworm in debug mode"
 msgstr "Executa Bookworm en modo debug"
 
-#: ../src/bookworm.vala:112
+#: ../src/bookworm.vala:114
 msgid "Run Bookworm in info mode"
 msgstr "Executa Bookworm en modo info"
 
-#: ../src/bookworm.vala:113
+#: ../src/bookworm.vala:115
 msgid "Automatically add new books from watched folders"
 msgstr "Engadir automaticamente libros das carpetas vixiadas"
 
@@ -164,216 +164,221 @@ msgid "Search Results"
 msgstr "Resultados da procura"
 
 #: ../src/constants.vala:59
+#, fuzzy
+msgid "Searching for '$$$' in &&&:"
+msgstr "Non se atoparon coincidencias para '$$$' en &&&"
+
+#: ../src/constants.vala:60
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Atopáronse as seguintes coincidencias para '$$$' en &&&:"
 
-#: ../src/constants.vala:60
+#: ../src/constants.vala:61
 msgid "No matches found for '$$$' in &&&"
 msgstr "Non se atoparon coincidencias para '$$$' en &&&"
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:62
 msgid "Edit Info for"
 msgstr "Editar información para"
 
-#: ../src/constants.vala:62 ../src/constants.vala:66
+#: ../src/constants.vala:63 ../src/constants.vala:67
 msgid "Update Cover Image"
 msgstr "Actualizar a Portada"
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:64
 msgid "Update Title"
 msgstr "Actualizar o Título"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:65
 msgid "Update Tags"
 msgstr "Actualizar as Etiquetas"
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:66
 msgid "Update Author"
 msgstr "Actualiza Autor"
 
-#: ../src/constants.vala:67
+#: ../src/constants.vala:68
 msgid "Enter full screen view (F11)"
 msgstr "Pasar a modo de pantalla completa (F11)"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:69
 msgid "Exit full screen view (Esc)"
 msgstr "Sair da vista de pantalla completa (Esc)"
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:70
 msgid "Check Word Meaning"
 msgstr "Procura o significado da palabra"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:71
 msgid "Books"
 msgstr "Libros"
 
-#: ../src/constants.vala:71
+#: ../src/constants.vala:72
 msgid "Images"
 msgstr "Imaxes"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:73
 msgid "All Files"
 msgstr "Todos os Ficheiros"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:74
 msgid "Title"
 msgstr "Título"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:75
 msgid "Author"
 msgstr "Autor"
 
-#: ../src/constants.vala:75
+#: ../src/constants.vala:76
 msgid "Last Opened"
 msgstr "Derradeiro aberto"
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:77
 msgid "Rating"
 msgstr "Puntuación"
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:78
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:79
 msgid "Today"
 msgstr "Hoxe"
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:80
 msgid "Yesterday"
 msgstr "Onte"
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:81
 msgid "Days"
 msgstr "Días"
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:83
 msgid "Add books to library"
 msgstr "Engade libros á biblioteca"
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:84
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Elimina os libros seleccionados da biblioteca (o ficheiro do eBook non será "
 "eliminado)"
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:85
 msgid "Select one or more books in library"
 msgstr "Seleccione un ou máis Libros da biblioteca"
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:86
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Ver Tabla de Contidos, Marcadores e Resultados de Procura"
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:87
 msgid "Set reading preferences"
 msgstr "Defina as preferencias de lectura"
 
-#: ../src/constants.vala:87
+#: ../src/constants.vala:88
 msgid "Click to bookmark this page"
 msgstr "Clica para engadir esta páxina a marcadores"
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:89
 msgid "Click to remove this bookmark"
 msgstr "Clic para eliminar este marcador"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:90
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Aumentar o tamaño da fontea Increase (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:91
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Diminuir o tamaño da fonte (Ctrl + '-')"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:92
 msgid "Increase line width"
 msgstr "Aumentar o ancho de liña"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:93
 msgid "Decrease line width"
 msgstr "Diminuir o ancho de liña"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:94
 msgid "Increase line spacing"
 msgstr "Aumentar o espaciado da liña"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:95
 msgid "Decrease line spacing"
 msgstr "Diminuir o espaciado da liña"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:96
 msgid "Update cover image"
 msgstr "Actualizar a Portada"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:97
 msgid "Set theme for this colour profile"
 msgstr "Definir tema para este perfil de cor"
 
-#: ../src/constants.vala:97 ../src/constants.vala:98
+#: ../src/constants.vala:98 ../src/constants.vala:99
 msgid "Enter full screen view and Esc key to exit"
 msgstr "Entra na vista de pantalla completa e a tecla Esc para saír"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:100
 msgid "Add folder to scan for books"
 msgstr "Engade cartafol para escanear na busca de libros"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:101
 msgid "Remove displayed folder from book scan"
 msgstr "Quita o cartafol mostrado do escaneo de libros"
 
-#: ../src/constants.vala:102 ../src/constants.vala:128
+#: ../src/constants.vala:103 ../src/constants.vala:129
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:104
 msgid "Turn on Dark Mode"
 msgstr "Activa o Modo Escuro"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:105
 msgid "Enable cache (opens books faster)"
 msgstr "Habilita cache (abre os Libros máis rápido)"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:106
 msgid "Always show library on start"
 msgstr "Mostrar sempre a biblioteca no inicio"
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:107
 msgid "Enable two page reading"
 msgstr "Habilita  a lectura a doble páxina"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:108
 msgid "Set Font"
 msgstr "Estabelecer a fonte"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:109
 msgid "Customize reading profile"
 msgstr "Personaliza o perfil de lectura"
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:110
 msgid "Text"
 msgstr "Texto"
 
-#: ../src/constants.vala:110
+#: ../src/constants.vala:111
 msgid "Background"
 msgstr "Fondo"
 
-#: ../src/constants.vala:111
+#: ../src/constants.vala:112
 msgid "Add folders to scan for books"
 msgstr "Engade cartafoles para escanear na procura de libros"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:113
 msgid "Profile"
 msgstr "Perfil"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:114
 msgid "Reset to default values"
 msgstr "Restaurar os valores predeterminados"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "Unknown Book"
 msgstr "Libro descoñecido"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:128
 msgid "About"
 msgstr "Acerca de"
 

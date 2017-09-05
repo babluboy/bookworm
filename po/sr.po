@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-05 08:59+0100\n"
+"POT-Creation-Date: 2017-09-05 22:25+0100\n"
 "PO-Revision-Date: 2017-07-25 08:55+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bookworm/"
@@ -31,20 +31,20 @@ msgstr ""
 msgid "Select eBook"
 msgstr "Одабери еКњигу"
 
-#: ../src/bookworm.vala:110
+#: ../src/bookworm.vala:112
 msgid "Display version number"
 msgstr "Прикажи верзију"
 
-#: ../src/bookworm.vala:111
+#: ../src/bookworm.vala:113
 msgid "Run Bookworm in debug mode"
 msgstr "Покрени Bookworm у режиму за отклањање грешака"
 
-#: ../src/bookworm.vala:112
+#: ../src/bookworm.vala:114
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Покрени Bookworm у режиму за отклањање грешака"
 
-#: ../src/bookworm.vala:113
+#: ../src/bookworm.vala:115
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -163,221 +163,226 @@ msgid "Search Results"
 msgstr "Резултат претраге"
 
 #: ../src/constants.vala:59
+#, fuzzy
+msgid "Searching for '$$$' in &&&:"
+msgstr "Нису пронађене подударности за '$$$' у &&&"
+
+#: ../src/constants.vala:60
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Пронађене су следеће подударности за '$$$' у &&&:"
 
-#: ../src/constants.vala:60
+#: ../src/constants.vala:61
 msgid "No matches found for '$$$' in &&&"
 msgstr "Нису пронађене подударности за '$$$' у &&&"
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:62
 msgid "Edit Info for"
 msgstr "Измени информације за"
 
-#: ../src/constants.vala:62 ../src/constants.vala:66
+#: ../src/constants.vala:63 ../src/constants.vala:67
 msgid "Update Cover Image"
 msgstr "Обнови слику насловне стране"
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:64
 msgid "Update Title"
 msgstr "Обнови наслов"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:65
 msgid "Update Tags"
 msgstr "Обнови ознаке"
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:66
 msgid "Update Author"
 msgstr "Обнови аутора"
 
-#: ../src/constants.vala:67
+#: ../src/constants.vala:68
 #, fuzzy
 msgid "Enter full screen view (F11)"
 msgstr "Уђите у режим целог екрана"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:69
 #, fuzzy
 msgid "Exit full screen view (Esc)"
 msgstr "Изађи из режима целог екрана"
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:70
 msgid "Check Word Meaning"
 msgstr "Провери значење речи"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:71
 msgid "Books"
 msgstr "Књиге"
 
-#: ../src/constants.vala:71
+#: ../src/constants.vala:72
 msgid "Images"
 msgstr "Слике"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:73
 msgid "All Files"
 msgstr "Све датотеке"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:74
 msgid "Title"
 msgstr ""
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:75
 #, fuzzy
 msgid "Author"
 msgstr "Обнови аутора"
 
-#: ../src/constants.vala:75
+#: ../src/constants.vala:76
 msgid "Last Opened"
 msgstr ""
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:77
 msgid "Rating"
 msgstr ""
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:78
 msgid "Tags"
 msgstr ""
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:79
 msgid "Today"
 msgstr ""
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:80
 msgid "Yesterday"
 msgstr ""
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:81
 msgid "Days"
 msgstr ""
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:83
 msgid "Add books to library"
 msgstr "Додај књиге у библиотеку"
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:84
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Уклони означене књиге из библиотеке (датотека еКњига неће бити обрисана)"
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:85
 msgid "Select one or more books in library"
 msgstr "Одабери једну или више књига из библиотеке"
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:86
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Види садржај, обележиваче и резултате претраге"
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:87
 msgid "Set reading preferences"
 msgstr "Подеси поставке за читање"
 
-#: ../src/constants.vala:87
+#: ../src/constants.vala:88
 msgid "Click to bookmark this page"
 msgstr "Кликни да обележиш ову страницу"
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:89
 msgid "Click to remove this bookmark"
 msgstr "Кликни да уклониш овај обележивач"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:90
 #, fuzzy
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Повећај величину фонта"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:91
 #, fuzzy
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Смањи величину фонта"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:92
 msgid "Increase line width"
 msgstr "Повећај ширину реда"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:93
 msgid "Decrease line width"
 msgstr "Смањи ширину реда"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:94
 msgid "Increase line spacing"
 msgstr "Повећај проред"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:95
 msgid "Decrease line spacing"
 msgstr "Смањи проред"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:96
 msgid "Update cover image"
 msgstr "Обнови насловну слику"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:97
 msgid "Set theme for this colour profile"
 msgstr ""
 
-#: ../src/constants.vala:97 ../src/constants.vala:98
+#: ../src/constants.vala:98 ../src/constants.vala:99
 msgid "Enter full screen view and Esc key to exit"
 msgstr "Режим целог екрана, \"Esc\" тастер за излаз"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:100
 msgid "Add folder to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:101
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: ../src/constants.vala:102 ../src/constants.vala:128
+#: ../src/constants.vala:103 ../src/constants.vala:129
 msgid "Preferences"
 msgstr "Жељене поставке"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:104
 #, fuzzy
 msgid "Turn on Dark Mode"
 msgstr "Укључи ноћни режим"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:105
 msgid "Enable cache (opens books faster)"
 msgstr "Омогући кеш (књиге се брже отварају)"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:106
 msgid "Always show library on start"
 msgstr ""
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:107
 msgid "Enable two page reading"
 msgstr ""
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:108
 msgid "Set Font"
 msgstr ""
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:109
 msgid "Customize reading profile"
 msgstr ""
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:110
 msgid "Text"
 msgstr ""
 
-#: ../src/constants.vala:110
+#: ../src/constants.vala:111
 msgid "Background"
 msgstr ""
 
-#: ../src/constants.vala:111
+#: ../src/constants.vala:112
 msgid "Add folders to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:113
 msgid "Profile"
 msgstr ""
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:114
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "Unknown Book"
 msgstr "Непозната књига"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:128
 msgid "About"
 msgstr "О програму"
 

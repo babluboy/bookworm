@@ -56,6 +56,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_BOOKMARKS_FOUND = _("Click on a link to jump to bookmarked section");
 	public const string TEXT_FOR_BOOKMARKS_NOT_FOUND = _("No bookmarks set in BBB, click the bookworm icon on the header bar to boomark the page");
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
+	public const string TEXT_FOR_SEARCH_RESULTS_PROCESSING = _("Searching for '$$$' in &&&:");
 	public const string TEXT_FOR_SEARCH_RESULTS_FOUND = _("Found the following matches for '$$$' in &&&:");
 	public const string TEXT_FOR_SEARCH_RESULTS_NOT_FOUND = _("No matches found for '$$$' in &&&");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_HEADER = _("Edit Info for");

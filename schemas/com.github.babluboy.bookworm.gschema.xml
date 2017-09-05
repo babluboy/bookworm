@@ -88,5 +88,9 @@
 				<default>""</default>
 				<summary>Save the path of the book being read if the user closes the app while reading</summary>
 		</key>
+		<key name="current-info-tab" type="s">
+				<default>"content-list"</default>
+				<summary>Save the last viewed info tab</summary>
+		</key>
   </schema>
 </schemalist>
