@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
-"PO-Revision-Date: 2017-08-17 16:47+0000\n"
+"PO-Revision-Date: 2017-09-06 21:51+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
-"Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/sc/>\n"
+"Language-Team: Sardinian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,11 +107,10 @@ msgstr ""
 "eletrònicu vàlidu in sa positzione : "
 
 #: ../src/constants.vala:47
-#, fuzzy
 msgid "eBook could not be parsed. Ensure valid eBook file at location : "
 msgstr ""
-"Cuntenutu non vàlidu agatadu. Verìfica chi bi siet unu documentu-libru "
-"eletrònicu vàlidu in sa positzione : "
+"Impossìbile analizare su libru. Verìfica sa valididade de su documentu-libru "
+"eletrònicu in sa positzione : "
 
 #: ../src/constants.vala:48
 msgid "Bookworm does not support the format of the file found at location : "
@@ -119,13 +118,12 @@ msgstr ""
 "Bookworm non suportat su formatu de su documentu agatadu in sa positzione : "
 
 #: ../src/constants.vala:49
-#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add eBook file at "
 "location : "
 msgstr ""
-"Cuntenutu non vàlidu agatadu. Verìfica chi bi siet unu documentu-libru "
-"eletrònicu vàlidu in sa positzione : "
+"Impossìbile agatare su cuntenutu rechestu. Pro praghere boga e annanghe sos "
+"libros in sa positzione : "
 
 #: ../src/constants.vala:50
 msgid "Library"
@@ -168,9 +166,8 @@ msgid "Search Results"
 msgstr "Risultados de sa chirca"
 
 #: ../src/constants.vala:59
-#, fuzzy
 msgid "Searching for '$$$' in &&&:"
-msgstr "Perunu risultadu agatadu pro '$$$' in &&&"
+msgstr "Chirchende '$$$' in &&&:"
 
 #: ../src/constants.vala:60
 msgid "Found the following matches for '$$$' in &&&:"
@@ -317,7 +314,6 @@ msgid "Update cover image"
 msgstr "Agiorna s'immàgine de cobertedda"
 
 #: ../src/constants.vala:97
-#, fuzzy
 msgid "Set theme for this colour profile"
 msgstr "Imposta su tema pro custu profilu de colores"
 
@@ -338,7 +334,6 @@ msgid "Preferences"
 msgstr "Preferèntzias"
 
 #: ../src/constants.vala:104
-#, fuzzy
 msgid "Turn on Dark Mode"
 msgstr "Allughe sa modalidade noturna"
 
