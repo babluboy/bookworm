@@ -152,8 +152,48 @@ public class BookwormApp.contentHandler {
       if(BookwormApp.Bookworm.bookTextSearchString.length > 1){
         string[] searchTokens = BookwormApp.Bookworm.bookTextSearchString.split("#~~#");
         if(searchTokens.length == 2){
-          searchTokens[1] = searchTokens[1].replace("\"", "&quot;").replace("'", "&#39;");
-          BookwormApp.Bookworm.onLoadJavaScript.append(" highlightText(encodeURIComponent('"+searchTokens[1]+"'));");
+          //limit the search string to one word on either side of search text
+          int startPosOfSearchString = searchTokens[1].index_of(searchTokens[0]);
+          int endPosOfSearchString = startPosOfSearchString + searchTokens[0].length;
+          int lengthOfLineWithSearchString = searchTokens[1].length;
+          int countSpaces = 0;
+          int startPosOfStringToBeHighlighted = 0;
+          int endPosOfStringToBeHighlighted = 0;
+          string stringToBeHighlighted = "";
+          if(startPosOfSearchString != -1){
+            //get the position of the word before the searched phrase
+            for (int i=startPosOfSearchString; i>1; i--){
+              //match the second space before the search string
+              if(" " == searchTokens[1].slice(i, i+1)){
+                countSpaces++;
+              }
+              if(countSpaces == 2){
+                startPosOfStringToBeHighlighted = i+1;
+                break;
+              }
+            }
+            //get the position of the word after the searched phrase
+            countSpaces = 0;
+            for (int j=endPosOfSearchString; j<lengthOfLineWithSearchString; j++){
+              //match the second space before the search string
+              if(" " == searchTokens[1].slice(j, j+1)){
+                countSpaces++;
+              }
+              if(countSpaces == 2){
+                endPosOfStringToBeHighlighted = j;
+                break;
+              }
+            }
+            //form the string to be highlighted
+            if(endPosOfStringToBeHighlighted > startPosOfStringToBeHighlighted){
+              stringToBeHighlighted = searchTokens[1].slice(startPosOfStringToBeHighlighted, endPosOfStringToBeHighlighted);
+            }
+          }
+          debug("startPosOfStringToBeHighlighted="+startPosOfStringToBeHighlighted.to_string());
+          debug("endPosOfStringToBeHighlighted="+endPosOfStringToBeHighlighted.to_string());
+          stringToBeHighlighted = stringToBeHighlighted.replace("\"", "&quot;").replace("'", "&#39;");
+          debug("Searching to highlight the phrase:"+stringToBeHighlighted);
+          BookwormApp.Bookworm.onLoadJavaScript.append(" highlightText(encodeURIComponent('"+stringToBeHighlighted+"'));");
         }
       }
     }
