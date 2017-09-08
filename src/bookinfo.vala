@@ -141,7 +141,8 @@ public class BookwormApp.Info:Gtk.Window {
       if(BookwormApp.Bookworm.searchResultsMap.size > 0){
         hasResultsBeenFound = true;
         foreach (var entry in BookwormApp.Bookworm.searchResultsMap.entries) {
-          LinkButton searchResultLinkButton = new LinkButton.with_label (entry.key.slice(entry.key.index_of("~~")+2, entry.key.length), entry.value);
+          string pageNumber = entry.key.slice(entry.key.index_of("~~")+2, entry.key.length).strip();
+          LinkButton searchResultLinkButton = new LinkButton.with_label (pageNumber, BookwormApp.Utils.parseMarkUp(getChapterNameFromPage(pageNumber)+" : "+entry.value));
           searchResultLinkButton.halign = Align.START;
           searchresults_box.pack_start(searchResultLinkButton,false,false,0);
           searchResultLinkButton.activate_link.connect (() => {
@@ -170,6 +171,37 @@ public class BookwormApp.Info:Gtk.Window {
     return aBook;
   }
 
+  public static string getChapterNameFromPage(string pageNumber){
+    string chapterName = "";
+    //get the book being currently read
+		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+    if(aBook != null){
+      int indexOfPageInContentList = aBook.getBookContentList().index_of(pageNumber);
+      int indexOfCurrentChapterInContentList = 0;
+      string previousChapterName = "";
+      ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
+      foreach(HashMap<string,string> tocListItemMap in tocList){
+        foreach (var entry in tocListItemMap.entries) {
+          indexOfCurrentChapterInContentList = aBook.getBookContentList().index_of(entry.key);
+          if(entry.key == pageNumber){
+            chapterName =  entry.value; //search result page is a chapter page
+            break;
+          }else{
+            if(indexOfCurrentChapterInContentList > indexOfPageInContentList){
+              chapterName =  previousChapterName; //search result page is prior to the current chapter page - so assign previous chapter page
+              break;
+            }
+          }
+          previousChapterName = entry.value;
+        }
+        if(chapterName.length > 0){
+          break;
+        }
+      }
+    }
+    return chapterName;
+  }
+
   public static BookwormApp.Book createTableOfContents(){
     Box content_box;
     //get the book being currently read
@@ -186,7 +218,7 @@ public class BookwormApp.Info:Gtk.Window {
           ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
           foreach(HashMap<string,string> tocListItemMap in tocList){
             foreach (var entry in tocListItemMap.entries) {
-              LinkButton contentLinkButton = new LinkButton.with_label (entry.key, entry.value);
+              LinkButton contentLinkButton = new LinkButton.with_label (entry.key, BookwormApp.Utils.parseMarkUp(entry.value));
               contentLinkButton.halign = Align.START;
               content_box.pack_start(contentLinkButton,false,false,0);
               contentLinkButton.activate_link.connect (() => {
@@ -202,13 +234,18 @@ public class BookwormApp.Info:Gtk.Window {
             }
           }
         }else{
-          //If Table Of Contents is not found, set the spine data into the Contents tab
+          //If Table Of Contents is not found, use the spine data
           int contentNumber = 1;
           foreach(string contentPath in aBook.getBookContentList()){
             LinkButton contentLinkButton = new LinkButton.with_label (contentPath, BookwormApp.Constants.TEXT_FOR_INFO_TAB_CONTENT_PREFIX+contentNumber.to_string());
             contentLinkButton.halign = Align.START;
             content_box.pack_start(contentLinkButton,false,false,0);
+            //add to the table of contents of the book
+            HashMap<string,string> TOCMapItem = new HashMap<string,string>();
+            TOCMapItem.set(contentPath, BookwormApp.Constants.TEXT_FOR_INFO_TAB_CONTENT_PREFIX+contentNumber.to_string());
+            aBook.setTOC(TOCMapItem);
             contentNumber++;
+            //add the action for the link button
             contentLinkButton.activate_link.connect (() => {
               aBook.setBookPageNumber(aBook.getBookContentList().index_of(contentLinkButton.get_uri ()));
               //update book details to libraryView Map

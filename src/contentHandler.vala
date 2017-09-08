@@ -189,8 +189,8 @@ public class BookwormApp.contentHandler {
               stringToBeHighlighted = searchTokens[1].slice(startPosOfStringToBeHighlighted, endPosOfStringToBeHighlighted);
             }
           }
-          debug("startPosOfStringToBeHighlighted="+startPosOfStringToBeHighlighted.to_string());
-          debug("endPosOfStringToBeHighlighted="+endPosOfStringToBeHighlighted.to_string());
+          //debug("startPosOfStringToBeHighlighted="+startPosOfStringToBeHighlighted.to_string());
+          //debug("endPosOfStringToBeHighlighted="+endPosOfStringToBeHighlighted.to_string());
           stringToBeHighlighted = stringToBeHighlighted.replace("\"", "&quot;").replace("'", "&#39;");
           debug("Searching to highlight the phrase:"+stringToBeHighlighted);
           BookwormApp.Bookworm.onLoadJavaScript.append(" highlightText(encodeURIComponent('"+stringToBeHighlighted+"'));");
