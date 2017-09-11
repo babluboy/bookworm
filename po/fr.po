@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
-"PO-Revision-Date: 2017-09-11 04:35+0000\n"
+"PO-Revision-Date: 2017-09-12 04:47+0000\n"
 "Last-Translator: Aris <aris@papatheodorou.net>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
@@ -234,7 +234,7 @@ msgstr "Auteur"
 #: ../src/constants.vala:76
 #, fuzzy
 msgid "Last Opened"
-msgstr "Dernier ouvert"
+msgstr "Dernier livre ouvert"
 
 #: ../src/constants.vala:77
 msgid "Rating"
