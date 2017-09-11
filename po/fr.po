@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
-"PO-Revision-Date: 2017-09-11 04:34+0000\n"
+"PO-Revision-Date: 2017-09-11 04:35+0000\n"
 "Last-Translator: Aris <aris@papatheodorou.net>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
@@ -168,9 +168,8 @@ msgid "Search Results"
 msgstr "Résultats de la recherche"
 
 #: ../src/constants.vala:59
-#, fuzzy
 msgid "Searching for '$$$' in &&&:"
-msgstr "Aucune occurrence trouvée pour « $$$ » dans &&&"
+msgstr "Recherche de « $$$ » dans &&& :"
 
 #: ../src/constants.vala:60
 msgid "Found the following matches for '$$$' in &&&:"
