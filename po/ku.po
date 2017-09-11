@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
-"PO-Revision-Date: 2017-09-11 21:01+0000\n"
-"Last-Translator: anonymous <>\n"
+"PO-Revision-Date: 2017-09-12 22:48+0000\n"
+"Last-Translator: Cûndûllah el-Kurdî <mckucukaslan47@gmail.com>\n"
 "Language-Team: Kurdish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/ku/>\n"
 "Language: ku\n"
@@ -23,7 +23,7 @@ msgstr "Belgeyê Hilbijêre"
 
 #: ../src/library.vala:540
 msgid "Added "
-msgstr "Lêzêdekirî"
+msgstr "Hat lêzêdekirin "
 
 #: ../src/window.vala:279 ../src/window.vala:556
 msgid "Select eBook"
@@ -43,17 +43,17 @@ msgid "Run Bookworm in info mode"
 msgstr "Di moda vebijartina xeletiyê de Bookwormê bixebitîne"
 
 #: ../src/bookworm.vala:115
+#, fuzzy
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Pirtûkên nû yên di dosyeyên bijarte de ne bila jixweber bê lêzêdekirin."
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
 msgstr "Xwînereke ePirtûk"
 
 #: ../src/constants.vala:29
-#, fuzzy
 msgid "Weblate Translators"
-msgstr "Wergerên Launchpadê"
+msgstr "Wergêrên Weblatê"
 
 #: ../src/constants.vala:35
 msgid "Website"
@@ -93,8 +93,8 @@ msgid ""
 "Problem in extracting contents of book. Ensure valid eBook file at "
 "location : "
 msgstr ""
-":Di vebijartina naveroka pirtûkê de pirsgirêkeke heye. Kontrolê bikin, gelo "
-"pirtûk di cih de ye ya na "
+"Di vebijartina naveroka pirtûkê de pirsgirêkeke heye. Venerin, gelo pirtûk "
+"di cih de ye ya na: "
 
 #: ../src/constants.vala:45
 msgid "Invalid Mime type detected. Check book format at location : "
