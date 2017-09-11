@@ -2,25 +2,24 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
-"PO-Revision-Date: 2017-08-04 16:57+0000\n"
-"Last-Translator: aydın özek <aydinozekk@gmail.com>\n"
-"Language-Team: Kurdish <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/ku/>\n"
+"PO-Revision-Date: 2017-09-11 21:01+0000\n"
+"Last-Translator: Cûndûllah el-Kurdî <mckucukaslan47@gmail.com>\n"
+"Language-Team: Kurdish "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/ku/>\n"
 "Language: ku\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.16-dev\n"
+"X-Generator: Weblate 2.17-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
 msgstr "Wêne Hilbijêre"
 
 #: ../src/dialog.vala:483
-#, fuzzy
 msgid "Select folder"
-msgstr "Wêne Hilbijêre"
+msgstr "Belgeyê Hilbijêre"
 
 #: ../src/library.vala:540
 msgid "Added "
