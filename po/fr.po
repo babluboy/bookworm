@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
-"PO-Revision-Date: 2017-08-28 10:45+0000\n"
-"Last-Translator: Florian <floflr@zaclys.net>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
-"fr/>\n"
+"PO-Revision-Date: 2017-09-11 04:34+0000\n"
+"Last-Translator: Aris <aris@papatheodorou.net>\n"
+"Language-Team: French "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,8 +43,9 @@ msgid "Run Bookworm in info mode"
 msgstr "Lancer Bookworm en mode débogage"
 
 #: ../src/bookworm.vala:115
+#, fuzzy
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Ajouter automatiquement les nouveaux livres du dossier suivi"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
@@ -316,8 +317,9 @@ msgid "Update cover image"
 msgstr "Mettre à jour l'image de la couverture"
 
 #: ../src/constants.vala:97
+#, fuzzy
 msgid "Set theme for this colour profile"
-msgstr ""
+msgstr "Définir le thème pour le profil couleur"
 
 #: ../src/constants.vala:98 ../src/constants.vala:99
 msgid "Enter full screen view and Esc key to exit"
