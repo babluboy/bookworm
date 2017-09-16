@@ -75,7 +75,7 @@ public class BookwormApp.Info:Gtk.Window {
       if("searchresults-list"==stack.get_visible_child_name()){
 
       }
-      //Set the value of the info tab currently being viewed, the same tab is opened subsequently
+      //Set the value of the info tab currently being viewed so that the same tab is opened subsequently
       BookwormApp.Bookworm.settings.current_info_tab = stack.get_visible_child_name();
     });
 

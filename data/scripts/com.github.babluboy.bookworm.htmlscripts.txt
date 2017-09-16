@@ -1,4 +1,5 @@
 <script>
+  var is_search_result_found = "false";
   function setTwoPageView() {
     var lengthOfData = document.getElementsByTagName("BODY")[0].innerText.length;
     if(lengthOfData > 500){
@@ -8,7 +9,21 @@
 
   function highlightText(highlightText) {
       highlightText = decodeURIComponent (highlightText);
+      //attempt to find and highlight the whole phrase
       findAndReplace(highlightText, "<span class='bookworm_search_result_highlight'>"+highlightText+"</span>");
+      if(is_search_result_found == "false"){
+        //whole phrase is not found, remove one word from the left and re-try
+        var words = highlightText.split(" ");
+        for(var count=0; count<words.length; count++){
+          highlightText = highlightText.replace(words[count], "").trim();
+          findAndReplace(highlightText, "<span class='bookworm_search_result_highlight'>"+highlightText+"</span>");
+          if(is_search_result_found == "true"){
+            //phrase found, exit loop
+            break;
+          }
+        }
+      }
+      //highlight phrase
       var resultText = document.getElementsByClassName("bookworm_search_result_highlight")[0];
       resultText.scrollIntoView();
   }
@@ -41,6 +56,7 @@
           var parent = currentNode.parentNode,
               frag = (function(){
                     var matchedResult = new RegExp(searchText, 'ig').exec(currentNode.data);
+                    is_search_result_found = "true";
                     replacement = replacement.replace(searchText, matchedResult[0]),
                     wrap = document.createElement('div'),
                     frag = document.createDocumentFragment();

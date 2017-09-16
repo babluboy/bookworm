@@ -25,12 +25,6 @@ public class BookwormApp.contentHandler {
   public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
     debug("Starting to render page contents for book ["+aBook.getBookTitle()+"] for direction ["+direction+"]");
     int currentContentLocation = aBook.getBookPageNumber();
-		//string searchText = "";
-		//handle loading page with search string
-		/*if(direction.index_of("SEARCH:") != -1){
-			searchText = direction.replace("SEARCH:", "");
-			direction = "SEARCH";
-		}*/
 		//set page number based on direction of navigation
 		switch(direction){
 			case "FORWARD"://This is for moving the book forward
@@ -48,7 +42,6 @@ public class BookwormApp.contentHandler {
 				break;
 
 			case "SEARCH"://Load the page and scroll to the search text
-
 				break;
 
 			default://This is for opening the current page of the book
@@ -189,8 +182,6 @@ public class BookwormApp.contentHandler {
               stringToBeHighlighted = searchTokens[1].slice(startPosOfStringToBeHighlighted, endPosOfStringToBeHighlighted);
             }
           }
-          //debug("startPosOfStringToBeHighlighted="+startPosOfStringToBeHighlighted.to_string());
-          //debug("endPosOfStringToBeHighlighted="+endPosOfStringToBeHighlighted.to_string());
           stringToBeHighlighted = stringToBeHighlighted.replace("\"", "&quot;").replace("'", "&#39;");
           debug("Searching to highlight the phrase:"+stringToBeHighlighted);
           BookwormApp.Bookworm.onLoadJavaScript.append(" highlightText(encodeURIComponent('"+stringToBeHighlighted+"'));");
