@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
-"PO-Revision-Date: 2017-09-24 18:05+0000\n"
-"Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
+"PO-Revision-Date: 2017-09-25 22:48+0000\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/sv/>\n"
 "Language: sv\n"
@@ -35,7 +35,7 @@ msgstr "Visa versionsnummer"
 
 #: ../src/bookworm.vala:113
 msgid "Run Bookworm in debug mode"
-msgstr "Kör Bookworm i felsäkertläge"
+msgstr "Kör Bookworm i felsökningsläge"
 
 #: ../src/bookworm.vala:114
 msgid "Run Bookworm in info mode"
