@@ -2,12 +2,21 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-05 22:25+0100\n"
+"PO-Revision-Date: 2017-09-29 10:44+0000\n"
+"Last-Translator: goychikua <goychiku@gmail.com>\n"
+"Language-Team: Abkhazian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/ab/>\n"
+"Language: ab\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.17-dev\n"
 
 #: ../src/dialog.vala:66
+#, fuzzy
 msgid "Select Image"
-msgstr ""
+msgstr "Select Image"
 
 #: ../src/dialog.vala:483
 msgid "Select folder"
