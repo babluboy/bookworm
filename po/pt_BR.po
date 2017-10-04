@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-04 18:30+0100\n"
-"PO-Revision-Date: 2017-09-05 22:07+0000\n"
-"Last-Translator: Tiago Rinaldi <trinaldi@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
-"bookworm/bookworm/pt_BR/>\n"
+"PO-Revision-Date: 2017-10-04 22:51+0000\n"
+"Last-Translator: Edgar Moraes Diniz <edgar.diniz@posteo.net>\n"
+"Language-Team: Portuguese (Brazil) "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -160,22 +160,23 @@ msgstr "Resultado da pesquisa"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Anotações"
 
 #: ../src/constants.vala:60
 msgid "Add text to annotate : "
-msgstr ""
+msgstr "Adicionar texto à anotação: "
 
 #: ../src/constants.vala:61
-#, fuzzy
 msgid "Click on a link to jump to an annotated section"
-msgstr "Clique no link para ir para a seção marcada como favorita"
+msgstr "Clique no link para ir a uma seção com anotações"
 
 #: ../src/constants.vala:62
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Nenhuma anotação para BBB, clique com o botão direito na página de um livro "
+"e escolha uma anotação do menu d contexto para adicionar anotações"
 
 #: ../src/constants.vala:63
 msgid "Searching for '$$$' in &&&:"
@@ -223,7 +224,7 @@ msgstr "Verificar significado da palavra"
 
 #: ../src/constants.vala:75
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Anotar o texto selecionado"
 
 #: ../src/constants.vala:76
 msgid "Books"
@@ -343,7 +344,7 @@ msgstr "Remover a pasta exibida da verificação de livros"
 
 #: ../src/constants.vala:107
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Adicionar anotação ao texto selecionado"
 
 #: ../src/constants.vala:109 ../src/constants.vala:135
 msgid "Preferences"
