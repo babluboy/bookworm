@@ -7,6 +7,25 @@
     }
   }
 
+  function overlayAnnotation(annotationText) {
+    //attempt to find and highlight the whole phrase
+    findAndReplace(annotationText, "<a href='#' onclick='javascript:document.title=\"annotation:"+annotationText+"\"'><span class='bookworm_annotation_highlight'>"+annotationText+"</span></a>");
+    if(is_search_result_found == "false"){
+      //whole phrase is not found, remove one word from the left and re-try
+      var words = annotationText.split(" ");
+      for(var count=0; count<words.length; count++){
+        annotationText = annotationText.replace(words[count], "").trim();
+        findAndReplace(annotationText, "<a href='#' onclick='javascript:document.title=\""+annotationText+"\"'><span class='bookworm_annotation_highlight'>"+annotationText+"</span></a>");
+        if(is_search_result_found == "true"){
+          //phrase found, exit loop
+          break;
+        }
+      }
+    }
+    var resultText = document.getElementsByClassName("bookworm_annotation_highlight")[0];
+    resultText.scrollIntoView();
+  }
+
   function highlightText(highlightText) {
       highlightText = decodeURIComponent (highlightText);
       //attempt to find and highlight the whole phrase
@@ -23,7 +42,7 @@
           }
         }
       }
-      //highlight phrase
+      //highlight phrase and scroll it to view
       var resultText = document.getElementsByClassName("bookworm_search_result_highlight")[0];
       resultText.scrollIntoView();
   }
@@ -74,6 +93,15 @@
           parent.removeChild(currentNode);
       }
   }
+  function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+    }
+    return text;
+  }
 </script>
 <style>
   /* Set style for the whole document */
@@ -100,5 +128,8 @@
   /* Set style for text highlight */
   span.bookworm_search_result_highlight {
       background-color: yellow !important;
+  }
+  span.bookworm_annotation_highlight {
+    background-color: #B1FB17 !important;
   }
 </style>

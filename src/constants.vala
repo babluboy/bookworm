@@ -56,6 +56,10 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_BOOKMARKS_FOUND = _("Click on a link to jump to bookmarked section");
 	public const string TEXT_FOR_BOOKMARKS_NOT_FOUND = _("No bookmarks set in BBB, click the bookworm icon on the header bar to boomark the page");
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
+	public const string TEXT_FOR_INFO_TAB_ANNOTATIONS = _("Annotations");
+	public const string TEXT_FOR_ANNOTATION = _("Add text to annotate : ");
+	public const string TEXT_FOR_ANNOTATIONS_FOUND = _("Click on a link to jump to an annotated section");
+	public const string TEXT_FOR_ANNOTATIONS_NOT_FOUND = _("No annotations set in BBB, right click the page of a book and choose annotation from the context menu to add annotations");
 	public const string TEXT_FOR_SEARCH_RESULTS_PROCESSING = _("Searching for '$$$' in &&&:");
 	public const string TEXT_FOR_SEARCH_RESULTS_FOUND = _("Found the following matches for '$$$' in &&&:");
 	public const string TEXT_FOR_SEARCH_RESULTS_NOT_FOUND = _("No matches found for '$$$' in &&&");
@@ -68,6 +72,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view (F11)");
 	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Exit full screen view (Esc)");
 	public const string TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING = _("Check Word Meaning");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION = _("Annotate selected text");
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_BOOKS = _("Books");
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_IMAGES = _("Images");
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_ALL_FILES = _("All Files");
@@ -99,6 +104,7 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Enter full screen view and Esc key to exit");
 	public const string TOOLTIP_TEXT_FOR_ADD_DIRECTORY = _("Add folder to scan for books");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY = _("Remove displayed folder from book scan");
+	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION = _("Add annotation to selected text");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Dark Mode");

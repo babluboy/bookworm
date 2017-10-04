@@ -27,6 +27,8 @@ public class BookwormApp.Info:Gtk.Window {
   public static ScrolledWindow bookmarks_scroll;
   public static Box searchresults_box;
   public static ScrolledWindow searchresults_scroll;
+  public static Box annotations_box;
+  public static ScrolledWindow annotations_scroll;
 
   public static Gtk.Box createBookInfo(){
     debug("Starting to create BookInfo window components...");
@@ -61,6 +63,12 @@ public class BookwormApp.Info:Gtk.Window {
     searchresults_scroll.add (searchresults_box);
     stack.add_titled(searchresults_scroll, "searchresults-list", BookwormApp.Constants.TEXT_FOR_INFO_TAB_SEARCHRESULTS);
 
+    annotations_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+    annotations_scroll = new ScrolledWindow (null, null);
+    annotations_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+    annotations_scroll.add (annotations_box);
+    stack.add_titled(annotations_scroll, "annotations-list", BookwormApp.Constants.TEXT_FOR_INFO_TAB_ANNOTATIONS);
+
     info_box.pack_start(switcher, false, true, 0);
     info_box.pack_start(stack, true, true, 0);
 
@@ -72,8 +80,11 @@ public class BookwormApp.Info:Gtk.Window {
       if("bookmark-list"==stack.get_visible_child_name()){
         populateBookmarks();
       }
+      if("annotations-list"==stack.get_visible_child_name()){
+        populateAnnotations();
+      }
       if("searchresults-list"==stack.get_visible_child_name()){
-
+        //This is called from the header search bar
       }
       //Set the value of the info tab currently being viewed so that the same tab is opened subsequently
       BookwormApp.Bookworm.settings.current_info_tab = stack.get_visible_child_name();
@@ -81,6 +92,24 @@ public class BookwormApp.Info:Gtk.Window {
 
     return info_box;
     debug("Sucessfully created BookInfo window components...");
+  }
+
+  public static void populateAnnotations(){
+    //get the book being currently read
+		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+    Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATIONS_FOUND);
+
+    Box annotations_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+    annotations_box.pack_start(annotationsLabel,false,false,0);
+    if(-1 != -1){
+
+    }else{
+      annotationsLabel.set_text(BookwormApp.Constants.TEXT_FOR_ANNOTATIONS_NOT_FOUND.replace("BBB", aBook.getBookTitle()));
+    }
+    //Remove the existing annotations Gtk.Box and add the current one
+    annotations_scroll.get_child().destroy();
+    annotations_scroll.add (annotations_box);
+    info_box.show_all();
   }
 
   public static void populateBookmarks(){

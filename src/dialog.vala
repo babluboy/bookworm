@@ -597,4 +597,33 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		return hex;
 	}
 
+	public static void createAnnotationDialog (string textForAnnotation) {
+		Gtk.Dialog annotationDialog = new Gtk.Dialog();
+		annotationDialog.set_transient_for(BookwormApp.Bookworm.window);
+		annotationDialog.border_width = 0;
+		annotationDialog.set_default_size (600, 300);
+		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+
+		Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATION + textForAnnotation);
+		annotationsLabel.set_line_wrap (true);
+    Gtk.TextView annotationsInputTextView = new Gtk.TextView();
+    annotationsInputTextView.set_wrap_mode (Gtk.WrapMode.WORD);
+    annotationsInputTextView.buffer.text = aBook.getAnnotations(aBook.getBookPageNumber().to_string()+"#~~#"+textForAnnotation);
+		Gtk.ScrolledWindow scrolledAnnotations = new Gtk.ScrolledWindow (null, null);
+		scrolledAnnotations.add (annotationsInputTextView);
+
+		Gtk.Box content = annotationDialog.get_content_area() as Gtk.Box;
+		content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
+		content.pack_start (annotationsLabel, false, false, 0);
+		content.pack_start (scrolledAnnotations, true, true, 0);
+		annotationDialog.show_all();
+
+		annotationDialog.destroy.connect (() => {
+			aBook.setAnnotations(aBook.getBookPageNumber().to_string()+"#~~#"+textForAnnotation,annotationsInputTextView.buffer.text);
+			BookwormApp.Utils.setWebViewTitle("document.title = ' '");
+			aBook = BookwormApp.contentHandler.renderPage(aBook, "");
+		});
+
+	}
+
 }

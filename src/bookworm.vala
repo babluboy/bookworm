@@ -505,6 +505,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 			//set the max value and the current value of the page slider
 			BookwormApp.AppWindow.pageAdjustment.set_upper(aBook.getBookContentList().size);
 			BookwormApp.AppWindow.pageAdjustment.set_value(aBook.getBookPageNumber());
+			//Fetch the book meta data from the database
+			aBook = BookwormApp.DB.getBookMetaDataFromDB(aBook);
 			//render the contents of the current page of book
 			aBook = BookwormApp.contentHandler.renderPage(aBook, "");
 		}

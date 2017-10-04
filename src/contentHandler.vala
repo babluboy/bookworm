@@ -99,7 +99,7 @@ public class BookwormApp.contentHandler {
 		}
 	}
 
-  public static string adjustPageContent (owned string pageContentStr, string mode){
+  public static string adjustPageContent (BookwormApp.Book aBook, owned string pageContentStr, string mode){
     settings = BookwormApp.Settings.get_instance();
     string cssForTextAndBackgroundColor = "";
     StringBuilder pageContent = new StringBuilder(pageContentStr);
@@ -140,6 +140,13 @@ public class BookwormApp.contentHandler {
     if(BookwormApp.Bookworm.settings.is_two_page_enabled){
       BookwormApp.Bookworm.onLoadJavaScript.append(" setTwoPageView();");
     }
+    //Overlay any Annotated text
+    foreach (var entry in aBook.getAnnotationList().entries) {
+        if(aBook.getBookPageNumber().to_string() == entry.key.split("#~~#")[0]){
+          BookwormApp.Bookworm.onLoadJavaScript.append(" overlayAnnotation('"+entry.key.split("#~~#")[1]+"');");
+        }
+    }
+
     //Highlight and Scroll To Search String on page if required
     if("SEARCH" == mode){
       if(BookwormApp.Bookworm.bookTextSearchString.length > 1){
@@ -221,7 +228,7 @@ public class BookwormApp.contentHandler {
         }
       }
       //update the content for required manipulation
-      contents.assign(adjustPageContent(contents.str, mode));
+      contents.assign(adjustPageContent(aBook, contents.str, mode));
     }else{
       //requested content not available
       aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_NOT_FOUND_ISSUE);
@@ -258,20 +265,9 @@ public class BookwormApp.contentHandler {
   public static int getScrollPos(){
     //This function is responsible for returning the vertical scroll position of the webview
     //This should be called when the user leaves reading a book :
-    //(1) Header Bar Return to Library and (2) Close Bookworm while in reading mode
+    //(1) "Return" to Library button on Header Bar and (2) Close Bookworm while in reading mode
 		int scrollPos = -1;
-		var loop = new MainLoop();
-		BookwormApp.AppWindow.aWebView.run_javascript.begin("document.title = window.scrollY;", null, (obj, res) => {
-			try{
-				BookwormApp.AppWindow.aWebView.run_javascript.end(res);
-			}
-			catch(GLib.Error e){
-				warning("Could not get scroll-pos, javascript error: " + e.message);
-			}
-			scrollPos = int.parse(BookwormApp.AppWindow.aWebView.get_title());
-			loop.quit();
-		});
-		loop.run();
+    scrollPos = BookwormApp.Utils.setWebViewTitle("document.title = window.scrollY;").to_int();
     debug("Scroll position determined as:"+scrollPos.to_string());
 		return scrollPos;
   }

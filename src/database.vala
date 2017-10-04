@@ -22,6 +22,8 @@ using Gee;
 public class BookwormApp.DB{
   public static const string BOOKWORM_TABLE_BASE_NAME = "BOOK_LIBRARY_TABLE";
   public static const string BOOKWORM_TABLE_VERSION = "5"; //Only integers allowed
+  public static const string BOOKMETADATA_TABLE_BASE_NAME = "BOOK_METADATA_TABLE";
+  public static const string BOOKMETADATA_TABLE_VERSION = "1"; //Only integers allowed
   private static Sqlite.Database bookwormDB;
   private static string errmsg;
 
@@ -40,7 +42,7 @@ public class BookwormApp.DB{
     }
 
     debug ("Creating latest version for Library table if it does not exists");
-    string create_library_table = "CREATE TABLE IF NOT EXISTS "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ("
+    string create_library_table = "CREATE TABLE IF NOT EXISTS "+BOOKWORM_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" ("
                                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                                + "BOOK_LOCATION TEXT NOT NULL DEFAULT '', "
 															 + "BOOK_TITLE TEXT NOT NULL DEFAULT '', "
@@ -62,7 +64,24 @@ public class BookwormApp.DB{
 		int librarytableCreateStatus = bookwormDB.exec (create_library_table, null, out errmsg);
 	 	if (librarytableCreateStatus != Sqlite.OK) {
       debug("Executed Query:"+create_library_table);
-	 		warning ("Error in creating table[BOOK_LIBRARY_TABLE]: %s\n", errmsg);
+	 		warning ("Error in creating table["+BOOKWORM_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+"]: %s\n", errmsg);
+      return false;
+	 	}
+
+    debug ("Creating latest version for Book Metadata table if it does not exists");
+    string create_metadata_table = "CREATE TABLE IF NOT EXISTS "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" ("
+                               + "id INTEGER PRIMARY KEY, "
+                               + "BOOK_TOC_DATA TEXT NOT NULL DEFAULT '', " //remove from library table
+                               + "BOOKMARKS TEXT NOT NULL DEFAULT '', " //remove from library table
+                               + "CONTENT_DATA_LIST TEXT NOT NULL DEFAULT '', " //remove from library table
+                               + "BOOK_LAST_SCROLL_POSITION TEXT NOT NULL DEFAULT '', " //remove from library table
+                               + "BOOK_ANNOTATIONS TEXT NOT NULL DEFAULT '', "
+															 + "creation_date INTEGER,"
+                               + "modification_date INTEGER)";
+		int metadatatableCreateStatus = bookwormDB.exec (create_metadata_table, null, out errmsg);
+	 	if (metadatatableCreateStatus != Sqlite.OK) {
+      debug("Executed Query:"+create_metadata_table);
+	 		warning ("Error in creating table["+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+"]: %s\n", errmsg);
       return false;
 	 	}
 
@@ -125,7 +144,7 @@ public class BookwormApp.DB{
        }
        stmt.bind_text (1, BookwormApp.Constants.bookworm_version);
        stmt.bind_text (2, BOOKWORM_TABLE_VERSION);
-       stmt.bind_text (3, "VERSION_TABLE|"+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION);
+       stmt.bind_text (3, "VERSION_TABLE|"+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+"|"+BOOKWORM_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION);
        stmt.step ();
        stmt.reset ();
        debug("Updated latest database version info into Database");
@@ -278,6 +297,31 @@ public class BookwormApp.DB{
     return listOfBooks;
   }
 
+  public static BookwormApp.Book getBookMetaDataFromDB(owned BookwormApp.Book aBook){
+    debug("Starting to fetch Meta Data for Book ID="+aBook.getBookId().to_string());
+    Statement stmt;
+    string fetchBookMetaDataQuery = "SELECT
+                                       BOOK_ANNOTATIONS
+                                     FROM "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+
+                                     " WHERE id = ?";
+    int getBookMetaDataStatus = bookwormDB.prepare_v2 (fetchBookMetaDataQuery, -1, out stmt);
+    assert (getBookMetaDataStatus == Sqlite.OK);
+    if (getBookMetaDataStatus != Sqlite.OK) {
+      debug("Executed Query:"+fetchBookMetaDataQuery);
+	 		warning ("Error in fetching book meta data from database: %s\n", errmsg);
+	 	}
+    stmt.bind_int (1, aBook.getBookId());
+    while (stmt.step () == ROW) {
+      aBook.setAnnotationList(BookwormApp.Utils.convertStringToTreeMap(stmt.column_text (0)));
+      debug("Book MetaData details fetched from DB:
+                id="+aBook.getBookId().to_string()+
+                ",BOOK_ANNOTATIONS="+stmt.column_text (0)
+           );
+    }
+    stmt.reset ();
+    return aBook;
+  }
+
   public static int addBookToDataBase(BookwormApp.Book aBook){
     Sqlite.Statement stmt;
     int insertedBookID = 0;
@@ -344,7 +388,7 @@ public class BookwormApp.DB{
 
   public static bool updateBookToDataBase(BookwormApp.Book aBook){
     Sqlite.Statement stmt;
-    string update_book_to_database = "UPDATE "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" SET
+    string update_librarydata_to_DB = "UPDATE "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" SET
                                       BOOK_LAST_READ_PAGE_NUMBER = ?,
                                       BOOK_TITLE = ?,
                                       BOOK_AUTHOR = ?,
@@ -358,10 +402,10 @@ public class BookwormApp.DB{
                                       BOOK_TOC_DATA = ?,
                                       BOOK_LAST_SCROLL_POSITION = ?,
                                       modification_date = CAST(? AS INT)
-                                      WHERE BOOK_LOCATION = ? ";
-     int statusBookToDB = bookwormDB.prepare_v2 (update_book_to_database, update_book_to_database.length, out stmt);
+                                  WHERE BOOK_LOCATION = ? ";
+     int statusBookToDB = bookwormDB.prepare_v2 (update_librarydata_to_DB, update_librarydata_to_DB.length, out stmt);
      if (statusBookToDB != Sqlite.OK) {
-       debug("Executed Query:"+update_book_to_database);
+       debug("Executed Query:"+update_librarydata_to_DB);
        warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
        return false;
      }
@@ -379,10 +423,46 @@ public class BookwormApp.DB{
      stmt.bind_text (12, aBook.getBookScrollPos().to_string());
      stmt.bind_text (13, aBook.getBookLastModificationDate());
      stmt.bind_text (14, aBook.getBookLocation());
-
      stmt.step ();
      stmt.reset ();
-     debug("Updated details to Database for book:"+aBook.getBookLocation());
+     debug("Updated library details to "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" for book:"+aBook.getBookLocation());
+
+     //Attempt to insert book meta data
+     string update_metadata_to_DB = "INSERT OR IGNORE INTO "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" (
+                                       BOOK_ANNOTATIONS,
+                                       modification_date,
+                                       id) "
+                                  + "VALUES (?,CAST(strftime('%s', 'now') AS INT),?);";
+     int statusInsertBookMetadataToDB = bookwormDB.prepare_v2 (update_metadata_to_DB, update_metadata_to_DB.length, out stmt);
+     if (statusInsertBookMetadataToDB != Sqlite.OK) {
+       debug("Executed Query:"+update_metadata_to_DB);
+       warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+       return false;
+     }
+     stmt.bind_text (1, BookwormApp.Utils.convertTreeMapToString(aBook.getAnnotationList()));
+     stmt.bind_int  (2, aBook.getBookId());
+     stmt.step ();
+     stmt.reset ();
+     if(bookwormDB.changes() == 0){
+       //Book already present, update the meta data
+       update_metadata_to_DB = "UPDATE "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" SET
+                                  BOOK_ANNOTATIONS = ?,
+                                  modification_date = CAST(strftime('%s', 'now') AS INT)
+                                  WHERE id = ? ";
+       int statusUpdateBookMetadataToDB = bookwormDB.prepare_v2 (update_metadata_to_DB, update_metadata_to_DB.length, out stmt);
+       if (statusUpdateBookMetadataToDB != Sqlite.OK) {
+         debug("Executed Query:"+update_metadata_to_DB);
+         warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+         return false;
+       }
+       stmt.bind_text (1, BookwormApp.Utils.convertTreeMapToString(aBook.getAnnotationList()));
+       stmt.bind_int  (2, aBook.getBookId());
+       stmt.step ();
+       stmt.reset ();
+       debug("Inserted book meta data details to "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" for book:"+aBook.getBookLocation());
+     }else{
+       debug("Updated book meta data details to "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" for book:"+aBook.getBookLocation());
+     }
      return true;
   }
 

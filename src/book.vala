@@ -37,6 +37,7 @@ public class BookwormApp.Book{
   private int bookRating = 0;
   private bool isBookCoverImagePresent = false;
   private StringBuilder bookmarks = new StringBuilder ("");
+  private TreeMap<string,string> annotationMap = new TreeMap<string,string> ();
   private ArrayList<string> bookContentList = new ArrayList<string> ();
   private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
 
@@ -263,6 +264,24 @@ public class BookwormApp.Book{
   }
   public string getBookmark (){
     return bookmarks.str;
+  }
+
+  //getter setter for annotations
+  public void setAnnotations (string index, string annotationText){
+    annotationMap.set(index, annotationText);
+  }
+  public string getAnnotations (string index){
+    if(annotationMap.has_key(index)){
+      return annotationMap.get(index);
+    }else{
+      return "";
+    }
+  }
+  public TreeMap<string,string> getAnnotationList(){
+    return annotationMap;
+  }
+  public void setAnnotationList(TreeMap<string,string> aTreeMap){
+    annotationMap.set_all(aTreeMap);
   }
 
   //getter setter for list of Gtk Widgets used for a Book

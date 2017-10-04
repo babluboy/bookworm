@@ -176,9 +176,9 @@ public class BookwormApp.Library {
     aOverlayImage.add_overlay(bookSelectedImage);
     aOverlayImage.add_overlay(aCoverImage);
     aOverlayImage.add_overlay(titleTextLabel);
-    aOverlayImage.add_overlay(bookProgressBar);//this will be invisble untill mouse enters
+    aOverlayImage.add_overlay(bookProgressBar);//this will be invisble until mouse enters
 
-    //Add the overlaid images to a EventBox to allow mouse click actions to be captures
+    //Add the overlaid images to a EventBox to allow mouse click actions to be captured
     Gtk.EventBox aEventBox = new Gtk.EventBox();
     aEventBox.set_border_width (BookwormApp.Constants.SPACING_WIDGETS/2);
 		aEventBox.set_name(aBook.getBookLocation());
@@ -202,7 +202,7 @@ public class BookwormApp.Library {
     Gtk.Popover bookPopover = BookwormApp.AppDialog.createBookContextMenu(aBook);
 
     //add mouse enter listener for book object
-    aEventBox.enter_notify_event.connect (() => {
+    aEventBox.enter_notify_event.connect ((event) => {
       //calculate the progress of the book
       progress = ((double)aBook.getBookPageNumber()+1)/aBook.getBookContentList().size;
       bookProgressBar.set_fraction (progress);
@@ -211,8 +211,11 @@ public class BookwormApp.Library {
     });
 
     //add mouse exit listener for book object
-    aEventBox.leave_notify_event.connect (() => {
-      bookProgressBar.set_visible(false);
+    aEventBox.leave_notify_event.connect ((event) => {
+      //Checking for Gdk.NotifyType.INFERIOR resolves the unwanted leave event fired due to the cover being a default type image
+      if(event.detail != Gdk.NotifyType.INFERIOR){
+        bookProgressBar.set_visible(false);
+      }
       return false;
     });
 
