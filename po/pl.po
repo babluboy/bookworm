@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-05 22:25+0100\n"
+"POT-Creation-Date: 2017-10-04 18:30+0100\n"
 "PO-Revision-Date: 2017-07-30 11:22+0000\n"
 "Last-Translator: Adam Chrapkowski <adam.chrapkowski@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -23,11 +23,11 @@ msgstr "Wybierz obraz"
 msgid "Select folder"
 msgstr "Wybierz obraz"
 
-#: ../src/library.vala:540
+#: ../src/library.vala:543
 msgid "Added "
 msgstr ""
 
-#: ../src/window.vala:279 ../src/window.vala:556
+#: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
 msgstr "Wybierz e-booka"
 
@@ -169,226 +169,253 @@ msgid "Search Results"
 msgstr "Wyniki wyszukiwania"
 
 #: ../src/constants.vala:59
+msgid "Annotations"
+msgstr ""
+
+#: ../src/constants.vala:60
+msgid "Add text to annotate : "
+msgstr ""
+
+#: ../src/constants.vala:61
+#, fuzzy
+msgid "Click on a link to jump to an annotated section"
+msgstr "Kliknij na link, żeby przejść do zaznaczonej sekcji"
+
+#: ../src/constants.vala:62
+msgid ""
+"No annotations set in BBB, right click the page of a book and choose "
+"annotation from the context menu to add annotations"
+msgstr ""
+
+#: ../src/constants.vala:63
 #, fuzzy
 msgid "Searching for '$$$' in &&&:"
 msgstr "Nie znaleziono '$$$' w &&&"
 
-#: ../src/constants.vala:60
+#: ../src/constants.vala:64
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Znaleziono następujące wyniki wyszukiwania '$$$' w &&&:"
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:65
 msgid "No matches found for '$$$' in &&&"
 msgstr "Nie znaleziono '$$$' w &&&"
 
-#: ../src/constants.vala:62
+#: ../src/constants.vala:66
 msgid "Edit Info for"
 msgstr "Edytuj informacje dla"
 
-#: ../src/constants.vala:63 ../src/constants.vala:67
+#: ../src/constants.vala:67 ../src/constants.vala:71
 msgid "Update Cover Image"
 msgstr "Zaktualizuj obraz okładki"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:68
 msgid "Update Title"
 msgstr "Zaktualizuj tytuł"
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:69
 msgid "Update Tags"
 msgstr "Zaktualizuj tagi"
 
-#: ../src/constants.vala:66
+#: ../src/constants.vala:70
 msgid "Update Author"
 msgstr "Zaktualizuj autora"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:72
 #, fuzzy
 msgid "Enter full screen view (F11)"
 msgstr "Włącz tryb pełnoekranowy"
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:73
 #, fuzzy
 msgid "Exit full screen view (Esc)"
 msgstr "Wyjdź z trybu pełnoekranowego"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:74
 msgid "Check Word Meaning"
 msgstr "Sprawdź znaczenie słowa"
 
-#: ../src/constants.vala:71
+#: ../src/constants.vala:75
+msgid "Annotate selected text"
+msgstr ""
+
+#: ../src/constants.vala:76
 msgid "Books"
 msgstr "Książki"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:77
 msgid "Images"
 msgstr "Obrazy"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:78
 msgid "All Files"
 msgstr "Wszystkie pliki"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:79
 msgid "Title"
 msgstr ""
 
-#: ../src/constants.vala:75
+#: ../src/constants.vala:80
 #, fuzzy
 msgid "Author"
 msgstr "Zaktualizuj autora"
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:81
 msgid "Last Opened"
 msgstr ""
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:82
 msgid "Rating"
 msgstr ""
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:83
 msgid "Tags"
 msgstr ""
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:84
 msgid "Today"
 msgstr ""
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:85
 msgid "Yesterday"
 msgstr ""
 
-#: ../src/constants.vala:81
+#: ../src/constants.vala:86
 msgid "Days"
 msgstr ""
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:88
 msgid "Add books to library"
 msgstr "Dodaj książki do biblioteki"
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:89
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Usuń zaznaczone książki z biblioteki (pliki e-booków nie zostaną usunięte)"
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:90
 msgid "Select one or more books in library"
 msgstr "Zaznacz jedną lub więcej książek z biblioteki"
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:91
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Pokaż spis treści, zakładki i wyniki wyszukiwania"
 
-#: ../src/constants.vala:87
+#: ../src/constants.vala:92
 msgid "Set reading preferences"
 msgstr "Ustaw preferencje czytania"
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:93
 msgid "Click to bookmark this page"
 msgstr "Kliknij aby dodać stronę do zakładek"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:94
 msgid "Click to remove this bookmark"
 msgstr "Kliknij aby usunąć zakładkę"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:95
 #, fuzzy
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Zwiększ rozmiar czcionki"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:96
 #, fuzzy
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Zmniejsz rozmiar czcionki"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:97
 msgid "Increase line width"
 msgstr "Zwiększ szerokość linii"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:98
 msgid "Decrease line width"
 msgstr "Zmniejsz szerokość linii"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:99
 msgid "Increase line spacing"
 msgstr "Zwiększ interlinię"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:100
 msgid "Decrease line spacing"
 msgstr "Zmniejsz interlinię"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:101
 msgid "Update cover image"
 msgstr "Zaktualizuj obraz okładki"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:102
 msgid "Set theme for this colour profile"
 msgstr ""
 
-#: ../src/constants.vala:98 ../src/constants.vala:99
+#: ../src/constants.vala:103 ../src/constants.vala:104
 msgid "Enter full screen view and Esc key to exit"
 msgstr "Przejdź do trybu pełnoekranowego, naciśnij Esc aby wyjść"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:105
 msgid "Add folder to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:106
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: ../src/constants.vala:103 ../src/constants.vala:129
+#: ../src/constants.vala:107
+msgid "Add annotation to selected text"
+msgstr ""
+
+#: ../src/constants.vala:109 ../src/constants.vala:135
 msgid "Preferences"
 msgstr "Preferencje"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:110
 #, fuzzy
 msgid "Turn on Dark Mode"
 msgstr "Włącz tryb nocny"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:111
 msgid "Enable cache (opens books faster)"
 msgstr "Włącz cachowanie (książki otwierają się szybciej)"
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:112
 msgid "Always show library on start"
 msgstr ""
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:113
 msgid "Enable two page reading"
 msgstr ""
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:114
 msgid "Set Font"
 msgstr ""
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:115
 msgid "Customize reading profile"
 msgstr ""
 
-#: ../src/constants.vala:110
+#: ../src/constants.vala:116
 msgid "Text"
 msgstr ""
 
-#: ../src/constants.vala:111
+#: ../src/constants.vala:117
 msgid "Background"
 msgstr ""
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:118
 msgid "Add folders to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:119
 msgid "Profile"
 msgstr ""
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:120
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:133
 msgid "Unknown Book"
 msgstr "Nieznana książka"
 
-#: ../src/constants.vala:128
+#: ../src/constants.vala:134
 msgid "About"
 msgstr "O programie"
 

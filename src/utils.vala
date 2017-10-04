@@ -708,6 +708,30 @@ namespace BookwormApp.Utils {
 			return aBook;
 		}
 
+		public static string convertTreeMapToString(TreeMap<string,string> aMap){
+			StringBuilder stringForTreeMap = new StringBuilder("");
+			foreach (var entry in aMap.entries) {
+				stringForTreeMap.append(entry.key).append("~~##~~").append(entry.value);
+        stringForTreeMap.append("~~^^~~");
+    	}
+			debug("annotations for book="+stringForTreeMap.str);
+			return stringForTreeMap.str;
+		}
+
+		public static TreeMap<string,string> convertStringToTreeMap(string stringForTreeMap){
+			TreeMap<string,string> treeMap = new TreeMap<string,string> ();
+			if(stringForTreeMap.index_of("~~^^~~") != -1){
+				string [] treeMapArray = stringForTreeMap.split("~~^^~~");
+				foreach (string mapEntry in treeMapArray) {
+					if(mapEntry.index_of("~~##~~") != -1){
+						string [] keyValPair = mapEntry.split("~~##~~");
+						treeMap.set(keyValPair[0], keyValPair[1]);
+					}
+	    	}
+			}
+			return treeMap;
+		}
+
 		public static string convertTOCToString(BookwormApp.Book aBook){
 			StringBuilder tocString = new StringBuilder("");
 			ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
@@ -750,4 +774,23 @@ namespace BookwormApp.Utils {
       debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
 			return aBook;
 		}
+
+		public static string setWebViewTitle(string javascript){
+	    string selectedText = "";
+			debug("Javascrit for setting Webview Title:"+javascript);
+			var loop = new MainLoop();
+			BookwormApp.AppWindow.aWebView.run_javascript.begin(javascript, null, (obj, res) => {
+				try{
+					BookwormApp.AppWindow.aWebView.run_javascript.end(res);
+				}
+				catch(GLib.Error e){
+					warning("Could not get selected text, javascript error: " + e.message);
+				}
+				selectedText = BookwormApp.AppWindow.aWebView.get_title();
+				loop.quit();
+			});
+			loop.run();
+	    debug("Webview Title set as:"+selectedText);
+			return selectedText;
+	  }
 }

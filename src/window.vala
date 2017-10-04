@@ -85,6 +85,12 @@ public class BookwormApp.AppWindow {
     library_list_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
     library_list_scroll.add (library_table_treeview);
 
+    //Create a box to hold the grid view and list view - only one is visible at a time
+    Gtk.Box library_view_box = new Gtk.Box (Orientation.VERTICAL, 0);
+    library_view_box.set_border_width (0);
+    library_view_box.pack_start (library_grid_scroll, true, true, 0);
+    library_view_box.pack_start (library_list_scroll, true, true, 0);
+
     //Set up Button for selecting books
     Gtk.Button select_book_button = new Gtk.Button ();
     select_book_button.set_image (BookwormApp.Bookworm.select_book_image);
@@ -115,7 +121,7 @@ public class BookwormApp.AppWindow {
     add_remove_footer_box.pack_start (remove_book_button);
     add_remove_footer_box.pack_end (bookAdditionBar);
 
-    //Create a MessageBar to show
+    //Create a MessageBar to show status messages
     infobar = new Gtk.InfoBar ();
     infobarLabel = new Gtk.Label("");
     Gtk.Container infobarContent = infobar.get_content_area ();
@@ -126,11 +132,10 @@ public class BookwormApp.AppWindow {
     infobar.hide();
 
     //Create the UI for library view and add all components to ui box for library view
-    bookLibrary_ui_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+    bookLibrary_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
     bookLibrary_ui_box.set_border_width (0);
     bookLibrary_ui_box.pack_start (infobar, false, true, 0);
-    bookLibrary_ui_box.pack_start (library_grid_scroll, true, true, 0);
-    bookLibrary_ui_box.pack_start (library_list_scroll, true, true, 0);
+    bookLibrary_ui_box.pack_start (library_view_box, true, true, 0);
     bookLibrary_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
     //create the webview to display page content
@@ -342,11 +347,17 @@ public class BookwormApp.AppWindow {
                                               BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING,
                                               null,
                                               null);
+      Gtk.Action pageActionAnnotateSelection = new Gtk.Action ("ANNOTATE_SELECTION",
+                                              BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION,
+                                              BookwormApp.Constants.TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION,
+                                              null);
       pageActionWordMeaning.set_sensitive(false); //TODO: Implement word meaning
       WebKit.ContextMenuItem pageContextMenuItemWordMeaning = new WebKit.ContextMenuItem (pageActionWordMeaning);
       WebKit.ContextMenuItem pageContextMenuItemFullScreenEntry = new WebKit.ContextMenuItem (pageActionFullScreenEntry);
       WebKit.ContextMenuItem pageContextMenuItemFullScreenExit = new WebKit.ContextMenuItem (pageActionFullScreenExit);
+      WebKit.ContextMenuItem pageContextMenuItemAnnotateSelection = new WebKit.ContextMenuItem (pageActionAnnotateSelection);
       context_menu.append(pageContextMenuItemWordMeaning);
+      context_menu.append(pageContextMenuItemAnnotateSelection);
       if(book_reading_footer_box.get_visible()){
         context_menu.append(pageContextMenuItemFullScreenEntry);
       }else{
@@ -362,9 +373,12 @@ public class BookwormApp.AppWindow {
         book_reading_footer_box.show();
         BookwormApp.Bookworm.window.unfullscreen();
       });
+      pageActionAnnotateSelection.activate.connect (() => {
+        BookwormApp.AppDialog.createAnnotationDialog(BookwormApp.Utils.setWebViewTitle("document.title = getSelectionText()"));
+      });
       return false;
     });
-    //capture key press events on the webview reader
+    //capture key press events on the webview readergetSelectedText();
     bool isControlKeyPressed = false;
     aWebView.key_press_event.connect ((ev) => {
         if ((ev.keyval == Gdk.Key.L || ev.keyval == Gdk.Key.l)) {// B Key pressed, return to Library View
@@ -467,6 +481,11 @@ public class BookwormApp.AppWindow {
        WebKit.NavigationPolicyDecision aNavDecision = (WebKit.NavigationPolicyDecision)decision;
        WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action();
        WebKit.URIRequest aURIReq = aNavAction.get_request ();
+       //check if the link is an Annotation Overlay
+       if(BookwormApp.AppWindow.aWebView.get_title().index_of("annotation:") != -1){
+         //Open the annotation dialog
+         BookwormApp.AppDialog.createAnnotationDialog(BookwormApp.AppWindow.aWebView.get_title().replace("annotation:", ""));
+       }
        debug("URL Captured:"+aURIReq.get_uri().strip());
        BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
        string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars(aURIReq.get_uri().strip());
