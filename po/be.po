@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-04 18:30+0100\n"
-"PO-Revision-Date: 2017-09-08 17:39+0000\n"
+"PO-Revision-Date: 2017-10-05 17:12+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
-"Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/be/>\n"
+"Language-Team: Belarusian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/be/>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.17-dev\n"
 
 #: ../src/dialog.vala:66
@@ -163,22 +163,23 @@ msgstr "Вынікі пошуку"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Анатацыі"
 
 #: ../src/constants.vala:60
 msgid "Add text to annotate : "
-msgstr ""
+msgstr "Дадаць тэкст да анатацыі : "
 
 #: ../src/constants.vala:61
-#, fuzzy
 msgid "Click on a link to jump to an annotated section"
-msgstr "Націсніце на спасылку, каб перайсці да закладкі раздзела"
+msgstr "Націсніце на спасылку, каб перайсці да анатаванага раздзела"
 
 #: ../src/constants.vala:62
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"У BBB няма анатацый, націсніце правай кнопкай на старонцы кнігі ды абярыце "
+"анатацыю з кантэкстнага меню, каб дадаць анатацыі"
 
 #: ../src/constants.vala:63
 msgid "Searching for '$$$' in &&&:"
@@ -226,7 +227,7 @@ msgstr "Праверыць значэнне слова"
 
 #: ../src/constants.vala:75
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Анатаваць абраны тэкст"
 
 #: ../src/constants.vala:76
 msgid "Books"
@@ -346,7 +347,7 @@ msgstr "Выдаліць каталог з спіса сканавання"
 
 #: ../src/constants.vala:107
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Дадаць анатацыю да абранага тэксту"
 
 #: ../src/constants.vala:109 ../src/constants.vala:135
 msgid "Preferences"
