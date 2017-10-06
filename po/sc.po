@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-04 18:30+0100\n"
-"PO-Revision-Date: 2017-09-06 21:51+0000\n"
+"PO-Revision-Date: 2017-10-06 20:53+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
-"Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/sc/>\n"
+"Language-Team: Sardinian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,6 @@ msgid "Run Bookworm in debug mode"
 msgstr "Allughe Bookworm in modalidade de depuratzione (debug)"
 
 #: ../src/bookworm.vala:114
-#, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Allughe Bookworm in modalidade \"info\""
 
@@ -167,22 +166,23 @@ msgstr "Risultados de sa chirca"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Notas"
 
 #: ../src/constants.vala:60
 msgid "Add text to annotate : "
-msgstr ""
+msgstr "Annaghe testu de annotare : "
 
 #: ../src/constants.vala:61
-#, fuzzy
 msgid "Click on a link to jump to an annotated section"
-msgstr "Incarca in unu ligàmene pro andare a sa setzione sinnalada"
+msgstr "Incarca in unu ligàmene pro andare a sa setzione annotada"
 
 #: ../src/constants.vala:62
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Peruna nota impostada in BBB, inacrca cun su butone destru in una pàgina de "
+"unu libru e issèbera \"notas\" dae su menù de cuntestu pro annànghere notas"
 
 #: ../src/constants.vala:63
 msgid "Searching for '$$$' in &&&:"
@@ -230,7 +230,7 @@ msgstr "Verìfica su significadu de sa paràula"
 
 #: ../src/constants.vala:75
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Annota su testu ischertadu"
 
 #: ../src/constants.vala:76
 msgid "Books"
@@ -354,7 +354,7 @@ msgstr "Boga sa cartella ammustradas dae s'iscansidura pro sos libros"
 
 #: ../src/constants.vala:107
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Annanghe una nota a su testu ischertadu"
 
 #: ../src/constants.vala:109 ../src/constants.vala:135
 msgid "Preferences"
