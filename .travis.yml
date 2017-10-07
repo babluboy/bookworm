@@ -18,7 +18,7 @@ install:
 
 script:
   - echo BUILDS PASSED
-  - cmake . -DCMAKE_INSTALL_PREFIX=/usr
+  - cd /tmp/build-dir && cmake . -DCMAKE_INSTALL_PREFIX=/usr
 
 after_success:
   - echo INSTALL SUCCEEDED
