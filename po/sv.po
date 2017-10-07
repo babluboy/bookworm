@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-04 18:30+0100\n"
+"POT-Creation-Date: 2017-10-06 22:35+0100\n"
 "PO-Revision-Date: 2017-09-25 22:48+0000\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -348,7 +348,7 @@ msgstr "Ta bort visad mapp från boksökning"
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:109 ../src/constants.vala:135
+#: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -396,11 +396,11 @@ msgstr "Profil"
 msgid "Reset to default values"
 msgstr "Återställ till standardvärden"
 
-#: ../src/constants.vala:133
+#: ../src/constants.vala:134
 msgid "Unknown Book"
 msgstr "Okänd bok"
 
-#: ../src/constants.vala:134
+#: ../src/constants.vala:135
 msgid "About"
 msgstr "Om"
 

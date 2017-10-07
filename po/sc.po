@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-04 18:30+0100\n"
+"POT-Creation-Date: 2017-10-07 09:39+0100\n"
 "PO-Revision-Date: 2017-10-06 20:53+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
-"Language-Team: Sardinian "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/sc/>\n"
+"Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -356,7 +356,7 @@ msgstr "Boga sa cartella ammustradas dae s'iscansidura pro sos libros"
 msgid "Add annotation to selected text"
 msgstr "Annanghe una nota a su testu ischertadu"
 
-#: ../src/constants.vala:109 ../src/constants.vala:135
+#: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
 msgstr "Preferèntzias"
 
@@ -404,11 +404,11 @@ msgstr "Profilu"
 msgid "Reset to default values"
 msgstr "Torra a sos valores predefinidos"
 
-#: ../src/constants.vala:133
+#: ../src/constants.vala:134
 msgid "Unknown Book"
 msgstr "Libru disconnotu"
 
-#: ../src/constants.vala:134
+#: ../src/constants.vala:135
 msgid "About"
 msgstr "A pitzu de"
 

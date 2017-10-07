@@ -127,6 +127,7 @@ namespace BookwormApp.Constants {
 	public static const int MAX_BOOK_COVER_PER_ROW = 6;
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
+	public static const int MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB = 100;
 	//public const string RGBA_HEX_WHITE = "#ffffff";
 	//public const string RGBA_HEX_BLACK = "#002B36";
 

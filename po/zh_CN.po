@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-04 18:30+0100\n"
+"POT-Creation-Date: 2017-10-06 22:35+0100\n"
 "PO-Revision-Date: 2017-07-13 23:01+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -350,7 +350,7 @@ msgstr ""
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:109 ../src/constants.vala:135
+#: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
 msgstr "选项"
 
@@ -399,11 +399,11 @@ msgstr ""
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:133
+#: ../src/constants.vala:134
 msgid "Unknown Book"
 msgstr "未知书籍"
 
-#: ../src/constants.vala:134
+#: ../src/constants.vala:135
 msgid "About"
 msgstr "关于"
 

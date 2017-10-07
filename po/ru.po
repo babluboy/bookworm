@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-04 18:30+0100\n"
+"POT-Creation-Date: 2017-10-06 22:35+0100\n"
 "PO-Revision-Date: 2017-09-20 23:56+0000\n"
 "Last-Translator: khtd <khtd.khtd@hotmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bookworm/"
@@ -352,7 +352,7 @@ msgstr "Удалить папку из списка сканирования"
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:109 ../src/constants.vala:135
+#: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
 msgstr "Параметры"
 
@@ -400,11 +400,11 @@ msgstr "Профиль"
 msgid "Reset to default values"
 msgstr "Сбросить к значениям по умолчанию"
 
-#: ../src/constants.vala:133
+#: ../src/constants.vala:134
 msgid "Unknown Book"
 msgstr "Неизвестная книга"
 
-#: ../src/constants.vala:134
+#: ../src/constants.vala:135
 msgid "About"
 msgstr "О программе"
 

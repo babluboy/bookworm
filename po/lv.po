@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-04 18:30+0100\n"
+"POT-Creation-Date: 2017-10-06 22:35+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
@@ -330,7 +330,7 @@ msgstr ""
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:109 ../src/constants.vala:135
+#: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
 msgstr ""
 
@@ -378,11 +378,11 @@ msgstr ""
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:133
+#: ../src/constants.vala:134
 msgid "Unknown Book"
 msgstr ""
 
-#: ../src/constants.vala:134
+#: ../src/constants.vala:135
 msgid "About"
 msgstr ""
 
