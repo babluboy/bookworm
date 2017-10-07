@@ -130,6 +130,7 @@ public class BookwormApp.AppHeaderBar {
         //Set the mode to Info View Mode
         bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
         bookwormApp.toggleUIState();
+        //Set the visible tab to search result tab
         BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name ("searchresults-list"));
       }
     });
@@ -161,12 +162,15 @@ public class BookwormApp.AppHeaderBar {
       //Set the mode to Content View Mode
       bookwormApp.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
       bookwormApp.toggleUIState();
-      //Refresh bookmark info if the current tab is Bookmarks
+      //Open the Info section for the last viewed tab
+      BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name (settings.current_info_tab));
+      //Refresh the tab if required
       if("bookmark-list"==settings.current_info_tab){
         BookwormApp.Info.populateBookmarks();
       }
-      //Open the Info section for the last viewed tab
-      BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name (settings.current_info_tab));
+      if("annotations-list"==settings.current_info_tab){
+        BookwormApp.Info.populateAnnotations();
+      }
     });
 
     bookwormApp.prefButton.clicked.connect (() => {

@@ -42,7 +42,7 @@ public class BookwormApp.DB{
     }
 
     debug ("Creating latest version for Library table if it does not exists");
-    string create_library_table = "CREATE TABLE IF NOT EXISTS "+BOOKWORM_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" ("
+    string create_library_table = "CREATE TABLE IF NOT EXISTS "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ("
                                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                                + "BOOK_LOCATION TEXT NOT NULL DEFAULT '', "
 															 + "BOOK_TITLE TEXT NOT NULL DEFAULT '', "
@@ -64,7 +64,7 @@ public class BookwormApp.DB{
 		int librarytableCreateStatus = bookwormDB.exec (create_library_table, null, out errmsg);
 	 	if (librarytableCreateStatus != Sqlite.OK) {
       debug("Executed Query:"+create_library_table);
-	 		warning ("Error in creating table["+BOOKWORM_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+"]: %s\n", errmsg);
+	 		warning ("Error in creating table["+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+"]: %s\n", errmsg);
       return false;
 	 	}
 
@@ -144,7 +144,7 @@ public class BookwormApp.DB{
        }
        stmt.bind_text (1, BookwormApp.Constants.bookworm_version);
        stmt.bind_text (2, BOOKWORM_TABLE_VERSION);
-       stmt.bind_text (3, "VERSION_TABLE|"+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+"|"+BOOKWORM_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION);
+       stmt.bind_text (3, "VERSION_TABLE|"+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+"|"+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION);
        stmt.step ();
        stmt.reset ();
        debug("Updated latest database version info into Database");

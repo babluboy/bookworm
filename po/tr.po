@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-04 18:30+0100\n"
+"POT-Creation-Date: 2017-10-07 09:39+0100\n"
 "PO-Revision-Date: 2017-10-04 20:04+0000\n"
 "Last-Translator: monolifed <monolifed@gmail.com>\n"
-"Language-Team: Turkish "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/tr/>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,8 +100,8 @@ msgstr "Geçersiz mime türü algılandı. Konumdaki kitap biçimini doğrulayı
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure valid eBook file at location : "
 msgstr ""
-"Geçersiz içerik bulundu. Konumda geçerli eKitap dosyası olduğundan emin olun "
-": "
+"Geçersiz içerik bulundu. Konumda geçerli eKitap dosyası olduğundan emin "
+"olun : "
 
 #: ../src/constants.vala:47
 msgid "eBook could not be parsed. Ensure valid eBook file at location : "
@@ -348,7 +348,7 @@ msgstr "Gösterilen klasörü kitap taramasından kaldır"
 msgid "Add annotation to selected text"
 msgstr "Seçili metne açıklama ekle"
 
-#: ../src/constants.vala:109 ../src/constants.vala:135
+#: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
 msgstr "Tercihler"
 
@@ -396,11 +396,11 @@ msgstr "Profil"
 msgid "Reset to default values"
 msgstr "Öntanımlı değerlere sıfırla"
 
-#: ../src/constants.vala:133
+#: ../src/constants.vala:134
 msgid "Unknown Book"
 msgstr "Bilinmeyen Kitap"
 
-#: ../src/constants.vala:134
+#: ../src/constants.vala:135
 msgid "About"
 msgstr "Hakkında"
 

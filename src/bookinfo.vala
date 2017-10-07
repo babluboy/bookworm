@@ -98,18 +98,30 @@ public class BookwormApp.Info:Gtk.Window {
     //get the book being currently read
 		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
     Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATIONS_FOUND);
-
     Box annotations_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     annotations_box.pack_start(annotationsLabel,false,false,0);
-    if(-1 != -1){
-
+    TreeMap<string,string> aAnnotationMap = aBook.getAnnotationList();
+    StringBuilder displayAnnotatedText = new StringBuilder("");
+    if(aAnnotationMap != null && aAnnotationMap.size > 0){
+      foreach (var entry in aAnnotationMap.entries){
+        //limit the annootated text
+        if(entry.value.strip().length > BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB){
+          displayAnnotatedText.assign(entry.value.strip().substring(0,BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB));
+          displayAnnotatedText.append("...");
+        }else{
+          displayAnnotatedText.assign(entry.value.strip());
+        }
+        LinkButton annotationLinkButton = new LinkButton.with_label (entry.key, displayAnnotatedText.str);
+        annotationLinkButton.halign = Align.START;
+        annotations_box.pack_start(annotationLinkButton,false,false,0);
+      }
     }else{
       annotationsLabel.set_text(BookwormApp.Constants.TEXT_FOR_ANNOTATIONS_NOT_FOUND.replace("BBB", aBook.getBookTitle()));
     }
     //Remove the existing annotations Gtk.Box and add the current one
     annotations_scroll.get_child().destroy();
     annotations_scroll.add (annotations_box);
-    info_box.show_all();
+    annotations_box.show_all();
   }
 
   public static void populateBookmarks(){

@@ -714,7 +714,6 @@ namespace BookwormApp.Utils {
 				stringForTreeMap.append(entry.key).append("~~##~~").append(entry.value);
         stringForTreeMap.append("~~^^~~");
     	}
-			debug("annotations for book="+stringForTreeMap.str);
 			return stringForTreeMap.str;
 		}
 
