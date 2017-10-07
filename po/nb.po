@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-06 22:35+0100\n"
-"PO-Revision-Date: 2017-10-07 08:41+0000\n"
+"PO-Revision-Date: 2017-10-08 05:42+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/nb/>\n"
@@ -358,7 +358,7 @@ msgstr ""
 
 #: ../src/constants.vala:112
 msgid "Always show library on start"
-msgstr "Alltid vis bilbiotek ved oppstart"
+msgstr "Alltid vis bibliotek ved oppstart"
 
 #: ../src/constants.vala:113
 msgid "Enable two page reading"
