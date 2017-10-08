@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-06 22:35+0100\n"
-"PO-Revision-Date: 2017-10-08 05:42+0000\n"
+"PO-Revision-Date: 2017-10-09 16:46+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/et/>\n"
@@ -43,47 +43,47 @@ msgstr "Käivita Bookworm inforežiimis"
 
 #: ../src/bookworm.vala:115
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Lisa uued raamatud jälgimiskasutadest automaatselt"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "E-raamatu luger"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Tõlkijad Weblate'is"
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr ""
+msgstr "Veebisait"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "Pole saadaval"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "E-raamatu luger"
 
 #: ../src/constants.vala:39
 msgid "Search this book..."
-msgstr ""
+msgstr "Otsi seda raamatut..."
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Otsi tiitli, autori ja siltide järgi"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books !"
-msgstr ""
+msgstr "Tundub, et Bookwormil ei ole raamatuid!"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Loo isiklik raamatukogu lisades e-raamatuid"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Vali lugemiseks e-raamat"
 
 #: ../src/constants.vala:44
 msgid ""
