@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-06 22:35+0100\n"
-"PO-Revision-Date: 2017-10-08 05:42+0000\n"
+"PO-Revision-Date: 2017-10-08 16:53+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/nb/>\n"
@@ -142,7 +142,7 @@ msgstr "Bokmerker"
 
 #: ../src/constants.vala:55
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Bokmerk #NNN for avsnitt PPP"
 
 #: ../src/constants.vala:56
 msgid "Click on a link to jump to bookmarked section"
@@ -153,44 +153,48 @@ msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"Ingen bokmerker angitt i BBB, klikk på Bokorm-ikonet i rubrikkfeltet for å "
+"bokmerke siden"
 
 #: ../src/constants.vala:58
 msgid "Search Results"
-msgstr ""
+msgstr "Søkeresultater"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Anmerkning"
 
 #: ../src/constants.vala:60
 msgid "Add text to annotate : "
-msgstr ""
+msgstr "Tekst å anmerke: "
 
 #: ../src/constants.vala:61
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Klikk på en lenke for å hoppe til anmerket avsnitt"
 
 #: ../src/constants.vala:62
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Ingen anmerkninger angitt i BBB, høyreklikk på siden av en bok og velg "
+"anmerkningen fra bindeleddsmenyen for å legge til anmerkninger"
 
 #: ../src/constants.vala:63
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Søker etter \"$$$\" i &&&:"
 
 #: ../src/constants.vala:64
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Fant følgende treff for \"&&&\" i &&&:"
 
 #: ../src/constants.vala:65
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Ingen treff for \"$$$\" i &&&"
 
 #: ../src/constants.vala:66
 msgid "Edit Info for"
-msgstr ""
+msgstr "Rediger info for"
 
 #: ../src/constants.vala:67 ../src/constants.vala:71
 msgid "Update Cover Image"
@@ -218,11 +222,11 @@ msgstr "Avslutt fullskjermsvisning (Esc)"
 
 #: ../src/constants.vala:74
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Sjekk ordets betydning"
 
 #: ../src/constants.vala:75
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Anmerk valgt tekst"
 
 #: ../src/constants.vala:76
 msgid "Books"
@@ -306,19 +310,19 @@ msgstr "Forminsk skriftstørrelse (Ctrl+ '-')"
 
 #: ../src/constants.vala:97
 msgid "Increase line width"
-msgstr ""
+msgstr "Øk linjebredde"
 
 #: ../src/constants.vala:98
 msgid "Decrease line width"
-msgstr ""
+msgstr "Minsk linjebredde"
 
 #: ../src/constants.vala:99
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Øk linjeavstand"
 
 #: ../src/constants.vala:100
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "MInsk linjeavstand"
 
 #: ../src/constants.vala:101
 msgid "Update cover image"
@@ -342,7 +346,7 @@ msgstr "Fjern viste bøker fra bokskanning"
 
 #: ../src/constants.vala:107
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Legg til anmerkning for valgt tekst"
 
 #: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
@@ -354,7 +358,7 @@ msgstr "Skru på mørkt modus"
 
 #: ../src/constants.vala:111
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Aktiver hurtiglager (åpner bøker raskere)"
 
 #: ../src/constants.vala:112
 msgid "Always show library on start"
@@ -362,7 +366,7 @@ msgstr "Alltid vis bibliotek ved oppstart"
 
 #: ../src/constants.vala:113
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Aktiver tosidig lesning"
 
 #: ../src/constants.vala:114
 msgid "Set Font"
