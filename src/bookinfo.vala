@@ -101,19 +101,40 @@ public class BookwormApp.Info:Gtk.Window {
     Box annotations_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     annotations_box.pack_start(annotationsLabel,false,false,0);
     TreeMap<string,string> aAnnotationMap = aBook.getAnnotationList();
-    StringBuilder displayAnnotatedText = new StringBuilder("");
+    StringBuilder textProvidedAsAnnotation = new StringBuilder("");
+    StringBuilder textMarkedForAnnotation = new StringBuilder("");
     if(aAnnotationMap != null && aAnnotationMap.size > 0){
       foreach (var entry in aAnnotationMap.entries){
         //limit the annootated text
-        if(entry.value.strip().length > BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB){
-          displayAnnotatedText.assign(entry.value.strip().substring(0,BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB));
-          displayAnnotatedText.append("...");
-        }else{
-          displayAnnotatedText.assign(entry.value.strip());
+        if(entry.key.strip().index_of("#~~#") != -1){
+          textMarkedForAnnotation.assign(entry.key.strip().split("#~~#")[1]);
+          if(entry.key.strip().split("#~~#")[1].length > BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB){
+            textMarkedForAnnotation.assign(entry.key.strip().split("#~~#")[1].replace("\n", " ").substring(0,BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB));
+            textMarkedForAnnotation.append("...");
+          }else{
+            textMarkedForAnnotation.assign(entry.key.strip().split("#~~#")[1].replace("\n", " "));
+          }
+
+          if(entry.value.strip().length > BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB){
+            textProvidedAsAnnotation.assign(entry.value.strip().replace("\n", " ").substring(0,BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB));
+            textProvidedAsAnnotation.append("...");
+          }else{
+            textProvidedAsAnnotation.assign(entry.value.strip().replace("\n", " "));
+          }
+          LinkButton annotationLinkButton = new LinkButton.with_label (entry.key.strip().split("#~~#")[0], "Section " + entry.key.strip().split("#~~#")[0] + " [" + textMarkedForAnnotation.str + "] : " + textProvidedAsAnnotation.str);
+          annotationLinkButton.halign = Align.START;
+          annotations_box.pack_start(annotationLinkButton,false,false,0);
+          annotationLinkButton.activate_link.connect (() => {
+            aBook.setBookPageNumber(int.parse(annotationLinkButton.get_uri ().strip()));
+            //update book details to libraryView Map
+            BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+            aBook = BookwormApp.contentHandler.renderPage(aBook, "");
+            //Set the mode back to Reading mode
+            BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+            BookwormApp.Bookworm.getAppInstance().toggleUIState();
+            return true;
+          });
         }
-        LinkButton annotationLinkButton = new LinkButton.with_label (entry.key, displayAnnotatedText.str);
-        annotationLinkButton.halign = Align.START;
-        annotations_box.pack_start(annotationLinkButton,false,false,0);
       }
     }else{
       annotationsLabel.set_text(BookwormApp.Constants.TEXT_FOR_ANNOTATIONS_NOT_FOUND.replace("BBB", aBook.getBookTitle()));

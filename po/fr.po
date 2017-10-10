@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-06 22:35+0100\n"
+"POT-Creation-Date: 2017-10-08 06:44+0100\n"
 "PO-Revision-Date: 2017-09-12 04:47+0000\n"
 "Last-Translator: Aris <aris@papatheodorou.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -68,7 +68,8 @@ msgid "eBook Reader"
 msgstr "Lecteur de livres électroniques"
 
 #: ../src/constants.vala:39
-msgid "Search this book..."
+#, fuzzy
+msgid "Search this book…"
 msgstr "Chercher dans ce livre..."
 
 #: ../src/constants.vala:40
@@ -76,7 +77,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Rechercher par titre, auteur et mots-clés"
 
 #: ../src/constants.vala:41
-msgid "Looks like Bookworm has no books !"
+#, fuzzy
+msgid "Looks like Bookworm has no books."
 msgstr "On dirait bien que Bookworm ne contient pas de livres !"
 
 #: ../src/constants.vala:42
@@ -88,41 +90,46 @@ msgid "Select an eBook to read"
 msgstr "Sélectionnez un livre électronique pour le lire"
 
 #: ../src/constants.vala:44
+#, fuzzy
 msgid ""
-"Problem in extracting contents of book. Ensure valid eBook file at "
-"location : "
+"Problem in extracting contents of book. Ensure there is a valid eBook file "
+"here: "
 msgstr ""
 "Problème d'extraction du contenu du livre. Assurez-vous que le fichier eBook "
 "est à l'emplacement : "
 
 #: ../src/constants.vala:45
-msgid "Invalid Mime type detected. Check book format at location : "
+#, fuzzy
+msgid "Invalid MIME-type detected. Check of this book: "
 msgstr ""
 "Type de Mime invalide détecté. Vérifiez le format du livre à l'emplacement : "
 
 #: ../src/constants.vala:46
-msgid "Invalid content found. Ensure valid eBook file at location : "
+#, fuzzy
+msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Contenu invalide trouvé. Assurez-vous que le livre électronique est valide à "
 "l'emplacement : "
 
 #: ../src/constants.vala:47
 #, fuzzy
-msgid "eBook could not be parsed. Ensure valid eBook file at location : "
+msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "eBook n'a pas pu être analysé. Assurez-vous que le fichier eBook est à "
 "l'emplacement : "
 
 #: ../src/constants.vala:48
-msgid "Bookworm does not support the format of the file found at location : "
+#, fuzzy
+msgid "Bookworm does not support the format of the file found here: "
 msgstr ""
 "Bookworm ne prend pas en charge le format du fichier trouvé à "
 "l'emplacement : "
 
 #: ../src/constants.vala:49
+#, fuzzy
 msgid ""
-"Requested content could not be fetched. Please remove and add eBook file at "
-"location : "
+"Requested content could not be fetched. Please remove and add the eBook file "
+"found here: "
 msgstr ""
 "Le contenu demandé n'a pas pu être récupéré. Supprimez et ajoutez le fichier "
 "eBook à l'emplacement : "
@@ -172,7 +179,7 @@ msgid "Annotations"
 msgstr ""
 
 #: ../src/constants.vala:60
-msgid "Add text to annotate : "
+msgid "Add text to annotatation: "
 msgstr ""
 
 #: ../src/constants.vala:61
@@ -299,7 +306,8 @@ msgstr ""
 "Voir la table des matières, les marque-pages et les résultats de recherche"
 
 #: ../src/constants.vala:92
-msgid "Set reading preferences"
+#, fuzzy
+msgid "Reading preferences"
 msgstr "Définir les préférences de lecture"
 
 #: ../src/constants.vala:93
@@ -340,11 +348,12 @@ msgstr "Mettre à jour l'image de la couverture"
 
 #: ../src/constants.vala:102
 #, fuzzy
-msgid "Set theme for this colour profile"
+msgid "Apply theme for this colour profile"
 msgstr "Définir le thème pour le profil couleur"
 
 #: ../src/constants.vala:103 ../src/constants.vala:104
-msgid "Enter full screen view and Esc key to exit"
+#, fuzzy
+msgid "Enter full screen view and Esc key to undo"
 msgstr "Passer en vue en plein écran (appuyez sur la touche Esc pour sortir)"
 
 #: ../src/constants.vala:105
@@ -374,7 +383,7 @@ msgstr "Activer le cache (ouvre les livres plus rapidement)"
 
 #: ../src/constants.vala:112
 #, fuzzy
-msgid "Always show library on start"
+msgid "Always show library on startup"
 msgstr "Afficher toujours la bibliothèque au démarrage"
 
 #: ../src/constants.vala:113
@@ -383,7 +392,8 @@ msgid "Enable two page reading"
 msgstr "Activer les deux pages de lecture"
 
 #: ../src/constants.vala:114
-msgid "Set Font"
+#, fuzzy
+msgid "Select Font"
 msgstr "Définir la police"
 
 #: ../src/constants.vala:115

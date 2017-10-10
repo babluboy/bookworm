@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-06 22:35+0100\n"
+"POT-Creation-Date: 2017-10-08 06:44+0100\n"
 "PO-Revision-Date: 2017-07-02 14:04+0000\n"
 "Last-Translator: Noah Loomans <noahloomans@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -68,7 +68,8 @@ msgid "eBook Reader"
 msgstr "e-boek lezer"
 
 #: ../src/constants.vala:39
-msgid "Search this book..."
+#, fuzzy
+msgid "Search this book…"
 msgstr "Zoeken in dit boek..."
 
 #: ../src/constants.vala:40
@@ -76,7 +77,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Zoek bij titel, auteur en labels"
 
 #: ../src/constants.vala:41
-msgid "Looks like Bookworm has no books !"
+#, fuzzy
+msgid "Looks like Bookworm has no books."
 msgstr "Het lijkt er op dat Bookworm geen boeken heeft!"
 
 #: ../src/constants.vala:42
@@ -90,40 +92,43 @@ msgstr "Selecteer een e-boek om te lezen"
 #: ../src/constants.vala:44
 #, fuzzy
 msgid ""
-"Problem in extracting contents of book. Ensure valid eBook file at "
-"location : "
+"Problem in extracting contents of book. Ensure there is a valid eBook file "
+"here: "
 msgstr ""
 "Er is een probleem opgetreden tijdens het uitlezen van het boek. Controleer "
 "of het boek op de volgende locatie is: "
 
 #: ../src/constants.vala:45
-msgid "Invalid Mime type detected. Check book format at location : "
+#, fuzzy
+msgid "Invalid MIME-type detected. Check of this book: "
 msgstr ""
 "Ongeldige MIME type gedetecteerd. Controller het boek formaat op de volgende "
 "locatie: "
 
 #: ../src/constants.vala:46
-msgid "Invalid content found. Ensure valid eBook file at location : "
+#, fuzzy
+msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Ongeldige inhoud gevonden. Controller of het e-boek gelig is op de volgende "
 "locatie: "
 
 #: ../src/constants.vala:47
 #, fuzzy
-msgid "eBook could not be parsed. Ensure valid eBook file at location : "
+msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "Ongeldige inhoud gevonden. Controller of het e-boek gelig is op de volgende "
 "locatie: "
 
 #: ../src/constants.vala:48
-msgid "Bookworm does not support the format of the file found at location : "
+#, fuzzy
+msgid "Bookworm does not support the format of the file found here: "
 msgstr "Bookworm ondersteunt niet het formaat van het bestand op de locatie: "
 
 #: ../src/constants.vala:49
 #, fuzzy
 msgid ""
-"Requested content could not be fetched. Please remove and add eBook file at "
-"location : "
+"Requested content could not be fetched. Please remove and add the eBook file "
+"found here: "
 msgstr ""
 "Ongeldige inhoud gevonden. Controller of het e-boek gelig is op de volgende "
 "locatie: "
@@ -171,7 +176,7 @@ msgid "Annotations"
 msgstr ""
 
 #: ../src/constants.vala:60
-msgid "Add text to annotate : "
+msgid "Add text to annotatation: "
 msgstr ""
 
 #: ../src/constants.vala:61
@@ -294,7 +299,7 @@ msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr ""
 
 #: ../src/constants.vala:92
-msgid "Set reading preferences"
+msgid "Reading preferences"
 msgstr ""
 
 #: ../src/constants.vala:93
@@ -334,11 +339,11 @@ msgid "Update cover image"
 msgstr ""
 
 #: ../src/constants.vala:102
-msgid "Set theme for this colour profile"
+msgid "Apply theme for this colour profile"
 msgstr ""
 
 #: ../src/constants.vala:103 ../src/constants.vala:104
-msgid "Enter full screen view and Esc key to exit"
+msgid "Enter full screen view and Esc key to undo"
 msgstr ""
 
 #: ../src/constants.vala:105
@@ -366,7 +371,7 @@ msgid "Enable cache (opens books faster)"
 msgstr ""
 
 #: ../src/constants.vala:112
-msgid "Always show library on start"
+msgid "Always show library on startup"
 msgstr ""
 
 #: ../src/constants.vala:113
@@ -374,8 +379,9 @@ msgid "Enable two page reading"
 msgstr ""
 
 #: ../src/constants.vala:114
-msgid "Set Font"
-msgstr ""
+#, fuzzy
+msgid "Select Font"
+msgstr "Selecteer e-boek"
 
 #: ../src/constants.vala:115
 msgid "Customize reading profile"
