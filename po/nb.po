@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-10 18:40+0100\n"
-"PO-Revision-Date: 2017-10-08 16:53+0000\n"
+"PO-Revision-Date: 2017-10-12 01:46+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
-"bookworm/bookworm/nb/>\n"
+"Language-Team: Norwegian Bokmål "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/nb/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,6 @@ msgid "eBook Reader"
 msgstr "e-bokleser"
 
 #: ../src/constants.vala:39
-#, fuzzy
 msgid "Search this book…"
 msgstr "Søk i denne boka…"
 
@@ -75,7 +74,6 @@ msgid "Search by Title, Author and Tags"
 msgstr "Søk etter tittel, forfatter og tagger"
 
 #: ../src/constants.vala:41
-#, fuzzy
 msgid "Looks like Bookworm has no books."
 msgstr "Det det ut til at Bokormen er bokløs."
 
@@ -102,25 +100,21 @@ msgid "Invalid MIME-type detected. Check of this book: "
 msgstr "Ugyldig MIME-type oppdaget. Sjekk bokformat her: "
 
 #: ../src/constants.vala:46
-#, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Ugyldig innhold funnet, forsikre deg om at det finnes ei gyldig e-bok her: "
 
 #: ../src/constants.vala:47
-#, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "E-boka kunne ikke fortolkes. Forsikre deg om at det finnes ei gyldig e-bok "
 "her: "
 
 #: ../src/constants.vala:48
-#, fuzzy
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bokorm støtter ikke formatet for fila som finnes her: "
+msgstr "Bokormen støtter ikke formatet for fila som finnes her: "
 
 #: ../src/constants.vala:49
-#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
@@ -173,7 +167,6 @@ msgid "Annotations"
 msgstr "Anmerkning"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Add text to annotatation: "
 msgstr "Tekst å anmerke: "
 
@@ -339,12 +332,10 @@ msgid "Update cover image"
 msgstr "Oppdater omslagsbildet"
 
 #: ../src/constants.vala:102
-#, fuzzy
 msgid "Apply theme for this colour profile"
-msgstr "Sett drakt for denne fargeprofilen"
+msgstr "Ikle drakt for denne fargeprofilen"
 
 #: ../src/constants.vala:103 ../src/constants.vala:104
-#, fuzzy
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Gå inn i fullskjermsvisning og trykk Esc-knappen for å angre"
 
@@ -373,7 +364,6 @@ msgid "Enable cache (opens books faster)"
 msgstr "Aktiver hurtiglager (åpner bøker raskere)"
 
 #: ../src/constants.vala:112
-#, fuzzy
 msgid "Always show library on startup"
 msgstr "Alltid vis bibliotek ved oppstart"
 
@@ -382,7 +372,6 @@ msgid "Enable two page reading"
 msgstr "Aktiver tosidig lesning"
 
 #: ../src/constants.vala:114
-#, fuzzy
 msgid "Select Font"
 msgstr "Angi skrift"
 
