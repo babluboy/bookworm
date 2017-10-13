@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-13 14:39+0100\n"
 "PO-Revision-Date: 2017-10-12 21:52+0000\n"
 "Last-Translator: Edgar Moraes Diniz <edgar.diniz@posteo.net>\n"
-"Language-Team: Portuguese (Brazil) "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,9 +21,9 @@ msgstr "Selecionar Imagem"
 msgid "Select folder"
 msgstr "Selecionar pasta"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Adicionado "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -417,6 +417,9 @@ msgstr "Salvar"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Livro"
+
+#~ msgid "Added "
+#~ msgstr "Adicionado "
 
 #~ msgid "Light theme"
 #~ msgstr "Tema Claro"

@@ -33,6 +33,7 @@ public class BookwormApp.Book{
   private string bookCreationDate = "";
   private string bookLastModificationDate = "";
   private int bookPageNumber = -1;
+  private int bookTotalPages = 1;
   private int bookScrollPosition = -1;
   private int bookRating = 0;
   private bool isBookCoverImagePresent = false;
@@ -207,6 +208,14 @@ public class BookwormApp.Book{
   }
   public int getBookPageNumber (){
     return bookPageNumber;
+  }
+
+  //getter setter for total pages in book
+  public void setBookTotalPages (int aBookTotalPages){
+    bookTotalPages = aBookTotalPages;
+  }
+  public int getBookTotalPages (){
+    return bookTotalPages;
   }
 
   //getter setter for eBook vertical scroll position

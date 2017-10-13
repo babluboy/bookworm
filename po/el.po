@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-12 11:12+0100\n"
 "PO-Revision-Date: 2017-08-03 11:43+0000\n"
 "Last-Translator: tony <tonyzet988@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -22,8 +22,8 @@ msgstr "Επιλογή Εικόνας"
 msgid "Select folder"
 msgstr "Επιλογή Εικόνας"
 
-#: ../src/library.vala:543
-msgid "Added "
+#: ../src/library.vala:544
+msgid "Adding "
 msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575

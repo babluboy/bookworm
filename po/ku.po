@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-12 11:12+0100\n"
 "PO-Revision-Date: 2017-09-12 22:48+0000\n"
 "Last-Translator: Cûndûllah el-Kurdî <mckucukaslan47@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/bookworm/"
@@ -21,9 +21,9 @@ msgstr "Wêne Hilbijêre"
 msgid "Select folder"
 msgstr "Belgeyê Hilbijêre"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Hat lêzêdekirin "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -444,6 +444,9 @@ msgstr "Tomar bike"
 #, fuzzy
 msgid "Book"
 msgstr "Pirtûk"
+
+#~ msgid "Added "
+#~ msgstr "Hat lêzêdekirin "
 
 #~ msgid "Light theme"
 #~ msgstr "Dirba ronî"

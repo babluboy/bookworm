@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-13 14:39+0100\n"
 "PO-Revision-Date: 2017-10-11 21:36+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
-"Language-Team: Sardinian "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/sc/>\n"
+"Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,9 +21,9 @@ msgstr "Ischerta un'immàgine"
 msgid "Select folder"
 msgstr "Ischerta una cartella"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Annantu "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -427,6 +427,9 @@ msgstr "Sarva"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Libru"
+
+#~ msgid "Added "
+#~ msgstr "Annantu "
 
 #~ msgid "Light theme"
 #~ msgstr "Tema craru"

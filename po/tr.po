@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-12 11:12+0100\n"
 "PO-Revision-Date: 2017-10-04 20:04+0000\n"
 "Last-Translator: monolifed <monolifed@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
@@ -21,9 +21,9 @@ msgstr "Resim Seçin"
 msgid "Select folder"
 msgstr "Klasör seçin"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Eklendi "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -433,3 +433,6 @@ msgstr "Kaydet"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Kitap"
+
+#~ msgid "Added "
+#~ msgstr "Eklendi "

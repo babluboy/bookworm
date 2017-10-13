@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-13 14:39+0100\n"
 "PO-Revision-Date: 2017-10-13 08:22+0000\n"
 "Last-Translator: Володимир Бриняк <bardvv@gmail.com>\n"
-"Language-Team: Ukrainian "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/uk/>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.17-dev\n"
 
 #: ../src/dialog.vala:66
@@ -22,9 +22,9 @@ msgstr "Вибрати зображення"
 msgid "Select folder"
 msgstr "Виберіть папку"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Додано "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -422,6 +422,9 @@ msgstr "Зберегти"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Книга"
+
+#~ msgid "Added "
+#~ msgstr "Додано "
 
 #~ msgid "Light theme"
 #~ msgstr "Світла тема"

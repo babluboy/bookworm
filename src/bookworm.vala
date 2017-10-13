@@ -458,6 +458,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public static void readSelectedBook(owned BookwormApp.Book aBook){
+		//Fetch the book meta data from the database
+		aBook = BookwormApp.DB.getBookMetaDataFromDB(aBook);
 		//Handle the case when the page number of the book is not set
     if(aBook.getBookPageNumber() == -1){
 			aBook.setBookPageNumber(0);
@@ -489,6 +491,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//progress in opening the book for reading if it has been parsed sucessfully
 		if(aBook.getIsBookParsed()){
+			//update the total number of pages in the book
+			aBook.setBookTotalPages(aBook.getBookContentList().size);
 			//update book to mark it has been opened in this session
 			aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
 			aBook.setWasBookOpened(true);
@@ -505,8 +509,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 			//set the max value and the current value of the page slider
 			BookwormApp.AppWindow.pageAdjustment.set_upper(aBook.getBookContentList().size);
 			BookwormApp.AppWindow.pageAdjustment.set_value(aBook.getBookPageNumber());
-			//Fetch the book meta data from the database
-			aBook = BookwormApp.DB.getBookMetaDataFromDB(aBook);
 			//render the contents of the current page of book
 			aBook = BookwormApp.contentHandler.renderPage(aBook, "");
 		}

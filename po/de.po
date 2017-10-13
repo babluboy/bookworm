@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-12 11:12+0100\n"
 "PO-Revision-Date: 2017-08-16 06:34+0000\n"
 "Last-Translator: MichaZ <trans@zoelfel.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -21,9 +21,9 @@ msgstr "Bild auswählen"
 msgid "Select folder"
 msgstr "Verzeichnis wählen"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Hinzugefügt "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -437,6 +437,9 @@ msgstr "Speichern"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Buch"
+
+#~ msgid "Added "
+#~ msgstr "Hinzugefügt "
 
 #~ msgid "Light theme"
 #~ msgstr "Helles Thema"

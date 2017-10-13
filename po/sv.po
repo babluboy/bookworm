@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-12 11:12+0100\n"
 "PO-Revision-Date: 2017-09-25 22:48+0000\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -21,9 +21,9 @@ msgstr "Välj bild"
 msgid "Select folder"
 msgstr "Välj mapp"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Lade till "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -432,6 +432,9 @@ msgstr "Spara"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Bok"
+
+#~ msgid "Added "
+#~ msgstr "Lade till "
 
 #~ msgid "Light theme"
 #~ msgstr "Ljust tema"

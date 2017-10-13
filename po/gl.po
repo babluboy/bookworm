@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-12 11:12+0100\n"
 "PO-Revision-Date: 2017-09-18 07:01+0000\n"
 "Last-Translator: Pablo Mariño <pablo.marino.boga@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bookworm/"
@@ -21,9 +21,9 @@ msgstr "Escolle Imaxe"
 msgid "Select folder"
 msgstr "Escolle cartafol"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Engadido "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -436,3 +436,6 @@ msgstr "Gardar"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Libro"
+
+#~ msgid "Added "
+#~ msgstr "Engadido "

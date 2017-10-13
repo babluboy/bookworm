@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-08 06:44+0100\n"
+"POT-Creation-Date: 2017-10-12 11:12+0100\n"
 "PO-Revision-Date: 2017-10-06 12:07+0000\n"
 "Last-Translator: Nika Zhenya <nika.zhenya@gmail.com>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/"
@@ -27,9 +27,9 @@ msgstr "Seleccionar imagen"
 msgid "Select folder"
 msgstr "Seleccionar carpeta"
 
-#: ../src/library.vala:543
-msgid "Added "
-msgstr "Agregado "
+#: ../src/library.vala:544
+msgid "Adding "
+msgstr ""
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -436,3 +436,6 @@ msgstr "Guardar"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Libro"
+
+#~ msgid "Added "
+#~ msgstr "Agregado "

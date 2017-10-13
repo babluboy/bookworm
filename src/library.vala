@@ -109,7 +109,7 @@ public class BookwormApp.Library {
     Gtk.Image bookSelectedImage;
 		string bookCoverLocation;
     Gdk.Pixbuf aBookCover;
-    Gdk.Pixbuf bookPlaceholderCoverPix = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.PLACEHOLDER_COVER_IMAGE_LOCATION, 150, 200, false);
+    Gdk.Pixbuf bookPlaceholderCoverPix = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.PLACEHOLDER_COVER_IMAGE_LOCATION, 10, 200, false);
     Gtk.Image bookPlaceholderCoverImage = new Gtk.Image.from_pixbuf(bookPlaceholderCoverPix);
     Gtk.ProgressBar bookProgressBar = new Gtk.ProgressBar ();
 
@@ -204,7 +204,7 @@ public class BookwormApp.Library {
     //add mouse enter listener for book object
     aEventBox.enter_notify_event.connect ((event) => {
       //calculate the progress of the book
-      progress = ((double)aBook.getBookPageNumber()+1)/aBook.getBookContentList().size;
+      progress = ((double)aBook.getBookPageNumber()+1)/aBook.getBookTotalPages();
       bookProgressBar.set_fraction (progress);
       bookProgressBar.set_visible(true);
       return false;
@@ -537,11 +537,17 @@ public class BookwormApp.Library {
       if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 2){
         Idle.add (addBooksToLibrary.callback);
       }
-      //set progress for the UI Book addition progress bar
       BookwormApp.Bookworm.noOfBooksAddedFromCommand++;
-      progress = ((double) BookwormApp.Bookworm.noOfBooksAddedFromCommand)/BookwormApp.Bookworm.pathsOfBooksToBeAdded.length;
-      BookwormApp.AppWindow.bookAdditionBar.set_text (_("Added ") + ((int)(BookwormApp.AppWindow.bookAdditionBar.get_fraction()*100)).to_string() + "% : " + File.new_for_path(BookwormApp.Bookworm.locationOfEBookCurrentlyRead).get_basename());
-      BookwormApp.AppWindow.bookAdditionBar.set_fraction (progress);
+      if("bookworm" != pathToSelectedBook.strip()){//ignore the first command which is the application name
+        //set progress for the UI Book addition progress bar
+        progress = (((double)(BookwormApp.Bookworm.noOfBooksAddedFromCommand))/((double)(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length)));
+        BookwormApp.AppWindow.bookAdditionBar.set_text (_("Adding ") +
+                                                         ((int)(progress*100)).to_string() +
+                                                         "% : " +
+                                                         File.new_for_path(pathToSelectedBook).get_basename()
+                                                        );
+        BookwormApp.AppWindow.bookAdditionBar.set_fraction (progress);
+      }
       //Return control back for any further actions only if multiple books are being added
       //If only one book is being added, complete parsing and adding the book,
       //so that it will be added to the BookwormApp.Bookworm.libraryViewMap and opened on the BookwormApp.contentHandler.performStartUpActions method
@@ -572,6 +578,7 @@ public class BookwormApp.Library {
 		//Hide the progress bar on completion of adding books
 		BookwormApp.AppWindow.bookAdditionBar.hide();
 		BookwormApp.Bookworm.isBookBeingAddedToLibrary = false;
+    BookwormApp.Bookworm.noOfBooksAddedFromCommand = 0;
 	}
 
 	public static void addBookToLibrary(owned BookwormApp.Book aBook){
