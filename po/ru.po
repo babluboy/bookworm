@@ -3,17 +3,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-12 11:12+0100\n"
-"PO-Revision-Date: 2017-09-20 23:56+0000\n"
-"Last-Translator: khtd <khtd.khtd@hotmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/ru/>\n"
+"PO-Revision-Date: 2017-10-14 09:47+0000\n"
+"Last-Translator: Maksim Borodin <neyhart@gmail.com>\n"
+"Language-Team: Russian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.17\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -25,7 +25,7 @@ msgstr "Выбрать папку"
 
 #: ../src/library.vala:544
 msgid "Adding "
-msgstr ""
+msgstr "Добавление "
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -68,18 +68,16 @@ msgid "eBook Reader"
 msgstr "Программа для чтения электронных книг"
 
 #: ../src/constants.vala:39
-#, fuzzy
 msgid "Search this book…"
-msgstr "Поиск в этой книге..."
+msgstr "Поиск в книге…"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
 msgstr "Поиск по Названию, Автору и Тегам"
 
 #: ../src/constants.vala:41
-#, fuzzy
 msgid "Looks like Bookworm has no books."
-msgstr "Похоже, в Bookworm нет книг!"
+msgstr "Похоже, в Bookworm нет книг."
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
@@ -90,46 +88,42 @@ msgid "Select an eBook to read"
 msgstr "Выбрать электронную книгу для чтения"
 
 #: ../src/constants.vala:44
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Проблема при извлечении содержимого книги. Проверьте, доступна ли книга по "
-"адресу : "
+"Проблема при извлечении содержимого книги. Проверьте наличие файла "
+"электронной книги по адресу: "
 
 #: ../src/constants.vala:45
-#, fuzzy
 msgid "Invalid MIME-type detected. Check of this book: "
-msgstr "Обнаружен недопустимый MIME-тип. Проверьте формат книги по адресу : "
+msgstr ""
+"Обнаружен недопустимый MIME-тип. Проверьте файл электронной книги по адресу :"
+" "
 
 #: ../src/constants.vala:46
-#, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
-"Обнаружено недопустимое содержание. Проверьте правильность файла электронной "
-"книги по адресу : "
+"Обнаружено недопустимое содержание. Проверьте файл электронной книги по "
+"адресу : "
 
 #: ../src/constants.vala:47
-#, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
-"Не удалось открыть электронную книгу. Проверьте правильность файла "
-"электронной книги по адресу : "
+"Не удалось открыть электронную книгу. Проверьте файла электронной книги по "
+"адресу : "
 
 #: ../src/constants.vala:48
-#, fuzzy
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm не поддерживает формат файла, найденного по адресу : "
+msgstr "Bookworm не поддерживает формат файла: "
 
 #: ../src/constants.vala:49
-#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"Не удалось получить запрошенное содержимое. Пожалуйста, удалите и добавьте "
-"электронную книгу по адресу : "
+"Не удалось получить содержимое файла. Пожалуйста, удалите и добавьте файл "
+"электронной книги по адресу: "
 
 #: ../src/constants.vala:50
 msgid "Library"
@@ -173,14 +167,13 @@ msgstr "Результаты поиска"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Примечание"
 
 #: ../src/constants.vala:60
 msgid "Add text to annotatation: "
-msgstr ""
+msgstr "Добаваить текст к примечанию "
 
 #: ../src/constants.vala:61
-#, fuzzy
 msgid "Click on a link to jump to an annotated section"
 msgstr "Нажмите ссылку, чтобы перейти к закладке"
 
@@ -189,6 +182,8 @@ msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"К BBB нет примечаний, чтобы добавить примечание щелкните правой кнопкой мыши "
+"на книге и выберите примечание из контекстного меню"
 
 #: ../src/constants.vala:63
 msgid "Searching for '$$$' in &&&:"
@@ -236,7 +231,7 @@ msgstr "Проверить значение слова"
 
 #: ../src/constants.vala:75
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Добавить примечание к выделенному тексту"
 
 #: ../src/constants.vala:76
 msgid "Books"
@@ -301,7 +296,6 @@ msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Просмотр оглавления, закладок и результатов поиска"
 
 #: ../src/constants.vala:92
-#, fuzzy
 msgid "Reading preferences"
 msgstr "Настройка параметров чтения"
 
@@ -342,14 +336,12 @@ msgid "Update cover image"
 msgstr "Изменить обложку"
 
 #: ../src/constants.vala:102
-#, fuzzy
 msgid "Apply theme for this colour profile"
-msgstr "Задать тему для этого цветового профиля"
+msgstr "Применить тему для этого цветового профиля"
 
 #: ../src/constants.vala:103 ../src/constants.vala:104
-#, fuzzy
 msgid "Enter full screen view and Esc key to undo"
-msgstr "Полноэкранный режим и клавиша Esc для выхода"
+msgstr "Вход  в полноэкранный режим, нажмите клавишу Esc для выхода"
 
 #: ../src/constants.vala:105
 msgid "Add folder to scan for books"
@@ -361,7 +353,7 @@ msgstr "Удалить папку из списка сканирования"
 
 #: ../src/constants.vala:107
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Добавить примечание к выделенному тексту"
 
 #: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
@@ -376,7 +368,6 @@ msgid "Enable cache (opens books faster)"
 msgstr "Включить кэш (быстрее открывает книги)"
 
 #: ../src/constants.vala:112
-#, fuzzy
 msgid "Always show library on startup"
 msgstr "Всегда показывать библиотеку при запуске"
 
@@ -385,9 +376,8 @@ msgid "Enable two page reading"
 msgstr "Включить двустраничный режим чтения"
 
 #: ../src/constants.vala:114
-#, fuzzy
 msgid "Select Font"
-msgstr "Задать шрифт"
+msgstr "Выбрать шрифт"
 
 #: ../src/constants.vala:115
 msgid "Customize reading profile"
