@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-12 11:12+0100\n"
-"PO-Revision-Date: 2017-09-25 22:48+0000\n"
-"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/sv/>\n"
+"PO-Revision-Date: 2017-10-15 21:23+0000\n"
+"Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
+"Language-Team: Swedish "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 2.17\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -23,7 +23,7 @@ msgstr "Välj mapp"
 
 #: ../src/library.vala:544
 msgid "Adding "
-msgstr ""
+msgstr "Lägger till "
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -170,11 +170,11 @@ msgstr "Sök i resultat"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Anteckningar"
 
 #: ../src/constants.vala:60
 msgid "Add text to annotatation: "
-msgstr ""
+msgstr "Lägg till text till anteckning: "
 
 #: ../src/constants.vala:61
 #, fuzzy
@@ -186,6 +186,8 @@ msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Inga anteckningar anges i BBB, högerklicka på sidan i en bok och välj "
+"anteckningar från snabbmenyn för att lägga till anteckningar"
 
 #: ../src/constants.vala:63
 msgid "Searching for '$$$' in &&&:"
@@ -233,7 +235,7 @@ msgstr "Kontrollera ordbetydelse"
 
 #: ../src/constants.vala:75
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Anteckna vald text"
 
 #: ../src/constants.vala:76
 msgid "Books"
@@ -357,7 +359,7 @@ msgstr "Ta bort visad mapp från boksökning"
 
 #: ../src/constants.vala:107
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Lägg till anteckning till vald text"
 
 #: ../src/constants.vala:109 ../src/constants.vala:136
 msgid "Preferences"
