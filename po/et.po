@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-13 14:39+0100\n"
-"PO-Revision-Date: 2017-10-09 16:46+0000\n"
+"PO-Revision-Date: 2017-10-15 21:23+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
-"Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/et/>\n"
+"Language-Team: Estonian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 2.17\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -23,7 +23,7 @@ msgstr "Vali kaust"
 
 #: ../src/library.vala:544
 msgid "Adding "
-msgstr ""
+msgstr "Lisamine "
 
 #: ../src/window.vala:284 ../src/window.vala:575
 msgid "Select eBook"
@@ -66,18 +66,16 @@ msgid "eBook Reader"
 msgstr "E-raamatu luger"
 
 #: ../src/constants.vala:39
-#, fuzzy
 msgid "Search this book…"
-msgstr "Otsi seda raamatut..."
+msgstr "Otsi seda raamatut…"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
 msgstr "Otsi tiitli, autori ja siltide järgi"
 
 #: ../src/constants.vala:41
-#, fuzzy
 msgid "Looks like Bookworm has no books."
-msgstr "Tundub, et Bookwormil ei ole raamatuid!"
+msgstr "Tundub, et Bookwormil ei ole raamatuid."
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
@@ -92,14 +90,16 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Probleem raamatu sisukorra avamisel. Kontrolli, et korrektne e-raamatu fail "
+"on siin: "
 
 #: ../src/constants.vala:45
 msgid "Invalid MIME-type detected. Check of this book: "
-msgstr ""
+msgstr "Avastati kehtetu MIME-tüüp. Kontrolli seda raamatut: "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Avastati kehtetu sisu. Kontrolli, et see on korrektne e-raamat: "
 
 #: ../src/constants.vala:47
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
@@ -117,31 +117,31 @@ msgstr ""
 
 #: ../src/constants.vala:50
 msgid "Library"
-msgstr ""
+msgstr "Raamatukogu"
 
 #: ../src/constants.vala:51
 msgid "Resume"
-msgstr ""
+msgstr "Jätka"
 
 #: ../src/constants.vala:52
 msgid "Contents"
-msgstr ""
+msgstr "Sisukord"
 
 #: ../src/constants.vala:53
 msgid "Content #"
-msgstr ""
+msgstr "Sisu #"
 
 #: ../src/constants.vala:54
 msgid "Bookmarks"
-msgstr ""
+msgstr "Järjehoidjad"
 
 #: ../src/constants.vala:55
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Järjehoidja #NNN osas PPP"
 
 #: ../src/constants.vala:56
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Järjehoidjaga viidatud ossa pääsemiseks klõpsa tal"
 
 #: ../src/constants.vala:57
 msgid ""
@@ -360,9 +360,8 @@ msgid "Enable two page reading"
 msgstr ""
 
 #: ../src/constants.vala:114
-#, fuzzy
 msgid "Select Font"
-msgstr "Vali e-raamat"
+msgstr "Vali kirjatüüp"
 
 #: ../src/constants.vala:115
 msgid "Customize reading profile"
