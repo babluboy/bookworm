@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-12 11:12+0100\n"
-"PO-Revision-Date: 2017-09-01 15:29+0000\n"
-"Last-Translator: Tomáš Mládek <tomas0mladek@gmail.com>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
-"cs/>\n"
+"PO-Revision-Date: 2017-10-15 11:23+0000\n"
+"Last-Translator: Dima Dorofieiev <dorofieiev.d@gmail.com>\n"
+"Language-Team: Czech "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 2.17\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -22,8 +22,9 @@ msgid "Select folder"
 msgstr "Vybrat složku"
 
 #: ../src/library.vala:544
+#, fuzzy
 msgid "Adding "
-msgstr ""
+msgstr "Přidání "
 
 #: ../src/window.vala:284 ../src/window.vala:575
 #, fuzzy
@@ -59,18 +60,18 @@ msgid "Website"
 msgstr "Webová stránka"
 
 #: ../src/constants.vala:37
-#, fuzzy
 msgid "Not Available"
 msgstr "Nedostupný"
 
 #: ../src/constants.vala:38
+#, fuzzy
 msgid "eBook Reader"
-msgstr "Čtečka e-knih"
+msgstr "Čtečka elektronických knih"
 
 #: ../src/constants.vala:39
 #, fuzzy
 msgid "Search this book…"
-msgstr "Vyhledávat v této knize..."
+msgstr "Vyhledávat v této knize…"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
@@ -79,7 +80,7 @@ msgstr "Hledat dle názvu, autora a značky"
 #: ../src/constants.vala:41
 #, fuzzy
 msgid "Looks like Bookworm has no books."
-msgstr "Vypadá to, že Bookworm nemá žádné knihy!"
+msgstr "Vypadá to, že v Bookworm nejsou žádné knihy."
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
@@ -96,7 +97,7 @@ msgid ""
 "here: "
 msgstr ""
 "Problém v extrahování obsahu knihy. Ujistěte se, že se platný eBook soubor "
-"nachází na : "
+"nachází na: "
 
 #: ../src/constants.vala:45
 #, fuzzy
