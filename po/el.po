@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 11:12+0100\n"
+"POT-Creation-Date: 2017-10-15 21:53+0100\n"
 "PO-Revision-Date: 2017-08-03 11:43+0000\n"
 "Last-Translator: tony <tonyzet988@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -22,11 +22,11 @@ msgstr "Επιλογή Εικόνας"
 msgid "Select folder"
 msgstr "Επιλογή Εικόνας"
 
-#: ../src/library.vala:544
+#: ../src/library.vala:546
 msgid "Adding "
 msgstr ""
 
-#: ../src/window.vala:284 ../src/window.vala:575
+#: ../src/window.vala:283 ../src/window.vala:577
 msgid "Select eBook"
 msgstr "Επιλογή Βιβλίου"
 
@@ -179,254 +179,262 @@ msgid "Annotations"
 msgstr ""
 
 #: ../src/constants.vala:60
-msgid "Add text to annotatation: "
+msgid "Annotation Tags"
 msgstr ""
 
 #: ../src/constants.vala:61
+msgid "Comma seperated tags for this annotation"
+msgstr ""
+
+#: ../src/constants.vala:62
+msgid "Add text to annotatation: "
+msgstr ""
+
+#: ../src/constants.vala:63
 #, fuzzy
 msgid "Click on a link to jump to an annotated section"
 msgstr "Κάντε κλικ σε ένα σύνδεσμο για να μεταφερθείτε στη σημειωμένη ενότητα"
 
-#: ../src/constants.vala:62
+#: ../src/constants.vala:64
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:65
 #, fuzzy
 msgid "Searching for '$$$' in &&&:"
 msgstr "Κανένα αποτέλεσμα για '$$$' στο &&&"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:66
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Βρέθηκαν τα ακόλουθα αποτελέσματα για '$$$' στο &&&:"
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:67
 msgid "No matches found for '$$$' in &&&"
 msgstr "Κανένα αποτέλεσμα για '$$$' στο &&&"
 
-#: ../src/constants.vala:66
+#: ../src/constants.vala:68
 msgid "Edit Info for"
 msgstr "Επεξεργασία πληροφοριών για"
 
-#: ../src/constants.vala:67 ../src/constants.vala:71
+#: ../src/constants.vala:69 ../src/constants.vala:73
 msgid "Update Cover Image"
 msgstr "Ενημέρωση Eξώφυλλου"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:70
 msgid "Update Title"
 msgstr "Ενημέρωση Τίτλου"
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:71
 msgid "Update Tags"
 msgstr "Ενημέρωση Ετικετών"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:72
 msgid "Update Author"
 msgstr "Ενημέρωση Συγγραφέα"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:74
 #, fuzzy
 msgid "Enter full screen view (F11)"
 msgstr "Είσοδος σε προβολή πλήρους οθόνης"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:75
 #, fuzzy
 msgid "Exit full screen view (Esc)"
 msgstr "Έξοδος από προβολή πλήρους οθόνης"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:76
 msgid "Check Word Meaning"
 msgstr "Έλεγχος Σημασίας Λέξης"
 
-#: ../src/constants.vala:75
+#: ../src/constants.vala:77
 msgid "Annotate selected text"
 msgstr ""
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:78
 msgid "Books"
 msgstr "Βιβλία"
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:79
 msgid "Images"
 msgstr "Εικόνες"
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:80
 msgid "All Files"
 msgstr "Όλα τα αρχεία"
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:81
 msgid "Title"
 msgstr ""
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:82
 #, fuzzy
 msgid "Author"
 msgstr "Ενημέρωση Συγγραφέα"
 
-#: ../src/constants.vala:81
+#: ../src/constants.vala:83
 msgid "Last Opened"
 msgstr ""
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:84
 msgid "Rating"
 msgstr ""
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:85
 msgid "Tags"
 msgstr ""
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:86
 msgid "Today"
 msgstr ""
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:87
 msgid "Yesterday"
 msgstr ""
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:88
 msgid "Days"
 msgstr ""
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:90
 msgid "Add books to library"
 msgstr "Προσθήκη βιβλίων στη βιβλιοθήκη"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:91
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Αφαίρεση επιλεγμένων βιβλίων από τη βιβλιοθήκη (δεν θα διαγραφεί κανένα "
 "αρχείο βιβλίου)"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:92
 msgid "Select one or more books in library"
 msgstr "Επιλογή ενός ή περισσοτέρων βιβλίων από τη βιβλιοθήκη"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:93
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr ""
 "Προβολή Πίνακα Περιεχομένων, Σελιδοδεικτών και Αποτελεσμάτων Αναζήτησης"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:94
 #, fuzzy
 msgid "Reading preferences"
 msgstr "Ορισμός προτιμήσεων ανάγνωσης"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:95
 msgid "Click to bookmark this page"
 msgstr "Κάντε κλικ για να προσθέσετε σελιδοδείκτη στη σελίδα"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:96
 msgid "Click to remove this bookmark"
 msgstr "Κάντε κλικ για να αφαιρέσετε αυτό το σελιδοδείκτη"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:97
 #, fuzzy
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Αύξηση μεγέθους γραμματοσειράς"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:98
 #, fuzzy
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Μείωση μεγέθους γραμματοσειράς"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:99
 msgid "Increase line width"
 msgstr "Αύξηση πλάτους γραμμής"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:100
 msgid "Decrease line width"
 msgstr "Μείωση πλάτους γραμμής"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:101
 msgid "Increase line spacing"
 msgstr "Αύξηση της απόστασης μεταξύ γραμμών"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:102
 msgid "Decrease line spacing"
 msgstr "Μείωση της απόστασης μεταξύ γραμμών"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:103
 msgid "Update cover image"
 msgstr "Ενημέρωση εξώφυλλου"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:104
 msgid "Apply theme for this colour profile"
 msgstr ""
 
-#: ../src/constants.vala:103 ../src/constants.vala:104
+#: ../src/constants.vala:105 ../src/constants.vala:106
 #, fuzzy
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Μπείτε σε προβολή πλήρους οθόνης και το πλήκτρο Esc για έξοδο"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:107
 msgid "Add folder to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:108
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:109
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:109 ../src/constants.vala:136
+#: ../src/constants.vala:111 ../src/constants.vala:138
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: ../src/constants.vala:110
+#: ../src/constants.vala:112
 #, fuzzy
 msgid "Turn on Dark Mode"
 msgstr "Ενεργοποίηση Νυκτερινής Λειτουργίας"
 
-#: ../src/constants.vala:111
+#: ../src/constants.vala:113
 msgid "Enable cache (opens books faster)"
 msgstr "Ενεργοποίηση κρυφής μνήμης (ταχύτερο άνοιγμα βιβλίων)"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:114
 msgid "Always show library on startup"
 msgstr ""
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:115
 msgid "Enable two page reading"
 msgstr ""
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:116
 #, fuzzy
 msgid "Select Font"
 msgstr "Επιλογή Βιβλίου"
 
-#: ../src/constants.vala:115
+#: ../src/constants.vala:117
 msgid "Customize reading profile"
 msgstr ""
 
-#: ../src/constants.vala:116
+#: ../src/constants.vala:118
 msgid "Text"
 msgstr ""
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:119
 msgid "Background"
 msgstr ""
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:120
 msgid "Add folders to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:121
 msgid "Profile"
 msgstr ""
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:122
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:134
+#: ../src/constants.vala:136
 msgid "Unknown Book"
 msgstr "Άγνωστο Βιβλίο"
 
-#: ../src/constants.vala:135
+#: ../src/constants.vala:137
 msgid "About"
 msgstr "Περί"
 

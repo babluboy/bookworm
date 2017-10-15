@@ -29,6 +29,7 @@ public class BookwormApp.Book{
   private string bookTitle = "";
   private string bookAuthor = "";
   private string bookTags = "";
+  private string annotationTags = "";
   private string bookPublishDate = "";
   private string bookCreationDate = "";
   private string bookLastModificationDate = "";
@@ -153,6 +154,13 @@ public class BookwormApp.Book{
     return bookTags;
   }
 
+  //getter setter for annotation tags
+  public void setAnnotationTags (string anAnnotationTags){
+    annotationTags = anAnnotationTags;
+  }
+  public string getAnnotationTags (){
+    return annotationTags;
+  }
 
   //getter setter for location of books OPF file
   public void setOPFFileLocation (string aOPFFileLocation){
@@ -277,7 +285,16 @@ public class BookwormApp.Book{
 
   //getter setter for annotations
   public void setAnnotations (string index, string annotationText){
-    annotationMap.set(index, annotationText);
+    //check the value of the annotation text - add or delete accordingly
+    if(annotationText != null && annotationText.length > 0){
+      //annotated text is not null/empty - update the annotation
+      annotationMap.set(index, annotationText);
+    }else{
+      //annotated text is null/empty - remove the annotation
+      if(annotationMap.has_key(index)){
+        annotationMap.unset(index);
+      }
+    }
   }
   public string getAnnotations (string index){
     if(annotationMap.has_key(index)){
@@ -321,6 +338,8 @@ public class BookwormApp.Book{
            .append("bookmarks=").append(bookmarks.str).append(",\n")
            .append("author=").append(bookAuthor).append(",\n")
            .append("ratings=").append(bookRating.to_string()).append(",\n")
+           .append("tags=").append(bookTags.to_string()).append(",\n")
+           .append("annotation tags=").append(annotationTags.to_string()).append(",\n")
            .append("bookContentList=");
      for (int i=0; i<bookContentList.size;i++) {
         bookDetails.append("["+i.to_string()+"]="+bookContentList.get(i)+",");

@@ -601,7 +601,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.Dialog annotationDialog = new Gtk.Dialog();
 		annotationDialog.set_transient_for(BookwormApp.Bookworm.window);
 		annotationDialog.border_width = 0;
-		annotationDialog.set_default_size (600, 300);
+		annotationDialog.set_default_size (600, 400);
 		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
 
 		Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATION + textForAnnotation);
@@ -612,18 +612,26 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.ScrolledWindow scrolledAnnotations = new Gtk.ScrolledWindow (null, null);
 		scrolledAnnotations.add (annotationsInputTextView);
 
+		Gtk.Label annotationsTagLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATION_TAG);
+		Gtk.Entry annotationTagEntry = new Gtk.Entry ();
+		annotationTagEntry.set_tooltip_markup (BookwormApp.Constants.TEXT_FOR_ANNOTATION_TAG_ENTRY);
+		annotationTagEntry.set_text(aBook.getAnnotationTags());
+		Gtk.Box annotationTagBox = new Gtk.Box (Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+		annotationTagBox.pack_start(annotationsTagLabel, false, false, 0);
+		annotationTagBox.pack_start(annotationTagEntry, false, true, 0);
+
 		Gtk.Box content = annotationDialog.get_content_area() as Gtk.Box;
 		content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
 		content.pack_start (annotationsLabel, false, false, 0);
 		content.pack_start (scrolledAnnotations, true, true, 0);
+		content.pack_start (annotationTagBox, false, true, 0);
 		annotationDialog.show_all();
 
 		annotationDialog.destroy.connect (() => {
 			aBook.setAnnotations(aBook.getBookPageNumber().to_string()+"#~~#"+textForAnnotation,annotationsInputTextView.buffer.text);
+			aBook.setAnnotationTags(annotationTagEntry.get_text());
 			BookwormApp.Utils.setWebViewTitle("document.title = ' '");
 			aBook = BookwormApp.contentHandler.renderPage(aBook, "");
 		});
-
 	}
-
 }
