@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-15 21:53+0100\n"
-"PO-Revision-Date: 2017-08-16 06:34+0000\n"
-"Last-Translator: MichaZ <trans@zoelfel.com>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
-"de/>\n"
+"PO-Revision-Date: 2017-10-16 15:56+0000\n"
+"Last-Translator: Andreas Kleinert <Andy.Kleinert@gmail.com>\n"
+"Language-Team: German "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 2.17\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -23,7 +23,7 @@ msgstr "Verzeichnis wählen"
 
 #: ../src/library.vala:546
 msgid "Adding "
-msgstr ""
+msgstr "Wird hinzugefügt … "
 
 #: ../src/window.vala:283 ../src/window.vala:577
 msgid "Select eBook"
@@ -66,16 +66,14 @@ msgid "eBook Reader"
 msgstr "E-Book-Reader"
 
 #: ../src/constants.vala:39
-#, fuzzy
 msgid "Search this book…"
-msgstr "Durchsuche dieses Buch..."
+msgstr "Dieses Buch durchsuchen …"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
 msgstr "Suche nach Titel, Autor und Tags"
 
 #: ../src/constants.vala:41
-#, fuzzy
 msgid "Looks like Bookworm has no books."
 msgstr "Bücher hinzufügen"
 
@@ -88,48 +86,42 @@ msgid "Select an eBook to read"
 msgstr "Wähle ein Buch aus"
 
 #: ../src/constants.vala:44
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Es gab ein Problem beim Extrahieren der Inhalte des Buches. Überprüfen Sie, "
-"ob sich das Buch an diesem Ort befindet : "
+"Problem beim Extrahieren des Inhalts des Buches. Vergewissern Sie sich, dass "
+"es hier eine gültige eBook-Datei gibt: "
 
 #: ../src/constants.vala:45
-#, fuzzy
 msgid "Invalid MIME-type detected. Check of this book: "
-msgstr ""
-"Ungültiger MIME-Type entdeckt. Überprüfen Sie das Dateiformat des Buches am "
-"Ort: "
+msgstr "Ungültiger MIME-Type entdeckt. Überprüfen Sie dieses Buch: "
 
 #: ../src/constants.vala:46
-#, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
-"Ungültiger Inhalt gefunden. Stellen Sie sicher, dass sich eine gültige E-"
-"Book Datei an folgendem Ort befindet: "
+"Ungültiger Inhalt gefunden. Vergewissern Sie sich, dass es hier eine gültige "
+"eBook-Datei befindet: "
 
 #: ../src/constants.vala:47
-#, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
-"Ungültiger Inhalt gefunden. Stellen Sie sicher, dass sich eine gültige E-"
-"Book Datei an folgendem Ort befindet : "
+"eBook konnte nicht analysiert werden. Vergewissern Sie sich, dass sich hier "
+"eine gültige eBook-Datei befindet: "
 
 #: ../src/constants.vala:48
-#, fuzzy
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm unterstützt das Dateiformat folgender Datei nicht: "
+msgstr "Bookworm unterstützt das Format der hier gefundenen Datei nicht: "
 
 #: ../src/constants.vala:49
-#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
 "Ungültiger Inhalt gefunden. Stellen Sie sicher, dass sich eine gültige E-"
-"Book Datei an folgendem Ort befindet : "
+"Book Datei an folgendem Ort befindet:\n"
+"Angeforderte Inhalte konnten nicht abgeholt werden. Bitte entfernen Sie die "
+"eBook-Datei und fügen Sie sie die hier vorhandene Datei erneut hinzu: "
 
 #: ../src/constants.vala:50
 msgid "Library"
@@ -173,35 +165,37 @@ msgstr "Suchergebnisse"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Kommentare"
 
 #: ../src/constants.vala:60
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Kommentare-Schlagwörter"
 
 #: ../src/constants.vala:61
 msgid "Comma seperated tags for this annotation"
-msgstr ""
+msgstr "Komma getrennte Schlagwörter für diese Anmerkung"
 
 #: ../src/constants.vala:62
 msgid "Add text to annotatation: "
-msgstr ""
+msgstr "Text zum Kommentar hinzufügen: "
 
 #: ../src/constants.vala:63
-#, fuzzy
 msgid "Click on a link to jump to an annotated section"
-msgstr "Klicke auf einen Link um zum Abschnitt des Lesezeichens zu springen"
+msgstr ""
+"Klicken Sie auf einen Link, um zu einem kommentierten Abschnitt zu springen."
 
 #: ../src/constants.vala:64
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Keine Kommentare in BBB festgelegt. Klicken Sie mit der rechten Maustaste "
+"auf die Seite eines Buches und wählen Sie im Kontextmenü „Kommentar”, um "
+"Kommentare hinzuzufügen."
 
 #: ../src/constants.vala:65
-#, fuzzy
 msgid "Searching for '$$$' in &&&:"
-msgstr "Keine Treffer für '$$$' in &&& gefunden"
+msgstr "Nach „$$$$” n &&&& suchen:"
 
 #: ../src/constants.vala:66
 msgid "Found the following matches for '$$$' in &&&:"
@@ -245,7 +239,7 @@ msgstr "Schlage Wort nach"
 
 #: ../src/constants.vala:77
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Markierten Text kommentieren"
 
 #: ../src/constants.vala:78
 msgid "Books"
@@ -310,7 +304,6 @@ msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Inhaltsverzeichnis, Lesezeichen und Suchergebnisse"
 
 #: ../src/constants.vala:94
-#, fuzzy
 msgid "Reading preferences"
 msgstr "Leseeinstellungen anpassen"
 
@@ -351,14 +344,12 @@ msgid "Update cover image"
 msgstr "Titelbild anpassen"
 
 #: ../src/constants.vala:104
-#, fuzzy
 msgid "Apply theme for this colour profile"
 msgstr "Design für dieses Farbprofil festlegen"
 
 #: ../src/constants.vala:105 ../src/constants.vala:106
-#, fuzzy
 msgid "Enter full screen view and Esc key to undo"
-msgstr "Vollbildmodus öffnen und mit Esc beenden"
+msgstr "Vollbildmodus öffnen und mit ESC beenden"
 
 #: ../src/constants.vala:107
 msgid "Add folder to scan for books"
@@ -370,7 +361,7 @@ msgstr "Entferne das angezeigte Verzeichnis aus der Büchersuche"
 
 #: ../src/constants.vala:109
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Kommentar zum markierten Text hinzufügen"
 
 #: ../src/constants.vala:111 ../src/constants.vala:138
 msgid "Preferences"
@@ -385,7 +376,6 @@ msgid "Enable cache (opens books faster)"
 msgstr "Cache aktivieren (Bücher werden schneller geöffnet)"
 
 #: ../src/constants.vala:114
-#, fuzzy
 msgid "Always show library on startup"
 msgstr "Bibliothek immer beim Start anzeigen"
 
@@ -394,7 +384,6 @@ msgid "Enable two page reading"
 msgstr "Zwei-Seiten-Lesen aktivieren"
 
 #: ../src/constants.vala:116
-#, fuzzy
 msgid "Select Font"
 msgstr "Schriftart auswählen"
 
