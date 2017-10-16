@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-13 14:39+0100\n"
+"POT-Creation-Date: 2017-10-15 22:17+0100\n"
 "PO-Revision-Date: 2017-10-13 19:04+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
-"Language-Team: Belarusian "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/be/>\n"
+"Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/be/>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.17\n"
 
 #: ../src/dialog.vala:66
@@ -22,11 +22,11 @@ msgstr "Абраць выяву"
 msgid "Select folder"
 msgstr "Абраць каталог"
 
-#: ../src/library.vala:544
+#: ../src/library.vala:546
 msgid "Adding "
 msgstr "Дадаванне "
 
-#: ../src/window.vala:284 ../src/window.vala:575
+#: ../src/window.vala:283 ../src/window.vala:577
 msgid "Select eBook"
 msgstr "Абраць электронную кнігу"
 
@@ -166,14 +166,23 @@ msgid "Annotations"
 msgstr "Анатацыі"
 
 #: ../src/constants.vala:60
+#, fuzzy
+msgid "Annotation Tags"
+msgstr "Анатацыі"
+
+#: ../src/constants.vala:61
+msgid "Comma seperated tags for this annotation"
+msgstr ""
+
+#: ../src/constants.vala:62
 msgid "Add text to annotatation: "
 msgstr "Дадаць тэкст да анатацыі: "
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
 msgstr "Націсніце на спасылку, каб перайсці да анатаванага раздзела"
 
-#: ../src/constants.vala:62
+#: ../src/constants.vala:64
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -181,227 +190,227 @@ msgstr ""
 "У BBB няма анатацый, націсніце правай кнопкай на старонцы кнігі ды абярыце "
 "анатацыю з кантэкстнага меню, каб дадаць анатацыі"
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:65
 msgid "Searching for '$$$' in &&&:"
 msgstr "Пошук «$$$» у &&&:"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:66
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Знойдзены наступныя супадзенні для «$$$» у &&&:"
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:67
 msgid "No matches found for '$$$' in &&&"
 msgstr "Не знодзена супадзенняў для «$$$» у &&&"
 
-#: ../src/constants.vala:66
+#: ../src/constants.vala:68
 msgid "Edit Info for"
 msgstr "Рэдагаваць інфармацыю для"
 
-#: ../src/constants.vala:67 ../src/constants.vala:71
+#: ../src/constants.vala:69 ../src/constants.vala:73
 msgid "Update Cover Image"
 msgstr "Абнавіць выяву вокладкі"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:70
 msgid "Update Title"
 msgstr "Абнавіць назву"
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:71
 msgid "Update Tags"
 msgstr "Абнавіць тэгі"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:72
 msgid "Update Author"
 msgstr "Аднавіць аўтара"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:74
 msgid "Enter full screen view (F11)"
 msgstr "Уключыць поўнаэкранны выгляд (F11)"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:75
 msgid "Exit full screen view (Esc)"
 msgstr "Адключыць поўнаэкранны выгляд (Esc)"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:76
 msgid "Check Word Meaning"
 msgstr "Праверыць значэнне слова"
 
-#: ../src/constants.vala:75
+#: ../src/constants.vala:77
 msgid "Annotate selected text"
 msgstr "Анатаваць абраны тэкст"
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:78
 msgid "Books"
 msgstr "Кнігі"
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:79
 msgid "Images"
 msgstr "Выявы"
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:80
 msgid "All Files"
 msgstr "Усе файлы"
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:81
 msgid "Title"
 msgstr "Назва"
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:82
 msgid "Author"
 msgstr "Аўтар"
 
-#: ../src/constants.vala:81
+#: ../src/constants.vala:83
 msgid "Last Opened"
 msgstr "Апошнія адкрытыя"
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:84
 msgid "Rating"
 msgstr "Рэйтынг"
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:85
 msgid "Tags"
 msgstr "Тэгі"
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:86
 msgid "Today"
 msgstr "Сёння"
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:87
 msgid "Yesterday"
 msgstr "Учора"
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:88
 msgid "Days"
 msgstr "Дні"
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:90
 msgid "Add books to library"
 msgstr "Дадаць кнігі ў бібліятэку"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:91
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Выдаліць абраныя кнігі з бібліятэкі (файл кнігі не будзе выдалены)"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:92
 msgid "Select one or more books in library"
 msgstr "Абраць адну ці некалькі кніг у бібліятэцы"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:93
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Праглядзець змест, закладкі і вынікі пошуку"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:94
 msgid "Reading preferences"
 msgstr "Налады чытання"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:95
 msgid "Click to bookmark this page"
 msgstr "Націсніце, каб дадаць закладку"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:96
 msgid "Click to remove this bookmark"
 msgstr "Націсніце, каб выдаліць закладку"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:97
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Павялічыць памер шрыфту (Ctrl + Shift + «+»)"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:98
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Паменшыць памер шрыфту (Ctrl + «-»)"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:99
 msgid "Increase line width"
 msgstr "Павялічыць шырыню радка"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:100
 msgid "Decrease line width"
 msgstr "Паменшыць шырыню радка"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:101
 msgid "Increase line spacing"
 msgstr "Павялічыць міжрадковы інтэрвал"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:102
 msgid "Decrease line spacing"
 msgstr "Паменшыць міжрадковы інтэрвал"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:103
 msgid "Update cover image"
 msgstr "Абнавіць выяву вокладкі"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:104
 msgid "Apply theme for this colour profile"
 msgstr "Прыняць тэму для гэтага каляровага профілю"
 
-#: ../src/constants.vala:103 ../src/constants.vala:104
+#: ../src/constants.vala:105 ../src/constants.vala:106
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Поўнаэкранны выгляд і клавіша Esc для адмены"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:107
 msgid "Add folder to scan for books"
 msgstr "Дадаць каталог для сканавання кніг"
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:108
 msgid "Remove displayed folder from book scan"
 msgstr "Выдаліць каталог з спіса сканавання"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:109
 msgid "Add annotation to selected text"
 msgstr "Дадаць анатацыю да абранага тэксту"
 
-#: ../src/constants.vala:109 ../src/constants.vala:136
+#: ../src/constants.vala:111 ../src/constants.vala:138
 msgid "Preferences"
 msgstr "Налады"
 
-#: ../src/constants.vala:110
+#: ../src/constants.vala:112
 msgid "Turn on Dark Mode"
 msgstr "Пераключыць у цёмны рэжым"
 
-#: ../src/constants.vala:111
+#: ../src/constants.vala:113
 msgid "Enable cache (opens books faster)"
 msgstr "Уключыць кэш (адкрывае кнігі хутчэй)"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:114
 msgid "Always show library on startup"
 msgstr "Заўсёды паказваць бібліятэку на старце"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:115
 msgid "Enable two page reading"
 msgstr "Уключыць двухстаронкавае чытанне"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:116
 msgid "Select Font"
 msgstr "Задаць шрыфт"
 
-#: ../src/constants.vala:115
+#: ../src/constants.vala:117
 msgid "Customize reading profile"
 msgstr "Налады профілю чытання"
 
-#: ../src/constants.vala:116
+#: ../src/constants.vala:118
 msgid "Text"
 msgstr "Тэкст"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:119
 msgid "Background"
 msgstr "Фон"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:120
 msgid "Add folders to scan for books"
 msgstr "Дадаць каталогі для сканавання кніг"
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:121
 msgid "Profile"
 msgstr "Профіль"
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:122
 msgid "Reset to default values"
 msgstr "Скінуць да агаданых значэнняў"
 
-#: ../src/constants.vala:134
+#: ../src/constants.vala:136
 msgid "Unknown Book"
 msgstr "Невядомая кніга"
 
-#: ../src/constants.vala:135
+#: ../src/constants.vala:137
 msgid "About"
 msgstr "Аб"
 

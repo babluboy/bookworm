@@ -49,15 +49,16 @@ public class BookwormApp.DB{
     queryString = "CREATE TABLE IF NOT EXISTS "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ("
                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                    + "BOOK_LOCATION TEXT NOT NULL DEFAULT '', "
-    							 + "BOOK_TITLE TEXT NOT NULL DEFAULT '', "
+                   + "BOOK_TITLE TEXT NOT NULL DEFAULT '', "
                    + "BOOK_AUTHOR TEXT NOT NULL DEFAULT '', "
                    + "BOOK_COVER_IMAGE_LOCATION TEXT NOT NULL DEFAULT '', "
-    							 + "IS_BOOK_COVER_IMAGE_PRESENT TEXT NOT NULL DEFAULT '', "
+                   + "IS_BOOK_COVER_IMAGE_PRESENT TEXT NOT NULL DEFAULT '', "
                    + "BOOK_PUBLISH_DATE TEXT NOT NULL DEFAULT '', "
-    							 + "BOOK_TOTAL_NUMBER_OF_PAGES TEXT NOT NULL DEFAULT '', "
-    							 + "BOOK_LAST_READ_PAGE_NUMBER TEXT NOT NULL DEFAULT '', "
+                   + "BOOK_TOTAL_NUMBER_OF_PAGES TEXT NOT NULL DEFAULT '', "
+                   + "BOOK_LAST_READ_PAGE_NUMBER TEXT NOT NULL DEFAULT '', "
                    + "BOOK_TOTAL_PAGES TEXT NOT NULL DEFAULT '', " //Added in table v6
                    + "TAGS TEXT NOT NULL DEFAULT '', " //Added in table v3
+                   + "ANNOTATION_TAGS TEXT NOT NULL DEFAULT '', " //Added in table v7
                    + "RATINGS TEXT NOT NULL DEFAULT '', " //Added in table v3
                    + "CONTENT_EXTRACTION_LOCATION TEXT NOT NULL DEFAULT '', " //Added in table v4
                    + "creation_date INTEGER,"
@@ -110,7 +111,7 @@ public class BookwormApp.DB{
     //Loop over any remaning old versions of tables and delete
     //them after ensuring data is migrated to the latest versions of the tables
     foreach (string old_table_name in listOfTables) {
-      //BOOK_LIBRARY_TABLE5
+      //BOOK_LIBRARY_TABLE5 : Migrate data and drop table
       if(old_table_name == "BOOK_LIBRARY_TABLE5"){
         //copy data to new library table
         queryString = " INSERT INTO "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+
@@ -146,7 +147,7 @@ public class BookwormApp.DB{
           }
         }
       }
-      //VERSION_TABLE and VERSION_TABLE1
+      //VERSION_TABLE : Drop table
       if(old_table_name == "VERSION_TABLE"){
         //drop the old table
         queryString = "DROP TABLE IF EXISTS VERSION_TABLE";
@@ -176,6 +177,7 @@ public class BookwormApp.DB{
                          BOOK_LAST_READ_PAGE_NUMBER,
                          BOOK_PUBLISH_DATE,
                          TAGS,
+                         ANNOTATION_TAGS,
                          RATINGS,
                          CONTENT_EXTRACTION_LOCATION,
                          BOOK_TOTAL_PAGES,
@@ -186,45 +188,48 @@ public class BookwormApp.DB{
     if (executionStatus != Sqlite.OK) {
       debug("Error on executing Query:"+queryString);
 	 		warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-	 	}
-    while (stmt.step () == ROW) {
-      BookwormApp.Book aBook = new BookwormApp.Book();
-      aBook.setBookId(stmt.column_int(0));
-      aBook.setBookLocation(stmt.column_text (1));
-      aBook.setBookTitle(stmt.column_text (2));
-      aBook.setBookAuthor(stmt.column_text (3));
-      aBook.setBookCoverLocation(stmt.column_text (4));
-      aBook.setIsBookCoverImagePresent((stmt.column_text (5) == "true") ? true:false);
-      aBook.setBookPageNumber(int.parse(stmt.column_text(6)));
-      aBook.setBookPublishDate(stmt.column_text (7));
-      aBook.setBookTags(stmt.column_text (8));
-      aBook.setBookRating(int.parse(stmt.column_text(9)));
-      aBook.setBookExtractionLocation(stmt.column_text (10));
-      aBook.setBookTotalPages(int.parse(stmt.column_text (11)));
-      aBook.setBookCreationDate(stmt.column_text (12));
-      aBook.setBookLastModificationDate(stmt.column_text (13));
-      debug("Book details fetched from DB:
-                id="+stmt.column_int(0).to_string()+
-                ",BOOK_LOCATION="+stmt.column_text (1)+
-                ",BOOK_TITLE="+stmt.column_text (2)+
-                ",BOOK_AUTHOR="+stmt.column_text (3)+
-                ",BOOK_COVER_IMAGE_LOCATION="+stmt.column_text (4)+
-                ",IS_BOOK_COVER_IMAGE_PRESENT="+stmt.column_text (5)+
-                ",BOOK_LAST_READ_PAGE_NUMBER="+stmt.column_text (6)+
-                ",BOOK_PUBLISH_DATE="+stmt.column_text (7)+
-                ",TAGS="+stmt.column_text (8)+
-                ",RATINGS="+stmt.column_text (9)+
-                ",CONTENT_EXTRACTION_LOCATION="+stmt.column_text (10)+
-                ",BOOK_TOTAL_PAGES="+stmt.column_text (11)+
-                ",creation_date="+stmt.column_text (12)+
-                ",modification_date="+stmt.column_text (13)
-            );
-      //add book details to list
-      listOfBooks.add(aBook);
-      //build the string of book paths in the library
-      BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.append(aBook.getBookLocation());
+	 	}else{
+      while (stmt.step () == ROW) {
+        BookwormApp.Book aBook = new BookwormApp.Book();
+        aBook.setBookId(stmt.column_int(0));
+        aBook.setBookLocation(stmt.column_text (1));
+        aBook.setBookTitle(stmt.column_text (2));
+        aBook.setBookAuthor(stmt.column_text (3));
+        aBook.setBookCoverLocation(stmt.column_text (4));
+        aBook.setIsBookCoverImagePresent((stmt.column_text (5) == "true") ? true:false);
+        aBook.setBookPageNumber(int.parse(stmt.column_text(6)));
+        aBook.setBookPublishDate(stmt.column_text (7));
+        aBook.setBookTags(stmt.column_text (8));
+        aBook.setAnnotationTags(stmt.column_text (9));
+        aBook.setBookRating(int.parse(stmt.column_text(10)));
+        aBook.setBookExtractionLocation(stmt.column_text (11));
+        aBook.setBookTotalPages(int.parse(stmt.column_text (12)));
+        aBook.setBookCreationDate(stmt.column_text (13));
+        aBook.setBookLastModificationDate(stmt.column_text (14));
+        debug("Book details fetched from DB:
+                  id="+stmt.column_int(0).to_string()+
+                  ",BOOK_LOCATION="+stmt.column_text (1)+
+                  ",BOOK_TITLE="+stmt.column_text (2)+
+                  ",BOOK_AUTHOR="+stmt.column_text (3)+
+                  ",BOOK_COVER_IMAGE_LOCATION="+stmt.column_text (4)+
+                  ",IS_BOOK_COVER_IMAGE_PRESENT="+stmt.column_text (5)+
+                  ",BOOK_LAST_READ_PAGE_NUMBER="+stmt.column_text (6)+
+                  ",BOOK_PUBLISH_DATE="+stmt.column_text (7)+
+                  ",TAGS="+stmt.column_text (8)+
+                  ",ANNOTATION_TAGS="+stmt.column_text (9)+
+                  ",RATINGS="+stmt.column_text (10)+
+                  ",CONTENT_EXTRACTION_LOCATION="+stmt.column_text (11)+
+                  ",BOOK_TOTAL_PAGES="+stmt.column_text (12)+
+                  ",creation_date="+stmt.column_text (13)+
+                  ",modification_date="+stmt.column_text (14)
+              );
+        //add book details to list
+        listOfBooks.add(aBook);
+        //build the string of book paths in the library
+        BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.append(aBook.getBookLocation());
+      }
+      stmt.reset ();
     }
-    stmt.reset ();
     return listOfBooks;
   }
 
@@ -352,6 +357,7 @@ public class BookwormApp.DB{
                       BOOK_COVER_IMAGE_LOCATION = ?,
                       IS_BOOK_COVER_IMAGE_PRESENT = ?,
                       TAGS = ?,
+                      ANNOTATION_TAGS = ?,
                       RATINGS = ?,
                       CONTENT_EXTRACTION_LOCATION = ?,
                       BOOK_TOTAL_PAGES = ?,
@@ -369,11 +375,12 @@ public class BookwormApp.DB{
      stmt.bind_text (4, aBook.getBookCoverLocation());
      stmt.bind_text (5, aBook.getIsBookCoverImagePresent().to_string());
      stmt.bind_text (6, aBook.getBookTags());
-     stmt.bind_text (7, aBook.getBookRating().to_string());
-     stmt.bind_text (8, aBook.getBookExtractionLocation());
-     stmt.bind_text (9, aBook.getBookTotalPages().to_string());
-     stmt.bind_text (10, aBook.getBookLastModificationDate());
-     stmt.bind_text (11, aBook.getBookLocation());
+     stmt.bind_text (7, aBook.getAnnotationTags());
+     stmt.bind_text (8, aBook.getBookRating().to_string());
+     stmt.bind_text (9, aBook.getBookExtractionLocation());
+     stmt.bind_text (10, aBook.getBookTotalPages().to_string());
+     stmt.bind_text (11, aBook.getBookLastModificationDate());
+     stmt.bind_text (12, aBook.getBookLocation());
      stmt.step ();
      stmt.reset ();
      debug("Updated library details to "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" for book:"+aBook.getBookTitle()+"["+aBook.getBookId().to_string()+"]");

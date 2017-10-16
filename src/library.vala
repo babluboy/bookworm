@@ -441,7 +441,9 @@ public class BookwormApp.Library {
 			else if((aBook.getBookTags().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
 				return true;
 			}
-			else{
+      else if((aBook.getAnnotationTags().up()).index_of(BookwormApp.AppHeaderBar.headerSearchBar.get_text().up()) != -1){
+				return true;
+			}else{
 				return false;
 			}
 		}

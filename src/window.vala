@@ -173,8 +173,7 @@ public class BookwormApp.AppWindow {
     book_reading_footer_box.pack_start (back_button);
     book_reading_footer_box.pack_start (pageSlider);
     book_reading_footer_box.pack_end (forward_button);
-    book_reading_footer_box.set_center_widget(pageSlider);
-
+    
     //Create the Gtk Box to hold components for reading a selected book
     bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
     bookReading_ui_box.set_border_width (0);
@@ -482,7 +481,10 @@ public class BookwormApp.AppWindow {
        WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action();
        WebKit.URIRequest aURIReq = aNavAction.get_request ();
        //check if the link is an Annotation Overlay
-       if(BookwormApp.AppWindow.aWebView.get_title().index_of("annotation:") != -1){
+       if(BookwormApp.AppWindow.aWebView.get_title() != null &&
+          BookwormApp.AppWindow.aWebView.get_title().length > 1 &&
+          BookwormApp.AppWindow.aWebView.get_title().index_of("annotation:") != -1
+       ){
          //Open the annotation dialog
          BookwormApp.AppDialog.createAnnotationDialog(BookwormApp.AppWindow.aWebView.get_title().replace("annotation:", ""));
        }
