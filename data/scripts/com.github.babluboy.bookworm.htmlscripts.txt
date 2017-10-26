@@ -106,6 +106,8 @@
 <style>
   /* Set style for the whole document */
   *{
+      /* Set hyphenation */
+      /*-webkit-hyphens: auto; */
       /* Control line spacing */
       line-height: $READING_LINE_HEIGHT%;
       /* Control page margins */

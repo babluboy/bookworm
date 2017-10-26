@@ -205,7 +205,7 @@ public class BookwormApp.contentHandler {
       pageContent.assign(pageContent.str.replace("<body", currentBookwormScripts + "<body " + BookwormApp.Bookworm.onLoadJavaScript.str));
     }else{
       pageContent.assign(currentBookwormScripts + "<BODY " + BookwormApp.Bookworm.onLoadJavaScript.str + ">" + pageContent.str + "</BODY>");
-    }
+    }debug(pageContent.str);
     return pageContent.str;
   }
 

@@ -158,8 +158,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		//set up the widgets for the rating
 		for(int i=0; i<5; i++){
 			Gtk.Image rating_star_image = null;
-			if (Gtk.IconTheme.get_default ().has_icon ("help-about-symbolic")) {
-				rating_star_image = new Gtk.Image.from_icon_name ("help-about-symbolic", Gtk.IconSize.MENU);
+			if (Gtk.IconTheme.get_default ().has_icon ("non-starred")) {
+				rating_star_image = new Gtk.Image.from_icon_name ("non-starred", Gtk.IconSize.MENU);
 			}else{
 				rating_star_image = new Gtk.Image.from_file (BookwormApp.Constants.RATING_NONE_IMAGE_ICON_LOCATION);
 			}
@@ -171,8 +171,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			//Add action for rating button
 			rating_star_button.clicked.connect (() => {
 				//set rating star clicked to active rating image
-				if (Gtk.IconTheme.get_default ().has_icon ("help-about")) {
-					rating_star_button.set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+				if (Gtk.IconTheme.get_default ().has_icon ("starred")) {
+					rating_star_button.set_image(new Gtk.Image.from_icon_name ("starred", Gtk.IconSize.MENU));
 				}else{
 					rating_star_button.set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION));
 				}
@@ -182,16 +182,16 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				debug("Book Rating Set to:"+(ratingClicked+1).to_string());
 				//Adjust rating display: set all stars with lower rating to active rating image
 				for(int j=0; j<ratingClicked; j++){
-					if (Gtk.IconTheme.get_default ().has_icon ("help-about")) {
-						((Gtk.Button)bookRatingList.get(j)).set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+					if (Gtk.IconTheme.get_default ().has_icon ("starred")) {
+						((Gtk.Button)bookRatingList.get(j)).set_image(new Gtk.Image.from_icon_name ("starred", Gtk.IconSize.MENU));
 					}else{
 						((Gtk.Button)bookRatingList.get(j)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION));
 					}
 				}
 				//Adjust rating display: set all stars with higher rating to in-active rating image
 				for(int k=ratingClicked+1; k<5; k++){
-					if (Gtk.IconTheme.get_default ().has_icon ("help-about-symbolic")) {
-						((Gtk.Button)bookRatingList.get(k)).set_image(new Gtk.Image.from_icon_name ("help-about-symbolic", Gtk.IconSize.MENU));
+					if (Gtk.IconTheme.get_default ().has_icon ("non-starred")) {
+						((Gtk.Button)bookRatingList.get(k)).set_image(new Gtk.Image.from_icon_name ("non-starred", Gtk.IconSize.MENU));
 					}else{
 						((Gtk.Button)bookRatingList.get(k)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_NONE_IMAGE_ICON_LOCATION));
 					}
@@ -201,8 +201,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		//If any rating was given then represent the set_name
 		if(aBook.getBookRating() > 0){
 			for(int l=0; l<(aBook.getBookRating()); l++){
-				if (Gtk.IconTheme.get_default ().has_icon ("help-about")) {
-					((Gtk.Button)bookRatingList.get(l)).set_image(new Gtk.Image.from_icon_name ("help-about", Gtk.IconSize.MENU));
+				if (Gtk.IconTheme.get_default ().has_icon ("starred")) {
+					((Gtk.Button)bookRatingList.get(l)).set_image(new Gtk.Image.from_icon_name ("starred", Gtk.IconSize.MENU));
 				}else{
 					((Gtk.Button)bookRatingList.get(l)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION));
 				}
