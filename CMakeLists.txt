@@ -24,6 +24,9 @@ set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}")
 add_definitions ("-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\"")
 add_subdirectory (po)
 
+# Replace parameters in source code
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/constants.vala.in" "${CMAKE_SOURCE_DIR}/src/constants.vala" @ONLY)
+
 # define variable for sources
 set (SOURCE_LIST
     src/main.vala
