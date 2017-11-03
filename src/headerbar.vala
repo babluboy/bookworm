@@ -32,7 +32,6 @@ public class BookwormApp.AppHeaderBar {
     headerbar = new Gtk.HeaderBar();
 
     headerbar.set_title(BookwormApp.Constants.program_name);
-    //headerbar.subtitle = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
     headerbar.set_show_close_button(true);
     headerbar.spacing = Constants.SPACING_WIDGETS;
 

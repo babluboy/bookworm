@@ -458,8 +458,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public static void readSelectedBook(owned BookwormApp.Book aBook){
-		//Fetch the book meta data from the database
-		aBook = BookwormApp.DB.getBookMetaDataFromDB(aBook);
+		//Fetch the book meta data from the database if it is not already available
+		if(aBook.getBookContentList().size < 1){ //content size should be greater than 1 if the book data has been loaded
+			aBook = BookwormApp.DB.getBookMetaDataFromDB(aBook);
+		}
 		//Handle the case when the page number of the book is not set
     if(aBook.getBookPageNumber() == -1){
 			aBook.setBookPageNumber(0);
@@ -500,7 +502,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			libraryViewMap.set(aBook.getBookLocation(), aBook);
 			locationOfEBookCurrentlyRead = aBook.getBookLocation();
 			//Update header title
-			BookwormApp.AppHeaderBar.get_headerbar().title = aBook.getBookTitle();
+			BookwormApp.AppHeaderBar.get_headerbar().title = BookwormApp.Utils.parseMarkUp(aBook.getBookTitle());
 			//change the application view to Book Reading mode
 			BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
 			toggleUIState();

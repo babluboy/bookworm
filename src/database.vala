@@ -433,9 +433,9 @@ public class BookwormApp.DB{
        stmt.bind_int  (6, aBook.getBookId());
        stmt.step ();
        stmt.reset ();
-       debug("Inserted book meta data details to "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" for book:"+aBook.getBookLocation());
+       debug("Updated book meta data details to "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" for book:"+aBook.getBookTitle()+"["+aBook.getBookId().to_string()+"]");
      }else{
-       debug("Updated book meta data details to "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" for book:"+aBook.getBookLocation());
+       debug("Inserted book meta data details to "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" for book:"+aBook.getBookTitle()+"["+aBook.getBookId().to_string()+"]");
      }
      return true;
   }
