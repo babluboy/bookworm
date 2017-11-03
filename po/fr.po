@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-15 21:53+0100\n"
-"PO-Revision-Date: 2017-11-03 09:36+0000\n"
-"Last-Translator: Aris <aris@papatheodorou.net>\n"
+"PO-Revision-Date: 2017-11-03 22:07+0000\n"
+"Last-Translator: Nicolas Vivant <nicolas.vivant@ville-fontaine.fr>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
@@ -39,7 +39,7 @@ msgstr "Lancer Bookworm en mode débogage"
 
 #: ../src/bookworm.vala:114
 msgid "Run Bookworm in info mode"
-msgstr "Lancer Bookworm en mode information\n"
+msgstr "Lancer Bookworm en mode information"
 
 #: ../src/bookworm.vala:115
 msgid "Automatically add new books from watched folders"
