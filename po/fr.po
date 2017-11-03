@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-15 21:53+0100\n"
-"PO-Revision-Date: 2017-10-29 22:28+0000\n"
-"Last-Translator: Nicolas Vivant <nicolas.vivant@ville-fontaine.fr>\n"
+"PO-Revision-Date: 2017-11-03 09:34+0000\n"
+"Last-Translator: anonymous <>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.17\n"
+"X-Generator: Weblate 2.18-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -19,7 +19,7 @@ msgstr "Sélectionner une image"
 
 #: ../src/dialog.vala:483
 msgid "Select folder"
-msgstr "Sélectionner un dossier"
+msgstr "Sélectionner un dossier\n"
 
 #: ../src/library.vala:546
 msgid "Adding "
