@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-15 21:53+0100\n"
-"PO-Revision-Date: 2017-11-03 09:35+0000\n"
-"Last-Translator: anonymous <>\n"
+"PO-Revision-Date: 2017-11-03 09:36+0000\n"
+"Last-Translator: Aris <aris@papatheodorou.net>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
@@ -369,7 +369,7 @@ msgstr "Préférences"
 
 #: ../src/constants.vala:112
 msgid "Turn on Dark Mode"
-msgstr "Activer le mode nuit"
+msgstr "Activer le mode sombre"
 
 #: ../src/constants.vala:113
 msgid "Enable cache (opens books faster)"
@@ -381,7 +381,7 @@ msgstr "Afficher la bibliothèque au démarrage"
 
 #: ../src/constants.vala:115
 msgid "Enable two page reading"
-msgstr "Activer la lecture sur deux pages"
+msgstr "Activer la lecture en double page"
 
 #: ../src/constants.vala:116
 msgid "Select Font"
