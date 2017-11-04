@@ -173,7 +173,7 @@ public class BookwormApp.AppWindow {
     book_reading_footer_box.pack_start (back_button);
     book_reading_footer_box.pack_start (pageSlider);
     book_reading_footer_box.pack_end (forward_button);
-    
+
     //Create the Gtk Box to hold components for reading a selected book
     bookReading_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
     bookReading_ui_box.set_border_width (0);
@@ -377,96 +377,6 @@ public class BookwormApp.AppWindow {
       });
       return false;
     });
-    //capture key press events on the webview readergetSelectedText();
-    bool isControlKeyPressed = false;
-    aWebView.key_press_event.connect ((ev) => {
-        if ((ev.keyval == Gdk.Key.L || ev.keyval == Gdk.Key.l)) {// B Key pressed, return to Library View
-          //Set action of return to Library View if the current view is Reading View
-          if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-            //Get the current scroll position of the book and add it to the book object
-            (BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead)).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
-            //Update header to remove title of book being read
-            BookwormApp.AppHeaderBar.headerbar.title = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
-            //set UI in library view mode
-            BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
-            BookwormApp.Bookworm.toggleUIState();
-          }
-        }
-        if (ev.keyval == Gdk.Key.Left) {// Left Key pressed, move page backwards
-          //get object for this ebook
-          BookwormApp.Book aBookLeftKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          aBookLeftKeyPress = BookwormApp.contentHandler.renderPage(aBookLeftKeyPress, "BACKWARD");
-          //update book details to libraryView Map
-          BookwormApp.Bookworm.libraryViewMap.set(aBookLeftKeyPress.getBookLocation(), aBookLeftKeyPress);
-        }
-        if (ev.keyval == Gdk.Key.Right) {// Right key pressed, move page forward
-          //get object for this ebook
-          BookwormApp.Book aBookRightKeyPress = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-          aBookRightKeyPress = BookwormApp.contentHandler.renderPage(aBookRightKeyPress, "FORWARD");
-          //update book details to libraryView Map
-          BookwormApp.Bookworm.libraryViewMap.set(aBookRightKeyPress.getBookLocation(), aBookRightKeyPress);
-        }
-        if (ev.keyval == Gdk.Key.Escape) {// Escape key pressed, remove full screen
-          book_reading_footer_box.show();
-          BookwormApp.Bookworm.window.unfullscreen();
-        }
-        if (ev.keyval == Gdk.Key.F11) {// F11 key pressed, enter or remove full screen
-          book_reading_footer_box.hide();
-          BookwormApp.Bookworm.window.fullscreen();
-        }
-        if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {//Capture Ctrl key press
-          isControlKeyPressed = true;
-        }
-        if (isControlKeyPressed && ev.keyval == Gdk.Key.plus){// Control and + keys pressed
-          aWebView.set_zoom_level (aWebView.get_zoom_level() + BookwormApp.Constants.ZOOM_CHANGE_VALUE);
-        }
-        if (isControlKeyPressed && ev.keyval == Gdk.Key.minus){// Control and + keys pressed
-          aWebView.set_zoom_level (aWebView.get_zoom_level() - BookwormApp.Constants.ZOOM_CHANGE_VALUE);
-        }
-        if (isControlKeyPressed && (ev.keyval == Gdk.Key.D || ev.keyval == Gdk.Key.d)){// Control and D keys pressed - toggle bookmark
-          //Check if bookmark for the page is not set - set bookmark
-  				if(BookwormApp.AppHeaderBar.bookmark_inactive_button.get_visible()){
-  					BookwormApp.contentHandler.handleBookMark("INACTIVE_CLICKED");
-            debug("Shortcut executed for Bookmark with action - INACTIVE_CLICKED");
-            isControlKeyPressed = false; //stop the action re-executing immediately
-  				}else{
-  					//Bookmark for the page is set - unset bookmark
-            BookwormApp.contentHandler.handleBookMark("ACTIVE_CLICKED");
-            debug("Shortcut executed for Bookmark with action - ACTIVE_CLICKED");
-            isControlKeyPressed = false; //stop the action re-executing immediately
-  				}
-        }
-        return false;
-    });
-
-    aWebView.key_release_event.connect ((ev) => {
-      if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {
-        isControlKeyPressed = false;
-      }
-      return false;
-    });
-
-    //capture key press on the library widget - toggle between list and grid view
-    bookLibrary_ui_box.add_events (Gdk.EventMask.KEY_PRESS_MASK);
-    bookLibrary_ui_box.can_focus = true;
-    bookLibrary_ui_box.key_press_event.connect ((ev) => {
-      if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {//Capture Ctrl key press
-        isControlKeyPressed = true;
-      }
-      if (isControlKeyPressed && (ev.keyval == Gdk.Key.V || ev.keyval == Gdk.Key.v)){// Control and V keys pressed - toggle Library View
-        isControlKeyPressed = false; //stop the action re-executing immediately
-        if(settings.library_view_mode == BookwormApp.Constants.BOOKWORM_UI_STATES[5]){
-          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-        }else{
-          BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
-        }
-        settings.library_view_mode = BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE;
-        BookwormApp.Bookworm.toggleUIState();
-
-      }
-      return false;
-    });
-
     //capture the url clicked on the webview and action the navigation type clicks
     aWebView.decide_policy.connect ((decision, type) => {
      if(type == WebKit.PolicyDecisionType.RESPONSE){

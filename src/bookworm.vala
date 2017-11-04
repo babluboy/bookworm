@@ -214,6 +214,11 @@ public class BookwormApp.Bookworm : Granite.Application {
 				//Perform close down activities
 				closeBookWorm();
 			});
+			//Add keyboard shortcuts on the window
+			window.add_events (Gdk.EventMask.KEY_PRESS_MASK);
+			window.key_press_event.connect (BookwormApp.Shortcuts.handleKeyPress);
+			window.key_release_event.connect (BookwormApp.Shortcuts.handleKeyRelease);
+
 			isBookwormRunning = true;
 			debug("Sucessfully activated Gtk Window for Bookworm...");
 		}else{

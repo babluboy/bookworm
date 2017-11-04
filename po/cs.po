@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-15 22:17+0100\n"
+"POT-Creation-Date: 2017-11-04 22:26+0000\n"
 "PO-Revision-Date: 2017-10-15 11:23+0000\n"
 "Last-Translator: Dima Dorofieiev <dorofieiev.d@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -26,7 +26,7 @@ msgstr "Vybrat složku"
 msgid "Adding "
 msgstr "Přidání "
 
-#: ../src/window.vala:283 ../src/window.vala:577
+#: ../src/window.vala:283 ../src/window.vala:487
 #, fuzzy
 msgid "Select eBook"
 msgstr "Vybrat e-knihu"

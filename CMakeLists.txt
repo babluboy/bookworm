@@ -48,6 +48,7 @@ set (SOURCE_LIST
     src/comicsReader.vala
     src/backgroundTasks.vala
     src/mobiReader.vala
+    src/shortcuts.vala
 )
 
 include (GSettings)
@@ -110,6 +111,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/comicsReader.vala
     src/backgroundTasks.vala
     src/mobiReader.vala
+    src/shortcuts.vala
 
 # tell what libraries to use when compiling
 PACKAGES
