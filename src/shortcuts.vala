@@ -17,7 +17,7 @@
 * with Bookworm. If not, see http://www.gnu.org/licenses/.
 */
 
-public class BookwormApp.Shortcuts:Gtk.Widget{
+public class BookwormApp.Shortcuts: Gtk.Widget {
   public static bool isControlKeyPressed = false;
   public static BookwormApp.Settings settings;
 
@@ -105,7 +105,7 @@ public class BookwormApp.Shortcuts:Gtk.Widget{
     if (BookwormApp.Shortcuts.isControlKeyPressed && (ev.keyval == Gdk.Key.Q || ev.keyval == Gdk.Key.q)) {
       BookwormApp.Bookworm.window.destroy();
     }
-    return true;
+    return false;
   }
 
   public static bool handleKeyRelease(Gdk.EventKey ev){
@@ -113,6 +113,6 @@ public class BookwormApp.Shortcuts:Gtk.Widget{
     if ((ev.keyval == Gdk.Key.Control_L || ev.keyval == Gdk.Key.Control_R)) {
       BookwormApp.Shortcuts.isControlKeyPressed = false;
     }
-    return true;
+    return false;
   }
 }
