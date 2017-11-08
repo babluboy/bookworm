@@ -580,7 +580,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			BookwormApp.contentHandler.handleBookMark("DISPLAY");
 			BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
-		//Set-up UI for Book Meta Data / Content View Mode
+		//Set-up UI for Info Mode -  Meta Data / Table of Content
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
 			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
 			BookwormApp.Info.info_box.show_all();

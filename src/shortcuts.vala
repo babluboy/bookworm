@@ -91,6 +91,7 @@ public class BookwormApp.Shortcuts: Gtk.Widget {
         }
       }
     }
+    
     //Escape key pressed: remove full screen
     if (ev.keyval == Gdk.Key.Escape) {
       BookwormApp.AppWindow.book_reading_footer_box.show();
@@ -101,9 +102,13 @@ public class BookwormApp.Shortcuts: Gtk.Widget {
       BookwormApp.AppWindow.book_reading_footer_box.hide();
       BookwormApp.Bookworm.window.fullscreen();
     }
-    //Ctrl+Q Key pressed: Record the action for Ctrl combination keys
+    //Ctrl+Q Key pressed: Close Bookworm completely
     if (BookwormApp.Shortcuts.isControlKeyPressed && (ev.keyval == Gdk.Key.Q || ev.keyval == Gdk.Key.q)) {
       BookwormApp.Bookworm.window.destroy();
+    }
+    //Ctrl+F Key pressed: Focus the search entry on the header
+    if (BookwormApp.Shortcuts.isControlKeyPressed && (ev.keyval == Gdk.Key.F || ev.keyval == Gdk.Key.f)) {
+      BookwormApp.AppHeaderBar.headerSearchBar.grab_focus ();
     }
     return false;
   }

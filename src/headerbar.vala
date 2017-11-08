@@ -170,6 +170,11 @@ public class BookwormApp.AppHeaderBar {
       if("annotations-list"==settings.current_info_tab){
         BookwormApp.Info.populateAnnotations();
       }
+      if("searchresults-list"==settings.current_info_tab){
+        if(BookwormApp.Info.firstSearchResultLinkButton != null){
+          BookwormApp.Info.firstSearchResultLinkButton.grab_focus(); //sets the focus on the first link
+        }
+      }
     });
 
     bookwormApp.prefButton.clicked.connect (() => {

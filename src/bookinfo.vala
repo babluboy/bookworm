@@ -29,6 +29,7 @@ public class BookwormApp.Info:Gtk.Window {
   public static ScrolledWindow searchresults_scroll;
   public static Box annotations_box;
   public static ScrolledWindow annotations_scroll;
+  public static LinkButton firstSearchResultLinkButton;
 
   public static Gtk.Box createBookInfo(){
     debug("Starting to create BookInfo window components...");
@@ -85,6 +86,9 @@ public class BookwormApp.Info:Gtk.Window {
       }
       if("searchresults-list"==stack.get_visible_child_name()){
         //This is called from the header search bar
+        if(firstSearchResultLinkButton != null){
+          firstSearchResultLinkButton.grab_focus(); //sets the focus on the first link
+        }
       }
       //Set the value of the info tab currently being viewed so that the same tab is opened subsequently
       BookwormApp.Bookworm.settings.current_info_tab = stack.get_visible_child_name();
@@ -185,6 +189,7 @@ public class BookwormApp.Info:Gtk.Window {
     BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
     Box searchresults_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     bool hasResultsBeenFound = false;
+    bool isSearchResultFocussed = false;
     Gtk.Label searchLabel = new Label(BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_PROCESSING.replace("$$$", BookwormApp.AppHeaderBar.headerSearchBar.get_text()).replace("&&&", aBook.getBookTitle()));
     searchresults_box.pack_start(searchLabel,false,false,0);
 
@@ -207,6 +212,12 @@ public class BookwormApp.Info:Gtk.Window {
           LinkButton searchResultLinkButton = new LinkButton.with_label (pageNumber, BookwormApp.Utils.parseMarkUp(getChapterNameFromPage(pageNumber)+" : "+entry.value));
           searchResultLinkButton.halign = Align.START;
           searchresults_box.pack_start(searchResultLinkButton,false,false,0);
+          //grab the focus on the first search result
+          if(!isSearchResultFocussed){
+            searchResultLinkButton.grab_focus();
+            isSearchResultFocussed = true;
+            firstSearchResultLinkButton = searchResultLinkButton;
+          }
           searchResultLinkButton.activate_link.connect (() => {
             aBook.setBookPageNumber(aBook.getBookContentList().index_of(searchResultLinkButton.get_uri ().strip()));
             //update book details to libraryView Map
