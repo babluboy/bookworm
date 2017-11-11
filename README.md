@@ -5,15 +5,8 @@ Author: Siddhartha Das
 
 Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc. This version supports EPUB, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.
 
-Check the Bookworm website for details on features, shortcuts, etc. : https://babluboy.github.io/bookworm/
+Check the Bookworm website for details on features, shortcuts, installation guides for supported distro. : https://babluboy.github.io/bookworm/
 
-## How to install bookworm:
-
-```shell
-sudo add-apt-repository ppa:bookworm-team/bookworm
-sudo apt-get update
-sudo apt-get install bookworm
-```
 
 ## How to build bookworm:
 
