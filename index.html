@@ -253,30 +253,37 @@
             <p>
                 Bookworm is available as a PPA for Ubuntu (16.04 / Xenial) and other Ubuntu based systems. Open Terminal and run the following
                 comands for installation
-                <pre>
-sudo add-apt-repository ppa:bookworm-team/bookworm
+                <pre>sudo add-apt-repository ppa:bookworm-team/bookworm
 sudo apt-get update
-sudo apt-get install bookworm
-                </pre>
+sudo apt-get install bookworm</pre>
             </p>
             <p>&nbsp; </p>
-            <p>If you want to build Bookworm from source with the required dependent packages, please open terminal and execute
-                the following commands
-                <pre>
-sudo apt build-dep granite-demo 
+            <p>
+                <img src="images/opensuse-header-logo.png">Use this link to install Bookworm on openSUSE <br>
+                <a href="https://software.opensuse.org/package/bookworm">openSUSE package for Bookworm</a>
+            </p>
+            <p>&nbsp; </p>
+            <p>If you want to build Bookworm from source on Ubuntu/Debian, please open terminal and execute the following commands
+                <pre>sudo apt build-dep granite-demo 
 sudo apt install libgranite-dev valac libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev libsqlite3-dev poppler-utils libpoppler-glib-dev git
 git clone https://github.com/babluboy/bookworm.git
 cd bookworm
 mkdir build && cd build 
 cmake -DCMAKE_INSTALL_PREFIX=/usr ../
 make
-sudo make install
-                </pre>
+sudo make install</pre>
             </p>
             <p>&nbsp; </p>
-            <p>
-                <img src="images/opensuse-header-logo.png">Use this link to install Bookworm on openSUSE <br>
-                <a href="https://software.opensuse.org/package/bookworm">openSUSE package for Bookworm</a>
+             <p>If you want to build Bookworm from source on Fedora, please open terminal and execute the following commands
+                <pre>sudo dnf install cmake gcc-c++ vala
+sudo dnf install gtk3-devel libgee-devel granite-devel
+sudo dnf install webkitgtk4-devel sqlite-devel poppler-glib-devel
+git clone https://github.com/babluboy/bookworm.git
+cd bookworm
+mkdir build && cd build 
+cmake -DCMAKE_INSTALL_PREFIX=/usr ../
+make
+sudo make install</pre>
             </p>
         </div>
     </section>
