@@ -435,14 +435,24 @@ public class BookwormApp.Bookworm : Granite.Application {
 					debug("Completed saving the book data into DB");
 				}
 			}
-			//Check and create a task scheduler cron job if not already present
-			BookwormApp.BackgroundTasks.taskScheduler();
+			//Check and create a task scheduler cron job if not already present - Not Required as book discovery is done on close of application
+			//BookwormApp.BackgroundTasks.taskScheduler();
+
+			//Run dicovery of books as a background task if not already running
+			string checkBackgroundTask = BookwormApp.Utils.execute_sync_command("ps -ef");
+    		if(checkBackgroundTask.index_of("bookworm --discover") == -1){
+				BookwormApp.Utils.execute_async_multiarg_command_pipes({"bookworm", "--discover", "&"});
+			}else{
+        		debug("Bookworm discover process already running....");
+    		}
+			//BookwormApp.Utils.execute_sync_command ("bookworm --discover &");
+			//BookwormApp.BackgroundTasks.performTasks();
 	}
 
 	public void saveWindowState(){
 		int width;
-    int height;
-    int x;
+		int height;
+		int x;
 		int y;
 		window.get_size (out width, out height);
 		window.get_position (out x, out y);

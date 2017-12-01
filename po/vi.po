@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-04 22:26+0000\n"
+"POT-Creation-Date: 2017-12-01 19:28+0000\n"
 "PO-Revision-Date: 2017-10-04 17:47+0000\n"
 "Last-Translator: Hung Nguyen <hnx116@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
@@ -17,11 +17,11 @@ msgstr ""
 msgid "Select Image"
 msgstr "Chọn ảnh"
 
-#: ../src/dialog.vala:483
+#: ../src/dialog.vala:486
 msgid "Select folder"
 msgstr "Chọn thư mục"
 
-#: ../src/library.vala:546
+#: ../src/library.vala:551
 msgid "Adding "
 msgstr ""
 
@@ -94,7 +94,7 @@ msgid ""
 msgstr ""
 
 #: ../src/constants.vala:45
-msgid "Invalid MIME-type detected. Check of this book: "
+msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
 
 #: ../src/constants.vala:46
@@ -273,139 +273,143 @@ msgstr "Hôm qua"
 msgid "Days"
 msgstr "Ngày"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:89
+msgid "Discovery of books will be started when Bookworm is closed"
+msgstr ""
+
+#: ../src/constants.vala:91
 msgid "Add books to library"
 msgstr "Thêm sách vào thư viện"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:92
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Xóa sách đã chọn khỏi thư viện (file ebook không bị xóa)"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:93
 msgid "Select one or more books in library"
 msgstr "Chọn một hoặc nhiều sách trong thư viện"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:94
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Xem Mục lục, Dấu trang và Kết quả tìm kiếm"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:95
 #, fuzzy
 msgid "Reading preferences"
 msgstr "Tùy chỉnh"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:96
 msgid "Click to bookmark this page"
 msgstr ""
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:97
 msgid "Click to remove this bookmark"
 msgstr ""
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:98
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Tăng cỡ chữ (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:99
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Giảm cỡ chữ (Ctrl + '-')"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:100
 msgid "Increase line width"
 msgstr "Tăng độ rộng của dòng"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:101
 msgid "Decrease line width"
 msgstr "Giảm độ rộng của dòng"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:102
 msgid "Increase line spacing"
 msgstr "Tăng khoảng cách giữa các dòng"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:103
 msgid "Decrease line spacing"
 msgstr "Giảm khoảng cách giữa các dòng"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:104
 msgid "Update cover image"
 msgstr "Cập nhật ảnh bìa"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:105
 msgid "Apply theme for this colour profile"
 msgstr ""
 
-#: ../src/constants.vala:105 ../src/constants.vala:106
+#: ../src/constants.vala:106 ../src/constants.vala:107
 #, fuzzy
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Thoát (Esc)"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:108
 msgid "Add folder to scan for books"
 msgstr "Thêm thư mục để quét sách"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:109
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:110
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:111 ../src/constants.vala:138
+#: ../src/constants.vala:112 ../src/constants.vala:139
 msgid "Preferences"
 msgstr "Tùy chỉnh"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:113
 msgid "Turn on Dark Mode"
 msgstr "Bật chế độ ban đêm"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:114
 msgid "Enable cache (opens books faster)"
 msgstr "Bật cache (mở sách nhanh hơn)"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:115
 #, fuzzy
 msgid "Always show library on startup"
 msgstr "Luôn hiển thị thư viện khi bắt đầu"
 
-#: ../src/constants.vala:115
+#: ../src/constants.vala:116
 msgid "Enable two page reading"
 msgstr "Bật tính năng đọc hai trang"
 
-#: ../src/constants.vala:116
+#: ../src/constants.vala:117
 #, fuzzy
 msgid "Select Font"
 msgstr "Chọn ebook"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:118
 msgid "Customize reading profile"
 msgstr ""
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:119
 msgid "Text"
 msgstr ""
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:120
 msgid "Background"
 msgstr ""
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:121
 msgid "Add folders to scan for books"
 msgstr "Thêm thư mục để quét sách"
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:122
 msgid "Profile"
 msgstr "Profile"
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:123
 msgid "Reset to default values"
 msgstr "Đặt lại giá trị mặc định"
 
-#: ../src/constants.vala:136
+#: ../src/constants.vala:137
 msgid "Unknown Book"
 msgstr ""
 
-#: ../src/constants.vala:137
+#: ../src/constants.vala:138
 msgid "About"
 msgstr "About"
 

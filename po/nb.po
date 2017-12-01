@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-04 22:26+0000\n"
+"POT-Creation-Date: 2017-12-01 19:28+0000\n"
 "PO-Revision-Date: 2017-11-18 23:48+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
-"Language-Team: Norwegian Bokmål "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/nb/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"bookworm/bookworm/nb/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,11 +17,11 @@ msgstr ""
 msgid "Select Image"
 msgstr "Velg bilde"
 
-#: ../src/dialog.vala:483
+#: ../src/dialog.vala:486
 msgid "Select folder"
 msgstr "Velg mappe"
 
-#: ../src/library.vala:546
+#: ../src/library.vala:551
 msgid "Adding "
 msgstr "Legger til "
 
@@ -95,7 +95,7 @@ msgstr ""
 
 #: ../src/constants.vala:45
 #, fuzzy
-msgid "Invalid MIME-type detected. Check of this book: "
+msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr "Ugyldig MIME-type oppdaget. Sjekk bokformat her: "
 
 #: ../src/constants.vala:46
@@ -281,135 +281,139 @@ msgstr "I går"
 msgid "Days"
 msgstr "Dager"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:89
+msgid "Discovery of books will be started when Bookworm is closed"
+msgstr ""
+
+#: ../src/constants.vala:91
 msgid "Add books to library"
 msgstr "La til bøker i bibliotek"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:92
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Fjern valgte bøker fra biblioteket (e-bokfiler vil ikke bli slettet)"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:93
 msgid "Select one or more books in library"
 msgstr "Velg ei eller flere bøker fra biblioteket"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:94
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Se innholdsfortegnelse, bokmerker og søkeresultater"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:95
 msgid "Reading preferences"
 msgstr "Leseinnstillinger"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:96
 msgid "Click to bookmark this page"
 msgstr "Klikk for å bokmerke denne siden"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:97
 msgid "Click to remove this bookmark"
 msgstr "Klikk for å fjerne dette bokmerket"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:98
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Øk skriftstørrelse (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:99
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Forminsk skriftstørrelse (Ctrl+ '-')"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:100
 msgid "Increase line width"
 msgstr "Øk linjebredde"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:101
 msgid "Decrease line width"
 msgstr "Minsk linjebredde"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:102
 msgid "Increase line spacing"
 msgstr "Øk linjeavstand"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:103
 msgid "Decrease line spacing"
 msgstr "MInsk linjeavstand"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:104
 msgid "Update cover image"
 msgstr "Oppdater omslagsbildet"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:105
 msgid "Apply theme for this colour profile"
 msgstr "Ikle drakt for denne fargeprofilen"
 
-#: ../src/constants.vala:105 ../src/constants.vala:106
+#: ../src/constants.vala:106 ../src/constants.vala:107
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Gå inn i fullskjermsvisning og trykk Esc-knappen for å angre"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:108
 msgid "Add folder to scan for books"
 msgstr "Legg til mappe å skanne for bøker"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:109
 msgid "Remove displayed folder from book scan"
 msgstr "Fjern viste bøker fra bokskanning"
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:110
 msgid "Add annotation to selected text"
 msgstr "Legg til anmerkning for valgt tekst"
 
-#: ../src/constants.vala:111 ../src/constants.vala:138
+#: ../src/constants.vala:112 ../src/constants.vala:139
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:113
 msgid "Turn on Dark Mode"
 msgstr "Skru på mørkt modus"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:114
 msgid "Enable cache (opens books faster)"
 msgstr "Aktiver hurtiglager (åpner bøker raskere)"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:115
 msgid "Always show library on startup"
 msgstr "Alltid vis bibliotek ved oppstart"
 
-#: ../src/constants.vala:115
+#: ../src/constants.vala:116
 msgid "Enable two page reading"
 msgstr "Aktiver tosidig lesning"
 
-#: ../src/constants.vala:116
+#: ../src/constants.vala:117
 msgid "Select Font"
 msgstr "Angi skrift"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:118
 msgid "Customize reading profile"
 msgstr "Tilpass leseprofil"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:119
 msgid "Text"
 msgstr "Tekst"
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:120
 msgid "Background"
 msgstr "Bakgrunn"
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:121
 msgid "Add folders to scan for books"
 msgstr "Legg til mapper å skanne for bøker"
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:122
 msgid "Profile"
 msgstr "Profil"
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:123
 msgid "Reset to default values"
 msgstr "Tilbakestill til forvalgte verdier"
 
-#: ../src/constants.vala:136
+#: ../src/constants.vala:137
 msgid "Unknown Book"
 msgstr "Ukjent bok"
 
-#: ../src/constants.vala:137
+#: ../src/constants.vala:138
 msgid "About"
 msgstr "Om"
 

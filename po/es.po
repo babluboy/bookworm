@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-04 22:26+0000\n"
+"POT-Creation-Date: 2017-12-01 19:28+0000\n"
 "PO-Revision-Date: 2017-08-24 13:15+0000\n"
 "Last-Translator: Pedro Calogero <sp200091@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
@@ -17,11 +17,11 @@ msgstr ""
 msgid "Select Image"
 msgstr "Seleccionar imagen"
 
-#: ../src/dialog.vala:483
+#: ../src/dialog.vala:486
 msgid "Select folder"
 msgstr "Seleccionar carpeta"
 
-#: ../src/library.vala:546
+#: ../src/library.vala:551
 msgid "Adding "
 msgstr ""
 
@@ -98,7 +98,7 @@ msgstr ""
 
 #: ../src/constants.vala:45
 #, fuzzy
-msgid "Invalid MIME-type detected. Check of this book: "
+msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
 "Se ha detectado un tipo de Mime no válido. Formato del libro de cheques en "
 "la ubicación: "
@@ -291,142 +291,146 @@ msgstr "Ayer"
 msgid "Days"
 msgstr "Días"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:89
+msgid "Discovery of books will be started when Bookworm is closed"
+msgstr ""
+
+#: ../src/constants.vala:91
 msgid "Add books to library"
 msgstr "Añadir libros a la biblioteca"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:92
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Eliminar libros seleccionados de la biblioteca (el archivo eBook no se "
 "eliminará)"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:93
 msgid "Select one or more books in library"
 msgstr "Seleccione uno o más libros en la biblioteca"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:94
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Ver Tabla de contenido, Marcadores y Resultados de la búsqueda"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:95
 #, fuzzy
 msgid "Reading preferences"
 msgstr "Establecer preferencias de lectura"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:96
 msgid "Click to bookmark this page"
 msgstr "Haga clic para agregar esta página a favoritos"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:97
 msgid "Click to remove this bookmark"
 msgstr "Haga clic para quitar este marcador"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:98
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Aumentar el tamaño de la fuente (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:99
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Reducir el tamaño de la fuente (Ctrl + '-')"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:100
 msgid "Increase line width"
 msgstr "Aumentar el ancho de línea"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:101
 msgid "Decrease line width"
 msgstr "Disminuir el ancho de la línea"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:102
 msgid "Increase line spacing"
 msgstr "Aumentar el espaciado de línea"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:103
 msgid "Decrease line spacing"
 msgstr "Disminuir del espaciado de línea"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:104
 msgid "Update cover image"
 msgstr "Actualizar imagen de portada"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:105
 #, fuzzy
 msgid "Apply theme for this colour profile"
 msgstr "Seleccionar su tema para su color de perfil"
 
-#: ../src/constants.vala:105 ../src/constants.vala:106
+#: ../src/constants.vala:106 ../src/constants.vala:107
 #, fuzzy
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Introduzca la vista de pantalla completa y la tecla Esc para salir"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:108
 msgid "Add folder to scan for books"
 msgstr "Agregar carpetas para escanear libros"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:109
 msgid "Remove displayed folder from book scan"
 msgstr "Eliminar carpeta mostrada de las carpetas vigiladas"
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:110
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:111 ../src/constants.vala:138
+#: ../src/constants.vala:112 ../src/constants.vala:139
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:113
 msgid "Turn on Dark Mode"
 msgstr "Activar el modo nocturno"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:114
 msgid "Enable cache (opens books faster)"
 msgstr "Habilitar caché (abre libros más rápido)"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:115
 #, fuzzy
 msgid "Always show library on startup"
 msgstr "Siempre muestra la libreria al inicio"
 
-#: ../src/constants.vala:115
+#: ../src/constants.vala:116
 msgid "Enable two page reading"
 msgstr "activar lectura en dos paginas"
 
-#: ../src/constants.vala:116
+#: ../src/constants.vala:117
 #, fuzzy
 msgid "Select Font"
 msgstr "Seleccionar fuente"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:118
 msgid "Customize reading profile"
 msgstr "Personalizar perfil de lectura"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:119
 msgid "Text"
 msgstr "Texto"
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:120
 msgid "Background"
 msgstr "Fondo"
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:121
 msgid "Add folders to scan for books"
 msgstr "Agregar carpetas para escanear por libros"
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:122
 msgid "Profile"
 msgstr "Perfil"
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:123
 msgid "Reset to default values"
 msgstr "Reiniciar a los valores por defecto"
 
-#: ../src/constants.vala:136
+#: ../src/constants.vala:137
 msgid "Unknown Book"
 msgstr "Libro desconocido"
 
-#: ../src/constants.vala:137
+#: ../src/constants.vala:138
 msgid "About"
 msgstr "Acerca de"
 

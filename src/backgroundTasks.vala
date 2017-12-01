@@ -22,16 +22,17 @@ using Gee;
 public class BookwormApp.BackgroundTasks {
   public static ArrayList<string> listOfBooks;
   public static BookwormApp.Settings settings;
-
+  
   public static void performTasks(){
-    initialization();
-    //Add any new books from the watched folders
-    discoverBooks();
-    //refresh list of books in DB due to new books being added
-    listOfBooks = BookwormApp.DB.getBookIDListFromDB();
-    //Remove cahched data and cover thumbs which are no longer used
-    cleanBookCacheContent();
-    cleanBookCoverImages();
+        debug("Bookworm discover process initiated....");
+        initialization();
+        //Add any new books from the watched folders
+        discoverBooks();
+        //refresh list of books in DB due to new books being added
+        listOfBooks = BookwormApp.DB.getBookIDListFromDB();
+        //Remove cahched data and cover thumbs which are no longer used
+        cleanBookCacheContent();
+        cleanBookCoverImages();
   }
 
   public static void initialization(){

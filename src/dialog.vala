@@ -362,7 +362,9 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		customProfileBox.pack_end(textColourBox, false, false);
 		customProfileBox.pack_end(backgroundColourBox, false, false);
 
-    Gtk.Box content = dialog.get_content_area() as Gtk.Box;
+		var dialog_toast = new Granite.Widgets.Toast(BookwormApp.Constants.TEXT_BOOK_DISCOVERY_TOAST);
+
+    	Gtk.Box content = dialog.get_content_area() as Gtk.Box;
 		content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
 		content.pack_start (prefBox, false, false, 0);
 		content.pack_start (localStorageBox, false, false, 0);
@@ -372,7 +374,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		content.pack_start (customProfileBox, false, false, 0);
 		content.pack_start (discoverBooksBox, false, false, 0);
 		content.pack_end (resetBox, true, true, 5);
-
+		content.pack_end (dialog_toast, true, true, 0); //this should be the last item vertically
+		
 		dialog.show_all ();
 
     //Set up Actions
@@ -478,8 +481,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			BookwormApp.contentHandler.refreshCurrentPage();
 		});
 
-
-		add_scan_directory_button.clicked.connect (() => {
+		//Add selected watched folder
+		add_scan_directory_button.clicked.connect ( () => {
 			ArrayList<string> selectedDir = BookwormApp.Utils.selectDirChooser(_("Select folder"), BookwormApp.Bookworm.window, false);
 			TreeModel aTreeModel = directoryComboBox.get_model();
 			TreeIter iter;
@@ -493,6 +496,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				directoryComboBox.set_active(numberOfDirs);
 				debug("value of scanDirList after adding dir:"+scanDirList.str);
 			}
+			//show a toast to indicate discovery will be done when Bookworm is closed
+			dialog_toast.send_notification ();
 		});
 		//Remove selected watched folder
 		remove_scan_directory_button.clicked.connect (() => {

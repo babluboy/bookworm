@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-04 22:26+0000\n"
+"POT-Creation-Date: 2017-12-01 19:28+0000\n"
 "PO-Revision-Date: 2017-10-17 16:46+0000\n"
 "Last-Translator: Andreas Kleinert <Andy.Kleinert@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -17,11 +17,11 @@ msgstr ""
 msgid "Select Image"
 msgstr "Bild auswählen"
 
-#: ../src/dialog.vala:483
+#: ../src/dialog.vala:486
 msgid "Select folder"
 msgstr "Verzeichnis wählen"
 
-#: ../src/library.vala:546
+#: ../src/library.vala:551
 msgid "Adding "
 msgstr "Wird hinzugefügt … "
 
@@ -94,7 +94,8 @@ msgstr ""
 "es hier eine gültige eBook-Datei gibt: "
 
 #: ../src/constants.vala:45
-msgid "Invalid MIME-type detected. Check of this book: "
+#, fuzzy
+msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr "Ungültiger MIME-Type entdeckt. Überprüfen Sie dieses Buch: "
 
 #: ../src/constants.vala:46
@@ -286,137 +287,141 @@ msgstr "Gestern"
 msgid "Days"
 msgstr "Tage"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:89
+msgid "Discovery of books will be started when Bookworm is closed"
+msgstr ""
+
+#: ../src/constants.vala:91
 msgid "Add books to library"
 msgstr "Bücher zur Bibliothek hinzufügen"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:92
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Ausgewählten Bücher aus der Bibliothek entfernen (E-Book Dateien werden "
 "nicht gelöscht)"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:93
 msgid "Select one or more books in library"
 msgstr "Ein oder mehrere Bücher auswählen"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:94
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Inhaltsverzeichnis, Lesezeichen und Suchergebnisse"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:95
 msgid "Reading preferences"
 msgstr "Leseeinstellungen anpassen"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:96
 msgid "Click to bookmark this page"
 msgstr "Lesezeichen für diese Seite speichern"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:97
 msgid "Click to remove this bookmark"
 msgstr "Lesezeichen für diese Seite entfernen"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:98
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Schrift vergrößern (STRG + Shift + „+”)"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:99
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Schrift verkleinern (STRG + „-”)"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:100
 msgid "Increase line width"
 msgstr "Zeilenbreite vergrößern"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:101
 msgid "Decrease line width"
 msgstr "Zeilenbreite verringern"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:102
 msgid "Increase line spacing"
 msgstr "Zeilenabstand erhöhen"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:103
 msgid "Decrease line spacing"
 msgstr "Zeilenabstand verringern"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:104
 msgid "Update cover image"
 msgstr "Titelbild anpassen"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:105
 msgid "Apply theme for this colour profile"
 msgstr "Design für dieses Farbprofil festlegen"
 
-#: ../src/constants.vala:105 ../src/constants.vala:106
+#: ../src/constants.vala:106 ../src/constants.vala:107
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Vollbildmodus öffnen und mit ESC beenden"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:108
 msgid "Add folder to scan for books"
 msgstr "Verzeichnisse hinzufügen, um nach Büchern zu suchen"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:109
 msgid "Remove displayed folder from book scan"
 msgstr "Angezeigtes Verzeichnis aus der Büchersuche entfernen"
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:110
 msgid "Add annotation to selected text"
 msgstr "Kommentar zum markierten Text hinzufügen"
 
-#: ../src/constants.vala:111 ../src/constants.vala:138
+#: ../src/constants.vala:112 ../src/constants.vala:139
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:113
 msgid "Turn on Dark Mode"
 msgstr "Nachtmodus aktivieren"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:114
 msgid "Enable cache (opens books faster)"
 msgstr "Zwischenspeicher aktivieren (Bücher werden schneller geöffnet)"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:115
 msgid "Always show library on startup"
 msgstr "Bibliothek immer beim Start anzeigen"
 
-#: ../src/constants.vala:115
+#: ../src/constants.vala:116
 msgid "Enable two page reading"
 msgstr "Zwei-Seiten-Lesen aktivieren"
 
-#: ../src/constants.vala:116
+#: ../src/constants.vala:117
 msgid "Select Font"
 msgstr "Schriftart auswählen"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:118
 msgid "Customize reading profile"
 msgstr "Leseprofil anpassen"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:119
 msgid "Text"
 msgstr "Text"
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:120
 msgid "Background"
 msgstr "Hintergrund"
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:121
 msgid "Add folders to scan for books"
 msgstr "Verzeichnisse zur Büchersuche hinzufügen"
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:122
 msgid "Profile"
 msgstr "Profil"
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:123
 msgid "Reset to default values"
 msgstr "Auf Standardwerte zurücksetzen"
 
-#: ../src/constants.vala:136
+#: ../src/constants.vala:137
 msgid "Unknown Book"
 msgstr "Unbekanntes Buch"
 
-#: ../src/constants.vala:137
+#: ../src/constants.vala:138
 msgid "About"
 msgstr "Über …"
 

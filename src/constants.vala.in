@@ -42,7 +42,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
 	public const string TEXT_FOR_EXTRACTION_ISSUE = _("Problem in extracting contents of book. Ensure there is a valid eBook file here: ");
-	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid MIME-type detected. Check of this book: ");
+	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid MIME-type detected. Check format for this eBook: ");
 	public const string TEXT_FOR_CONTENT_ISSUE = _("Invalid content found. Ensure there is a valid eBook file here: ");
 	public const string TEXT_FOR_PARSING_ISSUE = _("eBook could not be parsed. Ensure there is a valid eBook file here: ");
 	public const string TEXT_FOR_FORMAT_NOT_SUPPORTED = _("Bookworm does not support the format of the file found here: ");
@@ -86,6 +86,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_TIME_TODAY = _("Today");
 	public const string TEXT_FOR_TIME_YESTERDAY = _("Yesterday");
 	public const string TEXT_FOR_TIME_DAYS = _("Days");
+	public const string TEXT_BOOK_DISCOVERY_TOAST = _("Discovery of books will be started when Bookworm is closed");
 
 	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK = _("Remove selected books from library (eBook file will not be deleted)");
