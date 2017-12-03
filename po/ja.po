@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 19:28+0000\n"
-"PO-Revision-Date: 2017-12-03 19:31+0000\n"
-"Last-Translator: anonymous <>\n"
+"PO-Revision-Date: 2017-12-03 22:51+0000\n"
+"Last-Translator: sho <havemercy.Kilroy@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/ja/>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr "画像を選択"
 
 #: ../src/dialog.vala:486
 msgid "Select folder"
-msgstr ""
+msgstr "フォルダを選択"
 
 #: ../src/library.vala:551
 msgid "Adding "
@@ -27,15 +27,15 @@ msgstr "追加 "
 
 #: ../src/window.vala:283 ../src/window.vala:487
 msgid "Select eBook"
-msgstr ""
+msgstr "本を選択"
 
 #: ../src/bookworm.vala:112
 msgid "Display version number"
-msgstr ""
+msgstr "バージョンを表示する"
 
 #: ../src/bookworm.vala:113
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Bookwormをデバッグモードで実行する"
 
 #: ../src/bookworm.vala:114
 msgid "Run Bookworm in info mode"
@@ -43,95 +43,95 @@ msgstr ""
 
 #: ../src/bookworm.vala:115
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "フォルダにある新しいファイルを自動で追加する"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "電子書籍リーダー"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Weblateの翻訳者"
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr ""
+msgstr "WEBサイト"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "利用不可"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "電子書籍リーダー"
 
 #: ../src/constants.vala:39
 msgid "Search this book…"
-msgstr ""
+msgstr "本文を検索…"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "検索 (タイトル, 著者, タグ )"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "本が見つかりません。"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "ブックを追加してライブラリを作成する"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "読みたい本を選択してください"
 
 #: ../src/constants.vala:44
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr ""
+msgstr "コンテンツを抽出することが困難です。有効なファイルであることを確認してください。"
 
 #: ../src/constants.vala:45
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
+msgstr "無効なMIMEタイプが検出されました。ファイルのフォーマットを確認してください :"
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "無効なコンテンツが見つかりました。有効なファイルであることを確認してください :"
 
 #: ../src/constants.vala:47
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "ファイルが解析できませんでした。有効なファイルであることを確認してください :"
 
 #: ../src/constants.vala:48
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookwormはここにあるファイル形式をサポートしていません :"
 
 #: ../src/constants.vala:49
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr ""
+msgstr "要求されたコンテンツを取得できませんでした。もう一度お試しください "
 
 #: ../src/constants.vala:50
 msgid "Library"
-msgstr ""
+msgstr "ライブラリ"
 
 #: ../src/constants.vala:51
 msgid "Resume"
-msgstr ""
+msgstr "再開"
 
 #: ../src/constants.vala:52
 msgid "Contents"
-msgstr ""
+msgstr "目次"
 
 #: ../src/constants.vala:53
 msgid "Content #"
-msgstr ""
+msgstr "コンテンツ #"
 
 #: ../src/constants.vala:54
 msgid "Bookmarks"
-msgstr ""
+msgstr "ブックマーク"
 
 #: ../src/constants.vala:55
 msgid "Bookmark #NNN for Section PPP"
@@ -139,17 +139,17 @@ msgstr ""
 
 #: ../src/constants.vala:56
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "リンクをクリックするとブックマークされた箇所に移動します。"
 
 #: ../src/constants.vala:57
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
-msgstr ""
+msgstr "まだBBBにはブックマークがありません。ページ上部にあるアイコンを押すことでブックマークされます。"
 
 #: ../src/constants.vala:58
 msgid "Search Results"
-msgstr ""
+msgstr "検索結果"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
@@ -199,27 +199,27 @@ msgstr ""
 
 #: ../src/constants.vala:70
 msgid "Update Title"
-msgstr ""
+msgstr "タイトル"
 
 #: ../src/constants.vala:71
 msgid "Update Tags"
-msgstr ""
+msgstr "タグ"
 
 #: ../src/constants.vala:72
 msgid "Update Author"
-msgstr ""
+msgstr "著者名"
 
 #: ../src/constants.vala:74
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "全画面で表示する (F11)"
 
 #: ../src/constants.vala:75
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "全画面モードの終了 (Esc)"
 
 #: ../src/constants.vala:76
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "意味を調べる"
 
 #: ../src/constants.vala:77
 msgid "Annotate selected text"
@@ -231,23 +231,23 @@ msgstr ""
 
 #: ../src/constants.vala:79
 msgid "Images"
-msgstr ""
+msgstr "画像"
 
 #: ../src/constants.vala:80
 msgid "All Files"
-msgstr ""
+msgstr "全てのファイル"
 
 #: ../src/constants.vala:81
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
 
 #: ../src/constants.vala:82
 msgid "Author"
-msgstr ""
+msgstr "著者"
 
 #: ../src/constants.vala:83
 msgid "Last Opened"
-msgstr ""
+msgstr "最後に開いた"
 
 #: ../src/constants.vala:84
 msgid "Rating"
@@ -255,19 +255,19 @@ msgstr ""
 
 #: ../src/constants.vala:85
 msgid "Tags"
-msgstr ""
+msgstr "タグ"
 
 #: ../src/constants.vala:86
 msgid "Today"
-msgstr ""
+msgstr "今日"
 
 #: ../src/constants.vala:87
 msgid "Yesterday"
-msgstr ""
+msgstr "昨日"
 
 #: ../src/constants.vala:88
 msgid "Days"
-msgstr ""
+msgstr "日付"
 
 #: ../src/constants.vala:89
 msgid "Discovery of books will be started when Bookworm is closed"
@@ -275,15 +275,15 @@ msgstr ""
 
 #: ../src/constants.vala:91
 msgid "Add books to library"
-msgstr ""
+msgstr "本を追加する"
 
 #: ../src/constants.vala:92
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "選択した本をライブラリから削除する(元のファイル自体は残ります)"
 
 #: ../src/constants.vala:93
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "選択する(複数可)"
 
 #: ../src/constants.vala:94
 msgid "See Table of Contents, Bookmarks and Search Results"
@@ -295,35 +295,35 @@ msgstr ""
 
 #: ../src/constants.vala:96
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "しおりをはさむ"
 
 #: ../src/constants.vala:97
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "しおりを外す"
 
 #: ../src/constants.vala:98
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "フォントサイズを大きくする (Ctrl + Shift + '+')"
 
 #: ../src/constants.vala:99
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "フォントサイズを小さくする (Ctrl + '-')"
 
 #: ../src/constants.vala:100
 msgid "Increase line width"
-msgstr ""
+msgstr "横の余白をせまくする"
 
 #: ../src/constants.vala:101
 msgid "Decrease line width"
-msgstr ""
+msgstr "横の余白を広くする"
 
 #: ../src/constants.vala:102
 msgid "Increase line spacing"
-msgstr ""
+msgstr "行の間隔を広げる"
 
 #: ../src/constants.vala:103
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "行の間隔を狭くする"
 
 #: ../src/constants.vala:104
 msgid "Update cover image"
@@ -335,7 +335,7 @@ msgstr ""
 
 #: ../src/constants.vala:106 ../src/constants.vala:107
 msgid "Enter full screen view and Esc key to undo"
-msgstr ""
+msgstr "全画面表示です。Escキーを押すと戻ります。"
 
 #: ../src/constants.vala:108
 msgid "Add folder to scan for books"
@@ -351,51 +351,51 @@ msgstr ""
 
 #: ../src/constants.vala:112 ../src/constants.vala:139
 msgid "Preferences"
-msgstr ""
+msgstr "環境設定"
 
 #: ../src/constants.vala:113
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "ダークモード"
 
 #: ../src/constants.vala:114
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "キャッシュを有効にする (本を開くのが早くなります)"
 
 #: ../src/constants.vala:115
 msgid "Always show library on startup"
-msgstr ""
+msgstr "起動した際、ライブラリを表示させる"
 
 #: ../src/constants.vala:116
 msgid "Enable two page reading"
-msgstr ""
+msgstr "見開き表示にする"
 
 #: ../src/constants.vala:117
 msgid "Select Font"
-msgstr ""
+msgstr "フォント"
 
 #: ../src/constants.vala:118
 msgid "Customize reading profile"
-msgstr ""
+msgstr "プロファイルの"
 
 #: ../src/constants.vala:119
 msgid "Text"
-msgstr ""
+msgstr "テキスト"
 
 #: ../src/constants.vala:120
 msgid "Background"
-msgstr ""
+msgstr "背景"
 
 #: ../src/constants.vala:121
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "カレントフォルダを"
 
 #: ../src/constants.vala:122
 msgid "Profile"
-msgstr ""
+msgstr "プロファイル"
 
 #: ../src/constants.vala:123
 msgid "Reset to default values"
-msgstr ""
+msgstr "設定をリセット"
 
 #: ../src/constants.vala:137
 msgid "Unknown Book"
@@ -403,20 +403,20 @@ msgstr ""
 
 #: ../src/constants.vala:138
 msgid "About"
-msgstr ""
+msgstr "Bookwormについて"
 
 #: ../src/utils.vala:527 ../src/utils.vala:598
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: ../src/utils.vala:529 ../src/utils.vala:599
 msgid "Open"
-msgstr ""
+msgstr "開く"
 
 #: ../src/utils.vala:531
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: ../src/mobiReader.vala:311
 msgid "Book"
-msgstr ""
+msgstr "本"
