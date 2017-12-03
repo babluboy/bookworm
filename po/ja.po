@@ -2,9 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"PO-Revision-Date: 2017-12-03 19:25+0000\n"
+"Last-Translator: sho <havemercy.Kilroy@gmail.com>\n"
+"Language-Team: Japanese "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.18-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -16,7 +23,7 @@ msgstr ""
 
 #: ../src/library.vala:551
 msgid "Adding "
-msgstr ""
+msgstr "追加 "
 
 #: ../src/window.vala:283 ../src/window.vala:487
 msgid "Select eBook"
