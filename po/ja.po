@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 19:28+0000\n"
-"PO-Revision-Date: 2017-12-03 19:25+0000\n"
-"Last-Translator: sho <havemercy.Kilroy@gmail.com>\n"
+"PO-Revision-Date: 2017-12-03 19:31+0000\n"
+"Last-Translator: anonymous <>\n"
 "Language-Team: Japanese "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/ja/>\n"
 "Language: ja\n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
-msgstr ""
+msgstr "画像を選択"
 
 #: ../src/dialog.vala:486
 msgid "Select folder"
