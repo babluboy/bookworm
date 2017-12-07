@@ -609,11 +609,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		annotationDialog.set_default_size (600, 400);
 		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
 
-		Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATION + textForAnnotation);
+		Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATION + 
+																			BookwormApp.Utils.minimizeStringLength(textForAnnotation, 35));
 		annotationsLabel.set_line_wrap (true);
-    Gtk.TextView annotationsInputTextView = new Gtk.TextView();
-    annotationsInputTextView.set_wrap_mode (Gtk.WrapMode.WORD);
-    annotationsInputTextView.buffer.text = aBook.getAnnotations(aBook.getBookPageNumber().to_string()+"#~~#"+textForAnnotation);
+    	Gtk.TextView annotationsInputTextView = new Gtk.TextView();
+    	annotationsInputTextView.set_wrap_mode (Gtk.WrapMode.WORD);
+    	annotationsInputTextView.buffer.text = aBook.getAnnotations(aBook.getBookPageNumber().to_string()+"#~~#"+textForAnnotation);
 		Gtk.ScrolledWindow scrolledAnnotations = new Gtk.ScrolledWindow (null, null);
 		scrolledAnnotations.add (annotationsInputTextView);
 

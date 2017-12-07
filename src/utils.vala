@@ -760,36 +760,45 @@ namespace BookwormApp.Utils {
 
 		public static BookwormApp.Book setBookCoverImage (owned BookwormApp.Book aBook, string bookCoverImageLocation){
 			//copy cover image to bookworm cover image location
-      string coverImageFileName = File.new_for_commandline_arg(bookCoverImageLocation).get_basename();
-      string coverImageFileExtension = "";
-      if(coverImageFileName.index_of(".") != -1){
-        coverImageFileExtension = coverImageFileName.slice(coverImageFileName.last_index_of(".")+1, coverImageFileName.length);
-      }
-      string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+"/covers/"+aBook.getBookId().to_string()+"_cover."+coverImageFileExtension;
-      BookwormApp.Utils.execute_sync_command("cp \""+bookCoverImageLocation+"\" \""+bookwormCoverLocation+"\"");
-      //cover was extracted from the ebook contents
-      aBook.setIsBookCoverImagePresent(true);
-      aBook.setBookCoverLocation(bookwormCoverLocation);
-      debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
+      		string coverImageFileName = File.new_for_commandline_arg(bookCoverImageLocation).get_basename();
+     	 	string coverImageFileExtension = "";
+      		if(coverImageFileName.index_of(".") != -1){
+        		coverImageFileExtension = coverImageFileName.slice(coverImageFileName.last_index_of(".")+1, coverImageFileName.length);
+      		}
+      		string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+
+																	"/covers/"+aBook.getBookId().to_string()+"_cover."+
+																	coverImageFileExtension;
+      		BookwormApp.Utils.execute_sync_command("cp \""+bookCoverImageLocation+"\" \""+bookwormCoverLocation+"\"");
+      		//cover was extracted from the ebook contents
+      		aBook.setIsBookCoverImagePresent(true);
+      		aBook.setBookCoverLocation(bookwormCoverLocation);
+      		debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
 			return aBook;
 		}
 
 		public static string setWebViewTitle(string javascript){
-	    string selectedText = "";
+	    	string selectedText = "";
 			debug("Javascrit for setting Webview Title:"+javascript);
 			var loop = new MainLoop();
 			BookwormApp.AppWindow.aWebView.run_javascript.begin(javascript, null, (obj, res) => {
 				try{
 					BookwormApp.AppWindow.aWebView.run_javascript.end(res);
-				}
-				catch(GLib.Error e){
+				}catch(GLib.Error e){
 					warning("Could not get selected text, javascript error: " + e.message);
 				}
 				selectedText = BookwormApp.AppWindow.aWebView.get_title();
 				loop.quit();
 			});
 			loop.run();
-	    debug("Webview Title set as:"+selectedText);
+	    	debug("Webview Title set as:"+selectedText);
 			return selectedText;
-	  }
+		}
+
+		public static string minimizeStringLength(string originalString, int maxLength){
+			string modifiedString = originalString;
+			if(modifiedString.length > maxLength){
+				modifiedString = modifiedString.slice(0,maxLength) + "...";
+			}
+			return modifiedString;
+		}
 }

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-10-26 22:02+0000\n"
 "Last-Translator: Filip Kemuel Dam Bartholdy <filip_kemuel@yahoo.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Vælg mappe"
 msgid "Adding "
 msgstr "Tilføjer "
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "Vælg e-bog"
 
@@ -171,8 +171,8 @@ msgid "Comma seperated tags for this annotation"
 msgstr "Kommaseparerede tags til denne note"
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
-msgstr "Tilføj tekst til note: "
+msgid "Add notes for : "
+msgstr ""
 
 #: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
@@ -429,3 +429,6 @@ msgstr "Gem"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Bog"
+
+#~ msgid "Add text to annotatation: "
+#~ msgstr "Tilføj tekst til note: "

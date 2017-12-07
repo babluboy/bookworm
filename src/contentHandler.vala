@@ -49,10 +49,10 @@ public class BookwormApp.contentHandler {
 				break;
 		}
 		string bookContent = BookwormApp.contentHandler.provideContent(aBook,currentContentLocation, direction);
-    //render the content on webview
-    BookwormApp.AppWindow.aWebView.load_html(bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
-    //set the focus to the webview to capture keypress events
-    BookwormApp.AppWindow.aWebView.grab_focus();
+        //render the content on webview
+        BookwormApp.AppWindow.aWebView.load_html(bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
+        //set the focus to the webview to capture keypress events
+        BookwormApp.AppWindow.aWebView.grab_focus();
 		//set the bookmak icon on the header
 		handleBookMark("DISPLAY");
 		//set the navigation controls
@@ -123,7 +123,7 @@ public class BookwormApp.contentHandler {
                                      ";
     }
     //Set up CSS for book as per preference settings - this will override any css in the book contents
-    string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts.replace("$READING_LINE_HEIGHT", BookwormApp.Bookworm.settings.reading_line_height)
+    string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts.replace("$READING_LINE_HEIGHT",                BookwormApp.Bookworm.settings.reading_line_height)
                                      .replace("$READING_WIDTH", (100 - (BookwormApp.Bookworm.settings.reading_width).to_int()).to_string())
                                      .replace("$FONT_FAMILY", BookwormApp.Bookworm.settings.reading_font_name_family)
                                      .replace("$FONT_SIZE", BookwormApp.Bookworm.settings.reading_font_size.to_string())
@@ -206,6 +206,7 @@ public class BookwormApp.contentHandler {
     }else{
       pageContent.assign(currentBookwormScripts + "<BODY " + BookwormApp.Bookworm.onLoadJavaScript.str + ">" + pageContent.str + "</BODY>");
     }
+    //debug(pageContent.str);
     return pageContent.str;
   }
 

@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-12-02 20:47+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
-"Language-Team: Norwegian Bokmål "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/nb/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"bookworm/bookworm/nb/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr "Velg mappe"
 msgid "Adding "
 msgstr "Legger til "
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "Velg e-bok"
 
@@ -173,8 +173,8 @@ msgid "Comma seperated tags for this annotation"
 msgstr "Kommainndelt liste over tagger for denne anmerkningen"
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
-msgstr "Tekst å anmerke: "
+msgid "Add notes for : "
+msgstr ""
 
 #: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
@@ -431,6 +431,9 @@ msgstr "Lagre"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Bok"
+
+#~ msgid "Add text to annotatation: "
+#~ msgstr "Tekst å anmerke: "
 
 #, fuzzy
 #~ msgid "Tags Annotation"

@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-12-02 14:39+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
-"Language-Team: Sardinian "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/sc/>\n"
+"Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr "Ischerta una cartella"
 msgid "Adding "
 msgstr "Annanghende "
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "Ischerta unu e-libru"
 
@@ -95,7 +95,8 @@ msgstr ""
 
 #: ../src/constants.vala:45
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Casta de MIME non vàlida agatada. Verìfica su formatu pro custu libru: "
+msgstr ""
+"Casta de MIME non vàlida agatada. Verìfica su formatu pro custu libru: "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -175,8 +176,8 @@ msgid "Comma seperated tags for this annotation"
 msgstr "Eichetas separadas dae vìrgulas pro custa nota"
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
-msgstr "Annaghe testu de annotare: "
+msgid "Add notes for : "
+msgstr ""
 
 #: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
@@ -438,6 +439,9 @@ msgstr "Sarva"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Libru"
+
+#~ msgid "Add text to annotatation: "
+#~ msgstr "Annaghe testu de annotare: "
 
 #, fuzzy
 #~ msgid "Tags Annotation"

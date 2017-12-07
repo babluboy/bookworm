@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-10-04 17:47+0000\n"
 "Last-Translator: Hung Nguyen <hnx116@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Chọn thư mục"
 msgid "Adding "
 msgstr ""
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "Chọn ebook"
 
@@ -168,7 +168,7 @@ msgid "Comma seperated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
+msgid "Add notes for : "
 msgstr ""
 
 #: ../src/constants.vala:63

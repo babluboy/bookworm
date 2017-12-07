@@ -59,7 +59,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_INFO_TAB_ANNOTATIONS = _("Annotations");
 	public const string TEXT_FOR_ANNOTATION_TAG = _("Annotation Tags");
 	public const string TEXT_FOR_ANNOTATION_TAG_ENTRY = _("Comma seperated tags for this annotation");
-	public const string TEXT_FOR_ANNOTATION = _("Add text to annotatation: ");
+	public const string TEXT_FOR_ANNOTATION = _("Add notes for : ");
 	public const string TEXT_FOR_ANNOTATIONS_FOUND = _("Click on a link to jump to an annotated section");
 	public const string TEXT_FOR_ANNOTATIONS_NOT_FOUND = _("No annotations set in BBB, right click the page of a book and choose annotation from the context menu to add annotations");
 	public const string TEXT_FOR_SEARCH_RESULTS_PROCESSING = _("Searching for '$$$' in &&&:");
@@ -130,7 +130,7 @@ namespace BookwormApp.Constants {
 	public static const int MAX_BOOK_COVER_PER_ROW = 6;
 	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
-	public static const int MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB = 100;
+	public static const int MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB = 50;
 	//public const string RGBA_HEX_WHITE = "#ffffff";
 	//public const string RGBA_HEX_BLACK = "#002B36";
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-11-03 22:07+0000\n"
 "Last-Translator: Nicolas Vivant <nicolas.vivant@ville-fontaine.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Sélectionner un dossier"
 msgid "Adding "
 msgstr "Ajouter "
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "Sélectionnez un livre électronique"
 
@@ -179,8 +179,8 @@ msgid "Comma seperated tags for this annotation"
 msgstr "Étiquettes séparées par des virgules pour cette note"
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
-msgstr "Ajouter du texte à la note "
+msgid "Add notes for : "
+msgstr ""
 
 #: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
@@ -440,6 +440,9 @@ msgstr "Enregistrer"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Livre"
+
+#~ msgid "Add text to annotatation: "
+#~ msgstr "Ajouter du texte à la note "
 
 #~ msgid "Added "
 #~ msgstr "Ajouter "

@@ -47,12 +47,12 @@ public class BookwormApp.BackgroundTasks {
     ArrayList<string> scanDirList = new ArrayList<string>();
     //find the folders to scan from the settings
     if(settings.list_of_scan_dirs.length > 1){
-      debug(settings.list_of_scan_dirs);
-			string[] scanDirArray = settings.list_of_scan_dirs.split ("~~");
-      foreach (string token in scanDirArray){
-        scanDirList.add(token);
-      }
-		}
+        debug(settings.list_of_scan_dirs);
+	    string[] scanDirArray = settings.list_of_scan_dirs.split ("~~");
+        foreach (string token in scanDirArray){
+            scanDirList.add(token);
+        }
+    }
     //create the find command
     StringBuilder findCmd = new StringBuilder("find ");
     foreach (string scanDir in scanDirList) {
@@ -63,35 +63,39 @@ public class BookwormApp.BackgroundTasks {
     findCmd.append("! -readable -prune -o -type f \\( -iname \\*.pdf -o -iname \\*.epub -o -iname \\*.cbr -o -iname \\*.cbz \\) -print");
     string findCmdOutput = BookwormApp.Utils.execute_sync_command(findCmd.str);
     if(findCmdOutput.contains("\n")){
-      string[] findCmdOutputResults = findCmdOutput.strip().split ("\n",-1);
-      foreach (string findResult in findCmdOutputResults) {
-        bool noMatchFound = true;
-        foreach (string book in listOfBooks) {
-          if(book.contains(findResult)){
-            noMatchFound = false;
-            break;
-          }
-        }
-        if(noMatchFound){
-          print("\nAttempting to add book located at:"+findResult);
-          BookwormApp.Book aBook = new BookwormApp.Book();
-          aBook.setBookLocation(findResult);
-          File eBookFile = File.new_for_path (findResult);
-          if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
-            int bookID = BookwormApp.DB.addBookToDataBase(aBook);
-    				aBook.setBookId(bookID);
-            aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
-            aBook.setWasBookOpened(true);
-            //parse eBook to populate cache and book meta data
-            aBook = BookwormApp.Bookworm.genericParser(aBook);
-            if(!aBook.getIsBookParsed()){
-              BookwormApp.DB.removeBookFromDB(aBook);
-            }else{
-              BookwormApp.DB.updateBookToDataBase(aBook);
-              print("Sucessfully added book located at:"+findResult);
+        string[] findCmdOutputResults = findCmdOutput.strip().split ("\n",-1);
+        foreach (string findResult in findCmdOutputResults) {
+            bool noMatchFound = true;
+            foreach (string book in listOfBooks) {
+                if(book.contains(findResult)){
+                    noMatchFound = false;
+                    break;
+                }
             }
+            if(noMatchFound){
+                try{
+                    print("\nAttempting to add book located at:"+findResult);
+                    BookwormApp.Book aBook = new BookwormApp.Book();
+                    aBook.setBookLocation(findResult);
+                    File eBookFile = File.new_for_path (findResult);
+                    if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
+                        int bookID = BookwormApp.DB.addBookToDataBase(aBook);
+            			aBook.setBookId(bookID);
+                        aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
+                        aBook.setWasBookOpened(true);
+                        //parse eBook to populate cache and book meta data
+                        aBook = BookwormApp.Bookworm.genericParser(aBook);
+                        if(!aBook.getIsBookParsed()){
+                            BookwormApp.DB.removeBookFromDB(aBook);
+                        }else{
+                            BookwormApp.DB.updateBookToDataBase(aBook);
+                            print("Sucessfully added book located at:"+findResult);
+                        }
+                    }
+                } catch(GLib.Error e){
+			        warning("Discovered book ["+findResult+"] could not be added to database. Error:"+e.message);
+		        }
           }
-        }
       }
     }
     print("\nCompleted process for discovery of books....\n");
@@ -159,6 +163,7 @@ public class BookwormApp.BackgroundTasks {
     }
   }
 
+  //This method is not used anymore as discovery of books is not done by a cron job  
   public static void taskScheduler(){
     //Check and add book monitoring cron
     string userCrontabContents = BookwormApp.Utils.execute_sync_command("crontab -l");

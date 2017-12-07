@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-10-16 16:41+0000\n"
 "Last-Translator: Володимир Бриняк <bardvv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
@@ -26,7 +26,7 @@ msgstr "Виберіть папку"
 msgid "Adding "
 msgstr "Додавання "
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "Вибрати електронну книгу"
 
@@ -176,8 +176,8 @@ msgid "Comma seperated tags for this annotation"
 msgstr "Комбінація розділених тегів для цієї анотації"
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
-msgstr "Додати текст до анотації: "
+msgid "Add notes for : "
+msgstr ""
 
 #: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
@@ -435,6 +435,9 @@ msgstr "Зберегти"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Книга"
+
+#~ msgid "Add text to annotatation: "
+#~ msgstr "Додати текст до анотації: "
 
 #~ msgid "Added "
 #~ msgstr "Додано "

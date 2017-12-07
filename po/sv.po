@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-11-20 17:49+0000\n"
 "Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -26,7 +26,7 @@ msgstr "Välj mapp"
 msgid "Adding "
 msgstr "Lägger till "
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "Välj e-bok"
 
@@ -176,8 +176,8 @@ msgid "Comma seperated tags for this annotation"
 msgstr "Kommaseparerade taggar för denna anteckning"
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
-msgstr "Lägg till text till anteckning: "
+msgid "Add notes for : "
+msgstr ""
 
 #: ../src/constants.vala:63
 #, fuzzy
@@ -441,3 +441,6 @@ msgstr "Spara"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Bok"
+
+#~ msgid "Add text to annotatation: "
+#~ msgstr "Lägg till text till anteckning: "

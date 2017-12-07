@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 21:47+0000\n"
+"POT-Creation-Date: 2017-12-07 20:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Adding "
 msgstr ""
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr ""
 
@@ -168,7 +168,7 @@ msgid "Comma seperated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
+msgid "Add notes for : "
 msgstr ""
 
 #: ../src/constants.vala:63

@@ -60,7 +60,15 @@ public class BookwormApp.AppWindow {
     library_grid_scroll.add (library_grid);
 
     //Create a treeview and Liststore to display the list of books in the library
-    library_table_liststore = new Gtk.ListStore (8, typeof (Gdk.Pixbuf), typeof (string), typeof (string), typeof (string), typeof (Gdk.Pixbuf), typeof (string), typeof (string), typeof (string));
+    library_table_liststore = new Gtk.ListStore (8, 
+                                                                            typeof (Gdk.Pixbuf), 
+                                                                            typeof (string), 
+                                                                            typeof (string), 
+                                                                            typeof (string), 
+                                                                            typeof (Gdk.Pixbuf), 
+                                                                            typeof (string), 
+                                                                            typeof (string), 
+                                                                            typeof (string));
     library_table_treeview = new Gtk.TreeView();
     library_table_treeview.activate_on_single_click = true;
     //Set up the various cell types for the library metadata
@@ -391,6 +399,7 @@ public class BookwormApp.AppWindow {
        WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action();
        WebKit.URIRequest aURIReq = aNavAction.get_request ();
        //check if the link is an Annotation Overlay
+       debug("Window Title:"+BookwormApp.AppWindow.aWebView.get_title());
        if(BookwormApp.AppWindow.aWebView.get_title() != null &&
           BookwormApp.AppWindow.aWebView.get_title().length > 1 &&
           BookwormApp.AppWindow.aWebView.get_title().index_of("annotation:") != -1

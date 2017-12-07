@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-12-04 21:35+0000\n"
 "Last-Translator: Sho Hiramatsu <havemercy.Kilroy@gmail.com>\n"
-"Language-Team: Japanese "
-"<https://hosted.weblate.org/projects/bookworm/bookworm/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr "フォルダを選択"
 msgid "Adding "
 msgstr "追加 "
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "本を選択"
 
@@ -90,22 +90,28 @@ msgstr "読みたい本を選択してください"
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr "コンテンツを抽出することが困難です。有効なファイルであることを確認してください: "
+msgstr ""
+"コンテンツを抽出することが困難です。有効なファイルであることを確認してくださ"
+"い: "
 
 #: ../src/constants.vala:45
 #, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "無効なMIMEタイプが検出されました。ファイルのフォーマットを確認してください: "
+msgstr ""
+"無効なMIMEタイプが検出されました。ファイルのフォーマットを確認してください: "
 
 #: ../src/constants.vala:46
 #, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr "無効なコンテンツが見つかりました。有効なファイルであることを確認してください: "
+msgstr ""
+"無効なコンテンツが見つかりました。有効なファイルであることを確認してくださ"
+"い: "
 
 #: ../src/constants.vala:47
 #, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr "ファイルが解析できませんでした。有効なファイルであることを確認してください: "
+msgstr ""
+"ファイルが解析できませんでした。有効なファイルであることを確認してください: "
 
 #: ../src/constants.vala:48
 #, fuzzy
@@ -150,7 +156,9 @@ msgstr "リンクをクリックするとブックマークされた箇所に移
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
-msgstr "まだBBBにはブックマークがありません。ページ上部にあるアイコンを押すことでブックマークされます"
+msgstr ""
+"まだBBBにはブックマークがありません。ページ上部にあるアイコンを押すことでブッ"
+"クマークされます"
 
 #: ../src/constants.vala:58
 msgid "Search Results"
@@ -169,7 +177,7 @@ msgid "Comma seperated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
+msgid "Add notes for : "
 msgstr ""
 
 #: ../src/constants.vala:63

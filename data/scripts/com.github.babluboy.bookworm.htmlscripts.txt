@@ -8,19 +8,14 @@
   }
 
   function overlayAnnotation(annotationText) {
+     annotationText = decodeURIComponent (annotationText);
     //attempt to find and highlight the whole phrase
-    findAndReplace(annotationText, "<a href='#' onclick='javascript:document.title=\"annotation:"+annotationText+"\"'><span class='bookworm_annotation_highlight'>"+annotationText+"</span></a>");
-    if(is_search_result_found == "false"){
-      //whole phrase is not found, remove one word from the left and re-try
-      var words = annotationText.split(" ");
-      for(var count=0; count<words.length; count++){
-        annotationText = annotationText.replace(words[count], "").trim();
-        findAndReplace(annotationText, "<a href='#' onclick='javascript:document.title=\""+annotationText+"\"'><span class='bookworm_annotation_highlight'>"+annotationText+"</span></a>");
-        if(is_search_result_found == "true"){
-          //phrase found, exit loop
-          break;
-        }
-      }
+    var originalAnnotationText = annotationText;
+    findAndReplace(annotationText, "<a href='#' onclick='javascript:document.title=\"annotation:"+originalAnnotationText+"\"'><span class='bookworm_annotation_highlight'>"+annotationText+"</span></a>");
+    while(is_search_result_found == "false" && annotationText.length > 2){
+        //whole phrase is not found, retry after removing one character from left and right
+        annotationText = annotationText.slice(1, -1).trim();
+        findAndReplace(annotationText, "<a href='#' onclick='javascript:document.title=\"annotation:"+originalAnnotationText+"\"'><span class='bookworm_annotation_highlight'>"+annotationText+"</span></a>");
     }
     var resultText = document.getElementsByClassName("bookworm_annotation_highlight")[0];
     resultText.scrollIntoView();
@@ -30,17 +25,10 @@
       highlightText = decodeURIComponent (highlightText);
       //attempt to find and highlight the whole phrase
       findAndReplace(highlightText, "<span class='bookworm_search_result_highlight'>"+highlightText+"</span>");
-      if(is_search_result_found == "false"){
-        //whole phrase is not found, remove one word from the left and re-try
-        var words = highlightText.split(" ");
-        for(var count=0; count<words.length; count++){
-          highlightText = highlightText.replace(words[count], "").trim();
-          findAndReplace(highlightText, "<span class='bookworm_search_result_highlight'>"+highlightText+"</span>");
-          if(is_search_result_found == "true"){
-            //phrase found, exit loop
-            break;
-          }
-        }
+      while(is_search_result_found == "false" && highlightText.length > 2){
+        //whole phrase is not found, retry after removing one character from left and right
+        highlightText = highlightText.slice(1, -1).trim();
+        findAndReplace(highlightText, "<span class='bookworm_search_result_highlight'>"+highlightText+"</span>");
       }
       //highlight phrase and scroll it to view
       var resultText = document.getElementsByClassName("bookworm_search_result_highlight")[0];
@@ -53,13 +41,17 @@
       resultText.scrollIntoView();
   }
 
+  RegExp.escape= function(s) {
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+  };
+
   function findAndReplace(searchText, replacement, searchNode) {
       if (!searchText || typeof replacement === 'undefined') {
           // Throw error here if you want...
           return;
       }
       var regex = typeof searchText === 'string' ?
-                  new RegExp(searchText, 'ig') : searchText,
+                  new RegExp(RegExp.escape(searchText), 'ig') : searchText,
           childNodes = (searchNode || document.body).childNodes,
           cnLength = childNodes.length,
           excludes = 'html,head,style,title,link,meta,script,object,iframe';
@@ -74,7 +66,7 @@
           }
           var parent = currentNode.parentNode,
               frag = (function(){
-                    var matchedResult = new RegExp(searchText, 'ig').exec(currentNode.data);
+                    var matchedResult = new RegExp(RegExp.escape(searchText), 'ig').exec(currentNode.data);
                     is_search_result_found = "true";
                     replacement = replacement.replace(searchText, matchedResult[0]),
                     wrap = document.createElement('div'),

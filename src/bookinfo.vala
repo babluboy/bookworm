@@ -100,46 +100,35 @@ public class BookwormApp.Info:Gtk.Window {
 
   public static void populateAnnotations(){
     //get the book being currently read
-		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+	BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
     Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATIONS_FOUND);
     Box annotations_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     annotations_box.pack_start(annotationsLabel,false,false,0);
     TreeMap<string,string> aAnnotationMap = aBook.getAnnotationList();
-    StringBuilder textProvidedAsAnnotation = new StringBuilder("");
-    StringBuilder textMarkedForAnnotation = new StringBuilder("");
     if(aAnnotationMap != null && aAnnotationMap.size > 0){
-      foreach (var entry in aAnnotationMap.entries){
-        //limit the annootated text
-        if(entry.key.strip().index_of("#~~#") != -1){
-          textMarkedForAnnotation.assign(entry.key.strip().split("#~~#")[1]);
-          if(entry.key.strip().split("#~~#")[1].length > BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB){
-            textMarkedForAnnotation.assign(entry.key.strip().split("#~~#")[1].replace("\n", " ").substring(0,BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB));
-            textMarkedForAnnotation.append("...");
-          }else{
-            textMarkedForAnnotation.assign(entry.key.strip().split("#~~#")[1].replace("\n", " "));
-          }
-
-          if(entry.value.strip().length > BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB){
-            textProvidedAsAnnotation.assign(entry.value.strip().replace("\n", " ").substring(0,BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB));
-            textProvidedAsAnnotation.append("...");
-          }else{
-            textProvidedAsAnnotation.assign(entry.value.strip().replace("\n", " "));
-          }
-          LinkButton annotationLinkButton = new LinkButton.with_label (entry.key.strip().split("#~~#")[0], "Section " + entry.key.strip().split("#~~#")[0] + " [" + textMarkedForAnnotation.str + "] : " + textProvidedAsAnnotation.str);
+      foreach (var entry in aAnnotationMap.ascending_entries){
+          LinkButton annotationLinkButton = new LinkButton.with_label (
+                                                                            entry.key.strip().split("#~~#")[0],
+                                                                            "Section " + entry.key.strip().split("#~~#")[0] +
+                                                                            " [" +    BookwormApp.Utils.minimizeStringLength(
+                                                                                                    entry.key.strip().split("#~~#")[1].replace("\n", " "),
+                                                                                                    BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB) +
+                                                                             "] : " + BookwormApp.Utils.minimizeStringLength(
+                                                                                                    entry.value.strip().replace("\n", " "),
+                                                                                                    BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB));
           annotationLinkButton.halign = Align.START;
           annotations_box.pack_start(annotationLinkButton,false,false,0);
           annotationLinkButton.activate_link.connect (() => {
-            aBook.setBookPageNumber(int.parse(annotationLinkButton.get_uri ().strip()));
-            //update book details to libraryView Map
-            BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-            aBook = BookwormApp.contentHandler.renderPage(aBook, "");
-            //Set the mode back to Reading mode
-            BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-            BookwormApp.Bookworm.getAppInstance().toggleUIState();
-            return true;
+                aBook.setBookPageNumber(int.parse(annotationLinkButton.get_uri ().strip()));
+                //update book details to libraryView Map
+                BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+                aBook = BookwormApp.contentHandler.renderPage(aBook, "");
+                //Set the mode back to Reading mode
+                BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
+                BookwormApp.Bookworm.getAppInstance().toggleUIState();
+                return true;
           });
         }
-      }
     }else{
       annotationsLabel.set_text(BookwormApp.Constants.TEXT_FOR_ANNOTATIONS_NOT_FOUND.replace("BBB", aBook.getBookTitle()));
     }
@@ -190,7 +179,11 @@ public class BookwormApp.Info:Gtk.Window {
     Box searchresults_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     bool hasResultsBeenFound = false;
     bool isSearchResultFocussed = false;
-    Gtk.Label searchLabel = new Label(BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_PROCESSING.replace("$$$", BookwormApp.AppHeaderBar.headerSearchBar.get_text()).replace("&&&", aBook.getBookTitle()));
+
+    Gtk.Label searchLabel = new Label(BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_PROCESSING
+                                                                                        .replace("$$$", BookwormApp.Utils.minimizeStringLength
+                                                                                                                     (BookwormApp.AppHeaderBar.headerSearchBar.get_text(), 50))
+                                                                                        .replace("&&&", BookwormApp.Utils.minimizeStringLength(aBook.getBookTitle(), 35)));
     searchresults_box.pack_start(searchLabel,false,false,0);
 
     //Remove the existing search results Gtk.Box and add the current one
@@ -207,22 +200,25 @@ public class BookwormApp.Info:Gtk.Window {
       //Add link buttons representing the search results - if found
       if(BookwormApp.Bookworm.searchResultsMap.size > 0){
         hasResultsBeenFound = true;
-        foreach (var entry in BookwormApp.Bookworm.searchResultsMap.entries) {
-          string pageNumber = entry.key.slice(entry.key.index_of("~~")+2, entry.key.length).strip();
-          LinkButton searchResultLinkButton = new LinkButton.with_label (pageNumber, BookwormApp.Utils.parseMarkUp(getChapterNameFromPage(pageNumber)+" : "+entry.value));
-          searchResultLinkButton.halign = Align.START;
-          searchresults_box.pack_start(searchResultLinkButton,false,false,0);
-          //grab the focus on the first search result
-          if(!isSearchResultFocussed){
-            searchResultLinkButton.grab_focus();
-            isSearchResultFocussed = true;
-            firstSearchResultLinkButton = searchResultLinkButton;
-          }
-          searchResultLinkButton.activate_link.connect (() => {
+        foreach (var entry in BookwormApp.Bookworm.searchResultsMap.ascending_entries) {
+            string pageNumber = entry.key.slice(entry.key.index_of("~~")+2, entry.key.length).strip();
+            LinkButton searchResultLinkButton = new LinkButton.with_label (pageNumber,  BookwormApp.Utils.parseMarkUp(
+                                                                                   getChapterNameFromPage(pageNumber)+" : "+
+                                                                                   BookwormApp.Utils.minimizeStringLength(entry.value, 100)));
+            searchResultLinkButton.halign = Align.START;
+            searchresults_box.pack_start(searchResultLinkButton,false,false,0);
+            //grab the focus on the first search result
+            if(!isSearchResultFocussed){
+                searchResultLinkButton.grab_focus();
+                isSearchResultFocussed = true;
+                firstSearchResultLinkButton = searchResultLinkButton;
+            }
+            searchResultLinkButton.activate_link.connect (() => {
             aBook.setBookPageNumber(aBook.getBookContentList().index_of(searchResultLinkButton.get_uri ().strip()));
             //update book details to libraryView Map
             BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
-            BookwormApp.Bookworm.bookTextSearchString = BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "#~~#" + searchResultLinkButton.get_label();
+            BookwormApp.Bookworm.bookTextSearchString = BookwormApp.AppHeaderBar.headerSearchBar.get_text() +
+                                                                                                   "#~~#" + searchResultLinkButton.get_label();
             aBook = BookwormApp.contentHandler.renderPage(aBook, "SEARCH");
             //Set the mode back to Reading mode
             BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
@@ -237,9 +233,15 @@ public class BookwormApp.Info:Gtk.Window {
     }
     //Set the text based on whether results have been found or not
     if(hasResultsBeenFound){
-      searchLabel.set_text(BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_FOUND.replace("$$$", BookwormApp.AppHeaderBar.headerSearchBar.get_text()).replace("&&&", aBook.getBookTitle()));
+      searchLabel.set_text(BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_FOUND
+                                                                                        .replace("$$$", BookwormApp.Utils.minimizeStringLength
+                                                                                                                     (BookwormApp.AppHeaderBar.headerSearchBar.get_text(), 50))
+                                                                                        .replace("&&&", BookwormApp.Utils.minimizeStringLength(aBook.getBookTitle(), 35)));
     }else{
-      searchLabel.set_text(BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_NOT_FOUND.replace("$$$", BookwormApp.AppHeaderBar.headerSearchBar.get_text()).replace("&&&", aBook.getBookTitle()));
+      searchLabel.set_text(BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_NOT_FOUND
+                                                                                        .replace("$$$", BookwormApp.Utils.minimizeStringLength
+                                                                                                                     (BookwormApp.AppHeaderBar.headerSearchBar.get_text(), 50))
+                                                                                        .replace("&&&", BookwormApp.Utils.minimizeStringLength(aBook.getBookTitle(), 35)));
     }
     return aBook;
   }
@@ -268,8 +270,12 @@ public class BookwormApp.Info:Gtk.Window {
           previousChapterName = entry.value;
         }
         if(chapterName.length > 0){
-          break;
+            break;
         }
+      }
+      //handle the case when no chapter name has been selected
+      if(chapterName.length < 1){
+        chapterName = "Section " + pageNumber;
       }
     }
     return chapterName;

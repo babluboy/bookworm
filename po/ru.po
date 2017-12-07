@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 19:28+0000\n"
+"POT-Creation-Date: 2017-12-07 13:22+0000\n"
 "PO-Revision-Date: 2017-10-14 09:47+0000\n"
 "Last-Translator: Maksim Borodin <neyhart@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bookworm/"
@@ -27,7 +27,7 @@ msgstr "Выбрать папку"
 msgid "Adding "
 msgstr "Добавление "
 
-#: ../src/window.vala:283 ../src/window.vala:487
+#: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
 msgstr "Выбрать электронную книгу"
 
@@ -180,8 +180,8 @@ msgid "Comma seperated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:62
-msgid "Add text to annotatation: "
-msgstr "Добаваить текст к примечанию "
+msgid "Add notes for : "
+msgstr ""
 
 #: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
@@ -440,6 +440,9 @@ msgstr "Сохранить"
 #: ../src/mobiReader.vala:311
 msgid "Book"
 msgstr "Книга"
+
+#~ msgid "Add text to annotatation: "
+#~ msgstr "Добаваить текст к примечанию "
 
 #~ msgid "Added "
 #~ msgstr "Добавлено "
