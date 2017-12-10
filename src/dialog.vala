@@ -63,11 +63,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		updateCoverImageBox.pack_start(updateCoverImageButton,false, true, 0);
 		//Add action for setting cover image
 		updateCoverImageButton.clicked.connect (() => {
-			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select Image"), BookwormApp.Bookworm.window, false, "IMAGES");
+			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select Image"), 	
+																																	  BookwormApp.Bookworm.window, false, "IMAGES");
 			if(selectedFiles != null && selectedFiles.size > 0){
 				string selectedCoverImagePath = selectedFiles.get(0);
 				//copy cover image to bookworm cover image cache
-	      aBook = BookwormApp.Utils.setBookCoverImage(aBook, selectedCoverImagePath);
+	      		aBook = BookwormApp.Utils.setBookCoverImage(aBook, selectedCoverImagePath);
 				aBook.setWasBookOpened(true);
 
 				//Refresh the library view to show the new cover image
@@ -108,9 +109,9 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 					titleTextLabel.set_xalign(0.0f);
 					titleTextLabel.set_use_markup (true);
 					titleTextLabel.set_line_wrap (true);
-		      titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
-		      titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
-		      titleTextLabel.set_max_width_chars(-1);
+		      		titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
+		      		titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
+		      		titleTextLabel.set_max_width_chars(-1);
 					aBook.setBookWidget("TITLE_TEXT_LABEL", titleTextLabel);
 					BookwormApp.AppWindow.library_grid.show_all();
 					BookwormApp.Bookworm.toggleUIState();
@@ -185,7 +186,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 					if (Gtk.IconTheme.get_default ().has_icon ("starred")) {
 						((Gtk.Button)bookRatingList.get(j)).set_image(new Gtk.Image.from_icon_name ("starred", Gtk.IconSize.MENU));
 					}else{
-						((Gtk.Button)bookRatingList.get(j)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION));
+						((Gtk.Button)bookRatingList.get(j))
+								.set_image(new Gtk.Image.from_file 	
+												  (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION)
+												  );
 					}
 				}
 				//Adjust rating display: set all stars with higher rating to in-active rating image
@@ -193,7 +197,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 					if (Gtk.IconTheme.get_default ().has_icon ("non-starred")) {
 						((Gtk.Button)bookRatingList.get(k)).set_image(new Gtk.Image.from_icon_name ("non-starred", Gtk.IconSize.MENU));
 					}else{
-						((Gtk.Button)bookRatingList.get(k)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_NONE_IMAGE_ICON_LOCATION));
+						((Gtk.Button)bookRatingList.get(k))
+								.set_image(new Gtk.Image.from_file 
+												  (BookwormApp.Constants.RATING_NONE_IMAGE_ICON_LOCATION)
+												  );
 					}
 				}
 			});
@@ -204,16 +211,19 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				if (Gtk.IconTheme.get_default ().has_icon ("starred")) {
 					((Gtk.Button)bookRatingList.get(l)).set_image(new Gtk.Image.from_icon_name ("starred", Gtk.IconSize.MENU));
 				}else{
-					((Gtk.Button)bookRatingList.get(l)).set_image(new Gtk.Image.from_file (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION));
+					((Gtk.Button)bookRatingList.get(l))
+							.set_image(new Gtk.Image.from_file 
+											  (BookwormApp.Constants.RATING_SELECTED_IMAGE_ICON_LOCATION)
+											  );
 				}
 			}
 		}
 
 		//Add all context widget items to a Context Box
 		Gtk.Box bookContextMenuBox = new Gtk.Box(Orientation.VERTICAL, BookwormApp.Constants.SPACING_BUTTONS);
-    bookContextMenuBox.set_border_width(BookwormApp.Constants.SPACING_WIDGETS);
-    bookContextMenuBox.pack_start(contextTitleLabel, false, false);
-    bookContextMenuBox.pack_start(new Gtk.HSeparator() , true, true, 0);
+    	bookContextMenuBox.set_border_width(BookwormApp.Constants.SPACING_WIDGETS);
+    	bookContextMenuBox.pack_start(contextTitleLabel, false, false);
+    	bookContextMenuBox.pack_start(new Gtk.HSeparator() , true, true, 0);
 		bookContextMenuBox.pack_start(updateCoverImageBox, false, false);
 		bookContextMenuBox.pack_start(updateTitleBox, false, false);
 		bookContextMenuBox.pack_start(updateAuthorBox, false, false);
@@ -239,45 +249,45 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		dialog.set_transient_for(BookwormApp.Bookworm.window);
 		profileColorList = settings.list_of_profile_colors.split (",");
 
-    dialog.title = BookwormApp.Constants.TEXT_FOR_PREFERENCES_DIALOG_TITLE;
+    	dialog.title = BookwormApp.Constants.TEXT_FOR_PREFERENCES_DIALOG_TITLE;
 		dialog.border_width = 5;
 		dialog.set_default_size (600, 200);
 
 		Gtk.Label localStorageLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_LOCAL_STORAGE);
-    Gtk.Switch localStorageSwitch = new Gtk.Switch ();
-    //Set the switch to on if caching is set by saved settings
-    if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
-      localStorageSwitch.set_active (true);
+    	Gtk.Switch localStorageSwitch = new Gtk.Switch ();
+    	//Set the switch to on if caching is set by saved settings
+    	if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
+      		localStorageSwitch.set_active (true);
 		}
 		Gtk.Box localStorageBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		localStorageBox.pack_start(localStorageLabel, false, false);
 		localStorageBox.pack_end(localStorageSwitch, false, false);
 
-    Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
-    Gtk.Switch nightModeSwitch = new Gtk.Switch ();
-    //Set the switch to on if the Night Mode is set by saved settings
-    if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
-      nightModeSwitch.set_active (true);
+    	Gtk.Label colourScheme = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_COLOUR_SCHEME);
+    	Gtk.Switch nightModeSwitch = new Gtk.Switch ();
+    	//Set the switch to on if the Night Mode is set by saved settings
+    	if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
+      		nightModeSwitch.set_active (true);
 		}
 		Gtk.Box prefBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		prefBox.pack_start(colourScheme, false, false);
 		prefBox.pack_end(nightModeSwitch, false, false);
 
 		Gtk.Label twoPageViewLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_TWO_PAGE);
-    Gtk.Switch twoPageViewSwitch = new Gtk.Switch ();
-    //Set the switch to on if two-page-view is set by saved settings
-    if(BookwormApp.Bookworm.settings.is_two_page_enabled){
-      twoPageViewSwitch.set_active (true);
+    	Gtk.Switch twoPageViewSwitch = new Gtk.Switch ();
+    	//Set the switch to on if two-page-view is set by saved settings
+    	if(BookwormApp.Bookworm.settings.is_two_page_enabled){
+      		twoPageViewSwitch.set_active (true);
 		}
 		Gtk.Box twoPageViewBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		twoPageViewBox.pack_start(twoPageViewLabel, false, false);
 		twoPageViewBox.pack_end(twoPageViewSwitch, false, false);
 
 		Gtk.Label showLibraryAtStartLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_SKIP_LIBRARY);
-    Gtk.Switch showLibraryAtStartSwitch = new Gtk.Switch ();
-    //Set the switch to skip the library view and go straight to the last book being read
-    if(BookwormApp.Bookworm.settings.is_show_library_on_start){
-      showLibraryAtStartSwitch.set_active (true);
+    	Gtk.Switch showLibraryAtStartSwitch = new Gtk.Switch ();
+    	//Set the switch to skip the library view and go straight to the last book being read
+    	if(BookwormApp.Bookworm.settings.is_show_library_on_start){
+      		showLibraryAtStartSwitch.set_active (true);
 		}
 		Gtk.Box showLibraryAtStartBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		showLibraryAtStartBox.pack_start(showLibraryAtStartLabel, false, false);
@@ -339,16 +349,16 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		directoryComboBox.set_active(0);
 
 		//Set up Button for adding scan directory
-    Gtk.Button add_scan_directory_button = new Gtk.Button ();
-    add_scan_directory_button.set_image (BookwormApp.Bookworm.add_scan_directory_image);
-    add_scan_directory_button.set_relief (ReliefStyle.NONE);
-    add_scan_directory_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_ADD_DIRECTORY);
+    	Gtk.Button add_scan_directory_button = new Gtk.Button ();
+    	add_scan_directory_button.set_image (BookwormApp.Bookworm.add_scan_directory_image);
+    	add_scan_directory_button.set_relief (ReliefStyle.NONE);
+    	add_scan_directory_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_ADD_DIRECTORY);
 
-    //Set up Button for removing scan directory
-    Gtk.Button remove_scan_directory_button = new Gtk.Button ();
-    remove_scan_directory_button.set_image (BookwormApp.Bookworm.remove_scan_directory_image);
-    remove_scan_directory_button.set_relief (ReliefStyle.NONE);
-    remove_scan_directory_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY);
+    	//Set up Button for removing scan directory
+    	Gtk.Button remove_scan_directory_button = new Gtk.Button ();
+    	remove_scan_directory_button.set_image (BookwormApp.Bookworm.remove_scan_directory_image);
+    	remove_scan_directory_button.set_relief (ReliefStyle.NONE);
+    	remove_scan_directory_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY);
 
 
 		Gtk.Box discoverBooksBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 1);
@@ -378,7 +388,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		
 		dialog.show_all ();
 
-    //Set up Actions
+    	//Set up Actions
 		fontButton.font_set.connect (() => {
 			// Emitted when a font has been chosen:
 			string selectedFontandSize = fontButton.get_font_name ();
@@ -396,31 +406,31 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		localStorageSwitch.notify["active"].connect (() => {
 			if (localStorageSwitch.active) {
-        BookwormApp.Bookworm.settings.is_local_storage_enabled = true;
+        		BookwormApp.Bookworm.settings.is_local_storage_enabled = true;
 			}else{
-        BookwormApp.Bookworm.settings.is_local_storage_enabled = false;
+        		BookwormApp.Bookworm.settings.is_local_storage_enabled = false;
 			}
 		});
 
 		showLibraryAtStartSwitch.notify["active"].connect (() => {
 			if (showLibraryAtStartSwitch.active) {
-        BookwormApp.Bookworm.settings.is_show_library_on_start = true;
+        		BookwormApp.Bookworm.settings.is_show_library_on_start = true;
 			}else{
-        BookwormApp.Bookworm.settings.is_show_library_on_start = false;
+        		BookwormApp.Bookworm.settings.is_show_library_on_start = false;
 			}
 		});
 
 		twoPageViewSwitch.notify["active"].connect (() => {
 			if (twoPageViewSwitch.active) {
-        BookwormApp.Bookworm.settings.is_two_page_enabled = true;
+        		BookwormApp.Bookworm.settings.is_two_page_enabled = true;
 			}else{
-        BookwormApp.Bookworm.settings.is_two_page_enabled = false;
+        		BookwormApp.Bookworm.settings.is_two_page_enabled = false;
 			}
 			//Refresh the page if it is open
 			BookwormApp.contentHandler.refreshCurrentPage();
 		});
 
-    nightModeSwitch.notify["active"].connect (() => {
+    	nightModeSwitch.notify["active"].connect (() => {
 			if (nightModeSwitch.active) {
 				BookwormApp.Bookworm.settings.is_dark_theme_enabled = true;
 				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
@@ -501,7 +511,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		});
 		//Remove selected watched folder
 		remove_scan_directory_button.clicked.connect (() => {
-			if(directoryComboBox.get_active_text().length > 1){
+			if(directoryComboBox  !=  null && 
+				directoryComboBox.get_active_text()  !=  null  && 
+				directoryComboBox.get_active_text().length > 1)
+			{
 				scanDirList.assign(scanDirList.str.replace(directoryComboBox.get_active_text ()+"~~", ""));
 				debug("value of scanDirList after removal of ["+directoryComboBox.get_active_text ()+"]:"+scanDirList.str);
 				BookwormApp.Bookworm.settings.list_of_scan_dirs = scanDirList.str;
@@ -592,7 +605,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		/* Converts the color in RGBA to hex */
 		string hex = "";
 		if (alpha){
-			hex = "%02x%02x%02x%02x".printf((uint)(Math.round(color.red*255)),(uint)(Math.round(color.green*255)),(uint)(Math.round(color.blue*255)),(uint)(Math.round(color.alpha*255))).up();
+			hex = "%02x%02x%02x%02x".printf((uint)(Math.round(color.red*255)),
+																	 (uint)(Math.round(color.green*255)),
+																	 (uint)(Math.round(color.blue*255)),
+																	 (uint)(Math.round(color.alpha*255))).up();
 		}else{
 			hex = "%02x%02x%02x".printf((uint)(Math.round(color.red*255)),(uint)(Math.round(color.green*255)),(uint)(Math.round(color.blue*255))).up();
 		}

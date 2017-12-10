@@ -379,7 +379,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 	public void loadBookwormState(){
 		//check and create required directory structure
-    BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION, "", "");
+    	BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION, "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path, "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
 		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/books/", "", "");

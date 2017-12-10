@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-07 13:22+0000\n"
+"POT-Creation-Date: 2017-12-10 17:52+0000\n"
 "PO-Revision-Date: 2017-09-12 22:48+0000\n"
 "Last-Translator: Cûndûllah el-Kurdî <mckucukaslan47@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/bookworm/"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Select Image"
 msgstr "Wêne Hilbijêre"
 
-#: ../src/dialog.vala:486
+#: ../src/dialog.vala:496
 msgid "Select folder"
 msgstr "Belgeyê Hilbijêre"
 

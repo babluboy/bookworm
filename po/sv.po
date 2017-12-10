@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-07 13:22+0000\n"
+"POT-Creation-Date: 2017-12-10 17:52+0000\n"
 "PO-Revision-Date: 2017-11-20 17:49+0000\n"
 "Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Select Image"
 msgstr "Välj bild"
 
-#: ../src/dialog.vala:486
+#: ../src/dialog.vala:496
 msgid "Select folder"
 msgstr "Välj mapp"
 

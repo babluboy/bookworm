@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-07 13:22+0000\n"
+"POT-Creation-Date: 2017-12-10 17:52+0000\n"
 "PO-Revision-Date: 2017-10-06 12:07+0000\n"
 "Last-Translator: Nika Zhenya <nika.zhenya@gmail.com>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Select Image"
 msgstr "Seleccionar imagen"
 
-#: ../src/dialog.vala:486
+#: ../src/dialog.vala:496
 msgid "Select folder"
 msgstr "Seleccionar carpeta"
 

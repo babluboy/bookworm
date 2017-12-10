@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-07 13:22+0000\n"
+"POT-Creation-Date: 2017-12-10 17:52+0000\n"
 "PO-Revision-Date: 2017-12-02 14:39+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Select Image"
 msgstr "Ischerta un'immàgine"
 
-#: ../src/dialog.vala:486
+#: ../src/dialog.vala:496
 msgid "Select folder"
 msgstr "Ischerta una cartella"
 

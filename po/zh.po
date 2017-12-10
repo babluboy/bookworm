@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-07 13:22+0000\n"
+"POT-Creation-Date: 2017-12-10 17:52+0000\n"
 "PO-Revision-Date: 2017-11-27 16:44+0000\n"
 "Last-Translator: Jack Yu <jackyu1996@hotmail.com>\n"
 "Language-Team: Chinese <https://hosted.weblate.org/projects/bookworm/"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Select Image"
 msgstr "选择图片"
 
-#: ../src/dialog.vala:486
+#: ../src/dialog.vala:496
 msgid "Select folder"
 msgstr "选择文件夹"
 
