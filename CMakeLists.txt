@@ -1,5 +1,5 @@
 # Set the name of the application
-project (bookworm)
+project (com.github.babluboy.bookworm)
 
 # the oldest stable cmake version we support
 cmake_minimum_required (VERSION 2.6)
@@ -14,7 +14,7 @@ set (ICON_DIR ${PKGDATADIR}/icons/hicolor)
 set (SCRIPTS_DIR ${PKGDATADIR}/scripts)
 
 # Set the application executable name and version info
-set (EXEC_NAME "bookworm")
+set (EXEC_NAME "com.github.babluboy.bookworm")
 set (RELEASE_NAME "bookworm v0.9.5")
 set (VERSION "0.9.5")
 set (VERSION_INFO "Bookworm - An eBook Reader")
