@@ -115,10 +115,10 @@ public class BookwormApp.DB{
         if(old_table_name == "BOOK_LIBRARY_TABLE5"){
         //copy data to new library table
         queryString = " INSERT INTO "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+
-                               " ( BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT,
+                               " ( id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT,
                                     BOOK_PUBLISH_DATE, BOOK_TOTAL_NUMBER_OF_PAGES, BOOK_LAST_READ_PAGE_NUMBER, TAGS, RATINGS,   
                                     CONTENT_EXTRACTION_LOCATION, creation_date, modification_date)
-                                SELECT BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT,  
+                                SELECT id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT,  
                                     BOOK_PUBLISH_DATE, BOOK_TOTAL_NUMBER_OF_PAGES, BOOK_LAST_READ_PAGE_NUMBER, TAGS, RATINGS,   
                                     CONTENT_EXTRACTION_LOCATION, creation_date, modification_date
                                 FROM BOOK_LIBRARY_TABLE5";

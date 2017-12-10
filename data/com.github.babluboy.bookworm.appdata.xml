@@ -11,15 +11,6 @@
     <p>Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc.</p>
     <p>Manage your library by tagging and updating metadata on books, to quickly find books using metadata searching and tag based filtering.</p>
     <p>This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
-    <p>New features for Bookworm v0.9 include:</p>
-    <ul>
-     <li>Added support for .mobi (Kindle) format</li>
-      <li>Added prefference to control library view on start</li>
-      <li>Automatically scroll to exact last read page position</li>
-      <li>Added a progress bar on hover of the book cover</li>
-      <li>Keyboard shortcut (Ctrl+D) for bookmarking</li>
-      <li>Squashed some bugs</li>
-    </ul>
   </description>
   <screenshots>
       <screenshot type="default">
@@ -35,6 +26,16 @@
     <binary>bookworm</binary>
   </provides>
   <releases>
+     <release version="1.0" date="2017-12-10">
+      <description>
+        <p>Annotations and Two Page Views</p>
+        <ul>
+            <li>Support for creating Annotations with searchable tags</li>
+            <li>Two page reading</li>
+            <li>New shortcuts (See Bookworm Homepage for details)</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.9" date="2017-07-23">
       <description>
        <p>Support mobi format and UX improvements</p>
