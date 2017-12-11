@@ -2,4 +2,4 @@
 Name=Bookworm
 Description=eBook Reader
 MimeType=application/epub+zip;application/pdf;application/x-pdf;application/cbr;application/x-cbz;application/x-mobipocket-ebook;
-Exec=bookworm %F
+Exec=com.github.babluboy.bookworm %F

@@ -442,7 +442,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			//Run dicovery of books as a background task if not already running
 			string checkBackgroundTask = BookwormApp.Utils.execute_sync_command("ps -ef");
     		if(checkBackgroundTask.index_of("bookworm --discover") == -1){
-				BookwormApp.Utils.execute_async_multiarg_command_pipes({"bookworm", "--discover", "&"});
+				BookwormApp.Utils.execute_async_multiarg_command_pipes({"com.github.babluboy.bookworm", "--discover", "&"});
 			}else{
         		debug("Bookworm discover process already running....");
     		}
