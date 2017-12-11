@@ -4,11 +4,11 @@ GenericName=eBook Reader
 Comment=A simple ebook reader for Elementary OS
 Categories=Office;Viewer;
 MimeType=application/epub+zip;application/pdf;application/x-pdf;application/cbr;application/x-cbz;
-Exec=bookworm %F
-Icon=bookworm
+Exec=com.github.babluboy.bookworm %F
+Icon=com.github.babluboy.bookworm
 Terminal=false
 Type=Application
-X-GNOME-Gettext-Domain=bookworm
+X-GNOME-Gettext-Domain=com.github.babluboy.bookworm
 X-GNOME-Keywords=bookworm;ebook;reader;epub
 Actions=AboutDialog;
 
