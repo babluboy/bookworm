@@ -23,7 +23,7 @@
       </screenshot>
   </screenshots>
   <provides>
-    <binary>bookworm</binary>
+    <binary>com.github.babluboy.bookworm</binary>
   </provides>
   <releases>
      <release version="0.9.5" date="2017-12-10">
