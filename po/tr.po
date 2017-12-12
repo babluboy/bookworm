@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
-"PO-Revision-Date: 2017-12-11 10:28+0000\n"
+"PO-Revision-Date: 2017-12-12 20:07+0000\n"
 "Last-Translator: fastest noob <fastest.noob@yandex.com>\n"
 "Language-Team: Turkish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/tr/>\n"
@@ -205,7 +205,7 @@ msgstr "&&& içinde '$$$' için eşleşme bulunmadı"
 
 #: ../src/constants.vala:68
 msgid "Edit Info for"
-msgstr "Bilgiyi düzenle :"
+msgstr "Şunun için bilgiyi düzenle:"
 
 #: ../src/constants.vala:69 ../src/constants.vala:73
 msgid "Update Cover Image"
