@@ -8,10 +8,5 @@ Exec=com.github.babluboy.bookworm %F
 Icon=com.github.babluboy.bookworm
 Terminal=false
 Type=Application
-X-GNOME-Gettext-Domain=com.github.babluboy.bookworm
+X-GNOME-Gettext-Domain=bookworm
 X-GNOME-Keywords=bookworm;ebook;reader;epub;mobi;comic;cbr;cbz
-Actions=AboutDialog;
-
-[Desktop Action AboutDialog]
-Exec=com.github.babluboy.bookworm --about
-Name=About Bookworm

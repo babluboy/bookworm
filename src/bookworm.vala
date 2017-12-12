@@ -93,7 +93,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		application_id = BookwormApp.Constants.bookworm_id;
 		flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 		program_name = BookwormApp.Constants.program_name;
-		exec_name = "bookworm";
+		exec_name = "com.github.babluboy.bookworm";
 		app_years = BookwormApp.Constants.app_years;
 		build_version = BookwormApp.Constants.bookworm_version;
 		app_icon = BookwormApp.Constants.app_icon;

@@ -130,12 +130,12 @@ add_executable(${EXEC_NAME} ${VALA_C})
 install (TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)
 
 # install bookworm app icons in generic folder - /usr/share/icons/hicolor
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm.png DESTINATION share/icons/hicolor/16x16/apps)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm.png DESTINATION share/icons/hicolor/24x24/apps)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/32/bookworm.png DESTINATION share/icons/hicolor/32x32/apps)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/48/bookworm.png DESTINATION share/icons/hicolor/48x48/apps)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/64/bookworm.png DESTINATION share/icons/hicolor/64x64/apps)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/128/bookworm.png DESTINATION share/icons/hicolor/128x128/apps)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/com.github.babluboy.bookworm.png DESTINATION share/icons/hicolor/16x16/apps)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/com.github.babluboy.bookworm.png DESTINATION share/icons/hicolor/24x24/apps)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/32/com.github.babluboy.bookworm.png DESTINATION share/icons/hicolor/32x32/apps)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/48/com.github.babluboy.bookworm.png DESTINATION share/icons/hicolor/48x48/apps)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/64/com.github.babluboy.bookworm.png DESTINATION share/icons/hicolor/64x64/apps)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/128/com.github.babluboy.bookworm.png DESTINATION share/icons/hicolor/128x128/apps)
 
 # install bookworm fall back icons in application specific folder - /usr/share/bookworm/icons
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-next.svg DESTINATION ${ICON_DIR}/16x16/actions/)

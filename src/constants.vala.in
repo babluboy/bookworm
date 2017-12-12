@@ -22,7 +22,7 @@ namespace BookwormApp.Constants {
 	public const string bookworm_version = "0.9.5";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017";
-	public const string app_icon = "bookworm";
+	public const string app_icon = "com.github.babluboy.bookworm";
 	public const string[] about_authors = {"Siddhartha Das <bablu.boy@gmail.com>"};
 	public const string about_comments = _("An eBook Reader");
 	public const Gtk.License about_license_type = Gtk.License.GPL_3_0;
