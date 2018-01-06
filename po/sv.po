@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
-"PO-Revision-Date: 2017-11-20 17:49+0000\n"
-"Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/sv/>\n"
+"PO-Revision-Date: 2018-01-06 16:50+0000\n"
+"Last-Translator: Sebastian Rasmussen <sebras@gmail.com>\n"
+"Language-Team: Swedish "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18-dev\n"
+"X-Generator: Weblate 2.19-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -87,18 +87,16 @@ msgid "Select an eBook to read"
 msgstr "Välj en e-bok att läsa"
 
 #: ../src/constants.vala:44
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
 "Problem med att extrahera innehållet i boken. Kontrollera om boken är "
-"tillgänglig på platsen : "
+"tillgänglig på platsen: "
 
 #: ../src/constants.vala:45
-#, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Ogiltig MIME-typ upptäckt. Kontrollera den här boken: "
+msgstr "Ogiltig MIME-typ upptäckt. Kontrollera formatet för den här e-boken: "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -114,13 +112,12 @@ msgid "Bookworm does not support the format of the file found here: "
 msgstr "Bookworm stöder inte formatet av filen hittad här: "
 
 #: ../src/constants.vala:49
-#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
 "Det begärda innehållet kunde inte hämtas. Ta bort och lägg till e-bokfil på "
-"platsen : "
+"platsen: "
 
 #: ../src/constants.vala:50
 msgid "Library"
@@ -167,9 +164,8 @@ msgid "Annotations"
 msgstr "Anteckningar"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Annotation Tags"
-msgstr "Anteckningar"
+msgstr "Anteckningstaggar"
 
 #: ../src/constants.vala:61
 msgid "Comma seperated tags for this annotation"
@@ -177,12 +173,11 @@ msgstr "Kommaseparerade taggar för denna anteckning"
 
 #: ../src/constants.vala:62
 msgid "Add notes for : "
-msgstr ""
+msgstr "Lägg till noteringar för : "
 
 #: ../src/constants.vala:63
-#, fuzzy
 msgid "Click on a link to jump to an annotated section"
-msgstr "Klicka på en länk för att hoppa till bokmärkt avsnitt"
+msgstr "Klicka på en länk för att hoppa till avsnitt med anteckningar"
 
 #: ../src/constants.vala:64
 msgid ""
@@ -286,7 +281,7 @@ msgstr "Dagar"
 
 #: ../src/constants.vala:89
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Genomsökning av böcker kommer att påbörjas när Bookworm stängs"
 
 #: ../src/constants.vala:91
 msgid "Add books to library"
@@ -306,9 +301,8 @@ msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Se innehållsförteckning, bokmärken och sökresultat"
 
 #: ../src/constants.vala:95
-#, fuzzy
 msgid "Reading preferences"
-msgstr "Ställ in läsinställningar"
+msgstr "Läsinställningar"
 
 #: ../src/constants.vala:96
 msgid "Click to bookmark this page"
@@ -347,14 +341,12 @@ msgid "Update cover image"
 msgstr "Uppdatera omslagsbilden"
 
 #: ../src/constants.vala:105
-#, fuzzy
 msgid "Apply theme for this colour profile"
-msgstr "Ange tema för denna färgprofil"
+msgstr "Tillämpa tema för denna färgprofil"
 
 #: ../src/constants.vala:106 ../src/constants.vala:107
-#, fuzzy
 msgid "Enter full screen view and Esc key to undo"
-msgstr "Använd fullskärmsläge och Esc-tangent för att stänga"
+msgstr "Gå in i helskärmsvy och använd Esc-tangent för att gå ur"
 
 #: ../src/constants.vala:108
 msgid "Add folder to scan for books"
@@ -381,18 +373,16 @@ msgid "Enable cache (opens books faster)"
 msgstr "Aktivera cache (öppnar böcker snabbare)"
 
 #: ../src/constants.vala:115
-#, fuzzy
 msgid "Always show library on startup"
-msgstr "Visa alltid biblioteket vid start"
+msgstr "Visa alltid bibliotek vid uppstart"
 
 #: ../src/constants.vala:116
 msgid "Enable two page reading"
 msgstr "Aktivera två sidläsning"
 
 #: ../src/constants.vala:117
-#, fuzzy
 msgid "Select Font"
-msgstr "Ange typsnitt"
+msgstr "Välj typsnitt"
 
 #: ../src/constants.vala:118
 msgid "Customize reading profile"
