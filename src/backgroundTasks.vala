@@ -36,10 +36,10 @@ public class BookwormApp.BackgroundTasks {
   }
 
   public static void initialization(){
-    settings = BookwormApp.Settings.get_instance();
-    //check if the database exists otherwise create database and required tables
-    bool isDBPresent = BookwormApp.DB.initializeBookWormDB(GLib.Environment.get_user_config_dir ()+"/bookworm");
-    listOfBooks = BookwormApp.DB.getBookIDListFromDB();
+        settings = BookwormApp.Settings.get_instance();
+        //check if the database exists otherwise create database and required tables
+        BookwormApp.DB.initializeBookWormDB(GLib.Environment.get_user_config_dir ()+"/bookworm");
+        listOfBooks = BookwormApp.DB.getBookIDListFromDB();
   }
 
   public static void discoverBooks(){
@@ -77,28 +77,24 @@ public class BookwormApp.BackgroundTasks {
                         }
                     }
                     if(noMatchFound){
-                        try{
-                            print("\nAttempting to add book located at:"+findResult);
-                            BookwormApp.Book aBook = new BookwormApp.Book();
-                            aBook.setBookLocation(findResult);
-                            File eBookFile = File.new_for_path (findResult);
-                            if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
-                                int bookID = BookwormApp.DB.addBookToDataBase(aBook);
-                    			aBook.setBookId(bookID);
-                                aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
-                                aBook.setWasBookOpened(true);
-                                //parse eBook to populate cache and book meta data
-                                aBook = BookwormApp.Bookworm.genericParser(aBook);
-                                if(!aBook.getIsBookParsed()){
-                                    BookwormApp.DB.removeBookFromDB(aBook);
-                                }else{
-                                    BookwormApp.DB.updateBookToDataBase(aBook);
-                                    print("Sucessfully added book located at:"+findResult);
-                                }
+                        print("\nAttempting to add book located at:"+findResult);
+                        BookwormApp.Book aBook = new BookwormApp.Book();
+                        aBook.setBookLocation(findResult);
+                        File eBookFile = File.new_for_path (findResult);
+                        if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
+                            int bookID = BookwormApp.DB.addBookToDataBase(aBook);
+                            aBook.setBookId(bookID);
+                            aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
+                            aBook.setWasBookOpened(true);
+                            //parse eBook to populate cache and book meta data
+                            aBook = BookwormApp.Bookworm.genericParser(aBook);
+                            if(!aBook.getIsBookParsed()){
+                                BookwormApp.DB.removeBookFromDB(aBook);
+                            }else{
+                                BookwormApp.DB.updateBookToDataBase(aBook);
+                                print("Sucessfully added book located at:"+findResult);
                             }
-                        } catch(GLib.Error e){
-			                warning("Discovered book ["+findResult+"] could not be added to database. Error:"+e.message);
-		                }
+                        }
                   }
               }
             }
@@ -166,18 +162,6 @@ public class BookwormApp.BackgroundTasks {
         BookwormApp.Utils.execute_sync_command("rm -f \"" + BookwormApp.Bookworm.bookworm_config_path + "/covers/" + cacheImage + "\"");
         print ("\nCache Image deleted:"+cacheImage);
       }
-    }
-  }
-
-  //This method is not used anymore as discovery of books is not done by a cron job  
-  public static void taskScheduler(){
-    //Check and add book monitoring cron
-    string userCrontabContents = BookwormApp.Utils.execute_sync_command("crontab -l");
-    if(userCrontabContents.index_of("bookworm --discover") == -1){
-      BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.MONITOR_SCRIPT_LOCATION +
-                                             " " + BookwormApp.Bookworm.bookworm_config_path + "/user_crontab_backup.txt" +
-                                             " " + BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + "bookworm_user_crontab_temp.txt"
-                                            );
     }
   }
 }

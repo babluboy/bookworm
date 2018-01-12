@@ -27,7 +27,7 @@ public static int main (string[] args) {
     Log.set_handler ("", GLib.LogLevelFlags.LEVEL_INFO, GLib.Log.default_handler);
     debug ("Bookworm Application running in info mode - all info messages will be displayed");
   }
-  application = application.getAppInstance();
+  application = BookwormApp.Bookworm.getAppInstance();
   //Workaround to get Granite's --about & Gtk's --help working together
   if ("--help" in args || "-h" in args || "--version" in args || "--discover" in args) {
     return application.processCommandLine (args);

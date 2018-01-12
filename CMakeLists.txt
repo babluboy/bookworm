@@ -162,6 +162,8 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-insert-image.s
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-help-info-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-format-text-larger-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-format-text-smaller-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-format-justify-left.svg DESTINATION ${ICON_DIR}/16x16/actions/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-format-justify-right.svg DESTINATION ${ICON_DIR}/16x16/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-inactive.png DESTINATION ${ICON_DIR}/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-active.png DESTINATION ${ICON_DIR}/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-checked.svg DESTINATION ${ICON_DIR}/24x24/actions/)
@@ -181,7 +183,6 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.app
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.contract DESTINATION share/contractor)
 
 # install bookworm scripts in application specific folder - /usr/share/bookworm/scripts
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/com.github.babluboy.bookworm.monitor.sh PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION ${SCRIPTS_DIR}/tasks)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/com.github.babluboy.bookworm.search.sh PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION ${SCRIPTS_DIR}/tasks)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/com.github.babluboy.bookworm.htmlscripts.txt PERMISSIONS OWNER_READ WORLD_READ DESTINATION ${SCRIPTS_DIR}/tasks)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_dict.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ WORLD_READ WORLD_EXECUTE DESTINATION ${SCRIPTS_DIR}/mobi_lib)

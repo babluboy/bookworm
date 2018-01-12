@@ -56,6 +56,10 @@
 				<default>"150"</default>
 				<summary>Save the page line height for reading</summary>
 		</key>
+		<key name="text-alignment" type="s">
+				<default>"left"</default>
+				<summary>Save the page text alignment for reading</summary>
+		</key>
 		<key name="reading-font-name" type="s">
 				<default>"georgia"</default>
 				<summary>Save the choosen font for reading</summary>

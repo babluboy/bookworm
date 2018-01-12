@@ -71,6 +71,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static Gtk.Image menu_icon;
 	public static Gtk.Image pref_menu_icon_text_large;
 	public static Gtk.Image pref_menu_icon_text_small;
+	public static Gtk.Image pref_menu_icon_align_left;
+	public static Gtk.Image pref_menu_icon_align_right;
 	public static Gtk.Image back_button_image;
 	public static Gtk.Image forward_button_image;
 
@@ -94,20 +96,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 		program_name = BookwormApp.Constants.program_name;
 		exec_name = "com.github.babluboy.bookworm";
-		app_years = BookwormApp.Constants.app_years;
-		build_version = BookwormApp.Constants.bookworm_version;
-		app_icon = BookwormApp.Constants.app_icon;
-		main_url = BookwormApp.Constants.main_url;
-		bug_url = BookwormApp.Constants.bug_url;
-		help_url = BookwormApp.Constants.help_url;
-		translate_url = BookwormApp.Constants.translate_url;
-		about_documenters = { null };
-		about_artists = { null };
-		about_authors = BookwormApp.Constants.about_authors;
-		about_comments = BookwormApp.Constants.about_comments;
-		about_translators = BookwormApp.Constants.translator_credits;
-		about_license_type = BookwormApp.Constants.about_license_type;
-
+		
 		options = new OptionEntry[4];
 		options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
 		options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
@@ -256,7 +245,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 	public void loadImages(){
 		try{
-			image_selection_option_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_OPTION_IMAGE_SMALL_LOCATION);
+			image_selection_option_small = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_OPTION_IMAGE_SMALL_LOCATION);
 			image_selection_checked_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
 			image_selection_transparent_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
 			image_selection_transparent_small.fill(0x00000000);
@@ -294,51 +283,47 @@ public class BookwormApp.Bookworm : Granite.Application {
 			if (Gtk.IconTheme.get_default ().has_icon ("view-list-symbolic")) {
 				library_list_button_image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 			}else{
-				library_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 
-																												 	 (BookwormApp.Constants.LIBRARY_VIEW_LIST_IMAGE_LOCATION, 16, 16, true)
-																											);
+				library_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.LIBRARY_VIEW_LIST_IMAGE_LOCATION, 16, 16, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("view-grid-symbolic")) {
 				library_grid_button_image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 			}else{
-				library_grid_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 
-																													  (BookwormApp.Constants.LIBRARY_VIEW_GRID_IMAGE_LOCATION, 16, 16, true)
-																											 );
+				library_grid_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.LIBRARY_VIEW_GRID_IMAGE_LOCATION, 16, 16, true));
+			}
+			if (Gtk.IconTheme.get_default ().has_icon ("format-justify-left-symbolic")) {
+				pref_menu_icon_align_left = new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+			}else{
+				pref_menu_icon_align_left = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.TEXT_ALIGN_LEFT_ICON_LOCATION, 16, 16, true));
+			}
+			if (Gtk.IconTheme.get_default ().has_icon ("format-justify-right-symbolic")) {
+				pref_menu_icon_align_right = new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+			}else{
+				pref_menu_icon_align_right = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.TEXT_ALIGN_RIGHT_ICON_LOCATION, 16, 16, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("help-info-symbolic")) {
 				content_list_button_image = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				content_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 
-																														(BookwormApp.Constants.BOOK_INFO_IMAGE_LOCATION, 24, 24, true)
-																											   );
+				content_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 	(BookwormApp.Constants.BOOK_INFO_IMAGE_LOCATION, 24, 24, true) );
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("format-text-larger-symbolic")) {
 				menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 
-																												(BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true)
-																									   );
+				menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale	(BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true) );
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("open-menu")) {
 				menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				menu_icon = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 
-																							  (BookwormApp.Constants.HEADERBAR_PROPERTIES_IMAGE_LOCATION, 24, 24, true)
-																					);
+				menu_icon = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.HEADERBAR_PROPERTIES_IMAGE_LOCATION, 24, 24, true)	);
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("format-text-larger-symbolic")) {
 				pref_menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				pref_menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 
-																													    (BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true)
-																												);
+				pref_menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("format-text-smaller-symbolic")) {
 				pref_menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				pref_menu_icon_text_small = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 
-																														 (BookwormApp.Constants.TEXT_SMALLER_IMAGE_ICON_LOCATION, 24, 24, true)
-																												);
+				pref_menu_icon_text_small = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.TEXT_SMALLER_IMAGE_ICON_LOCATION, 24, 24, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("go-previous-symbolic")) {
 				back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
@@ -356,10 +341,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public static void loadCSSProvider(Gtk.CssProvider cssProvider){
+		string dynamicCSSContent = "";
 		try{
-			//cssProvider.load_from_path(BookwormApp.Constants.CSS_LOCATION);
 			string[] profileColorList = settings.list_of_profile_colors.split (",");
-			string dynamicCSSContent = BookwormApp.Constants.DYNAMIC_CSS_CONTENT
+			dynamicCSSContent = BookwormApp.Constants.DYNAMIC_CSS_CONTENT
 																					 .replace("<profile_1_color>",profileColorList[0])
 																					 .replace("<profile_1_bgcolor>",profileColorList[1])
 																					 .replace("<profile_2_color>",profileColorList[2])
@@ -368,13 +353,13 @@ public class BookwormApp.Bookworm : Granite.Application {
 																					 .replace("<profile_3_bgcolor>",profileColorList[5]);
 			cssProvider.load_from_data(dynamicCSSContent, dynamicCSSContent.length);
 		}catch(GLib.Error e){
-			warning("Stylesheet could not be loaded. Error:"+e.message);
+			warning("Stylesheet could not be loaded from CSS Content["+dynamicCSSContent+"]. Error:"+e.message);
 		}
 		Gtk.StyleContext.add_provider_for_screen(
-											Gdk.Screen.get_default(),
-											cssProvider,
-											Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-										 );
+			Gdk.Screen.get_default(),
+			cssProvider,
+			Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+		);
 	}
 
 	public void loadBookwormState(){
@@ -404,7 +389,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 		}
 		//check if the database exists otherwise create database and required tables
-		bool isDBPresent = BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
+		BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
 		//set the library view
 		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
 		//Fetch details of Books from the database
@@ -412,7 +397,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//Update the library view
 		BookwormApp.Library.updateLibraryViewFromDB();
 		//load scripts data
-		bookwormScripts = BookwormApp.Utils.fileOperations("READ_FILE", BookwormApp.Constants.HTML_SCRIPT_LOCATION, "", "");
+		bookwormScripts = 	BookwormApp.Utils.fileOperations("READ_FILE", 
+											BookwormApp.Constants.HTML_SCRIPT_LOCATION, 
+											"", 
+											"");
 	}
 
 	public async void closeBookWorm (){
@@ -436,9 +424,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 					debug("Completed saving the book data into DB");
 				}
 			}
-			//Check and create a task scheduler cron job if not already present - Not Required as book discovery is done on close of application
-			//BookwormApp.BackgroundTasks.taskScheduler();
-
 			//Run dicovery of books as a background task if not already running
 			string checkBackgroundTask = BookwormApp.Utils.execute_sync_command("ps -ef");
     		if(checkBackgroundTask.index_of("bookworm --discover") == -1){
@@ -446,8 +431,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 			}else{
         		debug("Bookworm discover process already running....");
     		}
-			//BookwormApp.Utils.execute_sync_command ("bookworm --discover &");
-			//BookwormApp.BackgroundTasks.performTasks();
 	}
 
 	public void saveWindowState(){

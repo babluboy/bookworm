@@ -21,9 +21,10 @@ namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
 	public const string bookworm_version = "0.9.5";
 	public const string program_name = "Bookworm";
-	public const string app_years = "2017";
+	public const string app_years = "2017-2018";
 	public const string app_icon = "com.github.babluboy.bookworm";
 	public const string[] about_authors = {"Siddhartha Das <bablu.boy@gmail.com>"};
+	public const string bookworm_copyright = "Copyright © 2017-2018 Siddhartha Das (bablu.boy@gmail.com)";
 	public const string about_comments = _("An eBook Reader");
 	public const Gtk.License about_license_type = Gtk.License.GPL_3_0;
 	public const string translator_credits = _("Weblate Translators");
@@ -32,7 +33,7 @@ namespace BookwormApp.Constants {
 	public const string help_url = "https://github.com/babluboy/bookworm/wiki";
 	public const string translate_url = "https://hosted.weblate.org/projects/bookworm/bookworm/";
 
-	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = _("Website");
+	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = _("Website | Translation | Bug Tracker");
 	public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://babluboy.github.io/bookworm";
 	public const string TEXT_FOR_NOT_AVAILABLE = _("Not Available");
 	public const string TEXT_FOR_SUBTITLE_HEADERBAR = _("eBook Reader");
@@ -127,63 +128,62 @@ namespace BookwormApp.Constants {
 	public const double ZOOM_CHANGE_VALUE = 0.1;
 	public const int MARGIN_CHANGE_VALUE = 1;
 	public const int LINE_HEIGHT_CHANGE_VALUE = 10;
-	public static const int MAX_BOOK_COVER_PER_ROW = 6;
-	public static const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
-	public static const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
-	public static const int MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB = 50;
-	//public const string RGBA_HEX_WHITE = "#ffffff";
-	//public const string RGBA_HEX_BLACK = "#002B36";
+	public const int MAX_BOOK_COVER_PER_ROW = 6;
+	public const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
+	public const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
+	public const int MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB = 50;
 
 	public const string TEXT_FOR_UNKNOWN_TITLE = _("Unknown Book");
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
 	public const string TEXT_FOR_PREF_MENU_PREFERENCES_ITEM = _("Preferences");
 
 	public const string INSTALL_PREFIX = "@CMAKE_INSTALL_PREFIX@";
-	public static const string MONITOR_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.monitor.sh";
-	public static const string SEARCH_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.search.sh";
-	public static const string HTML_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.htmlscripts.txt";
-	public static const string MOBIUNPACK_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/mobi_lib/mobi_unpack.py";
-	public static const string CSS_LOCATION = INSTALL_PREFIX+"/share/bookworm/com.github.babluboy.bookworm.app.css";
-	public static const string PREV_PAGE_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-previous.svg";
-	public static const string NEXT_PAGE_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-next.svg";
-	public static const string SELECT_BOOK_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-object-select-symbolic.svg";
-	public static const string ADD_BOOK_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-add.svg";
-	public static const string REMOVE_BOOK_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-remove.svg";
-	public static const string LIBRARY_VIEW_GRID_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg";
-	public static const string LIBRARY_VIEW_LIST_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-list-symbolic.svg";
-	public static const string MORE_LINE_HEIGHT_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-line-height-more.png";
-	public static const string LESS_LINE_HEIGHT_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-line-height-less.png";
-	public static const string MORE_LINE_WIDTH_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-width-more.png";
-	public static const string LESS_LINE_WIDTH_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-width-less.png";
-	public static const string RATING_NONE_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-help-about-symbolic.svg";
-	public static const string RATING_SELECTED_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-help-about.svg";
-	public static const string TEXT_LARGER_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-format-text-larger-symbolic.svg";
-	public static const string TEXT_SMALLER_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-format-text-smaller-symbolic.svg";
-	public static const string RATING_1_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_1.png";
-	public static const string RATING_2_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_2.png";
-	public static const string RATING_3_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_3.png";
-	public static const string RATING_4_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_4.png";
-	public static const string RATING_5_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_5.png";
-	public static const string UPDATE_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-insert-image.svg";
-	public static const string SELECTION_OPTION_IMAGE_SMALL_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-option.svg";
-	public static const string SELECTION_CHECKED_IMAGE_SMALL_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-checked.svg";
-	public static const string BOOK_INFO_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-help-info-symbolic.svg";
-	public static const string BOOKMARK_INACTIVE_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-inactive.png";
-	public static const string BOOKMARK_ACTIVE_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-active.png";
-	public static const string SELECTION_OPTION_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
-	public static const string SELECTION_CHECKED_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
-	public static const string HEADERBAR_PROPERTIES_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-open-menu.svg";
-	public static const string DEFAULT_COVER_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/256x256/apps/bookworm-default-cover-N.png";
-	public static const string PLACEHOLDER_COVER_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/256x256/apps/bookworm-placeholder-cover.png";
-	public static const string EBOOK_EXTRACTION_LOCATION = "/tmp/bookworm/";
-	public static const string PREFIX_FOR_FILE_URL = "file:///";
+	public const string SEARCH_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.search.sh";
+	public const string HTML_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.htmlscripts.txt";
+	public const string MOBIUNPACK_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/mobi_lib/mobi_unpack.py";
+	public const string CSS_LOCATION = INSTALL_PREFIX+"/share/bookworm/com.github.babluboy.bookworm.app.css";
+	public const string PREV_PAGE_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-previous.svg";
+	public const string NEXT_PAGE_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-next.svg";
+	public const string SELECT_BOOK_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-object-select-symbolic.svg";
+	public const string ADD_BOOK_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-add.svg";
+	public const string REMOVE_BOOK_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-list-remove.svg";
+	public const string LIBRARY_VIEW_GRID_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-grid-symbolic.svg";
+	public const string LIBRARY_VIEW_LIST_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-view-list-symbolic.svg";
+	public const string MORE_LINE_HEIGHT_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-line-height-more.png";
+	public const string LESS_LINE_HEIGHT_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-line-height-less.png";
+	public const string MORE_LINE_WIDTH_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-width-more.png";
+	public const string LESS_LINE_WIDTH_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-width-less.png";
+	public const string RATING_NONE_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-help-about-symbolic.svg";
+	public const string RATING_SELECTED_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-help-about.svg";
+	public const string TEXT_LARGER_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-format-text-larger-symbolic.svg";
+	public const string TEXT_SMALLER_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-format-text-smaller-symbolic.svg";
+	public const string TEXT_ALIGN_LEFT_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-format-justify-left.svg";
+	public const string TEXT_ALIGN_RIGHT_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-format-justify-right.svg";
+	public const string RATING_1_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_1.png";
+	public const string RATING_2_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_2.png";
+	public const string RATING_3_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_3.png";
+	public const string RATING_4_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_4.png";
+	public const string RATING_5_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm_rating_5.png";
+	public const string UPDATE_IMAGE_ICON_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-insert-image.svg";
+	public const string SELECTION_OPTION_IMAGE_SMALL_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-option.svg";
+	public const string SELECTION_CHECKED_IMAGE_SMALL_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-selection-checked.svg";
+	public const string BOOK_INFO_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-help-info-symbolic.svg";
+	public const string BOOKMARK_INACTIVE_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-inactive.png";
+	public const string BOOKMARK_ACTIVE_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-bookmark-active.png";
+	public const string SELECTION_OPTION_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
+	public const string SELECTION_CHECKED_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
+	public const string HEADERBAR_PROPERTIES_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-open-menu.svg";
+	public const string DEFAULT_COVER_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/256x256/apps/bookworm-default-cover-N.png";
+	public const string PLACEHOLDER_COVER_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/256x256/apps/bookworm-placeholder-cover.png";
+	public const string EBOOK_EXTRACTION_LOCATION = "/tmp/bookworm/";
+	public const string PREFIX_FOR_FILE_URL = "file:///";
 
-	public static const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc"};
-	public static const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
+	public const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc"};
+	public const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
 
 
-	public static const string BOOKWORM_READING_MODE[] = {"PROFILE1","PROFILE2","PROFILE3"};
-	public static const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE_GRID",
+	public const string BOOKWORM_READING_MODE[] = {"PROFILE1","PROFILE2","PROFILE3"};
+	public const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE_GRID",
 																										 "READING_MODE",
 																										 "GRID_SELECTION_MODE",
 																										 "GRID_SELECTED_MODE",
@@ -192,28 +192,12 @@ namespace BookwormApp.Constants {
 																										 "LIST_SELECTION_MODE",
 																										 "LIST_SELECTED_MODE"
 																										};
-	public static const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
-	public static const string IDENTIFIER_FOR_PROPERTY_START = "~~";
-	public static const string IDENTIFIER_FOR_PROPERTY_END = "##\n";
+	public const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
+	public const string IDENTIFIER_FOR_PROPERTY_START = "~~";
+	public const string IDENTIFIER_FOR_PROPERTY_END = "##\n";
 	public const string EPUB_MIME_SPECIFICATION_FILENAME = "mimetype";
 	public const string EPUB_MIME_SPECIFICATION_CONTENT = "application/epub+zip";
 	public const string EPUB_META_INF_FILENAME = "META-INF/container.xml";
 	public const string[] TAG_NAME_WITH_PATHS = {"src=\"", "xlink:href=\"", "<link href=\""};
-	public const string DYNAMIC_CSS_CONTENT = "
-															GtkButton.PROFILE_BUTTON_1 {
-																color: <profile_1_color>;
-																background-color: <profile_1_bgcolor>;
-																border-color: #B0C4DE;
-															}
-															GtkButton.PROFILE_BUTTON_2 {
-																color: <profile_2_color>;
-																background-color: <profile_2_bgcolor>;
-																border-color: #B0C4DE;
-															}
-															GtkButton.PROFILE_BUTTON_3 {
-																color: <profile_3_color>;
-																background-color: <profile_3_bgcolor>;
-																border-color: #B0C4DE;
-															}
-														";
+	public const string DYNAMIC_CSS_CONTENT = " GtkButton.PROFILE_BUTTON_1 { color: <profile_1_color>; background-color: <profile_1_bgcolor>; border-color: #B0C4DE; } GtkButton.PROFILE_BUTTON_2 { color: <profile_2_color>; background-color: <profile_2_bgcolor>; border-color: #B0C4DE; } GtkButton.PROFILE_BUTTON_3 { color: <profile_3_color>; background-color: <profile_3_bgcolor>; border-color: #B0C4DE; }";
 }

@@ -476,7 +476,6 @@ namespace BookwormApp.Utils {
 			Gee.ArrayList<string> pageContentList = new Gee.ArrayList<string>();
 			StringBuilder aPageContent = new StringBuilder("");
 			int current_number_of_lines_per_page = 0;
-			int current_number_of_chars_per_line = 0;
 			int current_position = 0;
 			for(int i=0; i<contentLocationList.size; i++){
 				//extract contents from location
@@ -533,8 +532,11 @@ namespace BookwormApp.Utils {
 			}
 			aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
 			if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){
-				bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
-				debug("Opening FileChooserDialog with last used path:"+BookwormApp.Utils.last_file_chooser_path+" returned status:"+aFileChooserDialogOpeningstatus.to_string());
+				try{
+					aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+				}catch (Error e) {
+					warning("Could not set folder ["+BookwormApp.Utils.last_file_chooser_path+"] for file chooser dialog : " + e.message);
+				}
 			}else{
 				aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
 			}
@@ -599,7 +601,11 @@ namespace BookwormApp.Utils {
       aFileChooserDialog.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
       aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
 			if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){
-				bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+				try{
+					aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+				}catch(GLib.Error e){
+					warning("Error in setting the folder ["+BookwormApp.Utils.last_file_chooser_path+"] for the File Chooser Dialog:"+ e.message);
+				}
 			}else{
 				aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
 			}
@@ -629,7 +635,12 @@ namespace BookwormApp.Utils {
 		public static string parseMarkUp(string inputString){
 			string outputString = "";
 			unichar accel_char;
-			Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
+			try{
+				Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
+			}catch(GLib.Error e){
+				warning("Could not parseMarkUp ["+inputString+"] : " + e.message);
+				outputString = inputString;
+			}
 			return outputString;
 		}
 

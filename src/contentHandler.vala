@@ -107,26 +107,19 @@ public class BookwormApp.contentHandler {
     //Set background and font colour based on profile
     string[] profileColorList = settings.list_of_profile_colors.split (",");
     if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
-      cssForTextAndBackgroundColor = "
-                                        background-color: "+ profileColorList[5] +" !important;
-                                        color: "+ profileColorList[4] +" !important;
-                                     ";
+      cssForTextAndBackgroundColor = " background-color: "+ profileColorList[5] +" !important; color: "+ profileColorList[4] +" !important;";
     }else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
-      cssForTextAndBackgroundColor = "
-                                        background-color: "+ profileColorList[3] +" !important;
-                                        color: "+ profileColorList[2] +" !important;
-                                     ";
+      cssForTextAndBackgroundColor = " background-color: "+ profileColorList[3] +" !important; color: "+ profileColorList[2] +" !important;";
     }else{
-      cssForTextAndBackgroundColor = "
-                                        background-color: "+ profileColorList[1] +" !important;
-                                        color: "+ profileColorList[0] +" !important;
-                                     ";
+      cssForTextAndBackgroundColor = " background-color: "+ profileColorList[1] +" !important; color: "+ profileColorList[0] +" !important;";
     }
     //Set up CSS for book as per preference settings - this will override any css in the book contents
-    string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts.replace("$READING_LINE_HEIGHT",                BookwormApp.Bookworm.settings.reading_line_height)
-                                     .replace("$READING_WIDTH", (100 - (BookwormApp.Bookworm.settings.reading_width).to_int()).to_string())
+    string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts
+                                     .replace("$READING_LINE_HEIGHT", BookwormApp.Bookworm.settings.reading_line_height)
+                                     .replace("$READING_WIDTH", (100 - int.parse(BookwormApp.Bookworm.settings.reading_width)).to_string())
                                      .replace("$FONT_FAMILY", BookwormApp.Bookworm.settings.reading_font_name_family)
                                      .replace("$FONT_SIZE", BookwormApp.Bookworm.settings.reading_font_size.to_string())
+                                     .replace("$READING_TEXT_ALIGN", BookwormApp.Bookworm.settings.text_alignment)
                                      .replace("$TEXT_AND_BACKGROUND_COLOR", cssForTextAndBackgroundColor);
     //Scroll to the previous vertical position - this should be used:
     //(1)when the book is re-opened from the library and
@@ -214,7 +207,6 @@ public class BookwormApp.contentHandler {
     debug("Attempting to fetch content at index["+contentLocation.to_string()+"] from book at location:"+aBook.getBaseLocationOfContents());
     StringBuilder contents = new StringBuilder();
     if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
-      string baseLocationOfContents = aBook.getBaseLocationOfContents();
       //handle the case when the content list has html escape chars for the URI
       string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
       //fetch content from extracted book
@@ -267,10 +259,10 @@ public class BookwormApp.contentHandler {
     //This function is responsible for returning the vertical scroll position of the webview
     //This should be called when the user leaves reading a book :
     //(1) "Return" to Library button on Header Bar and (2) Close Bookworm while in reading mode
-		int scrollPos = -1;
-    scrollPos = BookwormApp.Utils.setWebViewTitle("document.title = window.scrollY;").to_int();
+	int scrollPos = -1;
+    scrollPos = int.parse(BookwormApp.Utils.setWebViewTitle("document.title = window.scrollY;"));
     debug("Scroll position determined as:"+scrollPos.to_string());
-		return scrollPos;
+	return scrollPos;
   }
 
   public static void performStartUpActions(){

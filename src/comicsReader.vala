@@ -55,37 +55,32 @@ public class BookwormApp.comicsReader {
   }
 
   public static string extractComics(string eBookLocation, string comicsFileType){
-    string extractionLocation = "";
-    try{
-      debug("Initiated process for content extraction of CBR Comics Book located at:"+eBookLocation);
-      if(BookwormApp.Bookworm.settings == null){
-        BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
-      }
-      //create a location for extraction of eBook based on local storage prefference
-      if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
-        extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();
-      }else{
-        extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
-      }
-      //check and create directory for extracting contents of ebook
-      BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
-      //extract eBook contents into extraction location
-      switch(comicsFileType){
-        case ".CBR":
-          BookwormApp.Utils.execute_sync_command("unrar e \"" + eBookLocation + "\" \""+ extractionLocation + "/images/" +"\"");
-          break;
-        case ".CBZ":
-          BookwormApp.Utils.execute_sync_command("unzip -j -o \"" + eBookLocation + "\" -d \""+ extractionLocation + "/images/" +"\"");
-          break;
-        default:
-          break;
-      }
-    }catch(GLib.Error e){
-      warning("Problem in Content Extraction for Comics Book ["+eBookLocation+"]:%s"+e.message);
-      return "false";
-    }
-    debug("Comics contents extracted sucessfully into location:"+extractionLocation);
-    return extractionLocation;
+        string extractionLocation = "false";
+         debug("Initiated process for content extraction of CBR Comics Book located at:"+eBookLocation);
+        if(BookwormApp.Bookworm.settings == null){
+            BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
+        }
+        //create a location for extraction of eBook based on local storage prefference
+        if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
+            extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();
+        }else{
+            extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
+        }
+        //check and create directory for extracting contents of ebook
+        BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
+        //extract eBook contents into extraction location
+        switch(comicsFileType){
+            case ".CBR":
+              BookwormApp.Utils.execute_sync_command("unrar e \"" + eBookLocation + "\" \""+ extractionLocation + "/images/" +"\"");
+              break;
+            case ".CBZ":
+              BookwormApp.Utils.execute_sync_command("unzip -j -o \"" + eBookLocation + "\" -d \""+ extractionLocation + "/images/" +"\"");
+              break;
+            default:
+              break;
+        }
+        debug("Comics contents extracted sucessfully into location:"+extractionLocation);
+        return extractionLocation;
   }
 
   public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, string extractionLocation){

@@ -33,19 +33,17 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 	public static Gtk.Popover createBookContextMenu (owned BookwormApp.Book aBook){
 		debug("Context Menu Popover initiated for book:"+aBook.getBookLocation());
 		Gtk.Popover bookContextPopover = new Gtk.Popover ((Gtk.EventBox) (aBook.getBookWidget("BOOK_EVENTBOX")));
-
 		//Add the Menu title with the name of the book
 		StringBuilder contextTitle = new StringBuilder();
 		contextTitle.append(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_HEADER)
-							  .append(" ")
-								.append(aBook.getBookTitle());
+							.append(" ")
+							.append(aBook.getBookTitle());
 		//restrict the length of the label to 35 characters
 		if(contextTitle.str.length > 35){
 			contextTitle.assign(contextTitle.str.slice(0,35));
 			contextTitle.append("...");
 		}
 		Label contextTitleLabel = new Label(contextTitle.str);
-
 		//Add button for updating cover Image
 		Gtk.Label updateCoverLabel = new Gtk.Label(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER);
 		Gtk.Image updateImageIcon = null;
@@ -70,23 +68,25 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				//copy cover image to bookworm cover image cache
 	      		aBook = BookwormApp.Utils.setBookCoverImage(aBook, selectedCoverImagePath);
 				aBook.setWasBookOpened(true);
-
 				//Refresh the library view to show the new cover image
-				Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
-				Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
-				aCoverImage.set_halign(Align.START);
-				aCoverImage.set_valign(Align.START);
-				aBook.setBookWidget("COVER_IMAGE", aCoverImage);
-				BookwormApp.Library.replaceCoverImageOnBook(aBook); //book is updated into library view map in this function call
-				//remove the text from the title widget
-				Gtk.Label titleTextLabel = (Gtk.Label) aBook.getBookWidget("TITLE_TEXT_LABEL");
-				titleTextLabel.set_text("");
-				aBook.setBookWidget("TITLE_TEXT_LABEL", titleTextLabel);
-				//refresh the library view
-				BookwormApp.AppWindow.library_grid.show_all();
-				BookwormApp.Bookworm.toggleUIState();
-
-				debug("Updated cover to image located at path:"+selectedCoverImagePath);
+				try{
+					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
+					Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+					aCoverImage.set_halign(Align.START);
+					aCoverImage.set_valign(Align.START);
+					aBook.setBookWidget("COVER_IMAGE", aCoverImage);
+					BookwormApp.Library.replaceCoverImageOnBook(aBook); //book is updated into library view map in this function call
+					//remove the text from the title widget
+					Gtk.Label titleTextLabel = (Gtk.Label) aBook.getBookWidget("TITLE_TEXT_LABEL");
+					titleTextLabel.set_text("");
+					aBook.setBookWidget("TITLE_TEXT_LABEL", titleTextLabel);
+					//refresh the library view
+					BookwormApp.AppWindow.library_grid.show_all();
+					BookwormApp.Bookworm.toggleUIState();
+					debug("Updated cover to image located at path:"+selectedCoverImagePath);
+				}catch(GLib.Error e){
+					warning("Error in getting the book cover image from location ["+aBook.getBookCoverLocation()+"] :" + e.message);
+				}				
 			}
 		});
 
@@ -223,12 +223,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.Box bookContextMenuBox = new Gtk.Box(Orientation.VERTICAL, BookwormApp.Constants.SPACING_BUTTONS);
     	bookContextMenuBox.set_border_width(BookwormApp.Constants.SPACING_WIDGETS);
     	bookContextMenuBox.pack_start(contextTitleLabel, false, false);
-    	bookContextMenuBox.pack_start(new Gtk.HSeparator() , true, true, 0);
+    	bookContextMenuBox.pack_start(new Gtk.Separator (Gtk.Orientation.HORIZONTAL) , true, true, 0);
 		bookContextMenuBox.pack_start(updateCoverImageBox, false, false);
 		bookContextMenuBox.pack_start(updateTitleBox, false, false);
 		bookContextMenuBox.pack_start(updateAuthorBox, false, false);
 		bookContextMenuBox.pack_start(updateTagsBox, false, false);
-		bookContextMenuBox.pack_start(new Gtk.HSeparator() , true, true, 0);
+		bookContextMenuBox.pack_start(new Gtk.Separator (Gtk.Orientation.HORIZONTAL) , true, true, 0);
 		bookContextMenuBox.pack_end(ratingBox, false, false);
 		//Set Context Box to Popover
 		bookContextPopover.add(bookContextMenuBox);
@@ -244,8 +244,6 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 	public static void createPreferencesDialog () {
 		AppDialog dialog = new AppDialog ();
-		Gdk.Color bgcolor;
-		Gdk.Color txtcolor;
 		dialog.set_transient_for(BookwormApp.Bookworm.window);
 		profileColorList = settings.list_of_profile_colors.split (",");
 
@@ -331,10 +329,17 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		//set the value for the first profile
 		profileCombobox.active = 0;
-		Gdk.Color.parse (profileColorList[0], out txtcolor);
-		textColourButton.set_color (txtcolor);
-		Gdk.Color.parse (profileColorList[1], out bgcolor);
-		backgroundColourButton.set_color (bgcolor);
+		//Gdk.Color.parse (profileColorList[0], out txtcolor);
+		//textColourButton.set_color (txtcolor);
+		var aRGBATextColor = Gdk.RGBA();
+		aRGBATextColor.parse(profileColorList[0]);
+		textColourButton.rgba = aRGBATextColor;
+
+		//Gdk.Color.parse (profileColorList[1], out bgcolor);
+		//backgroundColourButton.set_color (bgcolor);
+		var aRGBABackgroundColor = Gdk.RGBA();
+		aRGBABackgroundColor.parse(profileColorList[1]);
+		backgroundColourButton.rgba = aRGBABackgroundColor;
 
 		Gtk.Label discoverBooksLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_BOOKS_DISCOVERY);
 		directoryComboBox = new Gtk.ComboBoxText ();
@@ -442,22 +447,25 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		//Set text entry for text/background color based on selected profile
 		profileCombobox.changed.connect (() => {
 			if(profileCombobox.get_active_text().contains(" 1")){
-				Gdk.Color.parse (profileColorList[0], out txtcolor);
-				textColourButton.set_color (txtcolor);
-				Gdk.Color.parse (profileColorList[1], out bgcolor);
-				backgroundColourButton.set_color (bgcolor);
+				aRGBATextColor.parse(profileColorList[0]);
+				textColourButton.rgba = aRGBATextColor;
+
+				aRGBABackgroundColor.parse(profileColorList[1]);
+				backgroundColourButton.rgba = aRGBABackgroundColor;
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				Gdk.Color.parse (profileColorList[2], out txtcolor);
-				textColourButton.set_color (txtcolor);
-				Gdk.Color.parse (profileColorList[3], out bgcolor);
-				backgroundColourButton.set_color (bgcolor);
+				aRGBATextColor.parse(profileColorList[2]);
+				textColourButton.rgba = aRGBATextColor;
+
+				aRGBABackgroundColor.parse(profileColorList[3]);
+				backgroundColourButton.rgba = aRGBABackgroundColor;
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				Gdk.Color.parse (profileColorList[4], out txtcolor);
-				textColourButton.set_color (txtcolor);
-				Gdk.Color.parse (profileColorList[5], out bgcolor);
-				backgroundColourButton.set_color (bgcolor);
+				aRGBATextColor.parse(profileColorList[4]);
+				textColourButton.rgba = aRGBATextColor;
+
+				aRGBABackgroundColor.parse(profileColorList[5]);
+				backgroundColourButton.rgba = aRGBABackgroundColor;
 			}
 		});
 
@@ -529,22 +537,22 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			profileColorList = defaultProfileColors.split (",");
 			//set the text based on the selected profile
 			if(profileCombobox.get_active_text().contains(" 1")){
-				Gdk.Color.parse (profileColorList[0], out txtcolor);
-				textColourButton.set_color (txtcolor);
-				Gdk.Color.parse (profileColorList[1], out bgcolor);
-				backgroundColourButton.set_color (bgcolor);
+				aRGBATextColor.parse(profileColorList[0]);
+				textColourButton.rgba = aRGBATextColor;
+				aRGBABackgroundColor.parse(profileColorList[1]);
+				backgroundColourButton.rgba = aRGBABackgroundColor;
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				Gdk.Color.parse (profileColorList[2], out txtcolor);
-				textColourButton.set_color (txtcolor);
-				Gdk.Color.parse (profileColorList[3], out bgcolor);
-				backgroundColourButton.set_color (bgcolor);
+				aRGBATextColor.parse(profileColorList[2]);
+				textColourButton.rgba = aRGBATextColor;
+				aRGBABackgroundColor.parse(profileColorList[3]);
+				backgroundColourButton.rgba = aRGBABackgroundColor;
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				Gdk.Color.parse (profileColorList[4], out txtcolor);
-				textColourButton.set_color (txtcolor);
-				Gdk.Color.parse (profileColorList[5], out bgcolor);
-				backgroundColourButton.set_color (bgcolor);
+				aRGBATextColor.parse(profileColorList[4]);
+				textColourButton.rgba = aRGBATextColor;
+				aRGBABackgroundColor.parse(profileColorList[5]);
+				backgroundColourButton.rgba = aRGBABackgroundColor;
 			}
 			//reset the settings value for profile colors
 			settings.list_of_profile_colors = defaultProfileColors;

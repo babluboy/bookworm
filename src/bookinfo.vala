@@ -93,9 +93,8 @@ public class BookwormApp.Info:Gtk.Window {
       //Set the value of the info tab currently being viewed so that the same tab is opened subsequently
       BookwormApp.Bookworm.settings.current_info_tab = stack.get_visible_child_name();
     });
-
-    return info_box;
     debug("Sucessfully created BookInfo window components...");
+    return info_box;
   }
 
   public static void populateAnnotations(){
@@ -125,7 +124,7 @@ public class BookwormApp.Info:Gtk.Window {
                 aBook = BookwormApp.contentHandler.renderPage(aBook, "");
                 //Set the mode back to Reading mode
                 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-                BookwormApp.Bookworm.getAppInstance().toggleUIState();
+                BookwormApp.Bookworm.toggleUIState();
                 return true;
           });
         }
@@ -149,7 +148,9 @@ public class BookwormApp.Info:Gtk.Window {
       int bookmarkNumber = 1;
       foreach (string bookmarkedPage in bookmarkList) {
         if(bookmarkedPage != null && bookmarkedPage.length > 0){
-          LinkButton bookmarkLinkButton = new LinkButton.with_label (bookmarkedPage, BookwormApp.Constants.TEXT_FOR_BOOKMARKS.replace("NNN", bookmarkNumber.to_string()).replace("PPP", (bookmarkedPage.to_int()+1).to_string()));
+          LinkButton bookmarkLinkButton = new LinkButton.with_label (bookmarkedPage, BookwormApp.Constants.TEXT_FOR_BOOKMARKS
+                .replace("NNN", bookmarkNumber.to_string())
+                .replace("PPP", (int.parse(bookmarkedPage)+1).to_string()));
           bookmarkNumber++;
           bookmarkLinkButton.halign = Align.START;
           bookmarks_box.pack_start(bookmarkLinkButton,false,false,0);
@@ -160,7 +161,7 @@ public class BookwormApp.Info:Gtk.Window {
             aBook = BookwormApp.contentHandler.renderPage(aBook, "");
             //Set the mode back to Reading mode
             BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-            BookwormApp.Bookworm.getAppInstance().toggleUIState();
+            BookwormApp.Bookworm.toggleUIState();
             return true;
           });
         }
@@ -222,7 +223,7 @@ public class BookwormApp.Info:Gtk.Window {
             aBook = BookwormApp.contentHandler.renderPage(aBook, "SEARCH");
             //Set the mode back to Reading mode
             BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-            BookwormApp.Bookworm.getAppInstance().toggleUIState();
+            BookwormApp.Bookworm.toggleUIState();
             return true;
           });
         }
@@ -307,7 +308,7 @@ public class BookwormApp.Info:Gtk.Window {
                 aBook = BookwormApp.contentHandler.renderPage(aBook, "");
                 //Set the mode back to Reading mode
                 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-                BookwormApp.Bookworm.getAppInstance().toggleUIState();
+                BookwormApp.Bookworm.toggleUIState();
                 return true;
               });
             }
@@ -332,7 +333,7 @@ public class BookwormApp.Info:Gtk.Window {
               aBook = BookwormApp.contentHandler.renderPage(aBook, "");
               //Set the mode back to Reading mode
               BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-              BookwormApp.Bookworm.getAppInstance().toggleUIState();
+              BookwormApp.Bookworm.toggleUIState();
               return true;
             });
           }

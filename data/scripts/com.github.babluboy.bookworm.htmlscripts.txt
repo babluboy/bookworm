@@ -109,6 +109,8 @@
       font-size: $FONT_SIZEpx !important;
       /* Control text and background color */
       $TEXT_AND_BACKGROUND_COLOR
+      /* Control text alignment */
+      text-align: $READING_TEXT_ALIGN;
   }
   /* Set style for two page view */
   .two_page {
