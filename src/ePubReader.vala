@@ -88,110 +88,116 @@ public class BookwormApp.ePubReader {
   }
 
   public static string extractEBook(string eBookLocation){
-    string extractionLocation = "";
-    try{
-      debug("Initiated process for content extraction of ePub Book located at:"+eBookLocation);
-      //create a location for extraction of eBook based on local storage prefference
-      if(BookwormApp.Bookworm.settings == null){
-        BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
-      }
-      if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
-        extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();
-      }else{
-        extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
-      }
-      //check and create directory for extracting contents of ebook
-      BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
-      //unzip eBook contents into extraction location
-      BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
-    }catch(Error e){
-      warning("Problem in Content Extraction for ePub Book ["+eBookLocation+"]:%s"+e.message);
-      return "false";
-    }
-    debug("eBook contents extracted sucessfully into location:"+extractionLocation);
-    return extractionLocation;
+        string extractionLocation = "false";
+        debug("Initiated process for content extraction of ePub Book located at:"+eBookLocation);
+        //create a location for extraction of eBook based on local storage prefference
+        if(BookwormApp.Bookworm.settings == null){
+            BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
+        }
+        if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
+            extractionLocation = BookwormApp.Bookworm.bookworm_config_path + "/books/" + File.new_for_path(eBookLocation).get_basename();
+        }else{
+            extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path(eBookLocation).get_basename();
+        }
+        //check and create directory for extracting contents of ebook
+        BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
+        //unzip eBook contents into extraction location
+        BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
+        debug("eBook contents extracted sucessfully into location:"+extractionLocation);
+        return extractionLocation;
   }
 
   public static bool isEPubFormat (string extractionLocation){
-    bool ePubFormat = false;
-    debug("Checking if mime type is valid ePub for contents at:"+extractionLocation);
-    try{
-      string ePubMimeContents = BookwormApp.Utils.fileOperations("READ", extractionLocation, BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME, "");
-      if("false" == ePubMimeContents){
-        //Mime Content File was not found at expected location
-        warning("Mime Content file could not be located at expected location:"+extractionLocation+"/"+BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME);
-        return false;
-      }
-      debug("Mime Contents found in file :"+extractionLocation+"/"+BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME+" is:"+ ePubMimeContents);
-      if(ePubMimeContents.strip() != BookwormApp.Constants.EPUB_MIME_SPECIFICATION_CONTENT){
-          debug("Mime Contents in file :"+extractionLocation+"/"+BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME+" is not :"+ BookwormApp.Constants.EPUB_MIME_SPECIFICATION_CONTENT+". No further parsing will be done.");
-          return false;
-      }else{
-        //mime content is as expected
-        ePubFormat = true;
-      }
-    }catch(Error e){
-      warning("Issue in determining mime type for contents at ["+extractionLocation+"]:%s"+e.message);
-      return false;
-    }
-    debug("Sucessfully validated MIME type....");
-    return ePubFormat;
+        bool ePubFormat = false;
+        debug("Checking if mime type is valid ePub for contents at:"+extractionLocation);
+        string ePubMimeContents = BookwormApp.Utils.fileOperations(
+                                                                "READ", 
+                                                                extractionLocation, 
+                                                                BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME, 
+                                                                "");
+        if("false" == ePubMimeContents){
+            //Mime Content File was not found at expected location
+            warning("Mime Content file could not be located at expected location:"+
+                            extractionLocation+"/"+
+                            BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME);
+            return false;
+        }
+        debug(  "Mime Contents found in file :"+
+                        extractionLocation+"/"+
+                        BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME+
+                        " is:"+ ePubMimeContents);
+        if(ePubMimeContents.strip() != BookwormApp.Constants.EPUB_MIME_SPECIFICATION_CONTENT){
+            debug(  "Mime Contents in file :"+extractionLocation+"/"+
+                            BookwormApp.Constants.EPUB_MIME_SPECIFICATION_FILENAME+" is not :"+
+                            BookwormApp.Constants.EPUB_MIME_SPECIFICATION_CONTENT+". No further parsing will be done.");
+            return false;
+        }else{
+            //mime content is as expected
+            ePubFormat = true;
+        }
+        debug("Sucessfully validated MIME type....");
+        return ePubFormat;
   }
 
   public static string getOPFFileLocation(string extractionLocation){
-    string locationOfOPFFile = "false";
-    try{
-      //read the META-INF/container.xml file
-      string metaInfContents = BookwormApp.Utils.fileOperations("READ", extractionLocation, BookwormApp.Constants.EPUB_META_INF_FILENAME, "");
-      if("false" == metaInfContents){
-        //META-INF/container.xml File was not found at expected location
-        warning("META-INF/container.xml file could not be located at expected location:"+extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME);
-        return "false";
-      }
-      //locate the content of first occurence of "rootfiles"
-      int startPosOfRootFiles = metaInfContents.index_of("<rootfiles>")+("<rootfiles>").length;
-      int endPosOfRootFiles = metaInfContents.index_of("</rootfiles>",startPosOfRootFiles+1);
-      if((startPosOfRootFiles - +("<rootfiles>").length) != -1 && endPosOfRootFiles != -1 && endPosOfRootFiles>startPosOfRootFiles){
-        string rootfiles = metaInfContents.slice(startPosOfRootFiles, endPosOfRootFiles);
-        //locate the content of "rootfile" tag
-        int startPosOfRootFile = rootfiles.index_of("<rootfile")+("<rootfile").length;
-        int endPosOfRootFile = rootfiles.index_of(">",startPosOfRootFile+1);
-        if((startPosOfRootFile - +("<rootfile").length) != -1 && endPosOfRootFile != -1 && endPosOfRootFile>startPosOfRootFile){
-          string rootfile = rootfiles.slice(startPosOfRootFile, endPosOfRootFile);
-          //locate the content of "full-path" id
-          int startPosOfContentOPFFile = rootfile.index_of("full-path=\"")+("full-path=\"").length;
-          int endPosOfContentOPFFile = rootfile.index_of("\"", startPosOfContentOPFFile+1);
-          if((startPosOfContentOPFFile - ("full-path=\"").length) != -1 && endPosOfContentOPFFile != -1 && endPosOfContentOPFFile > startPosOfContentOPFFile){
-            string ContentOPFFilePath = rootfile.slice(startPosOfContentOPFFile,endPosOfContentOPFFile);
-            debug("CONTENT.OPF file relative path [Fetched from file:"+ extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+"] is:"+ ContentOPFFilePath);
-            locationOfOPFFile = extractionLocation + "/" + ContentOPFFilePath;
-          }else{
-            warning("Parsing of META-INF/container.xml file at location:"+
+        string locationOfOPFFile = "false";
+        //read the META-INF/container.xml file
+        string metaInfContents = BookwormApp.Utils.fileOperations("READ", 
+                                                                            extractionLocation, 
+                                                                            BookwormApp.Constants.EPUB_META_INF_FILENAME, "");
+        if("false" == metaInfContents){
+            //META-INF/container.xml File was not found at expected location
+            warning("META-INF/container.xml file could not be located at expected location:"+
+                            extractionLocation+"/"+
+                            BookwormApp.Constants.EPUB_META_INF_FILENAME);
+            return "false";
+        }
+        //locate the content of first occurence of "rootfiles"
+        int startPosOfRootFiles = metaInfContents.index_of("<rootfiles>")+("<rootfiles>").length;
+        int endPosOfRootFiles = metaInfContents.index_of("</rootfiles>",startPosOfRootFiles+1);
+        if((startPosOfRootFiles - +("<rootfiles>").length) != -1 && endPosOfRootFiles != -1 && endPosOfRootFiles>startPosOfRootFiles){
+            string rootfiles = metaInfContents.slice(startPosOfRootFiles, endPosOfRootFiles);
+            //locate the content of "rootfile" tag
+            int startPosOfRootFile = rootfiles.index_of("<rootfile")+("<rootfile").length;
+            int endPosOfRootFile = rootfiles.index_of(">",startPosOfRootFile+1);
+            if((startPosOfRootFile - +("<rootfile").length) != -1 && endPosOfRootFile != -1 && endPosOfRootFile>startPosOfRootFile){
+                string rootfile = rootfiles.slice(startPosOfRootFile, endPosOfRootFile);
+                //locate the content of "full-path" id
+                int startPosOfContentOPFFile = rootfile.index_of("full-path=\"")+("full-path=\"").length;
+                int endPosOfContentOPFFile = rootfile.index_of("\"", startPosOfContentOPFFile+1);
+                if((   startPosOfContentOPFFile - ("full-path=\"").length) != -1 && 
+                        endPosOfContentOPFFile != -1 && 
+                        endPosOfContentOPFFile > startPosOfContentOPFFile)
+                {
+                    string ContentOPFFilePath = rootfile.slice(startPosOfContentOPFFile,endPosOfContentOPFFile);
+                    debug(  "CONTENT.OPF file relative path [Fetched from file:"+ 
+                                    extractionLocation+"/"+
+                                    BookwormApp.Constants.EPUB_META_INF_FILENAME+"] is:"+ 
+                                    ContentOPFFilePath);
+                    locationOfOPFFile = extractionLocation + "/" + ContentOPFFilePath;
+                }else{
+                    warning("Parsing of META-INF/container.xml file at location:"+
                     extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
                     " has problems[startPosOfContentOPFFile="+startPosOfContentOPFFile.to_string()+
                     ", endPosOfContentOPFFile="+endPosOfContentOPFFile.to_string()+"].");
-            return "false";
-          }
-        }else{
-          warning("Parsing of META-INF/container.xml file at location:"+
-                  extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
-                  " has problems[startPosOfRootFile="+startPosOfRootFile.to_string()+
-                  ", endPosOfRootFile="+endPosOfRootFile.to_string()+"].");
-          return "false";
-        }
-      }else{
-        warning("Parsing of META-INF/container.xml file at location:"+
+                    return "false";
+                }
+            }else{
+                warning("Parsing of META-INF/container.xml file at location:"+
                 extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
-                " has problems[startPosOfRootFiles="+startPosOfRootFiles.to_string()+
-                ", endPosOfRootFiles="+endPosOfRootFiles.to_string()+"].");
-        return "false";
-      }
-    }catch(Error e){
-      warning("Issue in determining location of OPF File at ["+extractionLocation+"]:%s"+e.message);
-      return "false";
-    }
-    debug ("Sucessfully determined absolute path to OPF File as : "+locationOfOPFFile);
-    return locationOfOPFFile;
+                " has problems[startPosOfRootFile="+startPosOfRootFile.to_string()+
+                ", endPosOfRootFile="+endPosOfRootFile.to_string()+"].");
+                return "false";
+            }
+        }else{
+            warning("Parsing of META-INF/container.xml file at location:"+
+            extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
+            " has problems[startPosOfRootFiles="+startPosOfRootFiles.to_string()+
+            ", endPosOfRootFiles="+endPosOfRootFiles.to_string()+"].");
+            return "false";
+        }
+        debug ("Sucessfully determined absolute path to OPF File as : "+locationOfOPFFile);
+        return locationOfOPFFile;
   }
 
   public static ArrayList<string> parseManifestData (string locationOfOPFFile){
@@ -204,19 +210,23 @@ public class BookwormApp.ePubReader {
       manifestItemsList.add("false");
       return manifestItemsList;
     }
-    string manifestData = BookwormApp.Utils.extractXMLTag(OpfContents, "<manifest", "</manifest>");
-    string[] manifestList = BookwormApp.Utils.multiExtractBetweenTwoStrings (manifestData, "<item", ">");
-    foreach(string manifestItem in manifestList){
-      debug("Manifest Item="+manifestItem);
-      manifestItemsList.add(manifestItem);
+    try{
+        string manifestData = BookwormApp.Utils.extractXMLTag(OpfContents, "<manifest", "</manifest>");
+        string[] manifestList = BookwormApp.Utils.multiExtractBetweenTwoStrings (manifestData, "<item", ">");
+        foreach(string manifestItem in manifestList){
+            debug("Manifest Item="+manifestItem);
+            manifestItemsList.add(manifestItem);
+        }
+        if(manifestItemsList.size < 1){
+            //OPF Contents could not be read from file
+            warning("OPF contents could not be read from file:"+locationOfOPFFile);
+            manifestItemsList.add("false");
+            return manifestItemsList;
+        }
+        debug("Completed extracting [no. of manifest items="+manifestItemsList.size.to_string()+"] manifest data from OPF File:"+locationOfOPFFile);
+    }catch (Error e) {
+        warning("Error in parsing manifest data ["+OpfContents+"] :"+ e.message );    
     }
-    if(manifestItemsList.size < 1){
-      //OPF Contents could not be read from file
-      warning("OPF contents could not be read from file:"+locationOfOPFFile);
-      manifestItemsList.add("false");
-      return manifestItemsList;
-    }
-    debug("Completed extracting [no. of manifest items="+manifestItemsList.size.to_string()+"] manifest data from OPF File:"+locationOfOPFFile);
     return manifestItemsList;
   }
 
@@ -230,27 +240,30 @@ public class BookwormApp.ePubReader {
       spineItemsList.add("false");
       return spineItemsList;
     }
-    string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
-    //check TOC id in Spine data and add as first item to Spine List
-    int startTOCPosition = spineData.index_of("toc=\"");
-    int endTOCPosition = spineData.index_of("\"", startTOCPosition+("toc=\"").length+1);
-    if(startTOCPosition != -1 && endTOCPosition != -1 && endTOCPosition>startTOCPosition) {
-      spineItemsList.add(spineData.slice(startTOCPosition, endTOCPosition));
-      debug("TOC ID="+spineData.slice(startTOCPosition, endTOCPosition));
+    try{  
+        string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
+        //check TOC id in Spine data and add as first item to Spine List
+        int startTOCPosition = spineData.index_of("toc=\"");
+        int endTOCPosition = spineData.index_of("\"", startTOCPosition+("toc=\"").length+1);
+        if(startTOCPosition != -1 && endTOCPosition != -1 && endTOCPosition>startTOCPosition) {
+          spineItemsList.add(spineData.slice(startTOCPosition, endTOCPosition));
+          debug("TOC ID="+spineData.slice(startTOCPosition, endTOCPosition));
+        }
+        string[] spineList = BookwormApp.Utils.multiExtractBetweenTwoStrings (spineData, "<itemref", ">");
+        foreach(string spineItem in spineList){
+          debug("Spine Item="+spineItem);
+          spineItemsList.add(spineItem);
+        }
+        if(spineItemsList.size < 1){
+          //OPF Contents could not be read from file
+          warning("OPF contents could not be read from file:"+locationOfOPFFile);
+          spineItemsList.add("false");
+          return spineItemsList;
+        }
+        debug("Completed extracting [no. of spine items="+spineItemsList.size.to_string()+"] spine data from OPF File:"+locationOfOPFFile);
+    }catch (Error e) {
+        warning ("Error in parsing spine data["+OpfContents+"] : "+e.message);
     }
-
-    string[] spineList = BookwormApp.Utils.multiExtractBetweenTwoStrings (spineData, "<itemref", ">");
-    foreach(string spineItem in spineList){
-      debug("Spine Item="+spineItem);
-      spineItemsList.add(spineItem);
-    }
-    if(spineItemsList.size < 1){
-      //OPF Contents could not be read from file
-      warning("OPF contents could not be read from file:"+locationOfOPFFile);
-      spineItemsList.add("false");
-      return spineItemsList;
-    }
-    debug("Completed extracting [no. of spine items="+spineItemsList.size.to_string()+"] spine data from OPF File:"+locationOfOPFFile);
     return spineItemsList;
   }
 
@@ -279,23 +292,27 @@ public class BookwormApp.ePubReader {
               string[] navPointList = BookwormApp.Utils.multiExtractBetweenTwoStrings(navigationData, "<navPoint", "</navPoint>");
               if(navPointList.length > 0){
                 foreach(string navPointItem in navPointList){
-                  string tocText = BookwormApp.Utils.decodeHTMLChars(BookwormApp.Utils.extractXMLTag(navPointItem, "<text>", "</text>"));
-
-                  int tocNavStartPoint = navPointItem.index_of("src=\"");
-                  int tocNavEndPoint = navPointItem.index_of("\"", tocNavStartPoint+("src=\"").length);
-                  if(tocNavStartPoint != -1 && tocNavEndPoint != -1 && tocNavEndPoint>tocNavStartPoint){
-                    string tocNavLocation = navPointItem.slice(tocNavStartPoint+("src=\"").length, tocNavEndPoint).strip();
-                    if(tocNavLocation.index_of("#") != -1){
-        							tocNavLocation = tocNavLocation.slice(0, tocNavLocation.index_of("#"));
-        						}
-                    tocNavLocation = BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(), tocNavLocation);
-                    if(tocNavLocation.length>0){
-                      debug("tocText="+tocText+", tocNavLocation="+tocNavLocation);
-                      HashMap<string,string> TOCMapItem = new HashMap<string,string>();
-                      TOCMapItem.set(tocNavLocation, tocText);
-                      aBook.setTOC(TOCMapItem);
+                    string tocText  = "";
+                    try{
+                        tocText = BookwormApp.Utils.decodeHTMLChars(BookwormApp.Utils.extractXMLTag(navPointItem, "<text>", "</text>"));
+                    } catch(Error e) {
+                        warning ("Error in parsing ToC text ["+navPointItem+"] : "+e.message);  
                     }
-                  }
+                    int tocNavStartPoint = navPointItem.index_of("src=\"");
+                    int tocNavEndPoint = navPointItem.index_of("\"", tocNavStartPoint+("src=\"").length);
+                    if(tocNavStartPoint != -1 && tocNavEndPoint != -1 && tocNavEndPoint>tocNavStartPoint){
+                        string tocNavLocation = navPointItem.slice(tocNavStartPoint+("src=\"").length, tocNavEndPoint).strip();
+                        if(tocNavLocation.index_of("#") != -1){
+        				    tocNavLocation = tocNavLocation.slice(0, tocNavLocation.index_of("#"));
+        				}
+                        tocNavLocation = BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(), tocNavLocation);
+                        if(tocNavLocation.length>0){
+                            debug("tocText="+tocText+", tocNavLocation="+tocNavLocation);
+                            HashMap<string,string> TOCMapItem = new HashMap<string,string>();
+                            TOCMapItem.set(tocNavLocation, tocText);
+                            aBook.setTOC(TOCMapItem);
+                        }
+                    }
                 }
               }
             }

@@ -22,78 +22,85 @@ using Gee;
 public class BookwormApp.BackgroundTasks {
   public static ArrayList<string> listOfBooks;
   public static BookwormApp.Settings settings;
-
+  
   public static void performTasks(){
-    initialization();
-    //Add any new books from the watched folders
-    discoverBooks();
-    //refresh list of books in DB due to new books being added
-    listOfBooks = BookwormApp.DB.getBookIDListFromDB();
-    //Remove cahched data and cover thumbs which are no longer used
-    cleanBookCacheContent();
-    cleanBookCoverImages();
+        debug("Bookworm discover process initiated....");
+        initialization();
+        //Add any new books from the watched folders
+        discoverBooks();
+        //refresh list of books in DB due to new books being added
+        listOfBooks = BookwormApp.DB.getBookIDListFromDB();
+        //Remove cahched data and cover thumbs which are no longer used
+        cleanBookCacheContent();
+        cleanBookCoverImages();
   }
 
   public static void initialization(){
-    settings = BookwormApp.Settings.get_instance();
-    //check if the database exists otherwise create database and required tables
-    bool isDBPresent = BookwormApp.DB.initializeBookWormDB(GLib.Environment.get_user_config_dir ()+"/bookworm");
-    listOfBooks = BookwormApp.DB.getBookIDListFromDB();
+        settings = BookwormApp.Settings.get_instance();
+        //check if the database exists otherwise create database and required tables
+        BookwormApp.DB.initializeBookWormDB(GLib.Environment.get_user_config_dir ()+"/bookworm");
+        listOfBooks = BookwormApp.DB.getBookIDListFromDB();
   }
 
   public static void discoverBooks(){
     print("\nStarted process for discovery of books....\n");
     ArrayList<string> scanDirList = new ArrayList<string>();
     //find the folders to scan from the settings
-    if(settings.list_of_scan_dirs.length > 1){
-      debug(settings.list_of_scan_dirs);
-			string[] scanDirArray = settings.list_of_scan_dirs.split ("~~");
-      foreach (string token in scanDirArray){
-        scanDirList.add(token);
-      }
-		}
-    //create the find command
-    StringBuilder findCmd = new StringBuilder("find ");
-    foreach (string scanDir in scanDirList) {
-      if(scanDir != null && scanDir.length > 1){
-        findCmd.append("\"").append(scanDir).append("\"").append(" ");
-      }
-    }
-    findCmd.append("! -readable -prune -o -type f \\( -iname \\*.pdf -o -iname \\*.epub -o -iname \\*.cbr -o -iname \\*.cbz \\) -print");
-    string findCmdOutput = BookwormApp.Utils.execute_sync_command(findCmd.str);
-    if(findCmdOutput.contains("\n")){
-      string[] findCmdOutputResults = findCmdOutput.strip().split ("\n",-1);
-      foreach (string findResult in findCmdOutputResults) {
-        bool noMatchFound = true;
-        foreach (string book in listOfBooks) {
-          if(book.contains(findResult)){
-            noMatchFound = false;
-            break;
-          }
+    if( settings != null &&
+        settings.list_of_scan_dirs != null && 
+        settings.list_of_scan_dirs.length > 1)
+    {
+        debug(settings.list_of_scan_dirs);
+        string[] scanDirArray = settings.list_of_scan_dirs.split ("~~");
+        foreach (string token in scanDirArray){
+            scanDirList.add(token);
         }
-        if(noMatchFound){
-          print("\nAttempting to add book located at:"+findResult);
-          BookwormApp.Book aBook = new BookwormApp.Book();
-          aBook.setBookLocation(findResult);
-          File eBookFile = File.new_for_path (findResult);
-          if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
-            int bookID = BookwormApp.DB.addBookToDataBase(aBook);
-    				aBook.setBookId(bookID);
-            aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
-            aBook.setWasBookOpened(true);
-            //parse eBook to populate cache and book meta data
-            aBook = BookwormApp.Bookworm.genericParser(aBook);
-            if(!aBook.getIsBookParsed()){
-              BookwormApp.DB.removeBookFromDB(aBook);
-            }else{
-              BookwormApp.DB.updateBookToDataBase(aBook);
-              print("Sucessfully added book located at:"+findResult);
+        
+        if(scanDirList.size > 0) {
+            //create the find command
+            StringBuilder findCmd = new StringBuilder("find ");
+            foreach (string scanDir in scanDirList) {
+              if(scanDir != null && scanDir.length > 1){
+                findCmd.append("\"").append(scanDir).append("\"").append(" ");
+              }
             }
-          }
+            findCmd.append("! -readable -prune -o -type f \\( -iname \\*.pdf -o -iname \\*.epub -o -iname \\*.cbr -o -iname \\*.cbz \\) -print");
+            string findCmdOutput = BookwormApp.Utils.execute_sync_command(findCmd.str);
+            if(findCmdOutput.contains("\n")){
+                string[] findCmdOutputResults = findCmdOutput.strip().split ("\n",-1);
+                foreach (string findResult in findCmdOutputResults) {
+                    bool noMatchFound = true;
+                    foreach (string book in listOfBooks) {
+                        if(book.contains(findResult)){
+                            noMatchFound = false;
+                            break;
+                        }
+                    }
+                    if(noMatchFound){
+                        print("\nAttempting to add book located at:"+findResult);
+                        BookwormApp.Book aBook = new BookwormApp.Book();
+                        aBook.setBookLocation(findResult);
+                        File eBookFile = File.new_for_path (findResult);
+                        if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
+                            int bookID = BookwormApp.DB.addBookToDataBase(aBook);
+                            aBook.setBookId(bookID);
+                            aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
+                            aBook.setWasBookOpened(true);
+                            //parse eBook to populate cache and book meta data
+                            aBook = BookwormApp.Bookworm.genericParser(aBook);
+                            if(!aBook.getIsBookParsed()){
+                                BookwormApp.DB.removeBookFromDB(aBook);
+                            }else{
+                                BookwormApp.DB.updateBookToDataBase(aBook);
+                                print("Sucessfully added book located at:"+findResult);
+                            }
+                        }
+                  }
+              }
+            }
+            print("\nCompleted process for discovery of books....\n");
         }
-      }
     }
-    print("\nCompleted process for discovery of books....\n");
   }
 
   public static void cleanBookCacheContent(){
@@ -155,17 +162,6 @@ public class BookwormApp.BackgroundTasks {
         BookwormApp.Utils.execute_sync_command("rm -f \"" + BookwormApp.Bookworm.bookworm_config_path + "/covers/" + cacheImage + "\"");
         print ("\nCache Image deleted:"+cacheImage);
       }
-    }
-  }
-
-  public static void taskScheduler(){
-    //Check and add book monitoring cron
-    string userCrontabContents = BookwormApp.Utils.execute_sync_command("crontab -l");
-    if(userCrontabContents.index_of("bookworm --discover") == -1){
-      BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.MONITOR_SCRIPT_LOCATION +
-                                             " " + BookwormApp.Bookworm.bookworm_config_path + "/user_crontab_backup.txt" +
-                                             " " + BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + "bookworm_user_crontab_temp.txt"
-                                            );
     }
   }
 }

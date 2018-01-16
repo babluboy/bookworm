@@ -1,4 +1,4 @@
-bookworm (0.6) xenial; urgency=low
+com.github.babluboy.bookworm (0.6) xenial; urgency=low
 
   * Initial Release (26-Apr-2017)
 

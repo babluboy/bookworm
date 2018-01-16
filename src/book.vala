@@ -29,24 +29,28 @@ public class BookwormApp.Book{
   private string bookTitle = "";
   private string bookAuthor = "";
   private string bookTags = "";
+  private string annotationTags = "";
   private string bookPublishDate = "";
   private string bookCreationDate = "";
   private string bookLastModificationDate = "";
+  private int bookPageNumber = -1;
+  private int bookTotalPages = 1;
+  private int bookScrollPosition = -1;
   private int bookRating = 0;
+  private bool isBookCoverImagePresent = false;
   private StringBuilder bookmarks = new StringBuilder ("");
+  private TreeMap<string,string> annotationMap = new TreeMap<string,string> ();
   private ArrayList<string> bookContentList = new ArrayList<string> ();
+  private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
 
   //These variables are only available for the current session (not persisted)
   private string opfFileLocation = "";
   private string baseLocationOfContents = "";
-  private bool isBookCoverImagePresent = false;
-  private int bookPageNumber = -1;
   private bool ifPageForward = true;
   private bool ifPageBackward = true;
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
   private HashMap<string,Gtk.Widget> bookWidgetsList = new HashMap<string,Gtk.Widget> ();
-  private ArrayList<HashMap<string,string>> TOCMap = new ArrayList<HashMap<string,string>>();
 
   //getter list for book id
   public void setBookId (int aBookId){
@@ -106,6 +110,9 @@ public class BookwormApp.Book{
   public ArrayList<HashMap<string,string>> getTOC (){
     return TOCMap;
   }
+  public void clearTOC (){
+    TOCMap.clear();
+  }
 
   //getter setter for temp location of ebook contents
   public void setBookExtractionLocation (string aBookExtractionLocation){
@@ -147,6 +154,13 @@ public class BookwormApp.Book{
     return bookTags;
   }
 
+  //getter setter for annotation tags
+  public void setAnnotationTags (string anAnnotationTags){
+    annotationTags = anAnnotationTags;
+  }
+  public string getAnnotationTags (){
+    return annotationTags;
+  }
 
   //getter setter for location of books OPF file
   public void setOPFFileLocation (string aOPFFileLocation){
@@ -204,6 +218,22 @@ public class BookwormApp.Book{
     return bookPageNumber;
   }
 
+  //getter setter for total pages in book
+  public void setBookTotalPages (int aBookTotalPages){
+    bookTotalPages = aBookTotalPages;
+  }
+  public int getBookTotalPages (){
+    return bookTotalPages;
+  }
+
+  //getter setter for eBook vertical scroll position
+  public void setBookScrollPos (int aBookScrollPos){
+    bookScrollPosition = aBookScrollPos;
+  }
+  public int getBookScrollPos (){
+    return bookScrollPosition;
+  }
+
   //getter setter if eBook pageForward is possible
   public void setIfPageForward (bool ifBookPageForward){
     ifPageForward = ifBookPageForward;
@@ -253,6 +283,33 @@ public class BookwormApp.Book{
     return bookmarks.str;
   }
 
+  //getter setter for annotations
+  public void setAnnotations (string index, string annotationText){
+    //check the value of the annotation text - add or delete accordingly
+    if(annotationText != null && annotationText.length > 0){
+      //annotated text is not null/empty - update the annotation
+      annotationMap.set(index, annotationText);
+    }else{
+      //annotated text is null/empty - remove the annotation
+      if(annotationMap.has_key(index)){
+        annotationMap.unset(index);
+      }
+    }
+  }
+  public string getAnnotations (string index){
+    if(annotationMap.has_key(index)){
+      return annotationMap.get(index);
+    }else{
+      return "";
+    }
+  }
+  public TreeMap<string,string> getAnnotationList(){
+    return annotationMap;
+  }
+  public void setAnnotationList(TreeMap<string,string> aTreeMap){
+    annotationMap.set_all(aTreeMap);
+  }
+
   //getter setter for list of Gtk Widgets used for a Book
   public void setBookWidget (string name, Gtk.Widget aWidget){
     bookWidgetsList.set(name, aWidget);
@@ -281,6 +338,8 @@ public class BookwormApp.Book{
            .append("bookmarks=").append(bookmarks.str).append(",\n")
            .append("author=").append(bookAuthor).append(",\n")
            .append("ratings=").append(bookRating.to_string()).append(",\n")
+           .append("tags=").append(bookTags.to_string()).append(",\n")
+           .append("annotation tags=").append(annotationTags.to_string()).append(",\n")
            .append("bookContentList=");
      for (int i=0; i<bookContentList.size;i++) {
         bookDetails.append("["+i.to_string()+"]="+bookContentList.get(i)+",");

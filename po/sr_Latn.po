@@ -1,0 +1,466 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-10 17:52+0000\n"
+"PO-Revision-Date: 2017-07-25 08:58+0000\n"
+"Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
+"Language-Team: Serbian (latin) <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/sr_Latn/>\n"
+"Language: sr_Latn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.16-dev\n"
+
+#: ../src/dialog.vala:66
+msgid "Select Image"
+msgstr "Odaberi sliku"
+
+#: ../src/dialog.vala:496
+#, fuzzy
+msgid "Select folder"
+msgstr "Odaberi sliku"
+
+#: ../src/library.vala:551
+msgid "Adding "
+msgstr ""
+
+#: ../src/window.vala:291 ../src/window.vala:496
+msgid "Select eBook"
+msgstr "Odaberi eKnjigu"
+
+#: ../src/bookworm.vala:112
+msgid "Display version number"
+msgstr "Prikaži verziju"
+
+#: ../src/bookworm.vala:113
+msgid "Run Bookworm in debug mode"
+msgstr "Pokreni Bookworm u režimu za otklanjanje grešaka"
+
+#: ../src/bookworm.vala:114
+#, fuzzy
+msgid "Run Bookworm in info mode"
+msgstr "Pokreni Bookworm u režimu za otklanjanje grešaka"
+
+#: ../src/bookworm.vala:115
+msgid "Automatically add new books from watched folders"
+msgstr ""
+
+#: ../src/constants.vala:27
+msgid "An eBook Reader"
+msgstr "Čitač eKnjiga"
+
+#: ../src/constants.vala:29
+#, fuzzy
+msgid "Weblate Translators"
+msgstr "Launchpad prevodioci"
+
+#: ../src/constants.vala:35
+msgid "Website"
+msgstr "Web lokacija"
+
+#: ../src/constants.vala:37
+msgid "Not Available"
+msgstr "Nije dostupna"
+
+#: ../src/constants.vala:38
+msgid "eBook Reader"
+msgstr "Čitač eKnjiga"
+
+#: ../src/constants.vala:39
+#, fuzzy
+msgid "Search this book…"
+msgstr "Pretraži ovu knjigu ..."
+
+#: ../src/constants.vala:40
+msgid "Search by Title, Author and Tags"
+msgstr "Pretraži po naslovu, autoru i oznakama"
+
+#: ../src/constants.vala:41
+#, fuzzy
+msgid "Looks like Bookworm has no books."
+msgstr "Izgleda da Bookworm nema knjiga!"
+
+#: ../src/constants.vala:42
+msgid "Build your library by adding eBooks"
+msgstr "Kreiraj svoju biblioteku dodajući eKnjige"
+
+#: ../src/constants.vala:43
+msgid "Select an eBook to read"
+msgstr "Odaberi eKnjigu za čitanje"
+
+#: ../src/constants.vala:44
+#, fuzzy
+msgid ""
+"Problem in extracting contents of book. Ensure there is a valid eBook file "
+"here: "
+msgstr ""
+"Problem prilikom preuzimanja sadržaja knjige. Proveri da li je kjiga "
+"raspoloživa na: "
+
+#: ../src/constants.vala:45
+#, fuzzy
+msgid "Invalid MIME-type detected. Check format for this eBook: "
+msgstr "Otkriven nevažeći Mime tip. Proveri format knjige na: "
+
+#: ../src/constants.vala:46
+#, fuzzy
+msgid "Invalid content found. Ensure there is a valid eBook file here: "
+msgstr "Pronađen nevažeći sadržaj. Preuzmi eKnjigu podržanog formata sa: "
+
+#: ../src/constants.vala:47
+#, fuzzy
+msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
+msgstr "Pronađen nevažeći sadržaj. Preuzmi eKnjigu podržanog formata sa: "
+
+#: ../src/constants.vala:48
+#, fuzzy
+msgid "Bookworm does not support the format of the file found here: "
+msgstr "Bookworm ne podržava format datoteke pronađene na: "
+
+#: ../src/constants.vala:49
+#, fuzzy
+msgid ""
+"Requested content could not be fetched. Please remove and add the eBook file "
+"found here: "
+msgstr "Pronađen nevažeći sadržaj. Preuzmi eKnjigu podržanog formata sa: "
+
+#: ../src/constants.vala:50
+msgid "Library"
+msgstr "Biblioteka"
+
+#: ../src/constants.vala:51
+msgid "Resume"
+msgstr "Nastavi"
+
+#: ../src/constants.vala:52
+msgid "Contents"
+msgstr "Sadržaj"
+
+#: ../src/constants.vala:53
+msgid "Content #"
+msgstr "Sadržaj #"
+
+#: ../src/constants.vala:54
+msgid "Bookmarks"
+msgstr "Obeleživači"
+
+#: ../src/constants.vala:55
+msgid "Bookmark #NNN for Section PPP"
+msgstr "Obeleživač #NNN za poglavlje PPP"
+
+#: ../src/constants.vala:56
+msgid "Click on a link to jump to bookmarked section"
+msgstr "Klikni na vezu za prelazak na označeno poglavlje"
+
+#: ../src/constants.vala:57
+msgid ""
+"No bookmarks set in BBB, click the bookworm icon on the header bar to "
+"boomark the page"
+msgstr ""
+"Nije postavljen obeleživač na BBB, klikni na bookworm ikonu u traci "
+"zaglavlja da obeležiš stranicu"
+
+#: ../src/constants.vala:58
+msgid "Search Results"
+msgstr "Rezultat pretrage"
+
+#: ../src/constants.vala:59
+msgid "Annotations"
+msgstr ""
+
+#: ../src/constants.vala:60
+msgid "Annotation Tags"
+msgstr ""
+
+#: ../src/constants.vala:61
+msgid "Comma seperated tags for this annotation"
+msgstr ""
+
+#: ../src/constants.vala:62
+msgid "Add notes for : "
+msgstr ""
+
+#: ../src/constants.vala:63
+#, fuzzy
+msgid "Click on a link to jump to an annotated section"
+msgstr "Klikni na vezu za prelazak na označeno poglavlje"
+
+#: ../src/constants.vala:64
+msgid ""
+"No annotations set in BBB, right click the page of a book and choose "
+"annotation from the context menu to add annotations"
+msgstr ""
+
+#: ../src/constants.vala:65
+#, fuzzy
+msgid "Searching for '$$$' in &&&:"
+msgstr "Nisu pronađene podudarnosti za '$$$' u &&&"
+
+#: ../src/constants.vala:66
+msgid "Found the following matches for '$$$' in &&&:"
+msgstr "Pronađene su sledeće podudarnosti za '$$$' u &&&:"
+
+#: ../src/constants.vala:67
+msgid "No matches found for '$$$' in &&&"
+msgstr "Nisu pronađene podudarnosti za '$$$' u &&&"
+
+#: ../src/constants.vala:68
+msgid "Edit Info for"
+msgstr "Izmeni informacije za"
+
+#: ../src/constants.vala:69 ../src/constants.vala:73
+msgid "Update Cover Image"
+msgstr "Obnovi sliku naslovne strane"
+
+#: ../src/constants.vala:70
+msgid "Update Title"
+msgstr "Obnovi naslov"
+
+#: ../src/constants.vala:71
+msgid "Update Tags"
+msgstr "Obnovi oznake"
+
+#: ../src/constants.vala:72
+msgid "Update Author"
+msgstr "Obnovi autora"
+
+#: ../src/constants.vala:74
+#, fuzzy
+msgid "Enter full screen view (F11)"
+msgstr "Uđite u režim celog ekrana"
+
+#: ../src/constants.vala:75
+#, fuzzy
+msgid "Exit full screen view (Esc)"
+msgstr "Izađi iz režima celog ekrana"
+
+#: ../src/constants.vala:76
+msgid "Check Word Meaning"
+msgstr "Proveri značenje reči"
+
+#: ../src/constants.vala:77
+msgid "Annotate selected text"
+msgstr ""
+
+#: ../src/constants.vala:78
+msgid "Books"
+msgstr "Knjige"
+
+#: ../src/constants.vala:79
+msgid "Images"
+msgstr "Slike"
+
+#: ../src/constants.vala:80
+msgid "All Files"
+msgstr "Sve datoteke"
+
+#: ../src/constants.vala:81
+msgid "Title"
+msgstr ""
+
+#: ../src/constants.vala:82
+#, fuzzy
+msgid "Author"
+msgstr "Obnovi autora"
+
+#: ../src/constants.vala:83
+msgid "Last Opened"
+msgstr ""
+
+#: ../src/constants.vala:84
+msgid "Rating"
+msgstr ""
+
+#: ../src/constants.vala:85
+msgid "Tags"
+msgstr ""
+
+#: ../src/constants.vala:86
+msgid "Today"
+msgstr ""
+
+#: ../src/constants.vala:87
+msgid "Yesterday"
+msgstr ""
+
+#: ../src/constants.vala:88
+msgid "Days"
+msgstr ""
+
+#: ../src/constants.vala:89
+msgid "Discovery of books will be started when Bookworm is closed"
+msgstr ""
+
+#: ../src/constants.vala:91
+msgid "Add books to library"
+msgstr "Dodaj knjige u biblioteku"
+
+#: ../src/constants.vala:92
+msgid "Remove selected books from library (eBook file will not be deleted)"
+msgstr ""
+"Ukloni označene knjige iz biblioteke (datoteke eKnjige neće biti obrisana)"
+
+#: ../src/constants.vala:93
+msgid "Select one or more books in library"
+msgstr "Odaberi jednu ili više knjiga iz biblioteke"
+
+#: ../src/constants.vala:94
+msgid "See Table of Contents, Bookmarks and Search Results"
+msgstr "Vidi sadržaj, obeleživače i rezultate pretrage"
+
+#: ../src/constants.vala:95
+#, fuzzy
+msgid "Reading preferences"
+msgstr "Poodesi postavke za čitanje"
+
+#: ../src/constants.vala:96
+msgid "Click to bookmark this page"
+msgstr "Klikni da obeležiš ovu stranicu"
+
+#: ../src/constants.vala:97
+msgid "Click to remove this bookmark"
+msgstr "Klikni da uklonip ovaj obeleživač"
+
+#: ../src/constants.vala:98
+#, fuzzy
+msgid "Increase font size (Ctrl + Shift + '+')"
+msgstr "Povećaj veličinu fonta"
+
+#: ../src/constants.vala:99
+#, fuzzy
+msgid "Decrease font size (Ctrl + '-')"
+msgstr "Smanji veličinu fonta"
+
+#: ../src/constants.vala:100
+msgid "Increase line width"
+msgstr "Povećaj širinu reda"
+
+#: ../src/constants.vala:101
+msgid "Decrease line width"
+msgstr "Smanji širinu reda"
+
+#: ../src/constants.vala:102
+msgid "Increase line spacing"
+msgstr "Povećaj prored"
+
+#: ../src/constants.vala:103
+msgid "Decrease line spacing"
+msgstr "Smanji prored"
+
+#: ../src/constants.vala:104
+msgid "Update cover image"
+msgstr "Obnovi naslovnu sliku"
+
+#: ../src/constants.vala:105
+msgid "Apply theme for this colour profile"
+msgstr ""
+
+#: ../src/constants.vala:106 ../src/constants.vala:107
+#, fuzzy
+msgid "Enter full screen view and Esc key to undo"
+msgstr "Režim celog ekrana, \"Esc\" taster za izlaz"
+
+#: ../src/constants.vala:108
+msgid "Add folder to scan for books"
+msgstr ""
+
+#: ../src/constants.vala:109
+msgid "Remove displayed folder from book scan"
+msgstr ""
+
+#: ../src/constants.vala:110
+msgid "Add annotation to selected text"
+msgstr ""
+
+#: ../src/constants.vala:112 ../src/constants.vala:139
+msgid "Preferences"
+msgstr "Željene postavke"
+
+#: ../src/constants.vala:113
+#, fuzzy
+msgid "Turn on Dark Mode"
+msgstr "Uključi noćni režim"
+
+#: ../src/constants.vala:114
+msgid "Enable cache (opens books faster)"
+msgstr "Omogući keš (knjige se brže otvaraju)"
+
+#: ../src/constants.vala:115
+msgid "Always show library on startup"
+msgstr ""
+
+#: ../src/constants.vala:116
+msgid "Enable two page reading"
+msgstr ""
+
+#: ../src/constants.vala:117
+#, fuzzy
+msgid "Select Font"
+msgstr "Odaberi eKnjigu"
+
+#: ../src/constants.vala:118
+msgid "Customize reading profile"
+msgstr ""
+
+#: ../src/constants.vala:119
+msgid "Text"
+msgstr ""
+
+#: ../src/constants.vala:120
+msgid "Background"
+msgstr ""
+
+#: ../src/constants.vala:121
+msgid "Add folders to scan for books"
+msgstr ""
+
+#: ../src/constants.vala:122
+msgid "Profile"
+msgstr ""
+
+#: ../src/constants.vala:123
+msgid "Reset to default values"
+msgstr ""
+
+#: ../src/constants.vala:137
+msgid "Unknown Book"
+msgstr "Nepoznata knjiga"
+
+#: ../src/constants.vala:138
+msgid "About"
+msgstr "O programu"
+
+#: ../src/utils.vala:527 ../src/utils.vala:598
+msgid "Cancel"
+msgstr "Odustani"
+
+#: ../src/utils.vala:529 ../src/utils.vala:599
+msgid "Open"
+msgstr "Otvori"
+
+#: ../src/utils.vala:531
+msgid "Save"
+msgstr "Sačuvaj"
+
+#: ../src/mobiReader.vala:311
+#, fuzzy
+msgid "Book"
+msgstr "Knjige"
+
+#~ msgid "Light theme"
+#~ msgstr "Svetla tema"
+
+#~ msgid "Dark theme"
+#~ msgstr "Tamna tema"
+
+#~ msgid "Sepia theme"
+#~ msgstr "Sepija tema"

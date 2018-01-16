@@ -116,13 +116,14 @@ namespace BookwormApp.Utils {
 		string grepOutput = "";
 		try {
 			string baseName = File.new_for_path(fileName).get_basename();
-			grepOutput = execute_sync_command ("find \""+rootDirectoryToSearch+"\" -name \""+baseName+"\"");
+			grepOutput = execute_sync_command ("find \""+rootDirectoryToSearch+"\" -name \""+baseName+"\"").strip();
+			//check if there are more than one result - return the first one
+			if(grepOutput.contains("\n")){
+				string[] listOfFilePaths = getListOfRepeatingSegments(grepOutput, "\n");
+				grepOutput = listOfFilePaths[0];
+			}
 			/*
-			//check if the file found exists
-			File fileFound = File.new_for_path (grepOutput);
-			bool doesFileExist = fileFound.query_exists ();
-			if(!doesFileExist)
-				grepOutput = ""; //TODO: handle the no file found error
+			TODO: handle the no file found error
 			*/
 			return grepOutput.strip();
 		}catch (Error e){
@@ -475,7 +476,6 @@ namespace BookwormApp.Utils {
 			Gee.ArrayList<string> pageContentList = new Gee.ArrayList<string>();
 			StringBuilder aPageContent = new StringBuilder("");
 			int current_number_of_lines_per_page = 0;
-			int current_number_of_chars_per_line = 0;
 			int current_position = 0;
 			for(int i=0; i<contentLocationList.size; i++){
 				//extract contents from location
@@ -532,8 +532,11 @@ namespace BookwormApp.Utils {
 			}
 			aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
 			if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){
-				bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
-				debug("Opening FileChooserDialog with last used path:"+BookwormApp.Utils.last_file_chooser_path+" returned status:"+aFileChooserDialogOpeningstatus.to_string());
+				try{
+					aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+				}catch (Error e) {
+					warning("Could not set folder ["+BookwormApp.Utils.last_file_chooser_path+"] for file chooser dialog : " + e.message);
+				}
 			}else{
 				aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
 			}
@@ -598,7 +601,11 @@ namespace BookwormApp.Utils {
       aFileChooserDialog.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
       aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
 			if(BookwormApp.Utils.last_file_chooser_path != null && BookwormApp.Utils.last_file_chooser_path.length != 0){
-				bool aFileChooserDialogOpeningstatus = aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+				try{
+					aFileChooserDialog.set_current_folder_file (GLib.File.new_for_path(BookwormApp.Utils.last_file_chooser_path));
+				}catch(GLib.Error e){
+					warning("Error in setting the folder ["+BookwormApp.Utils.last_file_chooser_path+"] for the File Chooser Dialog:"+ e.message);
+				}
 			}else{
 				aFileChooserDialog.set_current_folder (GLib.Environment.get_home_dir ());
 			}
@@ -628,7 +635,12 @@ namespace BookwormApp.Utils {
 		public static string parseMarkUp(string inputString){
 			string outputString = "";
 			unichar accel_char;
-			Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
+			try{
+				Pango.parse_markup (inputString, inputString.length, 0, null, out outputString, out accel_char);
+			}catch(GLib.Error e){
+				warning("Could not parseMarkUp ["+inputString+"] : " + e.message);
+				outputString = inputString;
+			}
 			return outputString;
 		}
 
@@ -707,19 +719,97 @@ namespace BookwormApp.Utils {
 			return aBook;
 		}
 
+		public static string convertTreeMapToString(TreeMap<string,string> aMap){
+			StringBuilder stringForTreeMap = new StringBuilder("");
+			foreach (var entry in aMap.entries) {
+				stringForTreeMap.append(entry.key).append("~~##~~").append(entry.value);
+        stringForTreeMap.append("~~^^~~");
+    	}
+			return stringForTreeMap.str;
+		}
+
+		public static TreeMap<string,string> convertStringToTreeMap(string stringForTreeMap){
+			TreeMap<string,string> treeMap = new TreeMap<string,string> ();
+			if(stringForTreeMap.index_of("~~^^~~") != -1){
+				string [] treeMapArray = stringForTreeMap.split("~~^^~~");
+				foreach (string mapEntry in treeMapArray) {
+					if(mapEntry.index_of("~~##~~") != -1){
+						string [] keyValPair = mapEntry.split("~~##~~");
+						treeMap.set(keyValPair[0], keyValPair[1]);
+					}
+	    	}
+			}
+			return treeMap;
+		}
+
+		public static string convertTOCToString(BookwormApp.Book aBook){
+			StringBuilder tocString = new StringBuilder("");
+			ArrayList<HashMap<string,string>> tocList = aBook.getTOC();
+			foreach(HashMap<string,string> tocListItemMap in tocList){
+				foreach (var entry in tocListItemMap.entries) {
+					tocString.append(entry.key).append("~~##~~").append(entry.value);
+				}
+				tocString.append("~~^^~~");
+			}
+			return tocString.str;
+		}
+
+		public static BookwormApp.Book convertStringToTOC(owned BookwormApp.Book aBook, string tocString){
+			//break the string into TOC List
+			string [] tocStringArray = tocString.split("~~^^~~");
+			//add data to the TOC details to the book
+			foreach (string tocItemStr in tocStringArray) {
+				string [] tocItemStringArray = tocItemStr.split("~~##~~");
+				if(tocItemStringArray.length == 2) {
+					HashMap<string,string> tocListItemMap = new HashMap<string,string> ();
+					tocListItemMap.set(tocItemStringArray[0], tocItemStringArray[1]);
+					aBook.setTOC(tocListItemMap);
+				}
+			}
+			return aBook;
+		}
+
 		public static BookwormApp.Book setBookCoverImage (owned BookwormApp.Book aBook, string bookCoverImageLocation){
 			//copy cover image to bookworm cover image location
-      string coverImageFileName = File.new_for_commandline_arg(bookCoverImageLocation).get_basename();
-      string coverImageFileExtension = "";
-      if(coverImageFileName.index_of(".") != -1){
-        coverImageFileExtension = coverImageFileName.slice(coverImageFileName.last_index_of(".")+1, coverImageFileName.length);
-      }
-      string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+"/covers/"+aBook.getBookId().to_string()+"_cover."+coverImageFileExtension;
-      BookwormApp.Utils.execute_sync_command("cp \""+bookCoverImageLocation+"\" \""+bookwormCoverLocation+"\"");
-      //cover was extracted from the ebook contents
-      aBook.setIsBookCoverImagePresent(true);
-      aBook.setBookCoverLocation(bookwormCoverLocation);
-      debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
+      		string coverImageFileName = File.new_for_commandline_arg(bookCoverImageLocation).get_basename();
+     	 	string coverImageFileExtension = "";
+      		if(coverImageFileName.index_of(".") != -1){
+        		coverImageFileExtension = coverImageFileName.slice(coverImageFileName.last_index_of(".")+1, coverImageFileName.length);
+      		}
+      		string bookwormCoverLocation = BookwormApp.Bookworm.bookworm_config_path+
+																	"/covers/"+aBook.getBookId().to_string()+"_cover."+
+																	coverImageFileExtension;
+      		BookwormApp.Utils.execute_sync_command("cp \""+bookCoverImageLocation+"\" \""+bookwormCoverLocation+"\"");
+      		//cover was extracted from the ebook contents
+      		aBook.setIsBookCoverImagePresent(true);
+      		aBook.setBookCoverLocation(bookwormCoverLocation);
+      		debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
 			return aBook;
+		}
+
+		public static string setWebViewTitle(string javascript){
+	    	string selectedText = "";
+			debug("Javascrit for setting Webview Title:"+javascript);
+			var loop = new MainLoop();
+			BookwormApp.AppWindow.aWebView.run_javascript.begin(javascript, null, (obj, res) => {
+				try{
+					BookwormApp.AppWindow.aWebView.run_javascript.end(res);
+				}catch(GLib.Error e){
+					warning("Could not get selected text, javascript error: " + e.message);
+				}
+				selectedText = BookwormApp.AppWindow.aWebView.get_title();
+				loop.quit();
+			});
+			loop.run();
+	    	debug("Webview Title set as:"+selectedText);
+			return selectedText;
+		}
+
+		public static string minimizeStringLength(string originalString, int maxLength){
+			string modifiedString = originalString;
+			if(modifiedString.length > maxLength){
+				modifiedString = modifiedString.slice(0,maxLength) + "...";
+			}
+			return modifiedString;
 		}
 }

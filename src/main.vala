@@ -18,12 +18,16 @@
 */
 BookwormApp.Bookworm application;
 public static int main (string[] args) {
-  Log.set_handler ("bookworm", GLib.LogLevelFlags.LEVEL_DEBUG, GLib.Log.default_handler);
+  Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
   if("--debug" in args){
-    Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
+    Log.set_handler ("", GLib.LogLevelFlags.LEVEL_DEBUG, GLib.Log.default_handler);
     debug ("Bookworm Application running in debug mode - all debug messages will be displayed");
   }
-  application = application.getAppInstance();
+  if("--info" in args){
+    Log.set_handler ("", GLib.LogLevelFlags.LEVEL_INFO, GLib.Log.default_handler);
+    debug ("Bookworm Application running in info mode - all info messages will be displayed");
+  }
+  application = BookwormApp.Bookworm.getAppInstance();
   //Workaround to get Granite's --about & Gtk's --help working together
   if ("--help" in args || "-h" in args || "--version" in args || "--discover" in args) {
     return application.processCommandLine (args);
