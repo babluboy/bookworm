@@ -71,7 +71,7 @@ public class BookwormApp.comicsReader {
         //extract eBook contents into extraction location
         switch(comicsFileType){
             case ".CBR":
-              BookwormApp.Utils.execute_sync_command("unrar e \"" + eBookLocation + "\" \""+ extractionLocation + "/images/" +"\"");
+              BookwormApp.Utils.execute_sync_command("unar -D -o \""+ extractionLocation + "/images/" + "\" \"" + eBookLocation + "\"");
               break;
             case ".CBZ":
               BookwormApp.Utils.execute_sync_command("unzip -j -o \"" + eBookLocation + "\" -d \""+ extractionLocation + "/images/" +"\"");
@@ -85,11 +85,12 @@ public class BookwormApp.comicsReader {
 
   public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, string extractionLocation){
     //list the content of the extraction folder
-    string comicContent = BookwormApp.Utils.execute_sync_command("ls -1 \"" + extractionLocation + "/images/" + "\"");
+    string comicContent = BookwormApp.Utils.execute_sync_command("find \"" + extractionLocation + "/images/" + "\" -type f");
     comicContent = comicContent.replace("\r", "^^^").replace("\n", "^^^");
     string[] comicContentList = comicContent.split("^^^");
+    //sort by file names to order the images
+    GLib.qsort_with_data<string> (comicContentList, sizeof(string), (a, b) => GLib.strcmp (a, b));
     if(comicContentList.length > 1){
-      string htmlTemplate = "<html><style>img{max-width: 100%;height: auto;}</style><body><img src=\"<image-location>\"></body></html>";
       int countOfSections = 1;
       StringBuilder htmlFileName = new StringBuilder();
       foreach (string contentLocationPath in comicContentList) {
@@ -98,13 +99,13 @@ public class BookwormApp.comicsReader {
           //create a HTML content with the location of the image
           htmlFileName.assign(File.new_for_path(aBook.getBookLocation()).get_basename()+"_"+countOfSections.to_string()+".html");
           BookwormApp.Utils.fileOperations("WRITE", extractionLocation,
-                                           htmlFileName.str, htmlTemplate.replace("<image-location>", extractionLocation + "/images/" + contentLocationPath));
+                                           htmlFileName.str, BookwormApp.Constants.COMICS_HTML_TEMPLATE.replace("<image-location>", extractionLocation + "/images/" + contentLocationPath));
           aBook.setBookContentList(extractionLocation + "/" + htmlFileName.str);
           //Set the first image as the cover for the comics
           if(countOfSections == 1){
             if(!aBook.getIsBookCoverImagePresent()){
-              debug("setting cover as:"+extractionLocation + "/images/" + contentLocationPath);
-              aBook = BookwormApp.Utils.setBookCoverImage(aBook, extractionLocation + "/images/" + contentLocationPath);
+              debug("setting cover as:"+contentLocationPath);
+              aBook = BookwormApp.Utils.setBookCoverImage(aBook, contentLocationPath);
             }
           }
           countOfSections++;
