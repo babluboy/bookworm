@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
-"PO-Revision-Date: 2017-09-01 15:29+0000\n"
-"Last-Translator: andrefmarques <andrefilipefmarques@gmail.com>\n"
-"Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
-"bookworm/pt/>\n"
+"PO-Revision-Date: 2018-01-18 14:27+0000\n"
+"Last-Translator: Yuri Manuel <yur1m4nuel@gmail.com>\n"
+"Language-Team: Portuguese "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.19-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -23,7 +23,7 @@ msgstr "Selecionar Pasta"
 
 #: ../src/library.vala:551
 msgid "Adding "
-msgstr ""
+msgstr "Adicionando "
 
 #: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
@@ -39,7 +39,7 @@ msgstr "Executar Bookworm em modo de depuração"
 
 #: ../src/bookworm.vala:114
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Executar O Bookworm em modo de informação"
 
 #: ../src/bookworm.vala:115
 msgid "Automatically add new books from watched folders"
@@ -47,7 +47,7 @@ msgstr ""
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Um Leitor de Ebooks"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
@@ -59,23 +59,23 @@ msgstr ""
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "Não Disponível"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "Leitor de eBooks"
 
 #: ../src/constants.vala:39
 msgid "Search this book…"
-msgstr ""
+msgstr "Procurar por este livro…"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Procurar por Título, Autor e Etiquetas"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "Parece que O Bookworm está sem livros."
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
@@ -83,7 +83,7 @@ msgstr ""
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Selecionar um eBook para ler"
 
 #: ../src/constants.vala:44
 msgid ""
@@ -101,7 +101,7 @@ msgstr ""
 
 #: ../src/constants.vala:47
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Não foi possível processar os dados das letras musicais "
 
 #: ../src/constants.vala:48
 msgid "Bookworm does not support the format of the file found here: "
@@ -115,7 +115,7 @@ msgstr ""
 
 #: ../src/constants.vala:50
 msgid "Library"
-msgstr ""
+msgstr "Biblioteca"
 
 #: ../src/constants.vala:51
 msgid "Resume"
