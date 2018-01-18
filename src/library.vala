@@ -53,7 +53,9 @@ public class BookwormApp.Library {
             break;
         }
         //calculate the time elapsed from last modified DateTime
-        TimeSpan timespan = (new DateTime.now_local()).difference (new DateTime.from_unix_local(int64.parse(aBook.getBookLastModificationDate())));
+        TimeSpan timespan = (new DateTime.now_local()).difference (
+                                                        new DateTime.from_unix_local(int64.parse(aBook.getBookLastModificationDate()))
+                                                );
         int64 daysElapsed = timespan/(86400000000);
         if( timespan < TimeSpan.DAY){
           modifiedElapsedTime = BookwormApp.Constants.TEXT_FOR_TIME_TODAY;
@@ -151,11 +153,13 @@ public class BookwormApp.Library {
             if(!aBook.getIsBookCoverImagePresent()){
 		        titleTextLabel.set_text("<b>"+aBook.getBookTitle()+"</b>");
 		        titleTextLabel.set_use_markup (true);
-		        titleTextLabel.set_line_wrap (true);
+                titleTextLabel.set_line_wrap (true);
                 titleTextLabel.set_justify (Justification.CENTER);
                 titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
                 titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
-                titleTextLabel.set_max_width_chars(-1);
+                //titleTextLabel.set_size_request(150,200);
+                //titleTextLabel.set_max_width_chars(10);
+                //titleTextLabel.set_width_chars(10);
             }else{
                 //remove the title label if the book has a cover image available
                 titleTextLabel.set_text("");

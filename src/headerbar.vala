@@ -228,6 +228,7 @@ public class BookwormApp.AppHeaderBar {
         aboutDialog.copyright = BookwormApp.Constants.bookworm_copyright;
         aboutDialog.version = BookwormApp.Constants.bookworm_version;
         aboutDialog.authors = BookwormApp.Constants.about_authors;
+        aboutDialog.artists = BookwormApp.Constants.about_artists;
         aboutDialog.comments = BookwormApp.Constants.about_comments;
         aboutDialog.license = null;
         aboutDialog.license_type = BookwormApp.Constants.about_license_type;

@@ -169,12 +169,12 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-activ
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-checked.svg DESTINATION ${ICON_DIR}/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION ${ICON_DIR}/24x24/actions/)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION ${ICON_DIR}/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-placeholder-cover.png DESTINATION ${ICON_DIR}/256x256/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-1.png DESTINATION ${ICON_DIR}/256x256/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-2.png DESTINATION ${ICON_DIR}/256x256/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-3.png DESTINATION ${ICON_DIR}/256x256/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-4.png DESTINATION ${ICON_DIR}/256x256/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/256/bookworm-default-cover-5.png DESTINATION ${ICON_DIR}/256x256/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-placeholder-cover.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-1.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-2.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-3.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-4.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-5.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
 
 # install app specific desktop, appdata and css files
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.desktop DESTINATION ${DATADIR}/applications)

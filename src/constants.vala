@@ -23,7 +23,8 @@ namespace BookwormApp.Constants {
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017-2018";
 	public const string app_icon = "com.github.babluboy.bookworm";
-	public const string[] about_authors = {"Siddhartha Das <bablu.boy@gmail.com>"};
+	public const string[] about_authors = {"Siddhartha Das <bablu.boy@gmail.com>", null};
+	public const string[] about_artists = {"Micah Ilbery <micah.ilbery@protonmail.com>", null};
 	public const string bookworm_copyright = "Copyright © 2017-2018 Siddhartha Das (bablu.boy@gmail.com)";
 	public const string about_comments = _("An eBook Reader");
 	public const Gtk.License about_license_type = Gtk.License.GPL_3_0;
@@ -173,8 +174,8 @@ namespace BookwormApp.Constants {
 	public const string SELECTION_OPTION_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-option.svg";
 	public const string SELECTION_CHECKED_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-selection-checked.svg";
 	public const string HEADERBAR_PROPERTIES_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/24x24/actions/bookworm-open-menu.svg";
-	public const string DEFAULT_COVER_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/256x256/apps/bookworm-default-cover-N.png";
-	public const string PLACEHOLDER_COVER_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/256x256/apps/bookworm-placeholder-cover.png";
+	public const string DEFAULT_COVER_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/default_covers/apps/bookworm-default-cover-N.svg";
+	public const string PLACEHOLDER_COVER_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/default_covers/apps/bookworm-placeholder-cover.svg";
 	public const string EBOOK_EXTRACTION_LOCATION = "/tmp/bookworm/";
 	public const string PREFIX_FOR_FILE_URL = "file:///";
 
