@@ -291,8 +291,7 @@ sudo apt-get install com.github.babluboy.bookworm</pre>
 In case of issues related to missing libgranite package, add the Elementary PPA as shown below and re-try. The Elementary PPA can be removed after Bookworm is installed.
                 <pre>
 sudo add-apt-repository ppa:elementary-os/stable
-sudo apt-get update
-sudo apt-get install com.github.babluboy.bookworm</pre>
+sudo apt-get update</pre>
             </p>
             <p>If you want to build Bookworm from source on Ubuntu/Debian, open terminal and execute the following commands
                 <pre>sudo apt build-dep granite-demo
