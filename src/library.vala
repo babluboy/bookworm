@@ -151,15 +151,13 @@ public class BookwormApp.Library {
             }
             //Add title of the book if Default Cover is being used
             if(!aBook.getIsBookCoverImagePresent()){
-		        titleTextLabel.set_text("<b>"+aBook.getBookTitle()+"</b>");
+                titleTextLabel.set_text("<b>"+BookwormApp.Utils.breakString(aBook.getBookTitle(), 15, " ")+"</b>");
 		        titleTextLabel.set_use_markup (true);
                 titleTextLabel.set_line_wrap (true);
                 titleTextLabel.set_justify (Justification.CENTER);
                 titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
                 titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
-                //titleTextLabel.set_size_request(150,200);
-                //titleTextLabel.set_max_width_chars(10);
-                //titleTextLabel.set_width_chars(10);
+
             }else{
                 //remove the title label if the book has a cover image available
                 titleTextLabel.set_text("");

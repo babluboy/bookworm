@@ -812,4 +812,33 @@ namespace BookwormApp.Utils {
 			}
 			return modifiedString;
 		}
+
+		public static string breakString (string originalString, int breakLength, string breakString){
+			StringBuilder formattedString = new StringBuilder("");
+			//check if the string is at least as long as the specified break length
+			if(originalString.length > breakLength) {			
+				StringBuilder extractedString = new StringBuilder("");
+				int charCount = 0;
+				//loop until there are enough chars left in the string
+				while((charCount < originalString.length) && ((originalString.length - charCount) > breakLength)){
+					//extract specified chars from the strings
+					extractedString.assign("");
+					extractedString.assign(originalString.slice(charCount, charCount+breakLength));
+					//check if there if a occurence of the break string in the extracted string
+					if(extractedString.str.index_of(breakString) != -1){
+						//the extracted string has a break - continue checking
+						formattedString.append(extractedString.str);
+					}else{
+						//the extracted string does not have a break - introduce the break
+						formattedString.append(extractedString.str).append(breakString);
+					}		
+					charCount = charCount+breakLength;		
+				}
+				//append any left over chars
+				formattedString.append(originalString.slice(charCount, originalString.length));
+			}else{
+				formattedString.append(originalString);
+			}
+			return formattedString.str;
+		}
 }
