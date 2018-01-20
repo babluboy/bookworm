@@ -1,6 +1,6 @@
 sudo: required
 language: generic
-dist: xenial
+dist: trusty
 
 before_install:
   - sudo add-apt-repository ppa:beineri/opt-qt593-trusty -y
