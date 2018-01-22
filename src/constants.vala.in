@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "0.9.5";
+	public const string bookworm_version = "1.0.0";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017-2018";
 	public const string app_icon = "com.github.babluboy.bookworm";

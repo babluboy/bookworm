@@ -267,58 +267,58 @@ public class BookwormApp.ePubReader {
     return spineItemsList;
   }
 
-  public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, ArrayList<string> manifestItemsList, ArrayList<string> spineItemsList){
-    StringBuilder bufferForSpineData = new StringBuilder("");
-    StringBuilder bufferForLocationOfContentData = new StringBuilder("");
-    //extract location of ncx file if present on the first index of the Spine List
-    if(spineItemsList.get(0).contains("toc=\"")){
-      int tocRefStartPos = spineItemsList.get(0).index_of("toc=\"")+("toc=\"").length;
-      if((tocRefStartPos-("toc=\"").length) != -1){
-        bufferForSpineData.assign(spineItemsList.get(0).slice(tocRefStartPos, spineItemsList.get(0).length));
-      }else{
-        bufferForSpineData.assign("");
-      }
-      if(bufferForSpineData.str.length > 0){
+  public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, 
+                                                                                          ArrayList<string> manifestItemsList, 
+                                                                                          ArrayList<string> spineItemsList){
+        StringBuilder bufferForSpineData = new StringBuilder("");
+        StringBuilder bufferForLocationOfContentData = new StringBuilder("");
+        //extract location of ncx file if present on the first index of the Spine List
+        if(spineItemsList.get(0).contains("toc=\"")){
+            int tocRefStartPos = spineItemsList.get(0).index_of("toc=\"")+("toc=\"").length;
+            if((tocRefStartPos-("toc=\"").length) != -1){
+                bufferForSpineData.assign(spineItemsList.get(0).slice(tocRefStartPos, spineItemsList.get(0).length));
+            }else{
+                bufferForSpineData.assign("");
+            }
+        if(bufferForSpineData.str.length > 0){
         //loop over manifest data to get location of TOC file
         foreach(string manifestItem in manifestItemsList){
-          if(manifestItem.index_of("id=\""+bufferForSpineData.str+"\"") != -1){
-            int startPosOfNCXContentItem = manifestItem.index_of("href=")+("href=").length+1 ;
-            int endPosOfNCXContentItem = manifestItem.index_of("\"", startPosOfNCXContentItem+1);
-            if(startPosOfNCXContentItem != -1 && endPosOfNCXContentItem != -1 && endPosOfNCXContentItem>startPosOfNCXContentItem){
-              bufferForLocationOfContentData.assign(manifestItem.slice(startPosOfNCXContentItem, endPosOfNCXContentItem));
-              debug("SpineData="+bufferForSpineData.str+" | Location Of NCX ContentData="+bufferForLocationOfContentData.str);
-              //Read ncx file
-              string navigationData = BookwormApp.Utils.fileOperations("READ_FILE", (BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(),bufferForLocationOfContentData.str.strip())).strip(), "", "");
-              string[] navPointList = BookwormApp.Utils.multiExtractBetweenTwoStrings(navigationData, "<navPoint", "</navPoint>");
-              if(navPointList.length > 0){
-                foreach(string navPointItem in navPointList){
-                    string tocText  = "";
-                    try{
-                        tocText = BookwormApp.Utils.decodeHTMLChars(BookwormApp.Utils.extractXMLTag(navPointItem, "<text>", "</text>"));
-                    } catch(Error e) {
-                        warning ("Error in parsing ToC text ["+navPointItem+"] : "+e.message);  
-                    }
-                    int tocNavStartPoint = navPointItem.index_of("src=\"");
-                    int tocNavEndPoint = navPointItem.index_of("\"", tocNavStartPoint+("src=\"").length);
-                    if(tocNavStartPoint != -1 && tocNavEndPoint != -1 && tocNavEndPoint>tocNavStartPoint){
-                        string tocNavLocation = navPointItem.slice(tocNavStartPoint+("src=\"").length, tocNavEndPoint).strip();
-                        if(tocNavLocation.index_of("#") != -1){
-        				    tocNavLocation = tocNavLocation.slice(0, tocNavLocation.index_of("#"));
-        				}
-                        tocNavLocation = BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(), tocNavLocation);
-                        if(tocNavLocation.length>0){
-                            debug("tocText="+tocText+", tocNavLocation="+tocNavLocation);
-                            HashMap<string,string> TOCMapItem = new HashMap<string,string>();
-                            TOCMapItem.set(tocNavLocation, tocText);
+            if(manifestItem.index_of("id=\""+bufferForSpineData.str+"\"") != -1){
+                int startPosOfNCXContentItem = manifestItem.index_of("href=")+("href=").length+1 ;
+                int endPosOfNCXContentItem = manifestItem.index_of("\"", startPosOfNCXContentItem+1);
+                if(startPosOfNCXContentItem != -1 && 
+                   endPosOfNCXContentItem != -1 && 
+                   endPosOfNCXContentItem>startPosOfNCXContentItem){
+                    bufferForLocationOfContentData.assign(manifestItem.slice(startPosOfNCXContentItem, endPosOfNCXContentItem));
+                    debug("SpineData="+bufferForSpineData.str+" | Location Of NCX ContentData="+bufferForLocationOfContentData.str);
+                    string ncxFilePath = (   BookwormApp.Utils.getFullPathFromFilename(
+                                                            aBook.getBaseLocationOfContents(),bufferForLocationOfContentData.str.strip()
+                                                        )
+                                                   ).strip();
+                    //Parse ncx file to create table of contents
+                    ArrayList<string> extractedDataList = BookwormApp.XMLHandler.extractElementAndAttribute(
+                                                                                  ncxFilePath, "navPoint", "text", "content", "src");
+                    StringBuilder tocNavLocation = new StringBuilder("");
+                    foreach(string tocData in extractedDataList){
+                        HashMap<string,string> TOCMapItem = new HashMap<string,string>();
+                        string[] tocDataArray = tocData.split("#~#~#~#", 0);
+                        tocNavLocation.assign(tocDataArray[1]);
+                        if(tocNavLocation.str.index_of("#") != -1){
+        				    tocNavLocation.assign(tocNavLocation.str.slice(0, tocNavLocation.str.index_of("#")));
+        			    }
+                        tocNavLocation.assign(BookwormApp.Utils.getFullPathFromFilename(
+                                                                    aBook.getBaseLocationOfContents(), tocNavLocation.str));
+                        if(tocDataArray.length == 2){
+                            TOCMapItem.set(tocNavLocation.str, tocDataArray[0]);
                             aBook.setTOC(TOCMapItem);
+                            debug("Extracted ToC Chapter Name:"+tocDataArray[0]+" at location:"+tocNavLocation.str);
+                    
                         }
-                    }
+                    } 
                 }
-              }
+                break;
             }
-            break;
-          }
-        }
+       }
       }
     }
     // Clear the content list of any previous items

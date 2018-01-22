@@ -15,8 +15,8 @@ set (SCRIPTS_DIR ${PKGDATADIR}/scripts)
 
 # Set the application executable name and version info
 set (EXEC_NAME "com.github.babluboy.bookworm")
-set (RELEASE_NAME "bookworm v0.9.5")
-set (VERSION "0.9.5")
+set (RELEASE_NAME "bookworm v1.0.0")
+set (VERSION "1.0.0")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 # Translation files
@@ -49,6 +49,7 @@ set (SOURCE_LIST
     src/backgroundTasks.vala
     src/mobiReader.vala
     src/shortcuts.vala
+    src/xmlHandler.vala
 )
 
 include (GSettings)
@@ -65,6 +66,7 @@ pkg_check_modules(DEPS REQUIRED
                   webkit2gtk-4.0>=2.16.0
                   sqlite3>=3.5.9
                   poppler-glib
+                  libxml-2.0
                  )
 
 add_definitions(${DEPS_CFLAGS})
@@ -112,6 +114,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/backgroundTasks.vala
     src/mobiReader.vala
     src/shortcuts.vala
+    src/xmlHandler.vala
 
 # tell what libraries to use when compiling
 PACKAGES
@@ -121,6 +124,7 @@ PACKAGES
     webkit2gtk-4.0>=2.16.0
     sqlite3
     poppler-glib
+    libxml-2.0
 )
 
 # tell cmake what to call the executable we just made

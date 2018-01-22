@@ -285,7 +285,7 @@ public class BookwormApp.Info:Gtk.Window {
   public static BookwormApp.Book createTableOfContents(){
     Box content_box;
     //get the book being currently read
-		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+	BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
     if(aBook != null){
       //Return TOC if it has already been determined for the book - otherwise create TOC for the book
       if(aBook.getBookWidget("TABLE_OF_CONTENTS_WIDGET") != null){
