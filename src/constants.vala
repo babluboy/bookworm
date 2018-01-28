@@ -60,7 +60,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
 	public const string TEXT_FOR_INFO_TAB_ANNOTATIONS = _("Annotations");
 	public const string TEXT_FOR_ANNOTATION_TAG = _("Annotation Tags");
-	public const string TEXT_FOR_ANNOTATION_TAG_ENTRY = _("Comma seperated tags for this annotation");
+	public const string TEXT_FOR_ANNOTATION_TAG_ENTRY = _("Comma-separated tags for this annotation");
 	public const string TEXT_FOR_ANNOTATION = _("Add notes for : ");
 	public const string TEXT_FOR_ANNOTATIONS_FOUND = _("Click on a link to jump to an annotated section");
 	public const string TEXT_FOR_ANNOTATIONS_NOT_FOUND = _("No annotations set in BBB, right click the page of a book and choose annotation from the context menu to add annotations");

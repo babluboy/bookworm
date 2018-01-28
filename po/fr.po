@@ -175,7 +175,7 @@ msgid "Annotation Tags"
 msgstr "Étiquettes de notes"
 
 #: ../src/constants.vala:61
-msgid "Comma seperated tags for this annotation"
+msgid "Comma-separated tags for this annotation"
 msgstr "Étiquettes séparées par des virgules pour cette note"
 
 #: ../src/constants.vala:62

@@ -162,7 +162,7 @@ msgid "Annotation Tags"
 msgstr "注释标签"
 
 #: ../src/constants.vala:61
-msgid "Comma seperated tags for this annotation"
+msgid "Comma-separated tags for this annotation"
 msgstr "本注释逗号分隔的标签"
 
 #: ../src/constants.vala:62

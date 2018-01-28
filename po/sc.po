@@ -172,7 +172,7 @@ msgid "Annotation Tags"
 msgstr "Etichetas de sas notas"
 
 #: ../src/constants.vala:61
-msgid "Comma seperated tags for this annotation"
+msgid "Comma-separated tags for this annotation"
 msgstr "Eichetas separadas dae vìrgulas pro custa nota"
 
 #: ../src/constants.vala:62

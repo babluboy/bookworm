@@ -170,7 +170,7 @@ msgid "Annotation Tags"
 msgstr "Тэгі анатацыі"
 
 #: ../src/constants.vala:61
-msgid "Comma seperated tags for this annotation"
+msgid "Comma-separated tags for this annotation"
 msgstr "Тэгі для гэтай анатацыі, падзеленыя коскамі"
 
 #: ../src/constants.vala:62
