@@ -2,413 +2,435 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
+"PO-Revision-Date: 2018-01-28 14:04+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"Language-Team: Catalan "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/ca/>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.19-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
-msgstr ""
+msgstr "Selecciona una imatge"
 
 #: ../src/dialog.vala:496
 msgid "Select folder"
-msgstr ""
+msgstr "Selecciona una carpeta"
 
 #: ../src/library.vala:551
 msgid "Adding "
-msgstr ""
+msgstr "S’està afegint "
 
 #: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
-msgstr ""
+msgstr "Selecciona un llibre"
 
 #: ../src/bookworm.vala:112
 msgid "Display version number"
-msgstr ""
+msgstr "Mostra el número de versió"
 
 #: ../src/bookworm.vala:113
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Executa el Bookworm en el mode de depuració"
 
 #: ../src/bookworm.vala:114
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Executa el Bookworm en el mode d’informació"
 
 #: ../src/bookworm.vala:115
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Afegeix automticament llibres nous de les carpetes observades"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Un lector de llibres electrònics"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2018"
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr ""
+msgstr "Lloc web"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "No disponible"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "Lector de llibres"
 
 #: ../src/constants.vala:39
 msgid "Search this book…"
-msgstr ""
+msgstr "Cerca en aquest llibre…"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Cerca per títol, autor i etiquetes"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "Sembla que no hi ha cap llibre per al Bookworm."
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Creeu la vostra biblioteca afegint-hi llibres"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Trieu un llibre per a llegir-lo"
 
 #: ../src/constants.vala:44
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"S’ha produït un problema en extreure el contingut del llibre. Assegureu-vos "
+"que hi hagi un fitxer vàlid aquí: "
 
 #: ../src/constants.vala:45
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
+"S’ha detectat un tipus MIME no vàlid. Comproveu el format d’aquest llibre: "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"S’ha trobat contingut no vàlid. Assegureu-vos que hi hagi un fitxer vàlid "
+"aquí: "
 
 #: ../src/constants.vala:47
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"No s’ha pogut processar el llibre. Assegureu-vos que hi hagi un fitxer vàlid "
+"aquí: "
 
 #: ../src/constants.vala:48
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "El Bookworm no admet el format del fitxer trobat aquí: "
 
 #: ../src/constants.vala:49
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"No s’ha pogut recuperar el contingut sol·licitat. Suprimiu i afegiu novament "
+"el fitxer del llibre trobat aquí: "
 
 #: ../src/constants.vala:50
 msgid "Library"
-msgstr ""
+msgstr "Biblioteca"
 
 #: ../src/constants.vala:51
 msgid "Resume"
-msgstr ""
+msgstr "Reanuda"
 
 #: ../src/constants.vala:52
 msgid "Contents"
-msgstr ""
+msgstr "Contingut"
 
 #: ../src/constants.vala:53
 msgid "Content #"
-msgstr ""
+msgstr "Contingut #"
 
 #: ../src/constants.vala:54
 msgid "Bookmarks"
-msgstr ""
+msgstr "Punts de llibre"
 
 #: ../src/constants.vala:55
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Punt de llibre NNN per a la secció PPP"
 
 #: ../src/constants.vala:56
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Feu clic a un enllaç per a anar a la secció marcada"
 
 #: ../src/constants.vala:57
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"No s’ha definit cap punt de llibre en BBB. Feu clic a la icona del Bookworm "
+"de la barra de capçalera per a marcar la pàgina"
 
 #: ../src/constants.vala:58
 msgid "Search Results"
-msgstr ""
+msgstr "Resultats de la cerca"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Anotacions"
 
 #: ../src/constants.vala:60
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Etiquetes d’anotació"
 
 #: ../src/constants.vala:61
 msgid "Comma seperated tags for this annotation"
-msgstr ""
+msgstr "Etiquetes separades per comes per a aquesta anotació"
 
 #: ../src/constants.vala:62
 msgid "Add notes for : "
-msgstr ""
+msgstr "Afegeix notes per a: "
 
 #: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Fec clic a un enllaç per a anar a una secció anotada"
 
 #: ../src/constants.vala:64
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"No s’ha definit cap anotació en BBB. Feu clic dret a la pàgina d’un llibre i "
+"trieu l’anotació del menú contextual per a afegir-ne una"
 
 #: ../src/constants.vala:65
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Cerca de «$$$» a &&&:"
 
 #: ../src/constants.vala:66
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "S’han trobat les coincidències següents per a «$$$» a &&&:"
 
 #: ../src/constants.vala:67
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "No s’ha trobat cap resultat per a «$$$» a &&&"
 
 #: ../src/constants.vala:68
 msgid "Edit Info for"
-msgstr ""
+msgstr "Edita la informació de"
 
 #: ../src/constants.vala:69 ../src/constants.vala:73
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Actualitza la imatge de caràtula"
 
 #: ../src/constants.vala:70
 msgid "Update Title"
-msgstr ""
+msgstr "Actualitza el title"
 
 #: ../src/constants.vala:71
 msgid "Update Tags"
-msgstr ""
+msgstr "Actualitza les etiquetes"
 
 #: ../src/constants.vala:72
 msgid "Update Author"
-msgstr ""
+msgstr "Actualitza l’autor"
 
 #: ../src/constants.vala:74
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "Visualització de pantalla sencera (F11)"
 
 #: ../src/constants.vala:75
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "Surt de la pantalla sencera (Esc)"
 
 #: ../src/constants.vala:76
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Comprova el significat del mot"
 
 #: ../src/constants.vala:77
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Anota el text seleccionat"
 
 #: ../src/constants.vala:78
 msgid "Books"
-msgstr ""
+msgstr "Llibres"
 
 #: ../src/constants.vala:79
 msgid "Images"
-msgstr ""
+msgstr "Imatges"
 
 #: ../src/constants.vala:80
 msgid "All Files"
-msgstr ""
+msgstr "Tots els fitxers"
 
 #: ../src/constants.vala:81
 msgid "Title"
-msgstr ""
+msgstr "Títol"
 
 #: ../src/constants.vala:82
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: ../src/constants.vala:83
 msgid "Last Opened"
-msgstr ""
+msgstr "Darrera apertura"
 
 #: ../src/constants.vala:84
 msgid "Rating"
-msgstr ""
+msgstr "Calificació"
 
 #: ../src/constants.vala:85
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetes"
 
 #: ../src/constants.vala:86
 msgid "Today"
-msgstr ""
+msgstr "Avui"
 
 #: ../src/constants.vala:87
 msgid "Yesterday"
-msgstr ""
+msgstr "Ahir"
 
 #: ../src/constants.vala:88
 msgid "Days"
-msgstr ""
+msgstr "Dies"
 
 #: ../src/constants.vala:89
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "El descobriment de llibres començarà en tancar el Bookworm"
 
 #: ../src/constants.vala:91
 msgid "Add books to library"
-msgstr ""
+msgstr "Afegeix llibres a la biblioteca"
 
 #: ../src/constants.vala:92
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
+"Treu els llibres seleccionats de la biblioteca (no se suprimiran els fitxers)"
 
 #: ../src/constants.vala:93
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Trieu un o més llibres de la biblioteca"
 
 #: ../src/constants.vala:94
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Vegeu el sumari, els punts de llibre i els resultats de les cerques"
 
 #: ../src/constants.vala:95
 msgid "Reading preferences"
-msgstr ""
+msgstr "Preferències de lectura"
 
 #: ../src/constants.vala:96
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Feu clic per a marcar aquesta pàgina"
 
 #: ../src/constants.vala:97
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Feu clic per a treure aquest punt de llibre"
 
 #: ../src/constants.vala:98
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Augmenta la mida del text (Ctrl + Maj + +)"
 
 #: ../src/constants.vala:99
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Redueix la mida del text (Ctrl + -)"
 
 #: ../src/constants.vala:100
 msgid "Increase line width"
-msgstr ""
+msgstr "Augmenta l’amplada de les línies"
 
 #: ../src/constants.vala:101
 msgid "Decrease line width"
-msgstr ""
+msgstr "Redueix l’amplada de les línies"
 
 #: ../src/constants.vala:102
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Augmenta l’interlineat"
 
 #: ../src/constants.vala:103
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Redueix l’interlineat"
 
 #: ../src/constants.vala:104
 msgid "Update cover image"
-msgstr ""
+msgstr "Actualitza la imatge de caràtula"
 
 #: ../src/constants.vala:105
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Aplica el tema per a aquest perfil de colors"
 
 #: ../src/constants.vala:106 ../src/constants.vala:107
 msgid "Enter full screen view and Esc key to undo"
-msgstr ""
+msgstr "Canvia a la visualització de pantalla sencera; Esc per a desfer-lo"
 
 #: ../src/constants.vala:108
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Afegeix una carpeta on cercar llibres"
 
 #: ../src/constants.vala:109
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Suprimeix la carpeta mostrada de la cerca de llibres"
 
 #: ../src/constants.vala:110
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Afegeix una anotació al text seleccionat"
 
 #: ../src/constants.vala:112 ../src/constants.vala:139
 msgid "Preferences"
-msgstr ""
+msgstr "Preferències"
 
 #: ../src/constants.vala:113
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Habilita el mode fosc"
 
 #: ../src/constants.vala:114
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Habilita la memòria cau (obre els llibres més ràpidament)"
 
 #: ../src/constants.vala:115
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Mostra sempre la biblioteca en iniciar"
 
 #: ../src/constants.vala:116
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Habilita la lectura de dues pàgines"
 
 #: ../src/constants.vala:117
 msgid "Select Font"
-msgstr ""
+msgstr "Tria el tipus de lletra"
 
 #: ../src/constants.vala:118
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Personalitza el perfil de lectura"
 
 #: ../src/constants.vala:119
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: ../src/constants.vala:120
 msgid "Background"
-msgstr ""
+msgstr "Fons"
 
 #: ../src/constants.vala:121
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Afegeix carpetes on cercar llibres"
 
 #: ../src/constants.vala:122
 msgid "Profile"
-msgstr ""
+msgstr "Perfil"
 
 #: ../src/constants.vala:123
 msgid "Reset to default values"
-msgstr ""
+msgstr "Reinicialitza als valors per defecte"
 
 #: ../src/constants.vala:137
 msgid "Unknown Book"
-msgstr ""
+msgstr "Llibre desconegut"
 
 #: ../src/constants.vala:138
 msgid "About"
-msgstr ""
+msgstr "Quant a"
 
 #: ../src/utils.vala:527 ../src/utils.vala:598
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·la"
 
 #: ../src/utils.vala:529 ../src/utils.vala:599
 msgid "Open"
-msgstr ""
+msgstr "Obre"
 
 #: ../src/utils.vala:531
 msgid "Save"
-msgstr ""
+msgstr "Desa"
 
 #: ../src/mobiReader.vala:311
 msgid "Book"
-msgstr ""
+msgstr "Llibre"
