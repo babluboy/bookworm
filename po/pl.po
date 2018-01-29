@@ -172,7 +172,7 @@ msgid "Annotation Tags"
 msgstr "Znaczniki przypisów"
 
 #: ../src/constants.vala:61
-msgid "Comma seperated tags for this annotation"
+msgid "Comma-separated tags for this annotation"
 msgstr "Lista tagów, oddzielonych przecinkami, dla tego przypisu"
 
 #: ../src/constants.vala:62

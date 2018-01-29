@@ -168,7 +168,7 @@ msgid "Annotation Tags"
 msgstr "Anteckningstaggar"
 
 #: ../src/constants.vala:61
-msgid "Comma seperated tags for this annotation"
+msgid "Comma-separated tags for this annotation"
 msgstr "Kommaseparerade taggar för denna anteckning"
 
 #: ../src/constants.vala:62

@@ -180,7 +180,7 @@ msgid "Annotation Tags"
 msgstr ""
 
 #: ../src/constants.vala:61
-msgid "Comma seperated tags for this annotation"
+msgid "Comma-separated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:62

@@ -171,7 +171,7 @@ msgid "Annotation Tags"
 msgstr "Etiquetes d’anotació"
 
 #: ../src/constants.vala:61
-msgid "Comma seperated tags for this annotation"
+msgid "Comma-separated tags for this annotation"
 msgstr "Etiquetes separades per comes per a aquesta anotació"
 
 #: ../src/constants.vala:62
