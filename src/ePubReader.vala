@@ -19,6 +19,7 @@
 using Gee;
 public class BookwormApp.ePubReader {
 
+  public static string NCXRefInSpineData = "";
   public static BookwormApp.Book parseEPubBook (owned BookwormApp.Book aBook){
     //Only parse the eBook if it has not been parsed already
     if(!aBook.getIsBookParsed()){
@@ -49,24 +50,8 @@ public class BookwormApp.ePubReader {
       string baseLocationOfContents = locationOfOPFFile.replace(File.new_for_path(locationOfOPFFile).get_basename(), "");
       aBook.setBaseLocationOfContents(baseLocationOfContents);
 
-      //Determine Manifest contents
-      ArrayList<string> manifestItemsList = parseManifestData(locationOfOPFFile);
-      if("false" == manifestItemsList.get(0)){
-        aBook.setIsBookParsed(false);
-        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
-        return aBook;
-      }
-
-      //Determine Spine contents
-      ArrayList<string> spineItemsList = parseSpineData(locationOfOPFFile);
-      if("false" == spineItemsList.get(0)){
-        aBook.setIsBookParsed(false);
-        aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
-        return aBook;
-      }
-
-      //Match Spine with Manifest to populate content list for EPub Book
-      aBook = getContentList(aBook, manifestItemsList, spineItemsList);
+      //Populate content list for EPub Book
+      aBook = determineToC(aBook, locationOfOPFFile);
       if(aBook.getBookContentList().size < 1){
         aBook.setIsBookParsed(false);
         aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_ISSUE);
@@ -75,7 +60,7 @@ public class BookwormApp.ePubReader {
 
       //Try to determine Book Cover Image if it is not already available
       if(!aBook.getIsBookCoverImagePresent()){
-        aBook = setCoverImage(aBook, manifestItemsList);
+        aBook = setCoverImage(aBook, locationOfOPFFile);
       }
 
       //Determine Book Meta Data like Title, Author, etc
@@ -141,283 +126,270 @@ public class BookwormApp.ePubReader {
 
   public static string getOPFFileLocation(string extractionLocation){
         string locationOfOPFFile = "false";
-        //read the META-INF/container.xml file
-        string metaInfContents = BookwormApp.Utils.fileOperations("READ", 
-                                                                            extractionLocation, 
-                                                                            BookwormApp.Constants.EPUB_META_INF_FILENAME, "");
-        if("false" == metaInfContents){
-            //META-INF/container.xml File was not found at expected location
-            warning("META-INF/container.xml file could not be located at expected location:"+
-                            extractionLocation+"/"+
-                            BookwormApp.Constants.EPUB_META_INF_FILENAME);
-            return "false";
-        }
-        //locate the content of first occurence of "rootfiles"
-        int startPosOfRootFiles = metaInfContents.index_of("<rootfiles>")+("<rootfiles>").length;
-        int endPosOfRootFiles = metaInfContents.index_of("</rootfiles>",startPosOfRootFiles+1);
-        if((startPosOfRootFiles - +("<rootfiles>").length) != -1 && endPosOfRootFiles != -1 && endPosOfRootFiles>startPosOfRootFiles){
-            string rootfiles = metaInfContents.slice(startPosOfRootFiles, endPosOfRootFiles);
-            //locate the content of "rootfile" tag
-            int startPosOfRootFile = rootfiles.index_of("<rootfile")+("<rootfile").length;
-            int endPosOfRootFile = rootfiles.index_of(">",startPosOfRootFile+1);
-            if((startPosOfRootFile - +("<rootfile").length) != -1 && endPosOfRootFile != -1 && endPosOfRootFile>startPosOfRootFile){
-                string rootfile = rootfiles.slice(startPosOfRootFile, endPosOfRootFile);
-                //locate the content of "full-path" id
-                int startPosOfContentOPFFile = rootfile.index_of("full-path=\"")+("full-path=\"").length;
-                int endPosOfContentOPFFile = rootfile.index_of("\"", startPosOfContentOPFFile+1);
-                if((   startPosOfContentOPFFile - ("full-path=\"").length) != -1 && 
-                        endPosOfContentOPFFile != -1 && 
-                        endPosOfContentOPFFile > startPosOfContentOPFFile)
-                {
-                    string ContentOPFFilePath = rootfile.slice(startPosOfContentOPFFile,endPosOfContentOPFFile);
-                    debug(  "CONTENT.OPF file relative path [Fetched from file:"+ 
-                                    extractionLocation+"/"+
-                                    BookwormApp.Constants.EPUB_META_INF_FILENAME+"] is:"+ 
-                                    ContentOPFFilePath);
-                    locationOfOPFFile = extractionLocation + "/" + ContentOPFFilePath;
-                }else{
-                    warning("Parsing of META-INF/container.xml file at location:"+
-                    extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
-                    " has problems[startPosOfContentOPFFile="+startPosOfContentOPFFile.to_string()+
-                    ", endPosOfContentOPFFile="+endPosOfContentOPFFile.to_string()+"].");
-                    return "false";
-                }
-            }else{
-                warning("Parsing of META-INF/container.xml file at location:"+
-                extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
-                " has problems[startPosOfRootFile="+startPosOfRootFile.to_string()+
-                ", endPosOfRootFile="+endPosOfRootFile.to_string()+"].");
-                return "false";
+        //Form the path to the META-INF/container.xml file
+        string pathToXMLFile = extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME;
+        //Parse META-INF/container.xml file to locate the path to the OPF file
+        ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
+        inputDataList.add(new XMLData() {
+                                            containerTagName = "rootfiles",
+                                            inputTagName = "rootfile",
+                                            inputAttributeName = "full-path"}
+                                        );
+        XmlParser thisParser = new XmlParser();
+        ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
+        extractedDataList = thisParser.extractDataFromXML(pathToXMLFile, inputDataList);
+
+        foreach(XMLData aExtractedData in extractedDataList){
+           foreach(string aAttributeValue in aExtractedData.extractedTagAttributes){
+                string  OPFFilePath = aAttributeValue;
+                locationOfOPFFile = extractionLocation + "/" + OPFFilePath;
             }
-        }else{
-            warning("Parsing of META-INF/container.xml file at location:"+
-            extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME+
-            " has problems[startPosOfRootFiles="+startPosOfRootFiles.to_string()+
-            ", endPosOfRootFiles="+endPosOfRootFiles.to_string()+"].");
-            return "false";
         }
         debug ("Sucessfully determined absolute path to OPF File as : "+locationOfOPFFile);
         return locationOfOPFFile;
   }
 
-  public static ArrayList<string> parseManifestData (string locationOfOPFFile){
-    ArrayList<string> manifestItemsList = new ArrayList<string> ();
-    //read contents from content.opf file
-    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
-    if("false" == OpfContents){
-      //OPF Contents could not be read from file
-      warning("OPF contents could not be read from file:"+locationOfOPFFile);
-      manifestItemsList.add("false");
-      return manifestItemsList;
-    }
-    try{
-        string manifestData = BookwormApp.Utils.extractXMLTag(OpfContents, "<manifest", "</manifest>");
-        string[] manifestList = BookwormApp.Utils.multiExtractBetweenTwoStrings (manifestData, "<item", ">");
-        foreach(string manifestItem in manifestList){
-            debug("Manifest Item="+manifestItem);
-            manifestItemsList.add(manifestItem);
-        }
-        if(manifestItemsList.size < 1){
-            //OPF Contents could not be read from file
-            warning("OPF contents could not be read from file:"+locationOfOPFFile);
-            manifestItemsList.add("false");
-            return manifestItemsList;
-        }
-        debug("Completed extracting [no. of manifest items="+manifestItemsList.size.to_string()+"] manifest data from OPF File:"+locationOfOPFFile);
-    }catch (Error e) {
-        warning("Error in parsing manifest data ["+OpfContents+"] :"+ e.message );    
-    }
-    return manifestItemsList;
+  public static ArrayList<XMLData> parseOPFData (string locationOfOPFFile) {
+        //Parse OPF xml file to read the MANIFEST data (id, href, media-type)
+        ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
+        inputDataList.add(new XMLData() {
+                                            containerTagName = "manifest",
+                                            inputTagName = "item",
+                                            inputAttributeName = "id"}
+                                        );
+        inputDataList.add(new XMLData() {
+                                            containerTagName = "manifest",
+                                            inputTagName = "item",
+                                            inputAttributeName ="href"}
+                                        );
+        inputDataList.add(new XMLData() {
+                                            containerTagName = "manifest",
+                                            inputTagName = "item",
+                                            inputAttributeName ="media-type"}
+                                        );
+        inputDataList.add(new XMLData() {
+                                        containerTagName = "spine",
+                                        inputTagName = "itemref",
+                                        inputAttributeName ="idref"}
+                                    );
+        inputDataList.add(new XMLData() {
+                                        containerTagName = "",
+                                        inputTagName = "spine",
+                                        inputAttributeName ="toc"}
+                                    );
+        XmlParser thisParser = new XmlParser();
+        ArrayList<XMLData> opfItemsList = new ArrayList<XMLData>();
+        opfItemsList = thisParser.extractDataFromXML(locationOfOPFFile, inputDataList);
+        return opfItemsList;
   }
+   
+  public static BookwormApp.Book determineToC (owned BookwormApp.Book aBook, string locationOfOPFFile) {
+    //Parse OPF xml file to read the MANIFEST data (id, href, media-type)
+    ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
+    inputDataList.add(new XMLData() {
+                                        containerTagName = "manifest",
+                                        inputTagName = "item",
+                                        inputAttributeName = "id"}
+                                    );
+    inputDataList.add(new XMLData() {
+                                        containerTagName = "manifest",
+                                        inputTagName = "item",
+                                        inputAttributeName = "href"}
+                                    );
+    inputDataList.add(new XMLData() {
+                                        containerTagName = "manifest",
+                                        inputTagName = "item",
+                                        inputAttributeName = "media-type"}
+                                    );
+    inputDataList.add(new XMLData() {
+                                    containerTagName = "spine",
+                                    inputTagName = "itemref",
+                                    inputAttributeName = "idref"}
+                                );
+    inputDataList.add(new XMLData() {
+                                    containerTagName = "",
+                                    inputTagName = "spine",
+                                    inputAttributeName = "toc"}
+                                );
+    XmlParser thisParser = new XmlParser();
+    ArrayList<XMLData> opfItemsList = new ArrayList<XMLData>();
+    opfItemsList = thisParser.extractDataFromXML(locationOfOPFFile, inputDataList);
 
-  public static ArrayList<string> parseSpineData (string locationOfOPFFile){
-    ArrayList<string> spineItemsList = new ArrayList<string> ();
-    //read contents from content.opf file
-    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
-    if("false" == OpfContents){
-      //OPF Contents could not be read from file
-      warning("OPF contents could not be read from file:"+locationOfOPFFile);
-      spineItemsList.add("false");
-      return spineItemsList;
-    }
-    try{  
-        string spineData = BookwormApp.Utils.extractXMLTag(OpfContents, "<spine", "</spine>");
-        //check TOC id in Spine data and add as first item to Spine List
-        int startTOCPosition = spineData.index_of("toc=\"");
-        int endTOCPosition = spineData.index_of("\"", startTOCPosition+("toc=\"").length+1);
-        if(startTOCPosition != -1 && endTOCPosition != -1 && endTOCPosition>startTOCPosition) {
-          spineItemsList.add(spineData.slice(startTOCPosition, endTOCPosition));
-          debug("TOC ID="+spineData.slice(startTOCPosition, endTOCPosition));
-        }
-        string[] spineList = BookwormApp.Utils.multiExtractBetweenTwoStrings (spineData, "<itemref", ">");
-        foreach(string spineItem in spineList){
-          debug("Spine Item="+spineItem);
-          spineItemsList.add(spineItem);
-        }
-        if(spineItemsList.size < 1){
-          //OPF Contents could not be read from file
-          warning("OPF contents could not be read from file:"+locationOfOPFFile);
-          spineItemsList.add("false");
-          return spineItemsList;
-        }
-        debug("Completed extracting [no. of spine items="+spineItemsList.size.to_string()+"] spine data from OPF File:"+locationOfOPFFile);
-    }catch (Error e) {
-        warning ("Error in parsing spine data["+OpfContents+"] : "+e.message);
-    }
-    return spineItemsList;
-  }
-
-  public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, 
-                                                                                          ArrayList<string> manifestItemsList, 
-                                                                                          ArrayList<string> spineItemsList){
-        StringBuilder bufferForSpineData = new StringBuilder("");
-        StringBuilder bufferForLocationOfContentData = new StringBuilder("");
-        //extract location of ncx file if present on the first index of the Spine List
-        if(spineItemsList.get(0).contains("toc=\"")){
-            int tocRefStartPos = spineItemsList.get(0).index_of("toc=\"")+("toc=\"").length;
-            if((tocRefStartPos-("toc=\"").length) != -1){
-                bufferForSpineData.assign(spineItemsList.get(0).slice(tocRefStartPos, spineItemsList.get(0).length));
-            }else{
-                bufferForSpineData.assign("");
-            }
-        if(bufferForSpineData.str.length > 0){
-        //loop over manifest data to get location of TOC file
-        foreach(string manifestItem in manifestItemsList){
-            if(manifestItem.index_of("id=\""+bufferForSpineData.str+"\"") != -1){
-                int startPosOfNCXContentItem = manifestItem.index_of("href=")+("href=").length+1 ;
-                int endPosOfNCXContentItem = manifestItem.index_of("\"", startPosOfNCXContentItem+1);
-                if(startPosOfNCXContentItem != -1 && 
-                   endPosOfNCXContentItem != -1 && 
-                   endPosOfNCXContentItem>startPosOfNCXContentItem){
-                    bufferForLocationOfContentData.assign(manifestItem.slice(startPosOfNCXContentItem, endPosOfNCXContentItem));
-                    debug("SpineData="+bufferForSpineData.str+" | Location Of NCX ContentData="+bufferForLocationOfContentData.str);
-                    string ncxFilePath = (   BookwormApp.Utils.getFullPathFromFilename(
-                                                            aBook.getBaseLocationOfContents(),bufferForLocationOfContentData.str.strip()
-                                                        )
-                                                   ).strip();
-                    //Parse ncx file to create table of contents
-                    ArrayList<string> extractedDataList = BookwormApp.XMLHandler.extractElementAndAttribute(
-                                                                                  ncxFilePath, "navPoint", "text", "content", "src");
-                    StringBuilder tocNavLocation = new StringBuilder("");
-                    foreach(string tocData in extractedDataList){
+    if(opfItemsList.size>3 && opfItemsList.get(4).extractedTagAttributes.size>0){
+        debug("Sucessfully extracted SPINE data..");
+        //Get the reference of the NCX file in the SPINE data
+        string spineNCXReference = opfItemsList.get(4).extractedTagAttributes.get(0);
+        debug("Sucessfully determined NCX File Reference as:"+spineNCXReference);
+        //Get the position of NCX Reference in MANIFEST data
+        if(opfItemsList.size>0 && opfItemsList.get(0).extractedTagAttributes.contains(spineNCXReference)){
+            debug("Sucessfully extracted MANIFEST data..");
+            int spineNCXPosition = opfItemsList.get(0).extractedTagAttributes.index_of(spineNCXReference);
+            debug("Sucessfully matched NCX File path information on MANIFEST data at position:"+spineNCXPosition.to_string());
+            //Get the location of the NCX file from the MANIFEST href attribute
+            string NCXFileRelativePath = opfItemsList.get(1).extractedTagAttributes.get(spineNCXPosition);
+            debug("Extracted relative NCX file path from MANIFEST data as:"+ NCXFileRelativePath);
+            string ncxFilePath = (   BookwormApp.Utils.getFullPathFromFilename (
+                                                            aBook.getBaseLocationOfContents(), NCXFileRelativePath.strip()
+                                                      )
+                                                 ).strip();
+            if("true" == BookwormApp.Utils.fileOperations ("EXISTS", "", ncxFilePath, "")){
+                debug("Sucessfully determined NCX File Path as:"+ncxFilePath);
+                //Parse NCX xml file to read the ToC data (id, href, media-type)
+                ArrayList<XMLData> inputDataListForToC = new ArrayList<XMLData>();
+                inputDataListForToC.add(new XMLData() {
+                                    containerTagName = "navLabel",
+                                    inputTagName = "text",
+                                    inputAttributeName = ""}
+                                );
+                inputDataListForToC.add(new XMLData() {
+                                    containerTagName = "",
+                                    inputTagName = "content",
+                                    inputAttributeName = "src"}
+                                );
+                XmlParser ncxParser = new XmlParser();
+                ArrayList<XMLData> ncxDataExtractedList = new ArrayList<XMLData>();
+                ncxDataExtractedList = ncxParser.extractDataFromXML(ncxFilePath, inputDataListForToC);
+                if( ncxDataExtractedList.get(0).extractedTagValues.size > 0 &&
+                    ncxDataExtractedList.get(1).extractedTagAttributes.size > 0 &&
+                    ncxDataExtractedList.get(0).extractedTagValues.size == ncxDataExtractedList.get(1).extractedTagAttributes.size)
+                {
+                    for(int count=0; count<ncxDataExtractedList.get(0).extractedTagValues.size; count++){
                         HashMap<string,string> TOCMapItem = new HashMap<string,string>();
-                        string[] tocDataArray = tocData.split("#~#~#~#", 0);
-                        tocNavLocation.assign(tocDataArray[1]);
-                        if(tocNavLocation.str.index_of("#") != -1){
-        				    tocNavLocation.assign(tocNavLocation.str.slice(0, tocNavLocation.str.index_of("#")));
-        			    }
-                        tocNavLocation.assign(BookwormApp.Utils.getFullPathFromFilename(
-                                                                    aBook.getBaseLocationOfContents(), tocNavLocation.str));
-                        if(tocDataArray.length == 2){
-                            TOCMapItem.set(tocNavLocation.str, tocDataArray[0]);
-                            aBook.setTOC(TOCMapItem);
-                            debug("Extracted ToC Chapter Name:"+tocDataArray[0]+" at location:"+tocNavLocation.str);
-                    
+                        string tocLocation = ncxDataExtractedList.get(1).extractedTagAttributes.get(count);
+                        if( tocLocation.index_of("#") != -1 ){
+                            tocLocation = tocLocation.slice(0, tocLocation.index_of("#"));
                         }
-                    } 
+                        tocLocation = BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(), tocLocation);
+                        TOCMapItem.set(tocLocation, ncxDataExtractedList.get(0).extractedTagValues.get(count));
+                        aBook.setTOC(TOCMapItem);
+                        debug("Extracted ToC Chapter Name:"+
+                                                    ncxDataExtractedList.get(0).extractedTagValues.get(count)+
+                                    " at location:"+
+                                                    ncxDataExtractedList.get(1).extractedTagAttributes.get(count));
+                    }
                 }
-                break;
             }
-       }
-      }
-    }
-    // Clear the content list of any previous items
-    aBook.clearBookContentList();
-    //loop over remaning spine items(ncx file will be ignored as it will not have a prefix of idref)
-    foreach(string spineItem in spineItemsList){
-      int startPosOfSpineItem = spineItem.index_of("idref=")+("idref=").length+1;
-      int endPosOfSpineItem = spineItem.index_of("\"", startPosOfSpineItem+1);
-      if(startPosOfSpineItem != -1 && endPosOfSpineItem != -1 && endPosOfSpineItem>startPosOfSpineItem){
-        bufferForSpineData.assign(spineItem.slice(startPosOfSpineItem, endPosOfSpineItem));
-      }else{
-        bufferForSpineData.assign("");//clear spine buffer if the data does not contain idref
-      }
-      if(bufferForSpineData.str.length > 0){
-        //loop over manifest items to match the spine item
-        foreach(string manifestItem in manifestItemsList){
-          if(manifestItem.contains("id=\""+bufferForSpineData.str+"\"")){
-            int startPosOfContentItem = manifestItem.index_of("href=")+("href=").length+1 ;
-            int endPosOfContentItem = manifestItem.index_of("\"", startPosOfContentItem+1);
-            if(startPosOfContentItem != -1 && endPosOfContentItem != -1 && endPosOfContentItem>startPosOfContentItem){
-              bufferForLocationOfContentData.assign(manifestItem.slice(startPosOfContentItem, endPosOfContentItem));
-              debug("SpineData="+bufferForSpineData.str+" | LocationOfContentData="+bufferForLocationOfContentData.str);
-              aBook.setBookContentList(aBook.getBaseLocationOfContents()+bufferForLocationOfContentData.str);
-            }
-            break;
-          }
         }
-      }
+    }
+    
+    // Create the content list  - clear the content list of any previous items
+    aBook.clearBookContentList();
+    //loop over all idref attributes in spine data
+    foreach(string spineIDREF in opfItemsList[3].extractedTagAttributes){
+        //check if the SPINE IDREF exists in the MANIFEST Attributes
+        if(opfItemsList[0].extractedTagAttributes.contains(spineIDREF)){
+            int positionOfIDREF = opfItemsList[0].extractedTagAttributes.index_of (spineIDREF);
+            //extract the HREF from MANIFEST corresponding to the SPINE IDREF
+            string locationOfContentData = opfItemsList[1].extractedTagAttributes.get(positionOfIDREF);
+            aBook.setBookContentList(aBook.getBaseLocationOfContents()+locationOfContentData);
+            debug("Book content data :"+aBook.getBaseLocationOfContents()+locationOfContentData);
+        }
     }
     return aBook;
   }
 
-  public static BookwormApp.Book setCoverImage (owned BookwormApp.Book aBook, ArrayList<string> manifestItemsList){
+  public static BookwormApp.Book setCoverImage (owned BookwormApp.Book aBook, string locationOfOPFFile){
     debug("Initiated process for cover image extraction of eBook located at:"+aBook.getBookExtractionLocation());
     string bookCoverLocation = "";
-    //determine the location of the book's cover image
-    for (int i = 0; i < manifestItemsList.size; i++) {
-        if (manifestItemsList[i].down().contains("media-type=\"image") && manifestItemsList[i].down().contains("cover")) {
-            int startIndexOfCoverLocation = manifestItemsList[i].index_of("href=\"")+6;
-            int endIndexOfCoverLocation = manifestItemsList[i].index_of("\"", startIndexOfCoverLocation+1);
-            if(startIndexOfCoverLocation != -1 && endIndexOfCoverLocation != -1 && endIndexOfCoverLocation > startIndexOfCoverLocation){
-              bookCoverLocation = aBook.getBaseLocationOfContents() + manifestItemsList[i].slice(startIndexOfCoverLocation, endIndexOfCoverLocation);
+    //Parse OPF xml file to read the MANIFEST data (id, href, media-type)
+    ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
+    inputDataList.add(new XMLData() {
+                                        containerTagName = "manifest",
+                                        inputTagName = "item",
+                                        inputAttributeName = "id"}
+                                    );
+    inputDataList.add(new XMLData() {
+                                        containerTagName = "manifest",
+                                        inputTagName = "item",
+                                        inputAttributeName = "media-type"}
+                                    );
+    inputDataList.add(new XMLData() {
+                                        containerTagName = "manifest",
+                                        inputTagName = "item",
+                                        inputAttributeName = "href"}
+                                    );
+    XmlParser thisParser = new XmlParser();
+    ArrayList<XMLData> opfItemsList = new ArrayList<XMLData>();
+    opfItemsList = thisParser.extractDataFromXML(locationOfOPFFile, inputDataList);
+    
+    //Check for a MANIFEST item for cover
+    int count = 0;
+    foreach(string id in opfItemsList[0].extractedTagAttributes){
+        if( id.contains("cover") ){
+           //Get media type for the cover items
+            string coverMediaType = opfItemsList[1].extractedTagAttributes.get(count);
+            //get cover location if media type matches "image"
+            if(coverMediaType.contains("image")){
+                bookCoverLocation = opfItemsList[2].extractedTagAttributes.get(count);
+                bookCoverLocation = aBook.getBaseLocationOfContents() + bookCoverLocation;
+                break;
             }
-            break;
         }
+        count++;
     }
-    //check if cover was not found and assign flag
-    if(bookCoverLocation == null || bookCoverLocation.length < 1){
-      aBook.setIsBookCoverImagePresent(false);
-      debug("Cover image not found for book located at:"+aBook.getBookExtractionLocation());
-    }else{
-      //copy cover image to bookworm cover image cache
-      aBook = BookwormApp.Utils.setBookCoverImage(aBook, bookCoverLocation);
+    
+    //check if cover was not found and assign flag for default cover to be used
+    if( bookCoverLocation.length < 1 &&
+        "true" == BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, "") )
+    {
+        aBook.setIsBookCoverImagePresent(false);
+        debug("Cover image not found for book located at:"+aBook.getBookExtractionLocation());
+    } else{
+        //copy cover image to bookworm cover image cache
+        aBook = BookwormApp.Utils.setBookCoverImage(aBook, bookCoverLocation);
     }
     return aBook;
   }
 
   public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
     debug("Initiated process for finding meta data of eBook located at:"+aBook.getBookExtractionLocation());
-    string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
-    //determine the title of the book from contents if it is not already available
-    if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
-      if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
-        int startOfTitleText = OpfContents.index_of(">", OpfContents.index_of("<dc:title"));
-        int endOfTittleText = OpfContents.index_of("</dc:title>", startOfTitleText);
-        if(startOfTitleText != -1 && endOfTittleText != -1 && endOfTittleText > startOfTitleText){
-          string bookTitle = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfTitleText+1, endOfTittleText));
-          aBook.setBookTitle(bookTitle);
-          debug("Determined eBook Title as:"+bookTitle);
+    //Parse OPF xml file to read the book meta data
+    ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
+    inputDataList.add(new XMLData() {
+                                        containerTagName = "",
+                                        inputTagName = "title",
+                                        inputAttributeName = ""}
+                                    );
+    inputDataList.add(new XMLData() {
+                                        containerTagName = "",
+                                        inputTagName = "creator",
+                                        inputAttributeName = ""}
+                                    );
+    
+    XmlParser thisParser = new XmlParser();
+    ArrayList<XMLData> opfItemsList = new ArrayList<XMLData>();
+    opfItemsList = thisParser.extractDataFromXML(locationOfOPFFile, inputDataList);
+    
+    if(opfItemsList[0].extractedTagValues.size > 0){
+        string bookTitle = opfItemsList[0].extractedTagValues.get(0);
+        if(bookTitle.length > 0){
+            aBook.setBookTitle(BookwormApp.Utils.decodeHTMLChars(bookTitle));
+            debug("Determined eBook Title as:"+bookTitle);
+        }else{
+            //If the book title has not been determined, use the file name as book title
+            if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
+                bookTitle = File.new_for_path(aBook.getBookExtractionLocation()).get_basename();
+                if( bookTitle.last_index_of(".") != -1){
+                    bookTitle = bookTitle.slice(0, bookTitle.last_index_of("."));
+                }
+                aBook.setBookTitle(bookTitle);
+                debug("File name set as Title:"+bookTitle);
+            }
         }
-      }
-    }
-    //If the book title has still not been determined, use the file name as book title
-    if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
-      string bookTitle = File.new_for_path(aBook.getBookExtractionLocation()).get_basename();
-      if(bookTitle.last_index_of(".") != -1){
-        bookTitle = bookTitle.slice(0, bookTitle.last_index_of("."));
-      }
-      aBook.setBookTitle(bookTitle);
-      debug("File name set as Title:"+bookTitle);
     }
 
     //determine the author of the book
-    if(OpfContents.contains("<dc:creator") && OpfContents.contains("</dc:creator>")){
-      int startOfAuthorText = OpfContents.index_of(">", OpfContents.index_of("<dc:creator"));
-      int endOfAuthorText = OpfContents.index_of("</dc:creator>", startOfAuthorText);
-      if(startOfAuthorText != -1 && endOfAuthorText != -1 && endOfAuthorText > startOfAuthorText){
-        string bookAuthor = BookwormApp.Utils.decodeHTMLChars(OpfContents.slice(startOfAuthorText+1, endOfAuthorText));
-        aBook.setBookAuthor(bookAuthor);
-        debug("Determined eBook Author as:"+bookAuthor);
-      }else{
-        aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
-        debug("Could not determine eBook Author, default Author set");
-      }
-    }else{
-      aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
-      debug("Could not determine eBook Author, default title set");
+    if(opfItemsList[1].extractedTagValues.size > 0){
+        string bookAuthor = opfItemsList[1].extractedTagValues.get(0);
+        if(bookAuthor.length > 0){
+            aBook.setBookAuthor(BookwormApp.Utils.decodeHTMLChars(bookAuthor));
+            debug("Determined eBook Author as:"+bookAuthor);
+        }else{
+            //If the book author has not been determined, use a default text for author
+            aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
+            debug("Could not determine eBook Author, default Author set");
+        }
     }
-
     return aBook;
   }
 }

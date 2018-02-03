@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-22 22:42+0000\n"
+"POT-Creation-Date: 2018-02-03 20:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Select folder"
 msgstr ""
 
-#: ../src/library.vala:574
+#: ../src/library.vala:576
 msgid "Adding "
 msgstr ""
 
@@ -168,7 +168,7 @@ msgid "Comma-separated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:64
-msgid "Add notes for : "
+msgid "Edit annotation for : "
 msgstr ""
 
 #: ../src/constants.vala:65
