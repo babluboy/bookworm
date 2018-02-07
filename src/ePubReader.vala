@@ -256,16 +256,19 @@ public class BookwormApp.ePubReader {
                     for(int count=0; count<ncxDataExtractedList.get(0).extractedTagValues.size; count++){
                         HashMap<string,string> TOCMapItem = new HashMap<string,string>();
                         string tocLocation = ncxDataExtractedList.get(1).extractedTagAttributes.get(count);
+                        //Handle the links with anchor elements
+                        string anchorValue = "";
                         if( tocLocation.index_of("#") != -1 ){
+                            anchorValue = tocLocation.slice(tocLocation.index_of("#"), tocLocation.length);
                             tocLocation = tocLocation.slice(0, tocLocation.index_of("#"));
                         }
                         tocLocation = BookwormApp.Utils.getFullPathFromFilename(aBook.getBaseLocationOfContents(), tocLocation);
-                        TOCMapItem.set(tocLocation, ncxDataExtractedList.get(0).extractedTagValues.get(count));
+                        TOCMapItem.set(tocLocation+anchorValue, ncxDataExtractedList.get(0).extractedTagValues.get(count));
                         aBook.setTOC(TOCMapItem);
                         debug("Extracted ToC Chapter Name:"+
                                                     ncxDataExtractedList.get(0).extractedTagValues.get(count)+
                                     " at location:"+
-                                                    ncxDataExtractedList.get(1).extractedTagAttributes.get(count));
+                                                    tocLocation+anchorValue);
                     }
                 }
             }

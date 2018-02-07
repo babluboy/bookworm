@@ -50,6 +50,7 @@ public class BookwormApp.Book{
   private bool ifPageBackward = true;
   private bool isBookSelected = false;
   private bool wasBookOpened = false;
+  private string bookAnchor = "";
   private HashMap<string,Gtk.Widget> bookWidgetsList = new HashMap<string,Gtk.Widget> ();
 
   //getter list for book id
@@ -316,6 +317,14 @@ public class BookwormApp.Book{
   }
   public Gtk.Widget getBookWidget (string name){
     return bookWidgetsList.get(name);
+  }
+
+  //getter setter for book anchor
+  public void setAnchor (string aBookAnchor){
+    bookAnchor = aBookAnchor;
+  }
+  public string getAnchor (){
+    return bookAnchor;
   }
 
   //print book details

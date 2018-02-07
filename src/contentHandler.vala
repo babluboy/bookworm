@@ -22,45 +22,70 @@ using Gee;
 public class BookwormApp.contentHandler {
   public static BookwormApp.Settings settings;
 
-  public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
-    debug("Starting to render page contents for book ["+aBook.getBookTitle()+"] for direction ["+direction+"]");
-    int currentContentLocation = aBook.getBookPageNumber();
-		//set page number based on direction of navigation
-		switch(direction){
-			case "FORWARD"://This is for moving the book forward
-				if(aBook.getIfPageForward()){
-					currentContentLocation++;
-					aBook.setBookPageNumber(currentContentLocation);
-				}
-				break;
-
-			case "BACKWARD"://This is for moving the book backwards
-				if(aBook.getIfPageBackward()){
-					currentContentLocation--;
-	        aBook.setBookPageNumber(currentContentLocation);
-				}
-				break;
-
-			case "SEARCH"://Load the page and scroll to the search text
-				break;
-
-			default://This is for opening the current page of the book
-				//No change of page number required
-				break;
-		}
-		string bookContent = BookwormApp.contentHandler.provideContent(aBook,currentContentLocation, direction);
+    public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
+        debug("Starting to render page contents for book ["+aBook.getBookTitle()+"] for direction ["+direction+"]");
+        int currentContentLocation = aBook.getBookPageNumber();
+        //set page number based on direction of navigation
+        switch(direction){
+            case "FORWARD"://This is for moving the book forward
+                if(aBook.getIfPageForward()){
+                    currentContentLocation++;
+                    aBook.setBookPageNumber(currentContentLocation);
+                }
+                break;
+            case "BACKWARD"://This is for moving the book backwards
+                if(aBook.getIfPageBackward()){
+                    currentContentLocation--;
+                    aBook.setBookPageNumber(currentContentLocation);
+                }
+                break;
+            case "SEARCH"://Load the page and scroll to the search text
+                break;
+            default://This is for opening the current page of the book
+                //No change of page number required
+                break;
+        }
+        string bookContent = contentHandler.provideContent(aBook,currentContentLocation, direction);
         //render the content on webview
         BookwormApp.AppWindow.aWebView.load_html(bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
         //set the focus to the webview to capture keypress events
         BookwormApp.AppWindow.aWebView.grab_focus();
-		//set the bookmak icon on the header
-		handleBookMark("DISPLAY");
-		//set the navigation controls
-		aBook = BookwormApp.Bookworm.controlNavigation(aBook);
-		//set the current value of the page slider
-		BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
-		return aBook;
-	}
+        //set the bookmak icon on the header
+        handleBookMark("DISPLAY");
+        //set the navigation controls
+        aBook = BookwormApp.Bookworm.controlNavigation(aBook);
+        //set the current value of the page slider
+        BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
+        return aBook;
+    }
+
+    public static string provideContent (owned BookwormApp.Book aBook, int contentLocation, string mode){
+        debug("Attempting to fetch content at index["+contentLocation.to_string()+"] from book at location:"+aBook.getBaseLocationOfContents());
+        StringBuilder contents = new StringBuilder();
+        if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
+            //handle the case when the content list has html escape chars for the URI
+            string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
+            //fetch content from extracted book
+            contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
+            //find list of relative urls with src, href, etc and convert them to absolute ones
+            foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
+                string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
+                StringBuilder srcItemFullPath = new StringBuilder();
+                foreach(string srcItem in srcList){
+                    srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
+                    contents.assign(contents.str.replace(tagname+srcItem+"\"",BookwormApp.Utils.encodeHTMLChars(tagname+srcItemFullPath.str)+"\""));
+                }
+            }
+            //update the content for required manipulation
+            contents.assign(adjustPageContent(aBook, contents.str, mode));
+        }else{
+            //requested content not available
+            aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_NOT_FOUND_ISSUE);
+            BookwormApp.AppWindow.showInfoBar(aBook, Gtk.MessageType.WARNING);
+        }
+        debug("Completed fetching content from book at location:"+aBook.getBaseLocationOfContents() + "for page:" + contentLocation.to_string());
+        return contents.str;
+    }
 
   public static void handleBookMark(string action){
 		//get the book being currently read
@@ -122,12 +147,21 @@ public class BookwormApp.contentHandler {
                                      .replace("$READING_TEXT_ALIGN", BookwormApp.Bookworm.settings.text_alignment)
                                      .replace("$TEXT_AND_BACKGROUND_COLOR", cssForTextAndBackgroundColor);
     //Scroll to the previous vertical position - this should be used:
-    //(1)when the book is re-opened from the library and
+    //(1) when the book is re-opened from the library and
     //(2) when a book existing in the library is opened from File Explorer using Bookworm
-    //The flag for applying the javascript is set from the above two locations
+    //(3) when clicking on a link in the TableOfContents which has an anchor
+    //The flag for applying the javascript is set from the above locations
     if(BookwormApp.Bookworm.isPageScrollRequired){
-      BookwormApp.Bookworm.onLoadJavaScript.append(" window.scrollTo(0,"+(BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead)).getBookScrollPos().to_string()+");");
-      BookwormApp.Bookworm.isPageScrollRequired = false; // stop this function being called subsequently
+        //check if an Anchor is present and set up the javascript for the same
+        if(aBook.getAnchor().length > 0){
+            BookwormApp.Bookworm.onLoadJavaScript.append(" document.getElementById('"+aBook.getAnchor()+"').scrollIntoView();");
+        }else{ //set up the javascript for scrolling to last read position
+            BookwormApp.Bookworm.onLoadJavaScript.append(" window.scrollTo(0,"+
+                       (BookwormApp.Bookworm.libraryViewMap.get(
+                                                BookwormApp.Bookworm.locationOfEBookCurrentlyRead)
+                       ).getBookScrollPos().to_string()+");");
+        }
+        BookwormApp.Bookworm.isPageScrollRequired = false; // stop this function being called subsequently
     }
     //If two page view id required - add a script to set the CSS for two-page if there are more than 500 chars
     if(BookwormApp.Bookworm.settings.is_two_page_enabled){
@@ -201,34 +235,6 @@ public class BookwormApp.contentHandler {
     }
     //debug(pageContent.str);
     return pageContent.str;
-  }
-
-  public static string provideContent (owned BookwormApp.Book aBook, int contentLocation, string mode){
-    debug("Attempting to fetch content at index["+contentLocation.to_string()+"] from book at location:"+aBook.getBaseLocationOfContents());
-    StringBuilder contents = new StringBuilder();
-    if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
-      //handle the case when the content list has html escape chars for the URI
-      string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
-      //fetch content from extracted book
-      contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
-      //find list of relative urls with src, href, etc and convert them to absolute ones
-      foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
-      string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
-        StringBuilder srcItemFullPath = new StringBuilder();
-        foreach(string srcItem in srcList){
-          srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
-          contents.assign(contents.str.replace(tagname+srcItem+"\"",BookwormApp.Utils.encodeHTMLChars(tagname+srcItemFullPath.str)+"\""));
-        }
-      }
-      //update the content for required manipulation
-      contents.assign(adjustPageContent(aBook, contents.str, mode));
-    }else{
-      //requested content not available
-      aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_NOT_FOUND_ISSUE);
-      BookwormApp.AppWindow.showInfoBar(aBook, Gtk.MessageType.WARNING);
-    }
-    debug("Completed fetching content from book at location:"+aBook.getBaseLocationOfContents() + "for page:" + contentLocation.to_string());
-    return contents.str;
   }
 
   public static void searchHTMLContents(){

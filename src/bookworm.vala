@@ -172,10 +172,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 			window.get_style_context ().add_class ("rounded");
 			//set the minimum size of the window on minimize
 			window.set_size_request (600, 350);
-			//set branding for bookworm
-			var aRGBABrandColor = Gdk.RGBA();
-			aRGBABrandColor.parse("#F2D6FD");
-			Granite.Widgets.Utils.set_color_primary (window, aRGBABrandColor);
 			//set css provider
 			cssProvider = new Gtk.CssProvider();
 			loadCSSProvider(cssProvider);

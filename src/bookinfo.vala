@@ -302,7 +302,17 @@ public class BookwormApp.Info:Gtk.Window {
               contentLinkButton.halign = Align.START;
               content_box.pack_start(contentLinkButton,false,false,0);
               contentLinkButton.activate_link.connect (() => {
-                aBook.setBookPageNumber(aBook.getBookContentList().index_of(contentLinkButton.get_uri ().strip()));
+                string linkURI = contentLinkButton.get_uri ().strip();
+                //check if the link contains a # - bookmarked section
+                if(linkURI.index_of("#") != -1){
+                    string URIWithoutBookmark = linkURI.slice(0, linkURI.index_of("#"));
+                    aBook.setBookPageNumber(aBook.getBookContentList().index_of(URIWithoutBookmark));
+                    aBook.setAnchor(linkURI.slice(linkURI.index_of("#")+1, linkURI.length));
+                    BookwormApp.Bookworm.isPageScrollRequired = true;
+                }else{
+                    aBook.setBookPageNumber(aBook.getBookContentList().index_of(linkURI));
+                }
+                debug("Selected link from Table of Contents with URI ["+linkURI+"] and page location:"+aBook.getBookLocation().to_string());
                 //update book details to libraryView Map
                 BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
                 aBook = BookwormApp.contentHandler.renderPage(aBook, "");

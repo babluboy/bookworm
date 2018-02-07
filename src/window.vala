@@ -142,7 +142,6 @@ public class BookwormApp.AppWindow {
         //Create the UI for library view and add all components to ui box for library view
         bookLibrary_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
         bookLibrary_ui_box.set_border_width (0);
-        bookLibrary_ui_box.pack_start (infobar, false, true, 0);
         bookLibrary_ui_box.pack_start (library_view_box, true, true, 0);
         bookLibrary_ui_box.pack_start (add_remove_footer_box, false, true, 0);
 
@@ -191,6 +190,7 @@ public class BookwormApp.AppWindow {
         //Add all ui components to the main UI box
         Gtk.Box main_ui_box = new Gtk.Box (Orientation.VERTICAL, 0);
         main_ui_box.set_border_width (0);
+        main_ui_box.pack_start(infobar, false, true, 0);
         main_ui_box.pack_start(bookLibrary_ui_box, true, true, 0);
         main_ui_box.pack_start(BookwormApp.Info.createBookInfo(), true, true, 0);
         main_ui_box.pack_end(bookReading_ui_box, true, true, 0);
