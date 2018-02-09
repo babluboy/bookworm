@@ -288,7 +288,9 @@ public class BookwormApp.AppWindow {
         });
         //Add action for adding book(s) on the library view
         add_book_button.clicked.connect (() => {
-            ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, "EBOOKS");
+            ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(
+                                        Gtk.FileChooserAction.OPEN, _("Select eBook"), 
+                                        BookwormApp.Bookworm.window, true, "EBOOKS");
             BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
             int countOfBooksToBeAdded = 0;
             foreach(string pathToSelectedBook in selectedEBooks){

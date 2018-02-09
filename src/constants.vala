@@ -142,7 +142,6 @@ namespace BookwormApp.Constants {
 	public const string SEARCH_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.search.sh";
 	public const string HTML_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.htmlscripts.txt";
 	public const string MOBIUNPACK_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/mobi_lib/mobi_unpack.py";
-	public const string CSS_LOCATION = INSTALL_PREFIX+"/share/bookworm/com.github.babluboy.bookworm.app.css";
 	public const string PREV_PAGE_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-previous.svg";
 	public const string NEXT_PAGE_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-go-next.svg";
 	public const string SELECT_BOOK_ICON_IMAGE_LOCATION = INSTALL_PREFIX+"/share/bookworm/icons/hicolor/16x16/actions/bookworm-object-select-symbolic.svg";

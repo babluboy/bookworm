@@ -183,7 +183,6 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-de
 # install app specific desktop, appdata and css files
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.desktop DESTINATION ${DATADIR}/applications)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.appdata.xml DESTINATION ${DATADIR}/metainfo/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.app.css DESTINATION ${DATADIR}/bookworm)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.contract DESTINATION share/contractor)
 
 # install bookworm scripts in application specific folder - /usr/share/bookworm/scripts
