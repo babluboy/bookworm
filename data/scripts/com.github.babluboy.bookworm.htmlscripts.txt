@@ -143,6 +143,19 @@
           /* Control text alignment */
           text-align: $READING_TEXT_ALIGN;
     }
+
+    /* Re-size and center cover images for the title page (first or second page)*/
+    $TITLE_PAGE_IMAGE {
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width:auto;
+        height:auto;
+        max-width:50vh !important;
+        max-height:70vh !important;
+    }
+
     /* Set style for two page view */
     .two_page {
           -webkit-column-count: 2;

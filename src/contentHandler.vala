@@ -130,6 +130,11 @@ public class BookwormApp.contentHandler {
         StringBuilder pageContent = new StringBuilder(pageContentStr);
         BookwormApp.Bookworm.onLoadJavaScript.assign("onload=\"");
         string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts;
+
+        //For the Title Page (first or second page), resize height and width of images
+        if(aBook.getBookPageNumber() < 2 && (pageContentStr.contains("image") || pageContentStr.contains("img"))) {
+            currentBookwormScripts = currentBookwormScripts.replace("$TITLE_PAGE_IMAGE", "* ");
+        }
         //Set background and font colour based on profile
         string[] profileColorList = settings.list_of_profile_colors.split (",");
         if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
@@ -237,14 +242,14 @@ public class BookwormApp.contentHandler {
 
         //add onload javascript and css to body tag
         if(pageContent.str.index_of("<BODY") != -1){
-            pageContent.assign(pageContent.str.replace("<BODY", currentBookwormScripts + "<BODY " +                                 
+            pageContent.assign(pageContent.str.replace("<BODY", currentBookwormScripts + "<BODY " +
                                                                                             BookwormApp.Bookworm.onLoadJavaScript.str));
         }else if (pageContent.str.index_of("<body") != -1){
-            pageContent.assign(pageContent.str.replace("<body", currentBookwormScripts + "<body " +             
+            pageContent.assign(pageContent.str.replace("<body", currentBookwormScripts + "<body " +
                                                                                             BookwormApp.Bookworm.onLoadJavaScript.str));
         }else{
-            pageContent.assign(currentBookwormScripts + "<BODY " + 
-                                                BookwormApp.Bookworm.onLoadJavaScript.str + ">" + 
+            pageContent.assign(currentBookwormScripts + "<BODY " +
+                                                BookwormApp.Bookworm.onLoadJavaScript.str + ">" +
                                                 pageContent.str + "</BODY>");
         }
         //debug(pageContent.str);
@@ -256,14 +261,14 @@ public class BookwormApp.contentHandler {
         int searchResultCount = 1;
         BookwormApp.Bookworm.searchResultsMap.clear();
         //execute search
-        bookSearchResults.assign(BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.SEARCH_SCRIPT_LOCATION + 
-                                                    " \"" + BookwormApp.Bookworm.aContentFileToBeSearched.str + "\" \"" + 
+        bookSearchResults.assign(BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.SEARCH_SCRIPT_LOCATION +
+                                                    " \"" + BookwormApp.Bookworm.aContentFileToBeSearched.str + "\" \"" +
                                                     BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "\""));
         //process search results
         if(bookSearchResults.str.strip().length > 0){
             string[] individualLines = bookSearchResults.str.strip().split ("\n",-1);
             foreach ( string individualLine in individualLines) {
-                BookwormApp.Bookworm.searchResultsMap.set(searchResultCount.to_string() 
+                BookwormApp.Bookworm.searchResultsMap.set(searchResultCount.to_string()
                                             +"~~"+BookwormApp.Bookworm.aContentFileToBeSearched.str, individualLine.strip());
                 searchResultCount++;
             }
