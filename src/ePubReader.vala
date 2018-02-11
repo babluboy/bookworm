@@ -148,40 +148,6 @@ public class BookwormApp.ePubReader {
         debug ("Sucessfully determined absolute path to OPF File as : "+locationOfOPFFile);
         return locationOfOPFFile;
   }
-
-  public static ArrayList<XMLData> parseOPFData (string locationOfOPFFile) {
-        //Parse OPF xml file to read the MANIFEST data (id, href, media-type)
-        ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
-        inputDataList.add(new XMLData() {
-                                            containerTagName = "manifest",
-                                            inputTagName = "item",
-                                            inputAttributeName = "id"}
-                                        );
-        inputDataList.add(new XMLData() {
-                                            containerTagName = "manifest",
-                                            inputTagName = "item",
-                                            inputAttributeName ="href"}
-                                        );
-        inputDataList.add(new XMLData() {
-                                            containerTagName = "manifest",
-                                            inputTagName = "item",
-                                            inputAttributeName ="media-type"}
-                                        );
-        inputDataList.add(new XMLData() {
-                                        containerTagName = "spine",
-                                        inputTagName = "itemref",
-                                        inputAttributeName ="idref"}
-                                    );
-        inputDataList.add(new XMLData() {
-                                        containerTagName = "",
-                                        inputTagName = "spine",
-                                        inputAttributeName ="toc"}
-                                    );
-        XmlParser thisParser = new XmlParser();
-        ArrayList<XMLData> opfItemsList = new ArrayList<XMLData>();
-        opfItemsList = thisParser.extractDataFromXML(locationOfOPFFile, inputDataList);
-        return opfItemsList;
-  }
    
   public static BookwormApp.Book determineToC (owned BookwormApp.Book aBook, string locationOfOPFFile) {
     //Parse OPF xml file to read the MANIFEST data (id, href, media-type)
@@ -294,7 +260,7 @@ public class BookwormApp.ePubReader {
   public static BookwormApp.Book setCoverImage (owned BookwormApp.Book aBook, string locationOfOPFFile){
     debug("Initiated process for cover image extraction of eBook located at:"+aBook.getBookExtractionLocation());
     string bookCoverLocation = "";
-    //Parse OPF xml file to read the MANIFEST data (id, href, media-type)
+    //Parse OPF xml file to read the MANIFEST data
     ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
     inputDataList.add(new XMLData() {
                                         containerTagName = "manifest",
@@ -304,6 +270,7 @@ public class BookwormApp.ePubReader {
     inputDataList.add(new XMLData() {
                                         containerTagName = "manifest",
                                         inputTagName = "item",
+                                        enforceAttributeData = true,
                                         inputAttributeName = "media-type"}
                                     );
     inputDataList.add(new XMLData() {
@@ -311,18 +278,24 @@ public class BookwormApp.ePubReader {
                                         inputTagName = "item",
                                         inputAttributeName = "href"}
                                     );
+     inputDataList.add(new XMLData() {
+                                        containerTagName = "manifest",
+                                        inputTagName = "item",
+                                        enforceAttributeData = true,
+                                        inputAttributeName = "properties"}
+                                    );
     XmlParser thisParser = new XmlParser();
     ArrayList<XMLData> opfItemsList = new ArrayList<XMLData>();
     opfItemsList = thisParser.extractDataFromXML(locationOfOPFFile, inputDataList);
     
-    //Check for a MANIFEST item for cover
     int count = 0;
-    foreach(string id in opfItemsList[0].extractedTagAttributes){
-        if( id.contains("cover") ){
+    //epub3.1 : Check for a MANIFEST item with "properties" attribute contaning the word "cover-image"
+    foreach(string properties in opfItemsList[3].extractedTagAttributes){
+        if( properties.contains("cover-image") ){
            //Get media type for the cover items
             string coverMediaType = opfItemsList[1].extractedTagAttributes.get(count);
             //get cover location if media type matches "image"
-            if(coverMediaType.contains("image")){
+            if(coverMediaType.index_of("image") != -1){
                 bookCoverLocation = opfItemsList[2].extractedTagAttributes.get(count);
                 bookCoverLocation = aBook.getBaseLocationOfContents() + bookCoverLocation;
                 break;
@@ -331,7 +304,28 @@ public class BookwormApp.ePubReader {
         count++;
     }
     
-    //check if cover was not found and assign flag for default cover to be used
+    //If cover could not be located in properties="cover-image" : 
+    //Check for a MANIFEST item with "id" attribute contaning the word "cover"
+    if( bookCoverLocation.length < 1 &&
+        "true" == BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, "") )
+    {
+        count = 0;
+        foreach(string id in opfItemsList[0].extractedTagAttributes){
+            if( id.contains("cover") ){
+               //Get media type for the cover items
+                string coverMediaType = opfItemsList[1].extractedTagAttributes.get(count);
+                //get cover location if media type matches "image"
+                if(coverMediaType.index_of("image") != -1){
+                    bookCoverLocation = opfItemsList[2].extractedTagAttributes.get(count);
+                    bookCoverLocation = aBook.getBaseLocationOfContents() + bookCoverLocation;
+                    break;
+                }
+            }
+            count++;
+        }
+    }
+    
+    //check if cover was still not found and assign flag for default cover to be used
     if( bookCoverLocation.length < 1 &&
         "true" == BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, "") )
     {

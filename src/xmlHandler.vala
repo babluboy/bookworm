@@ -29,6 +29,7 @@ public class BookwormApp.XMLData {
         public string containerTagName;
         public string inputTagName;
         public string inputAttributeName;
+        public bool enforceAttributeData = false;
         public ArrayList<string> extractedTagValues = new ArrayList<string>();
         public ArrayList<string> extractedTagAttributes = new ArrayList<string>();
 }
@@ -167,15 +168,21 @@ public class BookwormApp.XmlParser {
         //If Extraction criteria is met and attribute extraction is required, extract required attribute
         if(thisXMLData.shouldExtractionStart && thisXMLData.inputAttributeName.length > 0) { //check whether attributes are expected
             int count = 0;
-            foreach (string attribute in attributeList){
+            bool wasAttributeExtracted = false;
+            foreach (string attribute in attributeList) {
                 if(attributeList.length >= count+1){
                     if(thisXMLData.inputAttributeName == attributeList[count]) {            
                         //extract the odd attribute data as the even attribute is the name of the attribute
                         thisXMLData.extractedTagAttributes.add(attributeList[count+1]);
+                        wasAttributeExtracted = true;
                         break;
                     }
                     count = count + 2;
                 }
+            }
+            //Check if attribute was not extracted and the attribute value is forced, add an empty value
+            if(!wasAttributeExtracted && thisXMLData.enforceAttributeData){
+                thisXMLData.extractedTagAttributes.add("");
             }
         }
     }

@@ -329,14 +329,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		//set the value for the first profile
 		profileCombobox.active = 0;
-		//Gdk.Color.parse (profileColorList[0], out txtcolor);
-		//textColourButton.set_color (txtcolor);
 		var aRGBATextColor = Gdk.RGBA();
 		aRGBATextColor.parse(profileColorList[0]);
 		textColourButton.rgba = aRGBATextColor;
 
-		//Gdk.Color.parse (profileColorList[1], out bgcolor);
-		//backgroundColourButton.set_color (bgcolor);
 		var aRGBABackgroundColor = Gdk.RGBA();
 		aRGBABackgroundColor.parse(profileColorList[1]);
 		backgroundColourButton.rgba = aRGBABackgroundColor;
@@ -437,11 +433,21 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
     	nightModeSwitch.notify["active"].connect (() => {
 			if (nightModeSwitch.active) {
+				//Set the dark theme
 				BookwormApp.Bookworm.settings.is_dark_theme_enabled = true;
 				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+				//Set the default dark theme for webkit
+				BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[4];
+				//Refresh the page if it is open
+				BookwormApp.contentHandler.refreshCurrentPage();
 			}else{
+				//Set the light theme
 				BookwormApp.Bookworm.settings.is_dark_theme_enabled = false;
 				Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
+				//Set the default light theme for webkit
+				BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[3];
+				//Refresh the page if it is open
+				BookwormApp.contentHandler.refreshCurrentPage();
 			}
 		});
 		//Set text entry for text/background color based on selected profile

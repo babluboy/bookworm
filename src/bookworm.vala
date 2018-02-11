@@ -96,7 +96,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 		program_name = BookwormApp.Constants.program_name;
 		exec_name = "com.github.babluboy.bookworm";
-		
+
 		options = new OptionEntry[4];
 		options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
 		options[1] = { "debug", 0, 0, OptionArg.NONE, ref command_line_option_debug, _("Run Bookworm in debug mode"), null };
@@ -135,6 +135,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 			opt_context.add_main_entries (options, null);
 			unowned string[] tmpArgs = args;
 			opt_context.parse (ref tmpArgs);
+			if("--version" in args){
+				command_line_option_version = true;
+			}
 		} catch (OptionError e) {
 			info ("Run '%s --help' to see a full list of available command line options.\n", args[0]);
 			info ("error: %s\n", e.message);
@@ -148,7 +151,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			debug ("Bookworm running in info mode...");
 		}
 		if(command_line_option_version){
-			print("\nbookworm version "+Constants.bookworm_version+"\n");
+			print("\nBookworm Version "+BookwormApp.Constants.bookworm_version+"\n");
 			return 0;
 		}else if(command_line_option_discover){
 			BookwormApp.BackgroundTasks.performTasks();
@@ -397,9 +400,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//Update the library view
 		BookwormApp.Library.updateLibraryViewFromDB();
 		//load scripts data
-		bookwormScripts = 	BookwormApp.Utils.fileOperations("READ_FILE", 
-											BookwormApp.Constants.HTML_SCRIPT_LOCATION, 
-											"", 
+		bookwormScripts = 	BookwormApp.Utils.fileOperations("READ_FILE",
+											BookwormApp.Constants.HTML_SCRIPT_LOCATION,
+											"",
 											"");
 	}
 

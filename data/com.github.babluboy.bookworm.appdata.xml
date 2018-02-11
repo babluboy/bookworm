@@ -6,7 +6,7 @@
   <project_group>bookworm</project_group>
   <project_license>GPL-3.0+</project_license>
   <name>Bookworm</name>
-  <summary>A simple, focused eBook reader</summary>
+  <summary>A focused eBook reader</summary>
   <description>
     <p>Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc.</p>
     <p>Manage your library by tagging and updating metadata on books, to quickly find books using metadata searching and tag based filtering.</p>
@@ -26,14 +26,19 @@
     <binary>com.github.babluboy.bookworm</binary>
   </provides>
   <releases>
-     <release version="0.9.5" date="2017-12-10">
+     <release version="1.0.0" date="2018-02-11">
       <description>
-        <p>Annotations and Two Page Views</p>
+        <p>Right to Left Reading</p>
         <ul>
-            <li>Support for creating Annotations with searchable tags</li>
-            <li>Two page reading</li>
-            <li>New shortcuts (See Bookworm Homepage for details)</li>
+            <li>Support for Right to Left Reading</li>
+            <li>A shiny new icon and new cover images</li>
+            <li>Better support for EPUB Table of Contents</li>
         </ul>
+      </description>
+    </release>
+   <release version="0.9.5" date="2017-12-10">
+      <description>
+       <p>Annotations and Two Page Views</p>
       </description>
     </release>
     <release version="0.9" date="2017-07-23">
@@ -67,4 +72,9 @@
   <url type="bugtracker">https://github.com/babluboy/bookworm/issues</url>
   <url type="help">https://github.com/babluboy/bookworm/wiki</url>
   <update_contact>bablu.boy_AT_gmail.com</update_contact>
+  <custom>
+     <value key="x-appcenter-color-primary">#e29ffc</value>
+     <value key="x-appcenter-color-primary-text">#260063</value>
+     <value key="x-appcenter-suggested-price">2</value>
+  </custom>
 </component>

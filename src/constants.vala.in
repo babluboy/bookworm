@@ -103,6 +103,8 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_LINE_WIDTH_DECREASE = _("Decrease line width");
 	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_INCREASE = _("Increase line spacing");
 	public const string TOOLTIP_TEXT_FOR_LINE_HEIGHT_DECREASE = _("Decrease line spacing");
+	public const string TOOLTIP_TEXT_FOR_READING_LEFT_ALIGN = _("Align left");
+	public const string TOOLTIP_TEXT_FOR_READING_RIGHT_ALIGN = _("Align right");
 	public const string TOOLTIP_TEXT_FOR_UPDATING_COVER_IMAGE = _("Update cover image");
 	public const string TOOLTIP_TEXT_FOR_PROFILE = _("Apply theme for this colour profile");
 	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view and Esc key to undo");
@@ -182,16 +184,23 @@ namespace BookwormApp.Constants {
 	public const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
 
 
-	public const string BOOKWORM_READING_MODE[] = {"PROFILE1","PROFILE2","PROFILE3"};
-	public const string BOOKWORM_UI_STATES[] = {"LIBRARY_MODE_GRID",
-																										 "READING_MODE",
-																										 "GRID_SELECTION_MODE",
-																										 "GRID_SELECTED_MODE",
-																										 "CONTENT_MODE",
-																										 "LIBRARY_MODE_LIST",
-																										 "LIST_SELECTION_MODE",
-																										 "LIST_SELECTED_MODE"
-																										};
+	public const string BOOKWORM_READING_MODE[] = {
+		"PROFILE1",
+		"PROFILE2",
+		"PROFILE3", 
+		"PROFILE_LIGHT_DEFAULT", 
+		"PROFILE_DARK_DEFAULT"
+	};
+	public const string BOOKWORM_UI_STATES[] = {
+		"LIBRARY_MODE_GRID",
+		"READING_MODE",
+		"GRID_SELECTION_MODE",
+		"GRID_SELECTED_MODE",
+		"CONTENT_MODE",
+		"LIBRARY_MODE_LIST",
+		"LIST_SELECTION_MODE",
+		"LIST_SELECTED_MODE"
+	};
 	public const string IDENTIFIER_FOR_PROPERTY_VALUE = "==";
 	public const string IDENTIFIER_FOR_PROPERTY_START = "~~";
 	public const string IDENTIFIER_FOR_PROPERTY_END = "##\n";

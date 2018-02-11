@@ -148,9 +148,10 @@ public class BookwormApp.Info:Gtk.Window {
       int bookmarkNumber = 1;
       foreach (string bookmarkedPage in bookmarkList) {
         if(bookmarkedPage != null && bookmarkedPage.length > 0){
-          LinkButton bookmarkLinkButton = new LinkButton.with_label (bookmarkedPage, BookwormApp.Constants.TEXT_FOR_BOOKMARKS
-                .replace("NNN", bookmarkNumber.to_string())
-                .replace("PPP", (int.parse(bookmarkedPage)+1).to_string()));
+          LinkButton bookmarkLinkButton = new LinkButton.with_label (bookmarkedPage,
+                BookwormApp.Constants.TEXT_FOR_BOOKMARKS
+                                .replace("NNN", bookmarkNumber.to_string())
+                                .replace("PPP", (int.parse(bookmarkedPage)+1).to_string()));
           bookmarkNumber++;
           bookmarkLinkButton.halign = Align.START;
           bookmarks_box.pack_start(bookmarkLinkButton,false,false,0);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-10 16:45+0000\n"
+"POT-Creation-Date: 2018-02-11 16:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Select Image"
 msgstr ""
 
-#: ../src/dialog.vala:504
+#: ../src/dialog.vala:510
 msgid "Select folder"
 msgstr ""
 
@@ -330,82 +330,90 @@ msgid "Decrease line spacing"
 msgstr ""
 
 #: ../src/constants.vala:106
-msgid "Update cover image"
+msgid "Align left"
 msgstr ""
 
 #: ../src/constants.vala:107
+msgid "Align right"
+msgstr ""
+
+#: ../src/constants.vala:108
+msgid "Update cover image"
+msgstr ""
+
+#: ../src/constants.vala:109
 msgid "Apply theme for this colour profile"
 msgstr ""
 
-#: ../src/constants.vala:108 ../src/constants.vala:109
+#: ../src/constants.vala:110 ../src/constants.vala:111
 msgid "Enter full screen view and Esc key to undo"
 msgstr ""
 
-#: ../src/constants.vala:110
+#: ../src/constants.vala:112
 msgid "Add folder to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:111
+#: ../src/constants.vala:113
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:114
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:114 ../src/constants.vala:139
+#: ../src/constants.vala:116 ../src/constants.vala:141
 msgid "Preferences"
 msgstr ""
 
-#: ../src/constants.vala:115
+#: ../src/constants.vala:117
 msgid "Turn on Dark Mode"
 msgstr ""
 
-#: ../src/constants.vala:116
+#: ../src/constants.vala:118
 msgid "Enable cache (opens books faster)"
 msgstr ""
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:119
 msgid "Always show library on startup"
 msgstr ""
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:120
 msgid "Enable two page reading"
 msgstr ""
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:121
 msgid "Select Font"
 msgstr ""
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:122
 msgid "Customize reading profile"
 msgstr ""
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:123
 msgid "Text"
 msgstr ""
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:124
 msgid "Background"
 msgstr ""
 
-#: ../src/constants.vala:123
+#: ../src/constants.vala:125
 msgid "Add folders to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:124
+#: ../src/constants.vala:126
 msgid "Profile"
 msgstr ""
 
-#: ../src/constants.vala:125
+#: ../src/constants.vala:127
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:137
+#: ../src/constants.vala:139
 msgid "Unknown Book"
 msgstr ""
 
-#: ../src/constants.vala:138
+#: ../src/constants.vala:140
 msgid "About"
 msgstr ""
 

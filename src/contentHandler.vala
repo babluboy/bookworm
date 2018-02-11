@@ -137,7 +137,20 @@ public class BookwormApp.contentHandler {
         }
         //Set background and font colour based on profile
         string[] profileColorList = settings.list_of_profile_colors.split (",");
-        if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
+        
+        if(BookwormApp.Constants.BOOKWORM_READING_MODE[4] == BookwormApp.Bookworm.settings.reading_profile){
+            //default dark profile
+            cssForTextAndBackgroundColor = " background-color: #002b36"+
+                                                                          " !important; color: #93a1a1"+
+                                                                          " !important;";
+            currentBookwormScripts = currentBookwormScripts.replace("$SCROLLBAR_BACKGROUND", "#002b36");
+        } else if(BookwormApp.Constants.BOOKWORM_READING_MODE[3] == BookwormApp.Bookworm.settings.reading_profile){
+            //default light profile
+            cssForTextAndBackgroundColor = " background-color: #fbfbfb"+ 
+                                                                          " !important; color: #000000"+
+                                                                          " !important;";
+            currentBookwormScripts = currentBookwormScripts.replace("$SCROLLBAR_BACKGROUND", "#fbfbfb");
+        } else if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
             cssForTextAndBackgroundColor = " background-color: "+ profileColorList[5] +
                                                                           " !important; color: "+ profileColorList[4] +
                                                                           " !important;";
@@ -147,7 +160,7 @@ public class BookwormApp.contentHandler {
                                                                           " !important; color: "+ profileColorList[2] +
                                                                           " !important;";
             currentBookwormScripts = currentBookwormScripts.replace("$SCROLLBAR_BACKGROUND", profileColorList[3]);
-        }else{
+        } else{
             cssForTextAndBackgroundColor = " background-color: "+ profileColorList[1] +
                                                                           " !important; color: "+ profileColorList[0] +
                                                                           " !important;";
@@ -299,7 +312,7 @@ public class BookwormApp.contentHandler {
         //open the book added, if only one book path is present on command line
         //if this book was not in the library, then the library view will be shown
         if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length == 2 &&
-            "bookworm" == BookwormApp.Bookworm.pathsOfBooksToBeAdded[0])
+            BookwormApp.Constants.bookworm_id == BookwormApp.Bookworm.pathsOfBooksToBeAdded[0])
         {
             BookwormApp.Book requestedBook = null;
             //Check if the requested book is available in the library

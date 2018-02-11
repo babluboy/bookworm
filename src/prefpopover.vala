@@ -49,13 +49,13 @@ public class BookwormApp.PreferencesMenu {
         alignLeftButton.set_image (BookwormApp.Bookworm.pref_menu_icon_align_left);
         alignLeftButton.set_halign(Gtk.Align.START);
         alignLeftButton.set_relief (ReliefStyle.NONE);
-        alignLeftButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_FONT_SIZE_INCREASE);
+        alignLeftButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_READING_LEFT_ALIGN);
 
         Gtk.Button alignRightButton = new Gtk.Button();
         alignRightButton.set_image (BookwormApp.Bookworm.pref_menu_icon_align_right);
         alignRightButton.set_halign(Gtk.Align.END);
         alignRightButton.set_relief (ReliefStyle.NONE);
-        alignRightButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_FONT_SIZE_DECREASE);
+        alignRightButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_READING_RIGHT_ALIGN);
 
         Gtk.Box textAlignBox = new Gtk.Box(Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_BUTTONS);
         textAlignBox.pack_start(alignLeftButton, false, false);
@@ -175,8 +175,8 @@ public class BookwormApp.PreferencesMenu {
 
         profileButton3.clicked.connect (() => {
             BookwormApp.Bookworm.settings.reading_profile = BookwormApp.Constants.BOOKWORM_READING_MODE[2];
-                //Refresh the page if it is open
-                BookwormApp.contentHandler.refreshCurrentPage();
+            //Refresh the page if it is open
+            BookwormApp.contentHandler.refreshCurrentPage();
         });
 
         marginDecreaseButton.clicked.connect (() => {
