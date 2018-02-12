@@ -10,35 +10,77 @@ icon: data/icons/24/com.github.babluboy.bookworm.svg
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
 
+plugs:
+  elementary-platform-loki:
+    interface: content
+    target: $SNAP/gnome-platform
+    default-provider: elementary-platform-loki:elementary-platform-loki
+
 apps:
   bookworm:
-    command: desktop-launch com.github.babluboy.bookworm
+    command: desktop-launch $SNAP/usr/bin/com.github.babluboy.bookworm
     desktop: usr/share/applications/com.github.babluboy.bookworm.desktop
-    plugs: [home, x11, unity7, gsettings]
+    plugs:
+      - x11
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - home
+      - gsettings
 
 parts:
+    granite:
+        plugin: cmake
+        source: lp:granite/0.5
+        source-type: bzr
+        configflags: [-DCMAKE_BUILD_TYPE=Release, -DCMAKE_INSTALL_PREFIX=/usr, -DCMAKE_INSTALL_LIBDIR=/usr/lib]
+        build-packages:
+          - build-essential
+          - valac
+        stage-packages:
+          - valac-0.30-vapi
+    elementary:
+        plugin: nil
+        prepare: |
+          add-apt-repository -y ppa:elementary-os/stable
+          add-apt-repository -y ppa:elementary-os/os-patches
+          echo "Package: *" > /etc/apt/preferences.d/elementary-stable
+          echo "Pin: release o=LP-PPA-elementary-os-stable" >> /etc/apt/preferences.d/elementary-stable
+          echo "Pin-Priority: 1000" >> /etc/apt/preferences.d/elementary-stable
+          echo "Package: *" > /etc/apt/preferences.d/elementary-patches
+          echo "Pin: release o=LP-PPA-elementary-os-os-patches" >> /etc/apt/preferences.d/elementary-patches
+          echo "Pin-Priority: 1000" >> /etc/apt/preferences.d/elementary-patches
+          apt update
+          apt dist-upgrade -y
     bookworm:
+        after: [granite, elementary, desktop-gtk3]
         source: https://github.com/babluboy/bookworm.git
         plugin: cmake        
         configflags: [-DCMAKE_INSTALL_PREFIX=/usr]
         build-packages:
+            - appstream
+            - desktop-file-utils
             - build-essential
-            - valac
-            - intltool
+            - gettext
             - libgee-0.8-dev
-            - debhelper
             - libgtk-3-dev
+            - valac
             - libgranite-dev
+            - cmake
+            - debhelper
+            - libxml2-dev
+            - libglib2.0-dev
+            - intltool
             - libwebkit2gtk-4.0-37
             - libwebkit2gtk-4.0-dev
             - libsqlite3-dev
             - libpoppler-glib-dev
-        stage-packages:
-            - gnome-keyring
-            - gobject-introspection
-            - libgdk-pixbuf2.0-0
-            - libgee-0.8-2
-            - libgtk-3-0
-            - libpango-1.0-0
-            - libpangocairo-1.0-0
+        install: |
+            cp schemas/com.github.babluboy.bookworm.gschema.xml $SNAPCRAFT_PART_INSTALL/share/glib-2.0/schemas
+            glib-compile-schemas $SNAPCRAFT_PART_INSTALL/share/glib-2.0/schemas
+        prime:
+            - usr/share
+        organize:
+            share/glib-2.0: usr/share/glib-2.0
         after: [desktop-gtk3]
