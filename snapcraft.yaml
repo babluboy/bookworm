@@ -32,7 +32,7 @@ apps:
 parts:
     granite:
         plugin: cmake
-        source: lp:granite
+        source: lp:granite/0.5
         source-type: bzr
         configflags: [-DCMAKE_BUILD_TYPE=Release, -DCMAKE_INSTALL_PREFIX=/usr, -DCMAKE_INSTALL_LIBDIR=/usr/lib]
         build-packages:
