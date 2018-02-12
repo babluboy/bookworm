@@ -30,16 +30,6 @@ apps:
       - gsettings
 
 parts:
-    granite:
-        plugin: cmake
-        source: lp:granite/0.5
-        source-type: bzr
-        configflags: [-DCMAKE_BUILD_TYPE=Release, -DCMAKE_INSTALL_PREFIX=/usr, -DCMAKE_INSTALL_LIBDIR=/usr/lib]
-        build-packages:
-          - build-essential
-          - valac
-        stage-packages:
-          - valac-0.30-vapi
     elementary:
         plugin: nil
         prepare: |
