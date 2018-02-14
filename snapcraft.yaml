@@ -14,12 +14,20 @@ apps:
   bookworm:
     command: desktop-launch com.github.babluboy.bookworm
     desktop: usr/share/applications/com.github.babluboy.bookworm.desktop
-    plugs: [home, x11, unity7, gsettings]
+    plugs: [network, home, x11, unity7, gsettings, browser-support]
+    environment:
+        LD_LIBRARY_PATH: $SNAP/usr/lib/x86_64-linux-gnu/webkit2gtk-4.0/:$LD_LIBRARY_PATH
+
+slots:
+  dbus-bookworm:
+    interface: dbus
+    bus: session
+    name: com.github.babluboy.bookworm
 
 parts:
     bookworm:
         source: https://github.com/babluboy/bookworm.git
-        plugin: cmake        
+        plugin: cmake
         configflags: [-DCMAKE_INSTALL_PREFIX=/usr]
         build-packages:
             - build-essential
@@ -42,4 +50,6 @@ parts:
             - libgtk-3-0
             - libpango-1.0-0
             - libpangocairo-1.0-0
+            - libwebkit2gtk-4.0-37
+            - libwebkit2gtk-4.0-dev
         after: [desktop-gtk3]
