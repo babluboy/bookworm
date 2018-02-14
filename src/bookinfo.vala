@@ -306,9 +306,9 @@ public class BookwormApp.Info:Gtk.Window {
                 string linkURI = contentLinkButton.get_uri ().strip();
                 //check if the link contains a # - bookmarked section
                 if(linkURI.index_of("#") != -1){
-                    string URIWithoutBookmark = linkURI.slice(0, linkURI.index_of("#"));
+                    string URIWithoutBookmark = linkURI.slice(0, linkURI.last_index_of("#"));
                     aBook.setBookPageNumber(aBook.getBookContentList().index_of(URIWithoutBookmark));
-                    aBook.setAnchor(linkURI.slice(linkURI.index_of("#")+1, linkURI.length));
+                    aBook.setAnchor(linkURI.slice(linkURI.last_index_of("#")+1, linkURI.length));
                     BookwormApp.Bookworm.isPageScrollRequired = true;
                 }else{
                     aBook.setBookPageNumber(aBook.getBookContentList().index_of(linkURI));

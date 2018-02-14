@@ -2,7 +2,7 @@
 project (com.github.babluboy.bookworm)
 
 # the oldest stable cmake version we support
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 2.8)
 
 # tell cmake where its modules can be found in our project directory
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
@@ -62,8 +62,8 @@ find_package(PkgConfig)
 pkg_check_modules(DEPS REQUIRED
                   gtk+-3.0
                   gee-0.8
-                  granite
-                  webkit2gtk-4.0>=2.16.0
+                  granite>=0.5
+                  webkit2gtk-4.0>=2.18.6
                   sqlite3>=3.5.9
                   poppler-glib
                   libxml-2.0
@@ -78,7 +78,7 @@ find_package(Vala REQUIRED)
 # make sure we use vala
 include(ValaVersion)
 # make sure it's the desired version of vala
-ensure_vala_version("0.26" MINIMUM)
+ensure_vala_version("0.36" MINIMUM)
 
 # files we want to compile
 include(ValaPrecompile)
@@ -120,8 +120,8 @@ vala_precompile(VALA_C ${EXEC_NAME}
 PACKAGES
     gtk+-3.0
     gee-0.8
-    granite
-    webkit2gtk-4.0>=2.16.0
+    granite>=0.5
+    webkit2gtk-4.0>=2.18.6
     sqlite3
     poppler-glib
     libxml-2.0

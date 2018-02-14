@@ -7,8 +7,8 @@ description: |
   This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.
 
 icon: data/icons/24/com.github.babluboy.bookworm.svg
-grade: stable # must be 'stable' to release into candidate/stable channels
-confinement: strict # use 'strict' once you have the right plugs and slots
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
 
 apps:
   bookworm:
