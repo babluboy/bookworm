@@ -24,7 +24,6 @@ public class BookwormApp.BackgroundTasks {
   public static BookwormApp.Settings settings;
   
   public static void performTasks(){
-        debug("Bookworm discover process initiated....");
         initialization();
         //Add any new books from the watched folders
         discoverBooks();
@@ -43,7 +42,7 @@ public class BookwormApp.BackgroundTasks {
   }
 
   public static void discoverBooks(){
-    print("\nStarted process for discovery of books....\n");
+    print("\nStarted process for discovery of books....");
     ArrayList<string> scanDirList = new ArrayList<string>();
     //find the folders to scan from the settings
     if( settings != null &&
@@ -92,7 +91,7 @@ public class BookwormApp.BackgroundTasks {
                                 BookwormApp.DB.removeBookFromDB(aBook);
                             }else{
                                 BookwormApp.DB.updateBookToDataBase(aBook);
-                                print("Sucessfully added book located at:"+findResult);
+                                print("\nSucessfully added book located at:"+findResult);
                             }
                         }
                   }

@@ -32,6 +32,7 @@ public class BookwormApp.DB{
     private static int executionStatus;
 
     public static bool initializeBookWormDB(string bookworm_config_path){
+        info("[START] [FUNCTION:initializeBookWormDB] bookworm_config_path="+bookworm_config_path);
         Statement stmt;
         debug("Checking BookWorm DB or creating it if the DB does not exist...");
         int dbOpenStatus = Database.open_v2 (bookworm_config_path+"/bookworm.db",
@@ -158,11 +159,12 @@ public class BookwormApp.DB{
       }
     }
     //All DB loading operations completed
-    debug("All DB loading operations completed sucessfully...");
+    info("[END] [FUNCTION:initializeBookWormDB]");
     return true;
   }
 
   public static ArrayList<BookwormApp.Book> getBooksFromDB(){
+    info("[START] [FUNCTION:getBooksFromDB]");
     ArrayList<BookwormApp.Book> listOfBooks = new ArrayList<BookwormApp.Book> ();
     Statement stmt;
     queryString = "SELECT id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, BOOK_LAST_READ_PAGE_NUMBER, BOOK_PUBLISH_DATE, TAGS, ANNOTATION_TAGS, RATINGS, CONTENT_EXTRACTION_LOCATION, BOOK_TOTAL_PAGES, creation_date, modification_date FROM "
@@ -212,11 +214,12 @@ public class BookwormApp.DB{
       }
       stmt.reset ();
     }
+    info("[END] [FUNCTION:getBooksFromDB] listOfBooks.size="+listOfBooks.size.to_string());
     return listOfBooks;
   }
 
   public static BookwormApp.Book getBookMetaDataFromDB(owned BookwormApp.Book aBook){
-    debug("Starting to fetch Meta Data for Book ID="+aBook.getBookId().to_string());
+    info("[START] [FUNCTION:getBookMetaDataFromDB] book.location="+aBook.getBookLocation());
     Statement stmt;
     queryString = "SELECT BOOK_TOC_DATA, BOOKMARKS, CONTENT_DATA_LIST, BOOK_LAST_SCROLL_POSITION, BOOK_ANNOTATIONS FROM "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+ " WHERE id = ?";
     executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
@@ -240,10 +243,12 @@ public class BookwormApp.DB{
            );
     }
     stmt.reset ();
+    info("[END] [FUNCTION:getBookMetaDataFromDB] book.location="+aBook.getBookLocation());
     return aBook;
   }
 
   public static int addBookToDataBase(BookwormApp.Book aBook){
+    info("[START] [FUNCTION:addBookToDataBase] book.location="+aBook.getBookLocation());
     Sqlite.Statement stmt;
     int insertedBookID = 0;
     queryString = "INSERT INTO "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+"(BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, CONTENT_EXTRACTION_LOCATION, creation_date, modification_date) "+ "VALUES (?,?,?,?,?,?, CAST(strftime('%s', 'now') AS INT), CAST(strftime('%s', 'now') AS INT))";
@@ -276,11 +281,12 @@ public class BookwormApp.DB{
        insertedBookID = stmt.column_int(0);
      }
      stmt.reset ();
-     debug("Added details to Database for book:"+aBook.getBookLocation());
+     info("[END] [FUNCTION:addBookToDataBase] book.location="+aBook.getBookLocation());
      return insertedBookID;
   }
 
   public static bool removeBookFromDB(BookwormApp.Book aBook){
+    info("[START] [FUNCTION:removeBookFromDB] book.location="+aBook.getBookLocation());
     Sqlite.Statement stmt;
     //delete book from library table
     queryString = "DELETE FROM "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" WHERE id = ?";
@@ -290,33 +296,33 @@ public class BookwormApp.DB{
       warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
       return false;
     }else{
-      stmt.bind_int (1, aBook.getBookId());
-      stmt.step ();
-      stmt.reset ();
-      debug("Removed this book from library table:"+aBook.getBookTitle()+"["+aBook.getBookId().to_string()+"]");
+          stmt.bind_int (1, aBook.getBookId());
+          stmt.step ();
+          stmt.reset ();
+          debug("Removed this book from library table:"+aBook.getBookTitle()+"["+aBook.getBookId().to_string()+"]");
 
-      //delete book meta data from meta data table
-      queryString = "DELETE FROM "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" WHERE id = ?";
-      executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
-      if (executionStatus != Sqlite.OK) {
-        debug("Error on executing Query:"+queryString);
-        warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-        return false;
-      }else{
-        stmt.bind_int (1, aBook.getBookId());
-        stmt.step ();
-        stmt.reset ();
-        debug("Removed this book from meta data table:"+aBook.getBookTitle()+"["+aBook.getBookId().to_string()+"]");
-      }
+          //delete book meta data from meta data table
+          queryString = "DELETE FROM "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" WHERE id = ?";
+          executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
+          if (executionStatus != Sqlite.OK) {
+            debug("Error on executing Query:"+queryString);
+            warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+            return false;
+          }else{
+            stmt.bind_int (1, aBook.getBookId());
+            stmt.step ();
+            stmt.reset ();
+          }
     }
-
+    info("[END] [FUNCTION:removeBookFromDB] book.location="+aBook.getBookLocation());
     return true;
   }
 
   public static bool updateBookToDataBase(BookwormApp.Book aBook){
+    info("[START] [FUNCTION:updateBookToDataBase] book.location="+aBook.getBookLocation());
     Sqlite.Statement stmt;
     queryString = "UPDATE "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+
-" SET BOOK_LAST_READ_PAGE_NUMBER = ?, BOOK_TITLE = ?, BOOK_AUTHOR = ?, BOOK_COVER_IMAGE_LOCATION = ?, IS_BOOK_COVER_IMAGE_PRESENT = ?, TAGS = ?, ANNOTATION_TAGS = ?, RATINGS = ?, CONTENT_EXTRACTION_LOCATION = ?, BOOK_TOTAL_PAGES = ?, modification_date = CAST(? AS INT) WHERE BOOK_LOCATION = ? ";
+    " SET BOOK_LAST_READ_PAGE_NUMBER = ?, BOOK_TITLE = ?, BOOK_AUTHOR = ?, BOOK_COVER_IMAGE_LOCATION = ?, IS_BOOK_COVER_IMAGE_PRESENT = ?, TAGS = ?, ANNOTATION_TAGS = ?, RATINGS = ?, CONTENT_EXTRACTION_LOCATION = ?, BOOK_TOTAL_PAGES = ?, modification_date = CAST(? AS INT) WHERE BOOK_LOCATION = ? ";
      executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
      if (executionStatus != Sqlite.OK) {
        debug("Error on executing Query:"+queryString);
@@ -378,23 +384,27 @@ public class BookwormApp.DB{
      }else{
        debug("Inserted book meta data details to "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+" for book:"+aBook.getBookTitle()+"["+aBook.getBookId().to_string()+"]");
      }
+     info("[END] [FUNCTION:updateBookToDataBase] book.location="+aBook.getBookLocation());
      return true;
   }
 
   public static ArrayList<string> getBookIDListFromDB(){
-    ArrayList<string> bookIDList = new ArrayList<string> ();
-    Statement stmt;
-    queryString = "SELECT id,BOOK_LOCATION FROM "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ORDER BY id DESC";
-    executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
-    if (executionStatus != Sqlite.OK) {
-      debug("Error on executing Query:"+queryString);
-      warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-	 	}
-    while (stmt.step () == ROW) {
-      bookIDList.add(stmt.column_int(0).to_string()+"::"+stmt.column_text (1));
-    }
-    stmt.reset ();
-    return bookIDList;
+        info("[START] [FUNCTION:getBookIDListFromDB]");
+        ArrayList<string> bookIDList = new ArrayList<string> ();
+        Statement stmt;
+        queryString = "SELECT id,BOOK_LOCATION FROM "+
+                                BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+
+                                " ORDER BY id DESC";
+        executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
+        if (executionStatus != Sqlite.OK) {
+          debug("Error on executing Query:"+queryString);
+          warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+         	}
+        while (stmt.step () == ROW) {
+          bookIDList.add(stmt.column_int(0).to_string()+"::"+stmt.column_text (1));
+        }
+        stmt.reset ();
+        info("[END] [FUNCTION:getBookIDListFromDB] bookIDList.size"+bookIDList.size.to_string());
+        return bookIDList;
   }
-
 }

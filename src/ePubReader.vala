@@ -18,9 +18,9 @@
 
 using Gee;
 public class BookwormApp.ePubReader {
-
   public static string NCXRefInSpineData = "";
-  public static BookwormApp.Book parseEPubBook (owned BookwormApp.Book aBook){
+  public static BookwormApp.Book parseEPubBook (owned BookwormApp.Book aBook) {
+    info("[START] [FUNCTION:parseEPubBook] book.location="+aBook.getBookLocation());
     //Only parse the eBook if it has not been parsed already
     if(!aBook.getIsBookParsed()){
       debug ("Starting to parse EPub Book located at:"+aBook.getBookLocation());
@@ -65,14 +65,14 @@ public class BookwormApp.ePubReader {
 
       //Determine Book Meta Data like Title, Author, etc
       aBook = setBookMetaData(aBook, locationOfOPFFile);
-
       aBook.setIsBookParsed(true);
-      debug ("Sucessfully parsed EPub Book located at:"+aBook.getBookLocation());
     }
+    info("[END] [FUNCTION:parseEPubBook]");
     return aBook;
   }
 
   public static string extractEBook(string eBookLocation){
+        info("[START] [FUNCTION:extractEBook] eBookLocation="+eBookLocation);
         string extractionLocation = "false";
         debug("Initiated process for content extraction of ePub Book located at:"+eBookLocation);
         //create a location for extraction of eBook based on local storage prefference
@@ -88,11 +88,12 @@ public class BookwormApp.ePubReader {
         BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
         //unzip eBook contents into extraction location
         BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
-        debug("eBook contents extracted sucessfully into location:"+extractionLocation);
+         info("[END] [FUNCTION:extractEBook] extractionLocation="+extractionLocation);
         return extractionLocation;
   }
 
   public static bool isEPubFormat (string extractionLocation){
+        info("[START] [FUNCTION:isEPubFormat] extractionLocation="+extractionLocation);
         bool ePubFormat = false;
         debug("Checking if mime type is valid ePub for contents at:"+extractionLocation);
         string ePubMimeContents = BookwormApp.Utils.fileOperations(
@@ -120,11 +121,12 @@ public class BookwormApp.ePubReader {
             //mime content is as expected
             ePubFormat = true;
         }
-        debug("Sucessfully validated MIME type....");
+         info("[END] [FUNCTION:isEPubFormat] ePubFormat="+ePubFormat.to_string());
         return ePubFormat;
   }
 
   public static string getOPFFileLocation(string extractionLocation){
+        info("[START] [FUNCTION:getOPFFileLocation] extractionLocation="+extractionLocation);
         string locationOfOPFFile = "false";
         //Form the path to the META-INF/container.xml file
         string pathToXMLFile = extractionLocation+"/"+BookwormApp.Constants.EPUB_META_INF_FILENAME;
@@ -145,11 +147,12 @@ public class BookwormApp.ePubReader {
                 locationOfOPFFile = extractionLocation + "/" + OPFFilePath;
             }
         }
-        debug ("Sucessfully determined absolute path to OPF File as : "+locationOfOPFFile);
+        info("[END] [FUNCTION:getOPFFileLocation] locationOfOPFFile="+locationOfOPFFile);
         return locationOfOPFFile;
   }
    
   public static BookwormApp.Book determineToC (owned BookwormApp.Book aBook, string locationOfOPFFile) {
+    info("[START] [FUNCTION:determineToC] book.location="+aBook.getBookLocation()+", locationOfOPFFile="+locationOfOPFFile);
     //Parse OPF xml file to read the MANIFEST data (id, href, media-type)
     ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
     inputDataList.add(new XMLData() {
@@ -254,11 +257,12 @@ public class BookwormApp.ePubReader {
             debug("Book content data :"+aBook.getBaseLocationOfContents()+locationOfContentData);
         }
     }
+    info("[END] [FUNCTION:determineToC]");
     return aBook;
   }
 
   public static BookwormApp.Book setCoverImage (owned BookwormApp.Book aBook, string locationOfOPFFile){
-    debug("Initiated process for cover image extraction of eBook located at:"+aBook.getBookExtractionLocation());
+    info("[START] [FUNCTION:setCoverImage] book.location="+aBook.getBookLocation()+", locationOfOPFFile="+locationOfOPFFile);
     string bookCoverLocation = "";
     //Parse OPF xml file to read the MANIFEST data
     ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
@@ -335,11 +339,12 @@ public class BookwormApp.ePubReader {
         //copy cover image to bookworm cover image cache
         aBook = BookwormApp.Utils.setBookCoverImage(aBook, bookCoverLocation);
     }
+    info("[END] [FUNCTION:setCoverImage] book.location="+aBook.getBookLocation()+", bookCoverLocation="+bookCoverLocation);
     return aBook;
   }
 
   public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
-    debug("Initiated process for finding meta data of eBook located at:"+aBook.getBookExtractionLocation());
+    info("[START] [FUNCTION:setBookMetaData] book.location="+aBook.getBookLocation()+", locationOfOPFFile="+locationOfOPFFile);
     //Parse OPF xml file to read the book meta data
     ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
     inputDataList.add(new XMLData() {
@@ -387,6 +392,7 @@ public class BookwormApp.ePubReader {
             debug("Could not determine eBook Author, default Author set");
         }
     }
+    info("[END] [FUNCTION:setBookMetaData]");
     return aBook;
   }
 }

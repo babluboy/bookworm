@@ -10,22 +10,37 @@ icon: data/icons/24/com.github.babluboy.bookworm.svg
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 
-apps:
-  bookworm:
-    command: desktop-launch com.github.babluboy.bookworm
-    desktop: usr/share/applications/com.github.babluboy.bookworm.desktop
-    plugs: [network, home, x11, unity7, gsettings, browser-support]
-    environment:
-        LD_LIBRARY_PATH: $SNAP/usr/lib/x86_64-linux-gnu/webkit2gtk-4.0/:$LD_LIBRARY_PATH
-
 slots:
   dbus-bookworm:
     interface: dbus
     bus: session
     name: com.github.babluboy.bookworm
 
+apps:
+  bookworm:
+    command: desktop-launch com.github.babluboy.bookworm
+    slots: [ dbus-bookworm ]
+    desktop: usr/share/applications/com.github.babluboy.bookworm.desktop
+    plugs: [network, home, x11, unity7, gsettings, browser-support]
+    environment:
+      LD_LIBRARY_PATH: $SNAP/usr/lib/x86_64-linux-gnu/webkit2gtk-4.0/:$LD_LIBRARY_PATH
+
+
+
 parts:
+    granite:
+        plugin: cmake
+        source: https://github.com/elementary/granite.git
+        source-tag: '0.5'
+        configflags: [-DCMAKE_BUILD_TYPE=Release, -DCMAKE_INSTALL_PREFIX=/usr, -DCMAKE_INSTALL_LIBDIR=/usr/lib]
+        build-packages:
+            - build-essential
+            - valac
+        stage-packages:
+            - valac-0.30-vapi
+    
     bookworm:
+        after: [granite, desktop-gtk3]
         source: https://github.com/babluboy/bookworm.git
         plugin: cmake
         configflags: [-DCMAKE_INSTALL_PREFIX=/usr]
@@ -37,10 +52,10 @@ parts:
             - debhelper
             - libgtk-3-dev
             - libgranite-dev
-            - libwebkit2gtk-4.0-37
             - libwebkit2gtk-4.0-dev
             - libsqlite3-dev
             - libpoppler-glib-dev
+            - libsoup2.4-dev
             - libxml2-dev
         stage-packages:
             - gnome-keyring
@@ -49,7 +64,9 @@ parts:
             - libgee-0.8-2
             - libgtk-3-0
             - libpango-1.0-0
+            - libcairo2
             - libpangocairo-1.0-0
+            - libsqlite3-0
             - libwebkit2gtk-4.0-37
-            - libwebkit2gtk-4.0-dev
-        after: [desktop-gtk3]
+            - libxml2
+            - dbus-x11

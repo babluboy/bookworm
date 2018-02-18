@@ -20,6 +20,7 @@ using Poppler;
 public class BookwormApp.pdfReader {
 
   public static BookwormApp.Book parsePDFBook (owned BookwormApp.Book aBook) throws GLib.Error{
+    info("[START] [FUNCTION:parsePDFBook] book.location="+aBook.getBookLocation());
     //Only parse the eBook if it has not been parsed already
     if(!aBook.getIsBookParsed()){
       debug("Initiated process for parsing of PDF Book located at:"+aBook.getBookLocation());
@@ -51,12 +52,13 @@ public class BookwormApp.pdfReader {
       aBook = setBookMetaData(aBook);
 
       aBook.setIsBookParsed(true);
-      debug ("Sucessfully parsed PDF Book located at:"+aBook.getBookLocation());
     }
+    info("[END] [FUNCTION:parsePDFBook] book.location="+aBook.getBookLocation());
     return aBook;
   }
 
   public static string extractEBook(string eBookLocation){
+        info("[START] [FUNCTION:extractEBook] eBookLocation="+eBookLocation);
         string extractionLocation = "false";
          debug("Initiated process for content extraction of PDF Book located at:"+eBookLocation);
         if(BookwormApp.Bookworm.settings == null){
@@ -81,11 +83,12 @@ public class BookwormApp.pdfReader {
                                                             });
 
         debug("Output of pdftohtml command:"+BookwormApp.Utils.spawn_async_with_pipes_output.str);
-        debug("eBook contents extracted sucessfully into location:"+extractionLocation);
+        info("[END] [FUNCTION:extractEBook] extractionLocation="+extractionLocation);
         return extractionLocation;
   }
 
   public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, string extractionLocation){
+    info("[START] [FUNCTION:getContentList] extractionLocation="+extractionLocation);
     string extractedHTMLFilePath = extractionLocation + "/" + File.new_for_path(aBook.getBookLocation()).get_basename()+".html";
     File htmlFile = File.new_for_path (extractedHTMLFilePath);
     //Check if the extracted html file exists
@@ -128,10 +131,12 @@ public class BookwormApp.pdfReader {
       aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_EXTRACTION_ISSUE);
       return aBook;
     }
+    info("[END] [FUNCTION:getContentList] extractionLocation="+extractionLocation);
     return aBook;
   }
 
   public static BookwormApp.Book setCoverImage(owned BookwormApp.Book aBook){
+        info("[START] [FUNCTION:setCoverImage] book.location="+aBook.getBookLocation());
         string bookCoverLocation = "";
         //get the first html section
         if(aBook.getBookContentList() != null && aBook.getBookContentList().size > 0){
@@ -154,10 +159,12 @@ public class BookwormApp.pdfReader {
             aBook.setIsBookCoverImagePresent(false);
             debug("Cover image not found for book located at:"+aBook.getBookExtractionLocation());
         }
+        info("[END] [FUNCTION:setCoverImage] bookCoverLocation="+bookCoverLocation);
         return aBook;
   }
 
   public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook){
+    info("[START] [FUNCTION:setBookMetaData] book.location="+aBook.getBookLocation());
     string bookTitle = "";
     Document pdfDocument = null;
     try{
@@ -210,7 +217,7 @@ public class BookwormApp.pdfReader {
       info ("Error while checking table of contents in PDF book: %s\n", e.message);
 
     }*/
-
+    info("[END] [FUNCTION:setBookMetaData] book.location="+aBook.getBookLocation());
     return aBook;
   }
 }

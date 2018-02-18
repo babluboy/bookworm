@@ -117,6 +117,7 @@ public class BookwormApp.XmlParser {
     */
 
     public ArrayList<XMLData> extractDataFromXML (string path, owned ArrayList<XMLData> inputDataList){
+        info("[START] [FUNCTION:extractDataFromXML] extracting xml from file="+path);
         int count = 0;
         foreach(XMLData aXMLData in inputDataList){
             debug("Reading XML to extract data for input set #"+count.to_string()+":"+
@@ -126,6 +127,7 @@ public class BookwormApp.XmlParser {
             inputDataList[count] = thisXMLData;
             count++;
         }
+        info("[END] [FUNCTION:extractDataFromXML] extracting xml from file="+path);
         return inputDataList;
     }
 

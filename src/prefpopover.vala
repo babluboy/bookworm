@@ -21,6 +21,7 @@ public class BookwormApp.PreferencesMenu {
     public static Gtk.Popover prefPopover;
 
     public static Gtk.Popover createPrefPopOver(Gtk.Button popWidget){
+        debug("[START] [FUNCTION:createPrefPopOver]");
         if(prefPopover != null){
             return prefPopover;
         }
@@ -234,6 +235,7 @@ public class BookwormApp.PreferencesMenu {
                 //Refresh the page if it is open
 	            BookwormApp.contentHandler.refreshCurrentPage();
         });
+        debug("[END] [FUNCTION:createPrefPopOver]");
         return prefPopover;
     }
 }

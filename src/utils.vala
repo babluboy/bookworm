@@ -334,13 +334,13 @@ namespace BookwormApp.Utils {
 					//create the directory
 					fileDir.make_directory();
 					result.assign("true");
+					//close and release the file
+					FileUtils.close(new IOChannel.file(path, "r").unix_get_fd());
 					debug("Directory created:"+fileDir.get_path());
 				}else{
 					//do nothing
 					result.assign("true");
 				}
-				//close and release the file
-				FileUtils.close(new IOChannel.file(path, "r").unix_get_fd());
 			}
 			if("WRITE" == operation){
 				//check if directory does not exists
@@ -355,8 +355,6 @@ namespace BookwormApp.Utils {
 					FileUtils.set_data (path+"/"+filename, contents.data);
 					result.assign("true");
 				}
-				//close and release the file
-				FileUtils.close(new IOChannel.file(path+"/"+filename, "r").unix_get_fd());
 			}
 			if("WRITE_PROPS" == operation){
 				//check if directory does not exists
@@ -374,7 +372,8 @@ namespace BookwormApp.Utils {
 					//check if the property (name/value) exists
 					if(data.contains(name_value[0])){
 						//extract the data before the property name
-						string dataBeforeProp = result.str.split(Constants.IDENTIFIER_FOR_PROPERTY_START+contents.split(Constants.IDENTIFIER_FOR_PROPERTY_VALUE,2)[0],2)[0];
+						string dataBeforeProp = result.str.split(Constants.IDENTIFIER_FOR_PROPERTY_START+
+																   contents.split(Constants.IDENTIFIER_FOR_PROPERTY_VALUE,2)[0],2)[0];
 						//extract the data after the property name/value
 						string dataAfterProp = result.str.split(contents+Constants.IDENTIFIER_FOR_PROPERTY_END)[1];
 						//name/value exists - update the same
@@ -386,8 +385,6 @@ namespace BookwormApp.Utils {
 						result.append(Constants.IDENTIFIER_FOR_PROPERTY_START+contents+Constants.IDENTIFIER_FOR_PROPERTY_END);
 						FileUtils.set_contents (path+"/"+filename, result.str);
 					}
-					//close and release the file
-					FileUtils.close(new IOChannel.file(path+"/"+filename, "r").unix_get_fd());
 				}else
 					result.assign("false");
 				}
@@ -399,8 +396,6 @@ namespace BookwormApp.Utils {
 					}else{
 						result.assign("false");
 					}
-					//close and release the file
-					FileUtils.close(new IOChannel.file(path+"/"+filename, "r").unix_get_fd());
 				}else{
 					result.assign("false");
 				}
@@ -412,8 +407,6 @@ namespace BookwormApp.Utils {
 				}else{
 					result.assign("false");
 				}
-				//close and release the file
-				FileUtils.close(new IOChannel.file(path, "r").unix_get_fd());
 			}
 			if("READ_PROPS" == operation){
 				if(bookwormStateData != null && bookwormStateData.length > 5){ //nutty state data exists - no need to read the nutty state file
@@ -427,14 +420,13 @@ namespace BookwormApp.Utils {
 						}else{
 							result.assign("false");
 						}
-						//close and release the file
-						FileUtils.close(new IOChannel.file(path+"/"+filename, "r").unix_get_fd());
 					}else{
 						result.assign("false");
 					}
 				}
 				//get the part of the contents starting with the value of the props
-				result.assign(data.split(Constants.IDENTIFIER_FOR_PROPERTY_START+contents+Constants.IDENTIFIER_FOR_PROPERTY_VALUE,2)[1]);
+				result.assign(data.split(Constants.IDENTIFIER_FOR_PROPERTY_START+
+														 contents+Constants.IDENTIFIER_FOR_PROPERTY_VALUE,2)[1]);
 				//get the value of the prop
 				result.assign(result.str.split(Constants.IDENTIFIER_FOR_PROPERTY_END,2)[0]);
 			}

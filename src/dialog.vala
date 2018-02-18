@@ -30,8 +30,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		scanDirList.assign(BookwormApp.Bookworm.settings.list_of_scan_dirs);
 	}
 
-	public static Gtk.Popover createBookContextMenu (owned BookwormApp.Book aBook){
-		debug("Context Menu Popover initiated for book:"+aBook.getBookLocation());
+	public static Gtk.Popover createBookContextMenu (owned BookwormApp.Book aBook) {
+        debug("[START] [FUNCTION:createBookContextMenu] aBook.location="+aBook.getBookLocation());
 		Gtk.Popover bookContextPopover = new Gtk.Popover ((Gtk.EventBox) (aBook.getBookWidget("BOOK_EVENTBOX")));
 		//Add the Menu title with the name of the book
 		StringBuilder contextTitle = new StringBuilder();
@@ -238,11 +238,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
 			debug("Popover closed and Book details updated...");
 		});
-		debug("Context Menu Popover completed for book:"+aBook.getBookLocation());
+        debug("[END] [FUNCTION:createBookContextMenu] aBook.location="+aBook.getBookLocation());
 		return bookContextPopover;
 	}
 
 	public static void createPreferencesDialog () {
+		debug("[START] [FUNCTION:createPreferencesDialog]");
 		AppDialog dialog = new AppDialog ();
 		dialog.set_transient_for(BookwormApp.Bookworm.window);
 		profileColorList = settings.list_of_profile_colors.split (",");
@@ -594,10 +595,11 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		dialog.response.connect (() => {
 			updateProfileColorToSettings();
 		});
-
+		debug("[END] [FUNCTION:createPreferencesDialog]");
 	}
 
 	public static void updateProfileColorToSettings(){
+		debug("[START] [FUNCTION:updateProfileColorToSettings]");
 		//build the profile color list to update the settings
 		StringBuilder listOfProfileColors = new StringBuilder();
 		foreach(string aProfileColor in profileColorList){
@@ -606,6 +608,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		settings.list_of_profile_colors = listOfProfileColors.str.slice(0, (listOfProfileColors.str.length-1));
 		//reload the css provider to reflect the updated css
 		BookwormApp.Bookworm.loadCSSProvider(BookwormApp.Bookworm.cssProvider);
+		debug("[END] [FUNCTION:updateProfileColorToSettings]");
 	}
 
 	public static bool filterFont (Pango.FontFamily family, Pango.FontFace face) {
@@ -633,6 +636,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 	}
 
 	public static void createAnnotationDialog (string textForAnnotation) {
+		debug("[START] [FUNCTION:createAnnotationDialog] textForAnnotation="+textForAnnotation);
 		Gtk.Dialog annotationDialog = new Gtk.Dialog();
 		annotationDialog.set_transient_for(BookwormApp.Bookworm.window);
 		annotationDialog.border_width = 0;
@@ -669,5 +673,6 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			BookwormApp.Utils.setWebViewTitle("document.title = ' '");
 			aBook = BookwormApp.contentHandler.renderPage(aBook, "");
 		});
+		debug("[END] [FUNCTION:createAnnotationDialog] textForAnnotation="+textForAnnotation);
 	}
 }

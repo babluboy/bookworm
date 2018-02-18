@@ -43,7 +43,7 @@ public class BookwormApp.AppWindow {
         public static BookwormApp.Settings settings;
 
     public static Gtk.Box createBoookwormUI() {
-        debug("Starting to create main window components...");
+        info("[START] [FUNCTION:createBoookwormUI]");
         settings = BookwormApp.Settings.get_instance();
 
         //Create a grid to display the books cover images in library
@@ -449,12 +449,13 @@ public class BookwormApp.AppWindow {
             return true;
         });
 
-        debug("Completed creation of main window components...");
+        info("[END] [FUNCTION:createBoookwormUI]");
         return main_ui_box;
     }
 
     public static bool updateLibraryListViewData(string path, string new_text, int column){
-        debug("Started to update metadata in List View on row:"+path+" for change:"+new_text+" on column:"+column.to_string());
+        info("[START] [FUNCTION:updateLibraryListViewData] updating metadata in List View on row:"+path+
+                                                        " for change:"+new_text+" on column:"+column.to_string());
         //Determine the book whose meta data is being updated
         Gtk.TreeIter sortedIter;
         Value bookLocation;
@@ -489,10 +490,12 @@ public class BookwormApp.AppWindow {
             }
             iterExists = library_table_liststore.iter_next (ref iter);
         }
+        info("[END] [FUNCTION:updateLibraryListViewData] ");
         return true;
     }
 
     public static Granite.Widgets.Welcome createWelcomeScreen(){
+        info("[START] [FUNCTION:createWelcomeScreen] ");
         //Create a welcome screen for view of library with no books
         BookwormApp.Bookworm.welcomeWidget = new Granite.Widgets.Welcome (
             BookwormApp.Constants.TEXT_FOR_WELCOME_MESSAGE_TITLE,   
@@ -528,16 +531,19 @@ public class BookwormApp.AppWindow {
             BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
             BookwormApp.Library.addBooksToLibrary ();
         });
+        info("[END] [FUNCTION:createWelcomeScreen] ");
         return BookwormApp.Bookworm.welcomeWidget;
     }
 
     public static void showInfoBar(BookwormApp.Book aBook, MessageType aMessageType){
+        debug("[START] [FUNCTION:showInfoBar] ");
         StringBuilder message = new StringBuilder("");
         message.append(aBook.getParsingIssue())
                  .append(aBook.getBookLocation());
         BookwormApp.AppWindow.infobarLabel.set_text(message.str);
         BookwormApp.AppWindow.infobar.set_message_type (aMessageType);
         BookwormApp.AppWindow.infobar.show();
+        debug("[END] [FUNCTION:showInfoBar] ");
     }
 
     //Handle action for close of the InfoBar

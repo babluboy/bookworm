@@ -26,7 +26,7 @@ public class BookwormApp.AppHeaderBar {
     public static BookwormApp.Settings settings;
 
     public static Gtk.HeaderBar create_headerbar() {
-        debug("Starting creation of header bar..");
+        info("[START] [FUNCTION:create_headerbar]");
         settings = BookwormApp.Settings.get_instance();
         BookwormApp.Bookworm.getAppInstance();
         headerbar = new Gtk.HeaderBar();
@@ -202,8 +202,7 @@ public class BookwormApp.AppHeaderBar {
               settings.library_view_mode = BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE;
               BookwormApp.Bookworm.toggleUIState();
         });
-
-        debug("Completed loading HeaderBar sucessfully...");
+        info("[END] [FUNCTION:create_headerbar]");
         return headerbar;
     }
 
@@ -215,6 +214,7 @@ public class BookwormApp.AppHeaderBar {
     }
 
     public static void ShowAboutDialog (){
+        info("[START] [FUNCTION:ShowAboutDialog]");
         Gtk.AboutDialog aboutDialog = new Gtk.AboutDialog ();
         aboutDialog.set_destroy_with_parent (true);
 	    aboutDialog.set_transient_for (window);
@@ -241,5 +241,6 @@ public class BookwormApp.AppHeaderBar {
         aboutDialog.response.connect((response_id) => {
             aboutDialog.destroy ();
         });
+        info("[END] [FUNCTION:ShowAboutDialog]");
     }
 }

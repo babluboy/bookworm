@@ -23,7 +23,7 @@ public class BookwormApp.contentHandler {
   public static BookwormApp.Settings settings;
 
     public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
-        debug("Starting to render page contents for book ["+aBook.getBookTitle()+"] for direction ["+direction+"]");
+        debug("[START] [FUNCTION:renderPage] book.location="+aBook.getBookLocation()+ ", direction="+direction);
         int currentContentLocation = aBook.getBookPageNumber();
         //set page number based on direction of navigation
         switch(direction){
@@ -56,11 +56,13 @@ public class BookwormApp.contentHandler {
         aBook = BookwormApp.Bookworm.controlNavigation(aBook);
         //set the current value of the page slider
         BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
+        debug("[END] [FUNCTION:renderPage]");        
         return aBook;
     }
 
     public static string provideContent (owned BookwormApp.Book aBook, int contentLocation, string mode){
-        debug("Attempting to fetch content at index["+contentLocation.to_string()+"] from book at location:"+aBook.getBaseLocationOfContents());
+        debug("[START] [FUNCTION:provideContent] book.location="+aBook.getBookLocation()+
+                ", contentLocation="+contentLocation.to_string()+", mode"+mode);
         StringBuilder contents = new StringBuilder();
         if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
             //handle the case when the content list has html escape chars for the URI
@@ -83,12 +85,13 @@ public class BookwormApp.contentHandler {
             aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_NOT_FOUND_ISSUE);
             BookwormApp.AppWindow.showInfoBar(aBook, Gtk.MessageType.WARNING);
         }
-        debug("Completed fetching content from book at location:"+aBook.getBaseLocationOfContents() + "for page:" + contentLocation.to_string());
+        debug("[END] [FUNCTION:provideContent] contents.length="+contents.str.length.to_string());
         return contents.str;
     }
 
     public static void handleBookMark(string action){
-	    //get the book being currently read
+        debug("[START] [FUNCTION:handleBookMark] action="+action);
+        //get the book being currently read
 		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
 		switch(action){
 		    case "DISPLAY":
@@ -122,12 +125,15 @@ public class BookwormApp.contentHandler {
 			debug("updating libraryViewMap with bookmark info...");
 			BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, aBook);
 		}
+        debug("[END] [FUNCTION:handleBookMark]");
     }
 
     public static string adjustPageContent (BookwormApp.Book aBook, owned string pageContentStr, string mode){
+        debug("[START] [FUNCTION:adjustPageContent] book.location="+aBook.getBookLocation()+
+                    "pageContentStr.length="+pageContentStr.length.to_string()+"mode="+mode);
+        StringBuilder pageContent = new StringBuilder(pageContentStr);
         settings = BookwormApp.Settings.get_instance();
         string cssForTextAndBackgroundColor = "";
-        StringBuilder pageContent = new StringBuilder(pageContentStr);
         BookwormApp.Bookworm.onLoadJavaScript.assign("onload=\"");
         string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts;
 
@@ -265,11 +271,12 @@ public class BookwormApp.contentHandler {
                                                 BookwormApp.Bookworm.onLoadJavaScript.str + ">" +
                                                 pageContent.str + "</BODY>");
         }
-        //debug(pageContent.str);
+        debug("[END] [FUNCTION:adjustPageContent] pageContent.length="+pageContent.str.length.to_string());
         return pageContent.str;
     }
 
     public static void searchHTMLContents(){
+        debug("[START] [FUNCTION:searchHTMLContents]");
         StringBuilder bookSearchResults = new StringBuilder ("");
         int searchResultCount = 1;
         BookwormApp.Bookworm.searchResultsMap.clear();
@@ -286,9 +293,11 @@ public class BookwormApp.contentHandler {
                 searchResultCount++;
             }
         }
+        debug("[END] [FUNCTION:searchHTMLContents]");
     }
 
     public static void refreshCurrentPage(){
+        debug("[START] [FUNCTION:refreshCurrentPage]");
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
             BookwormApp.Book currentBookForRefresh = BookwormApp.Bookworm.libraryViewMap.get (
                             BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
@@ -296,19 +305,22 @@ public class BookwormApp.contentHandler {
                             BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
             BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForRefresh);
         }
+         debug("[END] [FUNCTION:refreshCurrentPage]");
     }
 
     public static int getScrollPos(){
+        debug("[START] [FUNCTION:getScrollPos]");
         //This function is responsible for returning the vertical scroll position of the webview
         //This should be called when the user leaves reading a book :
         //(1) "Return" to Library button on Header Bar and (2) Close Bookworm while in reading mode
 	    int scrollPos = -1;
         scrollPos = int.parse(BookwormApp.Utils.setWebViewTitle("document.title = window.scrollY;"));
-        debug("Scroll position determined as:"+scrollPos.to_string());
+        debug("[START] [FUNCTION:getScrollPos] scrollPos="+scrollPos.to_string());
 	    return scrollPos;
     }
 
     public static void performStartUpActions(){
+        debug("[START] [FUNCTION:performStartUpActions]");
         //open the book added, if only one book path is present on command line
         //if this book was not in the library, then the library view will be shown
         if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length == 2 &&
@@ -354,5 +366,6 @@ public class BookwormApp.contentHandler {
                 }
             }
         }
+        debug("[END] [FUNCTION:performStartUpActions]");
     }
 }

@@ -18,21 +18,20 @@
 */
 BookwormApp.Bookworm application;
 public static int main (string[] args) {
-  Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
-  if("--debug" in args){
-    Log.set_handler ("", GLib.LogLevelFlags.LEVEL_DEBUG, GLib.Log.default_handler);
-    debug ("Bookworm Application running in debug mode - all debug messages will be displayed");
-  }
-  if("--info" in args){
-    Log.set_handler ("", GLib.LogLevelFlags.LEVEL_INFO, GLib.Log.default_handler);
-    debug ("Bookworm Application running in info mode - all info messages will be displayed");
-  }
-  application = BookwormApp.Bookworm.getAppInstance();
-  //Workaround to get Granite's --about & Gtk's --help working together
-  if ("--help" in args || "-h" in args || "--version" in args || "--discover" in args) {
-    return application.processCommandLine (args);
-  } else {
-    Gtk.init (ref args);
-    return application.run(args);
-  }
+    Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
+    //Get an instance of Bookworm if is running, otherwise create a new instance
+    application = BookwormApp.Bookworm.getAppInstance();
+    //Workaround to get Granite's --about & Gtk's --help working together
+    if ("--help" in args || "-h" in args || "--version" in args || "--discover" in args) {
+        return application.processCommandLine (args);
+    } else {
+        Gtk.init (ref args);
+        if("--debug" in args){
+				application.command_line_option_debug = true;
+	    }
+        if("--info" in args){
+				application.command_line_option_info = true;
+	    }
+        return application.run(args);
+    }
 }

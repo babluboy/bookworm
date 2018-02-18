@@ -32,7 +32,7 @@ public class BookwormApp.Info:Gtk.Window {
   public static LinkButton firstSearchResultLinkButton;
 
   public static Gtk.Box createBookInfo(){
-    debug("Starting to create BookInfo window components...");
+    info("[START] [FUNCTION:createBookInfo]");
     info_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     info_box.set_border_width(BookwormApp.Constants.SPACING_WIDGETS);
 
@@ -93,11 +93,12 @@ public class BookwormApp.Info:Gtk.Window {
       //Set the value of the info tab currently being viewed so that the same tab is opened subsequently
       BookwormApp.Bookworm.settings.current_info_tab = stack.get_visible_child_name();
     });
-    debug("Sucessfully created BookInfo window components...");
+    info("[END] [FUNCTION:createBookInfo]");
     return info_box;
   }
 
   public static void populateAnnotations(){
+    info("[START] [FUNCTION:populateAnnotations]");
     //get the book being currently read
 	BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
     Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATIONS_FOUND);
@@ -135,11 +136,13 @@ public class BookwormApp.Info:Gtk.Window {
     annotations_scroll.get_child().destroy();
     annotations_scroll.add (annotations_box);
     annotations_box.show_all();
+    info("[END] [FUNCTION:populateAnnotations]");
   }
 
   public static void populateBookmarks(){
+    info("[START] [FUNCTION:populateBookmarks]");
     //get the book being currently read
-		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+	BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
     Box bookmarks_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     Gtk.Label bookmarksLabel = new Label(BookwormApp.Constants.TEXT_FOR_BOOKMARKS_FOUND);
     bookmarks_box.pack_start(bookmarksLabel,false,false,0);
@@ -174,9 +177,11 @@ public class BookwormApp.Info:Gtk.Window {
     bookmarks_scroll.get_child().destroy();
     bookmarks_scroll.add (bookmarks_box);
     info_box.show_all();
+     info("[END] [FUNCTION:populateBookmarks]");
   }
 
   public static async BookwormApp.Book populateSearchResults(){
+    info("[START] [FUNCTION:populateSearchResults]");
     BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
     Box searchresults_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
     bool hasResultsBeenFound = false;
@@ -245,10 +250,12 @@ public class BookwormApp.Info:Gtk.Window {
                                                                                                                      (BookwormApp.AppHeaderBar.headerSearchBar.get_text(), 50))
                                                                                         .replace("&&&", BookwormApp.Utils.minimizeStringLength(aBook.getBookTitle(), 35)));
     }
+    info("[END] [FUNCTION:populateSearchResults]");
     return aBook;
   }
 
   public static string getChapterNameFromPage(string pageNumber){
+    debug("[START] [FUNCTION:getChapterNameFromPage] pageNumber="+pageNumber);
     string chapterName = "";
     //get the book being currently read
 		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
@@ -280,10 +287,12 @@ public class BookwormApp.Info:Gtk.Window {
         chapterName = "Section " + pageNumber;
       }
     }
+    debug("[END] [FUNCTION:getChapterNameFromPage] chapterName="+chapterName);
     return chapterName;
   }
 
   public static BookwormApp.Book createTableOfContents(){
+    info("[START] [FUNCTION:createTableOfContents]");
     Box content_box;
     //get the book being currently read
 	BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
@@ -328,7 +337,8 @@ public class BookwormApp.Info:Gtk.Window {
           //If Table Of Contents is not found, use the spine data
           int contentNumber = 1;
           foreach(string contentPath in aBook.getBookContentList()){
-            LinkButton contentLinkButton = new LinkButton.with_label (contentPath, BookwormApp.Constants.TEXT_FOR_INFO_TAB_CONTENT_PREFIX+contentNumber.to_string());
+            LinkButton contentLinkButton = new LinkButton.with_label (contentPath,
+                                BookwormApp.Constants.TEXT_FOR_INFO_TAB_CONTENT_PREFIX+contentNumber.to_string());
             contentLinkButton.halign = Align.START;
             content_box.pack_start(contentLinkButton,false,false,0);
             //add to the table of contents of the book
@@ -365,6 +375,7 @@ public class BookwormApp.Info:Gtk.Window {
         content_scroll.add (content_box);
       }
     }
+    info("[END] [FUNCTION:createTableOfContents]");
     return aBook;
   }
 }

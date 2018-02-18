@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-14 22:14+0000\n"
+"POT-Creation-Date: 2018-02-17 23:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,31 +21,31 @@ msgstr ""
 msgid "Select Image"
 msgstr ""
 
-#: ../src/dialog.vala:510
+#: ../src/dialog.vala:511
 msgid "Select folder"
 msgstr ""
 
-#: ../src/library.vala:576
+#: ../src/library.vala:602
 msgid "Adding "
 msgstr ""
 
-#: ../src/window.vala:292 ../src/window.vala:516
+#: ../src/window.vala:292 ../src/window.vala:519
 msgid "Select eBook"
 msgstr ""
 
-#: ../src/bookworm.vala:101
+#: ../src/bookworm.vala:102
 msgid "Display version number"
 msgstr ""
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Run Bookworm in debug mode"
 msgstr ""
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in info mode"
 msgstr ""
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -417,18 +417,18 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../src/utils.vala:526 ../src/utils.vala:600
+#: ../src/utils.vala:518 ../src/utils.vala:592
 msgid "Cancel"
 msgstr ""
 
-#: ../src/utils.vala:528 ../src/utils.vala:601
+#: ../src/utils.vala:520 ../src/utils.vala:593
 msgid "Open"
 msgstr ""
 
-#: ../src/utils.vala:530
+#: ../src/utils.vala:522
 msgid "Save"
 msgstr ""
 
-#: ../src/mobiReader.vala:319
+#: ../src/mobiReader.vala:329
 msgid "Book"
 msgstr ""

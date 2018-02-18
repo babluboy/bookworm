@@ -22,9 +22,9 @@ using Gee;
 public class BookwormApp.mobiReader {
   public static string OpfContents = "";
   public static BookwormApp.Book parseMobiBook (owned BookwormApp.Book aBook){
+    info("[START] [FUNCTION:parseMobiBook] book.location="+aBook.getBookLocation());
     //Only parse the eBook if it has not been parsed already
     if(!aBook.getIsBookParsed()){
-      debug ("Starting to parse Mobi Book located at:"+aBook.getBookLocation());
       //Extract the content of the EPub
       string extractionLocation = extractEBook(aBook.getBookLocation());
       if("false" == extractionLocation){ //handle error condition
@@ -78,12 +78,15 @@ public class BookwormApp.mobiReader {
       aBook = setBookMetaData(aBook, locationOfOPFFile);
 
       aBook.setIsBookParsed(true);
-      debug ("Sucessfully parsed Mobi Book located at:"+aBook.getBookLocation());
+    }else{
+        debug("eBook already parsed, skipping MOBI parsing. book.location="+aBook.getBookLocation());
     }
+    info("[END] [FUNCTION:parseMobiBook] book.location="+aBook.getBookLocation());
     return aBook;
   }
 
   public static string extractEBook(string eBookLocation){
+        info("[START] [FUNCTION:extractEBook] book.location="+eBookLocation);
         string extractionLocation = "false";
         debug("Initiated process for content extraction of mobi Book located at:"+eBookLocation);
         //create a location for extraction of eBook based on local storage prefference
@@ -101,11 +104,12 @@ public class BookwormApp.mobiReader {
         BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.MOBIUNPACK_SCRIPT_LOCATION + 
                                                                 " \"" + eBookLocation + "\" \""+ 
                                                                 extractionLocation +"/\"");
-        debug("eBook contents extracted sucessfully into location:"+extractionLocation);
+        info("[END] [FUNCTION:extractEBook] extractionLocation="+extractionLocation);
         return extractionLocation;
   }
 
   public static string getOPFFileLocation(string extractionLocation){
+        info("[START] [FUNCTION:getOPFFileLocation] extractionLocation="+extractionLocation);
         string locationOfOPFFile = "false";
         //Check if the "mobi7" folder is present
         string isMobiExtractionFolderPresent = BookwormApp.Utils.fileOperations("DIR_EXISTS", extractionLocation+"/mobi7", "", "");
@@ -117,11 +121,12 @@ public class BookwormApp.mobiReader {
         }else{
             return "false";
         }
-        debug ("Sucessfully determined absolute path to OPF File as : "+locationOfOPFFile);
+        info("[END] [FUNCTION:getOPFFileLocation] locationOfOPFFile="+locationOfOPFFile);
         return locationOfOPFFile;
   }
 
   public static ArrayList<string> parseManifestData (string locationOfOPFFile){
+    info("[START] [FUNCTION:parseManifestData] locationOfOPFFile="+locationOfOPFFile);
     ArrayList<string> manifestItemsList = new ArrayList<string> ();
     //read contents from content.opf file - using cat command as the reading of file is not working - check !
     //string OpfContents = BookwormApp.Utils.fileOperations("READ_FILE", locationOfOPFFile, "", "");
@@ -149,11 +154,12 @@ public class BookwormApp.mobiReader {
       manifestItemsList.add("false");
       return manifestItemsList;
     }
-    debug("Completed extracting [no. of manifest items="+manifestItemsList.size.to_string()+"] manifest data from OPF File:"+locationOfOPFFile);
+    info("[END] [FUNCTION:parseManifestData] manifestItemsList.size="+manifestItemsList.size.to_string());
     return manifestItemsList;
   }
 
   public static ArrayList<string> parseSpineData (string locationOfOPFFile){
+    info("[START] [FUNCTION:parseSpineData] locationOfOPFFile="+locationOfOPFFile);
     ArrayList<string> spineItemsList = new ArrayList<string> ();
     string spineData = "";
     try{
@@ -180,11 +186,15 @@ public class BookwormApp.mobiReader {
       spineItemsList.add("false");
       return spineItemsList;
     }
-    debug("Completed extracting [no. of spine items="+spineItemsList.size.to_string()+"] spine data from OPF File:"+locationOfOPFFile);
+    info("[END] [FUNCTION:parseSpineData] spineItemsList.size="+spineItemsList.size.to_string());
     return spineItemsList;
   }
 
-  public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, ArrayList<string> manifestItemsList, ArrayList<string> spineItemsList){
+  public static BookwormApp.Book getContentList (owned BookwormApp.Book aBook, 
+                                                                                          ArrayList<string> manifestItemsList, 
+                                                                                          ArrayList<string> spineItemsList)
+  {
+    info("[START] [FUNCTION:getContentList] book.location="+aBook.getBookLocation());
     StringBuilder bufferForSpineData = new StringBuilder("");
     StringBuilder bufferForLocationOfContentData = new StringBuilder("");
     ArrayList<string> tocList = new ArrayList<string> ();
@@ -354,11 +364,12 @@ public class BookwormApp.mobiReader {
         }
       }
     }
+    info("[END] [FUNCTION:getContentList] tocList.size="+tocList.size.to_string());
     return aBook;
   }
 
   public static BookwormApp.Book setCoverImage (owned BookwormApp.Book aBook, ArrayList<string> manifestItemsList){
-    debug("Initiated process for cover image extraction of eBook located at:"+aBook.getBookExtractionLocation());
+    info("[START] [FUNCTION:setCoverImage] book.location="+aBook.getBookLocation());
     string bookCoverLocation = "";
     //determine the location of the book's cover image
     if(OpfContents.contains("<meta name=\"Cover ThumbNail Image\"") && OpfContents.contains("content=\"")){
@@ -378,11 +389,12 @@ public class BookwormApp.mobiReader {
       //copy cover image to bookworm cover image cache
       aBook = BookwormApp.Utils.setBookCoverImage(aBook, bookCoverLocation);
     }
+    info("[END] [FUNCTION:setCoverImage] bookCoverLocation="+bookCoverLocation);
     return aBook;
   }
 
   public static BookwormApp.Book setBookMetaData(owned BookwormApp.Book aBook, string locationOfOPFFile){
-    debug("Initiated process for finding meta data of eBook located at:"+aBook.getBookExtractionLocation());
+    info("[START] [FUNCTION:setBookMetaData] book.location="+aBook.getBookLocation());
     //determine the title of the book from contents if it is not already available
     if(aBook.getBookTitle() != null && aBook.getBookTitle().length < 1){
       if(OpfContents.contains("<dc:title") && OpfContents.contains("</dc:title>")){
@@ -421,6 +433,7 @@ public class BookwormApp.mobiReader {
       aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
       debug("Could not determine eBook Author, default title set");
     }
+     info("[END] [FUNCTION:setBookMetaData]");
     return aBook;
   }
 }
