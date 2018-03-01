@@ -2,413 +2,432 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
+"PO-Revision-Date: 2018-03-01 17:04+0000\n"
+"Last-Translator: frottle <work.mcland@gmail.com>\n"
+"Language-Team: Indonesian "
+"<https://hosted.weblate.org/projects/bookworm/bookworm/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.20-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
-msgstr ""
+msgstr "Pilih Gambar"
 
 #: ../src/dialog.vala:496
 msgid "Select folder"
-msgstr ""
+msgstr "Pilih Folder"
 
 #: ../src/library.vala:551
 msgid "Adding "
-msgstr ""
+msgstr "Menambahkan "
 
 #: ../src/window.vala:291 ../src/window.vala:496
 msgid "Select eBook"
-msgstr ""
+msgstr "Pilih e-book"
 
 #: ../src/bookworm.vala:112
 msgid "Display version number"
-msgstr ""
+msgstr "Tampilkan nomor versi"
 
 #: ../src/bookworm.vala:113
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Jalankan Bookworm dalam mode debug"
 
 #: ../src/bookworm.vala:114
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Jalankan Bookworm dalam mode info"
 
 #: ../src/bookworm.vala:115
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Menambahkan e-book baru secara otomatis  dari folder yang diamati"
 
 #: ../src/constants.vala:27
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Sebuah Pembaca e-Book"
 
 #: ../src/constants.vala:29
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Penerjemah Weblate"
 
 #: ../src/constants.vala:35
 msgid "Website"
-msgstr ""
+msgstr "Situs web"
 
 #: ../src/constants.vala:37
 msgid "Not Available"
-msgstr ""
+msgstr "Tidak Tersedia"
 
 #: ../src/constants.vala:38
 msgid "eBook Reader"
-msgstr ""
+msgstr "Pembaca e-Book"
 
 #: ../src/constants.vala:39
 msgid "Search this book…"
-msgstr ""
+msgstr "Cari di buku ini…"
 
 #: ../src/constants.vala:40
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Cari berdasarkan Judul, Penulis, dan Label"
 
 #: ../src/constants.vala:41
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "Tampaknya Bookworm tidak memiliki buku"
 
 #: ../src/constants.vala:42
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Bangun perpustakaan Anda dengan menambahkan e-Book"
 
 #: ../src/constants.vala:43
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Pilih e-Book untuk dibaca"
 
 #: ../src/constants.vala:44
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Terjadi masalah saat mengekstrak isi buku. Pastikan terdapat fail e-Book "
+"yang valid di sini: "
 
 #: ../src/constants.vala:45
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
+msgstr "Terdeteksi tipe MIME yang tidak valid. Periksa format e-Book ini: "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"Ditemukan isi yang tidak valid. Pastikan terdapat fail e-Book yang valid di "
+"sini: "
 
 #: ../src/constants.vala:47
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"e-Book tidak dapat diurai. Pastikan terdapat fail e-Book yang valid di sini: "
 
 #: ../src/constants.vala:48
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookworm tidak mendukung format fail yang ada di sini: "
 
 #: ../src/constants.vala:49
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Konten yang diminta tidak dapat dimuat. Harap menghapus dan menambahkan e-"
+"Book yang ada di sini: "
 
 #: ../src/constants.vala:50
 msgid "Library"
-msgstr ""
+msgstr "Perpustakaan"
 
 #: ../src/constants.vala:51
 msgid "Resume"
-msgstr ""
+msgstr "Lanjutkan"
 
 #: ../src/constants.vala:52
 msgid "Contents"
-msgstr ""
+msgstr "Isi"
 
 #: ../src/constants.vala:53
 msgid "Content #"
-msgstr ""
+msgstr "Isi #"
 
 #: ../src/constants.vala:54
 msgid "Bookmarks"
-msgstr ""
+msgstr "Penanda"
 
 #: ../src/constants.vala:55
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Tandai #NNN untuk Bagian PPP"
 
 #: ../src/constants.vala:56
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Klik tautan untuk lompat ke bagian yang ditandai"
 
 #: ../src/constants.vala:57
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"Tidak ada penanda yang ditetapkan pada BBB, klik ikon Bookworm pada bagian "
+"atas untuk menandai halaman"
 
 #: ../src/constants.vala:58
 msgid "Search Results"
-msgstr ""
+msgstr "Hasil Pencarian"
 
 #: ../src/constants.vala:59
 msgid "Annotations"
-msgstr ""
+msgstr "Anotasi"
 
 #: ../src/constants.vala:60
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Label Anotasi"
 
 #: ../src/constants.vala:61
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Label untuk anotasi ini (dipisahkan dengan tanda koma)"
 
 #: ../src/constants.vala:62
 msgid "Add notes for : "
-msgstr ""
+msgstr "Tambahkan catatan untuk: "
 
 #: ../src/constants.vala:63
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Klik tautan untuk lompat ke bagian yang beranotasi"
 
 #: ../src/constants.vala:64
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Tidak ada anotasi yang diterapkan pada BBB, klik-kanan halaman buku dan "
+"pilih anotasi dari menu konteks untuk menambahkan anotasi"
 
 #: ../src/constants.vala:65
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Mencari '$$$' dalam &&&:"
 
 #: ../src/constants.vala:66
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Ditemukan kecocokan untuk '$$$' dalam &&&:"
 
 #: ../src/constants.vala:67
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Tidak ada kecocokan untuk '$$$' dalam &&&"
 
 #: ../src/constants.vala:68
 msgid "Edit Info for"
-msgstr ""
+msgstr "Sunting Info untuk"
 
 #: ../src/constants.vala:69 ../src/constants.vala:73
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Perbarui Gambar Sampul"
 
 #: ../src/constants.vala:70
 msgid "Update Title"
-msgstr ""
+msgstr "Perbarui Judul"
 
 #: ../src/constants.vala:71
 msgid "Update Tags"
-msgstr ""
+msgstr "Perbarui Label"
 
 #: ../src/constants.vala:72
 msgid "Update Author"
-msgstr ""
+msgstr "Perbarui Penulis"
 
 #: ../src/constants.vala:74
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "Aktifkan tampilan layar penuh (F11)"
 
 #: ../src/constants.vala:75
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "Non-aktifkan tampilan layar penuh (Esc)"
 
 #: ../src/constants.vala:76
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Periksa Arti Kata"
 
 #: ../src/constants.vala:77
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Anotasi teks terpilih"
 
 #: ../src/constants.vala:78
 msgid "Books"
-msgstr ""
+msgstr "Buku"
 
 #: ../src/constants.vala:79
 msgid "Images"
-msgstr ""
+msgstr "Gambar"
 
 #: ../src/constants.vala:80
 msgid "All Files"
-msgstr ""
+msgstr "Semua Fail"
 
 #: ../src/constants.vala:81
 msgid "Title"
-msgstr ""
+msgstr "Judul"
 
 #: ../src/constants.vala:82
 msgid "Author"
-msgstr ""
+msgstr "Penulis"
 
 #: ../src/constants.vala:83
 msgid "Last Opened"
-msgstr ""
+msgstr "Terakhir Dibuka"
 
 #: ../src/constants.vala:84
 msgid "Rating"
-msgstr ""
+msgstr "Penilaian"
 
 #: ../src/constants.vala:85
 msgid "Tags"
-msgstr ""
+msgstr "Label"
 
 #: ../src/constants.vala:86
 msgid "Today"
-msgstr ""
+msgstr "Hari ini"
 
 #: ../src/constants.vala:87
 msgid "Yesterday"
-msgstr ""
+msgstr "Kemarin"
 
 #: ../src/constants.vala:88
 msgid "Days"
-msgstr ""
+msgstr "Hari"
 
 #: ../src/constants.vala:89
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Penemuan buku akan dimulai ketika Bookworm ditutup"
 
 #: ../src/constants.vala:91
 msgid "Add books to library"
-msgstr ""
+msgstr "Tambahkan buku ke perpustakaan"
 
 #: ../src/constants.vala:92
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "Hapus buku terpilih dari perpustakaan (fail e-Book tidak akan terhapus)"
 
 #: ../src/constants.vala:93
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Pilih satu buku atau lebih dari perpustakaan"
 
 #: ../src/constants.vala:94
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Lihat Daftar Isi, Penanda, dan Hasil Pencarian"
 
 #: ../src/constants.vala:95
 msgid "Reading preferences"
-msgstr ""
+msgstr "Preferensi Membaca"
 
 #: ../src/constants.vala:96
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Klik untuk menandai halaman ini"
 
 #: ../src/constants.vala:97
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Klik untuk menghapus penanda ini"
 
 #: ../src/constants.vala:98
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Perbesar ukuran huruf (Ctrl + Shift + '+')"
 
 #: ../src/constants.vala:99
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Perkecil ukuran huruf (Ctrl + '-')"
 
 #: ../src/constants.vala:100
 msgid "Increase line width"
-msgstr ""
+msgstr "Perbesar lebar garis"
 
 #: ../src/constants.vala:101
 msgid "Decrease line width"
-msgstr ""
+msgstr "Perkecil lebar garis"
 
 #: ../src/constants.vala:102
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Perbesar spasi garis"
 
 #: ../src/constants.vala:103
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Perkecil spasi garis"
 
 #: ../src/constants.vala:104
 msgid "Update cover image"
-msgstr ""
+msgstr "Perbarui gambar sampul"
 
 #: ../src/constants.vala:105
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Terapkan tema untuk profil warna ini"
 
 #: ../src/constants.vala:106 ../src/constants.vala:107
 msgid "Enter full screen view and Esc key to undo"
-msgstr ""
+msgstr "Aktifkan tampilan layar penuh dan tekan tombol ESC untuk membatalkan"
 
 #: ../src/constants.vala:108
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Tambahkan folder untuk memindai buku"
 
 #: ../src/constants.vala:109
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Hapus folder yang ditampilkan dari pemindaian buku"
 
 #: ../src/constants.vala:110
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Tambahkan anotasi pada teks terpilih"
 
 #: ../src/constants.vala:112 ../src/constants.vala:139
 msgid "Preferences"
-msgstr ""
+msgstr "Preferensi"
 
 #: ../src/constants.vala:113
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Aktifkan Mode Gelap"
 
 #: ../src/constants.vala:114
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Aktifkan cache (membuka buku lebih cepat)"
 
 #: ../src/constants.vala:115
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Selalu tampilkan perpustakaan pada saat memulai"
 
 #: ../src/constants.vala:116
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Aktifkan pembacaan dua halaman"
 
 #: ../src/constants.vala:117
 msgid "Select Font"
-msgstr ""
+msgstr "Pilih fon"
 
 #: ../src/constants.vala:118
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Kustomisasi profil membaca"
 
 #: ../src/constants.vala:119
 msgid "Text"
-msgstr ""
+msgstr "Teks"
 
 #: ../src/constants.vala:120
 msgid "Background"
-msgstr ""
+msgstr "Latar belakang"
 
 #: ../src/constants.vala:121
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Tambahkan folder untuk memindai buku"
 
 #: ../src/constants.vala:122
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: ../src/constants.vala:123
 msgid "Reset to default values"
-msgstr ""
+msgstr "Kembalikan ke setelan awal"
 
 #: ../src/constants.vala:137
 msgid "Unknown Book"
-msgstr ""
+msgstr "Buku TIdak Dikenal"
 
 #: ../src/constants.vala:138
 msgid "About"
-msgstr ""
+msgstr "Perihal"
 
 #: ../src/utils.vala:527 ../src/utils.vala:598
 msgid "Cancel"
-msgstr ""
+msgstr "Batalkan"
 
 #: ../src/utils.vala:529 ../src/utils.vala:599
 msgid "Open"
-msgstr ""
+msgstr "Buka"
 
 #: ../src/utils.vala:531
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #: ../src/mobiReader.vala:311
 msgid "Book"
-msgstr ""
+msgstr "Buku"
