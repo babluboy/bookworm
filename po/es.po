@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
-"PO-Revision-Date: 2018-03-02 17:49+0000\n"
+"PO-Revision-Date: 2018-03-03 18:41+0000\n"
 "Last-Translator: Santiago Pestarini <santiagonob@gmail.com>\n"
 "Language-Team: Spanish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/es/>\n"
@@ -430,7 +430,7 @@ msgstr "Abrir"
 
 #: ../src/utils.vala:531
 msgid "Save"
-msgstr "Salvar"
+msgstr "Guardar"
 
 #: ../src/mobiReader.vala:311
 msgid "Book"
