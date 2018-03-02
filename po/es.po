@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
-"PO-Revision-Date: 2018-01-12 17:44+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2018-03-02 17:49+0000\n"
+"Last-Translator: Santiago Pestarini <santiagonob@gmail.com>\n"
 "Language-Team: Spanish "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/es/>\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.19-dev\n"
+"X-Generator: Weblate 2.20-dev\n"
 
 #: ../src/dialog.vala:66
 msgid "Select Image"
@@ -385,9 +385,8 @@ msgid "Enable two page reading"
 msgstr "activar lectura en dos paginas"
 
 #: ../src/constants.vala:117
-#, fuzzy
 msgid "Select Font"
-msgstr "Seleccionar fuente"
+msgstr "Seleccionar tipografía"
 
 #: ../src/constants.vala:118
 msgid "Customize reading profile"
@@ -427,7 +426,7 @@ msgstr "Cancelar"
 
 #: ../src/utils.vala:529 ../src/utils.vala:599
 msgid "Open"
-msgstr "Abierto"
+msgstr "Abrir"
 
 #: ../src/utils.vala:531
 msgid "Save"
