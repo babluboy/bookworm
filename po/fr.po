@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
 "PO-Revision-Date: 2018-03-07 19:17+0000\n"
-"Last-Translator: Anne017 <anneonyme017@openmailbox.org>\n"
+"Last-Translator: anonymous <>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
@@ -288,7 +288,7 @@ msgstr "Jours"
 
 #: ../src/constants.vala:89
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "La Découverte des livres commencera après que Bookworm est fermé"
 
 #: ../src/constants.vala:91
 msgid "Add books to library"
