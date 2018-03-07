@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
-"PO-Revision-Date: 2018-03-07 19:17+0000\n"
-"Last-Translator: anonymous <>\n"
+"PO-Revision-Date: 2018-03-07 19:18+0000\n"
+"Last-Translator: Anne017 <anneonyme017@openmailbox.org>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
 "Language: fr\n"
@@ -95,10 +95,8 @@ msgstr ""
 "est à l'emplacement : "
 
 #: ../src/constants.vala:45
-#, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
-"Type de Mime invalide détecté. Vérifiez le format du livre à l'emplacement : "
+msgstr "Type MIME invalide détecté. Vérifiez le format de ce livre : "
 
 #: ../src/constants.vala:46
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -288,7 +286,7 @@ msgstr "Jours"
 
 #: ../src/constants.vala:89
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr "La Découverte des livres commencera après que Bookworm est fermé"
+msgstr "La recherche de livres commencera après la fermeture de Bookworm"
 
 #: ../src/constants.vala:91
 msgid "Add books to library"
