@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 17:52+0000\n"
-"PO-Revision-Date: 2018-03-07 19:18+0000\n"
+"PO-Revision-Date: 2018-03-08 19:36+0000\n"
 "Last-Translator: Anne017 <anneonyme017@openmailbox.org>\n"
 "Language-Team: French "
 "<https://hosted.weblate.org/projects/bookworm/bookworm/fr/>\n"
@@ -270,7 +270,7 @@ msgstr "Note"
 
 #: ../src/constants.vala:85
 msgid "Tags"
-msgstr "Tags"
+msgstr "Mots-clés"
 
 #: ../src/constants.vala:86
 msgid "Today"
