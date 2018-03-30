@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-10 17:52+0000\n"
+"POT-Creation-Date: 2018-02-27 12:03+0000\n"
 "PO-Revision-Date: 2017-09-12 22:48+0000\n"
 "Last-Translator: Cûndûllah el-Kurdî <mckucukaslan47@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/bookworm/"
@@ -13,84 +13,84 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.17-dev\n"
 
-#: ../src/dialog.vala:66
+#: ../src/dialog.vala:64
 msgid "Select Image"
 msgstr "Wêne Hilbijêre"
 
-#: ../src/dialog.vala:496
+#: ../src/dialog.vala:511
 msgid "Select folder"
 msgstr "Belgeyê Hilbijêre"
 
-#: ../src/library.vala:551
+#: ../src/library.vala:602
 msgid "Adding "
 msgstr ""
 
-#: ../src/window.vala:291 ../src/window.vala:496
+#: ../src/window.vala:292 ../src/window.vala:519
 msgid "Select eBook"
 msgstr "ePirtûk Hilbijêre"
 
-#: ../src/bookworm.vala:112
+#: ../src/bookworm.vala:102
 msgid "Display version number"
 msgstr "Hejmara guhertoya dîmenderê"
 
-#: ../src/bookworm.vala:113
+#: ../src/bookworm.vala:103
 msgid "Run Bookworm in debug mode"
 msgstr "Di moda vebijartina xeletiyê de Bookwormê bixebitîne"
 
-#: ../src/bookworm.vala:114
+#: ../src/bookworm.vala:104
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Di moda vebijartina xeletiyê de Bookwormê bixebitîne"
 
-#: ../src/bookworm.vala:115
+#: ../src/bookworm.vala:105
 #, fuzzy
 msgid "Automatically add new books from watched folders"
 msgstr ""
 "Pirtûkên nû yên di dosyeyên bijarte de ne bila jixweber bê lêzêdekirin."
 
-#: ../src/constants.vala:27
+#: ../src/constants.vala:29
 msgid "An eBook Reader"
 msgstr "Xwînereke ePirtûk"
 
-#: ../src/constants.vala:29
+#: ../src/constants.vala:31
 msgid "Weblate Translators"
 msgstr "Wergêrên Weblatê"
 
-#: ../src/constants.vala:35
-msgid "Website"
-msgstr "Malper"
-
 #: ../src/constants.vala:37
+msgid "Website | Translation | Bug Tracker"
+msgstr ""
+
+#: ../src/constants.vala:39
 msgid "Not Available"
 msgstr "Nayê Bikaranîn"
 
-#: ../src/constants.vala:38
+#: ../src/constants.vala:40
 msgid "eBook Reader"
 msgstr "Xwînereke ePirtûk"
 
-#: ../src/constants.vala:39
+#: ../src/constants.vala:41
 #, fuzzy
 msgid "Search this book…"
 msgstr "...Li vê pirtûkê bigere"
 
-#: ../src/constants.vala:40
+#: ../src/constants.vala:42
 msgid "Search by Title, Author and Tags"
 msgstr "Li Sernav, Nivîskar û Etîketan Bigere"
 
-#: ../src/constants.vala:41
+#: ../src/constants.vala:43
 #, fuzzy
 msgid "Looks like Bookworm has no books."
 msgstr "! Bi ya dîtinê di Bookwormê de tu pirtûk tune ye"
 
-#: ../src/constants.vala:42
+#: ../src/constants.vala:44
 msgid "Build your library by adding eBooks"
 msgstr "Bi lêzêdekirina ePirtûkan pirtûkxaneya xwe ava bike"
 
-#: ../src/constants.vala:43
+#: ../src/constants.vala:45
 msgid "Select an eBook to read"
 msgstr "Ji bo xwendinê ePirtûkeke hilbijêre"
 
-#: ../src/constants.vala:44
+#: ../src/constants.vala:46
 #, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
@@ -99,33 +99,33 @@ msgstr ""
 "Di vebijartina naveroka pirtûkê de pirsgirêkeke heye. Venerin, gelo pirtûk "
 "di cih de ye ya na: "
 
-#: ../src/constants.vala:45
+#: ../src/constants.vala:47
 #, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
 ":Cureyeke nederbesbar a MIME hat dîtin. Formata pirtûkê di cihê de kontrol "
 "bikin "
 
-#: ../src/constants.vala:46
+#: ../src/constants.vala:48
 #, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 ": Naverokeke nederbasbar hat dîtin. Ew peldanka ePirrtûkê di cihê wê de "
 "bihele "
 
-#: ../src/constants.vala:47
+#: ../src/constants.vala:49
 #, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 ": Naverokeke nederbasbar hat dîtin. Ew peldanka ePirrtûkê di cihê wê de "
 "bihele "
 
-#: ../src/constants.vala:48
+#: ../src/constants.vala:50
 #, fuzzy
 msgid "Bookworm does not support the format of the file found here: "
 msgstr ":Bookworm piştgirî nade formata peldanka li wê derê "
 
-#: ../src/constants.vala:49
+#: ../src/constants.vala:51
 #, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
@@ -134,35 +134,35 @@ msgstr ""
 ": Naverokeke nederbasbar hat dîtin. Ew peldanka ePirrtûkê di cihê wê de "
 "bihele "
 
-#: ../src/constants.vala:50
+#: ../src/constants.vala:52
 msgid "Library"
 msgstr "Pirtûkxane"
 
-#: ../src/constants.vala:51
+#: ../src/constants.vala:53
 msgid "Resume"
 msgstr "Bidome"
 
-#: ../src/constants.vala:52
+#: ../src/constants.vala:54
 msgid "Contents"
 msgstr "Naverok"
 
-#: ../src/constants.vala:53
+#: ../src/constants.vala:55
 msgid "Content #"
 msgstr "# Naverok"
 
-#: ../src/constants.vala:54
+#: ../src/constants.vala:56
 msgid "Bookmarks"
 msgstr "‮‬‌Cihên Nîşankirî"
 
-#: ../src/constants.vala:55
+#: ../src/constants.vala:57
 msgid "Bookmark #NNN for Section PPP"
 msgstr "Ji bo beşa SSS cihê nîşankirî #NNN"
 
-#: ../src/constants.vala:56
+#: ../src/constants.vala:58
 msgid "Click on a link to jump to bookmarked section"
 msgstr "Ji bo çûna beşa cihên nîşankirî girêdanê bitikîne"
 
-#: ../src/constants.vala:57
+#: ../src/constants.vala:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
@@ -170,292 +170,304 @@ msgstr ""
 "Li BBB qet ciheke nîşankirî nehat mîhenkkirin, ji bo lêzêdekirina cihên "
 "nîşankirî pêl îkona Bookwormê bike ya di şivika sernavê de ye"
 
-#: ../src/constants.vala:58
+#: ../src/constants.vala:60
 msgid "Search Results"
 msgstr "Encama lêgerînê"
 
-#: ../src/constants.vala:59
+#: ../src/constants.vala:61
 msgid "Annotations"
 msgstr ""
 
-#: ../src/constants.vala:60
+#: ../src/constants.vala:62
 msgid "Annotation Tags"
 msgstr ""
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:63
 msgid "Comma-separated tags for this annotation"
 msgstr ""
 
-#: ../src/constants.vala:62
-msgid "Add notes for : "
-msgstr ""
+#: ../src/constants.vala:64
+#, fuzzy
+msgid "Edit annotation for : "
+msgstr "Ji bo vê agahî serast bike"
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:65
 #, fuzzy
 msgid "Click on a link to jump to an annotated section"
 msgstr "Ji bo çûna beşa cihên nîşankirî girêdanê bitikîne"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:66
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:67
 #, fuzzy
 msgid "Searching for '$$$' in &&&:"
 msgstr ":Te di beşa &&&ê de ji bo $$$ tu encam nedît"
 
-#: ../src/constants.vala:66
+#: ../src/constants.vala:68
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr ":Te di beşa &&&ê de ji bo $$$ van encaman dît"
 
-#: ../src/constants.vala:67
+#: ../src/constants.vala:69
 msgid "No matches found for '$$$' in &&&"
 msgstr ":Te di beşa &&&ê de ji bo $$$ tu encam nedît"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:70
 msgid "Edit Info for"
 msgstr "Ji bo vê agahî serast bike"
 
-#: ../src/constants.vala:69 ../src/constants.vala:73
+#: ../src/constants.vala:71 ../src/constants.vala:75
 msgid "Update Cover Image"
 msgstr "Wêneya Bergê Rojane Bike"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:72
 msgid "Update Title"
 msgstr "Sernavê Rojane Bike"
 
-#: ../src/constants.vala:71
+#: ../src/constants.vala:73
 msgid "Update Tags"
 msgstr "Etîketê Rojane Bike"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:74
 msgid "Update Author"
 msgstr "Nivîskarê Rojane Bike"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:76
 #, fuzzy
 msgid "Enter full screen view (F11)"
 msgstr "Herin Dîmendera Tije"
 
-#: ../src/constants.vala:75
+#: ../src/constants.vala:77
 #, fuzzy
 msgid "Exit full screen view (Esc)"
 msgstr "Ji Dîmendera Tije Der Bikeve"
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:78
 msgid "Check Word Meaning"
 msgstr "Wateya Bêjeyê Kontrol Bike"
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:79
 msgid "Annotate selected text"
 msgstr ""
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:80
 msgid "Books"
 msgstr "Pirtûk"
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:81
 msgid "Images"
 msgstr "Wêne"
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:82
 msgid "All Files"
 msgstr "Hemû Peldank"
 
-#: ../src/constants.vala:81
+#: ../src/constants.vala:83
 msgid "Title"
 msgstr ""
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:84
 #, fuzzy
 msgid "Author"
 msgstr "Nivîskarê Rojane Bike"
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:85
 msgid "Last Opened"
 msgstr ""
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:86
 msgid "Rating"
 msgstr ""
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:87
 msgid "Tags"
 msgstr ""
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:88
 msgid "Today"
 msgstr ""
 
-#: ../src/constants.vala:87
+#: ../src/constants.vala:89
 msgid "Yesterday"
 msgstr ""
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:90
 msgid "Days"
 msgstr ""
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:91
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr ""
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:93
 msgid "Add books to library"
 msgstr "Pirtûkan li pirtûkxaneyê zêde bike"
 
-#: ../src/constants.vala:92
+#: ../src/constants.vala:94
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "(Pirtûkên Hilbijartî ji pirtûkxaneyê derxe (Peldanka ePirtûk dê neyê jê birîn"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:95
 msgid "Select one or more books in library"
 msgstr "Di Pirtûkxaneyê de pirtûkekek yan jî gelek ji wan hilbijêre"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:96
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Li Naverokê, li Cihên Nîşankirî û li Encamên Lêgerînê Binerin"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:97
 #, fuzzy
 msgid "Reading preferences"
 msgstr "Vebijarkên xwendinê mîhenk bikin"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:98
 msgid "Click to bookmark this page"
 msgstr "Di vê rûpelê de li cihên nîşankirî binere"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:99
 msgid "Click to remove this bookmark"
 msgstr "Ji bo rakirina vê cihê nîşankirî bitikîne"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:100
 #, fuzzy
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Rehenda curenivîsê zêde bike"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:101
 #, fuzzy
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Rehenda curenivîsê kêm bike"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:102
 msgid "Increase line width"
 msgstr "Firehiya xêzê zêde bike"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:103
 msgid "Decrease line width"
 msgstr "Firehiya xêzê kêm bike"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:104
 msgid "Increase line spacing"
 msgstr "Navbera rêzê zêde bike"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:105
 msgid "Decrease line spacing"
 msgstr "Navbera rêzê kêm bike"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:106
+msgid "Align left"
+msgstr ""
+
+#: ../src/constants.vala:107
+msgid "Align right"
+msgstr ""
+
+#: ../src/constants.vala:108
 msgid "Update cover image"
 msgstr "Wêneya bergê rojane bike"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:109
 msgid "Apply theme for this colour profile"
 msgstr ""
 
-#: ../src/constants.vala:106 ../src/constants.vala:107
+#: ../src/constants.vala:110 ../src/constants.vala:111
 #, fuzzy
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Ji bo dîmendera tije bitikîne û ji bo jê derkeve pêl ESC bike"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:112
 msgid "Add folder to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:113
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: ../src/constants.vala:110
+#: ../src/constants.vala:114
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:112 ../src/constants.vala:139
+#: ../src/constants.vala:116 ../src/constants.vala:141
 msgid "Preferences"
 msgstr "Vebijark"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:117
 #, fuzzy
 msgid "Turn on Dark Mode"
 msgstr "Moda Şevê Veke"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:118
 msgid "Enable cache (opens books faster)"
 msgstr "(Pêşbîr çalak bike (pirtûk zûtirîn vedibe"
 
-#: ../src/constants.vala:115
+#: ../src/constants.vala:119
 msgid "Always show library on startup"
 msgstr ""
 
-#: ../src/constants.vala:116
+#: ../src/constants.vala:120
 msgid "Enable two page reading"
 msgstr ""
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:121
 #, fuzzy
 msgid "Select Font"
 msgstr "ePirtûk Hilbijêre"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:122
 msgid "Customize reading profile"
 msgstr ""
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:123
 msgid "Text"
 msgstr ""
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:124
 msgid "Background"
 msgstr ""
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:125
 msgid "Add folders to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:126
 msgid "Profile"
 msgstr ""
 
-#: ../src/constants.vala:123
+#: ../src/constants.vala:127
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:137
+#: ../src/constants.vala:139
 msgid "Unknown Book"
 msgstr "Pirtûkê Nenas"
 
-#: ../src/constants.vala:138
+#: ../src/constants.vala:140
 msgid "About"
 msgstr "Derbare"
 
-#: ../src/utils.vala:527 ../src/utils.vala:598
+#: ../src/utils.vala:518 ../src/utils.vala:592
 msgid "Cancel"
 msgstr "Betal bike"
 
-#: ../src/utils.vala:529 ../src/utils.vala:599
+#: ../src/utils.vala:520 ../src/utils.vala:593
 msgid "Open"
 msgstr "Veke"
 
-#: ../src/utils.vala:531
+#: ../src/utils.vala:522
 msgid "Save"
 msgstr "Tomar bike"
 
-#: ../src/mobiReader.vala:311
+#: ../src/mobiReader.vala:329
 #, fuzzy
 msgid "Book"
 msgstr "Pirtûk"
+
+#~ msgid "Website"
+#~ msgstr "Malper"
 
 #~ msgid "Added "
 #~ msgstr "Hat lêzêdekirin "

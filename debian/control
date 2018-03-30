@@ -8,10 +8,12 @@ Build-Depends: cmake (>= 2.8),
                libgtk-3-dev (>= 3.14),
                valac (>= 0.26),
                libgranite-dev (>= 0.3.0),
+               libsqlite3-dev,
                libwebkit2gtk-4.0-37,
                libwebkit2gtk-4.0-dev,
-               libsqlite3-dev,
-               libpoppler-glib-dev
+               libpoppler-glib-dev,
+               libxml2,
+               libxml2-dev
 
 Standards-Version: 3.9.6
 Package: com.github.babluboy.bookworm

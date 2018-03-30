@@ -101,9 +101,7 @@ public class BookwormApp.AppHeaderBar {
         Gtk.MenuItem showAbout = new Gtk.MenuItem.with_label (BookwormApp.Constants.TEXT_FOR_PREF_MENU_ABOUT_ITEM);
         showAbout.activate.connect (ShowAboutDialog);
         settingsMenu.append (showAbout);
-
         settingsMenu.show_all ();
-
         headerbar.pack_end (appMenu);
 
         //Add a search entry to the header
@@ -233,10 +231,7 @@ public class BookwormApp.AppHeaderBar {
         aboutDialog.license = null;
         aboutDialog.license_type = BookwormApp.Constants.about_license_type;
         aboutDialog.translator_credits = BookwormApp.Constants.translator_credits;
-        //aboutDialog.translate = BookwormApp.Constants.translate_url;
-        //aboutDialog.help = BookwormApp.Constants.help_url;
-        //aboutDialog.bug = BookwormApp.Constants.bug_url;
-
+        
         aboutDialog.present ();
         aboutDialog.response.connect((response_id) => {
             aboutDialog.destroy ();

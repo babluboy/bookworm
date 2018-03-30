@@ -96,7 +96,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		application_id = BookwormApp.Constants.bookworm_id;
 		flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 		program_name = BookwormApp.Constants.program_name;
-		exec_name = "com.github.babluboy.bookworm";
+		exec_name = BookwormApp.Constants.bookworm_id;
 
 		options = new OptionEntry[4];
 		options[0] = { "version", 0, 0, OptionArg.NONE, ref command_line_option_version, _("Display version number"), null };
