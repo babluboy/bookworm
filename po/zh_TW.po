@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2018-04-01 14:17+0000\n"
+"PO-Revision-Date: 2018-04-01 14:29+0000\n"
 "Last-Translator: Alister Gao <k88959@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hant/>\n"
@@ -331,75 +331,75 @@ msgstr "向左對齊"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr "自右對齊"
+msgstr "向右對齊"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
-msgstr ""
+msgstr "更新封面圖像"
 
 #: ../src/constants.vala:109
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "為此之配色檔套用主題"
 
 #: ../src/constants.vala:110 ../src/constants.vala:111
 msgid "Enter full screen view and Esc key to undo"
-msgstr ""
+msgstr "進入全螢幕模式，Esc鍵退出"
 
 #: ../src/constants.vala:112
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "添加文件夾以掃描書籍"
 
 #: ../src/constants.vala:113
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "移除掃描書藉所顯示的文件夾"
 
 #: ../src/constants.vala:114
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "註釋選取的文字"
 
 #: ../src/constants.vala:116 ../src/constants.vala:141
 msgid "Preferences"
-msgstr ""
+msgstr "偏好設定"
 
 #: ../src/constants.vala:117
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "套用黑色主題"
 
 #: ../src/constants.vala:118
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "啟用快取（加快讀取書藉）"
 
 #: ../src/constants.vala:119
 msgid "Always show library on startup"
-msgstr ""
+msgstr "將書庫設為開始畫面"
 
 #: ../src/constants.vala:120
 msgid "Enable two page reading"
-msgstr ""
+msgstr "啟用雙頁閱讀"
 
 #: ../src/constants.vala:121
 msgid "Select Font"
-msgstr ""
+msgstr "選取字體"
 
 #: ../src/constants.vala:122
 msgid "Customize reading profile"
-msgstr ""
+msgstr "設定閱讀檔案"
 
 #: ../src/constants.vala:123
 msgid "Text"
-msgstr ""
+msgstr "文字"
 
 #: ../src/constants.vala:124
 msgid "Background"
-msgstr ""
+msgstr "背景"
 
 #: ../src/constants.vala:125
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "添加文件夾以掃描書藉"
 
 #: ../src/constants.vala:126
 msgid "Profile"
-msgstr ""
+msgstr "簡介"
 
 #: ../src/constants.vala:127
 msgid "Reset to default values"
