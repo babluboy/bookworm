@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2018-04-01 14:29+0000\n"
+"PO-Revision-Date: 2018-04-02 14:35+0000\n"
 "Last-Translator: Alister Gao <k88959@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hant/>\n"
@@ -383,7 +383,7 @@ msgstr "選取字體"
 
 #: ../src/constants.vala:122
 msgid "Customize reading profile"
-msgstr "設定閱讀檔案"
+msgstr "設定閱讀簡介"
 
 #: ../src/constants.vala:123
 msgid "Text"
@@ -403,28 +403,28 @@ msgstr "簡介"
 
 #: ../src/constants.vala:127
 msgid "Reset to default values"
-msgstr ""
+msgstr "重設所有設定"
 
 #: ../src/constants.vala:139
 msgid "Unknown Book"
-msgstr ""
+msgstr "未知書藉"
 
 #: ../src/constants.vala:140
 msgid "About"
-msgstr ""
+msgstr "關於"
 
 #: ../src/utils.vala:518 ../src/utils.vala:592
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: ../src/utils.vala:520 ../src/utils.vala:593
 msgid "Open"
-msgstr ""
+msgstr "開啟"
 
 #: ../src/utils.vala:522
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: ../src/mobiReader.vala:329
 msgid "Book"
-msgstr ""
+msgstr "書藉"
