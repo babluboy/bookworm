@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2018-04-01 14:15+0000\n"
+"PO-Revision-Date: 2018-04-01 14:17+0000\n"
 "Last-Translator: Alister Gao <k88959@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hant/>\n"
@@ -311,27 +311,27 @@ msgstr "減少字體大小 (Ctrl + Shift + '-')"
 
 #: ../src/constants.vala:102
 msgid "Increase line width"
-msgstr "增加行距"
+msgstr "增加行寬"
 
 #: ../src/constants.vala:103
 msgid "Decrease line width"
-msgstr "減少行距"
+msgstr "減少行寬"
 
 #: ../src/constants.vala:104
 msgid "Increase line spacing"
-msgstr "增加間距"
+msgstr "增加行距"
 
 #: ../src/constants.vala:105
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "減少行距"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "向左對齊"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "自右對齊"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
