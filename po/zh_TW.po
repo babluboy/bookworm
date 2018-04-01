@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2018-04-01 13:28+0000\n"
+"PO-Revision-Date: 2018-04-01 14:15+0000\n"
 "Last-Translator: Alister Gao <k88959@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hant/>\n"
@@ -75,199 +75,199 @@ msgstr "透過標題、作者和標籤搜尋"
 
 #: ../src/constants.vala:43
 msgid "Looks like Bookworm has no books."
-msgstr "Bookworm看起來沒任何書"
+msgstr "看來Bookworm沒任何書。"
 
 #: ../src/constants.vala:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "添加電子書來建立你的書庫"
 
 #: ../src/constants.vala:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "選一本書閱讀"
 
 #: ../src/constants.vala:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr ""
+msgstr "提取書藉內容時遭遇錯誤。請確認此處有有效的電子書檔案： "
 
 #: ../src/constants.vala:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
+msgstr "偵測到無效的MIME類型。請確認此書的格式： "
 
 #: ../src/constants.vala:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "偵測到無效內容。請確認本處有有效的電子書檔案： "
 
 #: ../src/constants.vala:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "無法解析電子書。請確認本處有有效的電子書檔案： "
 
 #: ../src/constants.vala:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookworm不支援此種格式： "
 
 #: ../src/constants.vala:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr ""
+msgstr "無法取得要求的內容。請移除和添加此電子書： "
 
 #: ../src/constants.vala:52
 msgid "Library"
-msgstr ""
+msgstr "書庫"
 
 #: ../src/constants.vala:53
 msgid "Resume"
-msgstr ""
+msgstr "繼續"
 
 #: ../src/constants.vala:54
 msgid "Contents"
-msgstr ""
+msgstr "內容"
 
 #: ../src/constants.vala:55
 msgid "Content #"
-msgstr ""
+msgstr "內容 #"
 
 #: ../src/constants.vala:56
 msgid "Bookmarks"
-msgstr ""
+msgstr "書籤"
 
 #: ../src/constants.vala:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "書籤 #NNN 部分 PPP"
 
 #: ../src/constants.vala:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "點擊連結跳至書籤段落"
 
 #: ../src/constants.vala:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
-msgstr ""
+msgstr "BBB 沒有設置書籤，點擊標題欄的圖示添加本頁至書籤"
 
 #: ../src/constants.vala:60
 msgid "Search Results"
-msgstr ""
+msgstr "搜尋結果"
 
 #: ../src/constants.vala:61
 msgid "Annotations"
-msgstr ""
+msgstr "註釋"
 
 #: ../src/constants.vala:62
 msgid "Annotation Tags"
-msgstr ""
+msgstr "註釋標籤"
 
 #: ../src/constants.vala:63
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "本註釋以逗號分隔的標籤"
 
 #: ../src/constants.vala:64
 msgid "Edit annotation for : "
-msgstr ""
+msgstr "編輯註釋： "
 
 #: ../src/constants.vala:65
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "點擊一個連結跳至註釋段落"
 
 #: ../src/constants.vala:66
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
-msgstr ""
+msgstr "BBB 沒有設置註釋，右鍵點擊書中該頁並從選單中選擇註釋來新增註釋"
 
 #: ../src/constants.vala:67
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "在 &&& 中搜尋 '$$$'："
 
 #: ../src/constants.vala:68
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "在 &&& 中找到下列符合結果："
 
 #: ../src/constants.vala:69
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "在 &&& 中找不到符合 '$$$' 的結果"
 
 #: ../src/constants.vala:70
 msgid "Edit Info for"
-msgstr ""
+msgstr "編輯資訊"
 
 #: ../src/constants.vala:71 ../src/constants.vala:75
 msgid "Update Cover Image"
-msgstr ""
+msgstr "更新封面圖像"
 
 #: ../src/constants.vala:72
 msgid "Update Title"
-msgstr ""
+msgstr "更新標題"
 
 #: ../src/constants.vala:73
 msgid "Update Tags"
-msgstr ""
+msgstr "更新標籤"
 
 #: ../src/constants.vala:74
 msgid "Update Author"
-msgstr ""
+msgstr "更新作者"
 
 #: ../src/constants.vala:76
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "進入全螢幕模式 (F11)"
 
 #: ../src/constants.vala:77
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "退出全螢幕  (Esc)"
 
 #: ../src/constants.vala:78
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "查詢字詞含義"
 
 #: ../src/constants.vala:79
 msgid "Annotate selected text"
-msgstr ""
+msgstr "註釋選擇的文字"
 
 #: ../src/constants.vala:80
 msgid "Books"
-msgstr ""
+msgstr "書籍"
 
 #: ../src/constants.vala:81
 msgid "Images"
-msgstr ""
+msgstr "圖像"
 
 #: ../src/constants.vala:82
 msgid "All Files"
-msgstr ""
+msgstr "所有文件"
 
 #: ../src/constants.vala:83
 msgid "Title"
-msgstr ""
+msgstr "標題"
 
 #: ../src/constants.vala:84
 msgid "Author"
-msgstr ""
+msgstr "作者"
 
 #: ../src/constants.vala:85
 msgid "Last Opened"
-msgstr ""
+msgstr "上次開啟"
 
 #: ../src/constants.vala:86
 msgid "Rating"
-msgstr ""
+msgstr "評分"
 
 #: ../src/constants.vala:87
 msgid "Tags"
-msgstr ""
+msgstr "標籤"
 
 #: ../src/constants.vala:88
 msgid "Today"
-msgstr ""
+msgstr "今天"
 
 #: ../src/constants.vala:89
 msgid "Yesterday"
-msgstr ""
+msgstr "昨天"
 
 #: ../src/constants.vala:90
 msgid "Days"
-msgstr ""
+msgstr "天"
 
 #: ../src/constants.vala:91
 msgid "Discovery of books will be started when Bookworm is closed"
@@ -275,51 +275,51 @@ msgstr ""
 
 #: ../src/constants.vala:93
 msgid "Add books to library"
-msgstr ""
+msgstr "新增書藉至書庫"
 
 #: ../src/constants.vala:94
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "從書庫移除選取的書藉（電字書檔案不會被刪除）"
 
 #: ../src/constants.vala:95
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "從書庫中選取一本或多本書"
 
 #: ../src/constants.vala:96
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "查看目錄、書籤和搜尋結果"
 
 #: ../src/constants.vala:97
 msgid "Reading preferences"
-msgstr ""
+msgstr "閱讀偏好"
 
 #: ../src/constants.vala:98
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "點擊將此頁加入書籤"
 
 #: ../src/constants.vala:99
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "點擊將此頁書籤移除"
 
 #: ../src/constants.vala:100
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "增加字體大小 (Ctrl + Shift + '+')"
 
 #: ../src/constants.vala:101
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "減少字體大小 (Ctrl + Shift + '-')"
 
 #: ../src/constants.vala:102
 msgid "Increase line width"
-msgstr ""
+msgstr "增加行距"
 
 #: ../src/constants.vala:103
 msgid "Decrease line width"
-msgstr ""
+msgstr "減少行距"
 
 #: ../src/constants.vala:104
 msgid "Increase line spacing"
-msgstr ""
+msgstr "增加間距"
 
 #: ../src/constants.vala:105
 msgid "Decrease line spacing"
