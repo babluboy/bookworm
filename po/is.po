@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-11 10:54+0200\n"
-"PO-Revision-Date: 2018-04-11 09:28+0000\n"
+"PO-Revision-Date: 2018-04-11 09:29+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -282,7 +282,7 @@ msgstr "Bæta bókum í safn"
 
 #: ../src/constants.vala:94
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "Fjarlægja valdar bækur úr safni (rafbókaskrá verður ekki eytt)"
 
 #: ../src/constants.vala:95
 msgid "Select one or more books in library"
@@ -346,7 +346,7 @@ msgstr "Virkja þema fyrir þetta litasnið"
 
 #: ../src/constants.vala:110 ../src/constants.vala:111
 msgid "Enter full screen view and Esc key to undo"
-msgstr ""
+msgstr "Fara í skjáfylliham og ESC-lykill mun afturkalla það"
 
 #: ../src/constants.vala:112
 msgid "Add folder to scan for books"
@@ -374,7 +374,7 @@ msgstr "Virkja skyndiminni (flýtir fyrir opnun bóka)"
 
 #: ../src/constants.vala:119
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Alltaf birta safn eftir ræsingu"
 
 #: ../src/constants.vala:120
 msgid "Enable two page reading"
