@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-11 10:54+0200\n"
-"PO-Revision-Date: 2018-04-11 09:17+0000\n"
+"PO-Revision-Date: 2018-04-11 09:28+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -44,7 +44,7 @@ msgstr "Keyra Bókaorm í upplýsingaham"
 
 #: ../src/bookworm.vala:105
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Bæta sjálfkrafa við bókum úr vöktuðum möppum"
 
 #: ../src/constants.vala:29
 msgid "An eBook Reader"
@@ -80,7 +80,7 @@ msgstr "Það lítur út fyrir að Bókaormurinn sé ekki með neinar bækur."
 
 #: ../src/constants.vala:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Útbúðu bóksafn með því að bæta við rafbókum"
 
 #: ../src/constants.vala:45
 msgid "Select an eBook to read"
@@ -103,6 +103,8 @@ msgstr ""
 #: ../src/constants.vala:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"Ekki var hægt að þátta rafbókina. Gakktu úr skugga um að gild rafbók finnist "
+"hér: "
 
 #: ../src/constants.vala:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -192,7 +194,7 @@ msgstr "Ekkert fannst sem passaði við '$$$' í &&&"
 
 #: ../src/constants.vala:70
 msgid "Edit Info for"
-msgstr ""
+msgstr "Breyta upplýsingum fyrir"
 
 #: ../src/constants.vala:71 ../src/constants.vala:75
 msgid "Update Cover Image"
@@ -212,11 +214,11 @@ msgstr "Uppfæra höfund"
 
 #: ../src/constants.vala:76
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "Fara í skjáfylliham (F11)"
 
 #: ../src/constants.vala:77
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "Fara úr skjáfylliham (Esc)"
 
 #: ../src/constants.vala:78
 msgid "Check Word Meaning"
@@ -340,7 +342,7 @@ msgstr ""
 
 #: ../src/constants.vala:109
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Virkja þema fyrir þetta litasnið"
 
 #: ../src/constants.vala:110 ../src/constants.vala:111
 msgid "Enter full screen view and Esc key to undo"
@@ -356,7 +358,7 @@ msgstr ""
 
 #: ../src/constants.vala:114
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Bæta glósu við valinn texta"
 
 #: ../src/constants.vala:116 ../src/constants.vala:141
 msgid "Preferences"
@@ -384,7 +386,7 @@ msgstr "Veldu letur"
 
 #: ../src/constants.vala:122
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Sérsníða lestrarsnið"
 
 #: ../src/constants.vala:123
 msgid "Text"
@@ -400,7 +402,7 @@ msgstr "Bæta við möppum þar sem leita á að bókum"
 
 #: ../src/constants.vala:126
 msgid "Profile"
-msgstr "Snið"
+msgstr "Lestrarsnið"
 
 #: ../src/constants.vala:127
 msgid "Reset to default values"
