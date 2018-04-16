@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-11 10:54+0200\n"
-"PO-Revision-Date: 2018-04-16 13:00+0000\n"
+"PO-Revision-Date: 2018-04-16 13:03+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -206,7 +206,7 @@ msgstr "Breyta upplýsingum fyrir"
 
 #: ../src/constants.vala:71 ../src/constants.vala:75
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Uppfæra forsíðumynd"
 
 #: ../src/constants.vala:72
 msgid "Update Title"
@@ -346,7 +346,7 @@ msgstr "Jafna til hægri"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
-msgstr ""
+msgstr "Uppfæra forsíðumynd"
 
 #: ../src/constants.vala:109
 msgid "Apply theme for this colour profile"
