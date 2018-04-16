@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-11 10:54+0200\n"
-"PO-Revision-Date: 2018-04-11 09:29+0000\n"
+"PO-Revision-Date: 2018-04-16 13:00+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
-"X-Generator: Weblate 2.20\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -91,14 +91,16 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Vandamál kom upp við að afþjappa efni bókar. Gakktu úr skugga um að gild "
+"rafbók finnist hér: "
 
 #: ../src/constants.vala:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
+msgstr "Ógilt MIME-snið fannst. Athugaðu skráarsnið þessarar rafbókar: "
 
 #: ../src/constants.vala:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Ógilt efni fannst. Gakktu úr skugga um að gild rafbók finnist hér: "
 
 #: ../src/constants.vala:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
@@ -115,6 +117,8 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Ekki tókst að ná í umbeðið efni. Fjarlægðu og bættu við rafbókarskránni sem "
+"fannst hér: "
 
 #: ../src/constants.vala:52
 msgid "Library"
@@ -138,17 +142,19 @@ msgstr "Bókamerki"
 
 #: ../src/constants.vala:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Bókamerki #NNN fyrir PPP-hluta"
 
 #: ../src/constants.vala:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Smelltu á tengil til að hoppa í bókamerktan hluta"
 
 #: ../src/constants.vala:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"Engin bókamerki eru skilgreind í BBB, smelltu á bókaorminn efst til að "
+"bókamerkja síðuna"
 
 #: ../src/constants.vala:60
 msgid "Search Results"
@@ -172,13 +178,15 @@ msgstr "Breyta glósu fyrir : "
 
 #: ../src/constants.vala:65
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Smelltu á tengil til að hoppa í glósaðan hluta"
 
 #: ../src/constants.vala:66
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Engar glósur eru stilltar í BBB, hægri-smelltu á bókarsíðu og veldu glósu úr "
+"samhengisvalmyndinni til að bæta við glósum"
 
 #: ../src/constants.vala:67
 msgid "Searching for '$$$' in &&&:"
@@ -274,7 +282,7 @@ msgstr "Dagar"
 
 #: ../src/constants.vala:91
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Skönnun bóka fer í gang þegar Bookworm er lokað"
 
 #: ../src/constants.vala:93
 msgid "Add books to library"
@@ -354,7 +362,7 @@ msgstr "Bæta við möppu þar sem leita á að bókum"
 
 #: ../src/constants.vala:113
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Fjarlægja birta möppu úr bókaskönnun"
 
 #: ../src/constants.vala:114
 msgid "Add annotation to selected text"
