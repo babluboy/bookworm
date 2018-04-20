@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2018-04-19 09:38+0000\n"
-"Last-Translator: Marco Ciampa <ciampix@posteo.net>\n"
+"PO-Revision-Date: 2018-04-21 16:38+0000\n"
+"Last-Translator: Ale-Ma <alemassimiani@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/it/>\n"
 "Language: it\n"
@@ -170,7 +170,7 @@ msgstr "Risultati della ricerca"
 
 #: ../src/constants.vala:61
 msgid "Annotations"
-msgstr ""
+msgstr "Annotazioni"
 
 #: ../src/constants.vala:62
 msgid "Annotation Tags"
@@ -349,11 +349,11 @@ msgstr "Diminuisci la spaziatura"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Allinea a sinistra"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Allinea a destra"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
@@ -437,7 +437,7 @@ msgstr "Libro sconosciuto"
 
 #: ../src/constants.vala:140
 msgid "About"
-msgstr ""
+msgstr "Informazioni"
 
 #: ../src/utils.vala:518 ../src/utils.vala:592
 msgid "Cancel"
