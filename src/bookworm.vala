@@ -93,6 +93,7 @@ public class BookwormApp.Bookworm : Granite.Application {
   	public static StringBuilder aContentFileToBeSearched = new StringBuilder ("");
 
 	construct {
+		build_version = BookwormApp.Constants.bookworm_version;
 		application_id = BookwormApp.Constants.bookworm_id;
 		flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 		program_name = BookwormApp.Constants.program_name;
@@ -196,7 +197,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 			toggleUIState();
 			//capture window re-size events and save the window size
 			window.size_allocate.connect(() => {
-				//save books information to database
 				saveWindowState();
 			});
 			//Exit Application Event
