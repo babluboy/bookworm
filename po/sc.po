@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2017-12-13 22:50+0000\n"
+"PO-Revision-Date: 2018-04-23 15:59+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sc/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -55,7 +55,7 @@ msgstr "Tradutores de Weblate"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Situ web | Tradutzione | Errores"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -176,7 +176,6 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Eichetas separadas dae vìrgulas pro custa nota"
 
 #: ../src/constants.vala:64
-#, fuzzy
 msgid "Edit annotation for : "
 msgstr "Annanghe notas pro: "
 
@@ -347,11 +346,11 @@ msgstr "Mìnima s'ispàtziu intre sas lìnias"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Allìnia a manca"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Allìnia a destra"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
