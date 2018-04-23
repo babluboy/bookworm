@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2018-01-27 22:40+0000\n"
+"PO-Revision-Date: 2018-04-24 20:39+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/nb_NO/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.19-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -55,7 +55,7 @@ msgstr "Weblate-oversettere"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Nettside | Oversettelse | Feilsporer"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -339,11 +339,11 @@ msgstr "MInsk linjeavstand"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Venstrejuster"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Høyrejuster"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
