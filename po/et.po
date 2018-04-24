@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2017-12-12 19:41+0000\n"
+"PO-Revision-Date: 2018-04-24 17:42+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/et/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -56,7 +56,7 @@ msgstr "Tõlkijad Weblate'is"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Veebileht | Tõlge | Veahaldus"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -172,9 +172,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Selle annotatsiooni sildid (komadega eraldatud)"
 
 #: ../src/constants.vala:64
-#, fuzzy
 msgid "Edit annotation for : "
-msgstr "Lisa märkmeid: "
+msgstr "Muuda annotatsiooni: "
 
 #: ../src/constants.vala:65
 msgid "Click on a link to jump to an annotated section"
@@ -338,11 +337,11 @@ msgstr "Vähenda reasammu"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Joonda vasakule"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Joonda paremale"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
