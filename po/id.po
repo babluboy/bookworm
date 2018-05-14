@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-30 07:54+0100\n"
-"PO-Revision-Date: 2018-03-02 17:37+0000\n"
-"Last-Translator: frottle <work.mcland@gmail.com>\n"
+"PO-Revision-Date: 2018-05-14 15:08+0000\n"
+"Last-Translator: ditokp <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/id/>\n"
 "Language: id\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.20-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -55,7 +55,7 @@ msgstr "Penerjemah Weblate"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Situs Web | Penerjemahan | Pelacak Hama"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -173,9 +173,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Label untuk anotasi ini (dipisahkan dengan tanda koma)"
 
 #: ../src/constants.vala:64
-#, fuzzy
 msgid "Edit annotation for : "
-msgstr "Tambahkan catatan untuk: "
+msgstr "Sunting catatan untuk: "
 
 #: ../src/constants.vala:65
 msgid "Click on a link to jump to an annotated section"
@@ -340,11 +339,11 @@ msgstr "Perkecil spasi garis"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Rata kiri"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Rata kanan"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
