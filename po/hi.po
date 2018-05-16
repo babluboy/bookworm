@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-27 12:03+0000\n"
-"PO-Revision-Date: 2018-05-05 19:38+0000\n"
-"Last-Translator: Ishan Bhanuka <f2016075@pilani.bits-pilani.ac.in>\n"
+"PO-Revision-Date: 2018-05-17 12:37+0000\n"
+"Last-Translator: Suraj Mandal <surajmandalcell@gmail.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "hi/>\n"
 "Language: hi\n"
@@ -19,11 +19,12 @@ msgstr "चित्र चुनिये"
 
 #: ../src/dialog.vala:511
 msgid "Select folder"
-msgstr ""
+msgstr "फ़ोल्डर चुनें"
 
 #: ../src/library.vala:602
+#, fuzzy
 msgid "Adding "
-msgstr ""
+msgstr "जोड़ा जा रहा है "
 
 #: ../src/window.vala:292 ../src/window.vala:519
 msgid "Select eBook"
@@ -34,8 +35,9 @@ msgid "Display version number"
 msgstr "संस्करण संस्करण प्रदर्शित करें"
 
 #: ../src/bookworm.vala:103
+#, fuzzy
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "बुकवार्म को डीबग मोड में चलाएं"
 
 #: ../src/bookworm.vala:104
 msgid "Run Bookworm in info mode"
