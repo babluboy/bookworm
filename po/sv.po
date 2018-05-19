@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2018-01-06 16:50+0000\n"
 "Last-Translator: Sebastian Rasmussen <sebras@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -30,19 +30,19 @@ msgstr "Lägger till "
 msgid "Select eBook"
 msgstr "Välj e-bok"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Visa versionsnummer"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Kör Bookworm i felsökningsläge"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "Kör Bookworm i informationsläge"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "Lägg automatiskt till nya böcker från bevakade mappar"
 
@@ -173,7 +173,7 @@ msgstr "Kommaseparerade taggar för denna anteckning"
 
 #: ../src/constants.vala:64
 #, fuzzy
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr "Lägg till noteringar för : "
 
 #: ../src/constants.vala:65

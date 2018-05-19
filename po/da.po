@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2017-10-26 22:02+0000\n"
 "Last-Translator: Filip Kemuel Dam Bartholdy <filip_kemuel@yahoo.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -29,19 +29,19 @@ msgstr "Tilføjer "
 msgid "Select eBook"
 msgstr "Vælg e-bog"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Vis versionsnummer"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Kør Bookworm i fejlsøgningstilstand"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "Kør Bookworm i informationstilstand"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "Tilføj automatisk nye bøger fra overvågede mapper"
 
@@ -172,7 +172,7 @@ msgstr "Kommaseparerede tags til denne note"
 
 #: ../src/constants.vala:64
 #, fuzzy
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr "Redigér info for"
 
 #: ../src/constants.vala:65

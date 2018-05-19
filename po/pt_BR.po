@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2017-10-13 23:24+0000\n"
 "Last-Translator: Edgar Moraes Diniz <edgar.diniz@posteo.net>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -29,19 +29,19 @@ msgstr "Adicionando "
 msgid "Select eBook"
 msgstr "Selecionar eBook"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Exibir o número da versão"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Executar Bookworm em modo debug"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "Executar Bookworm em modo de informação"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "Adicionar automaticamente novos livros das pastas monitoradas"
 
@@ -174,7 +174,7 @@ msgstr ""
 
 #: ../src/constants.vala:64
 #, fuzzy
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr "Editar informações para"
 
 #: ../src/constants.vala:65

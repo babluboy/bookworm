@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-11 10:54+0200\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2018-04-16 13:03+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -30,19 +30,19 @@ msgstr "Bæti við "
 msgid "Select eBook"
 msgstr "Veldu rafbók"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Birta útgáfunúmer"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Keyra Bókaorm í aflúsunarham"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "Keyra Bókaorm í upplýsingaham"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "Bæta sjálfkrafa við bókum úr vöktuðum möppum"
 
@@ -173,7 +173,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Kommu-aðgreind merki fyrir þessa glósu"
 
 #: ../src/constants.vala:64
-msgid "Edit annotation for : "
+#, fuzzy
+msgid "Edit annotation for:"
 msgstr "Breyta glósu fyrir : "
 
 #: ../src/constants.vala:65

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2017-12-19 13:00+0000\n"
 "Last-Translator: Володимир Бриняк <bardvv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
@@ -30,19 +30,19 @@ msgstr "Додавання "
 msgid "Select eBook"
 msgstr "Вибрати електронну книгу"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Відобразити номер версії"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Запустити Bookworm у режимі налагодження"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "Запустити Bookworm в інформаційному режимі"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "Автоматично додавати нові книги з відстежуваної теки"
 
@@ -176,7 +176,7 @@ msgstr "Комбінація розділених тегів для цієї а�
 
 #: ../src/constants.vala:64
 #, fuzzy
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr "Додати примітки для : "
 
 #: ../src/constants.vala:65

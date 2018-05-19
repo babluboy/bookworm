@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2017-09-12 22:48+0000\n"
 "Last-Translator: Cûndûllah el-Kurdî <mckucukaslan47@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/bookworm/"
@@ -29,20 +29,20 @@ msgstr ""
 msgid "Select eBook"
 msgstr "ePirtûk Hilbijêre"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Hejmara guhertoya dîmenderê"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Di moda vebijartina xeletiyê de Bookwormê bixebitîne"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Di moda vebijartina xeletiyê de Bookwormê bixebitîne"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 #, fuzzy
 msgid "Automatically add new books from watched folders"
 msgstr ""
@@ -188,7 +188,7 @@ msgstr ""
 
 #: ../src/constants.vala:64
 #, fuzzy
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr "Ji bo vê agahî serast bike"
 
 #: ../src/constants.vala:65

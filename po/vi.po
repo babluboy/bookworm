@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2017-10-04 17:47+0000\n"
 "Last-Translator: Hung Nguyen <hnx116@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
@@ -29,19 +29,19 @@ msgstr ""
 msgid "Select eBook"
 msgstr "Chọn ebook"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Hiển thị phiên bản"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Chạy Bookworm ở chế độ debug"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "Chạy Bookworm ở chế độ info"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "Tự động thêm sách mới từ thư mục đã chọn"
 
@@ -168,7 +168,7 @@ msgid "Comma-separated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:64
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr ""
 
 #: ../src/constants.vala:65

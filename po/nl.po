@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2017-07-02 14:04+0000\n"
 "Last-Translator: Noah Loomans <noahloomans@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -30,20 +30,20 @@ msgstr ""
 msgid "Select eBook"
 msgstr "Selecteer e-boek"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Versienummer weergeven"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Bookworm in debug modus uitvoeren"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Bookworm in debug modus uitvoeren"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgid "Comma-separated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:64
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr ""
 
 #: ../src/constants.vala:65

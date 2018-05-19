@@ -31,7 +31,8 @@ parts:
     granite:
         plugin: cmake
         source: https://github.com/elementary/granite.git
-        source-tag: '0.5'
+        source-type: git
+        source-tag: 0.5
         configflags: [-DCMAKE_BUILD_TYPE=Release, -DCMAKE_INSTALL_PREFIX=/usr, -DCMAKE_INSTALL_LIBDIR=/usr/lib]
         build-packages:
             - build-essential
@@ -42,6 +43,8 @@ parts:
     bookworm:
         after: [granite, desktop-gtk3]
         source: https://github.com/babluboy/bookworm.git
+        source-type: git
+        source-tag: 1.0.0
         plugin: cmake
         configflags: [-DCMAKE_INSTALL_PREFIX=/usr]
         build-packages:

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2017-08-08 22:34+0100\n"
 "Last-Translator: sid <sid@sid-latitude-e4300>\n"
 "Language-Team: Afar\n"
@@ -32,19 +32,19 @@ msgstr ""
 msgid "Select eBook"
 msgstr ""
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr ""
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr ""
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr ""
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgid "Comma-separated tags for this annotation"
 msgstr ""
 
 #: ../src/constants.vala:64
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr ""
 
 #: ../src/constants.vala:65

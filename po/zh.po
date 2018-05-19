@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2017-11-27 16:44+0000\n"
 "Last-Translator: Jack Yu <jackyu1996@hotmail.com>\n"
 "Language-Team: Chinese <https://hosted.weblate.org/projects/bookworm/"
@@ -29,19 +29,19 @@ msgstr "添加中 "
 msgid "Select eBook"
 msgstr "选择电子书"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "显示版本号"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "调式模式运行书呆子"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "普通模式运行Bookworm"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "从监控的文件夹自动添加新书目"
 
@@ -167,7 +167,7 @@ msgstr "本注释逗号分隔的标签"
 
 #: ../src/constants.vala:64
 #, fuzzy
-msgid "Edit annotation for : "
+msgid "Edit annotation for:"
 msgstr "编辑信息"
 
 #: ../src/constants.vala:65

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 12:03+0000\n"
+"POT-Creation-Date: 2018-05-04 13:09+0100\n"
 "PO-Revision-Date: 2018-04-24 17:42+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
@@ -30,19 +30,19 @@ msgstr "Lisamine "
 msgid "Select eBook"
 msgstr "Vali e-raamat"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Kuva versiooninumber"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Käivita Bookworm silumisrežiimis"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "Käivita Bookworm inforežiimis"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "Lisa uued raamatud jälgimiskasutadest automaatselt"
 
@@ -172,7 +172,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Selle annotatsiooni sildid (komadega eraldatud)"
 
 #: ../src/constants.vala:64
-msgid "Edit annotation for : "
+#, fuzzy
+msgid "Edit annotation for:"
 msgstr "Muuda annotatsiooni: "
 
 #: ../src/constants.vala:65

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-30 07:54+0100\n"
+"POT-Creation-Date: 2018-05-19 16:43+0100\n"
 "PO-Revision-Date: 2018-05-14 15:08+0000\n"
 "Last-Translator: ditokp <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bookworm/"
@@ -29,19 +29,19 @@ msgstr "Menambahkan "
 msgid "Select eBook"
 msgstr "Pilih e-Book"
 
-#: ../src/bookworm.vala:102
+#: ../src/bookworm.vala:103
 msgid "Display version number"
 msgstr "Tampilkan nomor versi"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
 msgstr "Jalankan Bookworm dalam mode debug"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
 msgstr "Jalankan Bookworm dalam mode info"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
 msgstr "Menambahkan buku baru secara otomatis  dari folder yang diamati"
 
@@ -173,7 +173,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Label untuk anotasi ini (dipisahkan dengan tanda koma)"
 
 #: ../src/constants.vala:64
-msgid "Edit annotation for : "
+#, fuzzy
+msgid "Edit annotation for:"
 msgstr "Sunting catatan untuk: "
 
 #: ../src/constants.vala:65

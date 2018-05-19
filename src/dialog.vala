@@ -639,12 +639,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		debug("[START] [FUNCTION:createAnnotationDialog] textForAnnotation="+textForAnnotation);
 		Gtk.Dialog annotationDialog = new Gtk.Dialog();
 		annotationDialog.set_transient_for(BookwormApp.Bookworm.window);
-		annotationDialog.border_width = 0;
+		annotationDialog.border_width = BookwormApp.Constants.SPACING_BUTTONS;
 		annotationDialog.set_default_size (600, 400);
 		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
 
-		Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATION + 
-																			BookwormApp.Utils.minimizeStringLength(textForAnnotation, 35));
+		Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATION +
+																			BookwormApp.Utils.minimizeStringLength (" " + textForAnnotation, 35));
 		annotationsLabel.set_line_wrap (true);
     	Gtk.TextView annotationsInputTextView = new Gtk.TextView();
     	annotationsInputTextView.set_wrap_mode (Gtk.WrapMode.WORD);
