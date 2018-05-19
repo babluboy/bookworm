@@ -30,21 +30,24 @@ apps:
 parts:
     granite:
         plugin: cmake
-        source: https://github.com/elementary/granite.git
-        source-type: git
-        source-tag: '0.5'
+        source: https://github.com/elementary/granite/archive/0.5.tar.gz
+        source-type: tar
         configflags: [-DCMAKE_BUILD_TYPE=Release, -DCMAKE_INSTALL_PREFIX=/usr, -DCMAKE_INSTALL_LIBDIR=/usr/lib]
         build-packages:
             - build-essential
             - valac
+            - libgee-0.8-dev
+            - libgirepository1.0-dev
+            - libgtk-3-dev
+            - cmake
+            - gobject-introspection
         stage-packages:
             - valac-0.30-vapi
     
     bookworm:
         after: [granite, desktop-gtk3]
-        source: https://github.com/babluboy/bookworm.git
-        source-type: git
-        source-tag: '1.0.0'
+        source: https://github.com/babluboy/bookworm/archive/1.0.0.tar.gz
+        source-type: tar
         plugin: cmake
         configflags: [-DCMAKE_INSTALL_PREFIX=/usr]
         build-packages:
@@ -55,8 +58,10 @@ parts:
             - debhelper
             - libgtk-3-dev
             - libgranite-dev
+            - libwebkit2gtk-4.0-37
             - libwebkit2gtk-4.0-dev
             - libsqlite3-dev
+            - poppler-utils
             - libpoppler-glib-dev
             - libsoup2.4-dev
             - libxml2-dev
