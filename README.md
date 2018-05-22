@@ -13,12 +13,14 @@ Check the Bookworm website for details on features, shortcuts, installation guid
 ### On debian
 
 ```shell
-sudo apt-get build-dep granite-demo 
+sudo apt-get build-dep granite-demo
+sudo apt-get install granite-demo
 sudo apt-get install libgranite-dev
 sudo apt-get install valac
 sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
 sudo apt-get install libsqlite3-dev
 sudo apt-get install poppler-utils libpoppler-glib-dev
+sudo apt-get install libsqlite3-dev
 ```
 ### On fedora
 
