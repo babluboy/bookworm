@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 13:09+0100\n"
-"PO-Revision-Date: 2018-04-16 13:03+0000\n"
+"PO-Revision-Date: 2018-05-22 07:26+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -173,9 +173,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Kommu-aðgreind merki fyrir þessa glósu"
 
 #: ../src/constants.vala:64
-#, fuzzy
 msgid "Edit annotation for:"
-msgstr "Breyta glósu fyrir : "
+msgstr "Breyta glósu fyrir:"
 
 #: ../src/constants.vala:65
 msgid "Click on a link to jump to an annotated section"
