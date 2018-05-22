@@ -91,7 +91,7 @@ public class BookwormApp.BackgroundTasks {
                                 BookwormApp.DB.removeBookFromDB(aBook);
                             }else{
                                 BookwormApp.DB.updateBookToDataBase(aBook);
-                                print("\nSucessfully added book located at:"+findResult);
+                                print("\nSuccessfully added book located at:"+findResult);
                             }
                         }
                   }

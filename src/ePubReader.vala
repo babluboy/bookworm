@@ -185,15 +185,15 @@ public class BookwormApp.ePubReader {
     opfItemsList = thisParser.extractDataFromXML(locationOfOPFFile, inputDataList);
 
     if(opfItemsList.size>3 && opfItemsList.get(4).extractedTagAttributes.size>0){
-        debug("Sucessfully extracted SPINE data..");
+        debug("Successfully extracted SPINE data..");
         //Get the reference of the NCX file in the SPINE data
         string spineNCXReference = opfItemsList.get(4).extractedTagAttributes.get(0);
-        debug("Sucessfully determined NCX File Reference as:"+spineNCXReference);
+        debug("Successfully determined NCX File Reference as:"+spineNCXReference);
         //Get the position of NCX Reference in MANIFEST data
         if(opfItemsList.size>0 && opfItemsList.get(0).extractedTagAttributes.contains(spineNCXReference)){
-            debug("Sucessfully extracted MANIFEST data..");
+            debug("Successfully extracted MANIFEST data..");
             int spineNCXPosition = opfItemsList.get(0).extractedTagAttributes.index_of(spineNCXReference);
-            debug("Sucessfully matched NCX File path information on MANIFEST data at position:"+spineNCXPosition.to_string());
+            debug("Successfully matched NCX File path information on MANIFEST data at position:"+spineNCXPosition.to_string());
             //Get the location of the NCX file from the MANIFEST href attribute
             string NCXFileRelativePath = opfItemsList.get(1).extractedTagAttributes.get(spineNCXPosition);
             debug("Extracted relative NCX file path from MANIFEST data as:"+ NCXFileRelativePath);
@@ -202,7 +202,7 @@ public class BookwormApp.ePubReader {
                                                       )
                                                  ).strip();
             if("true" == BookwormApp.Utils.fileOperations ("EXISTS", "", ncxFilePath, "")){
-                debug("Sucessfully determined NCX File Path as:"+ncxFilePath);
+                debug("Successfully determined NCX File Path as:"+ncxFilePath);
                 //Parse NCX xml file to read the ToC data (id, href, media-type)
                 ArrayList<XMLData> inputDataListForToC = new ArrayList<XMLData>();
                 inputDataListForToC.add(new XMLData() {
