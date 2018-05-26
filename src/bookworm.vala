@@ -497,12 +497,12 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}else{
 			//Extract and Parse the eBook (this will overwrite the contents already extracted)
 			aBook = genericParser(aBook);
-			//If ebook was not parsed sucessfully, show the warning info banner message
+			//If ebook was not parsed successfully, show the warning info banner message
 			if(!aBook.getIsBookParsed()){
 				BookwormApp.AppWindow.showInfoBar(aBook, MessageType.WARNING);
 			}
 		}
-		//progress in opening the book for reading if it has been parsed sucessfully
+		//progress in opening the book for reading if it has been parsed successfully
 		if(aBook.getIsBookParsed()){
 			//update the total number of pages in the book
 			aBook.setBookTotalPages(aBook.getBookContentList().size);

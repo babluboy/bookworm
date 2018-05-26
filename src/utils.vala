@@ -775,7 +775,7 @@ namespace BookwormApp.Utils {
       		//cover was extracted from the ebook contents
       		aBook.setIsBookCoverImagePresent(true);
       		aBook.setBookCoverLocation(bookwormCoverLocation);
-      		debug("eBook cover image extracted sucessfully into location:"+bookwormCoverLocation);
+      		debug("eBook cover image extracted successfully into location:"+bookwormCoverLocation);
 			return aBook;
 		}
 

@@ -43,7 +43,7 @@ public class BookwormApp.DB{
             );
             return false;
         } else {
-            debug ("Sucessfully checked/created DB for Bookworm.....");
+            debug ("Successfully checked/created DB for Bookworm.....");
         }
 
         debug ("Creating latest version for Library table if it does not exists");
@@ -70,7 +70,7 @@ public class BookwormApp.DB{
 	 		warning ("Error details: %s\n", errmsg);
             return false;
 	 	} else {
-            debug("Sucessfully checked/created table:"+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION);
+            debug("Successfully checked/created table:"+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION);
         }
 
         debug ("Creating latest version for Book Metadata table if it does not exists");
@@ -89,7 +89,7 @@ public class BookwormApp.DB{
 	 		warning ("Error details: %s\n", errmsg);
             return false;
 	 	} else {
-            debug("Sucessfully checked/created table:"+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION);
+            debug("Successfully checked/created table:"+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION);
         }
 
         //Check details of tables in DB
@@ -122,7 +122,7 @@ public class BookwormApp.DB{
             debug("Executed Query:"+queryString);
             warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
         }else{
-          debug("Sucessfully migrated "+bookwormDB.changes().to_string()+" rows from BOOK_LIBRARY_TABLE5 into "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION);
+          debug("Successfully migrated "+bookwormDB.changes().to_string()+" rows from BOOK_LIBRARY_TABLE5 into "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION);
           //copy data to new meta data table
           queryString = " INSERT INTO "+BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION+
                         "      ( id, BOOK_TOC_DATA, BOOKMARKS, CONTENT_DATA_LIST, BOOK_LAST_SCROLL_POSITION, creation_date, modification_date) SELECT id, BOOK_TOC_DATA, BOOKMARKS, CONTENT_DATA_LIST, BOOK_LAST_SCROLL_POSITION, creation_date, modification_date FROM BOOK_LIBRARY_TABLE5";
@@ -131,7 +131,7 @@ public class BookwormApp.DB{
             debug("Executed Query:"+queryString);
             warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
           }else{
-            debug("Sucessfully migrated "+bookwormDB.changes().to_string()+" rows from BOOK_LIBRARY_TABLE5 into"+
+            debug("Successfully migrated "+bookwormDB.changes().to_string()+" rows from BOOK_LIBRARY_TABLE5 into"+
                         BOOKMETADATA_TABLE_BASE_NAME+BOOKMETADATA_TABLE_VERSION);
             //drop the old table
             queryString = "DROP TABLE IF EXISTS BOOK_LIBRARY_TABLE5";
@@ -140,7 +140,7 @@ public class BookwormApp.DB{
                 debug("Executed Query:"+queryString);
                 warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
             }else{
-              debug("Sucessfully dropped old table LIBRARY_TABLE5");
+              debug("Successfully dropped old table LIBRARY_TABLE5");
             }
           }
         }
@@ -154,7 +154,7 @@ public class BookwormApp.DB{
           debug("Executed Query:"+queryString);
           warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
         }else{
-          debug("Sucessfully dropped old table VERSION_TABLE");
+          debug("Successfully dropped old table VERSION_TABLE");
         }
       }
     }
