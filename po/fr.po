@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 13:09+0100\n"
-"PO-Revision-Date: 2018-03-08 19:36+0000\n"
-"Last-Translator: Anne017 <anneonyme017@openmailbox.org>\n"
+"PO-Revision-Date: 2018-05-31 08:12+0000\n"
+"Last-Translator: Jacky Blois <jacky.blois@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "fr/>\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.20-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -56,7 +56,7 @@ msgstr "Traducteurs Weblate"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Site web | Traduction | Bug Tracker"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -346,11 +346,11 @@ msgstr "Diminuer l'espacement des lignes"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Aligner à gauche"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Aligner à droite"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
