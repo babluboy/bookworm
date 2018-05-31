@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 13:09+0100\n"
-"PO-Revision-Date: 2018-05-31 19:07+0000\n"
+"PO-Revision-Date: 2018-06-01 19:43+0000\n"
 "Last-Translator: monolifed <monolifed@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tr/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 3.0\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -203,7 +203,7 @@ msgstr "&&& içinde '$$$' için eşleşme bulunmadı"
 
 #: ../src/constants.vala:70
 msgid "Edit Info for"
-msgstr "Şunun için bilgiyi düzenle:"
+msgstr "İlgili Bilgiyi düzenle:"
 
 #: ../src/constants.vala:71 ../src/constants.vala:75
 msgid "Update Cover Image"
