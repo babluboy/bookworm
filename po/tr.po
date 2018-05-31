@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 13:09+0100\n"
-"PO-Revision-Date: 2017-12-12 20:07+0000\n"
-"Last-Translator: fastest noob <fastest.noob@yandex.com>\n"
+"PO-Revision-Date: 2018-05-31 19:07+0000\n"
+"Last-Translator: monolifed <monolifed@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tr/>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.18-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -55,7 +55,7 @@ msgstr "Weblate Çevirmenleri"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Web Sitesi | Çeviri | Hata İzleyici"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -66,7 +66,6 @@ msgid "eBook Reader"
 msgstr "eKitap Okuyucu"
 
 #: ../src/constants.vala:41
-#, fuzzy
 msgid "Search this book…"
 msgstr "Bu kitabı ara…"
 
@@ -167,18 +166,16 @@ msgid "Annotations"
 msgstr "Açıklamalar"
 
 #: ../src/constants.vala:62
-#, fuzzy
 msgid "Annotation Tags"
-msgstr "Açıklamalar"
+msgstr "Açıklama Etiketleri"
 
 #: ../src/constants.vala:63
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Bu açıklama için virgülle ayrılmış etiketler"
 
 #: ../src/constants.vala:64
-#, fuzzy
 msgid "Edit annotation for:"
-msgstr "Şunun için not ekleyin : "
+msgstr "İlgili açıklamayı düzenle:"
 
 #: ../src/constants.vala:65
 msgid "Click on a link to jump to an annotated section"
@@ -342,11 +339,11 @@ msgstr "Satır aralığını azalt"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Sola hizala"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Sağa hizala"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
