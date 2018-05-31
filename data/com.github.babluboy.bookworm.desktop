@@ -9,4 +9,4 @@ Icon=com.github.babluboy.bookworm
 Terminal=false
 Type=Application
 X-GNOME-Gettext-Domain=bookworm
-X-GNOME-Keywords=Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;
+Keywords=Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;
