@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-19 16:43+0100\n"
-"PO-Revision-Date: 2018-05-17 12:37+0000\n"
-"Last-Translator: Suraj Mandal <surajmandalcell@gmail.com>\n"
+"PO-Revision-Date: 2018-06-16 19:39+0000\n"
+"Last-Translator: Ishan Bhanuka <f2016075@pilani.bits-pilani.ac.in>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "hi/>\n"
 "Language: hi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
@@ -22,7 +22,6 @@ msgid "Select folder"
 msgstr "फ़ोल्डर चुनें"
 
 #: ../src/library.vala:602
-#, fuzzy
 msgid "Adding "
 msgstr "जोड़ा जा रहा है "
 
@@ -35,17 +34,16 @@ msgid "Display version number"
 msgstr "संस्करण संस्करण प्रदर्शित करें"
 
 #: ../src/bookworm.vala:104
-#, fuzzy
 msgid "Run Bookworm in debug mode"
 msgstr "बुकवार्म को डीबग मोड में चलाएं"
 
 #: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "बुकवर्म को इन्फो मोड में चलाइए"
 
 #: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "चुने हुए फोल्डर्स से पुस्तक जोड़ें"
 
 #: ../src/constants.vala:29
 msgid "An eBook Reader"
@@ -53,11 +51,11 @@ msgstr "एक ईबुक रीडर"
 
 #: ../src/constants.vala:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "वेबलते अनुवादक"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "वेबसाइट | अनुवाद | बग ट्रॅकर"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -69,11 +67,11 @@ msgstr "ईबुक पाठक"
 
 #: ../src/constants.vala:41
 msgid "Search this book…"
-msgstr ""
+msgstr "इस पुस्तक में खोजें…"
 
 #: ../src/constants.vala:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "नाम, लेखक या टॅग से खोजें"
 
 #: ../src/constants.vala:43
 msgid "Looks like Bookworm has no books."
@@ -107,7 +105,7 @@ msgstr ""
 
 #: ../src/constants.vala:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "बुकवर्म इस फाइल को नही समझता है "
 
 #: ../src/constants.vala:51
 msgid ""
@@ -117,23 +115,23 @@ msgstr ""
 
 #: ../src/constants.vala:52
 msgid "Library"
-msgstr ""
+msgstr "पुस्तकालय"
 
 #: ../src/constants.vala:53
 msgid "Resume"
-msgstr ""
+msgstr "बायोडाटा"
 
 #: ../src/constants.vala:54
 msgid "Contents"
-msgstr ""
+msgstr "अंतर्वस्तु"
 
 #: ../src/constants.vala:55
 msgid "Content #"
-msgstr ""
+msgstr "अंतर्वस्तु #"
 
 #: ../src/constants.vala:56
 msgid "Bookmarks"
-msgstr ""
+msgstr "बुकमार्क"
 
 #: ../src/constants.vala:57
 msgid "Bookmark #NNN for Section PPP"
@@ -201,27 +199,27 @@ msgstr ""
 
 #: ../src/constants.vala:72
 msgid "Update Title"
-msgstr ""
+msgstr "नाम बदलें"
 
 #: ../src/constants.vala:73
 msgid "Update Tags"
-msgstr ""
+msgstr "टॅग बदलें"
 
 #: ../src/constants.vala:74
 msgid "Update Author"
-msgstr ""
+msgstr "लेखक बदलें"
 
 #: ../src/constants.vala:76
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "फुल्ल स्कररेन मोड में जायें (F11)"
 
 #: ../src/constants.vala:77
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "फुल्ल स्कररेन मोड से बाहर आयें (ESC)"
 
 #: ../src/constants.vala:78
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "शब्द का मतलब देखें"
 
 #: ../src/constants.vala:79
 msgid "Annotate selected text"
@@ -229,19 +227,19 @@ msgstr ""
 
 #: ../src/constants.vala:80
 msgid "Books"
-msgstr ""
+msgstr "पुस्तकें"
 
 #: ../src/constants.vala:81
 msgid "Images"
-msgstr ""
+msgstr "चित्रा"
 
 #: ../src/constants.vala:82
 msgid "All Files"
-msgstr ""
+msgstr "सारे फाइल्स"
 
 #: ../src/constants.vala:83
 msgid "Title"
-msgstr ""
+msgstr "नाम"
 
 #: ../src/constants.vala:84
 msgid "Author"
