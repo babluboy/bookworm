@@ -2,423 +2,439 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-04 13:09+0100\n"
+"PO-Revision-Date: 2018-06-18 21:04+0000\n"
+"Last-Translator: Calin Sopterean <csopterean@gmail.com>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/ro/>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #: ../src/dialog.vala:64
 msgid "Select Image"
-msgstr ""
+msgstr "Selectează Imaginea"
 
 #: ../src/dialog.vala:511
 msgid "Select folder"
-msgstr ""
+msgstr "Selectează Directorul"
 
 #: ../src/library.vala:602
 msgid "Adding "
-msgstr ""
+msgstr "Adăugare "
 
 #: ../src/window.vala:292 ../src/window.vala:519
 msgid "Select eBook"
-msgstr ""
+msgstr "Selectează eBook"
 
 #: ../src/bookworm.vala:103
 msgid "Display version number"
-msgstr ""
+msgstr "Arată numărul versiunii"
 
 #: ../src/bookworm.vala:104
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Rulează Bookworm în modul depanare"
 
 #: ../src/bookworm.vala:105
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Rulează Bookworm în modul info"
 
 #: ../src/bookworm.vala:106
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Adaugă automat cărți noi din directoarele vizionate"
 
 #: ../src/constants.vala:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Un Cititor de eBook-uri"
 
 #: ../src/constants.vala:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Traducători Weblate"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Website | Traducere | Tracker de Erori"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
-msgstr ""
+msgstr "Indisponibil"
 
 #: ../src/constants.vala:40
 msgid "eBook Reader"
-msgstr ""
+msgstr "Cititor eBook"
 
 #: ../src/constants.vala:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Caută această carte…"
 
 #: ../src/constants.vala:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Caută după Titlu, Autor și Etichete"
 
 #: ../src/constants.vala:43
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "Se pare că Bookworm nu are nicio carte."
 
 #: ../src/constants.vala:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Costruiește biblioteca ta adaugând eBook-uri"
 
 #: ../src/constants.vala:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Selectează un eBook pentru a-l citi"
 
 #: ../src/constants.vala:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Problemă la extragerea conținutului cărții. Asigură-te că exista un eBook "
+"valid pentru a fi citit: "
 
 #: ../src/constants.vala:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
+msgstr "Tip MIME nevalid detectat. Verifică formatul acestu eBook: "
 
 #: ../src/constants.vala:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Conținut nevalid. Asigură-te că ai un eBook valid aici: "
 
 #: ../src/constants.vala:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "eBook-ul nu a putut fi analizat. Asigură-te că ai un eBook valid aici: "
 
 #: ../src/constants.vala:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookworm nu suportă formatul fișierului găsit aici: "
 
 #: ../src/constants.vala:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Conținutul solicitat nu a putut fi recuperat. Te rog elimină și adaugă din "
+"nou fișierul eBook găsit aici: "
 
 #: ../src/constants.vala:52
 msgid "Library"
-msgstr ""
+msgstr "Librărie"
 
 #: ../src/constants.vala:53
 msgid "Resume"
-msgstr ""
+msgstr "Reia"
 
 #: ../src/constants.vala:54
 msgid "Contents"
-msgstr ""
+msgstr "Conținut"
 
 #: ../src/constants.vala:55
 msgid "Content #"
-msgstr ""
+msgstr "Conținut #"
 
 #: ../src/constants.vala:56
 msgid "Bookmarks"
-msgstr ""
+msgstr "Marcaje"
 
 #: ../src/constants.vala:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Marcaj #NNN pentru Secțiunea PPP"
 
 #: ../src/constants.vala:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Dă click pe un link pentru a sări la secțiunea marcată"
 
 #: ../src/constants.vala:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"Niciun marcaj setat în BBB, dă click pe iconița bookworm din atet pentru a "
+"marca pagina"
 
 #: ../src/constants.vala:60
 msgid "Search Results"
-msgstr ""
+msgstr "Rezultatele Căutării"
 
 #: ../src/constants.vala:61
 msgid "Annotations"
-msgstr ""
+msgstr "Adnotările"
 
 #: ../src/constants.vala:62
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Etichetele Adnotării"
 
 #: ../src/constants.vala:63
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Etichete separate prin virgulă pentru acest marcaj"
 
 #: ../src/constants.vala:64
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Editează adnotările pentru:"
 
 #: ../src/constants.vala:65
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Apasă click pe un link pentru a sări către o secțiune adnotată"
 
 #: ../src/constants.vala:66
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Nicio adnotare setată în BBB, apasă click dreapta pe pagina unei cărți și "
+"alege adnotare din meniu pentru a adăuga adnotări"
 
 #: ../src/constants.vala:67
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Căutând '$$$' în &&&:"
 
 #: ../src/constants.vala:68
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Au fost găsite următoarele potriviri pentru '$$$' în &&&:"
 
 #: ../src/constants.vala:69
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Nicio potrivire găsită pentru '$$$' în &&&"
 
 #: ../src/constants.vala:70
 msgid "Edit Info for"
-msgstr ""
+msgstr "Editează Informațiile pentru"
 
 #: ../src/constants.vala:71 ../src/constants.vala:75
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Actualizează Imaginea de Copertă"
 
 #: ../src/constants.vala:72
 msgid "Update Title"
-msgstr ""
+msgstr "Actualizează Titlul"
 
 #: ../src/constants.vala:73
 msgid "Update Tags"
-msgstr ""
+msgstr "Actualizează Etichetele"
 
 #: ../src/constants.vala:74
 msgid "Update Author"
-msgstr ""
+msgstr "Actualizează Autorul"
 
 #: ../src/constants.vala:76
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "Intră in modul ecran complet (F11)"
 
 #: ../src/constants.vala:77
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "Ieși din modul ecran complet (Esc)"
 
 #: ../src/constants.vala:78
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Verificați Semnificația Cuvântului"
 
 #: ../src/constants.vala:79
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Adnotează textul selectat"
 
 #: ../src/constants.vala:80
 msgid "Books"
-msgstr ""
+msgstr "Cărți"
 
 #: ../src/constants.vala:81
 msgid "Images"
-msgstr ""
+msgstr "Imagini"
 
 #: ../src/constants.vala:82
 msgid "All Files"
-msgstr ""
+msgstr "Toate Fișierele"
 
 #: ../src/constants.vala:83
 msgid "Title"
-msgstr ""
+msgstr "Titlu"
 
 #: ../src/constants.vala:84
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: ../src/constants.vala:85
 msgid "Last Opened"
-msgstr ""
+msgstr "Ultimul Deschis"
 
 #: ../src/constants.vala:86
 msgid "Rating"
-msgstr ""
+msgstr "Evaluare"
 
 #: ../src/constants.vala:87
 msgid "Tags"
-msgstr ""
+msgstr "Etichete"
 
 #: ../src/constants.vala:88
 msgid "Today"
-msgstr ""
+msgstr "Astăzi"
 
 #: ../src/constants.vala:89
 msgid "Yesterday"
-msgstr ""
+msgstr "Ieri"
 
 #: ../src/constants.vala:90
 msgid "Days"
-msgstr ""
+msgstr "Zile"
 
 #: ../src/constants.vala:91
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Descoperirea cărților va începe când Bookworm este închis"
 
 #: ../src/constants.vala:93
 msgid "Add books to library"
-msgstr ""
+msgstr "Adaugă cărți în librăria ta"
 
 #: ../src/constants.vala:94
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
+"Elimină cărțile selectate din librărie (fișierele eBook nu vor fi șterse)"
 
 #: ../src/constants.vala:95
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Selectează una sau mai multe cărți din librărie"
 
 #: ../src/constants.vala:96
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Vezi Cuprinsul, Marcajele și Rezultatele Căutării"
 
 #: ../src/constants.vala:97
 msgid "Reading preferences"
-msgstr ""
+msgstr "Preferințe de citire"
 
 #: ../src/constants.vala:98
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Apasă click pentru a marca această pagină"
 
 #: ../src/constants.vala:99
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Apasă click pentru a elimina acest marcaj"
 
 #: ../src/constants.vala:100
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Mărește fontul (Ctrl + Shift + '+')"
 
 #: ../src/constants.vala:101
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Micșorează fontul (Ctrl + '-')"
 
 #: ../src/constants.vala:102
 msgid "Increase line width"
-msgstr ""
+msgstr "Mărește lățimea liniei"
 
 #: ../src/constants.vala:103
 msgid "Decrease line width"
-msgstr ""
+msgstr "Micșorează mărimea liniei"
 
 #: ../src/constants.vala:104
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Mărește distanța dintre linii"
 
 #: ../src/constants.vala:105
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Micșorează distanța dintre linii"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Aliniază la stânga"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Aliniază la dreapta"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
-msgstr ""
+msgstr "Actualizează imaginea coperții"
 
 #: ../src/constants.vala:109
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Aplică tema pentru acest profil de culor"
 
 #: ../src/constants.vala:110 ../src/constants.vala:111
 msgid "Enter full screen view and Esc key to undo"
-msgstr ""
+msgstr "Intră în modul ecran complet și apasă ESC pentru a anula"
 
 #: ../src/constants.vala:112
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Adaugă directoare pentru a le scana și a găsi cărți"
 
 #: ../src/constants.vala:113
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Elimină directorul afișat pentru scanarea cărților"
 
 #: ../src/constants.vala:114
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Adaugă o adnotare textului selectat"
 
 #: ../src/constants.vala:116 ../src/constants.vala:141
 msgid "Preferences"
-msgstr ""
+msgstr "Preferințe"
 
 #: ../src/constants.vala:117
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Pornește Modul de Noapte"
 
 #: ../src/constants.vala:118
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Activează memorarea în cache (cărțile se deschid mai rapid)"
 
 #: ../src/constants.vala:119
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Întotdeauna arată librăria la pornire"
 
 #: ../src/constants.vala:120
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Actvează citirea pe două pagini"
 
 #: ../src/constants.vala:121
 msgid "Select Font"
-msgstr ""
+msgstr "Selectează Fontul"
 
 #: ../src/constants.vala:122
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Personalizează profilul de citire"
 
 #: ../src/constants.vala:123
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: ../src/constants.vala:124
 msgid "Background"
-msgstr ""
+msgstr "Fundal"
 
 #: ../src/constants.vala:125
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Adaugă directoare pentru a fi scanate și a găsi cărți"
 
 #: ../src/constants.vala:126
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: ../src/constants.vala:127
 msgid "Reset to default values"
-msgstr ""
+msgstr "Resetează la valorile implicite"
 
 #: ../src/constants.vala:139
 msgid "Unknown Book"
-msgstr ""
+msgstr "Carte Necunoscută"
 
 #: ../src/constants.vala:140
 msgid "About"
-msgstr ""
+msgstr "Despre"
 
 #: ../src/utils.vala:518 ../src/utils.vala:592
 msgid "Cancel"
-msgstr ""
+msgstr "Anulare"
 
 #: ../src/utils.vala:520 ../src/utils.vala:593
 msgid "Open"
-msgstr ""
+msgstr "Deschide"
 
 #: ../src/utils.vala:522
 msgid "Save"
-msgstr ""
+msgstr "Salvează"
 
 #: ../src/mobiReader.vala:329
 msgid "Book"
-msgstr ""
+msgstr "Carte"
