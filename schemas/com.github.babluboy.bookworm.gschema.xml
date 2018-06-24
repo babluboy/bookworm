@@ -81,10 +81,9 @@
 				<summary>Save the library view mode</summary>
 		</key>
 		<key name="list-of-profile-colors" type="s">
-        <default>"#000000,#fbfbfb,#586e75,#fdf6e3,#93a1a1,#002b36"</default>
+        <default>"#000000,#fbfbfb,#E8ED00,#586e75,#fdf6e3,#87FF2B,#93a1a1,#002b36,#3465A4"</default>
         <summary>
-			List of profile colours. Each profiles has two colors - First color is text color and second one is bgcolor.
-			The first three sets are customizable and the last two sets are the default light and dark profiles
+			List of profile colours. Each profiles has three colors - First color is text color, second one is bgcolor and third color is highlight color. The first three sets are customizable and the last two sets are the default light and dark profiles
 		</summary>
     </key>
 		<key name="list-of-scan-dirs" type="s">

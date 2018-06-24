@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 13:09+0100\n"
+"POT-Creation-Date: 2018-06-24 21:43+0100\n"
 "PO-Revision-Date: 2017-08-03 11:43+0000\n"
 "Last-Translator: tony <tonyzet988@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -13,11 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.16-dev\n"
 
-#: ../src/dialog.vala:64
+#: ../src/dialog.vala:63
 msgid "Select Image"
 msgstr "Επιλογή Εικόνας"
 
-#: ../src/dialog.vala:511
+#: ../src/dialog.vala:545
 #, fuzzy
 msgid "Select folder"
 msgstr "Επιλογή Εικόνας"
@@ -30,20 +30,20 @@ msgstr ""
 msgid "Select eBook"
 msgstr "Επιλογή Βιβλίου"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Display version number"
 msgstr "Προβολή αριθμού έκδοσης"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
 msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -393,7 +393,7 @@ msgstr ""
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:116 ../src/constants.vala:141
+#: ../src/constants.vala:116 ../src/constants.vala:142
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
@@ -432,22 +432,26 @@ msgid "Background"
 msgstr ""
 
 #: ../src/constants.vala:125
-msgid "Add folders to scan for books"
+msgid "Highlight"
 msgstr ""
 
 #: ../src/constants.vala:126
-msgid "Profile"
+msgid "Add folders to scan for books"
 msgstr ""
 
 #: ../src/constants.vala:127
+msgid "Profile"
+msgstr ""
+
+#: ../src/constants.vala:128
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:139
+#: ../src/constants.vala:140
 msgid "Unknown Book"
 msgstr "Άγνωστο Βιβλίο"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:141
 msgid "About"
 msgstr "Περί"
 

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 13:09+0100\n"
+"POT-Creation-Date: 2018-06-24 22:46+0100\n"
 "PO-Revision-Date: 2018-05-22 07:26+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -14,11 +14,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
 "X-Generator: Weblate 3.0-dev\n"
 
-#: ../src/dialog.vala:64
+#: ../src/dialog.vala:63
 msgid "Select Image"
 msgstr "Veldu mynd"
 
-#: ../src/dialog.vala:511
+#: ../src/dialog.vala:545
 msgid "Select folder"
 msgstr "Veldu möppu"
 
@@ -30,19 +30,19 @@ msgstr "Bæti við "
 msgid "Select eBook"
 msgstr "Veldu rafbók"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Display version number"
 msgstr "Birta útgáfunúmer"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
 msgstr "Keyra Bókaorm í aflúsunarham"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
 msgstr "Keyra Bókaorm í upplýsingaham"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
 msgstr "Bæta sjálfkrafa við bókum úr vöktuðum möppum"
 
@@ -368,7 +368,7 @@ msgstr "Fjarlægja birta möppu úr bókaskönnun"
 msgid "Add annotation to selected text"
 msgstr "Bæta glósu við valinn texta"
 
-#: ../src/constants.vala:116 ../src/constants.vala:141
+#: ../src/constants.vala:116 ../src/constants.vala:142
 msgid "Preferences"
 msgstr "Kjörstillingar"
 
@@ -405,22 +405,27 @@ msgid "Background"
 msgstr "Bakgrunnur"
 
 #: ../src/constants.vala:125
+#, fuzzy
+msgid "Highlight"
+msgstr "Jafna til hægri"
+
+#: ../src/constants.vala:126
 msgid "Add folders to scan for books"
 msgstr "Bæta við möppum þar sem leita á að bókum"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "Profile"
 msgstr "Lestrarsnið"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:128
 msgid "Reset to default values"
 msgstr "Frumstilla í sjálfgefin gildi"
 
-#: ../src/constants.vala:139
+#: ../src/constants.vala:140
 msgid "Unknown Book"
 msgstr "Óþekkt bók"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:141
 msgid "About"
 msgstr "Um hugbúnaðinn"
 

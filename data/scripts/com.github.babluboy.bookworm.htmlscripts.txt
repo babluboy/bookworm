@@ -167,9 +167,9 @@
     }
     /* Set style for text highlight */
     span.bookworm_search_result_highlight {
-        background-color: yellow !important;
+        background-color: $HIGHLIGHT_COLOR !important;
     }
     span.bookworm_annotation_highlight {
-        background-color: #B1FB17 !important;
+        background-color: $HIGHLIGHT_COLOR !important;
     }
 </style>

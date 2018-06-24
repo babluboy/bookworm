@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 13:09+0100\n"
+"POT-Creation-Date: 2018-06-24 21:43+0100\n"
 "PO-Revision-Date: 2017-09-18 07:01+0000\n"
 "Last-Translator: Pablo Mariño <pablo.marino.boga@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bookworm/"
@@ -13,11 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.17-dev\n"
 
-#: ../src/dialog.vala:64
+#: ../src/dialog.vala:63
 msgid "Select Image"
 msgstr "Escolle Imaxe"
 
-#: ../src/dialog.vala:511
+#: ../src/dialog.vala:545
 msgid "Select folder"
 msgstr "Escolle cartafol"
 
@@ -29,19 +29,19 @@ msgstr ""
 msgid "Select eBook"
 msgstr "Escolle un eBook"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Display version number"
 msgstr "Ver o numero da version"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
 msgstr "Executa Bookworm en modo debug"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
 msgstr "Executa Bookworm en modo info"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
 msgstr "Engadir automaticamente libros das carpetas vixiadas"
 
@@ -384,7 +384,7 @@ msgstr "Quita o cartafol mostrado do escaneo de libros"
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:116 ../src/constants.vala:141
+#: ../src/constants.vala:116 ../src/constants.vala:142
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -423,22 +423,26 @@ msgid "Background"
 msgstr "Fondo"
 
 #: ../src/constants.vala:125
+msgid "Highlight"
+msgstr ""
+
+#: ../src/constants.vala:126
 msgid "Add folders to scan for books"
 msgstr "Engade cartafoles para escanear na procura de libros"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "Profile"
 msgstr "Perfil"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:128
 msgid "Reset to default values"
 msgstr "Restaurar os valores predeterminados"
 
-#: ../src/constants.vala:139
+#: ../src/constants.vala:140
 msgid "Unknown Book"
 msgstr "Libro descoñecido"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:141
 msgid "About"
 msgstr "Acerca de"
 

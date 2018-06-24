@@ -15,8 +15,8 @@ set (SCRIPTS_DIR ${PKGDATADIR}/scripts)
 
 # Set the application executable name and version info
 set (EXEC_NAME "com.github.babluboy.bookworm")
-set (RELEASE_NAME "bookworm v1.0.0")
-set (VERSION "1.0.0")
+set (RELEASE_NAME "bookworm v1.1.0")
+set (VERSION "1.1.0")
 set (VERSION_INFO "Bookworm - An eBook Reader")
 
 # Translation files

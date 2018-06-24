@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 13:09+0100\n"
+"POT-Creation-Date: 2018-06-24 22:46+0100\n"
 "PO-Revision-Date: 2018-05-31 08:12+0000\n"
 "Last-Translator: Jacky Blois <jacky.blois@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -13,11 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.0-dev\n"
 
-#: ../src/dialog.vala:64
+#: ../src/dialog.vala:63
 msgid "Select Image"
 msgstr "Sélectionner une image"
 
-#: ../src/dialog.vala:511
+#: ../src/dialog.vala:545
 msgid "Select folder"
 msgstr "Sélectionner un dossier"
 
@@ -29,19 +29,19 @@ msgstr "Ajouter "
 msgid "Select eBook"
 msgstr "Sélectionnez un livre électronique"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Display version number"
 msgstr "Afficher le numéro de version"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
 msgstr "Lancer Bookworm en mode débogage"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
 msgstr "Lancer Bookworm en mode information"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
 msgstr ""
 "Ajouter automatiquement les nouveaux livres à partir des dossier suivis"
@@ -376,7 +376,7 @@ msgstr "Supprimer ce dossier du suivi des livres"
 msgid "Add annotation to selected text"
 msgstr "Ajouter une note au texte sélectionné"
 
-#: ../src/constants.vala:116 ../src/constants.vala:141
+#: ../src/constants.vala:116 ../src/constants.vala:142
 msgid "Preferences"
 msgstr "Préférences"
 
@@ -413,22 +413,27 @@ msgid "Background"
 msgstr "Arrière plan"
 
 #: ../src/constants.vala:125
+#, fuzzy
+msgid "Highlight"
+msgstr "Aligner à droite"
+
+#: ../src/constants.vala:126
 msgid "Add folders to scan for books"
 msgstr "Ajouter des dossiers pour rechercher des livres"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "Profile"
 msgstr "Profil"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:128
 msgid "Reset to default values"
 msgstr "Rétablir les valeurs par défaut"
 
-#: ../src/constants.vala:139
+#: ../src/constants.vala:140
 msgid "Unknown Book"
 msgstr "Livre inconnu"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:141
 msgid "About"
 msgstr "À propos"
 

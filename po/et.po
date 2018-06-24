@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 13:09+0100\n"
+"POT-Creation-Date: 2018-06-24 21:43+0100\n"
 "PO-Revision-Date: 2018-04-24 17:42+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
@@ -14,11 +14,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.0-dev\n"
 
-#: ../src/dialog.vala:64
+#: ../src/dialog.vala:63
 msgid "Select Image"
 msgstr "Vali pilt"
 
-#: ../src/dialog.vala:511
+#: ../src/dialog.vala:545
 msgid "Select folder"
 msgstr "Vali kaust"
 
@@ -30,19 +30,19 @@ msgstr "Lisamine "
 msgid "Select eBook"
 msgstr "Vali e-raamat"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Display version number"
 msgstr "Kuva versiooninumber"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
 msgstr "Käivita Bookworm silumisrežiimis"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
 msgstr "Käivita Bookworm inforežiimis"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
 msgstr "Lisa uued raamatud jälgimiskasutadest automaatselt"
 
@@ -368,7 +368,7 @@ msgstr "Eemalda kaust raamatute otsingust"
 msgid "Add annotation to selected text"
 msgstr "Lisa valitud tekstile märkmeid"
 
-#: ../src/constants.vala:116 ../src/constants.vala:141
+#: ../src/constants.vala:116 ../src/constants.vala:142
 msgid "Preferences"
 msgstr "Eelistused"
 
@@ -405,22 +405,27 @@ msgid "Background"
 msgstr "Taust"
 
 #: ../src/constants.vala:125
+#, fuzzy
+msgid "Highlight"
+msgstr "Joonda paremale"
+
+#: ../src/constants.vala:126
 msgid "Add folders to scan for books"
 msgstr "Lisa kaustu, millest raamatuid otsida"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "Profile"
 msgstr "Profiil"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:128
 msgid "Reset to default values"
 msgstr "Taasta vaikeväärtused"
 
-#: ../src/constants.vala:139
+#: ../src/constants.vala:140
 msgid "Unknown Book"
 msgstr "Tundmatu raamat"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:141
 msgid "About"
 msgstr "Programmist"
 

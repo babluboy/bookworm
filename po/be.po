@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 13:09+0100\n"
+"POT-Creation-Date: 2018-06-24 22:46+0100\n"
 "PO-Revision-Date: 2018-05-22 08:24+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
@@ -10,15 +10,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.0-dev\n"
 
-#: ../src/dialog.vala:64
+#: ../src/dialog.vala:63
 msgid "Select Image"
 msgstr "Абраць выяву"
 
-#: ../src/dialog.vala:511
+#: ../src/dialog.vala:545
 msgid "Select folder"
 msgstr "Абраць каталог"
 
@@ -30,19 +30,19 @@ msgstr "Дадаванне "
 msgid "Select eBook"
 msgstr "Абраць электронную кнігу"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Display version number"
 msgstr "Паказаць нумар версіі"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
 msgstr "Запусціць Bookworm у рэжыме адладкі"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
 msgstr "Запусціць Bookworm у інфармацыйным рэжыме"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
 msgstr "Аўтаматычна дадаваць новыя кнігі з тэчак, што адсочваюцца"
 
@@ -369,7 +369,7 @@ msgstr "Выдаліць каталог з спіса сканавання"
 msgid "Add annotation to selected text"
 msgstr "Дадаць анатацыю да абранага тэксту"
 
-#: ../src/constants.vala:116 ../src/constants.vala:141
+#: ../src/constants.vala:116 ../src/constants.vala:142
 msgid "Preferences"
 msgstr "Налады"
 
@@ -406,22 +406,27 @@ msgid "Background"
 msgstr "Фон"
 
 #: ../src/constants.vala:125
+#, fuzzy
+msgid "Highlight"
+msgstr "Раўнаванне справа"
+
+#: ../src/constants.vala:126
 msgid "Add folders to scan for books"
 msgstr "Дадаць каталогі для сканавання кніг"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "Profile"
 msgstr "Профіль"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:128
 msgid "Reset to default values"
 msgstr "Скінуць да агаданых значэнняў"
 
-#: ../src/constants.vala:139
+#: ../src/constants.vala:140
 msgid "Unknown Book"
 msgstr "Невядомая кніга"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:141
 msgid "About"
 msgstr "Аб"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 13:09+0100\n"
+"POT-Creation-Date: 2018-06-24 22:46+0100\n"
 "PO-Revision-Date: 2018-06-18 21:04+0000\n"
 "Last-Translator: Calin Sopterean <csopterean@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
@@ -14,11 +14,11 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Weblate 3.0.1\n"
 
-#: ../src/dialog.vala:64
+#: ../src/dialog.vala:63
 msgid "Select Image"
 msgstr "Selectează Imaginea"
 
-#: ../src/dialog.vala:511
+#: ../src/dialog.vala:545
 msgid "Select folder"
 msgstr "Selectează Directorul"
 
@@ -30,19 +30,19 @@ msgstr "Adăugare "
 msgid "Select eBook"
 msgstr "Selectează eBook"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Display version number"
 msgstr "Arată numărul versiunii"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
 msgstr "Rulează Bookworm în modul depanare"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
 msgstr "Rulează Bookworm în modul info"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
 msgstr "Adaugă automat cărți noi din directoarele vizionate"
 
@@ -104,7 +104,8 @@ msgstr "Conținut nevalid. Asigură-te că ai un eBook valid aici: "
 
 #: ../src/constants.vala:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr "eBook-ul nu a putut fi analizat. Asigură-te că ai un eBook valid aici: "
+msgstr ""
+"eBook-ul nu a putut fi analizat. Asigură-te că ai un eBook valid aici: "
 
 #: ../src/constants.vala:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -367,7 +368,7 @@ msgstr "Elimină directorul afișat pentru scanarea cărților"
 msgid "Add annotation to selected text"
 msgstr "Adaugă o adnotare textului selectat"
 
-#: ../src/constants.vala:116 ../src/constants.vala:141
+#: ../src/constants.vala:116 ../src/constants.vala:142
 msgid "Preferences"
 msgstr "Preferințe"
 
@@ -404,22 +405,27 @@ msgid "Background"
 msgstr "Fundal"
 
 #: ../src/constants.vala:125
+#, fuzzy
+msgid "Highlight"
+msgstr "Aliniază la dreapta"
+
+#: ../src/constants.vala:126
 msgid "Add folders to scan for books"
 msgstr "Adaugă directoare pentru a fi scanate și a găsi cărți"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:127
 msgid "Profile"
 msgstr "Profil"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:128
 msgid "Reset to default values"
 msgstr "Resetează la valorile implicite"
 
-#: ../src/constants.vala:139
+#: ../src/constants.vala:140
 msgid "Unknown Book"
 msgstr "Carte Necunoscută"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:141
 msgid "About"
 msgstr "Despre"
 

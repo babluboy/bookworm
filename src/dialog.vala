@@ -23,8 +23,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 	public static Gtk.ComboBoxText directoryComboBox;
 	public static StringBuilder scanDirList = new StringBuilder("");
 	public static BookwormApp.Settings settings;
-	public static string[] profileColorList;
-
+	
 	public AppDialog () {
 		settings = BookwormApp.Settings.get_instance();
 		scanDirList.assign(BookwormApp.Bookworm.settings.list_of_scan_dirs);
@@ -246,8 +245,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		debug("[START] [FUNCTION:createPreferencesDialog]");
 		AppDialog dialog = new AppDialog ();
 		dialog.set_transient_for(BookwormApp.Bookworm.window);
-		profileColorList = settings.list_of_profile_colors.split (",");
-
+		
     	dialog.title = BookwormApp.Constants.TEXT_FOR_PREFERENCES_DIALOG_TITLE;
 		dialog.border_width = 5;
 		dialog.set_default_size (600, 200);
@@ -323,6 +321,13 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.Box textColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 		textColourBox.pack_start(textColourLabel, false, false);
 		textColourBox.pack_start(textColourButton, false, false);
+		
+		Gtk.Label highlightColourLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION_HIGHLIGHT_COLOR);
+		Gtk.ColorButton highlightColourButton = new Gtk.ColorButton ();
+		highlightColourButton.set_relief (ReliefStyle.HALF);
+		Gtk.Box highlightColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
+		highlightColourBox.pack_start(highlightColourLabel, false, false);
+		highlightColourBox.pack_start(highlightColourButton, false, false);
 
 		Gtk.LinkButton preferencesReset = new Gtk.LinkButton.with_label ("reset", BookwormApp.Constants.TEXT_FOR_PREFERENCES_VALUES_RESET);
 		Gtk.Box resetBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -331,12 +336,16 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		//set the value for the first profile
 		profileCombobox.active = 0;
 		var aRGBATextColor = Gdk.RGBA();
-		aRGBATextColor.parse(profileColorList[0]);
+		aRGBATextColor.parse(BookwormApp.Bookworm.profileColorList[0]);
 		textColourButton.rgba = aRGBATextColor;
 
 		var aRGBABackgroundColor = Gdk.RGBA();
-		aRGBABackgroundColor.parse(profileColorList[1]);
+		aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[1]);
 		backgroundColourButton.rgba = aRGBABackgroundColor;
+		
+		var aRGBAHighlightColor = Gdk.RGBA();
+		aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[2]);
+		highlightColourButton.rgba = aRGBAHighlightColor;
 
 		Gtk.Label discoverBooksLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_BOOKS_DISCOVERY);
 		directoryComboBox = new Gtk.ComboBoxText ();
@@ -371,9 +380,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		Gtk.Box customProfileBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		customProfileBox.pack_start(profileCombobox, false, false);
+		customProfileBox.pack_end(highlightColourBox, false, false);
 		customProfileBox.pack_end(textColourBox, false, false);
 		customProfileBox.pack_end(backgroundColourBox, false, false);
-
+		
 		var dialog_toast = new Granite.Widgets.Toast(BookwormApp.Constants.TEXT_BOOK_DISCOVERY_TOAST);
 
     	Gtk.Box content = dialog.get_content_area() as Gtk.Box;
@@ -454,37 +464,46 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		//Set text entry for text/background color based on selected profile
 		profileCombobox.changed.connect (() => {
 			if(profileCombobox.get_active_text().contains(" 1")){
-				aRGBATextColor.parse(profileColorList[0]);
+				aRGBATextColor.parse(BookwormApp.Bookworm.profileColorList[0]);
 				textColourButton.rgba = aRGBATextColor;
 
-				aRGBABackgroundColor.parse(profileColorList[1]);
+				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[1]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
+				
+				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[2]);
+				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				aRGBATextColor.parse(profileColorList[2]);
+				aRGBATextColor.parse(BookwormApp.Bookworm.profileColorList[3]);
 				textColourButton.rgba = aRGBATextColor;
 
-				aRGBABackgroundColor.parse(profileColorList[3]);
+				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[4]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
+				
+				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[5]);
+				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				aRGBATextColor.parse(profileColorList[4]);
+				aRGBATextColor.parse(BookwormApp.Bookworm.profileColorList[6]);
 				textColourButton.rgba = aRGBATextColor;
 
-				aRGBABackgroundColor.parse(profileColorList[5]);
+				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[7]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
+				
+				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[8]);
+				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
 		});
 
 		textColourButton.color_set.connect (() => {
 			if(profileCombobox.get_active_text().contains(" 1")){
-				profileColorList[0] = rgba_to_hex(textColourButton.rgba,false, true);
+				BookwormApp.Bookworm.profileColorList[0] = rgba_to_hex(textColourButton.rgba,false, true);
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				profileColorList[2] = rgba_to_hex(textColourButton.rgba,false, true);
+				BookwormApp.Bookworm.profileColorList[3] = rgba_to_hex(textColourButton.rgba,false, true);
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				profileColorList[4] = rgba_to_hex(textColourButton.rgba,false, true);
+				BookwormApp.Bookworm.profileColorList[6] = rgba_to_hex(textColourButton.rgba,false, true);
 			}
 			updateProfileColorToSettings();
 			//Refresh the page if it is open
@@ -493,13 +512,28 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		backgroundColourButton.color_set.connect (() => {
 			if(profileCombobox.get_active_text().contains(" 1")){
-				profileColorList[1] = rgba_to_hex(backgroundColourButton.rgba,false, true);
+				BookwormApp.Bookworm.profileColorList[1] = rgba_to_hex(backgroundColourButton.rgba,false, true);
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				profileColorList[3] = rgba_to_hex(backgroundColourButton.rgba,false, true);
+				BookwormApp.Bookworm.profileColorList[4] = rgba_to_hex(backgroundColourButton.rgba,false, true);
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				profileColorList[5] = rgba_to_hex(backgroundColourButton.rgba,false, true);
+				BookwormApp.Bookworm.profileColorList[7] = rgba_to_hex(backgroundColourButton.rgba,false, true);
+			}
+			updateProfileColorToSettings();
+			//Refresh the page if it is open
+			BookwormApp.contentHandler.refreshCurrentPage();
+		});
+		
+		highlightColourButton.color_set.connect (() => {
+			if(profileCombobox.get_active_text().contains(" 1")){
+				BookwormApp.Bookworm.profileColorList[2] = rgba_to_hex(highlightColourButton.rgba,false, true);
+			}
+			if(profileCombobox.get_active_text().contains(" 2")){
+				BookwormApp.Bookworm.profileColorList[5] = rgba_to_hex(highlightColourButton.rgba,false, true);
+			}
+			if(profileCombobox.get_active_text().contains(" 3")){
+				BookwormApp.Bookworm.profileColorList[8] = rgba_to_hex(highlightColourButton.rgba,false, true);
 			}
 			updateProfileColorToSettings();
 			//Refresh the page if it is open
@@ -541,25 +575,31 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			//Reset Profile Colors
 			GLib.Settings bookwormSettings = new GLib.Settings (BookwormApp.Constants.bookworm_id);
 			string defaultProfileColors = (string) bookwormSettings.get_default_value ("list-of-profile-colors");
-			profileColorList = defaultProfileColors.split (",");
+			BookwormApp.Bookworm.profileColorList = defaultProfileColors.split (",");
 			//set the text based on the selected profile
 			if(profileCombobox.get_active_text().contains(" 1")){
-				aRGBATextColor.parse(profileColorList[0]);
+				aRGBATextColor.parse(BookwormApp.Bookworm.profileColorList[0]);
 				textColourButton.rgba = aRGBATextColor;
-				aRGBABackgroundColor.parse(profileColorList[1]);
+				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[1]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
+				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[2]);
+				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
 			if(profileCombobox.get_active_text().contains(" 2")){
-				aRGBATextColor.parse(profileColorList[2]);
+				aRGBATextColor.parse(BookwormApp.Bookworm.profileColorList[3]);
 				textColourButton.rgba = aRGBATextColor;
-				aRGBABackgroundColor.parse(profileColorList[3]);
+				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[4]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
+				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[5]);
+				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
 			if(profileCombobox.get_active_text().contains(" 3")){
-				aRGBATextColor.parse(profileColorList[4]);
+				aRGBATextColor.parse(BookwormApp.Bookworm.profileColorList[6]);
 				textColourButton.rgba = aRGBATextColor;
-				aRGBABackgroundColor.parse(profileColorList[5]);
+				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[7]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
+				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[8]);
+				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
 			//reset the settings value for profile colors
 			settings.list_of_profile_colors = defaultProfileColors;
@@ -602,7 +642,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		debug("[START] [FUNCTION:updateProfileColorToSettings]");
 		//build the profile color list to update the settings
 		StringBuilder listOfProfileColors = new StringBuilder();
-		foreach(string aProfileColor in profileColorList){
+		foreach(string aProfileColor in BookwormApp.Bookworm.profileColorList){
 			listOfProfileColors.append(aProfileColor).append(",");
 		}
 		settings.list_of_profile_colors = listOfProfileColors.str.slice(0, (listOfProfileColors.str.length-1));

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-19 16:43+0100\n"
+"POT-Creation-Date: 2018-06-24 22:46+0100\n"
 "PO-Revision-Date: 2018-06-16 19:39+0000\n"
 "Last-Translator: Ishan Bhanuka <f2016075@pilani.bits-pilani.ac.in>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -13,11 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.0.1\n"
 
-#: ../src/dialog.vala:64
+#: ../src/dialog.vala:63
 msgid "Select Image"
 msgstr "चित्र चुनिये"
 
-#: ../src/dialog.vala:511
+#: ../src/dialog.vala:545
 msgid "Select folder"
 msgstr "फ़ोल्डर चुनें"
 
@@ -29,19 +29,19 @@ msgstr "जोड़ा जा रहा है "
 msgid "Select eBook"
 msgstr "ईबुक चुनीये"
 
-#: ../src/bookworm.vala:103
+#: ../src/bookworm.vala:104
 msgid "Display version number"
 msgstr "संस्करण संस्करण प्रदर्शित करें"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
 msgstr "बुकवार्म को डीबग मोड में चलाएं"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
 msgstr "बुकवर्म को इन्फो मोड में चलाइए"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
 msgstr "चुने हुए फोल्डर्स से पुस्तक जोड़ें"
 
@@ -357,7 +357,7 @@ msgstr ""
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:116 ../src/constants.vala:141
+#: ../src/constants.vala:116 ../src/constants.vala:142
 msgid "Preferences"
 msgstr ""
 
@@ -394,22 +394,26 @@ msgid "Background"
 msgstr ""
 
 #: ../src/constants.vala:125
-msgid "Add folders to scan for books"
+msgid "Highlight"
 msgstr ""
 
 #: ../src/constants.vala:126
-msgid "Profile"
+msgid "Add folders to scan for books"
 msgstr ""
 
 #: ../src/constants.vala:127
+msgid "Profile"
+msgstr ""
+
+#: ../src/constants.vala:128
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:139
+#: ../src/constants.vala:140
 msgid "Unknown Book"
 msgstr ""
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:141
 msgid "About"
 msgstr ""
 

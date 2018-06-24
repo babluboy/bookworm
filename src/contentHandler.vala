@@ -62,7 +62,7 @@ public class BookwormApp.contentHandler {
 
     public static string provideContent (owned BookwormApp.Book aBook, int contentLocation, string mode){
         debug("[START] [FUNCTION:provideContent] book.location="+aBook.getBookLocation()+
-                ", contentLocation="+contentLocation.to_string()+", mode"+mode);
+                ", contentLocation="+contentLocation.to_string()+", mode="+mode);
         StringBuilder contents = new StringBuilder();
         if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
             //handle the case when the content list has html escape chars for the URI
@@ -130,7 +130,7 @@ public class BookwormApp.contentHandler {
 
     public static string adjustPageContent (BookwormApp.Book aBook, owned string pageContentStr, string mode){
         debug("[START] [FUNCTION:adjustPageContent] book.location="+aBook.getBookLocation()+
-                    "pageContentStr.length="+pageContentStr.length.to_string()+"mode="+mode);
+                    ", pageContentStr.length="+pageContentStr.length.to_string()+", mode="+mode);
         StringBuilder pageContent = new StringBuilder(pageContentStr);
         settings = BookwormApp.Settings.get_instance();
         string cssForTextAndBackgroundColor = "";
@@ -141,36 +141,44 @@ public class BookwormApp.contentHandler {
         if(aBook.getBookPageNumber() < 2 && (pageContentStr.contains("image") || pageContentStr.contains("img"))) {
             currentBookwormScripts = currentBookwormScripts.replace("$TITLE_PAGE_IMAGE", "* ");
         }
-        //Set background and font colour based on profile
-        string[] profileColorList = settings.list_of_profile_colors.split (",");
-        
+        //Set background and font colour based on profile        
         if(BookwormApp.Constants.BOOKWORM_READING_MODE[4] == BookwormApp.Bookworm.settings.reading_profile){
             //default dark profile
             cssForTextAndBackgroundColor = " background-color: #002b36"+
                                                                           " !important; color: #93a1a1"+
                                                                           " !important;";
-            currentBookwormScripts = currentBookwormScripts.replace("$SCROLLBAR_BACKGROUND", "#002b36");
+            currentBookwormScripts = currentBookwormScripts
+                                .replace("$SCROLLBAR_BACKGROUND", "#002b36")
+                                .replace("$HIGHLIGHT_COLOR", "#3465A4");
         } else if(BookwormApp.Constants.BOOKWORM_READING_MODE[3] == BookwormApp.Bookworm.settings.reading_profile){
             //default light profile
             cssForTextAndBackgroundColor = " background-color: #fbfbfb"+ 
                                                                           " !important; color: #000000"+
                                                                           " !important;";
-            currentBookwormScripts = currentBookwormScripts.replace("$SCROLLBAR_BACKGROUND", "#fbfbfb");
+            currentBookwormScripts = currentBookwormScripts
+                                .replace("$SCROLLBAR_BACKGROUND", "#fbfbfb")
+                                .replace("$HIGHLIGHT_COLOR", "#E8ED00");
         } else if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
-            cssForTextAndBackgroundColor = " background-color: "+ profileColorList[5] +
-                                                                          " !important; color: "+ profileColorList[4] +
+            cssForTextAndBackgroundColor = " background-color: "+ BookwormApp.Bookworm.profileColorList[7] +
+                                                                          " !important; color: "+ BookwormApp.Bookworm.profileColorList[6] +
                                                                           " !important;";
-            currentBookwormScripts = currentBookwormScripts.replace("$SCROLLBAR_BACKGROUND", profileColorList[5]);
+            currentBookwormScripts = currentBookwormScripts
+                              .replace("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[7])
+                              .replace("$HIGHLIGHT_COLOR", BookwormApp.Bookworm.profileColorList[8]);
         } else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
-            cssForTextAndBackgroundColor = " background-color: "+ profileColorList[3] +
-                                                                          " !important; color: "+ profileColorList[2] +
+            cssForTextAndBackgroundColor = " background-color: "+ BookwormApp.Bookworm.profileColorList[4] +
+                                                                          " !important; color: "+ BookwormApp.Bookworm.profileColorList[3] +
                                                                           " !important;";
-            currentBookwormScripts = currentBookwormScripts.replace("$SCROLLBAR_BACKGROUND", profileColorList[3]);
+            currentBookwormScripts = currentBookwormScripts
+                              .replace("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[4])
+                              .replace("$HIGHLIGHT_COLOR", BookwormApp.Bookworm.profileColorList[5]);
         } else{
-            cssForTextAndBackgroundColor = " background-color: "+ profileColorList[1] +
-                                                                          " !important; color: "+ profileColorList[0] +
+            cssForTextAndBackgroundColor = " background-color: "+ BookwormApp.Bookworm.profileColorList[1] +
+                                                                          " !important; color: "+ BookwormApp.Bookworm.profileColorList[0] +
                                                                           " !important;";
-            currentBookwormScripts = currentBookwormScripts.replace("$SCROLLBAR_BACKGROUND", profileColorList[1]);
+            currentBookwormScripts = currentBookwormScripts
+                              .replace("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[1])
+                              .replace("$HIGHLIGHT_COLOR", BookwormApp.Bookworm.profileColorList[2]);
         }
         //Set up CSS for book as per preference settings - this will override any css in the book contents
         currentBookwormScripts = currentBookwormScripts

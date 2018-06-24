@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "1.0.0";
+	public const string bookworm_version = "1.1.0";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017-2018";
 	public const string app_icon = "com.github.babluboy.bookworm";
@@ -122,6 +122,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PROFILE_CUSTOMIZATION = _("Customize reading profile");
 	public const string TEXT_FOR_PROFILE_CUSTOMIZATION_FONT_COLOR = _("Text");
 	public const string TEXT_FOR_PROFILE_CUSTOMIZATION_BACKGROUND_COLOR = _("Background");
+	public const string TEXT_FOR_PROFILE_CUSTOMIZATION_HIGHLIGHT_COLOR = _("Highlight");
 	public const string TEXT_FOR_PREFERENCES_BOOKS_DISCOVERY = _("Add folders to scan for books");
 	public const string TEXT_FOR_PROFILE_BUTTON_LABEL = _("Profile");
 	public const string TEXT_FOR_PREFERENCES_VALUES_RESET = _("Reset to default values");
@@ -210,5 +211,4 @@ namespace BookwormApp.Constants {
 	public const string[] TAG_NAME_WITH_PATHS = {"src=\"", "xlink:href=\"", "<link href=\""};
 	public const string COMICS_HTML_TEMPLATE = "<html><style>img{max-width: 100%;height: auto;}</style><body><img src=\"<image-location>\"></body></html>";
 	public const string DYNAMIC_CSS_CONTENT = " GtkButton.PROFILE_BUTTON_1 { color: <profile_1_color>; background-color: <profile_1_bgcolor>; border-color: #B0C4DE; } GtkButton.PROFILE_BUTTON_2 { color: <profile_2_color>; background-color: <profile_2_bgcolor>; border-color: #B0C4DE; } GtkButton.PROFILE_BUTTON_3 { color: <profile_3_color>; background-color: <profile_3_bgcolor>; border-color: #B0C4DE; }";
-	
 }

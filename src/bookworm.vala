@@ -91,6 +91,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string bookTextSearchString = "";
 	public static TreeMap<string,string> searchResultsMap = new TreeMap<string,string>();
   	public static StringBuilder aContentFileToBeSearched = new StringBuilder ("");
+  	public static string[] profileColorList;
 
 	construct {
 		build_version = BookwormApp.Constants.bookworm_version;
@@ -347,14 +348,18 @@ public class BookwormApp.Bookworm : Granite.Application {
 		info("[START] [FUNCTION:loadCSSProvider] cssProvider="+cssProvider.to_string());
 		string dynamicCSSContent = "";
 		try{
-			string[] profileColorList = settings.list_of_profile_colors.split (",");
+			profileColorList = settings.list_of_profile_colors.split (",");
+			//temp check to ensure the change to settings for colours increasing from 6 to 9 is handled
+			if(profileColorList.length < 9){
+				profileColorList = {"#000000","#fbfbfb","#E8ED00","#586e75","#fdf6e3","#87FF2B","#93a1a1","#002b36","#3465A4"};
+			}
 			dynamicCSSContent = BookwormApp.Constants.DYNAMIC_CSS_CONTENT
 															 .replace("<profile_1_color>",profileColorList[0])
 															 .replace("<profile_1_bgcolor>",profileColorList[1])
-															 .replace("<profile_2_color>",profileColorList[2])
-															 .replace("<profile_2_bgcolor>",profileColorList[3])
-															 .replace("<profile_3_color>",profileColorList[4])
-															 .replace("<profile_3_bgcolor>",profileColorList[5]);
+															 .replace("<profile_2_color>",profileColorList[3])
+															 .replace("<profile_2_bgcolor>",profileColorList[4])
+															 .replace("<profile_3_color>",profileColorList[6])
+															 .replace("<profile_3_bgcolor>",profileColorList[7]);
 			cssProvider.load_from_data(dynamicCSSContent, dynamicCSSContent.length);
 		}catch(GLib.Error e){
 			warning("Stylesheet could not be loaded from CSS Content["+dynamicCSSContent+"]. Error:"+e.message);
