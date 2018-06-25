@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-24 22:46+0100\n"
-"PO-Revision-Date: 2018-05-22 07:26+0000\n"
+"PO-Revision-Date: 2018-06-25 09:33+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 3.1-dev\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
@@ -405,9 +405,8 @@ msgid "Background"
 msgstr "Bakgrunnur"
 
 #: ../src/constants.vala:125
-#, fuzzy
 msgid "Highlight"
-msgstr "Jafna til hægri"
+msgstr "Áherslulita"
 
 #: ../src/constants.vala:126
 msgid "Add folders to scan for books"
