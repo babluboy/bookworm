@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-24 21:43+0100\n"
-"PO-Revision-Date: 2017-10-04 17:47+0000\n"
-"Last-Translator: Hung Nguyen <hnx116@gmail.com>\n"
+"PO-Revision-Date: 2018-06-30 00:46+0000\n"
+"Last-Translator: Name <Noname932018@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/vi/>\n"
 "Language: vi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 3.1-dev\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
@@ -23,7 +23,7 @@ msgstr "Chọn thư mục"
 
 #: ../src/library.vala:602
 msgid "Adding "
-msgstr ""
+msgstr "Đang thêm vào "
 
 #: ../src/window.vala:292 ../src/window.vala:519
 msgid "Select eBook"
