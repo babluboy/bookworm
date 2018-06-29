@@ -2,76 +2,84 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"PO-Revision-Date: 2018-06-30 08:43+0000\n"
+"Last-Translator: kong <ph.kp111@gmail.com>\n"
+"Language-Team: Thai <https://hosted.weblate.org/projects/bookworm/bookworm/"
+"th/>\n"
+"Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.1-dev\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
-msgstr ""
+msgstr "เลือกรูปภาพ"
 
 #: ../src/dialog.vala:545
 msgid "Select folder"
-msgstr ""
+msgstr "เลือกโฟล์เดอร์"
 
 #: ../src/library.vala:602
 msgid "Adding "
-msgstr ""
+msgstr "กำลังเพิ่ม "
 
 #: ../src/window.vala:292 ../src/window.vala:519
 msgid "Select eBook"
-msgstr ""
+msgstr "เลือก อีบุ๊ค"
 
 #: ../src/bookworm.vala:104
 msgid "Display version number"
-msgstr ""
+msgstr "แสดงหมายเลขเวอร์ชั่น"
 
 #: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "ดำเนินงาน Bookworm ในโหมดการแก้ปัญหา"
 
 #: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "ดำเนินงาน Bookworm ในโหมดข้อมูล"
 
 #: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "เพิ่มหนังสือใหม่จากโฟล์เดอร์ที่ดูแล้ว"
 
 #: ../src/constants.vala:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "อุปกรณ์อ่าน อีบุ๊ค"
 
 #: ../src/constants.vala:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Weblate แปลภาษา"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "เว็บไซต์ | การแปล | ติดตามข้อผิดพลาด"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
-msgstr ""
+msgstr "ไม่ว่าง"
 
 #: ../src/constants.vala:40
 msgid "eBook Reader"
-msgstr ""
+msgstr "อุปกรณ์อ่านอีบุ๊ค"
 
 #: ../src/constants.vala:41
 msgid "Search this book…"
-msgstr ""
+msgstr "ค้นหาหนังสือนี้…"
 
 #: ../src/constants.vala:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "ค้นหาโดยชื่อ, ผู้แต่งและแท็ก"
 
 #: ../src/constants.vala:43
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "ดูเหมือนว่า Bookworm ไม่มีหนังสือเล่มนี้"
 
 #: ../src/constants.vala:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "สร้างห้องสมุดของคุณโดยการเพิ่มอีบุ๊ค"
 
 #: ../src/constants.vala:45
 msgid "Select an eBook to read"
