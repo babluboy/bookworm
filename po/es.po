@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-24 21:43+0100\n"
-"PO-Revision-Date: 2018-03-03 18:41+0000\n"
-"Last-Translator: Santiago Pestarini <santiagonob@gmail.com>\n"
+"PO-Revision-Date: 2018-07-09 11:41+0000\n"
+"Last-Translator: advocatux <advocatux@airpost.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/es/>\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.20-dev\n"
+"X-Generator: Weblate 3.1-dev\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
@@ -55,7 +55,7 @@ msgstr "Traductores de Weblate"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Sitio web | Traducción | Seguimiento de errores"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -175,9 +175,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Etiquetas separadas por comas para esta anotación"
 
 #: ../src/constants.vala:64
-#, fuzzy
 msgid "Edit annotation for:"
-msgstr "Añadir notas para: "
+msgstr "Editar el comentario para:"
 
 #: ../src/constants.vala:65
 msgid "Click on a link to jump to an annotated section"
@@ -343,11 +342,11 @@ msgstr "Disminuir del espaciado de línea"
 
 #: ../src/constants.vala:106
 msgid "Align left"
-msgstr ""
+msgstr "Alinear a la izquierda"
 
 #: ../src/constants.vala:107
 msgid "Align right"
-msgstr ""
+msgstr "Alinear a la derecha"
 
 #: ../src/constants.vala:108
 msgid "Update cover image"
@@ -411,7 +410,7 @@ msgstr "Fondo"
 
 #: ../src/constants.vala:125
 msgid "Highlight"
-msgstr ""
+msgstr "Resaltar"
 
 #: ../src/constants.vala:126
 msgid "Add folders to scan for books"
