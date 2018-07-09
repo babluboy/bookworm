@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-24 21:43+0100\n"
-"PO-Revision-Date: 2018-07-09 11:41+0000\n"
+"PO-Revision-Date: 2018-07-10 12:42+0000\n"
 "Last-Translator: advocatux <advocatux@airpost.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/es/>\n"
@@ -31,7 +31,7 @@ msgstr "Seleccionar eBook"
 
 #: ../src/bookworm.vala:104
 msgid "Display version number"
-msgstr "Mostrar número de versión"
+msgstr "Mostrar el número de versión"
 
 #: ../src/bookworm.vala:105
 msgid "Run Bookworm in debug mode"
@@ -39,11 +39,11 @@ msgstr "Ejecutar Bookworm en modo de depuración"
 
 #: ../src/bookworm.vala:106
 msgid "Run Bookworm in info mode"
-msgstr "Ejecutar Bookworm en modo de depuración"
+msgstr "Ejecutar Bookworm en modo informativo"
 
 #: ../src/bookworm.vala:107
 msgid "Automatically add new books from watched folders"
-msgstr "Agregar automaticamente libros nuevos desde las carpetas vigiladas"
+msgstr "Agregar automáticamente libros nuevos desde las carpetas observadas"
 
 #: ../src/constants.vala:29
 msgid "An eBook Reader"
@@ -63,15 +63,15 @@ msgstr "No disponible"
 
 #: ../src/constants.vala:40
 msgid "eBook Reader"
-msgstr "lector de libros electrónicos"
+msgstr "Lector de libros electrónicos"
 
 #: ../src/constants.vala:41
 msgid "Search this book…"
-msgstr "Buscar en este libro…"
+msgstr "Buscar este libro…"
 
 #: ../src/constants.vala:42
 msgid "Search by Title, Author and Tags"
-msgstr "Búsqueda por Título, Autor y Etiquetas"
+msgstr "Buscar por título, autor y etiquetas"
 
 #: ../src/constants.vala:43
 msgid "Looks like Bookworm has no books."
@@ -79,11 +79,11 @@ msgstr "Parece que Bookworm no tiene libros."
 
 #: ../src/constants.vala:44
 msgid "Build your library by adding eBooks"
-msgstr "Construya su biblioteca agregando libros electrónicos"
+msgstr "Construya su biblioteca añadiendo libros electrónicos"
 
 #: ../src/constants.vala:45
 msgid "Select an eBook to read"
-msgstr "Seleccione un eBook para leer"
+msgstr "Seleccione un libro electrónico para leer"
 
 #: ../src/constants.vala:46
 msgid ""
