@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2017-12-19 13:00+0000\n"
 "Last-Translator: Володимир Бриняк <bardvv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
@@ -22,7 +22,7 @@ msgstr "Вибрати зображення"
 msgid "Select folder"
 msgstr "Виберіть папку"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "Додавання "
 
@@ -30,19 +30,19 @@ msgstr "Додавання "
 msgid "Select eBook"
 msgstr "Вибрати електронну книгу"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Відобразити номер версії"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Запустити Bookworm у режимі налагодження"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Запустити Bookworm в інформаційному режимі"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Автоматично додавати нові книги з відстежуваної теки"
 
@@ -432,15 +432,15 @@ msgstr "Невідома книга"
 msgid "About"
 msgstr "Про"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Відкрити"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Зберегти"
 

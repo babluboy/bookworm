@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 22:46+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2018-06-16 19:39+0000\n"
 "Last-Translator: Ishan Bhanuka <f2016075@pilani.bits-pilani.ac.in>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -21,7 +21,7 @@ msgstr "चित्र चुनिये"
 msgid "Select folder"
 msgstr "फ़ोल्डर चुनें"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "जोड़ा जा रहा है "
 
@@ -29,19 +29,19 @@ msgstr "जोड़ा जा रहा है "
 msgid "Select eBook"
 msgstr "ईबुक चुनीये"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "संस्करण संस्करण प्रदर्शित करें"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "बुकवार्म को डीबग मोड में चलाएं"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "बुकवर्म को इन्फो मोड में चलाइए"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "चुने हुए फोल्डर्स से पुस्तक जोड़ें"
 
@@ -417,15 +417,15 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr ""
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr ""
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr ""
 

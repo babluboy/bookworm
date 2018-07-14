@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2017-10-15 11:23+0000\n"
 "Last-Translator: Dima Dorofieiev <dorofieiev.d@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -21,7 +21,7 @@ msgstr "Vybrat obrázek"
 msgid "Select folder"
 msgstr "Vybrat složku"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 #, fuzzy
 msgid "Adding "
 msgstr "Přidání "
@@ -31,19 +31,19 @@ msgstr "Přidání "
 msgid "Select eBook"
 msgstr "Vybrat e-knihu"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Spustit Bookworm v ladícím režimu"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Spustit Bookworm v info režimu"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Automaticky přidat nové knihy ze sledovaných složek"
 
@@ -427,15 +427,15 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr ""
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr ""
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr ""
 

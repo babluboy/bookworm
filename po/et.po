@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2018-04-24 17:42+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
@@ -22,7 +22,7 @@ msgstr "Vali pilt"
 msgid "Select folder"
 msgstr "Vali kaust"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "Lisamine "
 
@@ -30,19 +30,19 @@ msgstr "Lisamine "
 msgid "Select eBook"
 msgstr "Vali e-raamat"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Kuva versiooninumber"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Käivita Bookworm silumisrežiimis"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Käivita Bookworm inforežiimis"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Lisa uued raamatud jälgimiskasutadest automaatselt"
 
@@ -429,15 +429,15 @@ msgstr "Tundmatu raamat"
 msgid "About"
 msgstr "Programmist"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "Loobu"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Ava"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Salvesta"
 

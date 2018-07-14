@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 22:46+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2018-06-01 19:43+0000\n"
 "Last-Translator: monolifed <monolifed@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
@@ -21,7 +21,7 @@ msgstr "Resim Seç"
 msgid "Select folder"
 msgstr "Klasör seç"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "Ekleniyor "
 
@@ -29,19 +29,19 @@ msgstr "Ekleniyor "
 msgid "Select eBook"
 msgstr "eKitap seç"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Sürüm numarasını göster"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Bookworm'u hata ayıklama kipinde çalıştır"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Bookworm'u bilgi kipinde çalıştır"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Yeni kitapları izlenen klasörlerden kendiliğinden ekle"
 
@@ -430,15 +430,15 @@ msgstr "Bilinmeyen Kitap"
 msgid "About"
 msgstr "Hakkında"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "İptal"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Aç"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Kaydet"
 

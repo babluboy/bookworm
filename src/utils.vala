@@ -103,10 +103,12 @@ namespace BookwormApp.Utils {
 		try {
 			Process.spawn_command_line_sync(cmd, out std_out, out std_err, out exitCodeForCommand);
 			if(exitCodeForCommand != 0){
-				warning("Error encountered in execution of sync command ["+cmd+"]: "+std_err);
+				warning("Execution of sync command ["+cmd+"]: exited with non zero error code["+exitCodeForCommand.to_string()+"]. Error message:"+std_err);
+				return "false";
 			}
 		}catch (Error e){
 			warning("Error encountered in execution of sync command ["+cmd+"]: "+e.message);
+			return "false";
 		}
 		debug("Completed execution of sync command ["+cmd+"] with output:"+std_out);
 		return std_out;

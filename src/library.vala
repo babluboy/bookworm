@@ -587,6 +587,7 @@ public class BookwormApp.Library {
         double progress = 0d;
 		//loop through the command line and add books to library
 		foreach(string pathToSelectedBook in BookwormApp.Bookworm.pathsOfBooksToBeAdded){
+		    debug("Attempting to add book from path:"+pathToSelectedBook);
             //Set async callback only if multiple books are being added
             //If only one book is being added, complete parsing and adding the book,
             //so that it will be added to the BookwormApp.Bookworm.libraryViewMap and opened on the
@@ -595,7 +596,8 @@ public class BookwormApp.Library {
                 Idle.add (addBooksToLibrary.callback);
             }
             BookwormApp.Bookworm.noOfBooksAddedFromCommand++;
-            if("bookworm" != pathToSelectedBook.strip()) {//ignore the first command which is the application name
+            
+            if(BookwormApp.Constants.bookworm_id != pathToSelectedBook.strip()) {
                 //set progress for the UI Book addition progress bar
                 progress = (((double)(BookwormApp.Bookworm.noOfBooksAddedFromCommand))/
                                     ((double)(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length)));
@@ -613,7 +615,8 @@ public class BookwormApp.Library {
             if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 2){
                 yield;
             }
-			if("bookworm" != pathToSelectedBook.strip()){  //ignore the first command which is the application name
+            //ignore the first command which is the application name
+			if(BookwormApp.Constants.bookworm_id != pathToSelectedBook.strip()){
                 //check if book already exists in the library
                 if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(pathToSelectedBook.strip()) != -1){
                     debug("Book already exists in library..."+BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str);
@@ -683,7 +686,9 @@ public class BookwormApp.Library {
 				BookwormApp.Bookworm.toggleUIState();
 				//set the name of the book being currently read
 				BookwormApp.Bookworm.locationOfEBookCurrentlyRead = eBookLocation;
-				debug ("Completed adding book to ebook library. Number of books in library:"+BookwormApp.Bookworm.libraryViewMap.size.to_string());
+				debug ("Completed adding book to ebook library. Number of books in library:" +
+				               BookwormApp.Bookworm.libraryViewMap.size.to_string()
+			                );
 			}
 		}else{
 			debug("No ebook found for adding to library");

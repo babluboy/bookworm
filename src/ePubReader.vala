@@ -87,7 +87,10 @@ public class BookwormApp.ePubReader {
         //check and create directory for extracting contents of ebook
         BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
         //unzip eBook contents into extraction location
-        BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
+        string status = BookwormApp.Utils.execute_sync_command("unzip -o \"" + eBookLocation + "\" -d \""+ extractionLocation +"\"");
+        if("false" == status){
+            extractionLocation = "false";
+        }
          info("[END] [FUNCTION:extractEBook] extractionLocation="+extractionLocation);
         return extractionLocation;
   }

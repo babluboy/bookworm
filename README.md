@@ -18,14 +18,14 @@ sudo apt-get install libgranite-dev
 sudo apt-get install valac
 sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
 sudo apt-get install libsqlite3-dev
-sudo apt-get install poppler-utils libpoppler-glib-dev
+sudo apt-get install poppler-utils libpoppler-glib-dev html2text
 ```
 ### On fedora
 
 ```shell
 sudo dnf install cmake gcc-c++ vala
 sudo dnf install gtk3-devel libgee-devel granite-devel
-sudo dnf install webkitgtk4-devel sqlite-devel poppler-glib-devel
+sudo dnf install webkitgtk4-devel sqlite-devel poppler-glib-devel html2text
 ```
 
 ### Build and install bookworm

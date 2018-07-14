@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2017-11-27 18:29+0000\n"
 "Last-Translator: Mateusz <mateusz.gralka@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -22,7 +22,7 @@ msgstr "Wybierz obraz"
 msgid "Select folder"
 msgstr "Wybierz katalog"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "Dodaję... "
 
@@ -30,19 +30,19 @@ msgstr "Dodaję... "
 msgid "Select eBook"
 msgstr "Wybierz e-booka"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Wyświetl numer wersji"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Uruchom Bookworm w trybie debugowania"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Uruchom Bookworm w trybie informacyjnym"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Automatycznie dodaj nowe książki z obserwowanych katalogów"
 
@@ -433,15 +433,15 @@ msgstr "Nieznana książka"
 msgid "About"
 msgstr "O programie"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Otwórz"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Zapisz"
 

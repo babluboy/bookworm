@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"POT-Creation-Date: 2018-07-14 18:39+0100\n"
 "PO-Revision-Date: 2018-07-12 13:24+0000\n"
 "Last-Translator: Carlos Familia <carlosfamilia@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
@@ -21,7 +21,7 @@ msgstr "Selecionar Imagem"
 msgid "Select folder"
 msgstr "Selecionar Pasta"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "Adicionando "
 
@@ -29,19 +29,19 @@ msgstr "Adicionando "
 msgid "Select eBook"
 msgstr "Selecione o eBook"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Ver o número da versão"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Executar Bookworm em modo de depuração"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Executar O Bookworm em modo de informação"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr ""
 "Adicionar novos livros automaticamente a partir das pastas monitorizadas"
@@ -91,8 +91,8 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problemas ao extrair os conteúdos do livro. Verifique se o ficheiro é válido:"
-" "
+"Problemas ao extrair os conteúdos do livro. Verifique se o ficheiro é "
+"válido: "
 
 #: ../src/constants.vala:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
@@ -428,15 +428,15 @@ msgstr "Livro desconhecido"
 msgid "About"
 msgstr "Sobre"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Guardar"
 

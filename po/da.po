@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2017-10-26 22:02+0000\n"
 "Last-Translator: Filip Kemuel Dam Bartholdy <filip_kemuel@yahoo.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -21,7 +21,7 @@ msgstr "Vælg billede"
 msgid "Select folder"
 msgstr "Vælg mappe"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "Tilføjer "
 
@@ -29,19 +29,19 @@ msgstr "Tilføjer "
 msgid "Select eBook"
 msgstr "Vælg e-bog"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Vis versionsnummer"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Kør Bookworm i fejlsøgningstilstand"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Kør Bookworm i informationstilstand"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Tilføj automatisk nye bøger fra overvågede mapper"
 
@@ -427,15 +427,15 @@ msgstr "Ukendt bog"
 msgid "About"
 msgstr "Om"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "Annullér"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Åbn"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Gem"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 22:46+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2018-05-31 08:12+0000\n"
 "Last-Translator: Jacky Blois <jacky.blois@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -21,7 +21,7 @@ msgstr "Sélectionner une image"
 msgid "Select folder"
 msgstr "Sélectionner un dossier"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "Ajouter "
 
@@ -29,19 +29,19 @@ msgstr "Ajouter "
 msgid "Select eBook"
 msgstr "Sélectionnez un livre électronique"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Afficher le numéro de version"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Lancer Bookworm en mode débogage"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Lancer Bookworm en mode information"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr ""
 "Ajouter automatiquement les nouveaux livres à partir des dossier suivis"
@@ -437,15 +437,15 @@ msgstr "Livre inconnu"
 msgid "About"
 msgstr "À propos"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Ouvrir"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Enregistrer"
 

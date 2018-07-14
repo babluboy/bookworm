@@ -539,11 +539,11 @@ public class BookwormApp.AppWindow {
         debug("[START] [FUNCTION:showInfoBar] ");
         StringBuilder message = new StringBuilder("");
         message.append(aBook.getParsingIssue())
-                 .append(aBook.getBookLocation());
+                        .append(aBook.getBookLocation());
         BookwormApp.AppWindow.infobarLabel.set_text(message.str);
         BookwormApp.AppWindow.infobar.set_message_type (aMessageType);
         BookwormApp.AppWindow.infobar.show();
-        debug("[END] [FUNCTION:showInfoBar] ");
+        debug("[END] [FUNCTION:showInfoBar] with message:"+message.str);
     }
 
     //Handle action for close of the InfoBar

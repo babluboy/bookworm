@@ -86,6 +86,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static ArrayList<string> profileColourList = new ArrayList<string> ();
 	public static bool isPageScrollRequired = false;
 	public static StringBuilder pathsOfBooksInLibraryOnLoadStr = new StringBuilder("");
+	public static StringBuilder pathsOfBooksNotAddedStr = new StringBuilder("");
 	public static StringBuilder onLoadJavaScript = new StringBuilder("");
 	public static string bookwormScripts = "";
 	public static string bookTextSearchString = "";
@@ -218,6 +219,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//check if any books needed to be added/opened - if eBook(s) were opened from File Explorer using Bookworm
 		if(commandLineArgs.length > 1){
+			info("Book(s) to be added/opened based on command line parameters. Size of command line attributes:"+
+								commandLineArgs.length.to_string()
+				  );
 			pathsOfBooksToBeAdded = new string[commandLineArgs.length];
 			pathsOfBooksToBeAdded = commandLineArgs;
 			//Display the progress bar
@@ -360,6 +364,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 															 .replace("<profile_2_bgcolor>",profileColorList[4])
 															 .replace("<profile_3_color>",profileColorList[6])
 															 .replace("<profile_3_bgcolor>",profileColorList[7]);
+			debug("CSS for Profile Buttons:"+dynamicCSSContent);
 			cssProvider.load_from_data(dynamicCSSContent, dynamicCSSContent.length);
 		}catch(GLib.Error e){
 			warning("Stylesheet could not be loaded from CSS Content["+dynamicCSSContent+"]. Error:"+e.message);
@@ -477,7 +482,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			aBook = BookwormApp.DB.getBookMetaDataFromDB(aBook);
 		}
 		//Handle the case when the page number of the book is not set
-    if(aBook.getBookPageNumber() == -1){
+    	if(aBook.getBookPageNumber() == -1){
 			aBook.setBookPageNumber(0);
 		}else{
 			//This book was previously being read, so it should be opened at the last reading position
@@ -485,7 +490,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			isPageScrollRequired = true;
 		}
 		//Handle the case when the page number of the book is outside limits
-    if(aBook.getBookPageNumber() >= aBook.getBookContentList().size){
+    	if(aBook.getBookPageNumber() >= aBook.getBookContentList().size){
 			aBook.setBookPageNumber(aBook.getBookContentList().size - 1);
 		}
 		//check if the extracted contents for the book exists
@@ -680,6 +685,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 				aBook.setIsBookParsed(false);
 				aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_PARSING_ISSUE);
 			}
+		}
+		//If the book could not be parsed, add the book location to the list of books which could not be loaded
+		if(!aBook.getIsBookParsed() ){
+			BookwormApp.Bookworm.pathsOfBooksNotAddedStr.append(aBook.getBookLocation()).append("~~");
 		}
 		info("[END] [FUNCTION:genericParser] book.is book parsed="+aBook.getIsBookParsed().to_string());
 		return aBook;

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"POT-Creation-Date: 2018-07-14 18:39+0100\n"
 "PO-Revision-Date: 2018-06-30 08:43+0000\n"
 "Last-Translator: kong <ph.kp111@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -21,7 +21,7 @@ msgstr "เลือกรูปภาพ"
 msgid "Select folder"
 msgstr "เลือกโฟล์เดอร์"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "กำลังเพิ่ม "
 
@@ -29,19 +29,19 @@ msgstr "กำลังเพิ่ม "
 msgid "Select eBook"
 msgstr "เลือก อีบุ๊ค"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "แสดงหมายเลขเวอร์ชั่น"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "ดำเนินงาน Bookworm ในโหมดการแก้ปัญหา"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "ดำเนินงาน Bookworm ในโหมดข้อมูล"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "เพิ่มหนังสือใหม่จากโฟล์เดอร์ที่ดูแล้ว"
 
@@ -417,15 +417,15 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr ""
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr ""
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr ""
 

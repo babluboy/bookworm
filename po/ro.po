@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 22:46+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2018-06-18 21:04+0000\n"
 "Last-Translator: Calin Sopterean <csopterean@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
@@ -22,7 +22,7 @@ msgstr "Selectează Imaginea"
 msgid "Select folder"
 msgstr "Selectează Directorul"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr "Adăugare "
 
@@ -30,19 +30,19 @@ msgstr "Adăugare "
 msgid "Select eBook"
 msgstr "Selectează eBook"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Arată numărul versiunii"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Rulează Bookworm în modul depanare"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Rulează Bookworm în modul info"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Adaugă automat cărți noi din directoarele vizionate"
 
@@ -429,15 +429,15 @@ msgstr "Carte Necunoscută"
 msgid "About"
 msgstr "Despre"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "Anulare"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Deschide"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Salvează"
 

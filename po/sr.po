@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 21:43+0100\n"
+"POT-Creation-Date: 2018-06-30 11:16+0100\n"
 "PO-Revision-Date: 2017-07-25 08:55+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bookworm/"
@@ -23,7 +23,7 @@ msgstr "Одабери слику"
 msgid "Select folder"
 msgstr "Одабери слику"
 
-#: ../src/library.vala:602
+#: ../src/library.vala:604
 msgid "Adding "
 msgstr ""
 
@@ -31,20 +31,20 @@ msgstr ""
 msgid "Select eBook"
 msgstr "Одабери еКњигу"
 
-#: ../src/bookworm.vala:104
+#: ../src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Прикажи верзију"
 
-#: ../src/bookworm.vala:105
+#: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Покрени Bookworm у режиму за отклањање грешака"
 
-#: ../src/bookworm.vala:106
+#: ../src/bookworm.vala:107
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Покрени Bookworm у режиму за отклањање грешака"
 
-#: ../src/bookworm.vala:107
+#: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -446,15 +446,15 @@ msgstr "Непозната књига"
 msgid "About"
 msgstr "О програму"
 
-#: ../src/utils.vala:518 ../src/utils.vala:592
+#: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
 msgstr "Одустани"
 
-#: ../src/utils.vala:520 ../src/utils.vala:593
+#: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
 msgstr "Отвори"
 
-#: ../src/utils.vala:522
+#: ../src/utils.vala:524
 msgid "Save"
 msgstr "Сачувај"
 

@@ -331,8 +331,12 @@ public class BookwormApp.contentHandler {
         debug("[START] [FUNCTION:performStartUpActions]");
         //open the book added, if only one book path is present on command line
         //if this book was not in the library, then the library view will be shown
-        if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length == 2 &&
-            BookwormApp.Constants.bookworm_id == BookwormApp.Bookworm.pathsOfBooksToBeAdded[0])
+        if(BookwormApp.Bookworm.pathsOfBooksToBeAdded.length == 2 && //check if only one book is on the command line
+            //check if first parameter is bookworm
+            BookwormApp.Constants.bookworm_id == BookwormApp.Bookworm.pathsOfBooksToBeAdded[0] &&
+            //check if book has not already failed to load
+            BookwormApp.Bookworm.pathsOfBooksNotAddedStr.str.index_of(BookwormApp.Bookworm.pathsOfBooksToBeAdded[1]) == -1
+        )
         {
             BookwormApp.Book requestedBook = null;
             //Check if the requested book is available in the library
