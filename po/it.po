@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 11:16+0100\n"
+"POT-Creation-Date: 2018-07-15 22:58+0100\n"
 "PO-Revision-Date: 2018-04-21 16:38+0000\n"
 "Last-Translator: Ale-Ma <alemassimiani@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
@@ -21,7 +21,7 @@ msgstr "Seleziona immagine"
 msgid "Select folder"
 msgstr "Seleziona cartella"
 
-#: ../src/library.vala:604
+#: ../src/library.vala:610
 msgid "Adding "
 msgstr "Aggiunta di "
 

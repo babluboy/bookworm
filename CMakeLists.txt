@@ -10,7 +10,6 @@ list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 # Set all the data directories
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/bookworm")
-set (ICON_DIR ${PKGDATADIR}/icons/hicolor)
 set (SCRIPTS_DIR ${PKGDATADIR}/scripts)
 
 # Set the application executable name and version info
@@ -81,6 +80,7 @@ include(ValaVersion)
 ensure_vala_version("0.36" MINIMUM)
 
 # files we want to compile
+include(GResource)
 include(ValaPrecompile)
 
 set (BASIC_VALAC_OPTIONS
@@ -127,8 +127,10 @@ PACKAGES
     libxml-2.0
 )
 
+GLIB_COMPILE_RESOURCES(GRESOURCES SOURCE data/com.github.babluboy.bookworm.gresource.xml)
+
 # tell cmake what to call the executable we just made
-add_executable(${EXEC_NAME} ${VALA_C})
+add_executable(${EXEC_NAME} ${VALA_C} ${GRESOURCES})
 
 # set linking libraries
 install (TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)
@@ -141,45 +143,6 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/48/com.github.babluboy.boo
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/64/com.github.babluboy.bookworm.svg DESTINATION share/icons/hicolor/64x64/apps)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/128/com.github.babluboy.bookworm.svg DESTINATION share/icons/hicolor/128x128/apps)
 
-# install bookworm fall back icons in application specific folder - /usr/share/bookworm/icons
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-next.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-go-previous.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-object-select-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-add.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-list-remove.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-grid-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-view-list-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-line-height-more.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-line-height-less.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-width-more.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-width-less.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_1.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_2.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_3.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_4.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm_rating_5.png DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-help-about-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-help-about.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-selection-option.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-selection-checked.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-insert-image.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-help-info-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-format-text-larger-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-format-text-smaller-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-format-justify-left.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/16/bookworm-format-justify-right.svg DESTINATION ${ICON_DIR}/16x16/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-inactive.png DESTINATION ${ICON_DIR}/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-bookmark-active.png DESTINATION ${ICON_DIR}/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-checked.svg DESTINATION ${ICON_DIR}/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-selection-option.svg DESTINATION ${ICON_DIR}/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/24/bookworm-open-menu.svg DESTINATION ${ICON_DIR}/24x24/actions/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-placeholder-cover.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-1.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-2.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-3.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-4.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/icons/default_covers/bookworm-default-cover-5.svg DESTINATION ${ICON_DIR}/default_covers/apps/)
-
 # install app specific desktop, appdata and css files
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.desktop DESTINATION ${DATADIR}/applications)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.appdata.xml DESTINATION ${DATADIR}/metainfo/)
@@ -187,7 +150,6 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.babluboy.bookworm.con
 
 # install bookworm scripts in application specific folder - /usr/share/bookworm/scripts
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/com.github.babluboy.bookworm.search.sh PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE DESTINATION ${SCRIPTS_DIR}/tasks)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/com.github.babluboy.bookworm.htmlscripts.txt PERMISSIONS OWNER_READ GROUP_READ WORLD_READ DESTINATION ${SCRIPTS_DIR}/tasks)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_dict.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE DESTINATION ${SCRIPTS_DIR}/mobi_lib)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_html.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE DESTINATION ${SCRIPTS_DIR}/mobi_lib)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/scripts/mobi_lib/mobi_index.py PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE DESTINATION ${SCRIPTS_DIR}/mobi_lib)

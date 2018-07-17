@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 11:16+0100\n"
+"POT-Creation-Date: 2018-07-15 22:58+0100\n"
 "PO-Revision-Date: 2017-09-18 07:01+0000\n"
 "Last-Translator: Pablo Mariño <pablo.marino.boga@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bookworm/"
@@ -21,7 +21,7 @@ msgstr "Escolle Imaxe"
 msgid "Select folder"
 msgstr "Escolle cartafol"
 
-#: ../src/library.vala:604
+#: ../src/library.vala:610
 msgid "Adding "
 msgstr ""
 

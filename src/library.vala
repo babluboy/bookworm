@@ -119,7 +119,7 @@ public class BookwormApp.Library {
         Gdk.Pixbuf aBookCover;
         Gtk.Image bookPlaceholderCoverImage = null;
         try{
-            Gdk.Pixbuf bookPlaceholderCoverPix = new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.PLACEHOLDER_COVER_IMAGE_LOCATION, 10, 200, false);
+            Gdk.Pixbuf bookPlaceholderCoverPix = new Gdk.Pixbuf.from_resource_at_scale(BookwormApp.Constants.PLACEHOLDER_COVER_IMAGE_LOCATION, 10, 200, false);
             bookPlaceholderCoverImage = new Gtk.Image.from_pixbuf(bookPlaceholderCoverPix);
         }catch(GLib.Error e) {
             warning ("Error loading the placeholder cover image from location["+BookwormApp.Constants.PLACEHOLDER_COVER_IMAGE_LOCATION+"] : "+e.message);
@@ -131,8 +131,14 @@ public class BookwormApp.Library {
             //default Book Cover Image not set - select at random from the default covers
             bookCoverLocation = BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION
                                                    .replace("N", GLib.Random.int_range(1, 6).to_string());
-	            aBook.setBookCoverLocation(bookCoverLocation);
+            aBook.setBookCoverLocation(bookCoverLocation);
+            try{
+                aBookCover = new Gdk.Pixbuf.from_resource_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
+                aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
+            }catch(GLib.Error e){
+                warning("Error in loading default cover image at location["+aBook.getBookCoverLocation()+"] : "+ e.message);
             }
+        }
             try{
                 aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
                 aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
@@ -144,7 +150,7 @@ public class BookwormApp.Library {
 	            aBook.setBookCoverLocation(bookCoverLocation);
                 aCoverImage = null;
                 try{
-                    aBookCover = new Gdk.Pixbuf.from_file_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
+                    aBookCover = new Gdk.Pixbuf.from_resource_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
                     aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
                     //set cover image present flag to false - this will add title text to the default cover
                     aBook.setIsBookCoverImagePresent(false);
@@ -170,7 +176,7 @@ public class BookwormApp.Library {
             //Add selection option badge to the book for later use
             Gdk.Pixbuf bookSelectionPix = null;
             try{
-                bookSelectionPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_OPTION_IMAGE_LOCATION);
+                bookSelectionPix = new Gdk.Pixbuf.from_resource(BookwormApp.Constants.SELECTION_OPTION_IMAGE_LOCATION);
             }catch(GLib.Error e) {
                 warning("Error in loading Book selection image from location["+
                                  BookwormApp.Constants.SELECTION_OPTION_IMAGE_LOCATION+"] : "+ e.message);
@@ -182,7 +188,7 @@ public class BookwormApp.Library {
             //Add selection checked badge to the book for later use
             Gdk.Pixbuf bookSelectedPix = null;
             try{
-                bookSelectedPix = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_CHECKED_IMAGE_LOCATION);
+                bookSelectedPix = new Gdk.Pixbuf.from_resource(BookwormApp.Constants.SELECTION_CHECKED_IMAGE_LOCATION);
             }catch(GLib.Error e){
                 warning("Error in loading Book Selection Checked image from location["+
                                  BookwormApp.Constants.SELECTION_CHECKED_IMAGE_LOCATION+"] :"+ e.message);
@@ -512,7 +518,7 @@ public class BookwormApp.Library {
 				lEventBox.destroy();
 				//remove the cover image if it exists (ignore default covers)
 				if(book.getBookCoverLocation().index_of(
-                    BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("-cover-N.png","")) == -1)
+                    BookwormApp.Constants.DEFAULT_COVER_IMAGE_LOCATION.replace("-cover-N.svg","")) == -1)
                 {
 					BookwormApp.Utils.execute_sync_command("rm \""+book.getBookCoverLocation()+"\"");
 				}

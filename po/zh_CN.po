@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 11:16+0100\n"
+"POT-Creation-Date: 2018-07-15 22:58+0100\n"
 "PO-Revision-Date: 2017-11-27 16:45+0000\n"
 "Last-Translator: Jack Yu <jackyu1996@hotmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -21,7 +21,7 @@ msgstr "选择图像"
 msgid "Select folder"
 msgstr "选择文件夹"
 
-#: ../src/library.vala:604
+#: ../src/library.vala:610
 msgid "Adding "
 msgstr ""
 

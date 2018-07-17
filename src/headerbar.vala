@@ -67,14 +67,14 @@ public class BookwormApp.AppHeaderBar {
         Gtk.Popover prefPopover = BookwormApp.PreferencesMenu.createPrefPopOver(BookwormApp.Bookworm.prefButton);
 
         Gtk.Image bookmark_inactive_button_image = new Gtk.Image ();
-        bookmark_inactive_button_image.set_from_file (Constants.BOOKMARK_INACTIVE_IMAGE_LOCATION);
+        bookmark_inactive_button_image.set_from_resource (Constants.BOOKMARK_INACTIVE_IMAGE_LOCATION);
         bookmark_inactive_button = new Gtk.Button ();
         bookmark_inactive_button.set_image (bookmark_inactive_button_image);
         bookmark_inactive_button.set_valign(Gtk.Align.CENTER);
         bookmark_inactive_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_BOOKMARKS_ACTIVATE);
 
         Gtk.Image bookmark_active_button_image = new Gtk.Image ();
-        bookmark_active_button_image.set_from_file (Constants.BOOKMARK_ACTIVE_IMAGE_LOCATION);
+        bookmark_active_button_image.set_from_resource (Constants.BOOKMARK_ACTIVE_IMAGE_LOCATION);
         bookmark_active_button = new Gtk.Button ();
         bookmark_active_button.set_image (bookmark_active_button_image);
         bookmark_active_button.set_valign(Gtk.Align.CENTER);

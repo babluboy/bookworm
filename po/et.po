@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 11:16+0100\n"
+"POT-Creation-Date: 2018-07-15 22:58+0100\n"
 "PO-Revision-Date: 2018-04-24 17:42+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
@@ -22,7 +22,7 @@ msgstr "Vali pilt"
 msgid "Select folder"
 msgstr "Vali kaust"
 
-#: ../src/library.vala:604
+#: ../src/library.vala:610
 msgid "Adding "
 msgstr "Lisamine "
 

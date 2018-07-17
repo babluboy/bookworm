@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 11:16+0100\n"
+"POT-Creation-Date: 2018-07-15 22:58+0100\n"
 "PO-Revision-Date: 2017-10-15 11:23+0000\n"
 "Last-Translator: Dima Dorofieiev <dorofieiev.d@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -21,7 +21,7 @@ msgstr "Vybrat obrázek"
 msgid "Select folder"
 msgstr "Vybrat složku"
 
-#: ../src/library.vala:604
+#: ../src/library.vala:610
 #, fuzzy
 msgid "Adding "
 msgstr "Přidání "

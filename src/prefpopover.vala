@@ -94,7 +94,7 @@ public class BookwormApp.PreferencesMenu {
         profileBox.set_halign(Gtk.Align.CENTER);
 
         Gtk.Image icon_width_indent_less = new Gtk.Image ();
-        icon_width_indent_less.set_from_file (Constants.LESS_LINE_WIDTH_IMAGE_LOCATION);
+        icon_width_indent_less.set_from_resource (Constants.LESS_LINE_WIDTH_IMAGE_LOCATION);
         Gtk.Button marginDecreaseButton = new Gtk.Button();
         marginDecreaseButton.set_image (icon_width_indent_less);
         marginDecreaseButton.set_halign(Gtk.Align.START);
@@ -102,7 +102,7 @@ public class BookwormApp.PreferencesMenu {
         marginDecreaseButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LINE_WIDTH_DECREASE);
 
         Gtk.Image icon_width_indent_more = new Gtk.Image ();
-        icon_width_indent_more.set_from_file (Constants.MORE_LINE_WIDTH_IMAGE_LOCATION);
+        icon_width_indent_more.set_from_resource (Constants.MORE_LINE_WIDTH_IMAGE_LOCATION);
         Gtk.Button marginIncreaseButton = new Gtk.Button();
         marginIncreaseButton.set_image (icon_width_indent_more);
         marginIncreaseButton.set_halign(Gtk.Align.END);
@@ -115,7 +115,7 @@ public class BookwormApp.PreferencesMenu {
         marginBox.set_halign(Gtk.Align.CENTER);
 
         Gtk.Image icon_line_height_less = new Gtk.Image ();
-        icon_line_height_less.set_from_file (Constants.LESS_LINE_HEIGHT_IMAGE_LOCATION);
+        icon_line_height_less.set_from_resource (Constants.LESS_LINE_HEIGHT_IMAGE_LOCATION);
         Gtk.Button heightDecreaseButton = new Gtk.Button();
         heightDecreaseButton.set_image (icon_line_height_less);
         heightDecreaseButton.set_halign(Gtk.Align.START);
@@ -123,7 +123,7 @@ public class BookwormApp.PreferencesMenu {
         heightDecreaseButton.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_LINE_HEIGHT_DECREASE);
 
         Gtk.Image icon_line_height_more = new Gtk.Image ();
-        icon_line_height_more.set_from_file (Constants.MORE_LINE_HEIGHT_IMAGE_LOCATION);
+        icon_line_height_more.set_from_resource (Constants.MORE_LINE_HEIGHT_IMAGE_LOCATION);
         Gtk.Button heightIncreaseButton = new Gtk.Button();
         heightIncreaseButton.set_image (icon_line_height_more);
         heightIncreaseButton.set_halign(Gtk.Align.START);

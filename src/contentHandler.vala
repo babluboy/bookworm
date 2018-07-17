@@ -131,6 +131,16 @@ public class BookwormApp.contentHandler {
     public static string adjustPageContent (BookwormApp.Book aBook, owned string pageContentStr, string mode){
         debug("[START] [FUNCTION:adjustPageContent] book.location="+aBook.getBookLocation()+
                     ", pageContentStr.length="+pageContentStr.length.to_string()+", mode="+mode);
+                    
+        //load javascript data from resource if it has not been loaded already
+        if(BookwormApp.Bookworm.bookwormScripts == null || BookwormApp.Bookworm.bookwormScripts.length < 1){
+		    uint8[] bookwormScriptsData;
+		    GLib.File.new_for_uri(BookwormApp.Constants.HTML_SCRIPT_LOCATION)
+			    .load_contents(null, out bookwormScriptsData, null);
+		    BookwormApp.Bookworm.bookwormScripts = (string)bookwormScriptsData;
+		    debug("Loaded javascript data from resource:\n" + BookwormApp.Bookworm.bookwormScripts);
+	    }
+                    
         StringBuilder pageContent = new StringBuilder(pageContentStr);
         settings = BookwormApp.Settings.get_instance();
         string cssForTextAndBackgroundColor = "";
@@ -293,7 +303,7 @@ public class BookwormApp.contentHandler {
                                                     " \"" + BookwormApp.Bookworm.aContentFileToBeSearched.str + "\" \"" +
                                                     BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "\""));
         //process search results
-        if(bookSearchResults.str.strip().length > 0){
+        if(bookSearchResults.str.strip().length > 0 && bookSearchResults.str != "false"){
             string[] individualLines = bookSearchResults.str.strip().split ("\n",-1);
             foreach ( string individualLine in individualLines) {
                 BookwormApp.Bookworm.searchResultsMap.set(searchResultCount.to_string()

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+
+	<gresource prefix="/com/github/babluboy/bookworm">
+		<file alias="14-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/14/com.github.babluboy.bookworm.svg</file>
+		
+		<file alias="16-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/16/com.github.babluboy.bookworm.svg</file>
+		<file alias="16-bookworm-go-next.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-go-next.svg</file>
+		<file alias="16-bookworm-go-previous.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-go-previous.svg</file>
+		<file alias="16-bookworm-object-select-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-object-select-symbolic.svg</file>
+		<file alias="16-bookworm-list-add.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-list-add.svg</file>
+		<file alias="16-bookworm-list-remove.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-list-remove.svg</file>
+		<file alias="16-bookworm-view-grid-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-view-grid-symbolic.svg</file>
+		<file alias="16-bookworm-view-list-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-view-list-symbolic.svg</file>
+		<file alias="16-bookworm-line-height-more.png">icons/16/bookworm-line-height-more.png</file>
+		<file alias="16-bookworm-line-height-less.png" >icons/16/bookworm-line-height-less.png</file>
+		<file alias="16-bookworm-width-more.png">icons/16/bookworm-width-more.png</file>
+		<file alias="16-bookworm-width-less.png">icons/16/bookworm-width-less.png</file>
+		<file alias="16-bookworm_rating_1.png">icons/16/bookworm_rating_1.png</file>
+		<file alias="16-bookworm_rating_2.png">icons/16/bookworm_rating_2.png</file>
+		<file alias="16-bookworm_rating_3.png">icons/16/bookworm_rating_3.png</file>
+		<file alias="16-bookworm_rating_4.png">icons/16/bookworm_rating_4.png</file>
+		<file alias="16-bookworm_rating_5.png">icons/16/bookworm_rating_5.png</file>
+		<file alias="16-bookworm-help-about-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-help-about-symbolic.svg</file>
+		<file alias="16-bookworm-help-about.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-help-about.svg</file>
+		<file alias="16-bookworm-selection-option.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-selection-option.svg</file>
+		<file alias="16-bookworm-selection-checked.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-selection-checked.svg</file>
+		<file alias="16-bookworm-insert-image.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-insert-image.svg</file>
+		<file alias="16-bookworm-help-info-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-help-info-symbolic.svg</file>
+		<file alias="16-bookworm-format-text-larger-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-format-text-larger-symbolic.svg</file>
+		<file alias="16-bookworm-format-text-smaller-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-format-text-smaller-symbolic.svg</file>
+		<file alias="16-bookworm-format-justify-left.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-format-justify-left.svg</file>
+		<file alias="16-bookworm-format-justify-right.svg" compressed="true" preprocess="xml-stripblanks">icons/16/bookworm-format-justify-right.svg</file>
+					
+		<file alias="24-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/24/com.github.babluboy.bookworm.svg</file>
+		<file alias="24-bookworm-bookmark-inactive.png">icons/24/bookworm-bookmark-inactive.png</file>
+		<file alias="24-bookworm-bookmark-active.png">icons/24/bookworm-bookmark-active.png</file>
+		<file alias="24-bookworm-selection-checked.svg" compressed="true" preprocess="xml-stripblanks">icons/24/bookworm-selection-checked.svg</file>
+		<file alias="24-bookworm-selection-option.svg" compressed="true" preprocess="xml-stripblanks">icons/24/bookworm-selection-option.svg</file>
+		<file alias="24-bookworm-open-menu.svg" compressed="true" preprocess="xml-stripblanks">icons/24/bookworm-open-menu.svg</file>
+		
+		<file alias="32-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/32/com.github.babluboy.bookworm.svg</file>
+
+		<file alias="48-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/48/com.github.babluboy.bookworm.svg</file>
+
+		<file alias="64-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/64/com.github.babluboy.bookworm.svg</file>
+
+		<file alias="128-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/128/com.github.babluboy.bookworm.svg</file>
+		
+		<file alias="bookworm-placeholder-cover.svg" compressed="true" preprocess="xml-stripblanks">icons/default_covers/bookworm-placeholder-cover.svg</file>
+		<file alias="bookworm-default-cover-1.svg" compressed="true" preprocess="xml-stripblanks">icons/default_covers/bookworm-default-cover-1.svg</file>
+		<file alias="bookworm-default-cover-2.svg" compressed="true" preprocess="xml-stripblanks">icons/default_covers/bookworm-default-cover-2.svg</file>
+		<file alias="bookworm-default-cover-3.svg" compressed="true" preprocess="xml-stripblanks">icons/default_covers/bookworm-default-cover-3.svg</file>
+		<file alias="bookworm-default-cover-4.svg" compressed="true" preprocess="xml-stripblanks">icons/default_covers/bookworm-default-cover-4.svg</file>
+		<file alias="bookworm-default-cover-5.svg" compressed="true" preprocess="xml-stripblanks">icons/default_covers/bookworm-default-cover-5.svg</file>
+
+		<file alias="192-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/192/com.github.babluboy.bookworm.svg</file>
+
+		<file alias="256-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/256/com.github.babluboy.bookworm.svg</file>
+		
+		<file alias="com.github.babluboy.bookworm.htmlscripts.txt" compressed="true">scripts/com.github.babluboy.bookworm.htmlscripts.txt</file>
+	</gresource>
+  
+</gresources>

@@ -252,95 +252,95 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public void loadImages(){
 		info("[START] [FUNCTION:loadImages]");
 		try{
-			image_selection_option_small = new Gdk.Pixbuf.from_file(BookwormApp.Constants.SELECTION_OPTION_IMAGE_SMALL_LOCATION);
-			image_selection_checked_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
-			image_selection_transparent_small = new Gdk.Pixbuf.from_file (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
+			image_selection_option_small = new Gdk.Pixbuf.from_resource(BookwormApp.Constants.SELECTION_OPTION_IMAGE_SMALL_LOCATION);
+			image_selection_checked_small = new Gdk.Pixbuf.from_resource (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
+			image_selection_transparent_small = new Gdk.Pixbuf.from_resource (BookwormApp.Constants.SELECTION_CHECKED_IMAGE_SMALL_LOCATION);
 			image_selection_transparent_small.fill(0x00000000);
-			image_rating_1 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_1_IMAGE_LOCATION);
-			image_rating_2 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_2_IMAGE_LOCATION);
-			image_rating_3 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_3_IMAGE_LOCATION);
-			image_rating_4 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_4_IMAGE_LOCATION);
-			image_rating_5 = new Gdk.Pixbuf.from_file (BookwormApp.Constants.RATING_5_IMAGE_LOCATION);
+			image_rating_1 = new Gdk.Pixbuf.from_resource (BookwormApp.Constants.RATING_1_IMAGE_LOCATION);
+			image_rating_2 = new Gdk.Pixbuf.from_resource (BookwormApp.Constants.RATING_2_IMAGE_LOCATION);
+			image_rating_3 = new Gdk.Pixbuf.from_resource (BookwormApp.Constants.RATING_3_IMAGE_LOCATION);
+			image_rating_4 = new Gdk.Pixbuf.from_resource (BookwormApp.Constants.RATING_4_IMAGE_LOCATION);
+			image_rating_5 = new Gdk.Pixbuf.from_resource (BookwormApp.Constants.RATING_5_IMAGE_LOCATION);
 
 			if (Gtk.IconTheme.get_default ().has_icon ("object-select-symbolic")) {
 				select_book_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
 			}else{
-				select_book_image = new Gtk.Image.from_file (BookwormApp.Constants.SELECT_BOOK_ICON_IMAGE_LOCATION);
+				select_book_image = new Gtk.Image.from_resource (BookwormApp.Constants.SELECT_BOOK_ICON_IMAGE_LOCATION);
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("list-add-symbolic")) {
 				add_book_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
 			}else{
-				add_book_image = new Gtk.Image.from_file (BookwormApp.Constants.ADD_BOOK_ICON_IMAGE_LOCATION);
+				add_book_image = new Gtk.Image.from_resource (BookwormApp.Constants.ADD_BOOK_ICON_IMAGE_LOCATION);
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("list-remove-symbolic")) {
 				remove_book_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
 			}else{
-				remove_book_image = new Gtk.Image.from_file (BookwormApp.Constants.REMOVE_BOOK_ICON_IMAGE_LOCATION);
+				remove_book_image = new Gtk.Image.from_resource (BookwormApp.Constants.REMOVE_BOOK_ICON_IMAGE_LOCATION);
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("list-add-symbolic")) {
 				add_scan_directory_image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
 			}else{
-				add_scan_directory_image = new Gtk.Image.from_file (BookwormApp.Constants.ADD_BOOK_ICON_IMAGE_LOCATION);
+				add_scan_directory_image = new Gtk.Image.from_resource (BookwormApp.Constants.ADD_BOOK_ICON_IMAGE_LOCATION);
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("list-remove-symbolic")) {
 				remove_scan_directory_image = new Gtk.Image.from_icon_name ("list-remove-symbolic", Gtk.IconSize.MENU);
 			}else{
-				remove_scan_directory_image = new Gtk.Image.from_file (BookwormApp.Constants.REMOVE_BOOK_ICON_IMAGE_LOCATION);
+				remove_scan_directory_image = new Gtk.Image.from_resource (BookwormApp.Constants.REMOVE_BOOK_ICON_IMAGE_LOCATION);
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("view-list-symbolic")) {
 				library_list_button_image = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 			}else{
-				library_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale(BookwormApp.Constants.LIBRARY_VIEW_LIST_IMAGE_LOCATION, 16, 16, true));
+				library_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale(BookwormApp.Constants.LIBRARY_VIEW_LIST_IMAGE_LOCATION, 16, 16, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("view-grid-symbolic")) {
 				library_grid_button_image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 			}else{
-				library_grid_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.LIBRARY_VIEW_GRID_IMAGE_LOCATION, 16, 16, true));
+				library_grid_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale  (BookwormApp.Constants.LIBRARY_VIEW_GRID_IMAGE_LOCATION, 16, 16, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("format-justify-left-symbolic")) {
 				pref_menu_icon_align_left = new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 			}else{
-				pref_menu_icon_align_left = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.TEXT_ALIGN_LEFT_ICON_LOCATION, 16, 16, true));
+				pref_menu_icon_align_left = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale  (BookwormApp.Constants.TEXT_ALIGN_LEFT_ICON_LOCATION, 16, 16, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("format-justify-right-symbolic")) {
 				pref_menu_icon_align_right = new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 			}else{
-				pref_menu_icon_align_right = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.TEXT_ALIGN_RIGHT_ICON_LOCATION, 16, 16, true));
+				pref_menu_icon_align_right = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale  (BookwormApp.Constants.TEXT_ALIGN_RIGHT_ICON_LOCATION, 16, 16, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("help-info-symbolic")) {
 				content_list_button_image = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				content_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale 	(BookwormApp.Constants.BOOK_INFO_IMAGE_LOCATION, 24, 24, true) );
+				content_list_button_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale 	(BookwormApp.Constants.BOOK_INFO_IMAGE_LOCATION, 24, 24, true) );
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("format-text-larger-symbolic")) {
 				menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale	(BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true) );
+				menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale	(BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true) );
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("open-menu")) {
 				menu_icon = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				menu_icon = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale (BookwormApp.Constants.HEADERBAR_PROPERTIES_IMAGE_LOCATION, 24, 24, true)	);
+				menu_icon = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale (BookwormApp.Constants.HEADERBAR_PROPERTIES_IMAGE_LOCATION, 24, 24, true)	);
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("format-text-larger-symbolic")) {
 				pref_menu_icon_text_large = new Gtk.Image.from_icon_name ("format-text-larger-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				pref_menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true));
+				pref_menu_icon_text_large = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale  (BookwormApp.Constants.TEXT_LARGER_IMAGE_ICON_LOCATION, 24, 24, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("format-text-smaller-symbolic")) {
 				pref_menu_icon_text_small = new Gtk.Image.from_icon_name ("format-text-smaller-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
 			}else{
-				pref_menu_icon_text_small = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_scale  (BookwormApp.Constants.TEXT_SMALLER_IMAGE_ICON_LOCATION, 24, 24, true));
+				pref_menu_icon_text_small = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale(BookwormApp.Constants.TEXT_SMALLER_IMAGE_ICON_LOCATION, 24, 24, true));
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("go-previous-symbolic")) {
 				back_button_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
 			}else{
-				back_button_image = new Gtk.Image.from_file (BookwormApp.Constants.PREV_PAGE_ICON_IMAGE_LOCATION);
+				back_button_image = new Gtk.Image.from_resource (BookwormApp.Constants.PREV_PAGE_ICON_IMAGE_LOCATION);
 			}
 			if (Gtk.IconTheme.get_default ().has_icon ("go-next-symbolic")) {
 				forward_button_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.MENU);
 			}else{
-				forward_button_image = new Gtk.Image.from_file (BookwormApp.Constants.NEXT_PAGE_ICON_IMAGE_LOCATION);
+				forward_button_image = new Gtk.Image.from_resource (BookwormApp.Constants.NEXT_PAGE_ICON_IMAGE_LOCATION);
 			}
 		}catch(GLib.Error e){
 			warning("Image could not be loaded. Error:"+e.message);
@@ -412,11 +412,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB();
 		//Update the library view
 		BookwormApp.Library.updateLibraryViewFromDB();
-		//load scripts data
-		bookwormScripts = 	BookwormApp.Utils.fileOperations("READ_FILE",
-											BookwormApp.Constants.HTML_SCRIPT_LOCATION,
-											"",
-											"");
+				
 		info("[END] [FUNCTION:loadBookwormState]");
 	}
 
