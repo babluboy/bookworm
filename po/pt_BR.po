@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-15 22:58+0100\n"
+"POT-Creation-Date: 2018-07-18 17:32+0100\n"
 "PO-Revision-Date: 2017-10-13 23:24+0000\n"
 "Last-Translator: Edgar Moraes Diniz <edgar.diniz@posteo.net>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -25,7 +25,7 @@ msgstr "Selecionar pasta"
 msgid "Adding "
 msgstr "Adicionando "
 
-#: ../src/window.vala:292 ../src/window.vala:519
+#: ../src/window.vala:293 ../src/window.vala:543
 msgid "Select eBook"
 msgstr "Selecionar eBook"
 

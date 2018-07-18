@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-15 22:58+0100\n"
+"POT-Creation-Date: 2018-07-18 17:32+0100\n"
 "PO-Revision-Date: 2017-08-08 22:34+0100\n"
 "Last-Translator: sid <sid@sid-latitude-e4300>\n"
 "Language-Team: Afar\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Adding "
 msgstr ""
 
-#: ../src/window.vala:292 ../src/window.vala:519
+#: ../src/window.vala:293 ../src/window.vala:543
 msgid "Select eBook"
 msgstr ""
 

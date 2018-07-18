@@ -53,7 +53,7 @@ public class BookwormApp.contentHandler {
         //set the bookmak icon on the header
         handleBookMark("DISPLAY");
         //set the navigation controls
-        aBook = BookwormApp.Bookworm.controlNavigation(aBook);
+        aBook = controlNavigation(aBook);
         //set the current value of the page slider
         BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
         debug("[END] [FUNCTION:renderPage]");        
@@ -62,7 +62,8 @@ public class BookwormApp.contentHandler {
 
     public static string provideContent (owned BookwormApp.Book aBook, int contentLocation, string mode){
         debug("[START] [FUNCTION:provideContent] book.location="+aBook.getBookLocation()+
-                ", contentLocation="+contentLocation.to_string()+", mode="+mode);
+                    ", contentLocation="+contentLocation.to_string()+
+                    ", mode="+mode);
         StringBuilder contents = new StringBuilder();
         if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
             //handle the case when the content list has html escape chars for the URI
@@ -313,6 +314,31 @@ public class BookwormApp.contentHandler {
         }
         debug("[END] [FUNCTION:searchHTMLContents]");
     }
+    
+    public static BookwormApp.Book controlNavigation(owned BookwormApp.Book aBook){
+	    info("[START] [FUNCTION:controlNavigation] book.location="+aBook.getBookLocation());
+	    int currentContentLocation = aBook.getBookPageNumber();
+	    debug("In controlNavigation with currentContentLocation="+currentContentLocation.to_string());
+	    //check if Book can be moved back and disable back button otherwise
+	    if(currentContentLocation > 0){
+		    aBook.setIfPageBackward(true);
+		    BookwormApp.AppWindow.back_button.set_sensitive(true);
+	    }else{
+		    aBook.setIfPageBackward(false);
+		    BookwormApp.AppWindow.back_button.set_sensitive(false);
+	    }
+	    //check if Book can be moved forward and disable forward button otherwise
+	    if(currentContentLocation < (aBook.getBookContentList().size - 1)){
+		    aBook.setIfPageForward(true);
+		    BookwormApp.AppWindow.forward_button.set_sensitive(true);
+	    }else{
+		    aBook.setIfPageForward(false);
+		    BookwormApp.AppWindow.forward_button.set_sensitive(false);
+	    }
+	    info("[END] [FUNCTION:controlNavigation] book.location="+aBook.getBookLocation());
+	    return aBook;
+    }
+    
 
     public static void refreshCurrentPage(){
         debug("[START] [FUNCTION:refreshCurrentPage]");

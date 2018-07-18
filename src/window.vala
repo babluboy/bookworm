@@ -41,6 +41,7 @@ public class BookwormApp.AppWindow {
         public static Adjustment pageAdjustment;
         public static Scale pageSlider;
         public static BookwormApp.Settings settings;
+        public static bool isWebViewRequestCompleted = true;
 
     public static Gtk.Box createBoookwormUI() {
         info("[START] [FUNCTION:createBoookwormUI]");
@@ -403,33 +404,53 @@ public class BookwormApp.AppWindow {
         aWebView.decide_policy.connect ((decision, type) => {
             if(type == WebKit.PolicyDecisionType.RESPONSE){
                 debug("Signal captured for Policy type WebKit.PolicyDecisionType.RESPONSE");
+                isWebViewRequestCompleted = true;
             }
             if(type == WebKit.PolicyDecisionType.NEW_WINDOW_ACTION){
                 debug("Signal captured for Policy type WebKit.PolicyDecisionType.NEW_WINDOW_ACTION");
+                isWebViewRequestCompleted = true;
             }
-            if(type == WebKit.PolicyDecisionType.NAVIGATION_ACTION){
+            if(type == WebKit.PolicyDecisionType.NAVIGATION_ACTION && isWebViewRequestCompleted){
                 debug("Signal captured for Policy type WebKit.PolicyDecisionType.NAVIGATION_ACTION");
+                 //set the webview request flag to false to prevent re-trigger of this function
+                //the webview request flag will be set to true when the response is received
+                isWebViewRequestCompleted = false;
+                
                 WebKit.NavigationPolicyDecision aNavDecision = (WebKit.NavigationPolicyDecision)decision;
                 WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action();
                 WebKit.URIRequest aURIReq = aNavAction.get_request ();
-                //check if the link is an Annotation Overlay
+                string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars(aURIReq.get_uri().strip());
+                url_clicked_on_webview = Soup.URI.decode(url_clicked_on_webview);
+                debug("URL Captured:"+url_clicked_on_webview);
+                
+                //Handle external links (not file://) by opening the default browser i.e. http://, ftp://
+                if (url_clicked_on_webview.index_of("file://") == -1){
+                    BookwormApp.Utils.execute_sync_command ("xdg-open " + url_clicked_on_webview);
+                    decision.ignore();
+                    return true;
+                }
+                
+                //Handle Bookworm type links i.e. Annotation Overlay
                 debug("Window Title:"+BookwormApp.AppWindow.aWebView.get_title());
                 if(BookwormApp.AppWindow.aWebView.get_title() != null &&
                     BookwormApp.AppWindow.aWebView.get_title().length > 1 &&
                     BookwormApp.AppWindow.aWebView.get_title().index_of("annotation:") != -1
                 ){
                     //Open the annotation dialog
-                    BookwormApp.AppDialog.createAnnotationDialog(BookwormApp.AppWindow.aWebView.get_title().replace("annotation:", ""));
+                    BookwormApp.AppDialog.createAnnotationDialog(
+                            BookwormApp.AppWindow.aWebView.get_title().replace("annotation:", "")
+                    );
+                    isWebViewRequestCompleted = true;
                 }
-                debug("URL Captured:"+aURIReq.get_uri().strip());
-                BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-                string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars(aURIReq.get_uri().strip());
-                debug("Cleaned URL Captured:"+url_clicked_on_webview);
+                
+                //Handle file:/// type links to other content of the book i.e. Table of Contents
                 if (url_clicked_on_webview.index_of("#") != -1){
                     url_clicked_on_webview = url_clicked_on_webview.slice(0, url_clicked_on_webview.index_of("#"));
                 }
                 url_clicked_on_webview = File.new_for_path(url_clicked_on_webview).get_basename();
                 int contentLocationPosition = 0;
+                BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap
+                                                                    .get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
                 foreach (string aBookContent in aBook.getBookContentList()) {
                     if(BookwormApp.Utils.decodeHTMLChars(aBookContent).index_of(url_clicked_on_webview) != -1){
                         debug("Matched Link Clicked to book content:"+BookwormApp.Utils.decodeHTMLChars(aBookContent));
@@ -440,12 +461,15 @@ public class BookwormApp.AppWindow {
                         //Set the mode back to Reading mode
                         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
                         BookwormApp.Bookworm.toggleUIState();
-                        debug("URL is initiated from Bookworm Contents, Book page number set at:"+aBook.getBookPageNumber().to_string());
+                        debug("URL is initiated from Bookworm Contents, Book page number set at:"+
+                                            aBook.getBookPageNumber().to_string()
+                                    );
                         break;
                     }
                     contentLocationPosition++;
                 }
             }
+            isWebViewRequestCompleted = true;
             return true;
         });
 

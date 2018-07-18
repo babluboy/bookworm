@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-15 22:58+0100\n"
+"POT-Creation-Date: 2018-07-18 17:32+0100\n"
 "PO-Revision-Date: 2017-10-26 22:02+0000\n"
 "Last-Translator: Filip Kemuel Dam Bartholdy <filip_kemuel@yahoo.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Vælg mappe"
 msgid "Adding "
 msgstr "Tilføjer "
 
-#: ../src/window.vala:292 ../src/window.vala:519
+#: ../src/window.vala:293 ../src/window.vala:543
 msgid "Select eBook"
 msgstr "Vælg e-bog"
 

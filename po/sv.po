@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-15 22:58+0100\n"
+"POT-Creation-Date: 2018-07-18 17:32+0100\n"
 "PO-Revision-Date: 2018-01-06 16:50+0000\n"
 "Last-Translator: Sebastian Rasmussen <sebras@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -26,7 +26,7 @@ msgstr "Välj mapp"
 msgid "Adding "
 msgstr "Lägger till "
 
-#: ../src/window.vala:292 ../src/window.vala:519
+#: ../src/window.vala:293 ../src/window.vala:543
 msgid "Select eBook"
 msgstr "Välj e-bok"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-15 22:58+0100\n"
+"POT-Creation-Date: 2018-07-18 17:32+0100\n"
 "PO-Revision-Date: 2018-06-18 21:04+0000\n"
 "Last-Translator: Calin Sopterean <csopterean@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
@@ -26,7 +26,7 @@ msgstr "Selectează Directorul"
 msgid "Adding "
 msgstr "Adăugare "
 
-#: ../src/window.vala:292 ../src/window.vala:519
+#: ../src/window.vala:293 ../src/window.vala:543
 msgid "Select eBook"
 msgstr "Selectează eBook"
 

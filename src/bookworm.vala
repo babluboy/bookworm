@@ -613,30 +613,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 		info("[END] [FUNCTION:toggleUIState] bookworm current state:"+BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE);
 	}
 
-	public static BookwormApp.Book controlNavigation(owned BookwormApp.Book aBook){
-		info("[START] [FUNCTION:controlNavigation] book.location="+aBook.getBookLocation());
-		int currentContentLocation = aBook.getBookPageNumber();
-		debug("In controlNavigation with currentContentLocation="+currentContentLocation.to_string());
-		//check if Book can be moved back and disable back button otherwise
-		if(currentContentLocation > 0){
-			aBook.setIfPageBackward(true);
-			BookwormApp.AppWindow.back_button.set_sensitive(true);
-		}else{
-			aBook.setIfPageBackward(false);
-			BookwormApp.AppWindow.back_button.set_sensitive(false);
-		}
-		//check if Book can be moved forward and disable forward button otherwise
-		if(currentContentLocation < (aBook.getBookContentList().size - 1)){
-			aBook.setIfPageForward(true);
-			BookwormApp.AppWindow.forward_button.set_sensitive(true);
-		}else{
-			aBook.setIfPageForward(false);
-			BookwormApp.AppWindow.forward_button.set_sensitive(false);
-		}
-		info("[END] [FUNCTION:controlNavigation] book.location="+aBook.getBookLocation());
-		return aBook;
-	}
-
 	public static BookwormApp.Book genericParser(owned BookwormApp.Book aBook){
 		info("[START] [FUNCTION:genericParser] book.location="+aBook.getBookLocation());
 		//check if ebook is present at provided location

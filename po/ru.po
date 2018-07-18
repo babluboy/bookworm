@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-15 22:58+0100\n"
+"POT-Creation-Date: 2018-07-18 17:32+0100\n"
 "PO-Revision-Date: 2018-07-07 00:42+0000\n"
 "Last-Translator: Alexander Popov <iiiypuk@iiiypuk.me>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bookworm/"
@@ -27,7 +27,7 @@ msgstr "Выбрать папку"
 msgid "Adding "
 msgstr "Добавление "
 
-#: ../src/window.vala:292 ../src/window.vala:519
+#: ../src/window.vala:293 ../src/window.vala:543
 msgid "Select eBook"
 msgstr "Выбрать электронную книгу"
 
