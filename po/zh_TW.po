@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-18 17:32+0100\n"
+"POT-Creation-Date: 2018-07-21 17:02+0100\n"
 "PO-Revision-Date: 2018-04-02 14:35+0000\n"
 "Last-Translator: Alister Gao <k88959@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -25,7 +25,7 @@ msgstr "選擇文件夾"
 msgid "Adding "
 msgstr "添加中 "
 
-#: ../src/window.vala:293 ../src/window.vala:543
+#: ../src/window.vala:293 ../src/window.vala:550
 msgid "Select eBook"
 msgstr "選擇電子書"
 
@@ -148,274 +148,283 @@ msgid ""
 msgstr "BBB 沒有設置書籤，點擊標題欄的圖示添加本頁至書籤"
 
 #: ../src/constants.vala:60
+#, fuzzy
+msgid "Word Meaning"
+msgstr "查詢字詞含義"
+
+#: ../src/constants.vala:61
 msgid "Search Results"
 msgstr "搜尋結果"
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:62
 msgid "Annotations"
 msgstr "註釋"
 
-#: ../src/constants.vala:62
+#: ../src/constants.vala:63
 msgid "Annotation Tags"
 msgstr "註釋標籤"
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:64
 msgid "Comma-separated tags for this annotation"
 msgstr "本註釋以逗號分隔的標籤"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:65
 #, fuzzy
 msgid "Edit annotation for:"
 msgstr "編輯註釋： "
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "點擊一個連結跳至註釋段落"
 
-#: ../src/constants.vala:66
+#: ../src/constants.vala:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr "BBB 沒有設置註釋，右鍵點擊書中該頁並從選單中選擇註釋來新增註釋"
 
-#: ../src/constants.vala:67
+#: ../src/constants.vala:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "在 &&& 中搜尋 '$$$'："
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "在 &&& 中找到下列符合結果："
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "在 &&& 中找不到符合 '$$$' 的結果"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:71
+msgid "Select a word in the book and right click for looking up its meaning"
+msgstr ""
+
+#: ../src/constants.vala:72
 msgid "Edit Info for"
 msgstr "編輯資訊"
 
-#: ../src/constants.vala:71 ../src/constants.vala:75
+#: ../src/constants.vala:73 ../src/constants.vala:77
 msgid "Update Cover Image"
 msgstr "更新封面圖像"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:74
 msgid "Update Title"
 msgstr "更新標題"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:75
 msgid "Update Tags"
 msgstr "更新標籤"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:76
 msgid "Update Author"
 msgstr "更新作者"
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:78
 msgid "Enter full screen view (F11)"
 msgstr "進入全螢幕模式 (F11)"
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:79
 msgid "Exit full screen view (Esc)"
 msgstr "退出全螢幕  (Esc)"
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:80
 msgid "Check Word Meaning"
 msgstr "查詢字詞含義"
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:81
 msgid "Annotate selected text"
 msgstr "註釋選擇的文字"
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:82
 msgid "Books"
 msgstr "書籍"
 
-#: ../src/constants.vala:81
+#: ../src/constants.vala:83
 msgid "Images"
 msgstr "圖像"
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:84
 msgid "All Files"
 msgstr "所有文件"
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:85
 msgid "Title"
 msgstr "標題"
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:86
 msgid "Author"
 msgstr "作者"
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:87
 msgid "Last Opened"
 msgstr "上次開啟"
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:88
 msgid "Rating"
 msgstr "評分"
 
-#: ../src/constants.vala:87
+#: ../src/constants.vala:89
 msgid "Tags"
 msgstr "標籤"
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:90
 msgid "Today"
 msgstr "今天"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:91
 msgid "Yesterday"
 msgstr "昨天"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:92
 msgid "Days"
 msgstr "天"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr ""
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:95
 msgid "Add books to library"
 msgstr "新增書藉至書庫"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "從書庫移除選取的書藉（電字書檔案不會被刪除）"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:97
 msgid "Select one or more books in library"
 msgstr "從書庫中選取一本或多本書"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "查看目錄、書籤和搜尋結果"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:99
 msgid "Reading preferences"
 msgstr "閱讀偏好"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:100
 msgid "Click to bookmark this page"
 msgstr "點擊將此頁加入書籤"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:101
 msgid "Click to remove this bookmark"
 msgstr "點擊將此頁書籤移除"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "增加字體大小 (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "減少字體大小 (Ctrl + Shift + '-')"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:104
 msgid "Increase line width"
 msgstr "增加行寬"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:105
 msgid "Decrease line width"
 msgstr "減少行寬"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:106
 msgid "Increase line spacing"
 msgstr "增加行距"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:107
 msgid "Decrease line spacing"
 msgstr "減少行距"
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:108
 msgid "Align left"
 msgstr "向左對齊"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:109
 msgid "Align right"
 msgstr "向右對齊"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:110
 msgid "Update cover image"
 msgstr "更新封面圖像"
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:111
 msgid "Apply theme for this colour profile"
 msgstr "為此之配色檔套用主題"
 
-#: ../src/constants.vala:110 ../src/constants.vala:111
+#: ../src/constants.vala:112 ../src/constants.vala:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "進入全螢幕模式，Esc鍵退出"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:114
 msgid "Add folder to scan for books"
 msgstr "添加文件夾以掃描書籍"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:115
 msgid "Remove displayed folder from book scan"
 msgstr "移除掃描書藉所顯示的文件夾"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:116
 msgid "Add annotation to selected text"
 msgstr "註釋選取的文字"
 
-#: ../src/constants.vala:116 ../src/constants.vala:142
+#: ../src/constants.vala:118 ../src/constants.vala:144
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:119
 msgid "Turn on Dark Mode"
 msgstr "套用黑色主題"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:120
 msgid "Enable cache (opens books faster)"
 msgstr "啟用快取（加快讀取書藉）"
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:121
 msgid "Always show library on startup"
 msgstr "將書庫設為開始畫面"
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:122
 msgid "Enable two page reading"
 msgstr "啟用雙頁閱讀"
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:123
 msgid "Select Font"
 msgstr "選取字體"
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:124
 msgid "Customize reading profile"
 msgstr "設定閱讀簡介"
 
-#: ../src/constants.vala:123
+#: ../src/constants.vala:125
 msgid "Text"
 msgstr "文字"
 
-#: ../src/constants.vala:124
+#: ../src/constants.vala:126
 msgid "Background"
 msgstr "背景"
 
-#: ../src/constants.vala:125
+#: ../src/constants.vala:127
 #, fuzzy
 msgid "Highlight"
 msgstr "向右對齊"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:128
 msgid "Add folders to scan for books"
 msgstr "添加文件夾以掃描書藉"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:129
 msgid "Profile"
 msgstr "簡介"
 
-#: ../src/constants.vala:128
+#: ../src/constants.vala:130
 msgid "Reset to default values"
 msgstr "重設所有設定"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:142
 msgid "Unknown Book"
 msgstr "未知書藉"
 
-#: ../src/constants.vala:141
+#: ../src/constants.vala:143
 msgid "About"
 msgstr "關於"
 

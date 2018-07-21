@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-18 17:32+0100\n"
+"POT-Creation-Date: 2018-07-21 17:02+0100\n"
 "PO-Revision-Date: 2018-06-01 19:43+0000\n"
 "Last-Translator: monolifed <monolifed@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Klasör seç"
 msgid "Adding "
 msgstr "Ekleniyor "
 
-#: ../src/window.vala:293 ../src/window.vala:543
+#: ../src/window.vala:293 ../src/window.vala:550
 msgid "Select eBook"
 msgstr "eKitap seç"
 
@@ -158,30 +158,35 @@ msgstr ""
 "çubuğundaki Bookworm simgesine tıklayın"
 
 #: ../src/constants.vala:60
+#, fuzzy
+msgid "Word Meaning"
+msgstr "Kelime Anlamına Bak"
+
+#: ../src/constants.vala:61
 msgid "Search Results"
 msgstr "Arama Sonuçları"
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:62
 msgid "Annotations"
 msgstr "Açıklamalar"
 
-#: ../src/constants.vala:62
+#: ../src/constants.vala:63
 msgid "Annotation Tags"
 msgstr "Açıklama Etiketleri"
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:64
 msgid "Comma-separated tags for this annotation"
 msgstr "Bu açıklama için virgülle ayrılmış etiketler"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:65
 msgid "Edit annotation for:"
 msgstr "İlgili açıklamayı düzenle:"
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "Açıklama ekli bir bölüme atlamak için bir bağlantıya tıklayın"
 
-#: ../src/constants.vala:66
+#: ../src/constants.vala:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -189,244 +194,248 @@ msgstr ""
 "BBB içinde açıklama ayarlanmadı, açıklama eklemek için bir kitabın sayfasına "
 "sağ tıklayın ve bağlam menüsünden açıklamaları seçin"
 
-#: ../src/constants.vala:67
+#: ../src/constants.vala:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "&&& içinde '$$$' aranıyor:"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "&&& içinde '$$$' için bulunan eşleşmeler:"
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "&&& içinde '$$$' için eşleşme bulunmadı"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:71
+msgid "Select a word in the book and right click for looking up its meaning"
+msgstr ""
+
+#: ../src/constants.vala:72
 msgid "Edit Info for"
 msgstr "İlgili Bilgiyi düzenle:"
 
-#: ../src/constants.vala:71 ../src/constants.vala:75
+#: ../src/constants.vala:73 ../src/constants.vala:77
 msgid "Update Cover Image"
 msgstr "Kapak Resmini Güncelle"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:74
 msgid "Update Title"
 msgstr "Başlığı Güncelle"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:75
 msgid "Update Tags"
 msgstr "Etiketleri Güncelle"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:76
 msgid "Update Author"
 msgstr "Yazarı Güncelle"
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:78
 msgid "Enter full screen view (F11)"
 msgstr "Tam ekran görünümününe geç (F11)"
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:79
 msgid "Exit full screen view (Esc)"
 msgstr "Tam ekran görünümünden çık (Esc)"
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:80
 msgid "Check Word Meaning"
 msgstr "Kelime Anlamına Bak"
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:81
 msgid "Annotate selected text"
 msgstr "Seçili metni açıklama olarak ekle"
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:82
 msgid "Books"
 msgstr "Kitaplar"
 
-#: ../src/constants.vala:81
+#: ../src/constants.vala:83
 msgid "Images"
 msgstr "Resimler"
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:84
 msgid "All Files"
 msgstr "Tüm Dosyalar"
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:85
 msgid "Title"
 msgstr "Başlık"
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:86
 msgid "Author"
 msgstr "Yazar"
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:87
 msgid "Last Opened"
 msgstr "Son Açılma"
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:88
 msgid "Rating"
 msgstr "Değerlendirme"
 
-#: ../src/constants.vala:87
+#: ../src/constants.vala:89
 msgid "Tags"
 msgstr "Etiketler"
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:90
 msgid "Today"
 msgstr "Bugün"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:91
 msgid "Yesterday"
 msgstr "Dün"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:92
 msgid "Days"
 msgstr "Günler"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr "Bookworm kapatıldığında kitapların keşfi başlayacak"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:95
 msgid "Add books to library"
 msgstr "Kitaplığa kitaplar ekle"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Kitaplıktan seçilen kitapları kaldır (eKitap dosyası silinmeyecek)"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:97
 msgid "Select one or more books in library"
 msgstr "Kitaplıktan bir veya daha fazla kitap seçin"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "İçindekileri, Yer İmlerini ve Arama Sonuçlarını Gör"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:99
 msgid "Reading preferences"
 msgstr "Okuma tercihleri"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:100
 msgid "Click to bookmark this page"
 msgstr "Bu sayfaya yer imi eklemek için tıklayın"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:101
 msgid "Click to remove this bookmark"
 msgstr "Bu yer imini kaldırmak için tıklayın"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Yazı boyutunu artır (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Yazı boyutunu azalt (Ctrl + '-')"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:104
 msgid "Increase line width"
 msgstr "Satır genişliğini artır"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:105
 msgid "Decrease line width"
 msgstr "Satır genişliğini azalt"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:106
 msgid "Increase line spacing"
 msgstr "Satır aralığını artır"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:107
 msgid "Decrease line spacing"
 msgstr "Satır aralığını azalt"
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:108
 msgid "Align left"
 msgstr "Sola hizala"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:109
 msgid "Align right"
 msgstr "Sağa hizala"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:110
 msgid "Update cover image"
 msgstr "Kapak resmini güncelle"
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:111
 msgid "Apply theme for this colour profile"
 msgstr "Bu renk profili için tema ayarla"
 
-#: ../src/constants.vala:110 ../src/constants.vala:111
+#: ../src/constants.vala:112 ../src/constants.vala:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Tam ekran moduna geçmek için basın, geri almak için ESC tuşuna basın"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:114
 msgid "Add folder to scan for books"
 msgstr "Kitaplar için taranacak klasör ekle"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:115
 msgid "Remove displayed folder from book scan"
 msgstr "Gösterilen klasörü kitap taramasından kaldır"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:116
 msgid "Add annotation to selected text"
 msgstr "Seçili metne açıklama ekle"
 
-#: ../src/constants.vala:116 ../src/constants.vala:142
+#: ../src/constants.vala:118 ../src/constants.vala:144
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:119
 msgid "Turn on Dark Mode"
 msgstr "Karanlık Kipi Aç"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:120
 msgid "Enable cache (opens books faster)"
 msgstr "Önbelleği etkinleştir (kitapları daha hızlı açar)"
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:121
 msgid "Always show library on startup"
 msgstr "Başlangıçta kitaplığı daima göster"
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:122
 msgid "Enable two page reading"
 msgstr "İki sayfalı okumayı etkinleştir"
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:123
 msgid "Select Font"
 msgstr "Yazı Tipi Fontu Seç"
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:124
 msgid "Customize reading profile"
 msgstr "Okuma profilini özelleştir"
 
-#: ../src/constants.vala:123
+#: ../src/constants.vala:125
 msgid "Text"
 msgstr "Yazı"
 
-#: ../src/constants.vala:124
+#: ../src/constants.vala:126
 msgid "Background"
 msgstr "Arka plan"
 
-#: ../src/constants.vala:125
+#: ../src/constants.vala:127
 #, fuzzy
 msgid "Highlight"
 msgstr "Sağa hizala"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:128
 msgid "Add folders to scan for books"
 msgstr "Kitaplar için taranacak klasörler ekle"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:129
 msgid "Profile"
 msgstr "Profil"
 
-#: ../src/constants.vala:128
+#: ../src/constants.vala:130
 msgid "Reset to default values"
 msgstr "Varsayılan değerlere sıfırla"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:142
 msgid "Unknown Book"
 msgstr "Bilinmeyen Kitap"
 
-#: ../src/constants.vala:141
+#: ../src/constants.vala:143
 msgid "About"
 msgstr "Hakkında"
 

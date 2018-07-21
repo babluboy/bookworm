@@ -136,7 +136,7 @@ public class BookwormApp.contentHandler {
         //load javascript data from resource if it has not been loaded already
         if(BookwormApp.Bookworm.bookwormScripts == null || BookwormApp.Bookworm.bookwormScripts.length < 1){
 		    uint8[] bookwormScriptsData;
-		    GLib.File.new_for_uri(BookwormApp.Constants.HTML_SCRIPT_LOCATION)
+		    GLib.File.new_for_uri(BookwormApp.Constants.HTML_SCRIPT_RESOURCE_LOCATION)
 			    .load_contents(null, out bookwormScriptsData, null);
 		    BookwormApp.Bookworm.bookwormScripts = (string)bookwormScriptsData;
 		    debug("Loaded javascript data from resource:\n" + BookwormApp.Bookworm.bookwormScripts);

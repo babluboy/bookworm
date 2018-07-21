@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-18 17:32+0100\n"
+"POT-Creation-Date: 2018-07-21 17:02+0100\n"
 "PO-Revision-Date: 2018-05-14 15:08+0000\n"
 "Last-Translator: ditokp <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Pilih Folder"
 msgid "Adding "
 msgstr "Menambahkan "
 
-#: ../src/window.vala:293 ../src/window.vala:543
+#: ../src/window.vala:293 ../src/window.vala:550
 msgid "Select eBook"
 msgstr "Pilih e-Book"
 
@@ -157,31 +157,36 @@ msgstr ""
 "atas untuk menandai halaman"
 
 #: ../src/constants.vala:60
+#, fuzzy
+msgid "Word Meaning"
+msgstr "Periksa Arti Kata"
+
+#: ../src/constants.vala:61
 msgid "Search Results"
 msgstr "Hasil Pencarian"
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:62
 msgid "Annotations"
 msgstr "Anotasi"
 
-#: ../src/constants.vala:62
+#: ../src/constants.vala:63
 msgid "Annotation Tags"
 msgstr "Label Anotasi"
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:64
 msgid "Comma-separated tags for this annotation"
 msgstr "Label untuk anotasi ini (dipisahkan dengan tanda koma)"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:65
 #, fuzzy
 msgid "Edit annotation for:"
 msgstr "Sunting catatan untuk: "
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "Klik tautan untuk lompat ke bagian yang beranotasi"
 
-#: ../src/constants.vala:66
+#: ../src/constants.vala:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -189,245 +194,249 @@ msgstr ""
 "Tidak ada anotasi yang diterapkan pada BBB, klik-kanan halaman buku dan "
 "pilih anotasi dari menu konteks untuk menambahkan anotasi"
 
-#: ../src/constants.vala:67
+#: ../src/constants.vala:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "Mencari '$$$' dalam &&&:"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Ditemukan kecocokan untuk '$$$' dalam &&&:"
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "Tidak ada kecocokan untuk '$$$' dalam &&&"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:71
+msgid "Select a word in the book and right click for looking up its meaning"
+msgstr ""
+
+#: ../src/constants.vala:72
 msgid "Edit Info for"
 msgstr "Sunting Info untuk"
 
-#: ../src/constants.vala:71 ../src/constants.vala:75
+#: ../src/constants.vala:73 ../src/constants.vala:77
 msgid "Update Cover Image"
 msgstr "Perbarui Gambar Sampul"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:74
 msgid "Update Title"
 msgstr "Perbarui Judul"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:75
 msgid "Update Tags"
 msgstr "Perbarui Label"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:76
 msgid "Update Author"
 msgstr "Perbarui Penulis"
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:78
 msgid "Enter full screen view (F11)"
 msgstr "Aktifkan tampilan layar penuh (F11)"
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:79
 msgid "Exit full screen view (Esc)"
 msgstr "Non-aktifkan tampilan layar penuh (Esc)"
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:80
 msgid "Check Word Meaning"
 msgstr "Periksa Arti Kata"
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:81
 msgid "Annotate selected text"
 msgstr "Anotasi teks terpilih"
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:82
 msgid "Books"
 msgstr "Buku"
 
-#: ../src/constants.vala:81
+#: ../src/constants.vala:83
 msgid "Images"
 msgstr "Gambar"
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:84
 msgid "All Files"
 msgstr "Semua Fail"
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:85
 msgid "Title"
 msgstr "Judul"
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:86
 msgid "Author"
 msgstr "Penulis"
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:87
 msgid "Last Opened"
 msgstr "Terakhir Dibuka"
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:88
 msgid "Rating"
 msgstr "Penilaian"
 
-#: ../src/constants.vala:87
+#: ../src/constants.vala:89
 msgid "Tags"
 msgstr "Label"
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:90
 msgid "Today"
 msgstr "Hari ini"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:91
 msgid "Yesterday"
 msgstr "Kemarin"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:92
 msgid "Days"
 msgstr "Hari"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr "Penemuan buku akan dimulai ketika Bookworm ditutup"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:95
 msgid "Add books to library"
 msgstr "Tambahkan buku ke perpustakaan"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Hapus buku terpilih dari perpustakaan (fail e-Book tidak akan terhapus)"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:97
 msgid "Select one or more books in library"
 msgstr "Pilih satu buku atau lebih dari perpustakaan"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Lihat Daftar Isi, Penanda, dan Hasil Pencarian"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:99
 msgid "Reading preferences"
 msgstr "Preferensi Membaca"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:100
 msgid "Click to bookmark this page"
 msgstr "Klik untuk menandai halaman ini"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:101
 msgid "Click to remove this bookmark"
 msgstr "Klik untuk menghapus penanda ini"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Perbesar ukuran huruf (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Perkecil ukuran huruf (Ctrl + '-')"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:104
 msgid "Increase line width"
 msgstr "Perbesar lebar garis"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:105
 msgid "Decrease line width"
 msgstr "Perkecil lebar garis"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:106
 msgid "Increase line spacing"
 msgstr "Perbesar spasi garis"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:107
 msgid "Decrease line spacing"
 msgstr "Perkecil spasi garis"
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:108
 msgid "Align left"
 msgstr "Rata kiri"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:109
 msgid "Align right"
 msgstr "Rata kanan"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:110
 msgid "Update cover image"
 msgstr "Perbarui gambar sampul"
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:111
 msgid "Apply theme for this colour profile"
 msgstr "Terapkan tema untuk profil warna ini"
 
-#: ../src/constants.vala:110 ../src/constants.vala:111
+#: ../src/constants.vala:112 ../src/constants.vala:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Aktifkan tampilan layar penuh dan tekan tombol ESC untuk membatalkan"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:114
 msgid "Add folder to scan for books"
 msgstr "Tambahkan folder untuk memindai buku"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:115
 msgid "Remove displayed folder from book scan"
 msgstr "Hapus folder yang ditampilkan dari pemindaian buku"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:116
 msgid "Add annotation to selected text"
 msgstr "Tambahkan anotasi pada teks terpilih"
 
-#: ../src/constants.vala:116 ../src/constants.vala:142
+#: ../src/constants.vala:118 ../src/constants.vala:144
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:119
 msgid "Turn on Dark Mode"
 msgstr "Aktifkan Mode Gelap"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:120
 msgid "Enable cache (opens books faster)"
 msgstr "Aktifkan cache (membuka buku lebih cepat)"
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:121
 msgid "Always show library on startup"
 msgstr "Selalu tampilkan perpustakaan pada saat memulai"
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:122
 msgid "Enable two page reading"
 msgstr "Aktifkan tampilan dua halaman"
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:123
 msgid "Select Font"
 msgstr "Pilih fon"
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:124
 msgid "Customize reading profile"
 msgstr "Kustomisasi profil membaca"
 
-#: ../src/constants.vala:123
+#: ../src/constants.vala:125
 msgid "Text"
 msgstr "Teks"
 
-#: ../src/constants.vala:124
+#: ../src/constants.vala:126
 msgid "Background"
 msgstr "Latar belakang"
 
-#: ../src/constants.vala:125
+#: ../src/constants.vala:127
 #, fuzzy
 msgid "Highlight"
 msgstr "Rata kanan"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:128
 msgid "Add folders to scan for books"
 msgstr "Tambahkan folder untuk memindai buku"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:129
 msgid "Profile"
 msgstr "Profil"
 
-#: ../src/constants.vala:128
+#: ../src/constants.vala:130
 msgid "Reset to default values"
 msgstr "Kembalikan ke setelan awal"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:142
 msgid "Unknown Book"
 msgstr "Buku TIdak Dikenal"
 
-#: ../src/constants.vala:141
+#: ../src/constants.vala:143
 msgid "About"
 msgstr "Perihal"
 

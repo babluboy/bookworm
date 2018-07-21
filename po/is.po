@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-18 17:32+0100\n"
+"POT-Creation-Date: 2018-07-21 17:02+0100\n"
 "PO-Revision-Date: 2018-06-25 09:33+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -26,7 +26,7 @@ msgstr "Veldu möppu"
 msgid "Adding "
 msgstr "Bæti við "
 
-#: ../src/window.vala:293 ../src/window.vala:543
+#: ../src/window.vala:293 ../src/window.vala:550
 msgid "Select eBook"
 msgstr "Veldu rafbók"
 
@@ -157,30 +157,35 @@ msgstr ""
 "bókamerkja síðuna"
 
 #: ../src/constants.vala:60
+#, fuzzy
+msgid "Word Meaning"
+msgstr "Athuga merkingu orða"
+
+#: ../src/constants.vala:61
 msgid "Search Results"
 msgstr "Leitarniðurstöður"
 
-#: ../src/constants.vala:61
+#: ../src/constants.vala:62
 msgid "Annotations"
 msgstr "Glósur"
 
-#: ../src/constants.vala:62
+#: ../src/constants.vala:63
 msgid "Annotation Tags"
 msgstr "Merki fyrir glósu"
 
-#: ../src/constants.vala:63
+#: ../src/constants.vala:64
 msgid "Comma-separated tags for this annotation"
 msgstr "Kommu-aðgreind merki fyrir þessa glósu"
 
-#: ../src/constants.vala:64
+#: ../src/constants.vala:65
 msgid "Edit annotation for:"
 msgstr "Breyta glósu fyrir:"
 
-#: ../src/constants.vala:65
+#: ../src/constants.vala:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "Smelltu á tengil til að hoppa í glósaðan hluta"
 
-#: ../src/constants.vala:66
+#: ../src/constants.vala:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -188,243 +193,247 @@ msgstr ""
 "Engar glósur eru stilltar í BBB, hægri-smelltu á bókarsíðu og veldu glósu úr "
 "samhengisvalmyndinni til að bæta við glósum"
 
-#: ../src/constants.vala:67
+#: ../src/constants.vala:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "Leita að '$$$' í &&&:"
 
-#: ../src/constants.vala:68
+#: ../src/constants.vala:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Fann eftirfarandi samsvaranir við '$$$' í &&&:"
 
-#: ../src/constants.vala:69
+#: ../src/constants.vala:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "Ekkert fannst sem passaði við '$$$' í &&&"
 
-#: ../src/constants.vala:70
+#: ../src/constants.vala:71
+msgid "Select a word in the book and right click for looking up its meaning"
+msgstr ""
+
+#: ../src/constants.vala:72
 msgid "Edit Info for"
 msgstr "Breyta upplýsingum fyrir"
 
-#: ../src/constants.vala:71 ../src/constants.vala:75
+#: ../src/constants.vala:73 ../src/constants.vala:77
 msgid "Update Cover Image"
 msgstr "Uppfæra forsíðumynd"
 
-#: ../src/constants.vala:72
+#: ../src/constants.vala:74
 msgid "Update Title"
 msgstr "Uppfæra titil"
 
-#: ../src/constants.vala:73
+#: ../src/constants.vala:75
 msgid "Update Tags"
 msgstr "Uppfæra merki"
 
-#: ../src/constants.vala:74
+#: ../src/constants.vala:76
 msgid "Update Author"
 msgstr "Uppfæra höfund"
 
-#: ../src/constants.vala:76
+#: ../src/constants.vala:78
 msgid "Enter full screen view (F11)"
 msgstr "Fara í skjáfylliham (F11)"
 
-#: ../src/constants.vala:77
+#: ../src/constants.vala:79
 msgid "Exit full screen view (Esc)"
 msgstr "Fara úr skjáfylliham (Esc)"
 
-#: ../src/constants.vala:78
+#: ../src/constants.vala:80
 msgid "Check Word Meaning"
 msgstr "Athuga merkingu orða"
 
-#: ../src/constants.vala:79
+#: ../src/constants.vala:81
 msgid "Annotate selected text"
 msgstr "Glósa valinn texta"
 
-#: ../src/constants.vala:80
+#: ../src/constants.vala:82
 msgid "Books"
 msgstr "Bækur"
 
-#: ../src/constants.vala:81
+#: ../src/constants.vala:83
 msgid "Images"
 msgstr "Myndir"
 
-#: ../src/constants.vala:82
+#: ../src/constants.vala:84
 msgid "All Files"
 msgstr "Allar skrár"
 
-#: ../src/constants.vala:83
+#: ../src/constants.vala:85
 msgid "Title"
 msgstr "Titill"
 
-#: ../src/constants.vala:84
+#: ../src/constants.vala:86
 msgid "Author"
 msgstr "Höfundur"
 
-#: ../src/constants.vala:85
+#: ../src/constants.vala:87
 msgid "Last Opened"
 msgstr "Síðast opnað"
 
-#: ../src/constants.vala:86
+#: ../src/constants.vala:88
 msgid "Rating"
 msgstr "Einkunn"
 
-#: ../src/constants.vala:87
+#: ../src/constants.vala:89
 msgid "Tags"
 msgstr "Merki"
 
-#: ../src/constants.vala:88
+#: ../src/constants.vala:90
 msgid "Today"
 msgstr "Í dag"
 
-#: ../src/constants.vala:89
+#: ../src/constants.vala:91
 msgid "Yesterday"
 msgstr "Í gær"
 
-#: ../src/constants.vala:90
+#: ../src/constants.vala:92
 msgid "Days"
 msgstr "Dagar"
 
-#: ../src/constants.vala:91
+#: ../src/constants.vala:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr "Skönnun bóka fer í gang þegar Bookworm er lokað"
 
-#: ../src/constants.vala:93
+#: ../src/constants.vala:95
 msgid "Add books to library"
 msgstr "Bæta bókum í safn"
 
-#: ../src/constants.vala:94
+#: ../src/constants.vala:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Fjarlægja valdar bækur úr safni (rafbókaskrá verður ekki eytt)"
 
-#: ../src/constants.vala:95
+#: ../src/constants.vala:97
 msgid "Select one or more books in library"
 msgstr "Veldu eina eða fleiri bækur í safninu"
 
-#: ../src/constants.vala:96
+#: ../src/constants.vala:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Skoða efnisyfirlit, bókamerki og leitarniðurstöður"
 
-#: ../src/constants.vala:97
+#: ../src/constants.vala:99
 msgid "Reading preferences"
 msgstr "Kjörstillingar við lestur"
 
-#: ../src/constants.vala:98
+#: ../src/constants.vala:100
 msgid "Click to bookmark this page"
 msgstr "Smelltu til að bókamerkja þessa síðu"
 
-#: ../src/constants.vala:99
+#: ../src/constants.vala:101
 msgid "Click to remove this bookmark"
 msgstr "Smelltu til að fjarlægja þetta bókamerki"
 
-#: ../src/constants.vala:100
+#: ../src/constants.vala:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Auka stærð texta (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:101
+#: ../src/constants.vala:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Minnka stærð texta (Ctrl + '-')"
 
-#: ../src/constants.vala:102
+#: ../src/constants.vala:104
 msgid "Increase line width"
 msgstr "Auka línubreidd"
 
-#: ../src/constants.vala:103
+#: ../src/constants.vala:105
 msgid "Decrease line width"
 msgstr "Minnka línubreidd"
 
-#: ../src/constants.vala:104
+#: ../src/constants.vala:106
 msgid "Increase line spacing"
 msgstr "Auka línubil"
 
-#: ../src/constants.vala:105
+#: ../src/constants.vala:107
 msgid "Decrease line spacing"
 msgstr "Minnka línubil"
 
-#: ../src/constants.vala:106
+#: ../src/constants.vala:108
 msgid "Align left"
 msgstr "Jafna til vinstri"
 
-#: ../src/constants.vala:107
+#: ../src/constants.vala:109
 msgid "Align right"
 msgstr "Jafna til hægri"
 
-#: ../src/constants.vala:108
+#: ../src/constants.vala:110
 msgid "Update cover image"
 msgstr "Uppfæra forsíðumynd"
 
-#: ../src/constants.vala:109
+#: ../src/constants.vala:111
 msgid "Apply theme for this colour profile"
 msgstr "Virkja þema fyrir þetta litasnið"
 
-#: ../src/constants.vala:110 ../src/constants.vala:111
+#: ../src/constants.vala:112 ../src/constants.vala:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Fara í skjáfylliham og ESC-lykill mun afturkalla það"
 
-#: ../src/constants.vala:112
+#: ../src/constants.vala:114
 msgid "Add folder to scan for books"
 msgstr "Bæta við möppu þar sem leita á að bókum"
 
-#: ../src/constants.vala:113
+#: ../src/constants.vala:115
 msgid "Remove displayed folder from book scan"
 msgstr "Fjarlægja birta möppu úr bókaskönnun"
 
-#: ../src/constants.vala:114
+#: ../src/constants.vala:116
 msgid "Add annotation to selected text"
 msgstr "Bæta glósu við valinn texta"
 
-#: ../src/constants.vala:116 ../src/constants.vala:142
+#: ../src/constants.vala:118 ../src/constants.vala:144
 msgid "Preferences"
 msgstr "Kjörstillingar"
 
-#: ../src/constants.vala:117
+#: ../src/constants.vala:119
 msgid "Turn on Dark Mode"
 msgstr "Kveikja á dökkum ham"
 
-#: ../src/constants.vala:118
+#: ../src/constants.vala:120
 msgid "Enable cache (opens books faster)"
 msgstr "Virkja skyndiminni (flýtir fyrir opnun bóka)"
 
-#: ../src/constants.vala:119
+#: ../src/constants.vala:121
 msgid "Always show library on startup"
 msgstr "Alltaf birta safn eftir ræsingu"
 
-#: ../src/constants.vala:120
+#: ../src/constants.vala:122
 msgid "Enable two page reading"
 msgstr "Virkja tveggja-síðna lestur"
 
-#: ../src/constants.vala:121
+#: ../src/constants.vala:123
 msgid "Select Font"
 msgstr "Veldu letur"
 
-#: ../src/constants.vala:122
+#: ../src/constants.vala:124
 msgid "Customize reading profile"
 msgstr "Sérsníða lestrarsnið"
 
-#: ../src/constants.vala:123
+#: ../src/constants.vala:125
 msgid "Text"
 msgstr "Texti"
 
-#: ../src/constants.vala:124
+#: ../src/constants.vala:126
 msgid "Background"
 msgstr "Bakgrunnur"
 
-#: ../src/constants.vala:125
+#: ../src/constants.vala:127
 msgid "Highlight"
 msgstr "Áherslulita"
 
-#: ../src/constants.vala:126
+#: ../src/constants.vala:128
 msgid "Add folders to scan for books"
 msgstr "Bæta við möppum þar sem leita á að bókum"
 
-#: ../src/constants.vala:127
+#: ../src/constants.vala:129
 msgid "Profile"
 msgstr "Lestrarsnið"
 
-#: ../src/constants.vala:128
+#: ../src/constants.vala:130
 msgid "Reset to default values"
 msgstr "Frumstilla í sjálfgefin gildi"
 
-#: ../src/constants.vala:140
+#: ../src/constants.vala:142
 msgid "Unknown Book"
 msgstr "Óþekkt bók"
 
-#: ../src/constants.vala:141
+#: ../src/constants.vala:143
 msgid "About"
 msgstr "Um hugbúnaðinn"
 

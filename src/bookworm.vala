@@ -535,7 +535,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	public static void toggleUIState(){
-		info("[START] [FUNCTION:toggleUIState] bookworm current state:"+BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE);
+		info("[START] [FUNCTION:toggleUIState] bookworm current state:" +
+				 			BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE
+ 			   );
 		//hide the inforbar if there is no text in it
 		if(BookwormApp.AppWindow.infobarLabel.get_text().length < 1){
 			BookwormApp.AppWindow.infobar.hide();

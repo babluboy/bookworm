@@ -29,6 +29,9 @@ public class BookwormApp.Info:Gtk.Window {
   public static ScrolledWindow searchresults_scroll;
   public static Box annotations_box;
   public static ScrolledWindow annotations_scroll;
+  public static Box dictionary_box;
+  public static Gtk.Label dictionaryResultsLabel;
+  public static ScrolledWindow dictionary_scroll;
   public static LinkButton firstSearchResultLinkButton;
 
   public static Gtk.Box createBookInfo(){
@@ -69,6 +72,14 @@ public class BookwormApp.Info:Gtk.Window {
     annotations_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
     annotations_scroll.add (annotations_box);
     stack.add_titled(annotations_scroll, "annotations-list", BookwormApp.Constants.TEXT_FOR_INFO_TAB_ANNOTATIONS);
+    
+    dictionaryResultsLabel = new Label(BookwormApp.Constants.TEXT_FOR_DICTIONARY_LOOKUP_TEXT);
+    dictionary_box = new Gtk.Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+    dictionary_box.pack_start(dictionaryResultsLabel,false,false,0);
+    dictionary_scroll = new ScrolledWindow (null, null);
+    dictionary_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+    dictionary_scroll.add (dictionary_box);
+    stack.add_titled(dictionary_scroll, "dictionary-list", BookwormApp.Constants.TEXT_FOR_INFO_TAB_DICTRESULTS);
 
     info_box.pack_start(switcher, false, true, 0);
     info_box.pack_start(stack, true, true, 0);
@@ -89,6 +100,9 @@ public class BookwormApp.Info:Gtk.Window {
         if(firstSearchResultLinkButton != null){
           firstSearchResultLinkButton.grab_focus(); //sets the focus on the first link
         }
+      }
+      if("dictionary-list"==stack.get_visible_child_name()){
+        //This is called from the context menu
       }
       //Set the value of the info tab currently being viewed so that the same tab is opened subsequently
       BookwormApp.Bookworm.settings.current_info_tab = stack.get_visible_child_name();
@@ -178,6 +192,74 @@ public class BookwormApp.Info:Gtk.Window {
     bookmarks_scroll.add (bookmarks_box);
     info_box.show_all();
      info("[END] [FUNCTION:populateBookmarks]");
+  }
+  
+  public static void populateDictionaryResults(string word){
+    info("[START] [FUNCTION:populateDictionaryResults]");
+    //Create the Gtk.Box for displaying results
+    Box dictionary_box = new Box (Orientation.VERTICAL, BookwormApp.Constants.SPACING_WIDGETS);
+    dictionaryResultsLabel = new Label("");
+    dictionary_box.pack_start(dictionaryResultsLabel,false,false,0);
+    //Remove the existing dictionary results Gtk.Box and add the current one
+    dictionary_scroll.get_child().destroy();
+    dictionary_scroll.add (dictionary_box);
+    string dictionaryResults = "";
+    //Show help text if no word is available for dictionary lookup
+    debug(word);
+    if(word == null || word.strip().length < 1){
+            dictionaryResultsLabel.set_text( BookwormApp.Constants.TEXT_FOR_DICTIONARY_LOOKUP_TEXT);
+    }else{
+            //Perform book search only if the Reading View is active
+            if(
+                BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]
+            ){
+                //Set the mode to Info View Mode
+                BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
+                BookwormApp.Bookworm.toggleUIState();
+                //Set the visible tab to search result tab
+                BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name ("dictionary-list"));
+            }
+                
+            //Ensure that the word search script is installed
+            if("true" != BookwormApp.Utils.fileOperations(
+                                "EXISTS", 
+                                BookwormApp.Bookworm.bookworm_config_path, 
+                                BookwormApp.Constants.DICTIONARY_SCRIPT_INSTALL_LOCATION, "")
+            ){
+                //get contents from gresource
+                uint8[] bookwormDictionaryData;
+                GLib.File.new_for_uri(BookwormApp.Constants.DICTIONARY_SCRIPT_RESOURCE_LOCATION)
+			                                            .load_contents(null, out bookwormDictionaryData, null);
+                string dictionaryScripts = (string) bookwormDictionaryData;
+                //create scripts directory
+                BookwormApp.Utils.fileOperations(
+                            "CREATEDIR", 
+                            BookwormApp.Bookworm.bookworm_config_path+"/scripts/", "", "");
+                //write data to filename
+                BookwormApp.Utils.fileOperations(
+                            "WRITE", 
+                            BookwormApp.Bookworm.bookworm_config_path, 
+                            BookwormApp.Constants.DICTIONARY_SCRIPT_INSTALL_LOCATION, 
+                            dictionaryScripts);
+                //make file executable
+                BookwormApp.Utils.fileOperations(
+                            "MAKE_EXECUTABLE", 
+                            BookwormApp.Bookworm.bookworm_config_path, 
+                            BookwormApp.Constants.DICTIONARY_SCRIPT_INSTALL_LOCATION, 
+                            "");
+            }
+            //Execute word meaning script - invokes online/offline dictionary
+            dictionaryResults = BookwormApp.Utils.execute_sync_command (
+                                                                    BookwormApp.Bookworm.bookworm_config_path + 
+                                                                    BookwormApp.Constants.DICTIONARY_SCRIPT_INSTALL_LOCATION +
+                                                                    " " + word
+                                                            );
+            debug ("Dictionary Search Results:" + dictionaryResults);
+            dictionaryResultsLabel.set_text(dictionaryResults);
+    }
+    
+    info_box.show_all();
+    info("[END] [FUNCTION:populateDictionaryResults]");
   }
 
   public static async BookwormApp.Book populateSearchResults(){

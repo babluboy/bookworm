@@ -158,7 +158,7 @@ public class BookwormApp.AppWindow {
         //webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
         webkitSettings.set_default_font_size (BookwormApp.Bookworm.settings.reading_font_size);
         webkitSettings.set_default_font_family(BookwormApp.Bookworm.settings.reading_font_name);
-
+        
         //Set up Button for previous page
         back_button = new Gtk.Button ();
         back_button.set_image (BookwormApp.Bookworm.back_button_image);
@@ -387,6 +387,11 @@ public class BookwormApp.AppWindow {
                 }
 
                 //Set Context menu items
+                pageActionWordMeaning.activate.connect (() => {
+                    BookwormApp.Info.populateDictionaryResults (
+                        BookwormApp.Utils.setWebViewTitle("document.title = getSelectionText()")
+                    );
+                });
                 pageActionFullScreenEntry.activate.connect (() => {
                     book_reading_footer_box.hide();
                     BookwormApp.Bookworm.window.fullscreen();
@@ -396,7 +401,9 @@ public class BookwormApp.AppWindow {
                     BookwormApp.Bookworm.window.unfullscreen();
                 });
                 pageActionAnnotateSelection.activate.connect (() => {
-                    BookwormApp.AppDialog.createAnnotationDialog(BookwormApp.Utils.setWebViewTitle("document.title = getSelectionText()"));
+                    BookwormApp.AppDialog.createAnnotationDialog (
+                        BookwormApp.Utils.setWebViewTitle("document.title = getSelectionText()")
+                    );
                 });
                 return false;
         });

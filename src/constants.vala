@@ -57,6 +57,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_BOOKMARKS = _("Bookmark #NNN for Section PPP");
 	public const string TEXT_FOR_BOOKMARKS_FOUND = _("Click on a link to jump to bookmarked section");
 	public const string TEXT_FOR_BOOKMARKS_NOT_FOUND = _("No bookmarks set in BBB, click the bookworm icon on the header bar to boomark the page");
+	public const string TEXT_FOR_INFO_TAB_DICTRESULTS = _("Word Meaning");
 	public const string TEXT_FOR_INFO_TAB_SEARCHRESULTS = _("Search Results");
 	public const string TEXT_FOR_INFO_TAB_ANNOTATIONS = _("Annotations");
 	public const string TEXT_FOR_ANNOTATION_TAG = _("Annotation Tags");
@@ -67,6 +68,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_SEARCH_RESULTS_PROCESSING = _("Searching for '$$$' in &&&:");
 	public const string TEXT_FOR_SEARCH_RESULTS_FOUND = _("Found the following matches for '$$$' in &&&:");
 	public const string TEXT_FOR_SEARCH_RESULTS_NOT_FOUND = _("No matches found for '$$$' in &&&");
+	public const string TEXT_FOR_DICTIONARY_LOOKUP_TEXT = _("Select a word in the book and right click for looking up its meaning");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_HEADER = _("Edit Info for");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER_IMAGE = _("Update Cover Image");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TITLE = _("Update Title");
@@ -144,7 +146,9 @@ namespace BookwormApp.Constants {
 	public const string INSTALL_PREFIX = "/usr";
 	public const string RESOURCE_PREFIX = "/com/github/babluboy/bookworm/";
 	public const string SEARCH_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.search.sh";
-	public const string HTML_SCRIPT_LOCATION = "resource:///" + RESOURCE_PREFIX+"com.github.babluboy.bookworm.htmlscripts.txt";
+	public const string HTML_SCRIPT_RESOURCE_LOCATION = "resource:///" + RESOURCE_PREFIX+"com.github.babluboy.bookworm.htmlscripts.txt";
+	public const string DICTIONARY_SCRIPT_RESOURCE_LOCATION = "resource:///" + RESOURCE_PREFIX+"com.github.babluboy.bookworm.dictionary.sh";
+	public const string DICTIONARY_SCRIPT_INSTALL_LOCATION = "/scripts/dictionary.sh";
 	public const string MOBIUNPACK_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/mobi_lib/mobi_unpack.py";
 	public const string PREV_PAGE_ICON_IMAGE_LOCATION = RESOURCE_PREFIX+"16-bookworm-go-previous.svg";
 	public const string NEXT_PAGE_ICON_IMAGE_LOCATION = RESOURCE_PREFIX+"16-bookworm-go-next.svg";
