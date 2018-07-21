@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-21 17:02+0100\n"
-"PO-Revision-Date: 2018-06-25 00:01+0000\n"
+"PO-Revision-Date: 2018-07-22 20:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/nb/>\n"
@@ -207,7 +207,7 @@ msgstr "Ingen treff for \"$$$\" i &&&"
 
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Velg et ord i boka og høyreklikk for å slå det opp"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
