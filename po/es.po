@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-21 17:02+0100\n"
-"PO-Revision-Date: 2018-07-10 12:42+0000\n"
+"PO-Revision-Date: 2018-07-21 17:55+0000\n"
 "Last-Translator: advocatux <advocatux@airpost.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/es/>\n"
@@ -159,9 +159,8 @@ msgstr ""
 "biblioteca en la barra de encabezado para marcar la página"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Compruebe el significado de la palabra"
+msgstr "Significado de la palabra"
 
 #: ../src/constants.vala:61
 msgid "Search Results"
@@ -210,6 +209,8 @@ msgstr "Ningún resultado encontrado para '$$$' en &&&"
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Seleccione una palabra en el libro y haga click derecho para buscar su "
+"significado"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
