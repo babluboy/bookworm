@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-21 17:02+0100\n"
-"PO-Revision-Date: 2018-06-25 09:33+0000\n"
+"PO-Revision-Date: 2018-07-21 19:19+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -157,9 +157,8 @@ msgstr ""
 "bókamerkja síðuna"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Athuga merkingu orða"
+msgstr "Merking orða"
 
 #: ../src/constants.vala:61
 msgid "Search Results"
@@ -207,7 +206,7 @@ msgstr "Ekkert fannst sem passaði við '$$$' í &&&"
 
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Veldu orð í bókinni og hægrismelltu til að sjá merkingu þess"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
