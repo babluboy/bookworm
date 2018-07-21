@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-21 17:02+0100\n"
-"PO-Revision-Date: 2018-07-01 14:09+0000\n"
+"PO-Revision-Date: 2018-07-21 19:04+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sc/>\n"
@@ -160,9 +160,8 @@ msgstr ""
 "biblioteca in sa barra in artu pro pònnere unu sinnalibru in sa pàgina"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Verìfica su significadu de sa paràula"
+msgstr "Significadu de sa paràula"
 
 #: ../src/constants.vala:61
 msgid "Search Results"
@@ -211,6 +210,8 @@ msgstr "Perunu risultadu agatadu pro '$$$' in &&&"
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Issèbera una paràula in su libru e faghe un'incarcu destru pro abbaidare su "
+"significadu suo"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
