@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-21 17:02+0100\n"
-"PO-Revision-Date: 2017-10-15 11:23+0000\n"
-"Last-Translator: Dima Dorofieiev <dorofieiev.d@gmail.com>\n"
+"PO-Revision-Date: 2018-07-24 07:36+0000\n"
+"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "cs/>\n"
 "Language: cs\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.17\n"
+"X-Generator: Weblate 3.1-dev\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
@@ -22,12 +22,10 @@ msgid "Select folder"
 msgstr "Vybrat složku"
 
 #: ../src/library.vala:610
-#, fuzzy
 msgid "Adding "
-msgstr "Přidání "
+msgstr "Přidávání "
 
 #: ../src/window.vala:293 ../src/window.vala:550
-#, fuzzy
 msgid "Select eBook"
 msgstr "Vybrat e-knihu"
 
@@ -57,28 +55,25 @@ msgstr ""
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Webová stránka | Překlad | Hlášení chyb"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
 msgstr "Nedostupný"
 
 #: ../src/constants.vala:40
-#, fuzzy
 msgid "eBook Reader"
 msgstr "Čtečka elektronických knih"
 
 #: ../src/constants.vala:41
-#, fuzzy
 msgid "Search this book…"
-msgstr "Vyhledávat v této knize…"
+msgstr "Hledat v této knize…"
 
 #: ../src/constants.vala:42
 msgid "Search by Title, Author and Tags"
-msgstr "Hledat dle názvu, autora a značky"
+msgstr "Hledat podle názvu, autora a značek"
 
 #: ../src/constants.vala:43
-#, fuzzy
 msgid "Looks like Bookworm has no books."
 msgstr "Vypadá to, že v Bookworm nejsou žádné knihy."
 
@@ -91,18 +86,16 @@ msgid "Select an eBook to read"
 msgstr "Vybrat e-knihu ke čtení"
 
 #: ../src/constants.vala:46
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problém v extrahování obsahu knihy. Ujistěte se, že se platný eBook soubor "
-"nachází na: "
+"Problém s extrahováním obsahu knihy. Ujistěte se, že se zde nachází platný "
+"soubor e-knihy: "
 
 #: ../src/constants.vala:47
-#, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Zjištěn neplatný typ Mime. Zkontrolujte formát knihy na místě: "
+msgstr "Zjištěn neplatný typ Mime. Zkontrolujte formát této e-knihy: "
 
 #: ../src/constants.vala:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -124,7 +117,7 @@ msgstr ""
 
 #: ../src/constants.vala:52
 msgid "Library"
-msgstr ""
+msgstr "Knihovna"
 
 #: ../src/constants.vala:53
 msgid "Resume"
@@ -140,7 +133,7 @@ msgstr ""
 
 #: ../src/constants.vala:56
 msgid "Bookmarks"
-msgstr ""
+msgstr "Záložky"
 
 #: ../src/constants.vala:57
 msgid "Bookmark #NNN for Section PPP"
@@ -212,27 +205,27 @@ msgstr ""
 
 #: ../src/constants.vala:73 ../src/constants.vala:77
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Aktualizovat obrázek obalu"
 
 #: ../src/constants.vala:74
 msgid "Update Title"
-msgstr ""
+msgstr "Aktualizovat titulek"
 
 #: ../src/constants.vala:75
 msgid "Update Tags"
-msgstr ""
+msgstr "Aktualizovat značky"
 
 #: ../src/constants.vala:76
 msgid "Update Author"
-msgstr ""
+msgstr "Aktualizovat autora"
 
 #: ../src/constants.vala:78
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "Otevřít zobrazení celé obrazovky (F11)"
 
 #: ../src/constants.vala:79
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "Ukončit zobrazení celé obrazovky (Esc)"
 
 #: ../src/constants.vala:80
 msgid "Check Word Meaning"
@@ -244,47 +237,47 @@ msgstr ""
 
 #: ../src/constants.vala:82
 msgid "Books"
-msgstr ""
+msgstr "Knihy"
 
 #: ../src/constants.vala:83
 msgid "Images"
-msgstr ""
+msgstr "Obrázky"
 
 #: ../src/constants.vala:84
 msgid "All Files"
-msgstr ""
+msgstr "Všechny soubory"
 
 #: ../src/constants.vala:85
 msgid "Title"
-msgstr ""
+msgstr "Titulek"
 
 #: ../src/constants.vala:86
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: ../src/constants.vala:87
 msgid "Last Opened"
-msgstr ""
+msgstr "Naposledy otevřené"
 
 #: ../src/constants.vala:88
 msgid "Rating"
-msgstr ""
+msgstr "Hodnocení"
 
 #: ../src/constants.vala:89
 msgid "Tags"
-msgstr ""
+msgstr "Značky"
 
 #: ../src/constants.vala:90
 msgid "Today"
-msgstr ""
+msgstr "Dnes"
 
 #: ../src/constants.vala:91
 msgid "Yesterday"
-msgstr ""
+msgstr "Včera"
 
 #: ../src/constants.vala:92
 msgid "Days"
-msgstr ""
+msgstr "Dny"
 
 #: ../src/constants.vala:93
 msgid "Discovery of books will be started when Bookworm is closed"
@@ -292,7 +285,7 @@ msgstr ""
 
 #: ../src/constants.vala:95
 msgid "Add books to library"
-msgstr ""
+msgstr "Přidat knihu do knihovny"
 
 #: ../src/constants.vala:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
@@ -320,11 +313,11 @@ msgstr ""
 
 #: ../src/constants.vala:102
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Zvětšit velikost písma (Ctrl + Shift + '+')"
 
 #: ../src/constants.vala:103
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Zmenšit velikost písma (Ctrl + '-')"
 
 #: ../src/constants.vala:104
 msgid "Increase line width"
@@ -344,15 +337,15 @@ msgstr ""
 
 #: ../src/constants.vala:108
 msgid "Align left"
-msgstr ""
+msgstr "Zarovnání do leva"
 
 #: ../src/constants.vala:109
 msgid "Align right"
-msgstr ""
+msgstr "Zarovnání do prava"
 
 #: ../src/constants.vala:110
 msgid "Update cover image"
-msgstr ""
+msgstr "Aktualizovat obrázek obalu"
 
 #: ../src/constants.vala:111
 msgid "Apply theme for this colour profile"
@@ -380,7 +373,7 @@ msgstr ""
 
 #: ../src/constants.vala:119
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Zapnout tmavé zobrazení"
 
 #: ../src/constants.vala:120
 msgid "Enable cache (opens books faster)"
@@ -395,9 +388,8 @@ msgid "Enable two page reading"
 msgstr ""
 
 #: ../src/constants.vala:123
-#, fuzzy
 msgid "Select Font"
-msgstr "Vybrat e-knihu"
+msgstr "Vybrat písmo"
 
 #: ../src/constants.vala:124
 msgid "Customize reading profile"
@@ -405,23 +397,23 @@ msgstr ""
 
 #: ../src/constants.vala:125
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: ../src/constants.vala:126
 msgid "Background"
-msgstr ""
+msgstr "Pozadí"
 
 #: ../src/constants.vala:127
 msgid "Highlight"
-msgstr ""
+msgstr "Zvýraznění"
 
 #: ../src/constants.vala:128
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Přidat složky k vyhledávání knih"
 
 #: ../src/constants.vala:129
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: ../src/constants.vala:130
 msgid "Reset to default values"
@@ -429,27 +421,27 @@ msgstr ""
 
 #: ../src/constants.vala:142
 msgid "Unknown Book"
-msgstr ""
+msgstr "Neznámá kniha"
 
 #: ../src/constants.vala:143
 msgid "About"
-msgstr ""
+msgstr "O aplikaci"
 
 #: ../src/utils.vala:520 ../src/utils.vala:594
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #: ../src/utils.vala:522 ../src/utils.vala:595
 msgid "Open"
-msgstr ""
+msgstr "Otevřít"
 
 #: ../src/utils.vala:524
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #: ../src/mobiReader.vala:329
 msgid "Book"
-msgstr ""
+msgstr "Kniha"
 
 #~ msgid "Website"
 #~ msgstr "Webová stránka"
