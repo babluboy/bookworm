@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-21 17:02+0100\n"
-"PO-Revision-Date: 2018-06-25 14:00+0000\n"
+"PO-Revision-Date: 2018-07-24 19:54+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/be/>\n"
@@ -10,8 +10,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.1-dev\n"
 
 #: ../src/dialog.vala:63
@@ -158,9 +158,8 @@ msgstr ""
 "закладку"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Праверыць значэнне слова"
+msgstr "Значэнне слова"
 
 #: ../src/constants.vala:61
 msgid "Search Results"
@@ -208,7 +207,7 @@ msgstr "Не знодзена супадзенняў для «$$$» у &&&"
 
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Абярыце слова ў кнізе і налісніце правай кнопкай каб пагладзець сэнс"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
