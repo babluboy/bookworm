@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-21 17:02+0100\n"
-"PO-Revision-Date: 2018-01-06 16:50+0000\n"
-"Last-Translator: Sebastian Rasmussen <sebras@gmail.com>\n"
+"PO-Revision-Date: 2018-07-31 16:43+0000\n"
+"Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sv/>\n"
 "Language: sv\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.19-dev\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
@@ -56,7 +56,7 @@ msgstr "Weblate översättare"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Webbplats | Översättning | Felrapporter"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -177,9 +177,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Kommaseparerade taggar för denna anteckning"
 
 #: ../src/constants.vala:65
-#, fuzzy
 msgid "Edit annotation for:"
-msgstr "Lägg till noteringar för : "
+msgstr "Redigera notering för:"
 
 #: ../src/constants.vala:66
 msgid "Click on a link to jump to an annotated section"
@@ -207,7 +206,7 @@ msgstr "Inga matchningar funna för \"$$$\" i &&&"
 
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Välj ett ord i boken och högerklicka för att söka upp dess mening"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
@@ -348,11 +347,11 @@ msgstr "Minska radavståndet"
 
 #: ../src/constants.vala:108
 msgid "Align left"
-msgstr ""
+msgstr "Vänsterjustera"
 
 #: ../src/constants.vala:109
 msgid "Align right"
-msgstr ""
+msgstr "Högerjustera"
 
 #: ../src/constants.vala:110
 msgid "Update cover image"
