@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-04 16:24+0100\n"
-"PO-Revision-Date: 2018-01-28 14:04+0000\n"
+"PO-Revision-Date: 2018-08-04 21:34+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ca/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.19-dev\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
@@ -55,7 +55,7 @@ msgstr "Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2018"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Lloc web | Traducció | Gestor d’errades"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
@@ -159,9 +159,8 @@ msgstr ""
 "de la barra de capçalera per a marcar la pàgina"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Comprova el significat del mot"
+msgstr "Definició del mot"
 
 #: ../src/constants.vala:61
 msgid "Search Results"
@@ -180,9 +179,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Etiquetes separades per comes per a aquesta anotació"
 
 #: ../src/constants.vala:65
-#, fuzzy
 msgid "Edit annotation for:"
-msgstr "Afegeix notes per a: "
+msgstr "Edita la nota per a:"
 
 #: ../src/constants.vala:66
 msgid "Click on a link to jump to an annotated section"
@@ -211,6 +209,7 @@ msgstr "No s’ha trobat cap resultat per a «$$$» a &&&"
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Seleccioneu un mot del llibre i feu-hi clic dret per a cercar-ne la definició"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
@@ -351,11 +350,11 @@ msgstr "Redueix l’interlineat"
 
 #: ../src/constants.vala:108
 msgid "Align left"
-msgstr ""
+msgstr "Alinea a l’esquerra"
 
 #: ../src/constants.vala:109
 msgid "Align right"
-msgstr ""
+msgstr "Alinea a la dreta"
 
 #: ../src/constants.vala:110
 msgid "Update cover image"
@@ -419,7 +418,7 @@ msgstr "Fons"
 
 #: ../src/constants.vala:127
 msgid "Highlight"
-msgstr ""
+msgstr "Ressalta"
 
 #: ../src/constants.vala:128
 msgid "Add folders to scan for books"
