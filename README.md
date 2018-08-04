@@ -19,7 +19,7 @@ sudo apt-get install libgranite-dev
 sudo apt-get install valac
 sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
 sudo apt-get install libsqlite3-dev
-sudo apt-get install poppler-utils libpoppler-glib-dev html2text
+sudo apt-get install poppler-utils libpoppler-glib-dev html2text curl
 ```
 ### On fedora
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-21 17:02+0100\n"
+"POT-Creation-Date: 2018-08-04 16:24+0100\n"
 "PO-Revision-Date: 2017-07-02 14:04+0000\n"
 "Last-Translator: Noah Loomans <noahloomans@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -26,7 +26,7 @@ msgstr "Selecteer afbeelding"
 msgid "Adding "
 msgstr ""
 
-#: ../src/window.vala:293 ../src/window.vala:550
+#: ../src/window.vala:293 ../src/window.vala:538
 msgid "Select eBook"
 msgstr "Selecteer e-boek"
 

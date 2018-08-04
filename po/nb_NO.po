@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-21 17:02+0100\n"
+"POT-Creation-Date: 2018-08-04 16:54+0100\n"
 "PO-Revision-Date: 2018-07-22 20:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -25,7 +25,7 @@ msgstr "Velg mappe"
 msgid "Adding "
 msgstr "Legger til "
 
-#: ../src/window.vala:293 ../src/window.vala:550
+#: ../src/window.vala:293 ../src/window.vala:538
 msgid "Select eBook"
 msgstr "Velg e-bok"
 

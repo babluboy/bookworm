@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-21 18:41+0100\n"
+"POT-Creation-Date: 2018-08-04 16:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Adding "
 msgstr ""
 
-#: ../src/window.vala:293 ../src/window.vala:550
+#: ../src/window.vala:293 ../src/window.vala:538
 msgid "Select eBook"
 msgstr ""
 

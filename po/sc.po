@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-21 17:02+0100\n"
+"POT-Creation-Date: 2018-08-04 16:54+0100\n"
 "PO-Revision-Date: 2018-07-21 19:04+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Ischerta una cartella"
 msgid "Adding "
 msgstr "Annanghende "
 
-#: ../src/window.vala:293 ../src/window.vala:550
+#: ../src/window.vala:293 ../src/window.vala:538
 msgid "Select eBook"
 msgstr "Ischerta unu e-libru"
 

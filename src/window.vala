@@ -344,23 +344,11 @@ public class BookwormApp.AppWindow {
         //handle context menu on the webview reader
         aWebView.context_menu.connect ((context_menu, event, hit_test_result) => {
                 context_menu.remove_all();
-                SimpleAction pageActionFullScreenEntry = new SimpleAction.stateful ("FULL_SCREEN_READING_VIEW", 
-                                                       null, 
-                                                       new Variant.boolean (false)
-                                                       );
-                SimpleAction pageActionFullScreenExit = new SimpleAction.stateful ("FULL_SCREEN_READING_VIEW", 
-                                                       null, 
-                                                       new Variant.boolean (false)
-                                                       );
-                SimpleAction pageActionWordMeaning = new SimpleAction.stateful ("WORD_MEANING", 
-                                                       null, 
-                                                       new Variant.boolean (false)
-                                                       );
-                SimpleAction pageActionAnnotateSelection = new SimpleAction.stateful ("ANNOTATE_SELECTION", 
-                                                       null, 
-                                                       new Variant.boolean (false)
-                                                       );
-                //pageActionWordMeaning.set_sensitive(false); //TODO: Implement word meaning
+                SimpleAction pageActionFullScreenEntry = new SimpleAction ("FULL_SCREEN_READING_VIEW", null);
+                SimpleAction pageActionFullScreenExit = new SimpleAction ("FULL_SCREEN_READING_VIEW", null);
+                SimpleAction pageActionWordMeaning = new SimpleAction ("WORD_MEANING", null);
+                SimpleAction pageActionAnnotateSelection = new SimpleAction ("ANNOTATE_SELECTION", null);
+                
                 WebKit.ContextMenuItem pageContextMenuItemWordMeaning = new WebKit.ContextMenuItem.from_gaction (
                                             pageActionWordMeaning, 
                                             BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING, 

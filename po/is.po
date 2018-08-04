@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-21 17:02+0100\n"
+"POT-Creation-Date: 2018-08-04 16:54+0100\n"
 "PO-Revision-Date: 2018-07-21 19:19+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -26,7 +26,7 @@ msgstr "Veldu möppu"
 msgid "Adding "
 msgstr "Bæti við "
 
-#: ../src/window.vala:293 ../src/window.vala:550
+#: ../src/window.vala:293 ../src/window.vala:538
 msgid "Select eBook"
 msgstr "Veldu rafbók"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-21 17:02+0100\n"
+"POT-Creation-Date: 2018-08-04 16:24+0100\n"
 "PO-Revision-Date: 2018-06-30 00:46+0000\n"
 "Last-Translator: Name <Noname932018@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Chọn thư mục"
 msgid "Adding "
 msgstr "Đang thêm vào "
 
-#: ../src/window.vala:293 ../src/window.vala:550
+#: ../src/window.vala:293 ../src/window.vala:538
 msgid "Select eBook"
 msgstr "Chọn ebook"
 

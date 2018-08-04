@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-21 17:02+0100\n"
+"POT-Creation-Date: 2018-08-04 16:24+0100\n"
 "PO-Revision-Date: 2018-05-31 08:12+0000\n"
 "Last-Translator: Jacky Blois <jacky.blois@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -25,7 +25,7 @@ msgstr "Sélectionner un dossier"
 msgid "Adding "
 msgstr "Ajouter "
 
-#: ../src/window.vala:293 ../src/window.vala:550
+#: ../src/window.vala:293 ../src/window.vala:538
 msgid "Select eBook"
 msgstr "Sélectionnez un livre électronique"
 
