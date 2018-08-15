@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-04 16:24+0100\n"
-"PO-Revision-Date: 2018-04-24 17:42+0000\n"
+"PO-Revision-Date: 2018-08-16 19:09+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/et/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
@@ -156,9 +156,8 @@ msgstr ""
 "raamatukoi ikoonil"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Kontrolli sõna tähendust"
+msgstr "Sõna tähendus"
 
 #: ../src/constants.vala:61
 msgid "Search Results"
@@ -177,9 +176,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Selle annotatsiooni sildid (komadega eraldatud)"
 
 #: ../src/constants.vala:65
-#, fuzzy
 msgid "Edit annotation for:"
-msgstr "Muuda annotatsiooni: "
+msgstr "Muuda annotatsiooni:"
 
 #: ../src/constants.vala:66
 msgid "Click on a link to jump to an annotated section"
@@ -207,7 +205,7 @@ msgstr "&&&'s ei leitud '$$$' vasteid"
 
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Sõna tähenduse vaatamiseks vali ta raamatus ja tee ta peal paremklõps"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
@@ -287,7 +285,7 @@ msgstr "Eile"
 
 #: ../src/constants.vala:92
 msgid "Days"
-msgstr "Päeva"
+msgstr "Päevad"
 
 #: ../src/constants.vala:93
 msgid "Discovery of books will be started when Bookworm is closed"
@@ -414,9 +412,8 @@ msgid "Background"
 msgstr "Taust"
 
 #: ../src/constants.vala:127
-#, fuzzy
 msgid "Highlight"
-msgstr "Joonda paremale"
+msgstr "Esiletõstmine"
 
 #: ../src/constants.vala:128
 msgid "Add folders to scan for books"
