@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-04 16:24+0100\n"
-"PO-Revision-Date: 2018-06-18 21:04+0000\n"
-"Last-Translator: Calin Sopterean <csopterean@gmail.com>\n"
+"PO-Revision-Date: 2018-08-24 20:01+0000\n"
+"Last-Translator: George Florea <georgeflorea20@yahoo.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ro/>\n"
 "Language: ro\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
@@ -156,9 +156,8 @@ msgstr ""
 "marca pagina"
 
 #: ../src/constants.vala:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Verificați Semnificația Cuvântului"
+msgstr "Înțelesul Cuvântului"
 
 #: ../src/constants.vala:61
 msgid "Search Results"
@@ -207,6 +206,8 @@ msgstr "Nicio potrivire găsită pentru '$$$' în &&&"
 #: ../src/constants.vala:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Selectează un cuvânt din carte și apasă click dreapta pentru a-l căuta în "
+"dicționar"
 
 #: ../src/constants.vala:72
 msgid "Edit Info for"
@@ -414,9 +415,8 @@ msgid "Background"
 msgstr "Fundal"
 
 #: ../src/constants.vala:127
-#, fuzzy
 msgid "Highlight"
-msgstr "Aliniază la dreapta"
+msgstr "Marchează"
 
 #: ../src/constants.vala:128
 msgid "Add folders to scan for books"
