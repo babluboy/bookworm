@@ -2,167 +2,178 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-04 16:24+0100\n"
+"PO-Revision-Date: 2018-09-02 07:17+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: Hebrew <https://hosted.weblate.org/projects/bookworm/bookworm/"
+"he/>\n"
+"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: ../src/dialog.vala:63
 msgid "Select Image"
-msgstr ""
+msgstr "בחירת תמונה"
 
 #: ../src/dialog.vala:545
 msgid "Select folder"
-msgstr ""
+msgstr "בחירת תיקייה"
 
 #: ../src/library.vala:610
 msgid "Adding "
-msgstr ""
+msgstr "מתווסף "
 
 #: ../src/window.vala:293 ../src/window.vala:538
 msgid "Select eBook"
-msgstr ""
+msgstr "בחירת ספר אלקטרוני"
 
 #: ../src/bookworm.vala:105
 msgid "Display version number"
-msgstr ""
+msgstr "הצגת מספר הגרסה"
 
 #: ../src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "הפעלת Bookworm במצב ניפוי שגיאות"
 
 #: ../src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "הפעלת Bookworm במצב מידע מוגבר"
 
 #: ../src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "הוספת ספרים חדשים אוטומטית מהתיקיות שבמעקב"
 
 #: ../src/constants.vala:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "קורא ספרים אלקטרוניים"
 
 #: ../src/constants.vala:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "מתרגמים דרך Weblate"
 
 #: ../src/constants.vala:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "אתר | תרגום | עוקב תקלות"
 
 #: ../src/constants.vala:39
 msgid "Not Available"
-msgstr ""
+msgstr "לא זמין"
 
 #: ../src/constants.vala:40
 msgid "eBook Reader"
-msgstr ""
+msgstr "קורא ספרים אלקטרוניים"
 
 #: ../src/constants.vala:41
 msgid "Search this book…"
-msgstr ""
+msgstr "חיפוש בספר הזה…"
 
 #: ../src/constants.vala:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "חיפוש לפי כותרת, מחבר ותגיות"
 
 #: ../src/constants.vala:43
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "נראה כי אין ספרים ב־Bookworm."
 
 #: ../src/constants.vala:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "ניתן לבנות את הספריה שלך על ידי הוספת ספרים אלקטרוניים"
 
 #: ../src/constants.vala:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "נא לבחור ספר אלקטרוני לקריאה"
 
 #: ../src/constants.vala:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"אירעה תקלה בעת חילוץ תכני הספר. נא לוודא שיש קובץ ספר אלקטרוני במיקום הזה: "
 
 #: ../src/constants.vala:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
+msgstr "זוהה טיפוס MIME שגוי. נא לבדוק את תסדיר הספר אלקטרוני הבא: "
 
 #: ../src/constants.vala:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "התוכן שנמצא שגוי. נא לוודא שיש כאן ספר אלקטרוני תקני: "
 
 #: ../src/constants.vala:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"לא ניתן לפענח את הספר האלקטרוני. נא לוודא שיש כאן קובץ ספר אלקטרוני תקני: "
 
 #: ../src/constants.vala:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "ב־Bookworm אין תמיכה בתסדיר הקובץ שנמצא כאן: "
 
 #: ../src/constants.vala:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr ""
+msgstr "לא ניתן לקבל את התוכן. נא להסיר ולהוסיף את הספר האלקטרוני שנמצא כאן: "
 
 #: ../src/constants.vala:52
 msgid "Library"
-msgstr ""
+msgstr "ספרייה"
 
 #: ../src/constants.vala:53
 msgid "Resume"
-msgstr ""
+msgstr "המשך"
 
 #: ../src/constants.vala:54
 msgid "Contents"
-msgstr ""
+msgstr "תכנים"
 
 #: ../src/constants.vala:55
 msgid "Content #"
-msgstr ""
+msgstr "מס׳ תוכן"
 
 #: ../src/constants.vala:56
 msgid "Bookmarks"
-msgstr ""
+msgstr "סימניות"
 
 #: ../src/constants.vala:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "סימניה מס׳ NNN לסעיף PPP"
 
 #: ../src/constants.vala:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "ניתן ללחוץ על קישור כדי לקפץ לסעיף שסומן"
 
 #: ../src/constants.vala:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"לא הוגדרו סימניות תחת BBB, ניתן ללחוץ על סמל תולעת הספרים שבשורת הכותרת כדי "
+"להוסיף את העמוד לסימניות"
 
 #: ../src/constants.vala:60
 msgid "Word Meaning"
-msgstr ""
+msgstr "משמעות המילה"
 
 #: ../src/constants.vala:61
 msgid "Search Results"
-msgstr ""
+msgstr "תוצאות חיפוש"
 
 #: ../src/constants.vala:62
 msgid "Annotations"
-msgstr ""
+msgstr "הערות"
 
 #: ../src/constants.vala:63
 msgid "Annotation Tags"
-msgstr ""
+msgstr "תגיות להערות"
 
 #: ../src/constants.vala:64
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "תגיות מופרדות בפסיקים להערה זו"
 
 #: ../src/constants.vala:65
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "עריכת הערה עבור:"
 
 #: ../src/constants.vala:66
 msgid "Click on a link to jump to an annotated section"
@@ -280,7 +291,7 @@ msgstr ""
 
 #: ../src/constants.vala:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "הסרת הספרים הנבחרים מהספרייה (קובץ הספר האלקטרוני לא יימחק)"
 
 #: ../src/constants.vala:97
 msgid "Select one or more books in library"
