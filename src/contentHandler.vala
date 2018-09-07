@@ -46,6 +46,8 @@ public class BookwormApp.contentHandler {
                 break;
         }
         string bookContent = contentHandler.provideContent(aBook,currentContentLocation, direction);
+        //debug for checking page contents
+        //debug(bookContent);
         //render the content on webview
         BookwormApp.AppWindow.aWebView.load_html(bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
         //set the focus to the webview to capture keypress events
@@ -149,8 +151,8 @@ public class BookwormApp.contentHandler {
         string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts;
 
         //For the Title Page (first or second page), resize height and width of images
-        if(aBook.getBookPageNumber() < 2 && (pageContentStr.contains("image") || pageContentStr.contains("img"))) {
-            currentBookwormScripts = currentBookwormScripts.replace("$TITLE_PAGE_IMAGE", "* ");
+        if(aBook.getBookPageNumber() < 2 && (pageContentStr.contains("<image") || pageContentStr.contains("<img"))) {
+            currentBookwormScripts = currentBookwormScripts.replace("$TITLE_PAGE_IMAGE", "img, image");
         }
         //Set background and font colour based on profile        
         if(BookwormApp.Constants.BOOKWORM_READING_MODE[4] == BookwormApp.Bookworm.settings.reading_profile){

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2017 Siddhartha Das <bablu.boy@gmail.com> -->
 <component type="desktop">
-  <id>com.github.babluboy.bookworm.desktop</id>
+  <id>com.github.babluboy.bookworm</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_group>bookworm</project_group>
   <project_license>GPL-3.0+</project_license>
