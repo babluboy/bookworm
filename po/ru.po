@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-04 16:24+0100\n"
-"PO-Revision-Date: 2018-08-18 08:55+0000\n"
-"Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
+"PO-Revision-Date: 2018-09-24 07:34+0000\n"
+"Last-Translator: mesnevi <shams@airpost.net>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ru/>\n"
 "Language: ru\n"
@@ -174,9 +174,8 @@ msgid "Annotations"
 msgstr "Примечание"
 
 #: ../src/constants.vala:63
-#, fuzzy
 msgid "Annotation Tags"
-msgstr "Примечание"
+msgstr "Метки примечаний"
 
 #: ../src/constants.vala:64
 msgid "Comma-separated tags for this annotation"
