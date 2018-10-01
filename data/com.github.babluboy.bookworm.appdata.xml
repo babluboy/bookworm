@@ -26,6 +26,23 @@
     <binary>com.github.babluboy.bookworm</binary>
   </provides>
   <releases>
+    <release version="1.1.0" date="2018-09-30">
+        <description>
+          <p>This release has some new features, fixes and includes new translations:</p>
+          <p>New Features:</p>
+          <ul>
+            <li>Right click a selected word and look up its meaning using a online dictionary</li>
+            <li>Added a preference option to customize highlight colour</li>
+          </ul>
+          <p>Fixes:</p>
+          <ul>
+            <li>Prevent Bookworm from opening links like http, ftp etc and use the default browser to open the same</li>
+            <li>Fixed an issue where the lines overlapped for the first couple of pages in the book</li>
+            <li>Use of GResource to speed up loading of icons, scripts, etc.</li>
+            <li>Some minor CSS compatibility with Juno</li>
+          </ul>
+        </description>
+     </release>
      <release version="1.0.0" date="2018-02-11">
       <description>
         <p>Right to Left Reading</p>

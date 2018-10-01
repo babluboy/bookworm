@@ -20,4 +20,4 @@ Package: com.github.babluboy.bookworm
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, unzip, poppler-utils, unar, html2text
 Description: Bookworm
- A simple user centric eBook reader which displays multiple eBooks formats uniformly
+ A focussed eBook reader which displays multiple eBooks formats uniformly
