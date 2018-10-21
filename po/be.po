@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-21 18:05+0100\n"
-"PO-Revision-Date: 2018-07-24 19:54+0000\n"
+"PO-Revision-Date: 2018-10-24 22:23+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/be/>\n"
@@ -10,9 +10,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: src/bookworm.vala:105
 msgid "Display version number"
@@ -455,57 +455,61 @@ msgstr "Кніга"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Кніга"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Чытаць і караваць eBook'амі"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
-msgstr "Чытач электронных кніг"
+msgstr "Засяроджаны на чытанні электронных кніг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
+"Чытайце кнігі, якія вы любіце, не турбуючыся аб розных складанасцях "
+"фарматаў, такіх як EPUB, PDF, MOBI, CBR і г.д."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Кіруйце вашай бібліятэкай з дапамогай тэгаў і абнаўленняў метаданых кніг, "
+"каб хутка знайсці кнігі з дапамогай пошуку метаданых і фільтрацыі на аснове "
+"тэгаў."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"Гэтая версія падтрымлівае фарматы EPUB, MOBI, PRC, PDF і Comics (CBR і CBZ). "
+"Падтрымка яшчэ больш фарматаў з'явіцца ў бліжэйшы час."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Прагляд бібліятэкі Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "Запусціць Bookworm у інфармацыйным рэжыме"
+msgstr "Чытальніцкі выгляд Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Website"
 #~ msgstr "Вэб-сайт"
