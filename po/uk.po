@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-04 16:24+0100\n"
+"POT-Creation-Date: 2018-10-21 18:05+0100\n"
 "PO-Revision-Date: 2018-09-10 19:24+0000\n"
 "Last-Translator: Володимир Бриняк <bardvv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
@@ -10,83 +10,79 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.2-dev\n"
 
-#: ../src/dialog.vala:63
-msgid "Select Image"
-msgstr "Вибрати зображення"
-
-#: ../src/dialog.vala:545
-msgid "Select folder"
-msgstr "Виберіть папку"
-
-#: ../src/library.vala:610
-msgid "Adding "
-msgstr "Додавання "
-
-#: ../src/window.vala:293 ../src/window.vala:538
-msgid "Select eBook"
-msgstr "Вибрати електронну книгу"
-
-#: ../src/bookworm.vala:105
+#: src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Відобразити номер версії"
 
-#: ../src/bookworm.vala:106
+#: src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Запустити Bookworm у режимі налагодження"
 
-#: ../src/bookworm.vala:107
+#: src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Запустити Bookworm в інформаційному режимі"
 
-#: ../src/bookworm.vala:108
+#: src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Автоматично додавати нові книги з відстежуваної теки"
 
-#: ../src/constants.vala:29
+#: src/utils.vala:520 src/utils.vala:594
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: src/utils.vala:522 src/utils.vala:595
+msgid "Open"
+msgstr "Відкрити"
+
+#: src/utils.vala:524
+msgid "Save"
+msgstr "Зберегти"
+
+#: src/constants.vala.in:29
 msgid "An eBook Reader"
 msgstr "Для читання електронних книг"
 
-#: ../src/constants.vala:31
+#: src/constants.vala.in:31
 msgid "Weblate Translators"
 msgstr "Weblate перекладачів"
 
-#: ../src/constants.vala:37
+#: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
 msgstr "Веб-сайт | Переклад | Баг трекер"
 
-#: ../src/constants.vala:39
+#: src/constants.vala.in:39
 msgid "Not Available"
 msgstr "Недоступно"
 
-#: ../src/constants.vala:40
+#: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
 msgstr "Для читання електронних книг"
 
-#: ../src/constants.vala:41
+#: src/constants.vala.in:41
 msgid "Search this book…"
 msgstr "Шукати цю книгу…"
 
-#: ../src/constants.vala:42
+#: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
 msgstr "Пошук за назвою, автором і тегами"
 
-#: ../src/constants.vala:43
+#: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
 msgstr "Схоже, у Bookworm немає книг."
 
-#: ../src/constants.vala:44
+#: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
 msgstr "Створити бібліотеку, додавши електронні книги"
 
-#: ../src/constants.vala:45
+#: src/constants.vala.in:45
 msgid "Select an eBook to read"
 msgstr "Вибрати електронну книгу для читання"
 
-#: ../src/constants.vala:46
+#: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
@@ -94,27 +90,27 @@ msgstr ""
 "Проблема з вилученням вмісту книги. Переконайтеся, що тут є дійсний "
 "електронний файл: "
 
-#: ../src/constants.vala:47
+#: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr "Виявлено неправильний тип MIME. Перевірте формат електронної книги: "
 
-#: ../src/constants.vala:48
+#: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Знайдено неправильний вміст. Переконайтеся, що тут є дійсний електронний "
 "файл: "
 
-#: ../src/constants.vala:49
+#: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "Електронну книгу неможливо проаналізувати. Переконайтеся, що тут є дійсний "
 "електронний файл: "
 
-#: ../src/constants.vala:50
+#: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
 msgstr "Bookworm не підтримує формат файлу, який знаходиться тут: "
 
-#: ../src/constants.vala:51
+#: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
@@ -122,35 +118,35 @@ msgstr ""
 "Запитаний вміст неможливо отримати. Будь-ласка, видаліть та додайте файл "
 "електронної книги, що знаходиться тут: "
 
-#: ../src/constants.vala:52
+#: src/constants.vala.in:52
 msgid "Library"
 msgstr "Бібліотека"
 
-#: ../src/constants.vala:53
+#: src/constants.vala.in:53
 msgid "Resume"
 msgstr "Резюме"
 
-#: ../src/constants.vala:54
+#: src/constants.vala.in:54
 msgid "Contents"
 msgstr "Зміст"
 
-#: ../src/constants.vala:55
+#: src/constants.vala.in:55
 msgid "Content #"
 msgstr "Зміст #"
 
-#: ../src/constants.vala:56
+#: src/constants.vala.in:56
 msgid "Bookmarks"
 msgstr "Закладки"
 
-#: ../src/constants.vala:57
+#: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
 msgstr "Закладка #NNN до розділу PPP"
 
-#: ../src/constants.vala:58
+#: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
 msgstr "Натиснути на посилання, щоб перейти до закладки розділу"
 
-#: ../src/constants.vala:59
+#: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
@@ -158,35 +154,35 @@ msgstr ""
 "Немає закладок, встановлених в BBB, натиснути іконку на панелі заголовка "
 "bookworm сторінки закладки"
 
-#: ../src/constants.vala:60
+#: src/constants.vala.in:60
 msgid "Word Meaning"
 msgstr "Значення слова"
 
-#: ../src/constants.vala:61
+#: src/constants.vala.in:61
 msgid "Search Results"
 msgstr "Результати пошуку"
 
-#: ../src/constants.vala:62
+#: src/constants.vala.in:62
 msgid "Annotations"
 msgstr "Анотації"
 
-#: ../src/constants.vala:63
+#: src/constants.vala.in:63
 msgid "Annotation Tags"
 msgstr "Теги анотації"
 
-#: ../src/constants.vala:64
+#: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
 msgstr "Комбінація розділених тегів для цієї анотації"
 
-#: ../src/constants.vala:65
+#: src/constants.vala.in:65
 msgid "Edit annotation for:"
 msgstr "Редагувати анотацію для:"
 
-#: ../src/constants.vala:66
+#: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "Натисніть на посилання, щоб перейти до анотованого розділу"
 
-#: ../src/constants.vala:67
+#: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -194,268 +190,326 @@ msgstr ""
 "У BBB немає анотацій, натисніть правою кнопкою миші на сторінці книги та "
 "оберіть анотацію з контекстного меню, щоб додати анотації"
 
-#: ../src/constants.vala:68
+#: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "Пошук '$$$' в &&&:"
 
-#: ../src/constants.vala:69
+#: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Знайдено наступні збіги для '$$$' в &&&:"
 
-#: ../src/constants.vala:70
+#: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "Не знайдено збігів для '$$$' в &&&"
 
-#: ../src/constants.vala:71
+#: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
 "Виберіть слово в книзі та клацніть правою кнопкою миші, щоб переглянути його "
 "значення"
 
-#: ../src/constants.vala:72
+#: src/constants.vala.in:72
 msgid "Edit Info for"
 msgstr "Змінити інформацію для"
 
-#: ../src/constants.vala:73 ../src/constants.vala:77
+#: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
 msgstr "Оновити зображення обкладинки"
 
-#: ../src/constants.vala:74
+#: src/constants.vala.in:74
 msgid "Update Title"
 msgstr "Оновити назву"
 
-#: ../src/constants.vala:75
+#: src/constants.vala.in:75
 msgid "Update Tags"
 msgstr "Оновити теги"
 
-#: ../src/constants.vala:76
+#: src/constants.vala.in:76
 msgid "Update Author"
 msgstr "Оновити автора"
 
-#: ../src/constants.vala:78
+#: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
 msgstr "Введіть повноекранний режим (F11)"
 
-#: ../src/constants.vala:79
+#: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
 msgstr "Вийти з повноекранного перегляду (Esc)"
 
-#: ../src/constants.vala:80
+#: src/constants.vala.in:80
 msgid "Check Word Meaning"
 msgstr "Перевірити значення слова"
 
-#: ../src/constants.vala:81
+#: src/constants.vala.in:81
 msgid "Annotate selected text"
 msgstr "Анотований вибраний текст"
 
-#: ../src/constants.vala:82
+#: src/constants.vala.in:82
 msgid "Books"
 msgstr "Книги"
 
-#: ../src/constants.vala:83
+#: src/constants.vala.in:83
 msgid "Images"
 msgstr "Зображення"
 
-#: ../src/constants.vala:84
+#: src/constants.vala.in:84
 msgid "All Files"
 msgstr "Всі файли"
 
-#: ../src/constants.vala:85
+#: src/constants.vala.in:85
 msgid "Title"
 msgstr "Назва"
 
-#: ../src/constants.vala:86
+#: src/constants.vala.in:86
 msgid "Author"
 msgstr "Автор"
 
-#: ../src/constants.vala:87
+#: src/constants.vala.in:87
 msgid "Last Opened"
 msgstr "Останнє відкриття"
 
-#: ../src/constants.vala:88
+#: src/constants.vala.in:88
 msgid "Rating"
 msgstr "Рейтинг"
 
-#: ../src/constants.vala:89
+#: src/constants.vala.in:89
 msgid "Tags"
 msgstr "Теги"
 
-#: ../src/constants.vala:90
+#: src/constants.vala.in:90
 msgid "Today"
 msgstr "Сьогодні"
 
-#: ../src/constants.vala:91
+#: src/constants.vala.in:91
 msgid "Yesterday"
 msgstr "Вчора"
 
-#: ../src/constants.vala:92
+#: src/constants.vala.in:92
 msgid "Days"
 msgstr "Днів"
 
-#: ../src/constants.vala:93
+#: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr "Відкриття книг розпочнеться, коли Bookworm буде закрито"
 
-#: ../src/constants.vala:95
+#: src/constants.vala.in:95
 msgid "Add books to library"
 msgstr "Додати книги до бібліотеки"
 
-#: ../src/constants.vala:96
+#: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Видалити вибрані книги з бібліотеки (файл електронної книги не видаляється)"
 
-#: ../src/constants.vala:97
+#: src/constants.vala.in:97
 msgid "Select one or more books in library"
 msgstr "Вибрати одну або кілька книг в бібліотеці"
 
-#: ../src/constants.vala:98
+#: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Переглянути зміст, закладки та результати пошуку"
 
-#: ../src/constants.vala:99
+#: src/constants.vala.in:99
 msgid "Reading preferences"
 msgstr "Налаштування читання"
 
-#: ../src/constants.vala:100
+#: src/constants.vala.in:100
 msgid "Click to bookmark this page"
 msgstr "Натиснути, щоб додати сторінку"
 
-#: ../src/constants.vala:101
+#: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
 msgstr "Натиснути, щоб видалити закладку"
 
-#: ../src/constants.vala:102
+#: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Збільшити розмір шрифту (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:103
+#: src/constants.vala.in:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Зменшити розмір шрифту (Ctrl + '-')"
 
-#: ../src/constants.vala:104
+#: src/constants.vala.in:104
 msgid "Increase line width"
 msgstr "Збільшити ширину лінії"
 
-#: ../src/constants.vala:105
+#: src/constants.vala.in:105
 msgid "Decrease line width"
 msgstr "Зменшити ширину лінії"
 
-#: ../src/constants.vala:106
+#: src/constants.vala.in:106
 msgid "Increase line spacing"
 msgstr "Збільшити міжрядковий інтервал"
 
-#: ../src/constants.vala:107
+#: src/constants.vala.in:107
 msgid "Decrease line spacing"
 msgstr "Зменшити міжрядковий інтервал"
 
-#: ../src/constants.vala:108
+#: src/constants.vala.in:108
 msgid "Align left"
 msgstr "Вирівняти зліва"
 
-#: ../src/constants.vala:109
+#: src/constants.vala.in:109
 msgid "Align right"
 msgstr "Вирівняти зправа"
 
-#: ../src/constants.vala:110
+#: src/constants.vala.in:110
 msgid "Update cover image"
 msgstr "Оновити зображення обкладинки"
 
-#: ../src/constants.vala:111
+#: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
 msgstr "Застосувати тему для цього кольорового профілю"
 
-#: ../src/constants.vala:112 ../src/constants.vala:113
+#: src/constants.vala.in:112 src/constants.vala.in:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Ввести повноекранний перегляд та клавішу Esc, щоб скасувати"
 
-#: ../src/constants.vala:114
+#: src/constants.vala.in:114
 msgid "Add folder to scan for books"
 msgstr "Додайте папку для сканування книг"
 
-#: ../src/constants.vala:115
+#: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
 msgstr "Видалити папку зі списку сканування"
 
-#: ../src/constants.vala:116
+#: src/constants.vala.in:116
 msgid "Add annotation to selected text"
 msgstr "Додайте анотацію до вибраного тексту"
 
-#: ../src/constants.vala:118 ../src/constants.vala:144
+#: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
 msgstr "Налаштування"
 
-#: ../src/constants.vala:119
+#: src/constants.vala.in:119
 msgid "Turn on Dark Mode"
 msgstr "Увімкнути темний режим"
 
-#: ../src/constants.vala:120
+#: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
 msgstr "Включити кеш (відкриває книги швидше)"
 
-#: ../src/constants.vala:121
+#: src/constants.vala.in:121
 msgid "Always show library on startup"
 msgstr "Завжди показувати бібліотеку під час запуску"
 
-#: ../src/constants.vala:122
+#: src/constants.vala.in:122
 msgid "Enable two page reading"
 msgstr "Включити двухсторонній режим читання"
 
-#: ../src/constants.vala:123
+#: src/constants.vala.in:123
 msgid "Select Font"
 msgstr "Виберіть шрифт"
 
-#: ../src/constants.vala:124
+#: src/constants.vala.in:124
 msgid "Customize reading profile"
 msgstr "Налаштувати профіль для читання"
 
-#: ../src/constants.vala:125
+#: src/constants.vala.in:125
 msgid "Text"
 msgstr "Текст"
 
-#: ../src/constants.vala:126
+#: src/constants.vala.in:126
 msgid "Background"
 msgstr "Фон"
 
-#: ../src/constants.vala:127
+#: src/constants.vala.in:127
 msgid "Highlight"
 msgstr "Підсвічування"
 
-#: ../src/constants.vala:128
+#: src/constants.vala.in:128
 msgid "Add folders to scan for books"
 msgstr "Додайте папки для сканування книг"
 
-#: ../src/constants.vala:129
+#: src/constants.vala.in:129
 msgid "Profile"
 msgstr "Профіль"
 
-#: ../src/constants.vala:130
+#: src/constants.vala.in:130
 msgid "Reset to default values"
 msgstr "Відновити значення за замовчанням"
 
-#: ../src/constants.vala:142
+#: src/constants.vala.in:142
 msgid "Unknown Book"
 msgstr "Невідома книга"
 
-#: ../src/constants.vala:143
+#: src/constants.vala.in:143
 msgid "About"
 msgstr "Про"
 
-#: ../src/utils.vala:520 ../src/utils.vala:594
-msgid "Cancel"
-msgstr "Скасувати"
+#: src/dialog.vala:63
+msgid "Select Image"
+msgstr "Вибрати зображення"
 
-#: ../src/utils.vala:522 ../src/utils.vala:595
-msgid "Open"
-msgstr "Відкрити"
+#: src/dialog.vala:545
+msgid "Select folder"
+msgstr "Виберіть папку"
 
-#: ../src/utils.vala:524
-msgid "Save"
-msgstr "Зберегти"
+#: src/window.vala:293 src/window.vala:538
+msgid "Select eBook"
+msgstr "Вибрати електронну книгу"
 
-#: ../src/mobiReader.vala:329
+#: src/library.vala:610
+msgid "Adding "
+msgstr "Додавання "
+
+#: src/mobiReader.vala:329
 msgid "Book"
 msgstr "Книга"
+
+#: data/com.github.babluboy.bookworm.desktop.in:3
+#: data/com.github.babluboy.bookworm.appdata.xml.in:8
+#, fuzzy
+msgid "Bookworm"
+msgstr "Книга"
+
+#: data/com.github.babluboy.bookworm.desktop.in:5
+msgid "Read and manage eBooks"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:9
+msgid "com.github.babluboy.bookworm"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:13
+msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:9
+#, fuzzy
+msgid "A focused eBook reader"
+msgstr "Для читання електронних книг"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:11
+msgid ""
+"Read the books you love without having to worry about the different format "
+"complexities like epub, pdf, mobi, cbr, etc."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:12
+msgid ""
+"Manage your library by tagging and updating metadata on books, to quickly "
+"find books using metadata searching and tag based filtering."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:13
+msgid ""
+"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"with support for more formats to follow soon."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:17
+msgid "Bookworm Library View"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:21
+#, fuzzy
+msgid "Bookworm Reading View"
+msgstr "Запустити Bookworm в інформаційному режимі"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+msgid "Siddhartha Das"
+msgstr ""
 
 #~ msgid "Website"
 #~ msgstr "Веб-сайт"

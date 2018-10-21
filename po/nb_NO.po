@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-04 16:54+0100\n"
+"POT-Creation-Date: 2018-10-21 18:05+0100\n"
 "PO-Revision-Date: 2018-09-20 05:31+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -13,79 +13,75 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.2-dev\n"
 
-#: ../src/dialog.vala:63
-msgid "Select Image"
-msgstr "Velg bilde"
-
-#: ../src/dialog.vala:545
-msgid "Select folder"
-msgstr "Velg mappe"
-
-#: ../src/library.vala:610
-msgid "Adding "
-msgstr "Legger til "
-
-#: ../src/window.vala:293 ../src/window.vala:538
-msgid "Select eBook"
-msgstr "Velg e-bok"
-
-#: ../src/bookworm.vala:105
+#: src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Vis versjonsnummer"
 
-#: ../src/bookworm.vala:106
+#: src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Kjør Bokorm i feilrettingsmodus"
 
-#: ../src/bookworm.vala:107
+#: src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Kjør Bokorm i infomodus"
 
-#: ../src/bookworm.vala:108
+#: src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Legg til nye bøker fra oppsynsmapper automatisk"
 
-#: ../src/constants.vala:29
+#: src/utils.vala:520 src/utils.vala:594
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/utils.vala:522 src/utils.vala:595
+msgid "Open"
+msgstr "Åpne"
+
+#: src/utils.vala:524
+msgid "Save"
+msgstr "Lagre"
+
+#: src/constants.vala.in:29
 msgid "An eBook Reader"
 msgstr "En e-bokleser"
 
-#: ../src/constants.vala:31
+#: src/constants.vala.in:31
 msgid "Weblate Translators"
 msgstr "Weblate-oversettere"
 
-#: ../src/constants.vala:37
+#: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
 msgstr "Nettside | Oversettelse | Feilsporer"
 
-#: ../src/constants.vala:39
+#: src/constants.vala.in:39
 msgid "Not Available"
 msgstr "Ikke tilgjengelig"
 
-#: ../src/constants.vala:40
+#: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
 msgstr "e-bokleser"
 
-#: ../src/constants.vala:41
+#: src/constants.vala.in:41
 msgid "Search this book…"
 msgstr "Søk i denne boka…"
 
-#: ../src/constants.vala:42
+#: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
 msgstr "Søk etter tittel, forfatter og tagger"
 
-#: ../src/constants.vala:43
+#: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
 msgstr "Det det ut til at Bokormen er bokløs."
 
-#: ../src/constants.vala:44
+#: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
 msgstr "Bygg ditt bibliotek ved å legge til e-bøker"
 
-#: ../src/constants.vala:45
+#: src/constants.vala.in:45
 msgid "Select an eBook to read"
 msgstr "Velg ei e-bok å lese"
 
-#: ../src/constants.vala:46
+#: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
@@ -93,26 +89,26 @@ msgstr ""
 "Problem ved uthenting av innhold fra bok. Forsikre deg om at det er ei "
 "gyldig e-bok her: "
 
-#: ../src/constants.vala:47
+#: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr "Ugyldig MIME-type oppdaget. Sjekk bokformatet for denne e-boken: "
 
-#: ../src/constants.vala:48
+#: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Ugyldig innhold funnet, forsikre deg om at det finnes ei gyldig e-bok her: "
 
-#: ../src/constants.vala:49
+#: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "E-boka kunne ikke fortolkes. Forsikre deg om at det finnes ei gyldig e-bok "
 "her: "
 
-#: ../src/constants.vala:50
+#: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
 msgstr "Bokormen støtter ikke formatet for fila som finnes her: "
 
-#: ../src/constants.vala:51
+#: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
@@ -120,35 +116,35 @@ msgstr ""
 "Forespurt innhold kunne ikke hentes. Fjern og legg til e-bok fra denne "
 "plasseringen: "
 
-#: ../src/constants.vala:52
+#: src/constants.vala.in:52
 msgid "Library"
 msgstr "Bibliotek"
 
-#: ../src/constants.vala:53
+#: src/constants.vala.in:53
 msgid "Resume"
 msgstr "Fortsett"
 
-#: ../src/constants.vala:54
+#: src/constants.vala.in:54
 msgid "Contents"
 msgstr "Innhold"
 
-#: ../src/constants.vala:55
+#: src/constants.vala.in:55
 msgid "Content #"
 msgstr "Innhold #"
 
-#: ../src/constants.vala:56
+#: src/constants.vala.in:56
 msgid "Bookmarks"
 msgstr "Bokmerker"
 
-#: ../src/constants.vala:57
+#: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
 msgstr "Bokmerk #NNN for avsnitt PPP"
 
-#: ../src/constants.vala:58
+#: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
 msgstr "Klikk på en lenke for å hoppe til bokmerket del"
 
-#: ../src/constants.vala:59
+#: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
@@ -156,35 +152,35 @@ msgstr ""
 "Ingen bokmerker angitt i BBB, klikk på Bokorm-ikonet i rubrikkfeltet for å "
 "bokmerke siden"
 
-#: ../src/constants.vala:60
+#: src/constants.vala.in:60
 msgid "Word Meaning"
 msgstr "Ordets betydning"
 
-#: ../src/constants.vala:61
+#: src/constants.vala.in:61
 msgid "Search Results"
 msgstr "Søkeresultater"
 
-#: ../src/constants.vala:62
+#: src/constants.vala.in:62
 msgid "Annotations"
 msgstr "Anmerkning"
 
-#: ../src/constants.vala:63
+#: src/constants.vala.in:63
 msgid "Annotation Tags"
 msgstr "Anmerkningstagger"
 
-#: ../src/constants.vala:64
+#: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
 msgstr "Kommainndelt liste over tagger for denne anmerkningen"
 
-#: ../src/constants.vala:65
+#: src/constants.vala.in:65
 msgid "Edit annotation for:"
 msgstr "Legg til anmerkning for:"
 
-#: ../src/constants.vala:66
+#: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "Klikk på en lenke for å hoppe til anmerket avsnitt"
 
-#: ../src/constants.vala:67
+#: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -192,265 +188,323 @@ msgstr ""
 "Ingen anmerkninger angitt i BBB, høyreklikk på siden av en bok og velg "
 "anmerkningen fra bindeleddsmenyen for å legge til anmerkninger"
 
-#: ../src/constants.vala:68
+#: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "Søker etter \"$$$\" i &&&:"
 
-#: ../src/constants.vala:69
+#: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Fant følgende treff for \"&&&\" i &&&:"
 
-#: ../src/constants.vala:70
+#: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "Ingen treff for \"$$$\" i &&&"
 
-#: ../src/constants.vala:71
+#: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr "Velg et ord i boka og høyreklikk for å slå det opp"
 
-#: ../src/constants.vala:72
+#: src/constants.vala.in:72
 msgid "Edit Info for"
 msgstr "Rediger info for"
 
-#: ../src/constants.vala:73 ../src/constants.vala:77
+#: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
 msgstr "Oppdater omslagsbilde"
 
-#: ../src/constants.vala:74
+#: src/constants.vala.in:74
 msgid "Update Title"
 msgstr "Oppdater tittel"
 
-#: ../src/constants.vala:75
+#: src/constants.vala.in:75
 msgid "Update Tags"
 msgstr "Oppdater tagger"
 
-#: ../src/constants.vala:76
+#: src/constants.vala.in:76
 msgid "Update Author"
 msgstr "Oppdater forfatter"
 
-#: ../src/constants.vala:78
+#: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
 msgstr "Fullskjermsvisning (F11)"
 
-#: ../src/constants.vala:79
+#: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
 msgstr "Avslutt fullskjermsvisning (Esc)"
 
-#: ../src/constants.vala:80
+#: src/constants.vala.in:80
 msgid "Check Word Meaning"
 msgstr "Sjekk ordets betydning"
 
-#: ../src/constants.vala:81
+#: src/constants.vala.in:81
 msgid "Annotate selected text"
 msgstr "Anmerk valgt tekst"
 
-#: ../src/constants.vala:82
+#: src/constants.vala.in:82
 msgid "Books"
 msgstr "Bøker"
 
-#: ../src/constants.vala:83
+#: src/constants.vala.in:83
 msgid "Images"
 msgstr "Bilder"
 
-#: ../src/constants.vala:84
+#: src/constants.vala.in:84
 msgid "All Files"
 msgstr "Alle filer"
 
-#: ../src/constants.vala:85
+#: src/constants.vala.in:85
 msgid "Title"
 msgstr "Tittel"
 
-#: ../src/constants.vala:86
+#: src/constants.vala.in:86
 msgid "Author"
 msgstr "Forfatter"
 
-#: ../src/constants.vala:87
+#: src/constants.vala.in:87
 msgid "Last Opened"
 msgstr "Sist åpnet"
 
-#: ../src/constants.vala:88
+#: src/constants.vala.in:88
 msgid "Rating"
 msgstr "Vurdering"
 
-#: ../src/constants.vala:89
+#: src/constants.vala.in:89
 msgid "Tags"
 msgstr "Tagger"
 
-#: ../src/constants.vala:90
+#: src/constants.vala.in:90
 msgid "Today"
 msgstr "I dag"
 
-#: ../src/constants.vala:91
+#: src/constants.vala.in:91
 msgid "Yesterday"
 msgstr "I går"
 
-#: ../src/constants.vala:92
+#: src/constants.vala.in:92
 msgid "Days"
 msgstr "Dager"
 
-#: ../src/constants.vala:93
+#: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr "Oppdagelse av bøker vil startes når Bokormen lukkes"
 
-#: ../src/constants.vala:95
+#: src/constants.vala.in:95
 msgid "Add books to library"
 msgstr "La til bøker i bibliotek"
 
-#: ../src/constants.vala:96
+#: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Fjern valgte bøker fra biblioteket (e-bokfiler vil ikke bli slettet)"
 
-#: ../src/constants.vala:97
+#: src/constants.vala.in:97
 msgid "Select one or more books in library"
 msgstr "Velg ei eller flere bøker fra biblioteket"
 
-#: ../src/constants.vala:98
+#: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Se innholdsfortegnelse, bokmerker og søkeresultater"
 
-#: ../src/constants.vala:99
+#: src/constants.vala.in:99
 msgid "Reading preferences"
 msgstr "Leseinnstillinger"
 
-#: ../src/constants.vala:100
+#: src/constants.vala.in:100
 msgid "Click to bookmark this page"
 msgstr "Klikk for å bokmerke denne siden"
 
-#: ../src/constants.vala:101
+#: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
 msgstr "Klikk for å fjerne dette bokmerket"
 
-#: ../src/constants.vala:102
+#: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Øk skriftstørrelse (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:103
+#: src/constants.vala.in:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Forminsk skriftstørrelse (Ctrl+ '-')"
 
-#: ../src/constants.vala:104
+#: src/constants.vala.in:104
 msgid "Increase line width"
 msgstr "Øk linjebredde"
 
-#: ../src/constants.vala:105
+#: src/constants.vala.in:105
 msgid "Decrease line width"
 msgstr "Minsk linjebredde"
 
-#: ../src/constants.vala:106
+#: src/constants.vala.in:106
 msgid "Increase line spacing"
 msgstr "Øk linjeavstand"
 
-#: ../src/constants.vala:107
+#: src/constants.vala.in:107
 msgid "Decrease line spacing"
 msgstr "MInsk linjeavstand"
 
-#: ../src/constants.vala:108
+#: src/constants.vala.in:108
 msgid "Align left"
 msgstr "Venstrejuster"
 
-#: ../src/constants.vala:109
+#: src/constants.vala.in:109
 msgid "Align right"
 msgstr "Høyrejuster"
 
-#: ../src/constants.vala:110
+#: src/constants.vala.in:110
 msgid "Update cover image"
 msgstr "Oppdater omslagsbildet"
 
-#: ../src/constants.vala:111
+#: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
 msgstr "Ikle drakt for denne fargeprofilen"
 
-#: ../src/constants.vala:112 ../src/constants.vala:113
+#: src/constants.vala.in:112 src/constants.vala.in:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Gå inn i fullskjermsvisning og trykk Esc-knappen for å angre"
 
-#: ../src/constants.vala:114
+#: src/constants.vala.in:114
 msgid "Add folder to scan for books"
 msgstr "Legg til mappe å skanne for bøker"
 
-#: ../src/constants.vala:115
+#: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
 msgstr "Fjern viste bøker fra bokskanning"
 
-#: ../src/constants.vala:116
+#: src/constants.vala.in:116
 msgid "Add annotation to selected text"
 msgstr "Legg til anmerkning for valgt tekst"
 
-#: ../src/constants.vala:118 ../src/constants.vala:144
+#: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: ../src/constants.vala:119
+#: src/constants.vala.in:119
 msgid "Turn on Dark Mode"
 msgstr "Skru på mørkt modus"
 
-#: ../src/constants.vala:120
+#: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
 msgstr "Aktiver hurtiglager (åpner bøker raskere)"
 
-#: ../src/constants.vala:121
+#: src/constants.vala.in:121
 msgid "Always show library on startup"
 msgstr "Alltid vis bibliotek ved oppstart"
 
-#: ../src/constants.vala:122
+#: src/constants.vala.in:122
 msgid "Enable two page reading"
 msgstr "Aktiver tosidig lesning"
 
-#: ../src/constants.vala:123
+#: src/constants.vala.in:123
 msgid "Select Font"
 msgstr "Angi skrift"
 
-#: ../src/constants.vala:124
+#: src/constants.vala.in:124
 msgid "Customize reading profile"
 msgstr "Tilpass leseprofil"
 
-#: ../src/constants.vala:125
+#: src/constants.vala.in:125
 msgid "Text"
 msgstr "Tekst"
 
-#: ../src/constants.vala:126
+#: src/constants.vala.in:126
 msgid "Background"
 msgstr "Bakgrunn"
 
-#: ../src/constants.vala:127
+#: src/constants.vala.in:127
 msgid "Highlight"
 msgstr "Framhev"
 
-#: ../src/constants.vala:128
+#: src/constants.vala.in:128
 msgid "Add folders to scan for books"
 msgstr "Legg til mapper å skanne for bøker"
 
-#: ../src/constants.vala:129
+#: src/constants.vala.in:129
 msgid "Profile"
 msgstr "Profil"
 
-#: ../src/constants.vala:130
+#: src/constants.vala.in:130
 msgid "Reset to default values"
 msgstr "Tilbakestill til forvalgte verdier"
 
-#: ../src/constants.vala:142
+#: src/constants.vala.in:142
 msgid "Unknown Book"
 msgstr "Ukjent bok"
 
-#: ../src/constants.vala:143
+#: src/constants.vala.in:143
 msgid "About"
 msgstr "Om"
 
-#: ../src/utils.vala:520 ../src/utils.vala:594
-msgid "Cancel"
-msgstr "Avbryt"
+#: src/dialog.vala:63
+msgid "Select Image"
+msgstr "Velg bilde"
 
-#: ../src/utils.vala:522 ../src/utils.vala:595
-msgid "Open"
-msgstr "Åpne"
+#: src/dialog.vala:545
+msgid "Select folder"
+msgstr "Velg mappe"
 
-#: ../src/utils.vala:524
-msgid "Save"
-msgstr "Lagre"
+#: src/window.vala:293 src/window.vala:538
+msgid "Select eBook"
+msgstr "Velg e-bok"
 
-#: ../src/mobiReader.vala:329
+#: src/library.vala:610
+msgid "Adding "
+msgstr "Legger til "
+
+#: src/mobiReader.vala:329
 msgid "Book"
 msgstr "Bok"
+
+#: data/com.github.babluboy.bookworm.desktop.in:3
+#: data/com.github.babluboy.bookworm.appdata.xml.in:8
+#, fuzzy
+msgid "Bookworm"
+msgstr "Bok"
+
+#: data/com.github.babluboy.bookworm.desktop.in:5
+msgid "Read and manage eBooks"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:9
+msgid "com.github.babluboy.bookworm"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:13
+msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:9
+#, fuzzy
+msgid "A focused eBook reader"
+msgstr "En e-bokleser"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:11
+msgid ""
+"Read the books you love without having to worry about the different format "
+"complexities like epub, pdf, mobi, cbr, etc."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:12
+msgid ""
+"Manage your library by tagging and updating metadata on books, to quickly "
+"find books using metadata searching and tag based filtering."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:13
+msgid ""
+"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"with support for more formats to follow soon."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:17
+msgid "Bookworm Library View"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:21
+#, fuzzy
+msgid "Bookworm Reading View"
+msgstr "Kjør Bokorm i infomodus"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+msgid "Siddhartha Das"
+msgstr ""
 
 #~ msgid "Website"
 #~ msgstr "Nettside"

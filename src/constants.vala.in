@@ -143,7 +143,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
 	public const string TEXT_FOR_PREF_MENU_PREFERENCES_ITEM = _("Preferences");
 
-	public const string INSTALL_PREFIX = "@CMAKE_INSTALL_PREFIX@";
+	public const string INSTALL_PREFIX = "@MESON_INSTALL_PREFIX@";
 	public const string RESOURCE_PREFIX = "/com/github/babluboy/bookworm/";
 	public const string SEARCH_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.search.sh";
 	public const string HTML_SCRIPT_RESOURCE_LOCATION = "resource:///" + RESOURCE_PREFIX+"com.github.babluboy.bookworm.htmlscripts.txt";

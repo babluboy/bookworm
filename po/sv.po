@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-04 16:54+0100\n"
+"POT-Creation-Date: 2018-10-21 18:05+0100\n"
 "PO-Revision-Date: 2018-07-31 16:43+0000\n"
 "Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -14,79 +14,75 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.1.1\n"
 
-#: ../src/dialog.vala:63
-msgid "Select Image"
-msgstr "Välj bild"
-
-#: ../src/dialog.vala:545
-msgid "Select folder"
-msgstr "Välj mapp"
-
-#: ../src/library.vala:610
-msgid "Adding "
-msgstr "Lägger till "
-
-#: ../src/window.vala:293 ../src/window.vala:538
-msgid "Select eBook"
-msgstr "Välj e-bok"
-
-#: ../src/bookworm.vala:105
+#: src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Visa versionsnummer"
 
-#: ../src/bookworm.vala:106
+#: src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Kör Bookworm i felsökningsläge"
 
-#: ../src/bookworm.vala:107
+#: src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Kör Bookworm i informationsläge"
 
-#: ../src/bookworm.vala:108
+#: src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Lägg automatiskt till nya böcker från bevakade mappar"
 
-#: ../src/constants.vala:29
+#: src/utils.vala:520 src/utils.vala:594
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/utils.vala:522 src/utils.vala:595
+msgid "Open"
+msgstr "Öppna"
+
+#: src/utils.vala:524
+msgid "Save"
+msgstr "Spara"
+
+#: src/constants.vala.in:29
 msgid "An eBook Reader"
 msgstr "En e-bokläsplatta"
 
-#: ../src/constants.vala:31
+#: src/constants.vala.in:31
 msgid "Weblate Translators"
 msgstr "Weblate översättare"
 
-#: ../src/constants.vala:37
+#: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
 msgstr "Webbplats | Översättning | Felrapporter"
 
-#: ../src/constants.vala:39
+#: src/constants.vala.in:39
 msgid "Not Available"
 msgstr "Otillgänglig"
 
-#: ../src/constants.vala:40
+#: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
 msgstr "E-bokläsplatta"
 
-#: ../src/constants.vala:41
+#: src/constants.vala.in:41
 msgid "Search this book…"
 msgstr "Sök i denna bok…"
 
-#: ../src/constants.vala:42
+#: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
 msgstr "Sök efter titel, författare och taggar"
 
-#: ../src/constants.vala:43
+#: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
 msgstr "Ser ut som Bookworm inte har några böcker."
 
-#: ../src/constants.vala:44
+#: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
 msgstr "Bygg ditt bibliotek genom att lägga till e-böcker"
 
-#: ../src/constants.vala:45
+#: src/constants.vala.in:45
 msgid "Select an eBook to read"
 msgstr "Välj en e-bok att läsa"
 
-#: ../src/constants.vala:46
+#: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
@@ -94,24 +90,24 @@ msgstr ""
 "Problem med att extrahera innehållet i boken. Kontrollera om boken är "
 "tillgänglig på platsen: "
 
-#: ../src/constants.vala:47
+#: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr "Ogiltig MIME-typ upptäckt. Kontrollera formatet för den här e-boken: "
 
-#: ../src/constants.vala:48
+#: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr "Ogiltigt innehåll hittades. Se till att en giltig e-bokfil finns här: "
 
-#: ../src/constants.vala:49
+#: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "E-bok kunde inte analyseras. Kontrollera att giltig e-bokfil finns här: "
 
-#: ../src/constants.vala:50
+#: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
 msgstr "Bookworm stöder inte formatet av filen hittad här: "
 
-#: ../src/constants.vala:51
+#: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
@@ -119,35 +115,35 @@ msgstr ""
 "Det begärda innehållet kunde inte hämtas. Ta bort och lägg till e-bokfil på "
 "platsen: "
 
-#: ../src/constants.vala:52
+#: src/constants.vala.in:52
 msgid "Library"
 msgstr "Bibliotek"
 
-#: ../src/constants.vala:53
+#: src/constants.vala.in:53
 msgid "Resume"
 msgstr "Återuppta"
 
-#: ../src/constants.vala:54
+#: src/constants.vala.in:54
 msgid "Contents"
 msgstr "Innehåll"
 
-#: ../src/constants.vala:55
+#: src/constants.vala.in:55
 msgid "Content #"
 msgstr "Innehåll #"
 
-#: ../src/constants.vala:56
+#: src/constants.vala.in:56
 msgid "Bookmarks"
 msgstr "Bokmärken"
 
-#: ../src/constants.vala:57
+#: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
 msgstr "Bokmärk #NNN för avsnitt PPP"
 
-#: ../src/constants.vala:58
+#: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
 msgstr "Klicka på en länk för att hoppa till bokmärkt avsnitt"
 
-#: ../src/constants.vala:59
+#: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
@@ -155,36 +151,36 @@ msgstr ""
 "Inga bokmärken angivna i BBB, klicka på bookworm-ikonen i rubrikfältet för "
 "att bokmärka sidan"
 
-#: ../src/constants.vala:60
+#: src/constants.vala.in:60
 #, fuzzy
 msgid "Word Meaning"
 msgstr "Kontrollera ordbetydelse"
 
-#: ../src/constants.vala:61
+#: src/constants.vala.in:61
 msgid "Search Results"
 msgstr "Sök i resultat"
 
-#: ../src/constants.vala:62
+#: src/constants.vala.in:62
 msgid "Annotations"
 msgstr "Anteckningar"
 
-#: ../src/constants.vala:63
+#: src/constants.vala.in:63
 msgid "Annotation Tags"
 msgstr "Anteckningstaggar"
 
-#: ../src/constants.vala:64
+#: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
 msgstr "Kommaseparerade taggar för denna anteckning"
 
-#: ../src/constants.vala:65
+#: src/constants.vala.in:65
 msgid "Edit annotation for:"
 msgstr "Redigera notering för:"
 
-#: ../src/constants.vala:66
+#: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "Klicka på en länk för att hoppa till avsnitt med anteckningar"
 
-#: ../src/constants.vala:67
+#: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -192,266 +188,324 @@ msgstr ""
 "Inga anteckningar anges i BBB, högerklicka på sidan i en bok och välj "
 "anteckningar från snabbmenyn för att lägga till anteckningar"
 
-#: ../src/constants.vala:68
+#: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "Söker efter \"$$$\" i &&&:"
 
-#: ../src/constants.vala:69
+#: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Fann följande matchningar för \"$$$\" i &&&:"
 
-#: ../src/constants.vala:70
+#: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "Inga matchningar funna för \"$$$\" i &&&"
 
-#: ../src/constants.vala:71
+#: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr "Välj ett ord i boken och högerklicka för att söka upp dess mening"
 
-#: ../src/constants.vala:72
+#: src/constants.vala.in:72
 msgid "Edit Info for"
 msgstr "Redigera info för"
 
-#: ../src/constants.vala:73 ../src/constants.vala:77
+#: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
 msgstr "Uppdatera omslagsbild"
 
-#: ../src/constants.vala:74
+#: src/constants.vala.in:74
 msgid "Update Title"
 msgstr "Uppdatera titeln"
 
-#: ../src/constants.vala:75
+#: src/constants.vala.in:75
 msgid "Update Tags"
 msgstr "Uppdatera taggar"
 
-#: ../src/constants.vala:76
+#: src/constants.vala.in:76
 msgid "Update Author"
 msgstr "Uppdatera författare"
 
-#: ../src/constants.vala:78
+#: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
 msgstr "Använd helskärmsläge (F11)"
 
-#: ../src/constants.vala:79
+#: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
 msgstr "Stäng helskärmsläge (Esc)"
 
-#: ../src/constants.vala:80
+#: src/constants.vala.in:80
 msgid "Check Word Meaning"
 msgstr "Kontrollera ordbetydelse"
 
-#: ../src/constants.vala:81
+#: src/constants.vala.in:81
 msgid "Annotate selected text"
 msgstr "Anteckna vald text"
 
-#: ../src/constants.vala:82
+#: src/constants.vala.in:82
 msgid "Books"
 msgstr "Böcker"
 
-#: ../src/constants.vala:83
+#: src/constants.vala.in:83
 msgid "Images"
 msgstr "Bilder"
 
-#: ../src/constants.vala:84
+#: src/constants.vala.in:84
 msgid "All Files"
 msgstr "Alla filer"
 
-#: ../src/constants.vala:85
+#: src/constants.vala.in:85
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/constants.vala:86
+#: src/constants.vala.in:86
 msgid "Author"
 msgstr "Författare"
 
-#: ../src/constants.vala:87
+#: src/constants.vala.in:87
 msgid "Last Opened"
 msgstr "Senast öppnad"
 
-#: ../src/constants.vala:88
+#: src/constants.vala.in:88
 msgid "Rating"
 msgstr "Betyg"
 
-#: ../src/constants.vala:89
+#: src/constants.vala.in:89
 msgid "Tags"
 msgstr "Taggar"
 
-#: ../src/constants.vala:90
+#: src/constants.vala.in:90
 msgid "Today"
 msgstr "Idag"
 
-#: ../src/constants.vala:91
+#: src/constants.vala.in:91
 msgid "Yesterday"
 msgstr "Igår"
 
-#: ../src/constants.vala:92
+#: src/constants.vala.in:92
 msgid "Days"
 msgstr "Dagar"
 
-#: ../src/constants.vala:93
+#: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr "Genomsökning av böcker kommer att påbörjas när Bookworm stängs"
 
-#: ../src/constants.vala:95
+#: src/constants.vala.in:95
 msgid "Add books to library"
 msgstr "Lägg till böcker till bibliotek"
 
-#: ../src/constants.vala:96
+#: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Ta bort valda böcker från biblioteket (e-bokfil kommer inte att tas bort)"
 
-#: ../src/constants.vala:97
+#: src/constants.vala.in:97
 msgid "Select one or more books in library"
 msgstr "Välj en eller flera böcker i biblioteket"
 
-#: ../src/constants.vala:98
+#: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Se innehållsförteckning, bokmärken och sökresultat"
 
-#: ../src/constants.vala:99
+#: src/constants.vala.in:99
 msgid "Reading preferences"
 msgstr "Läsinställningar"
 
-#: ../src/constants.vala:100
+#: src/constants.vala.in:100
 msgid "Click to bookmark this page"
 msgstr "Klicka för att bokmärka denna sida"
 
-#: ../src/constants.vala:101
+#: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
 msgstr "Klicka för att ta bort detta bokmärke"
 
-#: ../src/constants.vala:102
+#: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Öka teckenstorleken (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:103
+#: src/constants.vala.in:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Minska teckenstorleken (Ctrl + '-')"
 
-#: ../src/constants.vala:104
+#: src/constants.vala.in:104
 msgid "Increase line width"
 msgstr "Öka radbredden"
 
-#: ../src/constants.vala:105
+#: src/constants.vala.in:105
 msgid "Decrease line width"
 msgstr "Minska radbredden"
 
-#: ../src/constants.vala:106
+#: src/constants.vala.in:106
 msgid "Increase line spacing"
 msgstr "Öka radavståndet"
 
-#: ../src/constants.vala:107
+#: src/constants.vala.in:107
 msgid "Decrease line spacing"
 msgstr "Minska radavståndet"
 
-#: ../src/constants.vala:108
+#: src/constants.vala.in:108
 msgid "Align left"
 msgstr "Vänsterjustera"
 
-#: ../src/constants.vala:109
+#: src/constants.vala.in:109
 msgid "Align right"
 msgstr "Högerjustera"
 
-#: ../src/constants.vala:110
+#: src/constants.vala.in:110
 msgid "Update cover image"
 msgstr "Uppdatera omslagsbilden"
 
-#: ../src/constants.vala:111
+#: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
 msgstr "Tillämpa tema för denna färgprofil"
 
-#: ../src/constants.vala:112 ../src/constants.vala:113
+#: src/constants.vala.in:112 src/constants.vala.in:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Gå in i helskärmsvy och använd Esc-tangent för att gå ur"
 
-#: ../src/constants.vala:114
+#: src/constants.vala.in:114
 msgid "Add folder to scan for books"
 msgstr "Lägg till mapp för att söka efter böcker"
 
-#: ../src/constants.vala:115
+#: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
 msgstr "Ta bort visad mapp från boksökning"
 
-#: ../src/constants.vala:116
+#: src/constants.vala.in:116
 msgid "Add annotation to selected text"
 msgstr "Lägg till anteckning till vald text"
 
-#: ../src/constants.vala:118 ../src/constants.vala:144
+#: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: ../src/constants.vala:119
+#: src/constants.vala.in:119
 msgid "Turn on Dark Mode"
 msgstr "Slå på mörkt läge"
 
-#: ../src/constants.vala:120
+#: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
 msgstr "Aktivera cache (öppnar böcker snabbare)"
 
-#: ../src/constants.vala:121
+#: src/constants.vala.in:121
 msgid "Always show library on startup"
 msgstr "Visa alltid bibliotek vid uppstart"
 
-#: ../src/constants.vala:122
+#: src/constants.vala.in:122
 msgid "Enable two page reading"
 msgstr "Aktivera två sidläsning"
 
-#: ../src/constants.vala:123
+#: src/constants.vala.in:123
 msgid "Select Font"
 msgstr "Välj typsnitt"
 
-#: ../src/constants.vala:124
+#: src/constants.vala.in:124
 msgid "Customize reading profile"
 msgstr "Anpassa läsprofilen"
 
-#: ../src/constants.vala:125
+#: src/constants.vala.in:125
 msgid "Text"
 msgstr "Text"
 
-#: ../src/constants.vala:126
+#: src/constants.vala.in:126
 msgid "Background"
 msgstr "Bakgrund"
 
-#: ../src/constants.vala:127
+#: src/constants.vala.in:127
 msgid "Highlight"
 msgstr ""
 
-#: ../src/constants.vala:128
+#: src/constants.vala.in:128
 msgid "Add folders to scan for books"
 msgstr "Lägg till mappar för att söka efter böcker"
 
-#: ../src/constants.vala:129
+#: src/constants.vala.in:129
 msgid "Profile"
 msgstr "Profil"
 
-#: ../src/constants.vala:130
+#: src/constants.vala.in:130
 msgid "Reset to default values"
 msgstr "Återställ till standardvärden"
 
-#: ../src/constants.vala:142
+#: src/constants.vala.in:142
 msgid "Unknown Book"
 msgstr "Okänd bok"
 
-#: ../src/constants.vala:143
+#: src/constants.vala.in:143
 msgid "About"
 msgstr "Om"
 
-#: ../src/utils.vala:520 ../src/utils.vala:594
-msgid "Cancel"
-msgstr "Avbryt"
+#: src/dialog.vala:63
+msgid "Select Image"
+msgstr "Välj bild"
 
-#: ../src/utils.vala:522 ../src/utils.vala:595
-msgid "Open"
-msgstr "Öppna"
+#: src/dialog.vala:545
+msgid "Select folder"
+msgstr "Välj mapp"
 
-#: ../src/utils.vala:524
-msgid "Save"
-msgstr "Spara"
+#: src/window.vala:293 src/window.vala:538
+msgid "Select eBook"
+msgstr "Välj e-bok"
 
-#: ../src/mobiReader.vala:329
+#: src/library.vala:610
+msgid "Adding "
+msgstr "Lägger till "
+
+#: src/mobiReader.vala:329
 msgid "Book"
 msgstr "Bok"
+
+#: data/com.github.babluboy.bookworm.desktop.in:3
+#: data/com.github.babluboy.bookworm.appdata.xml.in:8
+#, fuzzy
+msgid "Bookworm"
+msgstr "Bok"
+
+#: data/com.github.babluboy.bookworm.desktop.in:5
+msgid "Read and manage eBooks"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:9
+msgid "com.github.babluboy.bookworm"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:13
+msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:9
+#, fuzzy
+msgid "A focused eBook reader"
+msgstr "En e-bokläsplatta"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:11
+msgid ""
+"Read the books you love without having to worry about the different format "
+"complexities like epub, pdf, mobi, cbr, etc."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:12
+msgid ""
+"Manage your library by tagging and updating metadata on books, to quickly "
+"find books using metadata searching and tag based filtering."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:13
+msgid ""
+"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"with support for more formats to follow soon."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:17
+msgid "Bookworm Library View"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:21
+#, fuzzy
+msgid "Bookworm Reading View"
+msgstr "Kör Bookworm i informationsläge"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+msgid "Siddhartha Das"
+msgstr ""
 
 #~ msgid "Website"
 #~ msgstr "Webbplats"

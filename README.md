@@ -5,40 +5,36 @@ Author: Siddhartha Das
 
 Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc. This version supports EPUB, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.
 
-Check the Bookworm website for details on features, shortcuts, installation guides for supported distro. : https://babluboy.github.io/bookworm/
+Check the Bookworm website for details on features, shortcuts, installation guides for supported distros : https://babluboy.github.io/bookworm/
 
 
-## How to build bookworm:
+## Building, Testing, and Installation
 
-### On debian
+You'll need the following dependencies to build:
+* libgranite-dev
+* libwebkit2gtk-4.0-37
+* libsqlite3-dev
+* poppler-glib
+* libpoppler-glib-dev
+* html2text
+* curl
+* meson
+* valac
 
-```shell
-sudo apt-get build-dep granite-demo
-sudo apt-get install granite-demo
-sudo apt-get install libgranite-dev
-sudo apt-get install valac
-sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
-sudo apt-get install libsqlite3-dev
-sudo apt-get install poppler-utils libpoppler-glib-dev html2text curl
-```
-### On fedora
+Run `meson build` to configure the build environment and run `ninja test` to build
 
-```shell
-sudo dnf install cmake gcc-c++ vala
-sudo dnf install gtk3-devel libgee-devel granite-devel
-sudo dnf install webkitgtk4-devel sqlite-devel poppler-glib-devel html2text
-```
+    git clone https://github.com/babluboy/bookworm.git
+    cd bookworm
+    meson build --prefix=/usr
+    mkdir build && cd build
+    ninja
 
-### Build and install bookworm
+To install, use `ninja install`, then execute with `com.github.babluboy.bookworm`
 
-```shell
-git clone https://github.com/babluboy/bookworm.git
-cd bookworm
-mkdir build && cd build 
-cmake -DCMAKE_INSTALL_PREFIX=/usr ../
-make
-sudo make install
-```
+    sudo ninja install
+    com.github.babluboy.bookworm
+
+
 ## Screenshots
 
 ![screenshot](https://raw.githubusercontent.com/babluboy/bookworm/gh-pages/images/BookwormLibraryView.png)

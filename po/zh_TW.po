@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-04 16:24+0100\n"
+"POT-Creation-Date: 2018-10-21 18:05+0100\n"
 "PO-Revision-Date: 2018-04-02 14:35+0000\n"
 "Last-Translator: Alister Gao <k88959@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -13,433 +13,487 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.20-dev\n"
 
-#: ../src/dialog.vala:63
-msgid "Select Image"
-msgstr "選擇圖片"
-
-#: ../src/dialog.vala:545
-msgid "Select folder"
-msgstr "選擇文件夾"
-
-#: ../src/library.vala:610
-msgid "Adding "
-msgstr "添加中 "
-
-#: ../src/window.vala:293 ../src/window.vala:538
-msgid "Select eBook"
-msgstr "選擇電子書"
-
-#: ../src/bookworm.vala:105
+#: src/bookworm.vala:105
 msgid "Display version number"
 msgstr "顯示版本號"
 
-#: ../src/bookworm.vala:106
+#: src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "執行Bookworm的偵錯模式"
 
-#: ../src/bookworm.vala:107
+#: src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "執行Bookworm的資訊模式"
 
-#: ../src/bookworm.vala:108
+#: src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "從瀏覽過的文件夾自動新增書目"
 
-#: ../src/constants.vala:29
+#: src/utils.vala:520 src/utils.vala:594
+msgid "Cancel"
+msgstr "取消"
+
+#: src/utils.vala:522 src/utils.vala:595
+msgid "Open"
+msgstr "開啟"
+
+#: src/utils.vala:524
+msgid "Save"
+msgstr "保存"
+
+#: src/constants.vala.in:29
 msgid "An eBook Reader"
 msgstr "一個電子書閱讀器"
 
-#: ../src/constants.vala:31
+#: src/constants.vala.in:31
 msgid "Weblate Translators"
 msgstr "Weblate 翻譯"
 
-#: ../src/constants.vala:37
+#: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
 msgstr "網站 | 翻譯 | 問題追蹤"
 
-#: ../src/constants.vala:39
+#: src/constants.vala.in:39
 msgid "Not Available"
 msgstr "無法提供"
 
-#: ../src/constants.vala:40
+#: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
 msgstr "電子書閱讀器"
 
-#: ../src/constants.vala:41
+#: src/constants.vala.in:41
 msgid "Search this book…"
 msgstr "搜尋本書…"
 
-#: ../src/constants.vala:42
+#: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
 msgstr "透過標題、作者和標籤搜尋"
 
-#: ../src/constants.vala:43
+#: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
 msgstr "看來Bookworm沒任何書。"
 
-#: ../src/constants.vala:44
+#: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
 msgstr "添加電子書來建立你的書庫"
 
-#: ../src/constants.vala:45
+#: src/constants.vala.in:45
 msgid "Select an eBook to read"
 msgstr "選一本書閱讀"
 
-#: ../src/constants.vala:46
+#: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr "提取書藉內容時遭遇錯誤。請確認此處有有效的電子書檔案： "
 
-#: ../src/constants.vala:47
+#: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr "偵測到無效的MIME類型。請確認此書的格式： "
 
-#: ../src/constants.vala:48
+#: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr "偵測到無效內容。請確認本處有有效的電子書檔案： "
 
-#: ../src/constants.vala:49
+#: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr "無法解析電子書。請確認本處有有效的電子書檔案： "
 
-#: ../src/constants.vala:50
+#: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
 msgstr "Bookworm不支援此種格式： "
 
-#: ../src/constants.vala:51
+#: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr "無法取得要求的內容。請移除和添加此電子書： "
 
-#: ../src/constants.vala:52
+#: src/constants.vala.in:52
 msgid "Library"
 msgstr "書庫"
 
-#: ../src/constants.vala:53
+#: src/constants.vala.in:53
 msgid "Resume"
 msgstr "繼續"
 
-#: ../src/constants.vala:54
+#: src/constants.vala.in:54
 msgid "Contents"
 msgstr "內容"
 
-#: ../src/constants.vala:55
+#: src/constants.vala.in:55
 msgid "Content #"
 msgstr "內容 #"
 
-#: ../src/constants.vala:56
+#: src/constants.vala.in:56
 msgid "Bookmarks"
 msgstr "書籤"
 
-#: ../src/constants.vala:57
+#: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
 msgstr "書籤 #NNN 部分 PPP"
 
-#: ../src/constants.vala:58
+#: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
 msgstr "點擊連結跳至書籤段落"
 
-#: ../src/constants.vala:59
+#: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr "BBB 沒有設置書籤，點擊標題欄的圖示添加本頁至書籤"
 
-#: ../src/constants.vala:60
+#: src/constants.vala.in:60
 #, fuzzy
 msgid "Word Meaning"
 msgstr "查詢字詞含義"
 
-#: ../src/constants.vala:61
+#: src/constants.vala.in:61
 msgid "Search Results"
 msgstr "搜尋結果"
 
-#: ../src/constants.vala:62
+#: src/constants.vala.in:62
 msgid "Annotations"
 msgstr "註釋"
 
-#: ../src/constants.vala:63
+#: src/constants.vala.in:63
 msgid "Annotation Tags"
 msgstr "註釋標籤"
 
-#: ../src/constants.vala:64
+#: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
 msgstr "本註釋以逗號分隔的標籤"
 
-#: ../src/constants.vala:65
+#: src/constants.vala.in:65
 #, fuzzy
 msgid "Edit annotation for:"
 msgstr "編輯註釋： "
 
-#: ../src/constants.vala:66
+#: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "點擊一個連結跳至註釋段落"
 
-#: ../src/constants.vala:67
+#: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr "BBB 沒有設置註釋，右鍵點擊書中該頁並從選單中選擇註釋來新增註釋"
 
-#: ../src/constants.vala:68
+#: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "在 &&& 中搜尋 '$$$'："
 
-#: ../src/constants.vala:69
+#: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "在 &&& 中找到下列符合結果："
 
-#: ../src/constants.vala:70
+#: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "在 &&& 中找不到符合 '$$$' 的結果"
 
-#: ../src/constants.vala:71
+#: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
 
-#: ../src/constants.vala:72
+#: src/constants.vala.in:72
 msgid "Edit Info for"
 msgstr "編輯資訊"
 
-#: ../src/constants.vala:73 ../src/constants.vala:77
+#: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
 msgstr "更新封面圖像"
 
-#: ../src/constants.vala:74
+#: src/constants.vala.in:74
 msgid "Update Title"
 msgstr "更新標題"
 
-#: ../src/constants.vala:75
+#: src/constants.vala.in:75
 msgid "Update Tags"
 msgstr "更新標籤"
 
-#: ../src/constants.vala:76
+#: src/constants.vala.in:76
 msgid "Update Author"
 msgstr "更新作者"
 
-#: ../src/constants.vala:78
+#: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
 msgstr "進入全螢幕模式 (F11)"
 
-#: ../src/constants.vala:79
+#: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
 msgstr "退出全螢幕  (Esc)"
 
-#: ../src/constants.vala:80
+#: src/constants.vala.in:80
 msgid "Check Word Meaning"
 msgstr "查詢字詞含義"
 
-#: ../src/constants.vala:81
+#: src/constants.vala.in:81
 msgid "Annotate selected text"
 msgstr "註釋選擇的文字"
 
-#: ../src/constants.vala:82
+#: src/constants.vala.in:82
 msgid "Books"
 msgstr "書籍"
 
-#: ../src/constants.vala:83
+#: src/constants.vala.in:83
 msgid "Images"
 msgstr "圖像"
 
-#: ../src/constants.vala:84
+#: src/constants.vala.in:84
 msgid "All Files"
 msgstr "所有文件"
 
-#: ../src/constants.vala:85
+#: src/constants.vala.in:85
 msgid "Title"
 msgstr "標題"
 
-#: ../src/constants.vala:86
+#: src/constants.vala.in:86
 msgid "Author"
 msgstr "作者"
 
-#: ../src/constants.vala:87
+#: src/constants.vala.in:87
 msgid "Last Opened"
 msgstr "上次開啟"
 
-#: ../src/constants.vala:88
+#: src/constants.vala.in:88
 msgid "Rating"
 msgstr "評分"
 
-#: ../src/constants.vala:89
+#: src/constants.vala.in:89
 msgid "Tags"
 msgstr "標籤"
 
-#: ../src/constants.vala:90
+#: src/constants.vala.in:90
 msgid "Today"
 msgstr "今天"
 
-#: ../src/constants.vala:91
+#: src/constants.vala.in:91
 msgid "Yesterday"
 msgstr "昨天"
 
-#: ../src/constants.vala:92
+#: src/constants.vala.in:92
 msgid "Days"
 msgstr "天"
 
-#: ../src/constants.vala:93
+#: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr ""
 
-#: ../src/constants.vala:95
+#: src/constants.vala.in:95
 msgid "Add books to library"
 msgstr "新增書藉至書庫"
 
-#: ../src/constants.vala:96
+#: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "從書庫移除選取的書藉（電字書檔案不會被刪除）"
 
-#: ../src/constants.vala:97
+#: src/constants.vala.in:97
 msgid "Select one or more books in library"
 msgstr "從書庫中選取一本或多本書"
 
-#: ../src/constants.vala:98
+#: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "查看目錄、書籤和搜尋結果"
 
-#: ../src/constants.vala:99
+#: src/constants.vala.in:99
 msgid "Reading preferences"
 msgstr "閱讀偏好"
 
-#: ../src/constants.vala:100
+#: src/constants.vala.in:100
 msgid "Click to bookmark this page"
 msgstr "點擊將此頁加入書籤"
 
-#: ../src/constants.vala:101
+#: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
 msgstr "點擊將此頁書籤移除"
 
-#: ../src/constants.vala:102
+#: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "增加字體大小 (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:103
+#: src/constants.vala.in:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "減少字體大小 (Ctrl + Shift + '-')"
 
-#: ../src/constants.vala:104
+#: src/constants.vala.in:104
 msgid "Increase line width"
 msgstr "增加行寬"
 
-#: ../src/constants.vala:105
+#: src/constants.vala.in:105
 msgid "Decrease line width"
 msgstr "減少行寬"
 
-#: ../src/constants.vala:106
+#: src/constants.vala.in:106
 msgid "Increase line spacing"
 msgstr "增加行距"
 
-#: ../src/constants.vala:107
+#: src/constants.vala.in:107
 msgid "Decrease line spacing"
 msgstr "減少行距"
 
-#: ../src/constants.vala:108
+#: src/constants.vala.in:108
 msgid "Align left"
 msgstr "向左對齊"
 
-#: ../src/constants.vala:109
+#: src/constants.vala.in:109
 msgid "Align right"
 msgstr "向右對齊"
 
-#: ../src/constants.vala:110
+#: src/constants.vala.in:110
 msgid "Update cover image"
 msgstr "更新封面圖像"
 
-#: ../src/constants.vala:111
+#: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
 msgstr "為此之配色檔套用主題"
 
-#: ../src/constants.vala:112 ../src/constants.vala:113
+#: src/constants.vala.in:112 src/constants.vala.in:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "進入全螢幕模式，Esc鍵退出"
 
-#: ../src/constants.vala:114
+#: src/constants.vala.in:114
 msgid "Add folder to scan for books"
 msgstr "添加文件夾以掃描書籍"
 
-#: ../src/constants.vala:115
+#: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
 msgstr "移除掃描書藉所顯示的文件夾"
 
-#: ../src/constants.vala:116
+#: src/constants.vala.in:116
 msgid "Add annotation to selected text"
 msgstr "註釋選取的文字"
 
-#: ../src/constants.vala:118 ../src/constants.vala:144
+#: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: ../src/constants.vala:119
+#: src/constants.vala.in:119
 msgid "Turn on Dark Mode"
 msgstr "套用黑色主題"
 
-#: ../src/constants.vala:120
+#: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
 msgstr "啟用快取（加快讀取書藉）"
 
-#: ../src/constants.vala:121
+#: src/constants.vala.in:121
 msgid "Always show library on startup"
 msgstr "將書庫設為開始畫面"
 
-#: ../src/constants.vala:122
+#: src/constants.vala.in:122
 msgid "Enable two page reading"
 msgstr "啟用雙頁閱讀"
 
-#: ../src/constants.vala:123
+#: src/constants.vala.in:123
 msgid "Select Font"
 msgstr "選取字體"
 
-#: ../src/constants.vala:124
+#: src/constants.vala.in:124
 msgid "Customize reading profile"
 msgstr "設定閱讀簡介"
 
-#: ../src/constants.vala:125
+#: src/constants.vala.in:125
 msgid "Text"
 msgstr "文字"
 
-#: ../src/constants.vala:126
+#: src/constants.vala.in:126
 msgid "Background"
 msgstr "背景"
 
-#: ../src/constants.vala:127
+#: src/constants.vala.in:127
 #, fuzzy
 msgid "Highlight"
 msgstr "向右對齊"
 
-#: ../src/constants.vala:128
+#: src/constants.vala.in:128
 msgid "Add folders to scan for books"
 msgstr "添加文件夾以掃描書藉"
 
-#: ../src/constants.vala:129
+#: src/constants.vala.in:129
 msgid "Profile"
 msgstr "簡介"
 
-#: ../src/constants.vala:130
+#: src/constants.vala.in:130
 msgid "Reset to default values"
 msgstr "重設所有設定"
 
-#: ../src/constants.vala:142
+#: src/constants.vala.in:142
 msgid "Unknown Book"
 msgstr "未知書藉"
 
-#: ../src/constants.vala:143
+#: src/constants.vala.in:143
 msgid "About"
 msgstr "關於"
 
-#: ../src/utils.vala:520 ../src/utils.vala:594
-msgid "Cancel"
-msgstr "取消"
+#: src/dialog.vala:63
+msgid "Select Image"
+msgstr "選擇圖片"
 
-#: ../src/utils.vala:522 ../src/utils.vala:595
-msgid "Open"
-msgstr "開啟"
+#: src/dialog.vala:545
+msgid "Select folder"
+msgstr "選擇文件夾"
 
-#: ../src/utils.vala:524
-msgid "Save"
-msgstr "保存"
+#: src/window.vala:293 src/window.vala:538
+msgid "Select eBook"
+msgstr "選擇電子書"
 
-#: ../src/mobiReader.vala:329
+#: src/library.vala:610
+msgid "Adding "
+msgstr "添加中 "
+
+#: src/mobiReader.vala:329
 msgid "Book"
 msgstr "書藉"
+
+#: data/com.github.babluboy.bookworm.desktop.in:3
+#: data/com.github.babluboy.bookworm.appdata.xml.in:8
+#, fuzzy
+msgid "Bookworm"
+msgstr "書藉"
+
+#: data/com.github.babluboy.bookworm.desktop.in:5
+msgid "Read and manage eBooks"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:9
+msgid "com.github.babluboy.bookworm"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:13
+msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:9
+#, fuzzy
+msgid "A focused eBook reader"
+msgstr "一個電子書閱讀器"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:11
+msgid ""
+"Read the books you love without having to worry about the different format "
+"complexities like epub, pdf, mobi, cbr, etc."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:12
+msgid ""
+"Manage your library by tagging and updating metadata on books, to quickly "
+"find books using metadata searching and tag based filtering."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:13
+msgid ""
+"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"with support for more formats to follow soon."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:17
+msgid "Bookworm Library View"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:21
+#, fuzzy
+msgid "Bookworm Reading View"
+msgstr "執行Bookworm的資訊模式"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+msgid "Siddhartha Das"
+msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-04 16:54+0100\n"
+"POT-Creation-Date: 2018-10-21 18:05+0100\n"
 "PO-Revision-Date: 2018-07-21 19:04+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
@@ -13,79 +13,75 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.1-dev\n"
 
-#: ../src/dialog.vala:63
-msgid "Select Image"
-msgstr "Ischerta un'immàgine"
-
-#: ../src/dialog.vala:545
-msgid "Select folder"
-msgstr "Ischerta una cartella"
-
-#: ../src/library.vala:610
-msgid "Adding "
-msgstr "Annanghende "
-
-#: ../src/window.vala:293 ../src/window.vala:538
-msgid "Select eBook"
-msgstr "Ischerta unu e-libru"
-
-#: ../src/bookworm.vala:105
+#: src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Ammustra su nùmeru de versione"
 
-#: ../src/bookworm.vala:106
+#: src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Allughe Bookworm in modalidade de depuratzione (debug)"
 
-#: ../src/bookworm.vala:107
+#: src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
 msgstr "Allughe Bookworm in modalidade \"info\""
 
-#: ../src/bookworm.vala:108
+#: src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr "Annanghe automaticamente libros noos dae sas cartellas abbistadas"
 
-#: ../src/constants.vala:29
+#: src/utils.vala:520 src/utils.vala:594
+msgid "Cancel"
+msgstr "Annulla"
+
+#: src/utils.vala:522 src/utils.vala:595
+msgid "Open"
+msgstr "Aberi"
+
+#: src/utils.vala:524
+msgid "Save"
+msgstr "Sarva"
+
+#: src/constants.vala.in:29
 msgid "An eBook Reader"
 msgstr "Unu leghidore de libros eletrònicos"
 
-#: ../src/constants.vala:31
+#: src/constants.vala.in:31
 msgid "Weblate Translators"
 msgstr "Tradutores de Weblate"
 
-#: ../src/constants.vala:37
+#: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
 msgstr "Situ web | Tradutzione | Errores"
 
-#: ../src/constants.vala:39
+#: src/constants.vala.in:39
 msgid "Not Available"
 msgstr "Non disponìbile"
 
-#: ../src/constants.vala:40
+#: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
 msgstr "leghidore de libros eletrònicos"
 
-#: ../src/constants.vala:41
+#: src/constants.vala.in:41
 msgid "Search this book…"
 msgstr "Chirca in custu libru…"
 
-#: ../src/constants.vala:42
+#: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
 msgstr "Chirca pro tìtulu, autore e etichetas"
 
-#: ../src/constants.vala:43
+#: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
 msgstr "Paret chi Bookworm non tengiat libros."
 
-#: ../src/constants.vala:44
+#: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
 msgstr "Ammània sa libreria tua agiunghende libros eletrònicos"
 
-#: ../src/constants.vala:45
+#: src/constants.vala.in:45
 msgid "Select an eBook to read"
 msgstr "Ischerta unu libru de lèghere"
 
-#: ../src/constants.vala:46
+#: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
@@ -93,29 +89,29 @@ msgstr ""
 "B'est istadu unu problema cun s'estratzione de cuntenutu de su libru. "
 "Verìfica chi bi siet unu documentu vàlidu in sa positzione: "
 
-#: ../src/constants.vala:47
+#: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
 "Casta de MIME non vàlida agatada. Verìfica su formatu pro custu libru: "
 
-#: ../src/constants.vala:48
+#: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Cuntenutu non vàlidu agatadu. Verìfica chi bi siet unu documentu-libru "
 "eletrònicu vàlidu in sa positzione: "
 
-#: ../src/constants.vala:49
+#: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "Impossìbile analizare su libru. Verìfica sa valididade de su documentu-libru "
 "eletrònicu in sa positzione: "
 
-#: ../src/constants.vala:50
+#: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
 msgstr ""
 "Bookworm non suportat su formatu de su documentu agatadu in sa positzione: "
 
-#: ../src/constants.vala:51
+#: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
@@ -123,35 +119,35 @@ msgstr ""
 "Impossìbile agatare su cuntenutu rechestu. Pro praghere boga e annanghe sos "
 "libros in sa positzione: "
 
-#: ../src/constants.vala:52
+#: src/constants.vala.in:52
 msgid "Library"
 msgstr "Libreria"
 
-#: ../src/constants.vala:53
+#: src/constants.vala.in:53
 msgid "Resume"
 msgstr "Sighi"
 
-#: ../src/constants.vala:54
+#: src/constants.vala.in:54
 msgid "Contents"
 msgstr "Cuntenutu"
 
-#: ../src/constants.vala:55
+#: src/constants.vala.in:55
 msgid "Content #"
 msgstr "Cuntenutu #"
 
-#: ../src/constants.vala:56
+#: src/constants.vala.in:56
 msgid "Bookmarks"
 msgstr "Sinnalibros"
 
-#: ../src/constants.vala:57
+#: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
 msgstr "Pone unu sinnalibru in #NNN pro sa setzione PPP"
 
-#: ../src/constants.vala:58
+#: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
 msgstr "Incarca in unu ligàmene pro andare a sa setzione sinnalada"
 
-#: ../src/constants.vala:59
+#: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
@@ -159,35 +155,35 @@ msgstr ""
 "Perunu sinnalibru impostadu in BBB, incarca in s'icona de su sòrighe de "
 "biblioteca in sa barra in artu pro pònnere unu sinnalibru in sa pàgina"
 
-#: ../src/constants.vala:60
+#: src/constants.vala.in:60
 msgid "Word Meaning"
 msgstr "Significadu de sa paràula"
 
-#: ../src/constants.vala:61
+#: src/constants.vala.in:61
 msgid "Search Results"
 msgstr "Risultados de sa chirca"
 
-#: ../src/constants.vala:62
+#: src/constants.vala.in:62
 msgid "Annotations"
 msgstr "Notas"
 
-#: ../src/constants.vala:63
+#: src/constants.vala.in:63
 msgid "Annotation Tags"
 msgstr "Etichetas de sas notas"
 
-#: ../src/constants.vala:64
+#: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
 msgstr "Eichetas separadas dae vìrgulas pro custa nota"
 
-#: ../src/constants.vala:65
+#: src/constants.vala.in:65
 msgid "Edit annotation for:"
 msgstr "Modìfica nota pro:"
 
-#: ../src/constants.vala:66
+#: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
 msgstr "Incarca in unu ligàmene pro andare a sa setzione annotada"
 
-#: ../src/constants.vala:67
+#: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -195,272 +191,330 @@ msgstr ""
 "Peruna nota impostada in BBB, inacrca cun su butone destru in una pàgina de "
 "unu libru e issèbera \"notas\" dae su menù de cuntestu pro annànghere notas"
 
-#: ../src/constants.vala:68
+#: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
 msgstr "Chirchende '$$$' in &&&:"
 
-#: ../src/constants.vala:69
+#: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Agatados custos risultados pro '$$$' in &&&:"
 
-#: ../src/constants.vala:70
+#: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "Perunu risultadu agatadu pro '$$$' in &&&"
 
-#: ../src/constants.vala:71
+#: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
 "Issèbera una paràula in su libru e faghe un'incarcu destru pro abbaidare su "
 "significadu suo"
 
-#: ../src/constants.vala:72
+#: src/constants.vala.in:72
 msgid "Edit Info for"
 msgstr "Acontza sas informatziones pro"
 
-#: ../src/constants.vala:73 ../src/constants.vala:77
+#: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
 msgstr "Agiorna s'immàgine de cobertedda"
 
-#: ../src/constants.vala:74
+#: src/constants.vala.in:74
 msgid "Update Title"
 msgstr "Agiorna su tìtulu"
 
-#: ../src/constants.vala:75
+#: src/constants.vala.in:75
 msgid "Update Tags"
 msgstr "Agiorna sas etichetas"
 
-#: ../src/constants.vala:76
+#: src/constants.vala.in:76
 msgid "Update Author"
 msgstr "Agiorna s'autore"
 
-#: ../src/constants.vala:78
+#: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
 msgstr "Intra in sa vista a ischermu intreu (F11)"
 
-#: ../src/constants.vala:79
+#: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
 msgstr "Essi dae sa vista a ischermu intreu (Esc)"
 
-#: ../src/constants.vala:80
+#: src/constants.vala.in:80
 msgid "Check Word Meaning"
 msgstr "Verìfica su significadu de sa paràula"
 
-#: ../src/constants.vala:81
+#: src/constants.vala.in:81
 msgid "Annotate selected text"
 msgstr "Annota su testu ischertadu"
 
-#: ../src/constants.vala:82
+#: src/constants.vala.in:82
 msgid "Books"
 msgstr "Libros"
 
-#: ../src/constants.vala:83
+#: src/constants.vala.in:83
 msgid "Images"
 msgstr "Immàgines"
 
-#: ../src/constants.vala:84
+#: src/constants.vala.in:84
 msgid "All Files"
 msgstr "Totu sos documentos"
 
-#: ../src/constants.vala:85
+#: src/constants.vala.in:85
 msgid "Title"
 msgstr "Tìtulu"
 
-#: ../src/constants.vala:86
+#: src/constants.vala.in:86
 msgid "Author"
 msgstr "Autore"
 
-#: ../src/constants.vala:87
+#: src/constants.vala.in:87
 msgid "Last Opened"
 msgstr "Ùrtima abertura"
 
-#: ../src/constants.vala:88
+#: src/constants.vala.in:88
 msgid "Rating"
 msgstr "Votu"
 
-#: ../src/constants.vala:89
+#: src/constants.vala.in:89
 msgid "Tags"
 msgstr "Etichetas"
 
-#: ../src/constants.vala:90
+#: src/constants.vala.in:90
 msgid "Today"
 msgstr "Oe"
 
-#: ../src/constants.vala:91
+#: src/constants.vala.in:91
 msgid "Yesterday"
 msgstr "Eris"
 
-#: ../src/constants.vala:92
+#: src/constants.vala.in:92
 msgid "Days"
 msgstr "Dies"
 
-#: ../src/constants.vala:93
+#: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr ""
 "S'iscoberta de libros at a incumintzare cando Bookworm at a èssere serradu"
 
-#: ../src/constants.vala:95
+#: src/constants.vala.in:95
 msgid "Add books to library"
 msgstr "Agiunghe libros a sa libreria"
 
-#: ../src/constants.vala:96
+#: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Boga sos libros ischertados dae sa libreria (su documentu de su libru "
 "eletrònicu no at a èssere iscantzelladu)"
 
-#: ../src/constants.vala:97
+#: src/constants.vala.in:97
 msgid "Select one or more books in library"
 msgstr "Ischerta unu o prus libros in sa libreria"
 
-#: ../src/constants.vala:98
+#: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr ""
 "Abbista sa tàula de sos cuntenutos, sos sinnalibros e sos risultados de "
 "chirca"
 
-#: ../src/constants.vala:99
+#: src/constants.vala.in:99
 msgid "Reading preferences"
 msgstr "Preferèntzias de leghidura"
 
-#: ../src/constants.vala:100
+#: src/constants.vala.in:100
 msgid "Click to bookmark this page"
 msgstr "Incarca pro pònnere unu sinnalibru in custa pàgina"
 
-#: ../src/constants.vala:101
+#: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
 msgstr "Incarca pro bogare custu sinnalibru"
 
-#: ../src/constants.vala:102
+#: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Ismànnia sa mannària de sos caràteres (Ctrl + Shift + '+')"
 
-#: ../src/constants.vala:103
+#: src/constants.vala.in:103
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Mìnima sa mannària de sos caràteres (Ctrl + '-')"
 
-#: ../src/constants.vala:104
+#: src/constants.vala.in:104
 msgid "Increase line width"
 msgstr "Ismànnia sa largària de sa lìnia"
 
-#: ../src/constants.vala:105
+#: src/constants.vala.in:105
 msgid "Decrease line width"
 msgstr "Mìnima sa largària de sa lìnia"
 
-#: ../src/constants.vala:106
+#: src/constants.vala.in:106
 msgid "Increase line spacing"
 msgstr "Ismànnia s'ispàtziu intre sas lìnias"
 
-#: ../src/constants.vala:107
+#: src/constants.vala.in:107
 msgid "Decrease line spacing"
 msgstr "Mìnima s'ispàtziu intre sas lìnias"
 
-#: ../src/constants.vala:108
+#: src/constants.vala.in:108
 msgid "Align left"
 msgstr "Allìnia a manca"
 
-#: ../src/constants.vala:109
+#: src/constants.vala.in:109
 msgid "Align right"
 msgstr "Allìnia a destra"
 
-#: ../src/constants.vala:110
+#: src/constants.vala.in:110
 msgid "Update cover image"
 msgstr "Agiorna s'immàgine de cobertedda"
 
-#: ../src/constants.vala:111
+#: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
 msgstr "Àplica su tema pro custu profilu de colores"
 
-#: ../src/constants.vala:112 ../src/constants.vala:113
+#: src/constants.vala.in:112 src/constants.vala.in:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Intra in sa vista a ischermu intreu e incarca sa tecla Esc pro essire"
 
-#: ../src/constants.vala:114
+#: src/constants.vala.in:114
 msgid "Add folder to scan for books"
 msgstr "Annanghe cartella a s'iscansidura pro agatare libros"
 
-#: ../src/constants.vala:115
+#: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
 msgstr "Boga sa cartella ammustradas dae s'iscansidura pro sos libros"
 
-#: ../src/constants.vala:116
+#: src/constants.vala.in:116
 msgid "Add annotation to selected text"
 msgstr "Annanghe una nota a su testu ischertadu"
 
-#: ../src/constants.vala:118 ../src/constants.vala:144
+#: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
 msgstr "Preferèntzias"
 
-#: ../src/constants.vala:119
+#: src/constants.vala.in:119
 msgid "Turn on Dark Mode"
 msgstr "Allughe sa modalidade noturna"
 
-#: ../src/constants.vala:120
+#: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
 msgstr "Abìlita sa cache (aberit sos libros prus in presse)"
 
-#: ../src/constants.vala:121
+#: src/constants.vala.in:121
 msgid "Always show library on startup"
 msgstr "Ammustra semper sa libreria in s'abertura"
 
-#: ../src/constants.vala:122
+#: src/constants.vala.in:122
 msgid "Enable two page reading"
 msgstr "Abìlita sa leghidura cun duas pàginas"
 
-#: ../src/constants.vala:123
+#: src/constants.vala.in:123
 msgid "Select Font"
 msgstr "Imposta su caràtere"
 
-#: ../src/constants.vala:124
+#: src/constants.vala.in:124
 msgid "Customize reading profile"
 msgstr "Personaliza su profilu de leghidura"
 
-#: ../src/constants.vala:125
+#: src/constants.vala.in:125
 msgid "Text"
 msgstr "Testu"
 
-#: ../src/constants.vala:126
+#: src/constants.vala.in:126
 msgid "Background"
 msgstr "Isfundu"
 
-#: ../src/constants.vala:127
+#: src/constants.vala.in:127
 msgid "Highlight"
 msgstr "Evidèntzia"
 
-#: ../src/constants.vala:128
+#: src/constants.vala.in:128
 msgid "Add folders to scan for books"
 msgstr "Annanghe cartellas de iscansire pro chircare libros"
 
-#: ../src/constants.vala:129
+#: src/constants.vala.in:129
 msgid "Profile"
 msgstr "Profilu"
 
-#: ../src/constants.vala:130
+#: src/constants.vala.in:130
 msgid "Reset to default values"
 msgstr "Torra a sos valores predefinidos"
 
-#: ../src/constants.vala:142
+#: src/constants.vala.in:142
 msgid "Unknown Book"
 msgstr "Libru disconnotu"
 
-#: ../src/constants.vala:143
+#: src/constants.vala.in:143
 msgid "About"
 msgstr "A pitzu de"
 
-#: ../src/utils.vala:520 ../src/utils.vala:594
-msgid "Cancel"
-msgstr "Annulla"
+#: src/dialog.vala:63
+msgid "Select Image"
+msgstr "Ischerta un'immàgine"
 
-#: ../src/utils.vala:522 ../src/utils.vala:595
-msgid "Open"
-msgstr "Aberi"
+#: src/dialog.vala:545
+msgid "Select folder"
+msgstr "Ischerta una cartella"
 
-#: ../src/utils.vala:524
-msgid "Save"
-msgstr "Sarva"
+#: src/window.vala:293 src/window.vala:538
+msgid "Select eBook"
+msgstr "Ischerta unu e-libru"
 
-#: ../src/mobiReader.vala:329
+#: src/library.vala:610
+msgid "Adding "
+msgstr "Annanghende "
+
+#: src/mobiReader.vala:329
 msgid "Book"
 msgstr "Libru"
+
+#: data/com.github.babluboy.bookworm.desktop.in:3
+#: data/com.github.babluboy.bookworm.appdata.xml.in:8
+#, fuzzy
+msgid "Bookworm"
+msgstr "Libru"
+
+#: data/com.github.babluboy.bookworm.desktop.in:5
+msgid "Read and manage eBooks"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:9
+msgid "com.github.babluboy.bookworm"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:13
+msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:9
+#, fuzzy
+msgid "A focused eBook reader"
+msgstr "Unu leghidore de libros eletrònicos"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:11
+msgid ""
+"Read the books you love without having to worry about the different format "
+"complexities like epub, pdf, mobi, cbr, etc."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:12
+msgid ""
+"Manage your library by tagging and updating metadata on books, to quickly "
+"find books using metadata searching and tag based filtering."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:13
+msgid ""
+"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"with support for more formats to follow soon."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:17
+msgid "Bookworm Library View"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:21
+#, fuzzy
+msgid "Bookworm Reading View"
+msgstr "Allughe Bookworm in modalidade \"info\""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+msgid "Siddhartha Das"
+msgstr ""
 
 #~ msgid "Website"
 #~ msgstr "Situ web"

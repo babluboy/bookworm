@@ -2,11 +2,12 @@ Source: com.github.babluboy.bookworm
 Section: text
 Priority: optional
 Maintainer: Siddhartha Das <bablu.boy@gmail.com>
-Build-Depends: cmake (>= 2.8),
-               debhelper (>= 9),
+Build-Depends: debhelper (>= 10.5.1),
+               valac,
+               meson,
+               ninja
                libgee-0.8-dev,
                libgtk-3-dev (>= 3.14),
-               valac (>= 0.26),
                libgranite-dev (>= 0.3.0),
                libsqlite3-dev,
                libxml2,
@@ -15,7 +16,7 @@ Build-Depends: cmake (>= 2.8),
                libwebkit2gtk-4.0-dev,
                libpoppler-glib-dev
 
-Standards-Version: 3.9.6
+Standards-Version: 4.1.1
 Package: com.github.babluboy.bookworm
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, unzip, poppler-utils, unar, html2text

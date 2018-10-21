@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-04 16:24+0100\n"
+"POT-Creation-Date: 2018-10-21 18:05+0100\n"
 "PO-Revision-Date: 2017-08-03 11:43+0000\n"
 "Last-Translator: tony <tonyzet988@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -13,84 +13,79 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.16-dev\n"
 
-#: ../src/dialog.vala:63
-msgid "Select Image"
-msgstr "Επιλογή Εικόνας"
-
-#: ../src/dialog.vala:545
-#, fuzzy
-msgid "Select folder"
-msgstr "Επιλογή Εικόνας"
-
-#: ../src/library.vala:610
-msgid "Adding "
-msgstr ""
-
-#: ../src/window.vala:293 ../src/window.vala:538
-msgid "Select eBook"
-msgstr "Επιλογή Βιβλίου"
-
-#: ../src/bookworm.vala:105
+#: src/bookworm.vala:105
 msgid "Display version number"
 msgstr "Προβολή αριθμού έκδοσης"
 
-#: ../src/bookworm.vala:106
+#: src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
 msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
 
-#: ../src/bookworm.vala:107
+#: src/bookworm.vala:107
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
 
-#: ../src/bookworm.vala:108
+#: src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
-#: ../src/constants.vala:29
+#: src/utils.vala:520 src/utils.vala:594
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: src/utils.vala:522 src/utils.vala:595
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: src/utils.vala:524
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: src/constants.vala.in:29
 msgid "An eBook Reader"
 msgstr "Ένας αναγνώστης ηλεκτρονικών βιβλίων"
 
-#: ../src/constants.vala:31
+#: src/constants.vala.in:31
 #, fuzzy
 msgid "Weblate Translators"
 msgstr "Μεταφραστές από το Launchpad"
 
-#: ../src/constants.vala:37
+#: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
 msgstr ""
 
-#: ../src/constants.vala:39
+#: src/constants.vala.in:39
 msgid "Not Available"
 msgstr "Μη διαθέσιμο"
 
-#: ../src/constants.vala:40
+#: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
 msgstr "Αναγνώστης βιβλίων"
 
-#: ../src/constants.vala:41
+#: src/constants.vala.in:41
 #, fuzzy
 msgid "Search this book…"
 msgstr "Αναζήτηση του βιβλίου..."
 
-#: ../src/constants.vala:42
+#: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
 msgstr "Αναζήτηση  βάσει Τίτλου, Συγγραφέα και Ετικετών"
 
-#: ../src/constants.vala:43
+#: src/constants.vala.in:43
 #, fuzzy
 msgid "Looks like Bookworm has no books."
 msgstr "Φαίνεται ότι το Bookworm δεν έχει κανένα βιβλίο!"
 
-#: ../src/constants.vala:44
+#: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
 msgstr "Εμπλουτίστε τη βιβλιοθήκη σας προσθέτοντας Βιβλία"
 
-#: ../src/constants.vala:45
+#: src/constants.vala.in:45
 msgid "Select an eBook to read"
 msgstr "Επιλέξτε ένα βιβλίο για ανάγνωση"
 
-#: ../src/constants.vala:46
+#: src/constants.vala.in:46
 #, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
@@ -99,33 +94,33 @@ msgstr ""
 "Παρουσιάστηκε πρόβλημα στην εξαγωγή των περιεχομένων του βιβλίου. Ελέγξτε αν "
 "το βιβλίο είναι διαθέσιμο στην τοποθεσία: "
 
-#: ../src/constants.vala:47
+#: src/constants.vala.in:47
 #, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
 "Εντοπίστηκε μη έγκυρος τύπος Mime. Ελέγξτε το μορφότυπο του βιβλίου στην "
 "τοποθεσία: "
 
-#: ../src/constants.vala:48
+#: src/constants.vala.in:48
 #, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Εντοπίστηκε μη έγκυρο περιεχόμενο. Εξασφαλίστε την ύπαρξη έγκυρου αρχείου "
 "βιβλίου στην τοποθεσία: "
 
-#: ../src/constants.vala:49
+#: src/constants.vala.in:49
 #, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "Εντοπίστηκε μη έγκυρο περιεχόμενο. Εξασφαλίστε την ύπαρξη έγκυρου αρχείου "
 "βιβλίου στην τοποθεσία: "
 
-#: ../src/constants.vala:50
+#: src/constants.vala.in:50
 #, fuzzy
 msgid "Bookworm does not support the format of the file found here: "
 msgstr "Το Bookworm δεν υποστηρίζει το μορφότυπο του αρχείου στην τοποθεσία: "
 
-#: ../src/constants.vala:51
+#: src/constants.vala.in:51
 #, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
@@ -134,35 +129,35 @@ msgstr ""
 "Εντοπίστηκε μη έγκυρο περιεχόμενο. Εξασφαλίστε την ύπαρξη έγκυρου αρχείου "
 "βιβλίου στην τοποθεσία: "
 
-#: ../src/constants.vala:52
+#: src/constants.vala.in:52
 msgid "Library"
 msgstr "Βιβλιοθήκη"
 
-#: ../src/constants.vala:53
+#: src/constants.vala.in:53
 msgid "Resume"
 msgstr "Συνέχεια"
 
-#: ../src/constants.vala:54
+#: src/constants.vala.in:54
 msgid "Contents"
 msgstr "Περιεχόμενα"
 
-#: ../src/constants.vala:55
+#: src/constants.vala.in:55
 msgid "Content #"
 msgstr "Περιεχόμενο #"
 
-#: ../src/constants.vala:56
+#: src/constants.vala.in:56
 msgid "Bookmarks"
 msgstr "Σελιδοδείκτες"
 
-#: ../src/constants.vala:57
+#: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
 msgstr "Σελιδοδείκτης #NNN για την Ενότητα PPP"
 
-#: ../src/constants.vala:58
+#: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
 msgstr "Κάντε κλικ σε ένα σύνδεσμο για να μεταφερθείτε στη σημειωμένη ενότητα"
 
-#: ../src/constants.vala:59
+#: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
@@ -170,316 +165,375 @@ msgstr ""
 "Κανένας σελιδοδείκτης στο BBB, κάντε κλικ στο εικονίδιο του bookworm στην "
 "πάνω μπάρα για να προσθέσετε σελιδοδείκτη στη σελίδα"
 
-#: ../src/constants.vala:60
+#: src/constants.vala.in:60
 #, fuzzy
 msgid "Word Meaning"
 msgstr "Έλεγχος Σημασίας Λέξης"
 
-#: ../src/constants.vala:61
+#: src/constants.vala.in:61
 msgid "Search Results"
 msgstr "Αποτελέσματα αναζήτησης"
 
-#: ../src/constants.vala:62
+#: src/constants.vala.in:62
 msgid "Annotations"
 msgstr ""
 
-#: ../src/constants.vala:63
+#: src/constants.vala.in:63
 msgid "Annotation Tags"
 msgstr ""
 
-#: ../src/constants.vala:64
+#: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
 msgstr ""
 
-#: ../src/constants.vala:65
+#: src/constants.vala.in:65
 #, fuzzy
 msgid "Edit annotation for:"
 msgstr "Επεξεργασία πληροφοριών για"
 
-#: ../src/constants.vala:66
+#: src/constants.vala.in:66
 #, fuzzy
 msgid "Click on a link to jump to an annotated section"
 msgstr "Κάντε κλικ σε ένα σύνδεσμο για να μεταφερθείτε στη σημειωμένη ενότητα"
 
-#: ../src/constants.vala:67
+#: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
 
-#: ../src/constants.vala:68
+#: src/constants.vala.in:68
 #, fuzzy
 msgid "Searching for '$$$' in &&&:"
 msgstr "Κανένα αποτέλεσμα για '$$$' στο &&&"
 
-#: ../src/constants.vala:69
+#: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Βρέθηκαν τα ακόλουθα αποτελέσματα για '$$$' στο &&&:"
 
-#: ../src/constants.vala:70
+#: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
 msgstr "Κανένα αποτέλεσμα για '$$$' στο &&&"
 
-#: ../src/constants.vala:71
+#: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
 
-#: ../src/constants.vala:72
+#: src/constants.vala.in:72
 msgid "Edit Info for"
 msgstr "Επεξεργασία πληροφοριών για"
 
-#: ../src/constants.vala:73 ../src/constants.vala:77
+#: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
 msgstr "Ενημέρωση Eξώφυλλου"
 
-#: ../src/constants.vala:74
+#: src/constants.vala.in:74
 msgid "Update Title"
 msgstr "Ενημέρωση Τίτλου"
 
-#: ../src/constants.vala:75
+#: src/constants.vala.in:75
 msgid "Update Tags"
 msgstr "Ενημέρωση Ετικετών"
 
-#: ../src/constants.vala:76
+#: src/constants.vala.in:76
 msgid "Update Author"
 msgstr "Ενημέρωση Συγγραφέα"
 
-#: ../src/constants.vala:78
+#: src/constants.vala.in:78
 #, fuzzy
 msgid "Enter full screen view (F11)"
 msgstr "Είσοδος σε προβολή πλήρους οθόνης"
 
-#: ../src/constants.vala:79
+#: src/constants.vala.in:79
 #, fuzzy
 msgid "Exit full screen view (Esc)"
 msgstr "Έξοδος από προβολή πλήρους οθόνης"
 
-#: ../src/constants.vala:80
+#: src/constants.vala.in:80
 msgid "Check Word Meaning"
 msgstr "Έλεγχος Σημασίας Λέξης"
 
-#: ../src/constants.vala:81
+#: src/constants.vala.in:81
 msgid "Annotate selected text"
 msgstr ""
 
-#: ../src/constants.vala:82
+#: src/constants.vala.in:82
 msgid "Books"
 msgstr "Βιβλία"
 
-#: ../src/constants.vala:83
+#: src/constants.vala.in:83
 msgid "Images"
 msgstr "Εικόνες"
 
-#: ../src/constants.vala:84
+#: src/constants.vala.in:84
 msgid "All Files"
 msgstr "Όλα τα αρχεία"
 
-#: ../src/constants.vala:85
+#: src/constants.vala.in:85
 msgid "Title"
 msgstr ""
 
-#: ../src/constants.vala:86
+#: src/constants.vala.in:86
 #, fuzzy
 msgid "Author"
 msgstr "Ενημέρωση Συγγραφέα"
 
-#: ../src/constants.vala:87
+#: src/constants.vala.in:87
 msgid "Last Opened"
 msgstr ""
 
-#: ../src/constants.vala:88
+#: src/constants.vala.in:88
 msgid "Rating"
 msgstr ""
 
-#: ../src/constants.vala:89
+#: src/constants.vala.in:89
 msgid "Tags"
 msgstr ""
 
-#: ../src/constants.vala:90
+#: src/constants.vala.in:90
 msgid "Today"
 msgstr ""
 
-#: ../src/constants.vala:91
+#: src/constants.vala.in:91
 msgid "Yesterday"
 msgstr ""
 
-#: ../src/constants.vala:92
+#: src/constants.vala.in:92
 msgid "Days"
 msgstr ""
 
-#: ../src/constants.vala:93
+#: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr ""
 
-#: ../src/constants.vala:95
+#: src/constants.vala.in:95
 msgid "Add books to library"
 msgstr "Προσθήκη βιβλίων στη βιβλιοθήκη"
 
-#: ../src/constants.vala:96
+#: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Αφαίρεση επιλεγμένων βιβλίων από τη βιβλιοθήκη (δεν θα διαγραφεί κανένα "
 "αρχείο βιβλίου)"
 
-#: ../src/constants.vala:97
+#: src/constants.vala.in:97
 msgid "Select one or more books in library"
 msgstr "Επιλογή ενός ή περισσοτέρων βιβλίων από τη βιβλιοθήκη"
 
-#: ../src/constants.vala:98
+#: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr ""
 "Προβολή Πίνακα Περιεχομένων, Σελιδοδεικτών και Αποτελεσμάτων Αναζήτησης"
 
-#: ../src/constants.vala:99
+#: src/constants.vala.in:99
 #, fuzzy
 msgid "Reading preferences"
 msgstr "Ορισμός προτιμήσεων ανάγνωσης"
 
-#: ../src/constants.vala:100
+#: src/constants.vala.in:100
 msgid "Click to bookmark this page"
 msgstr "Κάντε κλικ για να προσθέσετε σελιδοδείκτη στη σελίδα"
 
-#: ../src/constants.vala:101
+#: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
 msgstr "Κάντε κλικ για να αφαιρέσετε αυτό το σελιδοδείκτη"
 
-#: ../src/constants.vala:102
+#: src/constants.vala.in:102
 #, fuzzy
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Αύξηση μεγέθους γραμματοσειράς"
 
-#: ../src/constants.vala:103
+#: src/constants.vala.in:103
 #, fuzzy
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Μείωση μεγέθους γραμματοσειράς"
 
-#: ../src/constants.vala:104
+#: src/constants.vala.in:104
 msgid "Increase line width"
 msgstr "Αύξηση πλάτους γραμμής"
 
-#: ../src/constants.vala:105
+#: src/constants.vala.in:105
 msgid "Decrease line width"
 msgstr "Μείωση πλάτους γραμμής"
 
-#: ../src/constants.vala:106
+#: src/constants.vala.in:106
 msgid "Increase line spacing"
 msgstr "Αύξηση της απόστασης μεταξύ γραμμών"
 
-#: ../src/constants.vala:107
+#: src/constants.vala.in:107
 msgid "Decrease line spacing"
 msgstr "Μείωση της απόστασης μεταξύ γραμμών"
 
-#: ../src/constants.vala:108
+#: src/constants.vala.in:108
 msgid "Align left"
 msgstr ""
 
-#: ../src/constants.vala:109
+#: src/constants.vala.in:109
 msgid "Align right"
 msgstr ""
 
-#: ../src/constants.vala:110
+#: src/constants.vala.in:110
 msgid "Update cover image"
 msgstr "Ενημέρωση εξώφυλλου"
 
-#: ../src/constants.vala:111
+#: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
 msgstr ""
 
-#: ../src/constants.vala:112 ../src/constants.vala:113
+#: src/constants.vala.in:112 src/constants.vala.in:113
 #, fuzzy
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Μπείτε σε προβολή πλήρους οθόνης και το πλήκτρο Esc για έξοδο"
 
-#: ../src/constants.vala:114
+#: src/constants.vala.in:114
 msgid "Add folder to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:115
+#: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: ../src/constants.vala:116
+#: src/constants.vala.in:116
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: ../src/constants.vala:118 ../src/constants.vala:144
+#: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: ../src/constants.vala:119
+#: src/constants.vala.in:119
 #, fuzzy
 msgid "Turn on Dark Mode"
 msgstr "Ενεργοποίηση Νυκτερινής Λειτουργίας"
 
-#: ../src/constants.vala:120
+#: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
 msgstr "Ενεργοποίηση κρυφής μνήμης (ταχύτερο άνοιγμα βιβλίων)"
 
-#: ../src/constants.vala:121
+#: src/constants.vala.in:121
 msgid "Always show library on startup"
 msgstr ""
 
-#: ../src/constants.vala:122
+#: src/constants.vala.in:122
 msgid "Enable two page reading"
 msgstr ""
 
-#: ../src/constants.vala:123
+#: src/constants.vala.in:123
 #, fuzzy
 msgid "Select Font"
 msgstr "Επιλογή Βιβλίου"
 
-#: ../src/constants.vala:124
+#: src/constants.vala.in:124
 msgid "Customize reading profile"
 msgstr ""
 
-#: ../src/constants.vala:125
+#: src/constants.vala.in:125
 msgid "Text"
 msgstr ""
 
-#: ../src/constants.vala:126
+#: src/constants.vala.in:126
 msgid "Background"
 msgstr ""
 
-#: ../src/constants.vala:127
+#: src/constants.vala.in:127
 msgid "Highlight"
 msgstr ""
 
-#: ../src/constants.vala:128
+#: src/constants.vala.in:128
 msgid "Add folders to scan for books"
 msgstr ""
 
-#: ../src/constants.vala:129
+#: src/constants.vala.in:129
 msgid "Profile"
 msgstr ""
 
-#: ../src/constants.vala:130
+#: src/constants.vala.in:130
 msgid "Reset to default values"
 msgstr ""
 
-#: ../src/constants.vala:142
+#: src/constants.vala.in:142
 msgid "Unknown Book"
 msgstr "Άγνωστο Βιβλίο"
 
-#: ../src/constants.vala:143
+#: src/constants.vala.in:143
 msgid "About"
 msgstr "Περί"
 
-#: ../src/utils.vala:520 ../src/utils.vala:594
-msgid "Cancel"
-msgstr "Ακύρωση"
+#: src/dialog.vala:63
+msgid "Select Image"
+msgstr "Επιλογή Εικόνας"
 
-#: ../src/utils.vala:522 ../src/utils.vala:595
-msgid "Open"
-msgstr "Άνοιγμα"
+#: src/dialog.vala:545
+#, fuzzy
+msgid "Select folder"
+msgstr "Επιλογή Εικόνας"
 
-#: ../src/utils.vala:524
-msgid "Save"
-msgstr "Αποθήκευση"
+#: src/window.vala:293 src/window.vala:538
+msgid "Select eBook"
+msgstr "Επιλογή Βιβλίου"
 
-#: ../src/mobiReader.vala:329
+#: src/library.vala:610
+msgid "Adding "
+msgstr ""
+
+#: src/mobiReader.vala:329
 #, fuzzy
 msgid "Book"
 msgstr "Βιβλία"
+
+#: data/com.github.babluboy.bookworm.desktop.in:3
+#: data/com.github.babluboy.bookworm.appdata.xml.in:8
+#, fuzzy
+msgid "Bookworm"
+msgstr "Βιβλία"
+
+#: data/com.github.babluboy.bookworm.desktop.in:5
+msgid "Read and manage eBooks"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:9
+msgid "com.github.babluboy.bookworm"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.desktop.in:13
+msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:9
+#, fuzzy
+msgid "A focused eBook reader"
+msgstr "Ένας αναγνώστης ηλεκτρονικών βιβλίων"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:11
+msgid ""
+"Read the books you love without having to worry about the different format "
+"complexities like epub, pdf, mobi, cbr, etc."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:12
+msgid ""
+"Manage your library by tagging and updating metadata on books, to quickly "
+"find books using metadata searching and tag based filtering."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:13
+msgid ""
+"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"with support for more formats to follow soon."
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:17
+msgid "Bookworm Library View"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:21
+#, fuzzy
+msgid "Bookworm Reading View"
+msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+msgid "Siddhartha Das"
+msgstr ""
 
 #~ msgid "Website"
 #~ msgstr "Ιστοσελίδα"
