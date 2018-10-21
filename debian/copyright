@@ -1,9 +1,9 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: com.github.babluboy.bookworm
+Upstream-Name: bookworm
 Source: https://github.com/babluboy/bookworm
 
-Files: src/* data/* cmake/* debian/*
-Copyright: 2015 Siddhartha Das <bablu.boy@gmail.com>
+Files: *
+Copyright: 2018 Siddhartha Das <bablu.boy@gmail.com>
 License: GPL-3.0+
 
 License: GPL-3.0+

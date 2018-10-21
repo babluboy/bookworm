@@ -1,5 +1,5 @@
-com.github.babluboy.bookworm (1.0.0) xenial; urgency=low
+com.github.babluboy.bookworm (1.1.1) bionic; urgency=medium
 
-  * Initial Release (26-Apr-2017)
+  * Initial Release.
 
- -- Siddhartha Das <bablu.boy@gmail.com>  Mon, 15 May 2017 20:00:00 -0000
+ -- Siddhartha Das <bablu.boy@gmail.com>  Sun, 21 Oct 2018 04:53:39 -0500
