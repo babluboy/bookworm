@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-21 18:05+0100\n"
-"PO-Revision-Date: 2018-09-20 05:31+0000\n"
+"PO-Revision-Date: 2018-10-25 22:11+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/nb_NO/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: src/bookworm.vala:105
 msgid "Display version number"
@@ -71,7 +71,7 @@ msgstr "Søk etter tittel, forfatter og tagger"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr "Det det ut til at Bokormen er bokløs."
+msgstr "Det ser ut til at Bokormen er bokløs."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -149,7 +149,7 @@ msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
-"Ingen bokmerker angitt i BBB, klikk på Bokorm-ikonet i rubrikkfeltet for å "
+"Ingen bokmerker angitt i BBB, klikk på Bokormsikonet i rubrikkfeltet for å "
 "bokmerke siden"
 
 #: src/constants.vala.in:60
@@ -454,21 +454,21 @@ msgstr "Bok"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Bok"
+msgstr "Bokorm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Les og behandle e-bøker"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
+#, fuzzy
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Bokorm,Ebook;e-bok;Epub;Mobi;Tegneserie;Cbr;Cbz;PDF;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 #, fuzzy
@@ -476,26 +476,35 @@ msgid "A focused eBook reader"
 msgstr "En e-bokleser"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
+#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
+"Les bøkene du elsker uten å måtte uroe deg over forskjellen og "
+"kompleksiteten for formater som epub, PDF, mobi, cbr, osv."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
+#, fuzzy
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Håndter biblioteket ditt ved å merke og oppdatere bøkers metadata, for å "
+"finne bøker ved å søke etter metadata og merkelapper."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
+#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"Denne versjonen støtter EPUB, MOBI, PRC, PDF og tegneserier (CBR og CBZ) -"
+"formater, med støtte for flere på vei."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Bokorm biblioteksvisning"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 #, fuzzy
@@ -504,7 +513,7 @@ msgstr "Kjør Bokorm i infomodus"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Website"
 #~ msgstr "Nettside"
