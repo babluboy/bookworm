@@ -2,484 +2,513 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-21 18:05+0100\n"
+"PO-Revision-Date: 2018-10-30 21:23+0000\n"
+"Last-Translator: Youssif Shaaban Alsager <ysh-alsager@hotmail.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/bookworm/bookworm/"
+"ar/>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: src/bookworm.vala:105
 msgid "Display version number"
-msgstr ""
+msgstr "عرض رقم الإصدار"
 
 #: src/bookworm.vala:106
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "تشغيل دودة الكتب في وضع التصحيح"
 
 #: src/bookworm.vala:107
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "تشغيل دودة الكتب في وضع المعلومات"
 
 #: src/bookworm.vala:108
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "إضافة الكتب الجديدة تلقائيا من المجلدات التي تتم مراقبتها"
 
 #: src/utils.vala:520 src/utils.vala:594
 msgid "Cancel"
-msgstr ""
+msgstr "إلغاء"
 
 #: src/utils.vala:522 src/utils.vala:595
 msgid "Open"
-msgstr ""
+msgstr "فتح"
 
 #: src/utils.vala:524
 msgid "Save"
-msgstr ""
+msgstr "حفظ"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "قارئ كتب الكتروني"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "مترجموا Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "الموقع الإلكتروني | الترجمة | متعقب المشاكل"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "غير متاح"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "قارئ كتب إلكترونية"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "البحث في هذا الكتاب…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "البحث بحسب العنوان والمؤلف والعلامات"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "يبدو أن دودة الكتب لا يحتوي على أي كتب."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "قم ببناء مكتبتك عن طريق إضافة الكتب اﻹلكترونية"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "اختر كتاب إلكتروني لقراءته"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"توجد مشكلة في استخراج محتويات الكتاب. تأكد من أن هذا الملف كتاب إلكتروني "
+"صالح هنا: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
+"تم اكتشاف نوع بروتوكول امتدادات رسائل الإنترنت غير صالح. تحقق من تنسيق هذا "
+"الكتاب الإلكتروني: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "تم العثور علي محتوي غير صالح. تاكد من أن هذا الملف كتاب إلكتروني صالح: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "تعذر تحليل الكتاب الإلكتروني. اكد من أن هذا الملف كتاب إلكتروني صالح: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "دودة الكتب لا يدعم صيغة الملف الموجود هنا: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"تعذر جلب المحتوي المطلوب. من فضلك قم بإزالة ثم إضافة الكتاب الإلكتروني "
+"الموجود هنا: "
 
 #: src/constants.vala.in:52
 msgid "Library"
-msgstr ""
+msgstr "المكتبة"
 
 #: src/constants.vala.in:53
 msgid "Resume"
-msgstr ""
+msgstr "استئناف"
 
 #: src/constants.vala.in:54
 msgid "Contents"
-msgstr ""
+msgstr "المحتويات"
 
 #: src/constants.vala.in:55
 msgid "Content #"
-msgstr ""
+msgstr "المحتوى #"
 
 #: src/constants.vala.in:56
 msgid "Bookmarks"
-msgstr ""
+msgstr "الإشارات المرجعية"
 
 #: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "إشارة مرجعية #NNN للقسم PPP"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "اضغط علي رابط للإنتقال إلى الإشارة المرجعية"
 
 #: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
 msgstr ""
+"لم يتم تعيين إشارات مرجعية في BBB، اضغط على رمز دودة الكتب فى الشريط العلوي "
+"لإضافة علامة"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
-msgstr ""
+msgstr "معنى الكلمة"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
-msgstr ""
+msgstr "نتائج البحث"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
-msgstr ""
+msgstr "التعليقات التوضيحية"
 
 #: src/constants.vala.in:63
 msgid "Annotation Tags"
-msgstr ""
+msgstr "علامات التعليقات التوضيحية"
 
 #: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "علامات مفصولة بفواصل لهذا التعليق التوضيحي"
 
 #: src/constants.vala.in:65
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "تعديل التعليق التوضيحي لـ:"
 
 #: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "اضغط على الرابط للإنتقال إلى القسم المُوضح"
 
 #: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"لم يتم تعيين تعليقات توضيحية في BBB، اضغط بزر الماوس الأيمن على صفحة واختر "
+"تعليق توضيحي من القائمة المختصرة لإضافة تعليقات توضيحية"
 
 #: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "البحث عن '$$$' فى &&&:"
 
 #: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "تم العثور على النتائج التالية ل '$$$' فى &&&:"
 
 #: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "لم يتم إيجاد نتائج ل '$$$' فى &&&"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "حدد كلمة في الكتاب ثم اضغط بزر الماوس الأيمن للبحث عن معناها"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
-msgstr ""
+msgstr "تعديل المعلومات لـ"
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
-msgstr ""
+msgstr "تحديث صورة الغلاف"
 
 #: src/constants.vala.in:74
 msgid "Update Title"
-msgstr ""
+msgstr "تحديث العنوان"
 
 #: src/constants.vala.in:75
 msgid "Update Tags"
-msgstr ""
+msgstr "تحديث العلامات"
 
 #: src/constants.vala.in:76
 msgid "Update Author"
-msgstr ""
+msgstr "تحديث المؤلف"
 
 #: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
-msgstr ""
+msgstr "الدخول إلى عرض ملء الشاشة (F11)"
 
 #: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
-msgstr ""
+msgstr "إنهاء عرض ملء الشاشة (Esc)"
 
 #: src/constants.vala.in:80
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "التحقق من معني كلمة"
 
 #: src/constants.vala.in:81
 msgid "Annotate selected text"
-msgstr ""
+msgstr "إضافة تعليق توضيحي على النص المحدد"
 
 #: src/constants.vala.in:82
 msgid "Books"
-msgstr ""
+msgstr "الكتب"
 
 #: src/constants.vala.in:83
 msgid "Images"
-msgstr ""
+msgstr "الصور"
 
 #: src/constants.vala.in:84
 msgid "All Files"
-msgstr ""
+msgstr "كل الملفات"
 
 #: src/constants.vala.in:85
 msgid "Title"
-msgstr ""
+msgstr "العنوان"
 
 #: src/constants.vala.in:86
 msgid "Author"
-msgstr ""
+msgstr "المؤلف"
 
 #: src/constants.vala.in:87
 msgid "Last Opened"
-msgstr ""
+msgstr "آخر ما تم فتحه"
 
 #: src/constants.vala.in:88
 msgid "Rating"
-msgstr ""
+msgstr "التقييم"
 
 #: src/constants.vala.in:89
 msgid "Tags"
-msgstr ""
+msgstr "العلامات"
 
 #: src/constants.vala.in:90
 msgid "Today"
-msgstr ""
+msgstr "اليوم"
 
 #: src/constants.vala.in:91
 msgid "Yesterday"
-msgstr ""
+msgstr "الأمس"
 
 #: src/constants.vala.in:92
 msgid "Days"
-msgstr ""
+msgstr "الأيام"
 
 #: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "سيبدأ اكتشاف الكتب عند إغلاق دودة الكتب"
 
 #: src/constants.vala.in:95
 msgid "Add books to library"
-msgstr ""
+msgstr "إضافة كتب إلى المكتبة"
 
 #: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "إزالة الكتب المحددة من المكتبة (لن يتم حذف ملف الكتاب الإلكتروني)"
 
 #: src/constants.vala.in:97
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "حدد كتابًا واحدًا أو أكثر في المكتبة"
 
 #: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "مشاهدة جدول المحتويات والإشارات المرجعية ونتائج البحث"
 
 #: src/constants.vala.in:99
 msgid "Reading preferences"
-msgstr ""
+msgstr "تفضيلات القراءة"
 
 #: src/constants.vala.in:100
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "اضغط لحفظ إشارة مرجعية من الصفحة"
 
 #: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "اضغط لإزالة هذه الإشارة المرجعية"
 
 #: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "زيادة حجم الخط (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:103
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "إنقاص حجم الخط (Ctrl + '-')"
 
 #: src/constants.vala.in:104
 msgid "Increase line width"
-msgstr ""
+msgstr "زيادة عرض الخط"
 
 #: src/constants.vala.in:105
 msgid "Decrease line width"
-msgstr ""
+msgstr "إنقاص عرض الخط"
 
 #: src/constants.vala.in:106
 msgid "Increase line spacing"
-msgstr ""
+msgstr "زيادة تباعد الأسطر"
 
 #: src/constants.vala.in:107
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "إنقاص تباعد الأسطر"
 
 #: src/constants.vala.in:108
 msgid "Align left"
-msgstr ""
+msgstr "المحاذاة لليسار"
 
 #: src/constants.vala.in:109
 msgid "Align right"
-msgstr ""
+msgstr "المحاذاة لليمين"
 
 #: src/constants.vala.in:110
 msgid "Update cover image"
-msgstr ""
+msgstr "تحديث صورة الغلاف"
 
 #: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "تطبيق السمة على ملف تعريف اللون المحدد"
 
 #: src/constants.vala.in:112 src/constants.vala.in:113
 msgid "Enter full screen view and Esc key to undo"
-msgstr ""
+msgstr "الدخول إلى عرض ملء الشاشة (مفتاح Esc للتراجع)"
 
 #: src/constants.vala.in:114
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "إضافة مجلد للبحث عن الكتب"
 
 #: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "إزالة المجلد المعروض من فحص الكتب"
 
 #: src/constants.vala.in:116
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "إضافة تعليق توضيحي إلى النص المحدد"
 
 #: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
-msgstr ""
+msgstr "التفضيلات"
 
 #: src/constants.vala.in:119
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "تشغيل الوضع المظلم"
 
 #: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "تمكين ذاكرة التخزين المؤقت (لفتح الكتب بشكل أسرع)"
 
 #: src/constants.vala.in:121
 msgid "Always show library on startup"
-msgstr ""
+msgstr "إظهار المكتبة عند بدء التشغيل دائما"
 
 #: src/constants.vala.in:122
 msgid "Enable two page reading"
-msgstr ""
+msgstr "تمكين قراءة صفحتين"
 
 #: src/constants.vala.in:123
 msgid "Select Font"
-msgstr ""
+msgstr "اختيار الخط"
 
 #: src/constants.vala.in:124
 msgid "Customize reading profile"
-msgstr ""
+msgstr "تخصيص ملف القراءة الشخصي"
 
 #: src/constants.vala.in:125
 msgid "Text"
-msgstr ""
+msgstr "النص"
 
 #: src/constants.vala.in:126
 msgid "Background"
-msgstr ""
+msgstr "الخلفية"
 
 #: src/constants.vala.in:127
 msgid "Highlight"
-msgstr ""
+msgstr "تمييز"
 
 #: src/constants.vala.in:128
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "إضافة مجلد للبحث عن الكتب"
 
 #: src/constants.vala.in:129
 msgid "Profile"
-msgstr ""
+msgstr "الملف الشخصي"
 
 #: src/constants.vala.in:130
 msgid "Reset to default values"
-msgstr ""
+msgstr "إعادة التعيين إلى القيم الافتراضية"
 
 #: src/constants.vala.in:142
 msgid "Unknown Book"
-msgstr ""
+msgstr "كتاب غير معروف"
 
 #: src/constants.vala.in:143
 msgid "About"
-msgstr ""
+msgstr "حول"
 
 #: src/dialog.vala:63
 msgid "Select Image"
-msgstr ""
+msgstr "اختيار صورة"
 
 #: src/dialog.vala:545
 msgid "Select folder"
-msgstr ""
+msgstr "اختر مجلد"
 
 #: src/window.vala:293 src/window.vala:538
 msgid "Select eBook"
-msgstr ""
+msgstr "اختر كتاب إلكتروني"
 
 #: src/library.vala:610
 msgid "Adding "
-msgstr ""
+msgstr "جاري الإضافة "
 
 #: src/mobiReader.vala:329
 msgid "Book"
-msgstr ""
+msgstr "الكتاب"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "دودة الكتب"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "قراءة وإدارة الكتب اﻹلكترونية"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
+#, fuzzy
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
+#, fuzzy
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "قارئ كتب الكتروني متقدم"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
+"اقرأ الكتب التي تحب دون الحاجة إلى القلق حول مختلف الصيغ المعقدة مثل epub, "
+"pdf, mobi, cbr, إلخ."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"يمكنك إدارة مكتبتك عن طريق وضع علامات على الكتب وتحديث البيانات الوصفية، "
+"وذلك للعثور على الكتب بسرعة باستخدام البحث عن البيانات الوصفية والفلترة "
+"باستخدام العلامات."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"يدعم هذا الإصدار تنسيقات EPUBو MOBIو PRCو PDF و Comics (CBR و CBZ) مع إضافة "
+"دعم لمزيد من التنسيقات قريبا."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "عرض مكتبة دودة الكتب"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "عرض قراءة دودة الكتب"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
+#, fuzzy
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
