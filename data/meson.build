@@ -11,6 +11,21 @@ foreach i : icon_sizes
     )
 endforeach
 
+
+scripts_dir = join_paths(get_option('datadir'), 'bookworm', 'scripts')
+
+install_data(
+  join_paths('scripts', meson.project_name() + '.search.sh'),
+  install_dir: join_paths(scripts_dir, 'tasks'),
+  install_mode: 'rwxr-xr-x'
+)
+
+install_subdir(
+  'scripts/mobi_lib',
+  install_dir: scripts_dir,
+  install_mode: 'rwxr-xr-x'
+)
+
 i18n.merge_file(
     input: meson.project_name() + '.desktop.in',
     output: meson.project_name() + '.desktop',
