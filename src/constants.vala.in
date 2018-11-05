@@ -19,7 +19,7 @@
 
 namespace BookwormApp.Constants {
 	public const string bookworm_id = "com.github.babluboy.bookworm";
-	public const string bookworm_version = "1.1.0";
+	public const string bookworm_version = "@MESON_INSTALL_VERSION@";
 	public const string program_name = "Bookworm";
 	public const string app_years = "2017-2018";
 	public const string app_icon = "com.github.babluboy.bookworm";
@@ -143,13 +143,28 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");
 	public const string TEXT_FOR_PREF_MENU_PREFERENCES_ITEM = _("Preferences");
 
+	//Set resource paths for files and scripts
 	public const string INSTALL_PREFIX = "@MESON_INSTALL_PREFIX@";
+	public const string INSTALL_SCRIPTS_DIR = "@MESON_INSTALL_SCRIPTSDIR@";
+	public const string INSTALL_TASKS_DIR = "@MESON_INSTALL_TASKSDIR@";
+	public const string INSTALL_MOBILIB_DIR = "@MESON_INSTALL_MOBILIBDIR@";
 	public const string RESOURCE_PREFIX = "/com/github/babluboy/bookworm/";
-	public const string SEARCH_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/tasks/com.github.babluboy.bookworm.search.sh";
-	public const string HTML_SCRIPT_RESOURCE_LOCATION = "resource:///" + RESOURCE_PREFIX+"com.github.babluboy.bookworm.htmlscripts.txt";
-	public const string DICTIONARY_SCRIPT_RESOURCE_LOCATION = "resource:///" + RESOURCE_PREFIX+"com.github.babluboy.bookworm.dictionary.sh";
-	public const string DICTIONARY_SCRIPT_INSTALL_LOCATION = "/scripts/dictionary.sh";
-	public const string MOBIUNPACK_SCRIPT_LOCATION = INSTALL_PREFIX+"/share/bookworm/scripts/mobi_lib/mobi_unpack.py";
+	public const string EBOOK_EXTRACTION_LOCATION = "/tmp/" + bookworm_id + "/";
+	public const string PREFIX_FOR_FILE_URL = "file:///";
+
+
+	public const string DICTIONARY_SCRIPT_LOCATION = INSTALL_TASKS_DIR +
+							"/com.github.babluboy.bookworm.dictionary.sh";
+	public const string SEARCH_SCRIPT_LOCATION = INSTALL_TASKS_DIR +
+							"/com.github.babluboy.bookworm.search.sh";
+	public const string BOOKWORM_HTML_SCRIPT = "com.github.babluboy.bookworm.htmlscripts.txt";
+	public const string HTML_SCRIPT_RESOURCE_LOCATION = "resource:///" + 
+							RESOURCE_PREFIX + BOOKWORM_HTML_SCRIPT;
+
+	public const string MOBIUNPACK_SCRIPT_LOCATION = INSTALL_MOBILIB_DIR +
+							"/mobi_unpack.py";
+
+	//Set resource paths for images and icons
 	public const string PREV_PAGE_ICON_IMAGE_LOCATION = RESOURCE_PREFIX+"16-bookworm-go-previous.svg";
 	public const string NEXT_PAGE_ICON_IMAGE_LOCATION = RESOURCE_PREFIX+"16-bookworm-go-next.svg";
 	public const string SELECT_BOOK_ICON_IMAGE_LOCATION = RESOURCE_PREFIX+"16-bookworm-object-select-symbolic.svg";
@@ -183,8 +198,7 @@ namespace BookwormApp.Constants {
 	public const string HEADERBAR_PROPERTIES_IMAGE_LOCATION = RESOURCE_PREFIX+"24-bookworm-open-menu.svg";
 	public const string DEFAULT_COVER_IMAGE_LOCATION = RESOURCE_PREFIX+"bookworm-default-cover-N.svg";
 	public const string PLACEHOLDER_COVER_IMAGE_LOCATION = RESOURCE_PREFIX+"bookworm-placeholder-cover.svg";
-	public const string EBOOK_EXTRACTION_LOCATION = "/tmp/bookworm/";
-	public const string PREFIX_FOR_FILE_URL = "file:///";
+
 
 	public const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc"};
 	public const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};

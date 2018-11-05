@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.babluboy.bookworm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-25 23:13+0100\n"
+"POT-Creation-Date: 2018-11-05 21:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/bookworm.vala:105
+#: src/bookworm.vala:106
 msgid "Display version number"
 msgstr ""
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
 msgstr ""
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
 msgstr ""
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
 msgstr ""
 

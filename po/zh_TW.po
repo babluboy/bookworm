@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-21 18:05+0100\n"
+"POT-Creation-Date: 2018-10-29 22:33+0000\n"
 "PO-Revision-Date: 2018-04-02 14:35+0000\n"
 "Last-Translator: Alister Gao <k88959@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -13,19 +13,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.20-dev\n"
 
-#: src/bookworm.vala:105
+#: src/bookworm.vala:106
 msgid "Display version number"
 msgstr "顯示版本號"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
 msgstr "執行Bookworm的偵錯模式"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
 msgstr "執行Bookworm的資訊模式"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
 msgstr "從瀏覽過的文件夾自動新增書目"
 

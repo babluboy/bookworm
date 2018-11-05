@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-21 18:05+0100\n"
+"POT-Creation-Date: 2018-11-05 21:47+0000\n"
 "PO-Revision-Date: 2018-10-30 21:23+0000\n"
 "Last-Translator: Youssif Shaaban Alsager <ysh-alsager@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -14,19 +14,19 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 3.3-dev\n"
 
-#: src/bookworm.vala:105
+#: src/bookworm.vala:106
 msgid "Display version number"
 msgstr "عرض رقم الإصدار"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
 msgstr "تشغيل دودة الكتب في وضع التصحيح"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
 msgstr "تشغيل دودة الكتب في وضع المعلومات"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
 msgstr "إضافة الكتب الجديدة تلقائيا من المجلدات التي تتم مراقبتها"
 
@@ -98,7 +98,8 @@ msgstr ""
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr "تم العثور علي محتوي غير صالح. تاكد من أن هذا الملف كتاب إلكتروني صالح: "
+msgstr ""
+"تم العثور علي محتوي غير صالح. تاكد من أن هذا الملف كتاب إلكتروني صالح: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "

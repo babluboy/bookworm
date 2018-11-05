@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-21 18:05+0100\n"
+"POT-Creation-Date: 2018-10-29 22:33+0000\n"
 "PO-Revision-Date: 2018-07-21 19:19+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -14,19 +14,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
 "X-Generator: Weblate 3.1-dev\n"
 
-#: src/bookworm.vala:105
+#: src/bookworm.vala:106
 msgid "Display version number"
 msgstr "Birta útgáfunúmer"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
 msgstr "Keyra Bókaorm í aflúsunarham"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
 msgstr "Keyra Bókaorm í upplýsingaham"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
 msgstr "Bæta sjálfkrafa við bókum úr vöktuðum möppum"
 

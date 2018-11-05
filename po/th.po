@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-21 18:05+0100\n"
+"POT-Creation-Date: 2018-10-29 22:33+0000\n"
 "PO-Revision-Date: 2018-06-30 08:43+0000\n"
 "Last-Translator: kong <ph.kp111@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -13,19 +13,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 3.1-dev\n"
 
-#: src/bookworm.vala:105
+#: src/bookworm.vala:106
 msgid "Display version number"
 msgstr "แสดงหมายเลขเวอร์ชั่น"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
 msgstr "ดำเนินงาน Bookworm ในโหมดการแก้ปัญหา"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
 msgstr "ดำเนินงาน Bookworm ในโหมดข้อมูล"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
 msgstr "เพิ่มหนังสือใหม่จากโฟล์เดอร์ที่ดูแล้ว"
 

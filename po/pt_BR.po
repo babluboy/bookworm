@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-21 18:05+0100\n"
+"POT-Creation-Date: 2018-10-29 22:33+0000\n"
 "PO-Revision-Date: 2017-10-13 23:24+0000\n"
 "Last-Translator: Edgar Moraes Diniz <edgar.diniz@posteo.net>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -13,19 +13,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 2.17\n"
 
-#: src/bookworm.vala:105
+#: src/bookworm.vala:106
 msgid "Display version number"
 msgstr "Exibir o número da versão"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
 msgstr "Executar Bookworm em modo debug"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
 msgstr "Executar Bookworm em modo de informação"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
 msgstr "Adicionar automaticamente novos livros das pastas monitoradas"
 

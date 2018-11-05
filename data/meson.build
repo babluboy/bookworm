@@ -11,6 +11,24 @@ foreach i : icon_sizes
     )
 endforeach
 
+install_data(
+  join_paths('scripts', meson.project_name() + '.search.sh'),
+  install_dir: join_paths(scripts_dir, 'tasks'),
+  install_mode: 'rwxr-xr-x'
+)
+
+install_data(
+  join_paths('scripts', meson.project_name() + '.dictionary.sh'),
+  install_dir: join_paths(scripts_dir, 'tasks'),
+  install_mode: 'rwxr-xr-x'
+)
+
+install_subdir(
+  'scripts/mobi_lib',
+  install_dir: scripts_dir,
+  install_mode: 'rwxr-xr-x'
+)
+
 i18n.merge_file(
     input: meson.project_name() + '.desktop.in',
     output: meson.project_name() + '.desktop',

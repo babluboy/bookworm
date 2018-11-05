@@ -217,47 +217,17 @@ public class BookwormApp.Info:Gtk.Window {
                 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
                 BookwormApp.Bookworm.toggleUIState();
                 //Set the visible tab to search result tab
-                BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name ("dictionary-list"));
-            }
-                
-            //Ensure that the word search script is installed
-            if("true" != BookwormApp.Utils.fileOperations(
-                                "EXISTS", 
-                                BookwormApp.Bookworm.bookworm_config_path, 
-                                BookwormApp.Constants.DICTIONARY_SCRIPT_INSTALL_LOCATION, "")
-            ){
-                //get contents from gresource
-                uint8[] bookwormDictionaryData;
-                GLib.File.new_for_uri(BookwormApp.Constants.DICTIONARY_SCRIPT_RESOURCE_LOCATION)
-			                                            .load_contents(null, out bookwormDictionaryData, null);
-                string dictionaryScripts = (string) bookwormDictionaryData;
-                //create scripts directory
-                BookwormApp.Utils.fileOperations(
-                            "CREATEDIR", 
-                            BookwormApp.Bookworm.bookworm_config_path+"/scripts/", "", "");
-                //write data to filename
-                BookwormApp.Utils.fileOperations(
-                            "WRITE", 
-                            BookwormApp.Bookworm.bookworm_config_path, 
-                            BookwormApp.Constants.DICTIONARY_SCRIPT_INSTALL_LOCATION, 
-                            dictionaryScripts);
-                //make file executable
-                BookwormApp.Utils.fileOperations(
-                            "MAKE_EXECUTABLE", 
-                            BookwormApp.Bookworm.bookworm_config_path, 
-                            BookwormApp.Constants.DICTIONARY_SCRIPT_INSTALL_LOCATION, 
-                            "");
+                BookwormApp.Info.stack.set_visible_child (
+                        BookwormApp.Info.stack.get_child_by_name ("dictionary-list")
+                );
             }
             //Execute word meaning script - invokes online/offline dictionary
             dictionaryResults = BookwormApp.Utils.execute_sync_command (
-                                                                    BookwormApp.Bookworm.bookworm_config_path + 
-                                                                    BookwormApp.Constants.DICTIONARY_SCRIPT_INSTALL_LOCATION +
-                                                                    " " + word
-                                                            );
+                                    BookwormApp.Constants.DICTIONARY_SCRIPT_LOCATION + " " + word
+                                );
             debug ("Dictionary Search Results:" + dictionaryResults);
             dictionaryResultsLabel.set_text(dictionaryResults);
     }
-    
     info_box.show_all();
     info("[END] [FUNCTION:populateDictionaryResults]");
   }

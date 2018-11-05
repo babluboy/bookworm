@@ -23,7 +23,9 @@ public class BookwormApp.contentHandler {
   public static BookwormApp.Settings settings;
 
     public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction){
-        debug("[START] [FUNCTION:renderPage] book.location="+aBook.getBookLocation()+ ", direction="+direction);
+        debug("[START] [FUNCTION:renderPage] book.location=" +
+              aBook.getBookLocation()+ ", direction="+direction
+        );
         int currentContentLocation = aBook.getBookPageNumber();
         //set page number based on direction of navigation
         switch(direction){
@@ -42,7 +44,7 @@ public class BookwormApp.contentHandler {
             case "SEARCH"://Load the page and scroll to the search text
                 break;
             default://This is for opening the current page of the book
-                //No change of page number required
+                    //No change of page number required
                 break;
         }
         string bookContent = contentHandler.provideContent(aBook,currentContentLocation, direction);
@@ -134,7 +136,6 @@ public class BookwormApp.contentHandler {
     public static string adjustPageContent (BookwormApp.Book aBook, owned string pageContentStr, string mode){
         debug("[START] [FUNCTION:adjustPageContent] book.location="+aBook.getBookLocation()+
                     ", pageContentStr.length="+pageContentStr.length.to_string()+", mode="+mode);
-                    
         //load javascript data from resource if it has not been loaded already
         if(BookwormApp.Bookworm.bookwormScripts == null || BookwormApp.Bookworm.bookwormScripts.length < 1){
 		    uint8[] bookwormScriptsData;
@@ -143,7 +144,6 @@ public class BookwormApp.contentHandler {
 		    BookwormApp.Bookworm.bookwormScripts = (string)bookwormScriptsData;
 		    debug("Loaded javascript data from resource:\n" + BookwormApp.Bookworm.bookwormScripts);
 	    }
-                    
         StringBuilder pageContent = new StringBuilder(pageContentStr);
         settings = BookwormApp.Settings.get_instance();
         string cssForTextAndBackgroundColor = "";
@@ -157,38 +157,44 @@ public class BookwormApp.contentHandler {
         //Set background and font colour based on profile        
         if(BookwormApp.Constants.BOOKWORM_READING_MODE[4] == BookwormApp.Bookworm.settings.reading_profile){
             //default dark profile
-            cssForTextAndBackgroundColor = " background-color: #002b36"+
-                                                                          " !important; color: #93a1a1"+
-                                                                          " !important;";
+            cssForTextAndBackgroundColor = " background-color: #002b36" +
+                                           " !important; color: #93a1a1" +
+                                           " !important;";
             currentBookwormScripts = currentBookwormScripts
                                 .replace("$SCROLLBAR_BACKGROUND", "#002b36")
                                 .replace("$HIGHLIGHT_COLOR", "#3465A4");
         } else if(BookwormApp.Constants.BOOKWORM_READING_MODE[3] == BookwormApp.Bookworm.settings.reading_profile){
             //default light profile
-            cssForTextAndBackgroundColor = " background-color: #fbfbfb"+ 
-                                                                          " !important; color: #000000"+
-                                                                          " !important;";
+            cssForTextAndBackgroundColor = " background-color: #fbfbfb" +
+                                           " !important; color: #000000" +
+                                           " !important;";
             currentBookwormScripts = currentBookwormScripts
                                 .replace("$SCROLLBAR_BACKGROUND", "#fbfbfb")
                                 .replace("$HIGHLIGHT_COLOR", "#E8ED00");
         } else if(BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile){
-            cssForTextAndBackgroundColor = " background-color: "+ BookwormApp.Bookworm.profileColorList[7] +
-                                                                          " !important; color: "+ BookwormApp.Bookworm.profileColorList[6] +
-                                                                          " !important;";
+            cssForTextAndBackgroundColor = " background-color: " +
+                                           BookwormApp.Bookworm.profileColorList[7] +
+                                           " !important; color: " +
+                                           BookwormApp.Bookworm.profileColorList[6] +
+                                           " !important;";
             currentBookwormScripts = currentBookwormScripts
                               .replace("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[7])
                               .replace("$HIGHLIGHT_COLOR", BookwormApp.Bookworm.profileColorList[8]);
         } else if(BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile){
-            cssForTextAndBackgroundColor = " background-color: "+ BookwormApp.Bookworm.profileColorList[4] +
-                                                                          " !important; color: "+ BookwormApp.Bookworm.profileColorList[3] +
-                                                                          " !important;";
+            cssForTextAndBackgroundColor = " background-color: "+
+                                           BookwormApp.Bookworm.profileColorList[4] +
+                                           " !important; color: " +
+                                           BookwormApp.Bookworm.profileColorList[3] +
+                                           " !important;";
             currentBookwormScripts = currentBookwormScripts
                               .replace("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[4])
                               .replace("$HIGHLIGHT_COLOR", BookwormApp.Bookworm.profileColorList[5]);
         } else{
-            cssForTextAndBackgroundColor = " background-color: "+ BookwormApp.Bookworm.profileColorList[1] +
-                                                                          " !important; color: "+ BookwormApp.Bookworm.profileColorList[0] +
-                                                                          " !important;";
+            cssForTextAndBackgroundColor = " background-color: "+
+                                           BookwormApp.Bookworm.profileColorList[1] +
+                                           " !important; color: "+
+                                           BookwormApp.Bookworm.profileColorList[0] +
+                                           " !important;";
             currentBookwormScripts = currentBookwormScripts
                               .replace("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[1])
                               .replace("$HIGHLIGHT_COLOR", BookwormApp.Bookworm.profileColorList[2]);
@@ -209,7 +215,9 @@ public class BookwormApp.contentHandler {
         if(BookwormApp.Bookworm.isPageScrollRequired){
             //check if an Anchor is present and set up the javascript for the same
             if(aBook.getAnchor().length > 0){
-                BookwormApp.Bookworm.onLoadJavaScript.append(" document.getElementById('"+aBook.getAnchor()+"').scrollIntoView();");
+                BookwormApp.Bookworm.onLoadJavaScript.append(
+                        " document.getElementById('"+aBook.getAnchor()+"').scrollIntoView();"
+                );
             }else{ //set up the javascript for scrolling to last read position
                 BookwormApp.Bookworm.onLoadJavaScript.append(" window.scrollTo(0,"+
                        (BookwormApp.Bookworm.libraryViewMap.get(
@@ -225,7 +233,9 @@ public class BookwormApp.contentHandler {
         //Overlay any Annotated text
         foreach (var entry in aBook.getAnnotationList().entries) {
             if(aBook.getBookPageNumber().to_string() == entry.key.split("#~~#")[0]){
-                BookwormApp.Bookworm.onLoadJavaScript.append(" overlayAnnotation('"+entry.key.split("#~~#")[1]+"');");
+                BookwormApp.Bookworm.onLoadJavaScript.append(
+                    " overlayAnnotation('"+entry.key.split("#~~#")[1]+"');"
+                );
             }
         }
 
@@ -268,12 +278,17 @@ public class BookwormApp.contentHandler {
                         }
                         //form the string to be highlighted
                         if(endPosOfStringToBeHighlighted > startPosOfStringToBeHighlighted){
-                            stringToBeHighlighted = searchTokens[1].slice(startPosOfStringToBeHighlighted, endPosOfStringToBeHighlighted);
+                            stringToBeHighlighted = searchTokens[1].slice(
+                                startPosOfStringToBeHighlighted, endPosOfStringToBeHighlighted
+                            );
                         }
                     }
-                    stringToBeHighlighted = stringToBeHighlighted.replace("\"", "&quot;").replace("'", "&#39;");
+                    stringToBeHighlighted = stringToBeHighlighted
+                                                .replace("\"", "&quot;")
+                                                .replace("'", "&#39;");
                     debug("Searching to highlight the phrase:"+stringToBeHighlighted);
-                    BookwormApp.Bookworm.onLoadJavaScript.append(" highlightText(encodeURIComponent('"+stringToBeHighlighted+"'));");
+                    BookwormApp.Bookworm.onLoadJavaScript
+                            .append(" highlightText(encodeURIComponent('"+stringToBeHighlighted+"'));");
                 }
             }
         }
@@ -282,15 +297,27 @@ public class BookwormApp.contentHandler {
 
         //add onload javascript and css to body tag
         if(pageContent.str.index_of("<BODY") != -1){
-            pageContent.assign(pageContent.str.replace("<BODY", currentBookwormScripts + "<BODY " +
-                                                                                            BookwormApp.Bookworm.onLoadJavaScript.str));
+            pageContent.assign(
+                    pageContent.str.replace(
+                        "<BODY", currentBookwormScripts + 
+                        "<BODY " +
+                        BookwormApp.Bookworm.onLoadJavaScript.str
+                    )
+            );
         }else if (pageContent.str.index_of("<body") != -1){
-            pageContent.assign(pageContent.str.replace("<body", currentBookwormScripts + "<body " +
-                                                                                            BookwormApp.Bookworm.onLoadJavaScript.str));
+            pageContent.assign(
+                    pageContent.str.replace(
+                        "<body", currentBookwormScripts +
+                        "<body " +
+                        BookwormApp.Bookworm.onLoadJavaScript.str
+                    )
+            );
         }else{
-            pageContent.assign(currentBookwormScripts + "<BODY " +
-                                                BookwormApp.Bookworm.onLoadJavaScript.str + ">" +
-                                                pageContent.str + "</BODY>");
+            pageContent.assign(
+                    currentBookwormScripts + "<BODY " +
+                    BookwormApp.Bookworm.onLoadJavaScript.str + ">" +
+                    pageContent.str + "</BODY>"
+            );
         }
         debug("[END] [FUNCTION:adjustPageContent] pageContent.length="+pageContent.str.length.to_string());
         return pageContent.str;
@@ -302,15 +329,22 @@ public class BookwormApp.contentHandler {
         int searchResultCount = 1;
         BookwormApp.Bookworm.searchResultsMap.clear();
         //execute search
-        bookSearchResults.assign(BookwormApp.Utils.execute_sync_command(BookwormApp.Constants.SEARCH_SCRIPT_LOCATION +
-                                                    " \"" + BookwormApp.Bookworm.aContentFileToBeSearched.str + "\" \"" +
-                                                    BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "\""));
+        bookSearchResults.assign(
+                BookwormApp.Utils.execute_sync_command(
+                        BookwormApp.Constants.SEARCH_SCRIPT_LOCATION +
+                        " \"" + BookwormApp.Bookworm.aContentFileToBeSearched.str + "\" \"" +
+                        BookwormApp.AppHeaderBar.headerSearchBar.get_text() + "\""
+                )
+        );
         //process search results
         if(bookSearchResults.str.strip().length > 0 && bookSearchResults.str != "false"){
             string[] individualLines = bookSearchResults.str.strip().split ("\n",-1);
             foreach ( string individualLine in individualLines) {
-                BookwormApp.Bookworm.searchResultsMap.set(searchResultCount.to_string()
-                                            +"~~"+BookwormApp.Bookworm.aContentFileToBeSearched.str, individualLine.strip());
+                BookwormApp.Bookworm.searchResultsMap.set(
+                    searchResultCount.to_string() + "~~" +
+                    BookwormApp.Bookworm.aContentFileToBeSearched.str, 
+                    individualLine.strip()
+                );
                 searchResultCount++;
             }
         }
@@ -347,9 +381,14 @@ public class BookwormApp.contentHandler {
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
             BookwormApp.Book currentBookForRefresh = BookwormApp.Bookworm.libraryViewMap.get (
                             BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-            currentBookForRefresh = renderPage(BookwormApp.Bookworm.libraryViewMap.get(
-                            BookwormApp.Bookworm.locationOfEBookCurrentlyRead), "");
-            BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForRefresh);
+            currentBookForRefresh = renderPage(
+                        BookwormApp.Bookworm.libraryViewMap.get(
+                        BookwormApp.Bookworm.locationOfEBookCurrentlyRead), ""
+            );
+            BookwormApp.Bookworm.libraryViewMap.set(
+                        BookwormApp.Bookworm.locationOfEBookCurrentlyRead, 
+                        currentBookForRefresh
+            );
         }
          debug("[END] [FUNCTION:refreshCurrentPage]");
     }

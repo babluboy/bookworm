@@ -2,6 +2,13 @@
 project('com.github.babluboy.bookworm', ['vala', 'c'],
     version: '1.1.2'
 )
+version = '1.1.2'
+
+# Set all the install directories
+install_dir = join_paths(get_option('prefix'), 'share')
+scripts_dir = join_paths(install_dir, meson.project_name(), 'scripts')
+tasks_dir = join_paths(scripts_dir, 'tasks')
+mobilib_dir = join_paths(scripts_dir, 'mobi_lib')
 
 gnome = import('gnome')
 i18n = import('i18n')

@@ -26,7 +26,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 	private static Bookworm application;
 	private static bool isBookwormRunning = false;
 	public int exitCodeForCommand = 0;
-	public static string bookworm_config_path = GLib.Environment.get_user_config_dir ()+"/bookworm";
+	public static Granite.Services.Paths app_xdg_path;
+	public static string bookworm_config_path = "";
 
 	public static string[] commandLineArgs;
 	public static bool command_line_option_version = false;
@@ -114,6 +115,14 @@ public class BookwormApp.Bookworm : Granite.Application {
 		Intl.setlocale(LocaleCategory.MESSAGES, "");
 		Intl.textdomain(GETTEXT_PACKAGE);
 		Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
+        //Initialize XDG Paths
+		app_xdg_path = new Granite.Services.Paths();
+		app_xdg_path.initialize (Constants.bookworm_id, Constants.INSTALL_SCRIPTS_DIR);
+		bookworm_config_path = app_xdg_path.user_data_folder.get_path();
+		debug("Bookworm Install Directory:"+BookwormApp.Constants.INSTALL_PREFIX);
+		debug("Bookworm Install Tasks Scripts Directory:"+BookwormApp.Constants.INSTALL_TASKS_DIR);
+		debug("Bookworm Install Mobi Scripts Directory:"+BookwormApp.Constants.INSTALL_MOBILIB_DIR);
+		debug("Bookworm User Data Directory:"+bookworm_config_path);
 	}
 
 	public static Bookworm getAppInstance(){
@@ -219,9 +228,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//check if any books needed to be added/opened - if eBook(s) were opened from File Explorer using Bookworm
 		if(commandLineArgs.length > 1){
-			info("Book(s) to be added/opened based on command line parameters. Size of command line attributes:"+
-								commandLineArgs.length.to_string()
-				  );
+			info("Book(s) to be added/opened based on command line parameters. Size of command line attributes:"+commandLineArgs.length.to_string());
 			pathsOfBooksToBeAdded = new string[commandLineArgs.length];
 			pathsOfBooksToBeAdded = commandLineArgs;
 			//Display the progress bar
@@ -380,10 +387,18 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public void loadBookwormState(){
 		info("[START] [FUNCTION:loadBookwormState]");
 		//check and create required directory structure
-    	BookwormApp.Utils.fileOperations("CREATEDIR", BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION, "", "");
-		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path, "", "");
-		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/covers/", "", "");
-		BookwormApp.Utils.fileOperations("CREATEDIR", bookworm_config_path+"/books/", "", "");
+    	BookwormApp.Utils.fileOperations("CREATEDIR", 
+							BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION, "", ""
+		);
+		BookwormApp.Utils.fileOperations("CREATEDIR", 
+							BookwormApp.Bookworm.bookworm_config_path, "", ""
+		);
+		BookwormApp.Utils.fileOperations("CREATEDIR", 
+							BookwormApp.Bookworm.bookworm_config_path+"/covers/", "", ""
+		);
+		BookwormApp.Utils.fileOperations("CREATEDIR", 
+							BookwormApp.Bookworm.bookworm_config_path+"/books/", "", ""
+		);
 		//Set the window to the last saved position
 		if(settings.pos_x == 0 && settings.pos_y == 0){
 			window.set_position (Gtk.WindowPosition.CENTER);
@@ -405,7 +420,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 		}
 		//check if the database exists otherwise create database and required tables
-		BookwormApp.DB.initializeBookWormDB(bookworm_config_path);
+		BookwormApp.DB.initializeBookWormDB(BookwormApp.Bookworm.bookworm_config_path);
 		//set the library view
 		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
 		//Fetch details of Books from the database

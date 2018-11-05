@@ -105,7 +105,9 @@ public class BookwormApp.BackgroundTasks {
   public static void cleanBookCacheContent(){
     print ("\nStarting to delete un-necessary cache data...");
     //list the folders in the cache
-    string cacheFolders = BookwormApp.Utils.execute_sync_command("ls -1 " + BookwormApp.Bookworm.bookworm_config_path + "/books/");
+    string cacheFolders = BookwormApp.Utils.execute_sync_command(
+                            "ls -1 " + BookwormApp.Bookworm.bookworm_config_path + "/books/"
+                          );
     cacheFolders = cacheFolders.replace("\r", "^^^").replace("\n", "^^^");
     string[] cacheFolderList = cacheFolders.split("^^^");
     //loop through each folder name
@@ -127,7 +129,9 @@ public class BookwormApp.BackgroundTasks {
       }
       if(!folderMatched){
         //delete the folder and content if it is not a part of any book in the library
-        BookwormApp.Utils.execute_sync_command("rm -Rf \"" + BookwormApp.Bookworm.bookworm_config_path + "/books/" + cacheFolder + "\"");
+        BookwormApp.Utils.execute_sync_command(
+                "rm -Rf \"" + BookwormApp.Bookworm.bookworm_config_path + "/books/" + cacheFolder + "\""
+        );
         print ("\nCache Folder deleted:"+cacheFolder);
       }
     }
@@ -136,7 +140,9 @@ public class BookwormApp.BackgroundTasks {
   public static void cleanBookCoverImages(){
     print ("\nStarting to delete un-necessary cover image data...");
     //list the cover images in the cache
-    string cacheImages = BookwormApp.Utils.execute_sync_command("ls -1 " + BookwormApp.Bookworm.bookworm_config_path + "/covers/");
+    string cacheImages = BookwormApp.Utils.execute_sync_command(
+                                "ls -1 " + BookwormApp.Bookworm.bookworm_config_path + "/covers/"
+                         );
     cacheImages = cacheImages.replace("\r", "^^^").replace("\n", "^^^");
     string[] cacheImageList = cacheImages.split("^^^");
     //loop through each cover image in cache
@@ -158,7 +164,9 @@ public class BookwormApp.BackgroundTasks {
       }
       if(!imageMatched){
         //delete the folder and content if it is not a part of any book in the library
-        BookwormApp.Utils.execute_sync_command("rm -f \"" + BookwormApp.Bookworm.bookworm_config_path + "/covers/" + cacheImage + "\"");
+        BookwormApp.Utils.execute_sync_command(
+                "rm -f \"" + BookwormApp.Bookworm.bookworm_config_path + "/covers/" + cacheImage + "\""
+        );
         print ("\nCache Image deleted:"+cacheImage);
       }
     }
