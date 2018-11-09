@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-29 22:33+0000\n"
-"PO-Revision-Date: 2018-01-12 17:44+0000\n"
-"Last-Translator: Alain <alain23@protonmail.com>\n"
+"PO-Revision-Date: 2018-11-10 22:07+0000\n"
+"Last-Translator: Kyle Metz <snappyapple632@gmail.com>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/es_MX/>\n"
 "Language: es_MX\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.19-dev\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -68,9 +68,8 @@ msgid "eBook Reader"
 msgstr "Lector de eBook"
 
 #: src/constants.vala.in:41
-#, fuzzy
 msgid "Search this book…"
-msgstr "Buscar en este libro…"
+msgstr "Busca en este libro…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
