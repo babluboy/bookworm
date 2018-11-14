@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-29 22:33+0000\n"
-"PO-Revision-Date: 2017-12-04 21:35+0000\n"
-"Last-Translator: Sho Hiramatsu <havemercy.Kilroy@gmail.com>\n"
+"PO-Revision-Date: 2018-11-14 12:52+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ja/>\n"
 "Language: ja\n"
@@ -11,23 +11,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18-dev\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
-msgstr "バージョンを表示する"
+msgstr "バージョン番号を表示します"
 
 #: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
-msgstr "Bookwormをデバッグモードで実行する"
+msgstr "Bookworm をデバッグモードで実行します"
 
 #: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Bookworm を情報モードで実行します"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
-msgstr "フォルダにある新しいファイルを自動で追加する"
+msgstr "監視中のフォルダにある新しい本を自動で追加します"
 
 #: src/utils.vala:520 src/utils.vala:594
 msgid "Cancel"
@@ -47,15 +47,17 @@ msgstr "電子書籍リーダー"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Weblateの翻訳者"
+msgstr ""
+"Ryo Nakano\n"
+"Sho Hiramatsu"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Web サイト | 翻訳 | バグトラッカー"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr "利用不可"
+msgstr "利用できません"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
@@ -63,62 +65,51 @@ msgstr "電子書籍リーダー"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr "本文を検索…"
+msgstr "この本を検索…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "検索 (タイトル, 著者, タグ )"
+msgstr "タイトル・著者・タグで検索"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr "本が見つかりません。"
+msgstr "Bookworm に本が見つかりません。"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "ブックを追加してライブラリを作成する"
+msgstr "電子書籍を追加してライブラリを作成してください"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "読みたい本を選択してください"
+msgstr "読みたい電子書籍を選択します"
 
 #: src/constants.vala.in:46
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr ""
-"コンテンツを抽出することが困難です。有効なファイルであることを確認してくださ"
-"い: "
+msgstr "本のコンテンツを抽出する際に問題が発生しました。有効な電子書籍ファイルであることを確認してください: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
-"無効なMIMEタイプが検出されました。ファイルのフォーマットを確認してください: "
+msgstr "無効な MIME タイプが検出されました。この電子書籍のファイル形式を確認してください: "
 
 #: src/constants.vala.in:48
-#, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
-"無効なコンテンツが見つかりました。有効なファイルであることを確認してくださ"
-"い: "
+msgstr "無効なコンテンツが見つかりました。有効な電子書籍ファイルであることを確認してください: "
 
 #: src/constants.vala.in:49
-#, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
-"ファイルが解析できませんでした。有効なファイルであることを確認してください: "
+msgstr "電子書籍を解析できませんでした。有効な電子書籍ファイルであることを確認してください: "
 
 #: src/constants.vala.in:50
-#, fuzzy
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookwormはここにあるファイル形式をサポートしていません: "
+msgstr "Bookworm はここで見つかったファイル形式をサポートしていません: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr "要求されたコンテンツを取得できませんでした。もう一度お試しください "
+msgstr "要求されたコンテンツを取得できませんでした。見つかった電子書籍ファイルを削除して追加してください: "
 
 #: src/constants.vala.in:52
 msgid "Library"
@@ -126,11 +117,11 @@ msgstr "ライブラリ"
 
 #: src/constants.vala.in:53
 msgid "Resume"
-msgstr "再開"
+msgstr "戻る"
 
 #: src/constants.vala.in:54
 msgid "Contents"
-msgstr "目次"
+msgstr "コンテンツ"
 
 #: src/constants.vala.in:55
 msgid "Content #"
@@ -142,7 +133,7 @@ msgstr "ブックマーク"
 
 #: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "セクション PPP のブックマーク #NNN"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
@@ -152,14 +143,11 @@ msgstr "リンクをクリックするとブックマークされた箇所に移
 msgid ""
 "No bookmarks set in BBB, click the bookworm icon on the header bar to "
 "boomark the page"
-msgstr ""
-"まだBBBにはブックマークがありません。ページ上部にあるアイコンを押すことでブッ"
-"クマークされます"
+msgstr "BBB にはブックマークがありません。ページをブックマークするには、ヘッダーバーのブックマークアイコンをクリックしてください"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "意味を調べる"
+msgstr "単語の意味"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
@@ -167,85 +155,85 @@ msgstr "検索結果"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
-msgstr ""
+msgstr "注釈"
 
 #: src/constants.vala.in:63
 msgid "Annotation Tags"
-msgstr ""
+msgstr "注釈タグ"
 
 #: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "この注釈に対するコンマで区切られたタグ"
 
 #: src/constants.vala.in:65
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "以下の注釈を編集:"
 
 #: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "注釈がついたセクションに移動するにはリンクをクリックしてください"
 
 #: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
-msgstr ""
+msgstr "BBB には注釈がついていません。注釈を追加するには、本のページを右クリックしてコンテキストメニューから注釈を選択してください"
 
 #: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& 内で '$$$' を検索しています:"
 
 #: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& 内に以下の一致する '$$$' が見つかりました:"
 
 #: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "&&& 内には '$$$' に一致するものがありませんでした"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "本の中の単語の意味を調べるには、単語を選択して右クリックしてください"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
-msgstr ""
+msgstr "情報を編集:"
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
-msgstr ""
+msgstr "カバー画像を更新"
 
 #: src/constants.vala.in:74
 msgid "Update Title"
-msgstr "タイトル"
+msgstr "タイトルを更新"
 
 #: src/constants.vala.in:75
 msgid "Update Tags"
-msgstr "タグ"
+msgstr "タグを更新"
 
 #: src/constants.vala.in:76
 msgid "Update Author"
-msgstr "著者名"
+msgstr "著者名を更新"
 
 #: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
-msgstr "全画面で表示する (F11)"
+msgstr "全画面表示 (F11)"
 
 #: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
-msgstr "全画面モードの終了 (Esc)"
+msgstr "全画面モードを終了 (Esc)"
 
 #: src/constants.vala.in:80
 msgid "Check Word Meaning"
-msgstr "意味を調べる"
+msgstr "単語の意味を調べる"
 
 #: src/constants.vala.in:81
 msgid "Annotate selected text"
-msgstr ""
+msgstr "選択されたテキストに注釈を追加"
 
 #: src/constants.vala.in:82
 msgid "Books"
-msgstr ""
+msgstr "本"
 
 #: src/constants.vala.in:83
 msgid "Images"
@@ -253,7 +241,7 @@ msgstr "画像"
 
 #: src/constants.vala.in:84
 msgid "All Files"
-msgstr "全てのファイル"
+msgstr "すべてのファイル"
 
 #: src/constants.vala.in:85
 msgid "Title"
@@ -265,11 +253,11 @@ msgstr "著者"
 
 #: src/constants.vala.in:87
 msgid "Last Opened"
-msgstr "最後に開いた"
+msgstr "最後に開かれた日時"
 
 #: src/constants.vala.in:88
 msgid "Rating"
-msgstr ""
+msgstr "評価"
 
 #: src/constants.vala.in:89
 msgid "Tags"
@@ -285,123 +273,123 @@ msgstr "昨日"
 
 #: src/constants.vala.in:92
 msgid "Days"
-msgstr "日付"
+msgstr "日前"
 
 #: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "本の検出は Bookworm が終了した際に開始されます"
 
 #: src/constants.vala.in:95
 msgid "Add books to library"
-msgstr "本を追加する"
+msgstr "ライブラリに本を追加します"
 
 #: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr "選択した本をライブラリから削除する(元のファイル自体は残ります)"
+msgstr "選択された本をライブラリから削除します (電子書籍ファイル自体は残ります)"
 
 #: src/constants.vala.in:97
 msgid "Select one or more books in library"
-msgstr "選択する(複数可)"
+msgstr "ライブラリ内の 1 つまたは複数の本を選択します"
 
 #: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "コンテンツの表、ブックマーク、検索結果を参照します"
 
 #: src/constants.vala.in:99
 msgid "Reading preferences"
-msgstr ""
+msgstr "リーディングの設定"
 
 #: src/constants.vala.in:100
 msgid "Click to bookmark this page"
-msgstr "しおりをはさむ"
+msgstr "このページをブックマークするにはクリックしてください"
 
 #: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
-msgstr "しおりを外す"
+msgstr "このブックマークを削除するにはクリックしてください"
 
 #: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr "フォントサイズを大きくする (Ctrl + Shift + '+')"
+msgstr "フォントサイズを大きくします (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:103
 msgid "Decrease font size (Ctrl + '-')"
-msgstr "フォントサイズを小さくする (Ctrl + '-')"
+msgstr "フォントサイズを小さくします (Ctrl + '-')"
 
 #: src/constants.vala.in:104
 msgid "Increase line width"
-msgstr "横の余白をせまくする"
+msgstr "行の幅を広くします"
 
 #: src/constants.vala.in:105
 msgid "Decrease line width"
-msgstr "横の余白を広くする"
+msgstr "行の幅をせまくします"
 
 #: src/constants.vala.in:106
 msgid "Increase line spacing"
-msgstr "行の間隔を広げる"
+msgstr "行の間隔を広くします"
 
 #: src/constants.vala.in:107
 msgid "Decrease line spacing"
-msgstr "行の間隔を狭くする"
+msgstr "行の間隔をせまくします"
 
 #: src/constants.vala.in:108
 msgid "Align left"
-msgstr ""
+msgstr "左揃えにします"
 
 #: src/constants.vala.in:109
 msgid "Align right"
-msgstr ""
+msgstr "右揃えにします"
 
 #: src/constants.vala.in:110
 msgid "Update cover image"
-msgstr ""
+msgstr "カバー画像を更新します"
 
 #: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "このカラープロファイルにテーマを適用します"
 
 #: src/constants.vala.in:112 src/constants.vala.in:113
 msgid "Enter full screen view and Esc key to undo"
-msgstr "全画面表示はEscキーを押すと戻ります"
+msgstr "全画面表示を終了するには Esc キーを押してください"
 
 #: src/constants.vala.in:114
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "本をスキャンするフォルダーを追加します"
 
 #: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "表示されたフォルダーを本のスキャンから除外します"
 
 #: src/constants.vala.in:116
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "選択されたテキストに注釈を追加します"
 
 #: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
-msgstr "環境設定"
+msgstr "設定"
 
 #: src/constants.vala.in:119
 msgid "Turn on Dark Mode"
-msgstr "ダークモード"
+msgstr "ダークモードを有効にする"
 
 #: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
-msgstr "キャッシュを有効にする (本を開くのが早くなります)"
+msgstr "キャッシュを有効にする (本を開くのが速くなります)"
 
 #: src/constants.vala.in:121
 msgid "Always show library on startup"
-msgstr "起動した際、ライブラリを表示させる"
+msgstr "起動時にライブラリを常に表示"
 
 #: src/constants.vala.in:122
 msgid "Enable two page reading"
-msgstr "見開き表示にする"
+msgstr "見開き表示を有効にする"
 
 #: src/constants.vala.in:123
 msgid "Select Font"
-msgstr "フォント"
+msgstr "フォントを選択"
 
 #: src/constants.vala.in:124
 msgid "Customize reading profile"
-msgstr "プロファイルの"
+msgstr "リーディングプロファイル"
 
 #: src/constants.vala.in:125
 msgid "Text"
@@ -413,11 +401,11 @@ msgstr "背景"
 
 #: src/constants.vala.in:127
 msgid "Highlight"
-msgstr ""
+msgstr "ハイライト"
 
 #: src/constants.vala.in:128
 msgid "Add folders to scan for books"
-msgstr "カレントフォルダを"
+msgstr "本をスキャンするフォルダーを追加"
 
 #: src/constants.vala.in:129
 msgid "Profile"
@@ -425,15 +413,15 @@ msgstr "プロファイル"
 
 #: src/constants.vala.in:130
 msgid "Reset to default values"
-msgstr "設定をリセット"
+msgstr "デフォルト値にリセット"
 
 #: src/constants.vala.in:142
 msgid "Unknown Book"
-msgstr ""
+msgstr "不明な本"
 
 #: src/constants.vala.in:143
 msgid "About"
-msgstr "Bookwormについて"
+msgstr "このアプリケーションについて"
 
 #: src/dialog.vala:63
 msgid "Select Image"
@@ -445,7 +433,7 @@ msgstr "フォルダを選択"
 
 #: src/window.vala:293 src/window.vala:538
 msgid "Select eBook"
-msgstr "本を選択"
+msgstr "電子書籍を選択"
 
 #: src/library.vala:610
 msgid "Adding "
@@ -457,57 +445,56 @@ msgstr "本"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "本"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "電子書籍を読んだり管理したりします"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;本の虫;電子書籍;リーダー;コミック;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
-msgstr "電子書籍リーダー"
+msgstr "電子書籍向けリーダー"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
-msgstr ""
+msgstr "ePub・PDF・MOBI・CBR など異なったファイル形式の複雑さを気にせずに愛読書を読みましょう。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
-msgstr ""
+msgstr "本にタグ付けしたりメタデータを更新したりしてライブラリを管理して、メタデータ検索とタグに基づくフィルタリングを使用し本を素早く見つけましょう。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"このバージョンは EPUB・MOBI・PRC・PDFとコミックス (CBR と CBZ) "
+"形式をサポートしています。まもなく、さらなるファイル形式がサポートされます。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Bookworm ライブラリビュー"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "電子書籍リーダー"
+msgstr "Bookworm リーディングビュー"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Website"
 #~ msgstr "WEBサイト"
