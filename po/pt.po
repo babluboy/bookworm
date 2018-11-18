@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-29 22:33+0000\n"
-"PO-Revision-Date: 2018-07-12 13:24+0000\n"
-"Last-Translator: Carlos Familia <carlosfamilia@gmail.com>\n"
+"PO-Revision-Date: 2018-11-19 07:07+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/pt/>\n"
 "Language: pt\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -151,9 +151,8 @@ msgstr ""
 "marcar a página"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Definir Palavra"
+msgstr "Significado Da Palavra"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
@@ -202,6 +201,8 @@ msgstr "Não foram encontrados resultados para '$$$' em &&&"
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Selecione uma palavra no livro e clique direito para procurar o seu "
+"significado"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
@@ -455,57 +456,61 @@ msgstr "Livro"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Livro"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Ler e gerenciar eBooks"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
-msgstr "Um Leitor de Ebooks"
+msgstr "Um leitor de eBook focado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
+"Leia os livros que você ama sem ter que se preocupar com as complexidades de "
+"formatos diferentes, como ePub, pdf, mobi, cbr, etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Gerencie sua biblioteca marcando e atualizando metadados em livros, para "
+"localizar rapidamente livros usando a pesquisa de metadados e a filtragem "
+"baseada em marcas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"Esta versão suporta formatos EPUB, MOBI, PRC, PDF e Comics (CBR e CBZ) com "
+"suporte para mais formatos a seguir em breve."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Exibição da biblioteca do Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "Executar O Bookworm em modo de informação"
+msgstr "Bookworm Modo De Exibição De Leitura"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Added "
 #~ msgstr "Adicionado "
