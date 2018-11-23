@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-29 22:33+0000\n"
-"PO-Revision-Date: 2018-11-14 12:52+0000\n"
+"PO-Revision-Date: 2018-11-25 08:07+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ja/>\n"
@@ -73,7 +73,7 @@ msgstr "タイトル・著者・タグで検索"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr "Bookworm に本が見つかりません。"
+msgstr "本が見つかりません。"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -87,29 +87,29 @@ msgstr "読みたい電子書籍を選択します"
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr "本のコンテンツを抽出する際に問題が発生しました。有効な電子書籍ファイルであることを確認してください: "
+msgstr "本のコンテンツを抽出する際に問題が発生しました。有効な電子書籍ファイルであることを確認してください： "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "無効な MIME タイプが検出されました。この電子書籍のファイル形式を確認してください: "
+msgstr "無効な MIME タイプが検出されました。この電子書籍のファイル形式を確認してください： "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr "無効なコンテンツが見つかりました。有効な電子書籍ファイルであることを確認してください: "
+msgstr "無効なコンテンツが見つかりました。有効な電子書籍ファイルであることを確認してください： "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr "電子書籍を解析できませんでした。有効な電子書籍ファイルであることを確認してください: "
+msgstr "電子書籍を解析できませんでした。有効な電子書籍ファイルであることを確認してください： "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm はここで見つかったファイル形式をサポートしていません: "
+msgstr "Bookworm はここで見つかったファイル形式をサポートしていません： "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr "要求されたコンテンツを取得できませんでした。見つかった電子書籍ファイルを削除して追加してください: "
+msgstr "要求されたコンテンツを取得できませんでした。見つかった電子書籍ファイルを削除して追加してください： "
 
 #: src/constants.vala.in:52
 msgid "Library"
@@ -167,7 +167,7 @@ msgstr "この注釈に対するコンマで区切られたタグ"
 
 #: src/constants.vala.in:65
 msgid "Edit annotation for:"
-msgstr "以下の注釈を編集:"
+msgstr "以下の注釈を編集："
 
 #: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
@@ -181,11 +181,11 @@ msgstr "BBB には注釈がついていません。注釈を追加するには�
 
 #: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
-msgstr "&&& 内で '$$$' を検索しています:"
+msgstr "&&& 内で '$$$' を検索しています："
 
 #: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "&&& 内に以下の一致する '$$$' が見つかりました:"
+msgstr "&&& 内に以下の一致する '$$$' が見つかりました："
 
 #: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
@@ -197,7 +197,7 @@ msgstr "本の中の単語の意味を調べるには、単語を選択して右
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
-msgstr "情報を編集:"
+msgstr "情報を編集："
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
@@ -293,7 +293,7 @@ msgstr "ライブラリ内の 1 つまたは複数の本を選択します"
 
 #: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr "コンテンツの表、ブックマーク、検索結果を参照します"
+msgstr "コンテンツの表・ブックマーク・検索結果を参照します"
 
 #: src/constants.vala.in:99
 msgid "Reading preferences"
