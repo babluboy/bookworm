@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-29 22:33+0000\n"
-"PO-Revision-Date: 2018-10-13 15:30+0000\n"
+"PO-Revision-Date: 2018-11-25 08:07+0000\n"
 "Last-Translator: ditokp <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/id/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.2.1\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -86,7 +86,7 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Terjadi masalah saat mengekstrak isi buku. Pastikan terdapat fail e-Book "
+"Terjadi masalah saat mengekstrak isi buku. Pastikan terdapat file e-Book "
 "yang valid di sini: "
 
 #: src/constants.vala.in:47
@@ -455,57 +455,63 @@ msgstr "Buku"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Buku"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Baca dan atur Ebook"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
-msgstr "Sebuah Pembaca e-Book"
+msgstr "Pembaca e-Book"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
+"Baca buku yang Anda suka tanpa cemas tentang kompleksifitas format yang "
+"berbeda seperti epub, pdf, mobi, cbr, dll."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Atur perpustakaan Anda dengan label dan perbarui metadata buku, untuk "
+"mencari buku dengan cepat menggunakan pencari metadata dan filtering "
+"berdasarkan label."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"Versi ini mendukung format EPUB, MOBI, PRC, PDF dan Komik (CBR dan CBZ) "
+"dengan format lainnya yang akan segera didukung."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
+#, fuzzy
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Lihat Perpustakaan Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 #, fuzzy
 msgid "Bookworm Reading View"
-msgstr "Jalankan Bookworm dalam mode info"
+msgstr "Bookworm Reading View"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Website"
 #~ msgstr "Situs web"
