@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-29 22:33+0000\n"
-"PO-Revision-Date: 2018-07-21 19:19+0000\n"
+"PO-Revision-Date: 2018-11-27 14:07+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -454,24 +454,22 @@ msgstr "Bók"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Bók"
+msgstr "Bókaormur"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Lesa og sýsla með rafbækur"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Bókaormur;Rafbók;Lesari;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
 msgstr "Rafbókalesari"
 
@@ -480,28 +478,33 @@ msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
+"Lestu bækur eins og þig lystir, án þess að þurfa að hugsa um mismun á "
+"flóknum skráasniðum eins og epub, pdf, mobi, cbr, o.sv.frv."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Skipuleggðu safnið þitt með því að merkja og uppfæra lýsigögn bóka, sem "
+"nýtist svo til að leita að bókum hratt og vel."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"Þessi útgáfa styður EPUB, MOBI, PRC, PDF og Comic (CBR og CBZ) skráasnið auk "
+"þess sem stuðningur enn fleiri snið er væntanlegur."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Sýn á Bókaormssafn"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "Keyra Bókaorm í upplýsingaham"
+msgstr "Keyra Bókaorm í lesham"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
