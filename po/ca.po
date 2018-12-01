@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 21:47+0000\n"
+"POT-Creation-Date: 2018-12-01 18:04+0000\n"
 "PO-Revision-Date: 2018-10-27 14:24+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bookworm/"
@@ -147,9 +147,10 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Feu clic a un enllaç per a anar a la secció marcada"
 
 #: src/constants.vala.in:59
+#, fuzzy
 msgid ""
-"No bookmarks set in BBB, click the bookworm icon on the header bar to "
-"boomark the page"
+"No bookmarks set in BBB, click the bookmark icon on the header bar to "
+"bookmark the page"
 msgstr ""
 "No s’ha definit cap punt de llibre en BBB. Feu clic a la icona del Bookworm "
 "de la barra de capçalera per a marcar la pàgina"

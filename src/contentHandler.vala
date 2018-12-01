@@ -52,15 +52,13 @@ public class BookwormApp.contentHandler {
         //debug(bookContent);
         //render the content on webview
         BookwormApp.AppWindow.aWebView.load_html(bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
-        //set the focus to the webview to capture keypress events
-        BookwormApp.AppWindow.aWebView.grab_focus();
         //set the bookmak icon on the header
         handleBookMark("DISPLAY");
         //set the navigation controls
         aBook = controlNavigation(aBook);
         //set the current value of the page slider
         BookwormApp.AppWindow.pageAdjustment.set_value(currentContentLocation+1);
-        debug("[END] [FUNCTION:renderPage]");        
+        debug("[END] [FUNCTION:renderPage]");
         return aBook;
     }
 
@@ -380,7 +378,8 @@ public class BookwormApp.contentHandler {
         debug("[START] [FUNCTION:refreshCurrentPage]");
         if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
             BookwormApp.Book currentBookForRefresh = BookwormApp.Bookworm.libraryViewMap.get (
-                            BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+                        BookwormApp.Bookworm.locationOfEBookCurrentlyRead
+            );
             currentBookForRefresh = renderPage(
                         BookwormApp.Bookworm.libraryViewMap.get(
                         BookwormApp.Bookworm.locationOfEBookCurrentlyRead), ""

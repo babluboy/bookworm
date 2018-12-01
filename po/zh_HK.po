@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-21 18:05+0100\n"
+"POT-Creation-Date: 2018-12-01 18:04+0000\n"
 "PO-Revision-Date: 2018-11-08 21:06+0000\n"
 "Last-Translator: Kenman <kentsangkm@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <https://hosted.weblate.org/projects/"
@@ -138,9 +138,10 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "㩒一下連結跳去書籤"
 
 #: src/constants.vala.in:59
+#, fuzzy
 msgid ""
-"No bookmarks set in BBB, click the bookworm icon on the header bar to "
-"boomark the page"
+"No bookmarks set in BBB, click the bookmark icon on the header bar to "
+"bookmark the page"
 msgstr "喺BBB 搵唔到書籤，㩒一下頁頂嘅書蟲去增加書簽"
 
 #: src/constants.vala.in:60
@@ -466,7 +467,8 @@ msgstr "專業電子書閱讀器"
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
-msgstr "您可以專心欣賞您嘅電子書，唔駛再理會文件格式例如 epub, pdf, mobi, cbr。"
+msgstr ""
+"您可以專心欣賞您嘅電子書，唔駛再理會文件格式例如 epub, pdf, mobi, cbr。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""

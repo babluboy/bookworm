@@ -235,6 +235,12 @@ public class BookwormApp.PreferencesMenu {
                 //Refresh the page if it is open
 	            BookwormApp.contentHandler.refreshCurrentPage();
         });
+
+        prefPopover.closed.connect (() => {
+            //set the focus to the webview to capture keypress events
+            BookwormApp.AppWindow.aWebView.grab_focus();
+        });
+
         debug("[END] [FUNCTION:createPrefPopOver]");
         return prefPopover;
     }

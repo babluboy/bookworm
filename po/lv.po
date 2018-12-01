@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-29 22:33+0000\n"
+"POT-Creation-Date: 2018-12-01 18:04+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
@@ -132,8 +132,8 @@ msgstr ""
 
 #: src/constants.vala.in:59
 msgid ""
-"No bookmarks set in BBB, click the bookworm icon on the header bar to "
-"boomark the page"
+"No bookmarks set in BBB, click the bookmark icon on the header bar to "
+"bookmark the page"
 msgstr ""
 
 #: src/constants.vala.in:60

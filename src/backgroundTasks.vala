@@ -37,7 +37,7 @@ public class BookwormApp.BackgroundTasks {
   public static void initialization(){
         settings = BookwormApp.Settings.get_instance();
         //check if the database exists otherwise create database and required tables
-        BookwormApp.DB.initializeBookWormDB(GLib.Environment.get_user_config_dir ()+"/bookworm");
+        BookwormApp.DB.initializeBookWormDB(BookwormApp.Bookworm.bookworm_config_path);
         listOfBooks = BookwormApp.DB.getBookIDListFromDB();
   }
 

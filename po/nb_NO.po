@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-29 22:33+0000\n"
+"POT-Creation-Date: 2018-12-01 18:04+0000\n"
 "PO-Revision-Date: 2018-10-25 22:11+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -145,9 +145,10 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Klikk på en lenke for å hoppe til bokmerket del"
 
 #: src/constants.vala.in:59
+#, fuzzy
 msgid ""
-"No bookmarks set in BBB, click the bookworm icon on the header bar to "
-"boomark the page"
+"No bookmarks set in BBB, click the bookmark icon on the header bar to "
+"bookmark the page"
 msgstr ""
 "Ingen bokmerker angitt i BBB, klikk på Bokormsikonet i rubrikkfeltet for å "
 "bokmerke siden"

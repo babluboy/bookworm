@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-29 22:33+0000\n"
+"POT-Creation-Date: 2018-12-01 18:04+0000\n"
 "PO-Revision-Date: 2017-09-18 07:01+0000\n"
 "Last-Translator: Pablo Mariño <pablo.marino.boga@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bookworm/"
@@ -156,9 +156,10 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Clic nunha ligazón para saltar á sección enlazada"
 
 #: src/constants.vala.in:59
+#, fuzzy
 msgid ""
-"No bookmarks set in BBB, click the bookworm icon on the header bar to "
-"boomark the page"
+"No bookmarks set in BBB, click the bookmark icon on the header bar to "
+"bookmark the page"
 msgstr ""
 "Non hai marcadores definidos en BBB, clic na icona de bookworm na cabeceira "
 "para engadir a páxina a marcadores"

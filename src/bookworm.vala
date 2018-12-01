@@ -111,7 +111,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 	}
 
 	private Bookworm() {
-		Object(application_id: BookwormApp.Constants.bookworm_id, flags: ApplicationFlags.HANDLES_COMMAND_LINE);
+		Object( application_id: BookwormApp.Constants.bookworm_id, 
+                flags: ApplicationFlags.HANDLES_COMMAND_LINE
+        );
 		Intl.setlocale(LocaleCategory.MESSAGES, "");
 		Intl.textdomain(GETTEXT_PACKAGE);
 		Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
@@ -119,10 +121,10 @@ public class BookwormApp.Bookworm : Granite.Application {
 		app_xdg_path = new Granite.Services.Paths();
 		app_xdg_path.initialize (Constants.bookworm_id, Constants.INSTALL_SCRIPTS_DIR);
 		bookworm_config_path = app_xdg_path.user_data_folder.get_path();
-		debug("Bookworm Install Directory:"+BookwormApp.Constants.INSTALL_PREFIX);
-		debug("Bookworm Install Tasks Scripts Directory:"+BookwormApp.Constants.INSTALL_TASKS_DIR);
-		debug("Bookworm Install Mobi Scripts Directory:"+BookwormApp.Constants.INSTALL_MOBILIB_DIR);
-		debug("Bookworm User Data Directory:"+bookworm_config_path);
+		debug("Bookworm Install Directory: "+BookwormApp.Constants.INSTALL_PREFIX);
+		debug("Bookworm Install Tasks Scripts Directory: "+BookwormApp.Constants.INSTALL_TASKS_DIR);
+		debug("Bookworm Install Mobi Scripts Directory: "+BookwormApp.Constants.INSTALL_MOBILIB_DIR);
+		debug("Bookworm User Data Directory: "+bookworm_config_path);
 	}
 
 	public static Bookworm getAppInstance(){
@@ -489,7 +491,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static void readSelectedBook(owned BookwormApp.Book aBook){
 		info("[START] [FUNCTION:readSelectedBook] book.location="+aBook.getBookLocation());
 		//Fetch the book meta data from the database if it is not already available
-		if(aBook.getBookContentList().size < 1){ //content size should be greater than 1 if the book data has been loaded
+		if(aBook.getBookContentList().size < 1){ 
+            //content size should be greater than 1 if the book data has been loaded
 			aBook = BookwormApp.DB.getBookMetaDataFromDB(aBook);
 		}
 		//Handle the case when the page number of the book is not set
@@ -506,12 +509,20 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//check if the extracted contents for the book exists
 		if(BookwormApp.Bookworm.settings.is_local_storage_enabled &&
-			"true" == BookwormApp.Utils.fileOperations("DIR_EXISTS", aBook.getBookExtractionLocation(), "", "") &&
-			aBook.getBookContentList() != null && aBook.getBookContentList().size > 0 &&
+			"true" == BookwormApp.Utils.fileOperations(
+                            "DIR_EXISTS", aBook.getBookExtractionLocation(), "", ""
+            ) &&
+			aBook.getBookContentList() != null && 
+            aBook.getBookContentList().size > 0 &&
 			aBook.getBookContentList().size >= aBook.getBookPageNumber() &&
-			"true" == BookwormApp.Utils.fileOperations("EXISTS", 
-																							BookwormApp.Utils.decodeHTMLChars(
-																							aBook.getBookContentList().get(aBook.getBookPageNumber())), "", "")
+			"true" == BookwormApp.Utils.fileOperations(
+						"EXISTS", 
+						BookwormApp.Utils.decodeHTMLChars(
+							aBook.getBookContentList().get(aBook.getBookPageNumber())
+						), 
+						"", 
+						""
+        			  )
 		){
 			//extraction of book not required
 			aBook.setIsBookParsed(true);
@@ -545,6 +556,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 			BookwormApp.AppWindow.pageAdjustment.set_value(aBook.getBookPageNumber());
 			//render the contents of the current page of book
 			aBook = BookwormApp.contentHandler.renderPage(aBook, "");
+            //set the focus to the webview to capture keypress events
+            BookwormApp.AppWindow.aWebView.grab_focus();
 		}
         info("[END] [FUNCTION:readSelectedBook] book.location="+aBook.getBookLocation());
 	}
