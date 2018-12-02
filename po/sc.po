@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-10-23 12:37+0000\n"
+"PO-Revision-Date: 2018-12-03 20:13+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sc/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -148,13 +148,12 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Incarca in unu ligàmene pro andare a sa setzione sinnalada"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Perunu sinnalibru impostadu in BBB, incarca in s'icona de su sòrighe de "
-"biblioteca in sa barra in artu pro pònnere unu sinnalibru in sa pàgina"
+"Perunu sinnalibru impostadu in BBB, incarca in s'icona de su sinnalibru in "
+"sa barra in artu pro pònnere unu sinnalibru in sa pàgina"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
