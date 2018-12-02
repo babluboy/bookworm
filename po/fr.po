@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-01 18:04+0000\n"
+"POT-Creation-Date: 2018-12-02 18:33+0000\n"
 "PO-Revision-Date: 2018-05-31 08:12+0000\n"
 "Last-Translator: Jacky Blois <jacky.blois@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"

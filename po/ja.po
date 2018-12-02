@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-01 18:04+0000\n"
+"POT-Creation-Date: 2018-12-02 18:33+0000\n"
 "PO-Revision-Date: 2018-12-02 18:31+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
@@ -87,19 +87,27 @@ msgstr "読みたい電子書籍を選択します"
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr "本のコンテンツを抽出する際に問題が発生しました。有効な電子書籍ファイルであることを確認してください: "
+msgstr ""
+"本のコンテンツを抽出する際に問題が発生しました。有効な電子書籍ファイルである"
+"ことを確認してください: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "無効な MIME タイプが検出されました。この電子書籍のファイル形式を確認してください: "
+msgstr ""
+"無効な MIME タイプが検出されました。この電子書籍のファイル形式を確認してくだ"
+"さい: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr "無効なコンテンツが見つかりました。有効な電子書籍ファイルであることを確認してください: "
+msgstr ""
+"無効なコンテンツが見つかりました。有効な電子書籍ファイルであることを確認して"
+"ください: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr "電子書籍を解析できませんでした。有効な電子書籍ファイルであることを確認してください: "
+msgstr ""
+"電子書籍を解析できませんでした。有効な電子書籍ファイルであることを確認してく"
+"ださい: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -109,7 +117,9 @@ msgstr "Bookworm はここで見つかったファイル形式をサポートし
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr "要求されたコンテンツを取得できませんでした。見つかった電子書籍ファイルを削除して追加してください: "
+msgstr ""
+"要求されたコンテンツを取得できませんでした。見つかった電子書籍ファイルを削除"
+"して追加してください: "
 
 #: src/constants.vala.in:52
 msgid "Library"
@@ -143,7 +153,9 @@ msgstr "リンクをクリックするとブックマークされた箇所に移
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
-msgstr "BBB にはブックマークがありません。ページをブックマークするには、ヘッダーバーのブックマークアイコンをクリックしてください"
+msgstr ""
+"BBB にはブックマークがありません。ページをブックマークするには、ヘッダーバー"
+"のブックマークアイコンをクリックしてください"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"

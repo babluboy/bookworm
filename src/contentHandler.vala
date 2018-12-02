@@ -149,10 +149,12 @@ public class BookwormApp.contentHandler {
         string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts;
 
         //For the Title Page (first or second page), resize height and width of images
-        if(aBook.getBookPageNumber() < 2 && (pageContentStr.contains("<image") || pageContentStr.contains("<img"))) {
+        if( aBook.getBookPageNumber() < 2 && 
+            (pageContentStr.contains("<image") || pageContentStr.contains("<img"))
+        ){
             currentBookwormScripts = currentBookwormScripts.replace("$TITLE_PAGE_IMAGE", "img, image");
         }
-        //Set background and font colour based on profile        
+        //Set background and font colour based on profile
         if(BookwormApp.Constants.BOOKWORM_READING_MODE[4] == BookwormApp.Bookworm.settings.reading_profile){
             //default dark profile
             cssForTextAndBackgroundColor = " background-color: #002b36" +
@@ -200,7 +202,9 @@ public class BookwormApp.contentHandler {
         //Set up CSS for book as per preference settings - this will override any css in the book contents
         currentBookwormScripts = currentBookwormScripts
                                      .replace("$READING_LINE_HEIGHT", BookwormApp.Bookworm.settings.reading_line_height)
-                                     .replace("$READING_WIDTH", (100 - int.parse(BookwormApp.Bookworm.settings.reading_width)).to_string())
+                                     .replace("$READING_WIDTH", (100 - int.parse(
+                                                                    BookwormApp.Bookworm.settings.reading_width)
+                                                                ).to_string())
                                      .replace("$FONT_FAMILY", BookwormApp.Bookworm.settings.reading_font_name_family)
                                      .replace("$FONT_SIZE", BookwormApp.Bookworm.settings.reading_font_size.to_string())
                                      .replace("$READING_TEXT_ALIGN", BookwormApp.Bookworm.settings.text_alignment)
@@ -380,6 +384,7 @@ public class BookwormApp.contentHandler {
             BookwormApp.Book currentBookForRefresh = BookwormApp.Bookworm.libraryViewMap.get (
                         BookwormApp.Bookworm.locationOfEBookCurrentlyRead
             );
+            BookwormApp.Bookworm.isPageScrollRequired = true; //set up the flag to scroll to the last read position
             currentBookForRefresh = renderPage(
                         BookwormApp.Bookworm.libraryViewMap.get(
                         BookwormApp.Bookworm.locationOfEBookCurrentlyRead), ""
@@ -396,7 +401,9 @@ public class BookwormApp.contentHandler {
         debug("[START] [FUNCTION:getScrollPos]");
         //This function is responsible for returning the vertical scroll position of the webview
         //This should be called when the user leaves reading a book :
-        //(1) "Return" to Library button on Header Bar and (2) Close Bookworm while in reading mode
+            //(1) Return to Library button on Header Bar 
+            //(2) Close Bookworm while in reading mode
+            //(3) Move to info view using Info button on Header Bar
 	    int scrollPos = -1;
         scrollPos = int.parse(BookwormApp.Utils.setWebViewTitle("document.title = window.scrollY;"));
         debug("[START] [FUNCTION:getScrollPos] scrollPos="+scrollPos.to_string());
@@ -416,7 +423,9 @@ public class BookwormApp.contentHandler {
         {
             BookwormApp.Book requestedBook = null;
             //Check if the requested book is available in the library
-            if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(BookwormApp.Bookworm.commandLineArgs[1].strip()) != -1){
+            if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(
+                    BookwormApp.Bookworm.commandLineArgs[1].strip()) != -1)
+            {
                 //pick the book from the Initial ArrayList used for holding the books in the library
                 //as the BookwormApp.Bookworm.libraryViewMap would not have finished loading
                 foreach (BookwormApp.Book aBook in BookwormApp.Library.listOfBooksInLibraryOnLoad) {
@@ -441,7 +450,9 @@ public class BookwormApp.contentHandler {
             //check and continue the last book being read - if "Always show library on start is false"
             if((!BookwormApp.Bookworm.settings.is_show_library_on_start) && (BookwormApp.Bookworm.settings.book_being_read != "")){
                 //check if the library contains the book being read last
-                if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(BookwormApp.Bookworm.settings.book_being_read) != -1){
+                if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(
+                        BookwormApp.Bookworm.settings.book_being_read) != -1)
+                    {
                     //Initiate Reading the book
                     BookwormApp.Book lastReadBook = BookwormApp.Bookworm.libraryViewMap.get(
                                 BookwormApp.Bookworm.settings.book_being_read);

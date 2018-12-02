@@ -596,7 +596,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3] ||
 			 BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5])
 		{
-			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(
+                BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH
+            );
 			library_mode_button.set_visible(true);
 			content_list_button.set_visible(false);
 			library_view_button.set_visible(false);
@@ -611,7 +613,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//Set-up UI for Reading Mode
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
-			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH);
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(
+                    BookwormApp.Constants.TEXT_FOR_HEADERBAR_BOOK_SEARCH
+            );
 			library_mode_button.set_visible(false);
 			content_list_button.set_visible(true);
 			library_view_button.set_visible(true);
@@ -625,7 +629,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//Set-up UI for Info Mode -  Meta Data / Table of Content
 		if(BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
-			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
+			BookwormApp.AppHeaderBar.headerSearchBar.set_placeholder_text(
+                    BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH
+            );
 			BookwormApp.Info.info_box.show_all();
 			library_mode_button.set_visible(false);
 			content_list_button.set_visible(false);
@@ -640,7 +646,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 			BookwormApp.AppHeaderBar.bookmark_inactive_button.set_visible(false);
 			BookwormApp.AppWindow.bookAdditionBar.hide();
 		}
-		info("[END] [FUNCTION:toggleUIState] bookworm current state:"+BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE);
+		info("[END] [FUNCTION:toggleUIState] bookworm current state:"+
+              BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE
+        );
 	}
 
 	public static BookwormApp.Book genericParser(owned BookwormApp.Book aBook){

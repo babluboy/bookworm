@@ -137,8 +137,9 @@ public class BookwormApp.AppHeaderBar {
               //Set action of return to Library View if the current view is Reading View
               if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
                     //Get the current scroll position of the book and add it to the book object
-                    (BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead))
-                                .setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
+                    (BookwormApp.Bookworm.libraryViewMap.get(
+                                BookwormApp.Bookworm.locationOfEBookCurrentlyRead)
+                    ).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
                     //Update header to remove title of book being read
                     headerbar.title = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
                     //set UI in library view mode
@@ -149,21 +150,35 @@ public class BookwormApp.AppHeaderBar {
               if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){
                 //set UI in library view mode
                 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
-                BookwormApp.Book currentBookForContentList = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+                //Enable the flag which will scroll the page to the last read position
+			    BookwormApp.Bookworm.isPageScrollRequired = true;
+                BookwormApp.Book currentBookForContentList = BookwormApp.Bookworm.libraryViewMap.get(
+                                            BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
                 currentBookForContentList = BookwormApp.contentHandler.renderPage(
-                                                                    BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead),
-                                                                    "");
-                BookwormApp.Bookworm.libraryViewMap.set(BookwormApp.Bookworm.locationOfEBookCurrentlyRead, currentBookForContentList);
+                                                BookwormApp.Bookworm.libraryViewMap.get(
+                                                    BookwormApp.Bookworm.locationOfEBookCurrentlyRead),""
+                                            );
+                BookwormApp.Bookworm.libraryViewMap.set(
+                                        BookwormApp.Bookworm.locationOfEBookCurrentlyRead, 
+                                        currentBookForContentList
+                );
                 BookwormApp.Bookworm.toggleUIState();
               }
         });
+
         BookwormApp.Bookworm.content_list_button.clicked.connect (() => {
               BookwormApp.Info.createTableOfContents();
               //Set the mode to Content View Mode
               BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[4];
+              //Get the current scroll position of the book and add it to the book object
+              (BookwormApp.Bookworm.libraryViewMap.get(
+                            BookwormApp.Bookworm.locationOfEBookCurrentlyRead)
+              ).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
               BookwormApp.Bookworm.toggleUIState();
               //Open the Info section for the last viewed tab
-              BookwormApp.Info.stack.set_visible_child (BookwormApp.Info.stack.get_child_by_name (settings.current_info_tab));
+              BookwormApp.Info.stack.set_visible_child (
+                    BookwormApp.Info.stack.get_child_by_name (settings.current_info_tab)
+              );
               //Refresh the tab if required
               if("bookmark-list"==settings.current_info_tab){
                     BookwormApp.Info.populateBookmarks();
@@ -173,12 +188,17 @@ public class BookwormApp.AppHeaderBar {
               }
               if("searchresults-list"==settings.current_info_tab){
                     if(BookwormApp.Info.firstSearchResultLinkButton != null){
-                        BookwormApp.Info.firstSearchResultLinkButton.grab_focus(); //sets the focus on the first link
+                        //sets the focus on the first link
+                        BookwormApp.Info.firstSearchResultLinkButton.grab_focus();
                     }
               }
         });
 
         BookwormApp.Bookworm.prefButton.clicked.connect (() => {
+              //Get the current scroll position of the book and add it to the book object
+              (BookwormApp.Bookworm.libraryViewMap.get(
+                            BookwormApp.Bookworm.locationOfEBookCurrentlyRead)
+              ).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
               prefPopover.set_visible (true);
               prefPopover.show_all();
         });
