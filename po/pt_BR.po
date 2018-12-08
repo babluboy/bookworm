@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-11-27 14:07+0000\n"
-"Last-Translator: Mateus <mateus4k@protonmail.ch>\n"
+"PO-Revision-Date: 2018-12-10 18:08+0000\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -91,7 +91,7 @@ msgstr ""
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Formato inválido. Verifique o formato do livro: "
+msgstr "Formato inválido detectado. Verifique o formato deste livro: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -140,7 +140,7 @@ msgstr "Favorito #NNN para a seção PPP"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr "Clique no link para ir para a seção marcada como favorita"
+msgstr "Clique num link para ir à seção marcada"
 
 #: src/constants.vala.in:59
 #, fuzzy
@@ -193,11 +193,11 @@ msgstr "Buscando '$$$' em &&&:"
 
 #: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Encontradas as seguintes correspondências para '$$$' em &&&:"
+msgstr "Encontrou as seguintes correspondências para '$$$' em &&&:"
 
 #: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
-msgstr "Não foi possível encontrar '$$$' em &&&"
+msgstr "Nenhuma correspondência encontrada para '$$$' em &&&"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
@@ -207,7 +207,7 @@ msgstr ""
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
-msgstr "Editar informações para"
+msgstr "Editar informações sobre"
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
@@ -455,9 +455,8 @@ msgstr "Livro"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Livro"
+msgstr "Bibliófilo"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
@@ -510,7 +509,7 @@ msgstr "Modo Leitura"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Website"
 #~ msgstr "Página Web"
