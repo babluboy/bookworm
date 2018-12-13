@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-11-25 08:07+0000\n"
+"PO-Revision-Date: 2018-12-14 07:08+0000\n"
 "Last-Translator: ditokp <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/id/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -145,12 +145,11 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Klik tautan untuk lompat ke bagian yang ditandai"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Tidak ada penanda yang ditetapkan pada BBB, klik ikon Bookworm pada bagian "
+"Tidak ada penanda yang ditetapkan pada BBB, klik ikon penanda pada bagian "
 "atas untuk menandai halaman"
 
 #: src/constants.vala.in:60
