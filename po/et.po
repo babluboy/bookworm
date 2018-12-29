@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-11-25 08:07+0000\n"
+"PO-Revision-Date: 2018-12-30 14:08+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/et/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -144,7 +144,6 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Järjehoidjaga viidatud ossa pääsemiseks klõpsa tal"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
