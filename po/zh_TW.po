@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-04-02 14:35+0000\n"
-"Last-Translator: Alister Gao <k88959@gmail.com>\n"
+"PO-Revision-Date: 2019-01-12 18:06+0000\n"
+"Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.20-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -138,14 +138,12 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "點擊連結跳至書籤段落"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr "BBB 沒有設置書籤，點擊標題欄的圖示添加本頁至書籤"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid "Word Meaning"
 msgstr "查詢字詞含義"
 
@@ -166,9 +164,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "本註釋以逗號分隔的標籤"
 
 #: src/constants.vala.in:65
-#, fuzzy
 msgid "Edit annotation for:"
-msgstr "編輯註釋： "
+msgstr "編輯註釋："
 
 #: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
@@ -194,7 +191,7 @@ msgstr "在 &&& 中找不到符合 '$$$' 的結果"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "選擇書中的單詞並右鍵單擊以查尋含義"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
@@ -278,7 +275,7 @@ msgstr "天"
 
 #: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "當 Bookworm 關閉時，將開始發現書籍"
 
 #: src/constants.vala.in:95
 msgid "Add books to library"
@@ -401,9 +398,8 @@ msgid "Background"
 msgstr "背景"
 
 #: src/constants.vala.in:127
-#, fuzzy
 msgid "Highlight"
-msgstr "向右對齊"
+msgstr "突出"
 
 #: src/constants.vala.in:128
 msgid "Add folders to scan for books"
@@ -447,24 +443,22 @@ msgstr "書藉"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "書藉"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "閱讀和管理電子書"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;電子書;閱讀器;電子出版;Mobi;漫畫; CBR; Cbz; PDF閱讀器;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
 msgstr "一個電子書閱讀器"
 
@@ -472,29 +466,28 @@ msgstr "一個電子書閱讀器"
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
-msgstr ""
+msgstr "閱讀您喜愛的書籍，而不必擔心不同的格式複雜性，如epub，pdf，mobi，cbr等。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
-msgstr ""
+msgstr "通過標記和更新書籍上的元數據來管理您的庫，使用元數據搜尋和基於標籤的過濾快速找到書籍。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
-msgstr ""
+msgstr "此版本支持EPUB，MOBI，PRC，PDF和漫畫（CBR和CBZ）格式，支持更多格式即將推出。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Bookworm 圖書館視圖"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "執行Bookworm的資訊模式"
+msgstr "Bookworm 閱讀視圖"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
