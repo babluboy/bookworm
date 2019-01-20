@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
 "PO-Revision-Date: 2019-01-21 21:19+0000\n"
-"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
+"Last-Translator: eradev <weblate@eradev.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "fr/>\n"
 "Language: fr\n"
@@ -157,9 +157,8 @@ msgstr ""
 "barre supérieure pour ajouter un marque-page à cette page"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Vérifier la signification du mot"
+msgstr "Signification du mot"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
@@ -178,9 +177,8 @@ msgid "Comma-separated tags for this annotation"
 msgstr "Étiquettes séparées par des virgules pour cette note"
 
 #: src/constants.vala.in:65
-#, fuzzy
 msgid "Edit annotation for:"
-msgstr "Ajouter des notes pour : "
+msgstr "Modifier l'annotation pour : "
 
 #: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
@@ -420,9 +418,8 @@ msgid "Background"
 msgstr "Arrière-plan"
 
 #: src/constants.vala.in:127
-#, fuzzy
 msgid "Highlight"
-msgstr "Aligner à droite"
+msgstr "Surligner"
 
 #: src/constants.vala.in:128
 msgid "Add folders to scan for books"
