@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-08-24 20:01+0000\n"
-"Last-Translator: George Florea <georgeflorea20@yahoo.com>\n"
+"PO-Revision-Date: 2019-01-21 21:19+0000\n"
+"Last-Translator: Alexandru Simion <simimy@yahoo.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ro/>\n"
 "Language: ro\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -144,12 +144,11 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Dă click pe un link pentru a sări la secțiunea marcată"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Niciun marcaj setat în BBB, dă click pe iconița bookworm din atet pentru a "
+"Niciun marcaj setat în BBB, dă click pe iconița bookworm din antet pentru a "
 "marca pagina"
 
 #: src/constants.vala.in:60
@@ -463,7 +462,7 @@ msgstr "Carte"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Citește și administrează eBook-uri"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
@@ -495,6 +494,8 @@ msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"Această versiune poate citi doar formatele EPUB, MOBI, PRC, PDF, inclusiv "
+"CBR și CBZ pentru benzi desenate urmând ca în curând lista să se extindă."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
