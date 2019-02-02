@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-07-24 07:36+0000\n"
-"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
+"PO-Revision-Date: 2019-02-03 08:09+0000\n"
+"Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "cs/>\n"
 "Language: cs\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -19,11 +19,11 @@ msgstr "Zobrazit číslo verze"
 
 #: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
-msgstr "Spustit Bookworm v ladícím režimu"
+msgstr "Spustit Bookworm v ladicím režimu"
 
 #: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
-msgstr "Spustit Bookworm v info režimu"
+msgstr "Spustit Bookworm v informačním režimu"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
@@ -47,7 +47,7 @@ msgstr "Čtečka elektronických knih"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Překladatelé"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
@@ -71,45 +71,52 @@ msgstr "Hledat podle názvu, autora a značek"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr "Vypadá to, že v Bookworm nejsou žádné knihy."
+msgstr "Vypadá to, že v Bookwormu (knihomolovi) nejsou žádné knihy."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Vytvořte svou knihovnu přidáním e-knih"
+msgstr "Vytvořte svou knihovnu přidáním elektronických knih"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Vybrat e-knihu ke čtení"
+msgstr "Vybrat elektronickou knihu ke čtení"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problém s extrahováním obsahu knihy. Ujistěte se, že se zde nachází platný "
-"soubor e-knihy: "
+"Problém s rozbalením obsahu knihy. Ujistěte se, že je tu platný soubor "
+"elektronické knihy: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Zjištěn neplatný typ Mime. Zkontrolujte formát této e-knihy: "
+msgstr ""
+"Zjištěn neplatný typ MIME. Zkontrolujte formát této elektronické knihy: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"Nalezen neplatný obsah. Ujistěte se, že je zde platný soubor elektronické "
+"knihy: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"Elektronickou knihu se nepodařilo zpracovat. Ujistěte se, že je zde platný "
+"soubor elektronické knihy: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookworm nepodporuje formát zde nalezeného souboru: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Požadovaný obsah se nepodařilo natáhnout. Odstraňte, prosím, a přidejte zde "
+"nalezený soubor s elektronickou knihou: "
 
 #: src/constants.vala.in:52
 msgid "Library"
@@ -117,15 +124,15 @@ msgstr "Knihovna"
 
 #: src/constants.vala.in:53
 msgid "Resume"
-msgstr ""
+msgstr "Pokračovat"
 
 #: src/constants.vala.in:54
 msgid "Contents"
-msgstr ""
+msgstr "Obsah"
 
 #: src/constants.vala.in:55
 msgid "Content #"
-msgstr ""
+msgstr "Obsah #"
 
 #: src/constants.vala.in:56
 msgid "Bookmarks"
@@ -133,71 +140,77 @@ msgstr "Záložky"
 
 #: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Dát #NNN do záložek pro oddíl PPP"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Klepnout na odkaz pro skok na oddíl přidaný do záložek"
 
 #: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"V BBB nenastaveny žádné záložky. Klepněte na ikonu záložek v pruhu záhlaví "
+"pro přidání této strany do záložek"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
-msgstr ""
+msgstr "Význam slova"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
-msgstr ""
+msgstr "Výsledky hledání"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
-msgstr ""
+msgstr "Vysvětlivky"
 
 #: src/constants.vala.in:63
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Značky poznámek"
 
 #: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Čárkami oddělené značky pro tuto poznámku"
 
 #: src/constants.vala.in:65
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Upravit poznámku pro:"
 
 #: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Klepnout na odkaz pro skok na oddíl opatřený poznámkou"
 
 #: src/constants.vala.in:67
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"V BBB nenastaveny žádné poznámky. Klepněte pravým tlačítkem myši na stranu v "
+"knize a v související nabídce pro přidání poznámek vyberte poznámku"
 
 #: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Hledá se '$$$' v &&&:"
 
 #: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Nalezeny následující shody pro '$$$' v &&&:"
 
 #: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Nalezeny žádné shody pro '$$$' v &&&"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Vyberte v knize slovo a klepněte pravým tlačítkem myši pro vyhledání jeho "
+"významu"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
-msgstr ""
+msgstr "Upravit údaje pro"
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
@@ -205,7 +218,7 @@ msgstr "Aktualizovat obrázek obalu"
 
 #: src/constants.vala.in:74
 msgid "Update Title"
-msgstr "Aktualizovat titulek"
+msgstr "Aktualizovat název"
 
 #: src/constants.vala.in:75
 msgid "Update Tags"
@@ -221,15 +234,15 @@ msgstr "Otevřít zobrazení celé obrazovky (F11)"
 
 #: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
-msgstr "Ukončit zobrazení celé obrazovky (Esc)"
+msgstr "Ukončit zobrazení na celou obrazovku (Esc)"
 
 #: src/constants.vala.in:80
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Prověřit význam slova"
 
 #: src/constants.vala.in:81
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Opatřit vybraný text poznámkou"
 
 #: src/constants.vala.in:82
 msgid "Books"
@@ -245,7 +258,7 @@ msgstr "Všechny soubory"
 
 #: src/constants.vala.in:85
 msgid "Title"
-msgstr "Titulek"
+msgstr "Název"
 
 #: src/constants.vala.in:86
 msgid "Author"
@@ -277,7 +290,7 @@ msgstr "Dny"
 
 #: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Objevování knih bude zahájeno po zavření programu Bookworm"
 
 #: src/constants.vala.in:95
 msgid "Add books to library"
@@ -286,26 +299,28 @@ msgstr "Přidat knihu do knihovny"
 #: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
+"Odstranit vybrané knihy z knihovny (soubor s elektronickou knihou nebude "
+"smazán)"
 
 #: src/constants.vala.in:97
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Vyberte v knihovně jednu nebo více knih"
 
 #: src/constants.vala.in:98
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Vidět obsah, záložky a výsledky hledání"
 
 #: src/constants.vala.in:99
 msgid "Reading preferences"
-msgstr ""
+msgstr "Nastavení čtení"
 
 #: src/constants.vala.in:100
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Klepnout pro přidání této strany do záložek"
 
 #: src/constants.vala.in:101
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Klepnout pro odstranění této záložky"
 
 #: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
@@ -317,27 +332,27 @@ msgstr "Zmenšit velikost písma (Ctrl + '-')"
 
 #: src/constants.vala.in:104
 msgid "Increase line width"
-msgstr ""
+msgstr "Zvětšit šířku řádku"
 
 #: src/constants.vala.in:105
 msgid "Decrease line width"
-msgstr ""
+msgstr "Zmenšit šířku řádku"
 
 #: src/constants.vala.in:106
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Zvětšit odstup řádku"
 
 #: src/constants.vala.in:107
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Zmenšit odstup řádku"
 
 #: src/constants.vala.in:108
 msgid "Align left"
-msgstr "Zarovnání do leva"
+msgstr "Zarovnat vlevo"
 
 #: src/constants.vala.in:109
 msgid "Align right"
-msgstr "Zarovnání do prava"
+msgstr "Zarovnat vpravo"
 
 #: src/constants.vala.in:110
 msgid "Update cover image"
@@ -345,43 +360,45 @@ msgstr "Aktualizovat obrázek obalu"
 
 #: src/constants.vala.in:111
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Použít vzhled pro tento barevný profil"
 
 #: src/constants.vala.in:112 src/constants.vala.in:113
 msgid "Enter full screen view and Esc key to undo"
 msgstr ""
+"Vstoupit do zobrazení na celou obrazovku a stisknout klávesu Esc pro jeho "
+"opuštění"
 
 #: src/constants.vala.in:114
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Přidat složku k prohledávání na knihy"
 
 #: src/constants.vala.in:115
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Odstranit zobrazenou složku z prohledávaných"
 
 #: src/constants.vala.in:116
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Přidat k vybranému textu poznámku"
 
 #: src/constants.vala.in:118 src/constants.vala.in:144
 msgid "Preferences"
-msgstr ""
+msgstr "Nastavení"
 
 #: src/constants.vala.in:119
 msgid "Turn on Dark Mode"
-msgstr "Zapnout tmavé zobrazení"
+msgstr "Zapnout tmavý vzhled"
 
 #: src/constants.vala.in:120
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Povolit vyrovnávací paměť (knihy se otevírají rychleji)"
 
 #: src/constants.vala.in:121
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Při spuštění vždy ukazovat knihovnu"
 
 #: src/constants.vala.in:122
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Povolit zobrazení dvou stran"
 
 #: src/constants.vala.in:123
 msgid "Select Font"
@@ -389,7 +406,7 @@ msgstr "Vybrat písmo"
 
 #: src/constants.vala.in:124
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Přizpůsobit čtecí profil"
 
 #: src/constants.vala.in:125
 msgid "Text"
@@ -405,7 +422,7 @@ msgstr "Zvýraznění"
 
 #: src/constants.vala.in:128
 msgid "Add folders to scan for books"
-msgstr "Přidat složky k vyhledávání knih"
+msgstr "Přidat složky k prohledávání na knihy"
 
 #: src/constants.vala.in:129
 msgid "Profile"
@@ -413,7 +430,7 @@ msgstr "Profil"
 
 #: src/constants.vala.in:130
 msgid "Reset to default values"
-msgstr ""
+msgstr "Obnovit výchozí hodnoty"
 
 #: src/constants.vala.in:142
 msgid "Unknown Book"
@@ -421,7 +438,7 @@ msgstr "Neznámá kniha"
 
 #: src/constants.vala.in:143
 msgid "About"
-msgstr "O aplikaci"
+msgstr "O programu"
 
 #: src/dialog.vala:63
 msgid "Select Image"
@@ -433,11 +450,11 @@ msgstr "Vybrat složku"
 
 #: src/window.vala:293 src/window.vala:538
 msgid "Select eBook"
-msgstr "Vybrat e-knihu"
+msgstr "Vybrat elektronickou knihu"
 
 #: src/library.vala:610
 msgid "Adding "
-msgstr "Přidávání "
+msgstr "Přidání "
 
 #: src/mobiReader.vala:329
 msgid "Book"
@@ -445,57 +462,63 @@ msgstr "Kniha"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Kniha"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Číst a spravovat elektronické knihy"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 msgstr ""
+"Bookworm;elektronická kniha;čtečka;EPUB;Mobi;komiks;kreslené "
+"příběhy;CBR;CBZ;PDF;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
-msgstr "Čtečka elektronických knih"
+msgstr "Pozoruhodná čtečka elektronických knih"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
+"Čtěte milované knihy bez starostí kvůli odlišným formátům (EPUB, PDF, MOBI, "
+"CBR a další)."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Spravujte knihovnu za pomoci značkování a obnovování popisných údajů ke "
+"knihám, abyste knihy našli s pomocí vyhledávání v popisech a s využitím na "
+"značkách založeného filtrování rychle."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"Tato verze podporuje formáty elektronických knih EPUB, MOBI, PRC, PDF a "
+"formáty kreslených příběhů (CBR a CBZ) s tím, že podpora dalších přijde brzy."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Knihovnický pohled"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "Spustit Bookworm v info režimu"
+msgstr "Čtenářský pohled"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Website"
 #~ msgstr "Webová stránka"
