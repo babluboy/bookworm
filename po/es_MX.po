@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2019-01-21 21:20+0000\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
 "Last-Translator: Salvador Luna Hernández <psic.salvador.luna.hdz@gmail.com>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/es_MX/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -69,7 +69,7 @@ msgstr "Lector de eBook"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr "Busca en este libro…"
+msgstr "Busca este libro…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
@@ -145,7 +145,7 @@ msgstr "Marcador #NNN de la sección PPP"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr "Haz clic en el enlace para ir al apartado"
+msgstr "Haz clic en el enlace para ir al marcador"
 
 #: src/constants.vala.in:59
 msgid ""
@@ -169,11 +169,11 @@ msgstr "Notas"
 
 #: src/constants.vala.in:63
 msgid "Annotation Tags"
-msgstr "Notas"
+msgstr "Etiquetas para las notas"
 
 #: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
-msgstr "Etiquetas separadas por comas para esta anotación"
+msgstr "Etiquetas separadas por comas para esta nota"
 
 #: src/constants.vala.in:65
 msgid "Edit annotation for:"
@@ -197,11 +197,11 @@ msgstr "Buscando '$$$' en &&&:"
 
 #: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Resultados de '$$$' en &&&:"
+msgstr "Se encontraron las siguientes coincidencias para '$$$' en &&&:"
 
 #: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
-msgstr "No se encontró '$$$' en &&&"
+msgstr "No se encontró ninguna coincidencia para '$$$' en &&&"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
@@ -215,7 +215,7 @@ msgstr "Editar la información para"
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
-msgstr "Modificar portada"
+msgstr "Actualizar la imagen de portada"
 
 #: src/constants.vala.in:74
 msgid "Update Title"
