@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2017-10-26 22:02+0000\n"
-"Last-Translator: Filip Kemuel Dam Bartholdy <filip_kemuel@yahoo.dk>\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
+"Last-Translator: Simon Gredal <simongr3dal@icloud.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "da/>\n"
 "Language: da\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -51,7 +51,7 @@ msgstr "Weblate oversættere"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Hjemmeside | Oversættelse | Bug Tracker"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -90,9 +90,8 @@ msgstr ""
 "her: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Ugyldig MIME-type fundet. Kontollér formatet af denne bog: "
+msgstr "Ugyldig MIME-type fundet. Kontrollér formatet af denne e-bog: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
