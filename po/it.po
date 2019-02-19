@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-07-21 07:07+0000\n"
-"Last-Translator: Simone Capretti <simone.capretti@gmail.com>\n"
+"PO-Revision-Date: 2019-02-20 07:41+0000\n"
+"Last-Translator: Francesco Franchina <cescus92@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/it/>\n"
 "Language: it\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -144,18 +144,16 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Clicca un collegamento per andare alla sezione del segnalibro"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Nessun segnalibro impostato in BBB, clicca l'icona di Bookworm sulla barra "
-"superiore per impostare un segnalibro"
+"Nessun segnalibro impostato in BBB, clicca l'icona del segnalibro sulla "
+"barra superiore per impostarne uno"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Controlla il significato della parola"
+msgstr "Significato della parola"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
@@ -205,6 +203,8 @@ msgstr "Nessun risultato trovato per '$$$' in &&&"
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Seleziona una parola nel libro e clicca il tasto destro per cercarne il "
+"significato"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
@@ -457,21 +457,20 @@ msgstr "Libro"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Libro"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Leggi e gestisci eBooks"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 #, fuzzy
@@ -483,6 +482,8 @@ msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
+"Leggi i libri che ami senza doverti preoccupare per la complessità dei "
+"diversi tipi di formato come pdf, mobi, cbr, ecc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
