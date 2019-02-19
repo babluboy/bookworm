@@ -2,94 +2,111 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
+"Last-Translator: Hrishi <hrishi.kb@gmail.com>\n"
+"Language-Team: Malayalam <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/ml/>\n"
+"Language: ml\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
-msgstr ""
+msgstr "വേർഷൻ നമ്പർ കാണിക്കുക"
 
 #: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "ബുക്ക്‌വേം ഡീബഗ്ഗ് മോഡിൽ ഓടിക്കുക"
 
 #: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "ബുക്ക്‌വേം ഇൻഫോ മോഡിൽ ഓടിക്കുക"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
 msgstr ""
+"ശ്രദ്ധിക്കുന്ന ഫോൾഡറുകളിൽ നിന്നുള്ള പുസ്തകങ്ങൾ ഓട്ടോമാറ്റിക്കായി ചേർ‌ക്കുക"
 
 #: src/utils.vala:520 src/utils.vala:594
 msgid "Cancel"
-msgstr ""
+msgstr "ഒഴിവാക്കൂ"
 
 #: src/utils.vala:522 src/utils.vala:595
 msgid "Open"
-msgstr ""
+msgstr "തുറക്കൂ"
 
 #: src/utils.vala:524
 msgid "Save"
-msgstr ""
+msgstr "സേവ്"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "ഒരു ഇ-ബുക്ക് റീഡർ"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "വെബ്‌ലേറ്റ് പരിഭാഷകർ"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "വെബ്‌സൈറ്റ് |  പരിഭാഷ | ബഗ് ട്രാക്കർ"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "ലഭ്യമല്ല"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "ഇ-ബുക്ക് റീഡർ"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "ഈ പുസ്തകം തിരയുക…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "തലക്കെട്ട്, രചയിതാവ്, ടാഗുകൾ എന്നിവയുപയോഗിച്ച് തിരയുക"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "ബുക്ക്‌വേമിൽ പുസ്തകങ്ങളൊന്നുമില്ലെന്ന് തോന്നുന്നു."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "ഇ-ബുക്കുകൾ ചേർത്ത് നിങ്ങളുടെ ലൈബ്രറി നിർമിക്കൂ"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "വായിക്കാനായി ഒരു ഇ-ബുക്ക് തിരഞ്ഞെടുക്കൂ"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"പുസ്തകത്തിന്റെ വിവരങ്ങൾ നിരത്തുന്നതിൽ പരാജയപ്പെട്ടു.  ഒരു ശരിയായ ഇ-ബുക്ക് "
+"ഫയൽ ഇവിടെയുണ്ടെന്ന് ഉറപ്പുവരുത്തുക: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
+"ശരിയല്ലാത്ത MIME-type ആണെന്ന് കാണുന്നു.  ഈ ഇ-ബുക്കിന്റെ ഫോർമാറ്റ് പരിശോധിക്കു"
+"ക "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"ശരിയല്ലാത്ത ഉള്ളടക്കം കാണുന്നു.  ശരിയായ ഒരു ഇ-ബുക്ക് ഫയൽ ഇവിടെയുണ്ടെന്ന് "
+"ഉറപ്പുവരുത്തുക: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"ഇ-ബുക്ക് പാർസ് ചെയ്തെടുക്കാനായില്ല.  ശരിയായ ഇ-ബുക്ക് ഫയൽ ഇവിടെയുണ്ടെന്ന് "
+"ഉറപ്പുവരുത്തുക: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
