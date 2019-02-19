@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
 "PO-Revision-Date: 2019-02-19 15:20+0000\n"
-"Last-Translator: Daniel Lewan <vision360.daniel@gmail.com>\n"
+"Last-Translator: Przemek Dyś <przemek.dys@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "pl/>\n"
 "Language: pl\n"
@@ -91,7 +91,6 @@ msgstr ""
 "dostępna w: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr "Wykryto nieprawidłowy typ MIME. Sprawdź format książki w: "
 
