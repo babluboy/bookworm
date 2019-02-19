@@ -2,20 +2,28 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
+"Last-Translator: Wasi Mohammed Abdullah <wasi0013@gmail.com>\n"
+"Language-Team: Bengali <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/bn/>\n"
+"Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
-msgstr ""
+msgstr "ভার্সন নম্বর দেখাও"
 
 #: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "বুকওয়ার্মকে ডিবাগ মুডে রান করো"
 
 #: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "বুকওয়ার্মকে ইনফো মুডে রান করো"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
@@ -23,27 +31,27 @@ msgstr ""
 
 #: src/utils.vala:520 src/utils.vala:594
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল"
 
 #: src/utils.vala:522 src/utils.vala:595
 msgid "Open"
-msgstr ""
+msgstr "খুলো"
 
 #: src/utils.vala:524
 msgid "Save"
-msgstr ""
+msgstr "সংরক্ষণ করো"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "একটি ই-বুক রিডার"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "ওয়েবলেট অনুবাদক"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "ওয়েবসাইট | অনুবাদন | বাগ পর্যবেক্ষণ"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -51,33 +59,33 @@ msgstr ""
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "ই-বুক রিডার"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "বইয়ে অনুসন্ধান করো…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "নাম, লেখকের নাম এবং ট্যাগ দিয়ে অনুসন্ধান করো"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "বুকওয়ার্মে  কোন বই পাওয়া যায় নি।"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "বই যোগ করে লাইব্রেরী গড়ে তুলো"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "পড়ার জন্যে একটি ই-বুক সিলেক্ট করো"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr ""
+msgstr "বই এক্সট্রাক্ট করতে সমস্যা? বইটি ভ্যালিড কি না এখানে চেক করোঃ "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
@@ -141,7 +149,7 @@ msgstr ""
 
 #: src/constants.vala.in:61
 msgid "Search Results"
-msgstr ""
+msgstr "অনুসন্ধানের ফলাফল"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
@@ -299,7 +307,7 @@ msgstr ""
 
 #: src/constants.vala.in:102
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "ফন্ট সাইজ বাড়াও (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:103
 msgid "Decrease font size (Ctrl + '-')"
@@ -415,7 +423,7 @@ msgstr ""
 
 #: src/dialog.vala:63
 msgid "Select Image"
-msgstr ""
+msgstr "ছবি সিলেক্ট করো"
 
 #: src/dialog.vala:545
 msgid "Select folder"
