@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2019-01-04 06:06+0000\n"
-"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
+"Last-Translator: 追求真空 <ziwo520@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hans/>\n"
 "Language: zh\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -144,9 +144,8 @@ msgid ""
 msgstr "BBB 没有设置书签， 点击顶栏的书签图标给本页添加书签"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "查找词语含义"
+msgstr "词语含义"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
