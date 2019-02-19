@@ -2,166 +2,177 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
+"Last-Translator: Betim <betimsalihu@gmail.com>\n"
+"Language-Team: Albanian <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/sq/>\n"
+"Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
-msgstr ""
+msgstr "Verzioni"
 
 #: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Lësho Bookworm në debug mode"
 
 #: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Lësho Bookworm në info mode"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Shto librat automatikisht nga direktoriumet e përcjellura"
 
 #: src/utils.vala:520 src/utils.vala:594
 msgid "Cancel"
-msgstr ""
+msgstr "Anulo"
 
 #: src/utils.vala:522 src/utils.vala:595
 msgid "Open"
-msgstr ""
+msgstr "Hap"
 
 #: src/utils.vala:524
 msgid "Save"
-msgstr ""
+msgstr "Ruaj"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Lexues librash"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Përkthyesit Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Webfaqja | Përkthimet | Bug përcjellësi"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "E padisponueshme"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "Lexuesi i eLibrave"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Kërko në këtë libër…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Kërko në Titull, Autor apo Tag"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr ""
+msgstr "Siduket Bookworm nuk ka asnjë libër në librari."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Ndërto librarinë tënde duke shtuar eLibra"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Zgjedh një eLibër për t'a lexuar"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr ""
+msgstr "Hapja e librit dështoi. Sigurohu që skeda e eLibrit eshte këtu: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr ""
+msgstr "MIME tipi nuk është i saktë. Kontrollo formatin e këtij eLibri: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Përmbajtje e palexueshme. Sigurohu që skeda e eLibrit është këtu: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"Skeda nuk është eLibër. Sigurohu që skeda e duhur të jetë në këtë shteg: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookworm nuk hap dot këtë format të skedës: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr ""
+msgstr "Përmbajtja nuk shkarkohet dot. Ju lutem heq dhe shto skeden e eLibrit: "
 
 #: src/constants.vala.in:52
 msgid "Library"
-msgstr ""
+msgstr "Libraria"
 
 #: src/constants.vala.in:53
 msgid "Resume"
-msgstr ""
+msgstr "Vazhdo"
 
 #: src/constants.vala.in:54
 msgid "Contents"
-msgstr ""
+msgstr "Përmbajtja"
 
 #: src/constants.vala.in:55
 msgid "Content #"
-msgstr ""
+msgstr "Përmbajtja numër #"
 
 #: src/constants.vala.in:56
 msgid "Bookmarks"
-msgstr ""
+msgstr "Bookmarks"
 
 #: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Bookmark #NNN për seksionin PPP"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Shtyp lidhjën dhe kce në seksionin e ruajtur"
 
 #: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"Nuk ka bookmarks në BBB, shtyp ikonën e bookmarksëve ne ballinë për t'a "
+"ruajtuar këtë faqe"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
-msgstr ""
+msgstr "DMThnja e fjalës"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
-msgstr ""
+msgstr "Rezultatet e kërkimit"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
-msgstr ""
+msgstr "Anotimet"
 
 #: src/constants.vala.in:63
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Tagët e anotimeve"
 
 #: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Tagët e ndara me presje"
 
 #: src/constants.vala.in:65
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Ndrysho anotimin për:"
 
 #: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Shtyp lidhjën dhe kërce ne seksionin e anotuar"
 
 #: src/constants.vala.in:67
 msgid ""
