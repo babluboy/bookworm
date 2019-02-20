@@ -87,7 +87,7 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Wystąpił problem z odczytaniem zawartości książki. Sprawdź czy jest ona "
+"Wystąpił problem z odczytaniem zawartości książki. Sprawdź, czy jest ona "
 "dostępna w: "
 
 #: src/constants.vala.in:47
@@ -115,7 +115,7 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"Żądany zasób nie może zostać pobrany. Usuń i ponownie dodaj e-book'a "
+"Żądany zasób nie może zostać pobrany. Usuń i ponownie dodaj e-booka "
 "znajdującego się w: "
 
 #: src/constants.vala.in:52
@@ -152,7 +152,7 @@ msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Brak zdefiniowanych zakładek w BBB, kliknij ikonę Bookworma na pasku tytułu "
+"Brak zdefiniowanych zakładek w BBB, kliknij ikonę Bookworma na pasku tytułu, "
 "aby dodać zakładkę do strony"
 
 #: src/constants.vala.in:60
