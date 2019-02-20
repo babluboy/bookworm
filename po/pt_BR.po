@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-12-10 18:08+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
+"Last-Translator: Glauco Vinicius <gl4uc0@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -136,20 +136,19 @@ msgstr "Favoritos"
 
 #: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr "Favorito #NNN para a seção PPP"
+msgstr "Favorito #NNN para a Seção PPP"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr "Clique num link para ir à seção marcada"
+msgstr "Clique no link para ir à seção marcada"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Nenhum favorito configurado em BBB, clique no ícone do livro na barra do "
-"cabeçalho para marcar a página"
+"Nenhum favorito configurado em BBB, clique no ícone de favorito, na barra "
+"superior, para marcar a página como favorita"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
@@ -157,7 +156,7 @@ msgstr "Significado da palavra"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
-msgstr "Resultados da pesquisa"
+msgstr "Resultados da busca"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
@@ -499,9 +498,8 @@ msgstr ""
 "novos formatos em breve."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
-#, fuzzy
 msgid "Bookworm Library View"
-msgstr "Visualização da Biblioteca"
+msgstr "Visualização da Biblioteca Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"

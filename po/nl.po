@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2017-07-02 14:04+0000\n"
-"Last-Translator: Noah Loomans <noahloomans@gmail.com>\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
+"Last-Translator: Laurens De Graeve <laurens.degraeve@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "nl/>\n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.16-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -28,7 +28,7 @@ msgstr "Bookworm in debug modus uitvoeren"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Voeg automatisch boeken toe uit gevolgde mappen"
 
 #: src/utils.vala:520 src/utils.vala:594
 msgid "Cancel"
@@ -48,7 +48,7 @@ msgstr "Een e-boek lezer"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Weblate Vertalers"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
@@ -63,13 +63,12 @@ msgid "eBook Reader"
 msgstr "e-boek lezer"
 
 #: src/constants.vala.in:41
-#, fuzzy
 msgid "Search this book…"
-msgstr "Zoeken in dit boek..."
+msgstr "Zoeken in dit boek…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "Zoek bij titel, auteur en labels"
+msgstr "Zoek op Titel, Auteur en Labels"
 
 #: src/constants.vala.in:43
 #, fuzzy
@@ -78,7 +77,7 @@ msgstr "Het lijkt er op dat Bookworm geen boeken heeft!"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Bouw jouw bibliotheek door e-boeken toe te voegen"
+msgstr "Maak jouw bibliotheek aan door e-boeken toe te voegen"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
@@ -168,7 +167,7 @@ msgstr ""
 
 #: src/constants.vala.in:61
 msgid "Search Results"
-msgstr ""
+msgstr "Zoekresultaten"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
@@ -215,7 +214,7 @@ msgstr ""
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
-msgstr ""
+msgstr "Pas info aan voor"
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
@@ -251,7 +250,7 @@ msgstr ""
 
 #: src/constants.vala.in:82
 msgid "Books"
-msgstr ""
+msgstr "Boeken"
 
 #: src/constants.vala.in:83
 msgid "Images"
@@ -447,9 +446,8 @@ msgid "Select Image"
 msgstr "Selecteer afbeelding"
 
 #: src/dialog.vala:545
-#, fuzzy
 msgid "Select folder"
-msgstr "Selecteer afbeelding"
+msgstr "Selecteer map"
 
 #: src/window.vala:293 src/window.vala:538
 msgid "Select eBook"

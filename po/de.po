@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-11-06 13:57+0000\n"
-"Last-Translator: naxuroqa <naxuroqa@gmail.com>\n"
+"PO-Revision-Date: 2019-02-20 19:17+0000\n"
+"Last-Translator: Mich Wyser <mich@mk2.ch>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -149,13 +149,12 @@ msgstr ""
 "Klicken Sie auf einen Link, um zum Abschnitt des Lesezeichens zu wechseln"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Keine Lesezeichen in BBB festgelegt. Klicken Sie auf das Symbol von Bookworm "
-"in der Titelleiste, um auf dieser Seite ein Lesezeichen zu setzen."
+"Keine Lesezeichen in BBB festgelegt. Klicken Sie auf das Symbol in der "
+"Titelleiste, um auf dieser Seite ein Lesezeichen zu setzen"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
