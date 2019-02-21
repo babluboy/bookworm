@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2018-06-30 00:46+0000\n"
-"Last-Translator: Name <Noname932018@gmail.com>\n"
+"PO-Revision-Date: 2019-02-22 18:17+0000\n"
+"Last-Translator: Vu Nhan <vunhan93@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/vi/>\n"
 "Language: vi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -51,7 +51,7 @@ msgstr "Weblate Translators"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Trang web | Dịch | Báo lỗi"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -59,21 +59,19 @@ msgstr "Không có sẵn"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "eBook Reader"
+msgstr "Đọc sách điện tử"
 
 #: src/constants.vala.in:41
-#, fuzzy
 msgid "Search this book…"
-msgstr "Tìm trong sách này..."
+msgstr "Tìm trong sách này…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
 msgstr "Tìm kiếm theo Tiêu đề, Tác giả và Tag"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books."
-msgstr "Không có sách nào !"
+msgstr "Không có sách nào."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -92,10 +90,12 @@ msgstr ""
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
 msgstr ""
+"Định dạng không được hỗ trợ, vui lòng kiểm tra lại định dạng của sách điện "
+"tử. "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Nội dung không phù hợp. Hãy đảm bảo rằng bạn đã chèn ebook phù hợp. "
 
 #: src/constants.vala.in:49
 #, fuzzy
@@ -112,6 +112,8 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Nội dung được yêu cầu không thể tải về. Vui lòng gỡ bỏ và thêm tệp ebook "
+"được tìm thấy ở đây. "
 
 #: src/constants.vala.in:52
 msgid "Library"
@@ -127,11 +129,11 @@ msgstr "Nội dung"
 
 #: src/constants.vala.in:55
 msgid "Content #"
-msgstr ""
+msgstr "Nội dung"
 
 #: src/constants.vala.in:56
 msgid "Bookmarks"
-msgstr ""
+msgstr "Đánh dấu trang"
 
 #: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
@@ -139,17 +141,19 @@ msgstr ""
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Bấm vào đường dẫn để chuyển đến phần được đánh dấu"
 
 #: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"Không có đánh dấu trang tại BBB, bấm vào biểu tượng đánh dấu trang trên "
+"thanh tiêu đề để đánh dấu trang này"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
-msgstr ""
+msgstr "Nghĩa của từ"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
