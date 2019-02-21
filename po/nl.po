@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-02 18:33+0000\n"
-"PO-Revision-Date: 2019-02-20 19:17+0000\n"
-"Last-Translator: Laurens De Graeve <laurens.degraeve@outlook.com>\n"
+"PO-Revision-Date: 2019-02-22 18:17+0000\n"
+"Last-Translator: Rowan Hoogervorst <rowtricker@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "nl/>\n"
 "Language: nl\n"
@@ -22,9 +22,8 @@ msgid "Run Bookworm in debug mode"
 msgstr "Bookworm in debug modus uitvoeren"
 
 #: src/bookworm.vala:108
-#, fuzzy
 msgid "Run Bookworm in info mode"
-msgstr "Bookworm in debug modus uitvoeren"
+msgstr "Bookworm in info modus uitvoeren"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
@@ -52,7 +51,7 @@ msgstr "Weblate Vertalers"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Website | Vertaling | Bug Tracker"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -71,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Zoek op Titel, Auteur en Labels"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books."
-msgstr "Het lijkt er op dat Bookworm geen boeken heeft!"
+msgstr "Het lijkt er op dat Bookworm geen boeken heeft."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -163,7 +161,7 @@ msgstr ""
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
-msgstr ""
+msgstr "Woordbetekenis"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
@@ -171,19 +169,19 @@ msgstr "Zoekresultaten"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
-msgstr ""
+msgstr "Annotaties"
 
 #: src/constants.vala.in:63
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Annotatie tags"
 
 #: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Komma-gescheiden tags voor deze annotatie"
 
 #: src/constants.vala.in:65
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Pas annotatie aan voor:"
 
 #: src/constants.vala.in:66
 #, fuzzy
@@ -198,15 +196,15 @@ msgstr ""
 
 #: src/constants.vala.in:68
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Aan het zoeken voor '$$$' in &&&:"
 
 #: src/constants.vala.in:69
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "De volgende overeenkomsten zijn gevonden voor '$$$' in &&&:"
 
 #: src/constants.vala.in:70
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Geen overeenkomsten gevonden voor '$$$' in &&&"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
@@ -218,19 +216,19 @@ msgstr "Pas info aan voor"
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Update de omslagafbeelding"
 
 #: src/constants.vala.in:74
 msgid "Update Title"
-msgstr ""
+msgstr "Update Titel"
 
 #: src/constants.vala.in:75
 msgid "Update Tags"
-msgstr ""
+msgstr "Update Tags"
 
 #: src/constants.vala.in:76
 msgid "Update Author"
-msgstr ""
+msgstr "Update Auteur"
 
 #: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
@@ -246,7 +244,7 @@ msgstr ""
 
 #: src/constants.vala.in:81
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Annoteer de geselecteerde tekst"
 
 #: src/constants.vala.in:82
 msgid "Books"
@@ -254,43 +252,43 @@ msgstr "Boeken"
 
 #: src/constants.vala.in:83
 msgid "Images"
-msgstr ""
+msgstr "Afbeeldingen"
 
 #: src/constants.vala.in:84
 msgid "All Files"
-msgstr ""
+msgstr "Alle Bestanden"
 
 #: src/constants.vala.in:85
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: src/constants.vala.in:86
 msgid "Author"
-msgstr ""
+msgstr "Auteur"
 
 #: src/constants.vala.in:87
 msgid "Last Opened"
-msgstr ""
+msgstr "Laatst Geopend"
 
 #: src/constants.vala.in:88
 msgid "Rating"
-msgstr ""
+msgstr "Beoordeling"
 
 #: src/constants.vala.in:89
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: src/constants.vala.in:90
 msgid "Today"
-msgstr ""
+msgstr "Vandaag"
 
 #: src/constants.vala.in:91
 msgid "Yesterday"
-msgstr ""
+msgstr "Gisteren"
 
 #: src/constants.vala.in:92
 msgid "Days"
-msgstr ""
+msgstr "Dagen"
 
 #: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
