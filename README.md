@@ -12,9 +12,10 @@ Check the Bookworm website for details on features, shortcuts, installation guid
 
 You'll need the following dependencies to build:
 * libgranite-dev
+* webkit2gtk-4.0
 * libwebkit2gtk-4.0-37
 * libsqlite3-dev
-* poppler-glib
+* poppler-utils
 * libpoppler-glib-dev
 * html2text
 * curl

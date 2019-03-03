@@ -78,7 +78,10 @@ public class BookwormApp.contentHandler {
                 StringBuilder srcItemFullPath = new StringBuilder();
                 foreach(string srcItem in srcList){
                     srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
-                    contents.assign(contents.str.replace(tagname+srcItem+"\"",BookwormApp.Utils.encodeHTMLChars(tagname+srcItemFullPath.str)+"\""));
+                    contents.assign(
+                        contents.str.replace(tagname+srcItem+"\"",
+                        BookwormApp.Utils.encodeHTMLChars(tagname+srcItemFullPath.str)+"\"")
+                    );
                 }
             }
             //update the content for required manipulation
@@ -147,6 +150,9 @@ public class BookwormApp.contentHandler {
         string cssForTextAndBackgroundColor = "";
         BookwormApp.Bookworm.onLoadJavaScript.assign("onload=\"");
         string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts;
+
+        //Remove the empty title if it is present
+        pageContent.assign(pageContentStr.replace("<title/>",""));
 
         //For the Title Page (first or second page), resize height and width of images
         if( aBook.getBookPageNumber() < 2 && 
@@ -322,6 +328,7 @@ public class BookwormApp.contentHandler {
             );
         }
         debug("[END] [FUNCTION:adjustPageContent] pageContent.length="+pageContent.str.length.to_string());
+        debug("\n\n\n"+pageContent.str);
         return pageContent.str;
     }
 
@@ -352,7 +359,7 @@ public class BookwormApp.contentHandler {
         }
         debug("[END] [FUNCTION:searchHTMLContents]");
     }
-    
+
     public static BookwormApp.Book controlNavigation(owned BookwormApp.Book aBook){
 	    info("[START] [FUNCTION:controlNavigation] book.location="+aBook.getBookLocation());
 	    int currentContentLocation = aBook.getBookPageNumber();
