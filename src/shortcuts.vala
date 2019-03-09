@@ -91,16 +91,22 @@ public class BookwormApp.Shortcuts: Gtk.Widget {
         }
       }
     }
-    
+
     //Escape key pressed: remove full screen
     if (ev.keyval == Gdk.Key.Escape) {
       BookwormApp.AppWindow.book_reading_footer_box.show();
       BookwormApp.Bookworm.window.unfullscreen();
     }
-    //F11 key pressed: enter full screen
+    //F11 key pressed: toggle full screen
     if (ev.keyval == Gdk.Key.F11) {
-      BookwormApp.AppWindow.book_reading_footer_box.hide();
-      BookwormApp.Bookworm.window.fullscreen();
+      if (settings.is_fullscreen) {
+        BookwormApp.AppWindow.book_reading_footer_box.show();
+        BookwormApp.Bookworm.window.unfullscreen();
+      }else{
+        BookwormApp.AppWindow.book_reading_footer_box.hide();
+        BookwormApp.Bookworm.window.fullscreen();
+      }
+      return true;
     }
     //Ctrl+Q Key pressed: Close Bookworm completely
     if (BookwormApp.Shortcuts.isControlKeyPressed && (ev.keyval == Gdk.Key.Q || ev.keyval == Gdk.Key.q)) {

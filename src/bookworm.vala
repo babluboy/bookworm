@@ -222,6 +222,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 			window.key_press_event.connect (BookwormApp.Shortcuts.handleKeyPress);
 			window.key_release_event.connect (BookwormApp.Shortcuts.handleKeyRelease);
 
+			window.window_state_event.connect (BookwormApp.AppWindow.handleWindowStateEvents);
+
 			isBookwormRunning = true;
 			debug("Completed creating an instance of Bookworm");
 		}else{

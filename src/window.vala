@@ -569,4 +569,15 @@ public class BookwormApp.AppWindow {
     public static void on_info_bar_closed(){
         BookwormApp.AppWindow.infobar.hide();
     }
+
+    public static bool handleWindowStateEvents(Gdk.EventWindowState ev){
+        if (ev.type == Gdk.EventType.WINDOW_STATE) {
+            if ((ev.window.get_state() & Gdk.WindowState.FULLSCREEN) == 0) {
+                settings.is_fullscreen = false;
+            }else{
+                settings.is_fullscreen = true;
+            }
+        }
+        return false;
+    }
 }
