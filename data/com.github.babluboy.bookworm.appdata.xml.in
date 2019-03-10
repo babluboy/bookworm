@@ -8,9 +8,9 @@
   <name>Bookworm</name>
   <summary>A focused eBook reader</summary>
   <description>
-    <p>Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc.</p>
+    <p>Read the books you love without having to worry about the different format complexities like EPUB, PDF, MOBI, CBR, etc.</p>
     <p>Manage your library by tagging and updating metadata on books, to quickly find books using metadata searching and tag based filtering.</p>
-    <p>This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
+    <p>This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
   </description>
   <screenshots>
       <screenshot type="default">
@@ -28,15 +28,15 @@
   <releases>
     <release version="1.1.0" date="2018-09-30">
         <description>
-          <p>This release has some new features, fixes and includes new translations:</p>
+          <p>This release has some new features, fixes and new translations:</p>
           <p>New Features:</p>
           <ul>
-            <li>Right click a selected word and look up its meaning using a online dictionary</li>
-            <li>Added a preference option to customize highlight colour</li>
+            <li>Right click a selected word and look up its meaning in an online dictionary</li>
+            <li>Added option to customize highlight colour</li>
           </ul>
           <p>Fixes:</p>
           <ul>
-            <li>Prevent Bookworm from opening links like http, ftp etc and use the default browser to open the same</li>
+            <li>Prevent Bookworm from opening links like HTTP, FTP etc. and use the default browser to open them</li>
             <li>Fixed an issue where the lines overlapped for the first couple of pages in the book</li>
             <li>Use of GResource to speed up loading of icons, scripts, etc.</li>
             <li>Some minor CSS compatibility with Juno</li>
@@ -47,35 +47,35 @@
       <description>
         <p>Right to Left Reading</p>
         <ul>
-            <li>Support for Right to Left Reading</li>
+            <li>Support for right-to-left script</li>
             <li>A shiny new icon and new cover images</li>
-            <li>Better support for EPUB Table of Contents</li>
+            <li>Better support for EPUB table of contents</li>
         </ul>
       </description>
     </release>
    <release version="0.9.5" date="2017-12-10">
       <description>
-       <p>Annotations and Two Page Views</p>
+       <p>Annotations and two page views</p>
       </description>
     </release>
     <release version="0.9" date="2017-07-23">
       <description>
-       <p>Support mobi format and UX improvements</p>
+       <p>Support for MOBI format and UX improvements</p>
       </description>
     </release>
     <release version="0.8" date="2017-06-18">
       <description>
-       <p>UX improvements for List View and other preference customizations</p>
+       <p>UX improvements for list view and other preference customizations</p>
       </description>
     </release>
     <release version="0.7" date="2017-05-20">
       <description>
-       <p>Comics Support and UX improvements</p>
+       <p>Comics support and UX improvements</p>
       </description>
     </release>
     <release version="0.6" date="2017-05-15">
       <description>
-       <p>PDF Support and UX improvements</p>
+       <p>PDF support and UX improvements</p>
       </description>
     </release>
     <release version="0.5" date="2017-04-25">
