@@ -80,6 +80,10 @@
 				<default>"LIBRARY_MODE_GRID"</default>
 				<summary>Save the library view mode</summary>
 		</key>
+		<key name="is-fullscreen" type="b">
+				<default>false</default>
+				<summary>Save fullscreen state</summary>
+		</key>
 		<key name="list-of-profile-colors" type="s">
         <default>"#000000,#fbfbfb,#E8ED00,#586e75,#fdf6e3,#87FF2B,#93a1a1,#002b36,#3465A4"</default>
         <summary>
