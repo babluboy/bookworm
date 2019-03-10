@@ -158,7 +158,7 @@ public class BookwormApp.AppWindow {
         //webkitSettings.set_default_font_family(aWebView.get_style_context().get_font(StateFlags.NORMAL).get_family ());
         webkitSettings.set_default_font_size (BookwormApp.Bookworm.settings.reading_font_size);
         webkitSettings.set_default_font_family(BookwormApp.Bookworm.settings.reading_font_name);
-        
+
         //Set up Button for previous page
         back_button = new Gtk.Button ();
         back_button.set_image (BookwormApp.Bookworm.back_button_image);
@@ -271,7 +271,8 @@ public class BookwormApp.AppWindow {
         });
         //Add action for moving the pages for the page slider
         pageSlider.change_value.connect ((scroll, new_value) => {
-            debug("Page Slider value change ["+new_value.to_string()+"] Initiated for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+            debug("Page Slider value change ["+new_value.to_string()+"] Initiated for book at location:"+
+                BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
             BookwormApp.Book currentBookForSlider = new BookwormApp.Book();
             currentBookForSlider = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
             if((int.parse(new_value.to_string())-1) > (currentBookForSlider.getBookContentList().size)){
@@ -284,7 +285,9 @@ public class BookwormApp.AppWindow {
             currentBookForSlider = BookwormApp.contentHandler.renderPage(currentBookForSlider, "");
             BookwormApp.Bookworm.libraryViewMap.set(currentBookForSlider.getBookLocation(), currentBookForSlider);
             BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForSlider.getBookLocation();
-            debug("Page Slider value change action completed for book at location:"+BookwormApp.Bookworm.locationOfEBookCurrentlyRead+" and rendering completed for page number:"+currentBookForSlider.getBookPageNumber().to_string());
+            debug("Page Slider value change action completed for book at location:"+
+                    BookwormApp.Bookworm.locationOfEBookCurrentlyRead+
+                    " and rendering completed for page number:"+currentBookForSlider.getBookPageNumber().to_string());
             return true;
         });
         //Add action for adding book(s) on the library view
@@ -348,7 +351,7 @@ public class BookwormApp.AppWindow {
                 SimpleAction pageActionFullScreenExit = new SimpleAction ("FULL_SCREEN_READING_VIEW", null);
                 SimpleAction pageActionWordMeaning = new SimpleAction ("WORD_MEANING", null);
                 SimpleAction pageActionAnnotateSelection = new SimpleAction ("ANNOTATE_SELECTION", null);
-                
+
                 WebKit.ContextMenuItem pageContextMenuItemWordMeaning = new WebKit.ContextMenuItem.from_gaction (
                                             pageActionWordMeaning, 
                                             BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING, 
@@ -410,21 +413,21 @@ public class BookwormApp.AppWindow {
                  //set the webview request flag to false to prevent re-trigger of this function
                 //the webview request flag will be set to true when the response is received
                 isWebViewRequestCompleted = false;
-                
+
                 WebKit.NavigationPolicyDecision aNavDecision = (WebKit.NavigationPolicyDecision)decision;
                 WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action();
                 WebKit.URIRequest aURIReq = aNavAction.get_request ();
                 string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars(aURIReq.get_uri().strip());
                 url_clicked_on_webview = Soup.URI.decode(url_clicked_on_webview);
                 debug("URL Captured:"+url_clicked_on_webview);
-                
+
                 //Handle external links (not file://) by opening the default browser i.e. http://, ftp://
                 if (url_clicked_on_webview.index_of("file://") == -1){
                     BookwormApp.Utils.execute_sync_command ("xdg-open " + url_clicked_on_webview);
                     decision.ignore();
                     return true;
                 }
-                
+
                 //Handle Bookworm type links i.e. Annotation Overlay
                 debug("Window Title:"+BookwormApp.AppWindow.aWebView.get_title());
                 if(BookwormApp.AppWindow.aWebView.get_title() != null &&
@@ -437,7 +440,7 @@ public class BookwormApp.AppWindow {
                     );
                     isWebViewRequestCompleted = true;
                 }
-                
+
                 //Handle file:/// type links to other content of the book i.e. Table of Contents
                 if (url_clicked_on_webview.index_of("#") != -1){
                     url_clicked_on_webview = url_clicked_on_webview.slice(0, url_clicked_on_webview.index_of("#"));
@@ -457,8 +460,8 @@ public class BookwormApp.AppWindow {
                         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];
                         BookwormApp.Bookworm.toggleUIState();
                         debug("URL is initiated from Bookworm Contents, Book page number set at:"+
-                                            aBook.getBookPageNumber().to_string()
-                                    );
+                            aBook.getBookPageNumber().to_string()
+                        );
                         break;
                     }
                     contentLocationPosition++;
@@ -528,27 +531,30 @@ public class BookwormApp.AppWindow {
 
         //Add action for adding a book on the library view
         BookwormApp.Bookworm.welcomeWidget.activated.connect (() => {
-            //remove the welcome widget from main window
-            BookwormApp.Bookworm.window.remove(BookwormApp.Bookworm.welcomeWidget);
-            BookwormApp.Bookworm.window.add(BookwormApp.Bookworm.bookWormUIBox);
-            BookwormApp.Bookworm.bookWormUIBox.show_all();
-            BookwormApp.Bookworm.toggleUIState();
-
             ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser(
                                 Gtk.FileChooserAction.OPEN, _("Select eBook"), 
                                 BookwormApp.Bookworm.window, 
                                 true, 
                                 "EBOOKS");
-            BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
-            int countOfBooksToBeAdded = 0;
-            foreach(string pathToSelectedBook in selectedEBooks){
-                BookwormApp.Bookworm.pathsOfBooksToBeAdded[countOfBooksToBeAdded] = pathToSelectedBook;
-                countOfBooksToBeAdded++;
+
+            //If ebooks were selected, remove the welcome widget from main window and show the library view
+            if(selectedEBooks.size > 0){
+                BookwormApp.Bookworm.window.remove(BookwormApp.Bookworm.welcomeWidget);
+                BookwormApp.Bookworm.window.add(BookwormApp.Bookworm.bookWormUIBox);
+                BookwormApp.Bookworm.bookWormUIBox.show_all();
+                BookwormApp.Bookworm.toggleUIState();
+
+                BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
+                int countOfBooksToBeAdded = 0;
+                foreach(string pathToSelectedBook in selectedEBooks){
+                    BookwormApp.Bookworm.pathsOfBooksToBeAdded[countOfBooksToBeAdded] = pathToSelectedBook;
+                    countOfBooksToBeAdded++;
+                }
+                //Display the progress bar
+                BookwormApp.AppWindow.bookAdditionBar.show();
+                BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
+                BookwormApp.Library.addBooksToLibrary ();
             }
-            //Display the progress bar
-            BookwormApp.AppWindow.bookAdditionBar.show();
-            BookwormApp.Bookworm.isBookBeingAddedToLibrary = true;
-            BookwormApp.Library.addBooksToLibrary ();
         });
         info("[END] [FUNCTION:createWelcomeScreen] ");
         return BookwormApp.Bookworm.welcomeWidget;

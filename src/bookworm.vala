@@ -232,7 +232,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 		}
 		//check if any books needed to be added/opened - if eBook(s) were opened from File Explorer using Bookworm
 		if(commandLineArgs.length > 1){
-			info("Book(s) to be added/opened based on command line parameters. Size of command line attributes:"+commandLineArgs.length.to_string());
+			info("Book(s) to be added/opened based on command line parameters. Size of command line attributes:"+
+				commandLineArgs.length.to_string()
+			);
 			pathsOfBooksToBeAdded = new string[commandLineArgs.length];
 			pathsOfBooksToBeAdded = commandLineArgs;
 			//Display the progress bar

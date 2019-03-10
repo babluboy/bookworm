@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-03 17:04+0530\n"
+"POT-Creation-Date: 2019-03-10 14:36+0530\n"
 "PO-Revision-Date: 2019-02-03 08:09+0000\n"
 "Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -448,7 +448,7 @@ msgstr "Vybrat obrázek"
 msgid "Select folder"
 msgstr "Vybrat složku"
 
-#: src/window.vala:293 src/window.vala:538
+#: src/window.vala:296 src/window.vala:535
 msgid "Select eBook"
 msgstr "Vybrat elektronickou knihu"
 

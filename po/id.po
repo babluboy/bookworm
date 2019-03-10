@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-03 17:04+0530\n"
+"POT-Creation-Date: 2019-03-10 14:36+0530\n"
 "PO-Revision-Date: 2018-12-14 07:08+0000\n"
 "Last-Translator: ditokp <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bookworm/"
@@ -441,7 +441,7 @@ msgstr "Pilih Gambar"
 msgid "Select folder"
 msgstr "Pilih Folder"
 
-#: src/window.vala:293 src/window.vala:538
+#: src/window.vala:296 src/window.vala:535
 msgid "Select eBook"
 msgstr "Pilih e-Book"
 

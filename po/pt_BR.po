@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-03 17:04+0530\n"
+"POT-Creation-Date: 2019-03-10 14:36+0530\n"
 "PO-Revision-Date: 2019-02-20 19:17+0000\n"
 "Last-Translator: Glauco Vinicius <gl4uc0@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -440,7 +440,7 @@ msgstr "Selecionar Imagem"
 msgid "Select folder"
 msgstr "Selecionar pasta"
 
-#: src/window.vala:293 src/window.vala:538
+#: src/window.vala:296 src/window.vala:535
 msgid "Select eBook"
 msgstr "Selecionar eBook"
 
