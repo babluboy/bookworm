@@ -433,7 +433,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB();
 		//Update the library view
 		BookwormApp.Library.updateLibraryViewFromDB();
-				
+
 		info("[END] [FUNCTION:loadBookwormState]");
 	}
 

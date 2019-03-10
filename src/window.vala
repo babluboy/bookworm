@@ -42,6 +42,8 @@ public class BookwormApp.AppWindow {
         public static Scale pageSlider;
         public static BookwormApp.Settings settings;
         public static bool isWebViewRequestCompleted = true;
+        public static Gtk.Button remove_book_button;
+        public static int noOfBooksSelected = 0;
 
     public static Gtk.Box createBoookwormUI() {
         info("[START] [FUNCTION:createBoookwormUI]");
@@ -113,10 +115,12 @@ public class BookwormApp.AppWindow {
         add_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_ADD_BOOK);
 
         //Set up Button for removing books
-        Gtk.Button remove_book_button = new Gtk.Button ();
+        remove_book_button = new Gtk.Button ();
         remove_book_button.set_image (BookwormApp.Bookworm.remove_book_image);
         remove_book_button.set_relief (ReliefStyle.NONE);
-        remove_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_BOOK);
+        //set the button as disabled - it will be enabled only if books are selected
+        remove_book_button.set_sensitive(false);
+        remove_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_BOOK_UNSELECTED);
 
         //Set up the progress bar for addition of books to library
         bookAdditionBar = new Gtk.ProgressBar ();
@@ -204,7 +208,8 @@ public class BookwormApp.AppWindow {
             aTreeModel.get_iter (out iter, path);
             aTreeModel.get_value (iter, 7, out bookLocation);
 
-            BookwormApp.Book aBook  = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+            BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get((string) bookLocation);
+
             if( BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
                 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[7])
             {
@@ -308,6 +313,8 @@ public class BookwormApp.AppWindow {
         });
         //Add action for putting library in select view
         select_book_button.clicked.connect (() => {
+              //initialize the counter to check how many books are selected
+              noOfBooksSelected = 0;
               //check if the library is in List View mode
               if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[5] ||
                  BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[6] ||
@@ -585,5 +592,24 @@ public class BookwormApp.AppWindow {
             }
         }
         return false;
+    }
+
+    public static void controlDeletionButton(bool selectionState){
+        if(selectionState){
+            //Enable the Deletion Button as a book is selected for potential removal
+            noOfBooksSelected++;
+            remove_book_button.set_sensitive(true);
+            remove_book_button.
+                set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_BOOK);
+        }else{
+            //Check and Disable the Deletion Button if no books are selected after this de-selection
+            noOfBooksSelected--;
+            if(noOfBooksSelected < 1){
+                remove_book_button.set_sensitive(false);
+                remove_book_button.
+                    set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_BOOK_UNSELECTED);
+            }
+        }
+
     }
 }

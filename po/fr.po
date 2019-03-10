@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-10 14:36+0530\n"
+"POT-Creation-Date: 2019-03-11 00:20+0530\n"
 "PO-Revision-Date: 2019-01-21 21:19+0000\n"
 "Last-Translator: eradev <weblate@eradev.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -305,139 +305,144 @@ msgstr ""
 "ne sera pas supprimé)"
 
 #: src/constants.vala.in:97
+#, fuzzy
+msgid "Select books to enable removal"
+msgstr "Sélectionnez un livre électronique pour le lire"
+
+#: src/constants.vala.in:98
 msgid "Select one or more books in library"
 msgstr "Sélectionner un ou plusieurs livres dans la bibliothèque"
 
-#: src/constants.vala.in:98
+#: src/constants.vala.in:99
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr ""
 "Voir la table des matières, les marque-pages et les résultats de recherche"
 
-#: src/constants.vala.in:99
+#: src/constants.vala.in:100
 msgid "Reading preferences"
 msgstr "Préférences de lecture"
 
-#: src/constants.vala.in:100
+#: src/constants.vala.in:101
 msgid "Click to bookmark this page"
 msgstr "Cliquez ici pour ajouter un marque-page"
 
-#: src/constants.vala.in:101
+#: src/constants.vala.in:102
 msgid "Click to remove this bookmark"
 msgstr "Cliquez pour supprimer ce marque-page"
 
-#: src/constants.vala.in:102
+#: src/constants.vala.in:103
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Augmenter la taille de la police (Ctrl + Maj + '+')"
 
-#: src/constants.vala.in:103
+#: src/constants.vala.in:104
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Diminuer la taille de la police (Ctrl + '-')"
 
-#: src/constants.vala.in:104
+#: src/constants.vala.in:105
 msgid "Increase line width"
 msgstr "Augmenter la largeur de la ligne"
 
-#: src/constants.vala.in:105
+#: src/constants.vala.in:106
 msgid "Decrease line width"
 msgstr "Diminuer la largeur de la ligne"
 
-#: src/constants.vala.in:106
+#: src/constants.vala.in:107
 msgid "Increase line spacing"
 msgstr "Augmenter l'espacement des lignes"
 
-#: src/constants.vala.in:107
+#: src/constants.vala.in:108
 msgid "Decrease line spacing"
 msgstr "Diminuer l'espacement des lignes"
 
-#: src/constants.vala.in:108
+#: src/constants.vala.in:109
 msgid "Align left"
 msgstr "Aligner à gauche"
 
-#: src/constants.vala.in:109
+#: src/constants.vala.in:110
 msgid "Align right"
 msgstr "Aligner à droite"
 
-#: src/constants.vala.in:110
+#: src/constants.vala.in:111
 msgid "Update cover image"
 msgstr "Mettre à jour l'image de la couverture"
 
-#: src/constants.vala.in:111
+#: src/constants.vala.in:112
 msgid "Apply theme for this colour profile"
 msgstr "Définir le thème pour le profil couleur"
 
-#: src/constants.vala.in:112 src/constants.vala.in:113
+#: src/constants.vala.in:113 src/constants.vala.in:114
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Passer en vue en plein écran (Échap pour sortir)"
 
-#: src/constants.vala.in:114
+#: src/constants.vala.in:115
 msgid "Add folder to scan for books"
 msgstr "Ajouter un dossier pour rechercher des livres"
 
-#: src/constants.vala.in:115
+#: src/constants.vala.in:116
 msgid "Remove displayed folder from book scan"
 msgstr "Supprimer ce dossier du suivi des livres"
 
-#: src/constants.vala.in:116
+#: src/constants.vala.in:117
 msgid "Add annotation to selected text"
 msgstr "Ajouter une note au texte sélectionné"
 
-#: src/constants.vala.in:118 src/constants.vala.in:144
+#: src/constants.vala.in:119 src/constants.vala.in:145
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/constants.vala.in:119
+#: src/constants.vala.in:120
 msgid "Turn on Dark Mode"
 msgstr "Activer le mode sombre"
 
-#: src/constants.vala.in:120
+#: src/constants.vala.in:121
 msgid "Enable cache (opens books faster)"
 msgstr "Activer le cache (ouvre les livres plus rapidement)"
 
-#: src/constants.vala.in:121
+#: src/constants.vala.in:122
 msgid "Always show library on startup"
 msgstr "Afficher la bibliothèque au démarrage"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:123
 msgid "Enable two page reading"
 msgstr "Activer la lecture en double page"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:124
 msgid "Select Font"
 msgstr "Définir la police"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:125
 msgid "Customize reading profile"
 msgstr "Personnaliser le profil de lecture"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:126
 msgid "Text"
 msgstr "Texte"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:127
 msgid "Background"
 msgstr "Arrière-plan"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:128
 msgid "Highlight"
 msgstr "Surligner"
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:129
 msgid "Add folders to scan for books"
 msgstr "Ajouter des dossiers pour rechercher des livres"
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:130
 msgid "Profile"
 msgstr "Profil"
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:131
 msgid "Reset to default values"
 msgstr "Rétablir les valeurs par défaut"
 
-#: src/constants.vala.in:142
+#: src/constants.vala.in:143
 msgid "Unknown Book"
 msgstr "Livre inconnu"
 
-#: src/constants.vala.in:143
+#: src/constants.vala.in:144
 msgid "About"
 msgstr "À propos"
 
@@ -449,11 +454,11 @@ msgstr "Sélectionner une image"
 msgid "Select folder"
 msgstr "Sélectionner un dossier"
 
-#: src/window.vala:296 src/window.vala:535
+#: src/window.vala:301 src/window.vala:542
 msgid "Select eBook"
 msgstr "Sélectionnez un livre électronique"
 
-#: src/library.vala:610
+#: src/library.vala:623
 msgid "Adding "
 msgstr "Ajout de "
 

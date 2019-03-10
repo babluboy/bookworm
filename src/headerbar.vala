@@ -212,13 +212,15 @@ public class BookwormApp.AppHeaderBar {
         });
 
         BookwormApp.Bookworm.library_mode_button.mode_changed.connect ((widget) => {
-              if(widget == BookwormApp.Bookworm.library_grid_button_image){
-                    BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
-              }else{
-                    BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
-              }
-              settings.library_view_mode = BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE;
-              BookwormApp.Bookworm.toggleUIState();
+            //disable the remove button, the same will be enabled if a book is choosen for removal
+            BookwormApp.AppWindow.controlDeletionButton(false);
+            if(widget == BookwormApp.Bookworm.library_grid_button_image){
+                BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
+            }else{
+                BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[5];
+            }
+            settings.library_view_mode = BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE;
+            BookwormApp.Bookworm.toggleUIState();
         });
         info("[END] [FUNCTION:create_headerbar]");
         return headerbar;

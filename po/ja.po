@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-10 14:36+0530\n"
+"POT-Creation-Date: 2019-03-11 00:20+0530\n"
 "PO-Revision-Date: 2018-12-02 18:31+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
@@ -303,138 +303,143 @@ msgstr ""
 "選択された本をライブラリから削除します (電子書籍ファイル自体は残ります)"
 
 #: src/constants.vala.in:97
+#, fuzzy
+msgid "Select books to enable removal"
+msgstr "読みたい電子書籍を選択します"
+
+#: src/constants.vala.in:98
 msgid "Select one or more books in library"
 msgstr "ライブラリ内の 1 つまたは複数の本を選択します"
 
-#: src/constants.vala.in:98
+#: src/constants.vala.in:99
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "コンテンツの表・ブックマーク・検索結果を参照します"
 
-#: src/constants.vala.in:99
+#: src/constants.vala.in:100
 msgid "Reading preferences"
 msgstr "リーディングの設定"
 
-#: src/constants.vala.in:100
+#: src/constants.vala.in:101
 msgid "Click to bookmark this page"
 msgstr "このページをブックマークするにはクリックしてください"
 
-#: src/constants.vala.in:101
+#: src/constants.vala.in:102
 msgid "Click to remove this bookmark"
 msgstr "このブックマークを削除するにはクリックしてください"
 
-#: src/constants.vala.in:102
+#: src/constants.vala.in:103
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "フォントサイズを大きくします (Ctrl + Shift + '+')"
 
-#: src/constants.vala.in:103
+#: src/constants.vala.in:104
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "フォントサイズを小さくします (Ctrl + '-')"
 
-#: src/constants.vala.in:104
+#: src/constants.vala.in:105
 msgid "Increase line width"
 msgstr "行の幅を広くします"
 
-#: src/constants.vala.in:105
+#: src/constants.vala.in:106
 msgid "Decrease line width"
 msgstr "行の幅をせまくします"
 
-#: src/constants.vala.in:106
+#: src/constants.vala.in:107
 msgid "Increase line spacing"
 msgstr "行の間隔を広くします"
 
-#: src/constants.vala.in:107
+#: src/constants.vala.in:108
 msgid "Decrease line spacing"
 msgstr "行の間隔をせまくします"
 
-#: src/constants.vala.in:108
+#: src/constants.vala.in:109
 msgid "Align left"
 msgstr "左揃えにします"
 
-#: src/constants.vala.in:109
+#: src/constants.vala.in:110
 msgid "Align right"
 msgstr "右揃えにします"
 
-#: src/constants.vala.in:110
+#: src/constants.vala.in:111
 msgid "Update cover image"
 msgstr "カバー画像を更新します"
 
-#: src/constants.vala.in:111
+#: src/constants.vala.in:112
 msgid "Apply theme for this colour profile"
 msgstr "このカラープロファイルにテーマを適用します"
 
-#: src/constants.vala.in:112 src/constants.vala.in:113
+#: src/constants.vala.in:113 src/constants.vala.in:114
 msgid "Enter full screen view and Esc key to undo"
 msgstr "全画面表示を終了するには Esc キーを押してください"
 
-#: src/constants.vala.in:114
+#: src/constants.vala.in:115
 msgid "Add folder to scan for books"
 msgstr "本をスキャンするフォルダーを追加します"
 
-#: src/constants.vala.in:115
+#: src/constants.vala.in:116
 msgid "Remove displayed folder from book scan"
 msgstr "表示されたフォルダーを本のスキャンから除外します"
 
-#: src/constants.vala.in:116
+#: src/constants.vala.in:117
 msgid "Add annotation to selected text"
 msgstr "選択されたテキストに注釈を追加します"
 
-#: src/constants.vala.in:118 src/constants.vala.in:144
+#: src/constants.vala.in:119 src/constants.vala.in:145
 msgid "Preferences"
 msgstr "設定"
 
-#: src/constants.vala.in:119
+#: src/constants.vala.in:120
 msgid "Turn on Dark Mode"
 msgstr "ダークモードを有効にする"
 
-#: src/constants.vala.in:120
+#: src/constants.vala.in:121
 msgid "Enable cache (opens books faster)"
 msgstr "キャッシュを有効にする (本を開くのが速くなります)"
 
-#: src/constants.vala.in:121
+#: src/constants.vala.in:122
 msgid "Always show library on startup"
 msgstr "起動時にライブラリを常に表示"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:123
 msgid "Enable two page reading"
 msgstr "見開き表示を有効にする"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:124
 msgid "Select Font"
 msgstr "フォントを選択"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:125
 msgid "Customize reading profile"
 msgstr "リーディングプロファイル"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:126
 msgid "Text"
 msgstr "テキスト"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:127
 msgid "Background"
 msgstr "背景"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:128
 msgid "Highlight"
 msgstr "ハイライト"
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:129
 msgid "Add folders to scan for books"
 msgstr "本をスキャンするフォルダーを追加"
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:130
 msgid "Profile"
 msgstr "プロファイル"
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:131
 msgid "Reset to default values"
 msgstr "デフォルト値にリセット"
 
-#: src/constants.vala.in:142
+#: src/constants.vala.in:143
 msgid "Unknown Book"
 msgstr "不明な本"
 
-#: src/constants.vala.in:143
+#: src/constants.vala.in:144
 msgid "About"
 msgstr "このアプリケーションについて"
 
@@ -446,11 +451,11 @@ msgstr "画像を選択"
 msgid "Select folder"
 msgstr "フォルダを選択"
 
-#: src/window.vala:296 src/window.vala:535
+#: src/window.vala:301 src/window.vala:542
 msgid "Select eBook"
 msgstr "電子書籍を選択"
 
-#: src/library.vala:610
+#: src/library.vala:623
 msgid "Adding "
 msgstr "追加 "
 

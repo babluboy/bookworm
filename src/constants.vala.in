@@ -94,6 +94,7 @@ namespace BookwormApp.Constants {
 
 	public const string TOOLTIP_TEXT_FOR_ADD_BOOK = _("Add books to library");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK = _("Remove selected books from library (eBook file will not be deleted)");
+	public const string TOOLTIP_TEXT_FOR_REMOVE_BOOK_UNSELECTED = _("Select books to enable removal");
 	public const string TOOLTIP_TEXT_FOR_SELECT_BOOK = _("Select one or more books in library");
 	public const string TOOLTIP_TEXT_FOR_BOOK_INFO = _("See Table of Contents, Bookmarks and Search Results");
 	public const string TOOLTIP_TEXT_FOR_READING_PREFERENCES = _("Reading preferences");

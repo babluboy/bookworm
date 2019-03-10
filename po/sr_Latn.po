@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-10 14:36+0530\n"
+"POT-Creation-Date: 2019-03-11 00:20+0530\n"
 "PO-Revision-Date: 2017-07-25 08:58+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://hosted.weblate.org/projects/bookworm/"
@@ -316,144 +316,149 @@ msgstr ""
 "Ukloni označene knjige iz biblioteke (datoteke eKnjige neće biti obrisana)"
 
 #: src/constants.vala.in:97
+#, fuzzy
+msgid "Select books to enable removal"
+msgstr "Odaberi eKnjigu za čitanje"
+
+#: src/constants.vala.in:98
 msgid "Select one or more books in library"
 msgstr "Odaberi jednu ili više knjiga iz biblioteke"
 
-#: src/constants.vala.in:98
+#: src/constants.vala.in:99
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Vidi sadržaj, obeleživače i rezultate pretrage"
 
-#: src/constants.vala.in:99
+#: src/constants.vala.in:100
 #, fuzzy
 msgid "Reading preferences"
 msgstr "Poodesi postavke za čitanje"
 
-#: src/constants.vala.in:100
+#: src/constants.vala.in:101
 msgid "Click to bookmark this page"
 msgstr "Klikni da obeležiš ovu stranicu"
 
-#: src/constants.vala.in:101
+#: src/constants.vala.in:102
 msgid "Click to remove this bookmark"
 msgstr "Klikni da uklonip ovaj obeleživač"
 
-#: src/constants.vala.in:102
+#: src/constants.vala.in:103
 #, fuzzy
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Povećaj veličinu fonta"
 
-#: src/constants.vala.in:103
+#: src/constants.vala.in:104
 #, fuzzy
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Smanji veličinu fonta"
 
-#: src/constants.vala.in:104
+#: src/constants.vala.in:105
 msgid "Increase line width"
 msgstr "Povećaj širinu reda"
 
-#: src/constants.vala.in:105
+#: src/constants.vala.in:106
 msgid "Decrease line width"
 msgstr "Smanji širinu reda"
 
-#: src/constants.vala.in:106
+#: src/constants.vala.in:107
 msgid "Increase line spacing"
 msgstr "Povećaj prored"
 
-#: src/constants.vala.in:107
+#: src/constants.vala.in:108
 msgid "Decrease line spacing"
 msgstr "Smanji prored"
 
-#: src/constants.vala.in:108
+#: src/constants.vala.in:109
 msgid "Align left"
 msgstr ""
 
-#: src/constants.vala.in:109
+#: src/constants.vala.in:110
 msgid "Align right"
 msgstr ""
 
-#: src/constants.vala.in:110
+#: src/constants.vala.in:111
 msgid "Update cover image"
 msgstr "Obnovi naslovnu sliku"
 
-#: src/constants.vala.in:111
+#: src/constants.vala.in:112
 msgid "Apply theme for this colour profile"
 msgstr ""
 
-#: src/constants.vala.in:112 src/constants.vala.in:113
+#: src/constants.vala.in:113 src/constants.vala.in:114
 #, fuzzy
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Režim celog ekrana, \"Esc\" taster za izlaz"
 
-#: src/constants.vala.in:114
+#: src/constants.vala.in:115
 msgid "Add folder to scan for books"
 msgstr ""
 
-#: src/constants.vala.in:115
+#: src/constants.vala.in:116
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: src/constants.vala.in:116
+#: src/constants.vala.in:117
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: src/constants.vala.in:118 src/constants.vala.in:144
+#: src/constants.vala.in:119 src/constants.vala.in:145
 msgid "Preferences"
 msgstr "Željene postavke"
 
-#: src/constants.vala.in:119
+#: src/constants.vala.in:120
 #, fuzzy
 msgid "Turn on Dark Mode"
 msgstr "Uključi noćni režim"
 
-#: src/constants.vala.in:120
+#: src/constants.vala.in:121
 msgid "Enable cache (opens books faster)"
 msgstr "Omogući keš (knjige se brže otvaraju)"
 
-#: src/constants.vala.in:121
+#: src/constants.vala.in:122
 msgid "Always show library on startup"
 msgstr ""
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:123
 msgid "Enable two page reading"
 msgstr ""
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:124
 #, fuzzy
 msgid "Select Font"
 msgstr "Odaberi eKnjigu"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:125
 msgid "Customize reading profile"
 msgstr ""
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:126
 msgid "Text"
 msgstr ""
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:127
 msgid "Background"
 msgstr ""
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:128
 msgid "Highlight"
 msgstr ""
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:129
 msgid "Add folders to scan for books"
 msgstr ""
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:130
 msgid "Profile"
 msgstr ""
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:131
 msgid "Reset to default values"
 msgstr ""
 
-#: src/constants.vala.in:142
+#: src/constants.vala.in:143
 msgid "Unknown Book"
 msgstr "Nepoznata knjiga"
 
-#: src/constants.vala.in:143
+#: src/constants.vala.in:144
 msgid "About"
 msgstr "O programu"
 
@@ -466,11 +471,11 @@ msgstr "Odaberi sliku"
 msgid "Select folder"
 msgstr "Odaberi sliku"
 
-#: src/window.vala:296 src/window.vala:535
+#: src/window.vala:301 src/window.vala:542
 msgid "Select eBook"
 msgstr "Odaberi eKnjigu"
 
-#: src/library.vala:610
+#: src/library.vala:623
 msgid "Adding "
 msgstr ""
 
