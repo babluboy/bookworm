@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-10 14:36+0530\n"
-"PO-Revision-Date: 2019-03-12 09:02+0000\n"
+"PO-Revision-Date: 2019-03-13 13:02+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -297,9 +297,8 @@ msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Fjarlægja valdar bækur úr safni (rafbókaskrá verður ekki eytt)"
 
 #: src/constants.vala.in:97
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Veldu rafbók til að lesa"
+msgstr "Veldu rafbækur sem má fjarlægja"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
@@ -599,4 +598,4 @@ msgstr "Upphafleg útgáfa með stuðningi við  EPUB-snið"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr "Siddhartha Das"
+msgstr "Siddhartha  Das"
