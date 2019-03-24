@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-01-12 18:06+0000\n"
 "Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "透過標題、作者和標籤搜尋"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "看來Bookworm沒任何書。"
 
 #: src/constants.vala.in:44

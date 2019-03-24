@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2017-09-18 07:01+0000\n"
 "Last-Translator: Pablo Mariño <pablo.marino.boga@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bookworm/"
@@ -72,7 +72,7 @@ msgstr "Procura por Titulo, Autor ou Etiquetas"
 
 #: src/constants.vala.in:43
 #, fuzzy
-msgid "Looks like Bookworm has no books."
+msgid "Looks like Bookworm has no books"
 msgstr "Parece que Bookworm non ten libros !"
 
 #: src/constants.vala.in:44

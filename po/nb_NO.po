@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-03-12 09:02+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Søk etter tittel, forfatter og tagger"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Det ser ut til at Bokormen er bokløs."
 
 #: src/constants.vala.in:44

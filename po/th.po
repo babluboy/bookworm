@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2018-06-30 08:43+0000\n"
 "Last-Translator: kong <ph.kp111@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "ค้นหาโดยชื่อ, ผู้แต่งและแท็ก"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "ดูเหมือนว่า Bookworm ไม่มีหนังสือเล่มนี้"
 
 #: src/constants.vala.in:44

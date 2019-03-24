@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2018-12-30 14:08+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
@@ -71,7 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Otsi tiitli, autori ja siltide järgi"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Tundub, et Bookwormil ei ole raamatuid."
 
 #: src/constants.vala.in:44

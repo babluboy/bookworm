@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2018-10-30 21:23+0000\n"
 "Last-Translator: Youssif Shaaban Alsager <ysh-alsager@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -71,7 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "البحث بحسب العنوان والمؤلف والعلامات"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "يبدو أن دودة الكتب لا يحتوي على أي كتب."
 
 #: src/constants.vala.in:44

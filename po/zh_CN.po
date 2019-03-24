@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2017-11-27 16:45+0000\n"
 "Last-Translator: Jack Yu <jackyu1996@hotmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -74,7 +74,7 @@ msgstr "按标题、作者或标签搜索"
 
 #: src/constants.vala.in:43
 #, fuzzy
-msgid "Looks like Bookworm has no books."
+msgid "Looks like Bookworm has no books"
 msgstr "看上去 Bookworm 没有书籍！"
 
 #: src/constants.vala.in:44

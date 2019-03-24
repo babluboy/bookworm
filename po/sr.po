@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2017-07-25 08:55+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bookworm/"
@@ -75,7 +75,7 @@ msgstr "Претражи по наслову, аутору и ознакама"
 
 #: src/constants.vala.in:43
 #, fuzzy
-msgid "Looks like Bookworm has no books."
+msgid "Looks like Bookworm has no books"
 msgstr "Изгледа да Bookworm нема књига!"
 
 #: src/constants.vala.in:44

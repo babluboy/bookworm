@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2018-06-16 19:39+0000\n"
 "Last-Translator: Ishan Bhanuka <f2016075@pilani.bits-pilani.ac.in>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "नाम, लेखक या टॅग से खोजें"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "बुकवर्म में कोई पुस्तक नही है."
 
 #: src/constants.vala.in:44

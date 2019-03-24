@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-02-03 08:09+0000\n"
 "Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Hledat podle názvu, autora a značek"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Vypadá to, že v Bookwormu (knihomolovi) nejsou žádné knihy."
 
 #: src/constants.vala.in:44

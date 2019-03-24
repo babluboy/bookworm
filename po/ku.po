@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2017-09-12 22:48+0000\n"
 "Last-Translator: Cûndûllah el-Kurdî <mckucukaslan47@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/bookworm/"
@@ -75,7 +75,7 @@ msgstr "Li Sernav, Nivîskar û Etîketan Bigere"
 
 #: src/constants.vala.in:43
 #, fuzzy
-msgid "Looks like Bookworm has no books."
+msgid "Looks like Bookworm has no books"
 msgstr "! Bi ya dîtinê di Bookwormê de tu pirtûk tune ye"
 
 #: src/constants.vala.in:44

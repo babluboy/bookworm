@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-03-01 16:17+0000\n"
 "Last-Translator: Deenadayalan Chandrakumaran <deenadayalancs@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -70,7 +70,7 @@ msgid "Search by Title, Author and Tags"
 msgstr ""
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+msgid "Looks like Bookworm has no books"
 msgstr ""
 
 #: src/constants.vala.in:44

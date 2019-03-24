@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-01-21 21:19+0000\n"
 "Last-Translator: Alexandru Simion <simimy@yahoo.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
@@ -71,7 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Caută după Titlu, Autor și Etichete"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Se pare că Bookworm nu are nicio carte."
 
 #: src/constants.vala.in:44

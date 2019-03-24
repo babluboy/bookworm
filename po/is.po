@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-03-13 13:02+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -71,7 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Leita eftir titli, höfundi og merkjum"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Það lítur út fyrir að Bókaormurinn sé ekki með neinar bækur."
 
 #: src/constants.vala.in:44

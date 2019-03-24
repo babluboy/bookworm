@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-02-20 19:17+0000\n"
 "Last-Translator: Simon Gredal <simongr3dal@icloud.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Søg efter Titel, Forfatter og Tags"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Det ser ud til at Bookworm ikke har nogen bøger."
 
 #: src/constants.vala.in:44

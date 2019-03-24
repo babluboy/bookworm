@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2018-06-01 19:43+0000\n"
 "Last-Translator: monolifed <monolifed@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Başlığa, Yazara ve Etiketlere Göre Ara"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Bookworm'da hiç kitap yokmuş gibi görünüyor."
 
 #: src/constants.vala.in:44

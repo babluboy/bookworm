@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:23+0100\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-02-22 18:17+0000\n"
 "Last-Translator: Vu Nhan <vunhan93@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Tìm kiếm theo Tiêu đề, Tác giả và Tag"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Không có sách nào."
 
 #: src/constants.vala.in:44
