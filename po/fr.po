@@ -423,7 +423,7 @@ msgstr "Arrière-plan"
 
 #: src/constants.vala.in:128
 msgid "Highlight"
-msgstr "Surligner"
+msgstr "Surlignage"
 
 #: src/constants.vala.in:129
 msgid "Add folders to scan for books"
