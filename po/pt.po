@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-11 00:20+0530\n"
-"PO-Revision-Date: 2019-01-27 09:04+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2019-03-25 02:37+0000\n"
+"Last-Translator: Rui Mendes <xz9@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/pt/>\n"
 "Language: pt\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -19,11 +19,11 @@ msgstr "Ver o número da versão"
 
 #: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
-msgstr "Executar Bookworm em modo de depuração"
+msgstr "Executar o Bookworm em modo de depuração"
 
 #: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
-msgstr "Executar O Bookworm em modo de informação"
+msgstr "Executar o Bookworm em modo de informação"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
@@ -44,23 +44,23 @@ msgstr "Guardar"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Um Leitor de Ebooks"
+msgstr "Um leitor de livros digitais"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Tradutores baseados na Web"
+msgstr "Tradutores do Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Website | Tradução | Reporte de Erros"
+msgstr "Site | Tradução | Reportar erros"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr "Não Disponível"
+msgstr "Não disponível"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "Leitor de eBooks"
+msgstr "Leitor de livros digitais"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
@@ -68,39 +68,41 @@ msgstr "Procurar neste livro…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "Procurar por Título, Autor e Etiquetas"
+msgstr "Procurar por título, autor e etiquetas"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books."
-msgstr "Parece que O Bookworm está sem livros."
+msgstr "Parece que o Bookworm está sem livros."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Adicionar eBooks à sua biblioteca"
+msgstr "Crie a sua biblioteca adicionando livros digitais"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Selecionar um eBook para ler"
+msgstr "Selecionar um livro digital para ler"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problemas ao extrair os conteúdos do livro. Verifique se o ficheiro é "
-"válido: "
+"Surgiu um problema ao extrair o conteúdo do livro. Verifique se existe um "
+"livro digital válido em: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Detetado tipo MIME inválido. Verifique o formato para este eBook: "
+msgstr "O tipo MIME é inválido. Verifique o formato deste livro digital: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr "Conteúdo inválido. Verifique se o ficheiro é válido: "
+msgstr "Conteúdo inválido. Verifique se existe um livro digital válido em: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr "Não foi possível processar o eBook. Verifique se o ficheiro é válido: "
+msgstr ""
+"Não foi possível processar o livro digital. Verifique se existe um livro "
+"digital válido em: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -112,7 +114,7 @@ msgid ""
 "found here: "
 msgstr ""
 "Não foi possível descarregar o conteúdo pedido. Por favor remova e adicione "
-"o ficheiro: "
+"o ficheiro do livro digital aqui: "
 
 #: src/constants.vala.in:52
 msgid "Library"
@@ -136,27 +138,27 @@ msgstr "Marcadores"
 
 #: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr "Marcador ###NNN para a Secção PPP"
+msgstr "Marcador ###NNN para a secção PPP"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
-msgstr "Clique num link para ir para a secção correspondente"
+msgstr "Clique numa hiperligação para ir para a secção correspondente"
 
 #: src/constants.vala.in:59
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Nenhum favorito definido no BBB, clique no ícone de favorito na barra de "
+"Nenhum marcador configurado no BBB, clique no ícone do marcador na barra do "
 "cabeçalho para marcar a página"
 
 #: src/constants.vala.in:60
 msgid "Word Meaning"
-msgstr "Significado Da Palavra"
+msgstr "Significado da palavra"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
-msgstr "Resultados da Pesquisa"
+msgstr "Resultados da pesquisa"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
@@ -164,11 +166,11 @@ msgstr "Anotações"
 
 #: src/constants.vala.in:63
 msgid "Annotation Tags"
-msgstr "Etiquetas de Anotação"
+msgstr "Etiquetas de anotação"
 
 #: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
-msgstr "Valores separados por virgúla para esta anotação"
+msgstr "Etiquetas separadas por vírgula para esta anotação"
 
 #: src/constants.vala.in:65
 msgid "Edit annotation for:"
@@ -176,7 +178,7 @@ msgstr "Editar a anotação para:"
 
 #: src/constants.vala.in:66
 msgid "Click on a link to jump to an annotated section"
-msgstr "Clique num link para ir para uma secção anotada"
+msgstr "Clique numa hiperligação para ir para uma secção anotada"
 
 #: src/constants.vala.in:67
 msgid ""
@@ -201,32 +203,32 @@ msgstr "Não foram encontrados resultados para '$$$' em &&&"
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
-"Selecione uma palavra no livro e clique direito para procurar o seu "
-"significado"
+"Selecione uma palavra no livro e clique com o botão direito do rato para "
+"procurar o seu significado"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
-msgstr "Editar informação para"
+msgstr "Editar informação de"
 
 #: src/constants.vala.in:73 src/constants.vala.in:77
 msgid "Update Cover Image"
-msgstr "Atualizar Imagem de Capa"
+msgstr "Atualizar imagem da capa"
 
 #: src/constants.vala.in:74
 msgid "Update Title"
-msgstr "Atualizar Título"
+msgstr "Atualizar título"
 
 #: src/constants.vala.in:75
 msgid "Update Tags"
-msgstr "Atualizar Etiquetas"
+msgstr "Atualizar etiquetas"
 
 #: src/constants.vala.in:76
 msgid "Update Author"
-msgstr "Atualizar Autor"
+msgstr "Atualizar autor"
 
 #: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
-msgstr "Entrar em modo de ecrã inteiro (F11)"
+msgstr "Entrar no modo de ecrã inteiro (F11)"
 
 #: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
@@ -234,7 +236,7 @@ msgstr "Sair do modo de ecrã inteiro (Esc)"
 
 #: src/constants.vala.in:80
 msgid "Check Word Meaning"
-msgstr "Definir Palavra"
+msgstr "Verificar significado da palavra"
 
 #: src/constants.vala.in:81
 msgid "Annotate selected text"
@@ -250,7 +252,7 @@ msgstr "Imagens"
 
 #: src/constants.vala.in:84
 msgid "All Files"
-msgstr "Todos os Ficheiros"
+msgstr "Todos os ficheiros"
 
 #: src/constants.vala.in:85
 msgid "Title"
@@ -295,13 +297,12 @@ msgstr "Adicionar livros à biblioteca"
 #: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Remover os livros selecionados da biblioteca (os ficheiros não serão "
-"apagados)"
+"Remover os livros selecionados da biblioteca (o ficheiro do livro digital "
+"não será eliminado)"
 
 #: src/constants.vala.in:97
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Selecionar um eBook para ler"
+msgstr "Selecionar livros para ativar a remoção"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
@@ -309,7 +310,7 @@ msgstr "Selecionar um ou vários livros na biblioteca"
 
 #: src/constants.vala.in:99
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr "Ver Índice, Marcadores e Resultados de Pesquisa"
+msgstr "Ver índice, marcadores e resultados de pesquisa"
 
 #: src/constants.vala.in:100
 msgid "Reading preferences"
@@ -333,19 +334,19 @@ msgstr "Diminuir o tamanho da fonte (Ctrl + Shift + '-')"
 
 #: src/constants.vala.in:105
 msgid "Increase line width"
-msgstr "Aumentar a largura da linha"
+msgstr "Aumentar a espessura da linha"
 
 #: src/constants.vala.in:106
 msgid "Decrease line width"
-msgstr "Diminuir a largura da linha"
+msgstr "Diminuir a espessura da linha"
 
 #: src/constants.vala.in:107
 msgid "Increase line spacing"
-msgstr "Aumentar o espaçamento"
+msgstr "Aumentar o espaçamento entre linhas"
 
 #: src/constants.vala.in:108
 msgid "Decrease line spacing"
-msgstr "Diminuir o espaçamento"
+msgstr "Diminuir o espaçamento entre linhas"
 
 #: src/constants.vala.in:109
 msgid "Align left"
@@ -357,7 +358,7 @@ msgstr "Alinhar à direita"
 
 #: src/constants.vala.in:111
 msgid "Update cover image"
-msgstr "Atualizar a imagem de capa"
+msgstr "Atualizar a imagem da capa"
 
 #: src/constants.vala.in:112
 msgid "Apply theme for this colour profile"
@@ -369,11 +370,11 @@ msgstr "Entrar em modo de ecrã inteiro e Esc para sair"
 
 #: src/constants.vala.in:115
 msgid "Add folder to scan for books"
-msgstr "Adicionar pasta para pesquisar por eBooks"
+msgstr "Adicionar pasta para pesquisar por livros eletrónicos"
 
 #: src/constants.vala.in:116
 msgid "Remove displayed folder from book scan"
-msgstr "Excluir esta pasta da pesquisa por eBooks"
+msgstr "Remover pasta mostrada da pesquisa por livros eletrónicos"
 
 #: src/constants.vala.in:117
 msgid "Add annotation to selected text"
@@ -385,7 +386,7 @@ msgstr "Preferências"
 
 #: src/constants.vala.in:120
 msgid "Turn on Dark Mode"
-msgstr "Ativar Modo de Noite"
+msgstr "Ativar modo noturno"
 
 #: src/constants.vala.in:121
 msgid "Enable cache (opens books faster)"
@@ -397,15 +398,15 @@ msgstr "Mostrar sempre a biblioteca no arranque"
 
 #: src/constants.vala.in:123
 msgid "Enable two page reading"
-msgstr "Ativar modo de leitura com duas páginas"
+msgstr "Ativar modo de visualização de página dupla"
 
 #: src/constants.vala.in:124
 msgid "Select Font"
-msgstr "Selecione a fonte"
+msgstr "Selecionar a fonte"
 
 #: src/constants.vala.in:125
 msgid "Customize reading profile"
-msgstr "Customizar o perfil de leitura"
+msgstr "Personalizar o perfil de leitura"
 
 #: src/constants.vala.in:126
 msgid "Text"
@@ -417,11 +418,11 @@ msgstr "Fundo"
 
 #: src/constants.vala.in:128
 msgid "Highlight"
-msgstr "Evidenciar"
+msgstr "Destacar"
 
 #: src/constants.vala.in:129
 msgid "Add folders to scan for books"
-msgstr "Adicionar pastas para pesquisa por eBooks"
+msgstr "Adicionar pastas para pesquisar livros digitais"
 
 #: src/constants.vala.in:130
 msgid "Profile"
@@ -429,7 +430,7 @@ msgstr "Perfil"
 
 #: src/constants.vala.in:131
 msgid "Reset to default values"
-msgstr "Redefinir valores originais"
+msgstr "Repor valores de origem"
 
 #: src/constants.vala.in:143
 msgid "Unknown Book"
@@ -441,19 +442,19 @@ msgstr "Sobre"
 
 #: src/dialog.vala:63
 msgid "Select Image"
-msgstr "Selecionar Imagem"
+msgstr "Selecionar imagem"
 
 #: src/dialog.vala:545
 msgid "Select folder"
-msgstr "Selecionar Pasta"
+msgstr "Selecionar pasta"
 
 #: src/window.vala:301 src/window.vala:542
 msgid "Select eBook"
-msgstr "Selecione o eBook"
+msgstr "Selecionar livro digital"
 
 #: src/library.vala:623
 msgid "Adding "
-msgstr "Adicionando "
+msgstr "A adicionar "
 
 #: src/mobiReader.vala:329
 msgid "Book"
@@ -466,7 +467,7 @@ msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr "Ler e gerenciar eBooks"
+msgstr "Ler e gerir livros digitais"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
@@ -478,14 +479,14 @@ msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr "Um leitor de eBook focado"
+msgstr "Um leitor de livros digitais"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like epub, pdf, mobi, cbr, etc."
 msgstr ""
-"Leia os livros que você ama sem ter que se preocupar com as complexidades de "
+"Leia os livros que gosta sem ter que se preocupar com as complexidades de "
 "formatos diferentes, como ePub, pdf, mobi, cbr, etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
@@ -493,108 +494,119 @@ msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
-"Gerencie sua biblioteca marcando e atualizando metadados em livros, para "
-"localizar rapidamente livros usando a pesquisa de metadados e a filtragem "
-"baseada em marcas."
+"Faça a gestão da sua biblioteca marcando e atualizando os metadados dos "
+"livros, para localizar rapidamente livros usando a pesquisa de metadados e a "
+"filtragem baseada em etiquetas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
-"Esta versão suporta formatos EPUB, MOBI, PRC, PDF e Comics (CBR e CBZ) com "
-"suporte para mais formatos a seguir em breve."
+"Esta versão suporta os formatos EPUB, MOBI, PRC, PDF e Comics (CBR e CBZ) "
+"com suporte para mais formatos no futuro."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr "Exibição da biblioteca do Bookworm"
+msgstr "Visualização da biblioteca Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr "Bookworm Modo De Exibição De Leitura"
+msgstr "Modo de leitura Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid ""
 "This release has some new features, fixes and includes new translations:"
 msgstr ""
+"Este lançamento tem algumas funcionalidades novas, correções e inclui novas "
+"traduções:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "Novas funcionalidades:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
 "Right click a selected word and look up its meaning using a online dictionary"
 msgstr ""
+"Clique com o botão direito do rato numa palavra selecionada e veja o seu "
+"significado utilizando um dicionário na Internet"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added a preference option to customize highlight colour"
 msgstr ""
+"Adicionada uma opção nas preferências para personalizar a cor de destaque"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "Correções:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like http, ftp etc and use the default "
 "browser to open the same"
 msgstr ""
+"Impedir que o Bookworm abra hiperligações como http, ftp, etc. e utilize o "
+"navegador padrão para o abrir"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"Corrigido um problema em que as linhas se sobrepunham nas primeiras páginas "
+"dos livros"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
+"Utilização do GResource para acelerar o carregamento de ícones, scripts, etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Alguma compatibilidade CSS com o Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Leitura da direita para a esquerda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for Right to Left Reading"
-msgstr ""
+msgstr "Suporte a leitura da direita para a esquerda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Um novo ícone e novas imagens de capas"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB Table of Contents"
-msgstr ""
+msgstr "Melhor suporte a Índices EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and Two Page Views"
-msgstr "Etiquetas de Anotação"
+msgstr "Visualizações de anotações e página dupla"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support mobi format and UX improvements"
-msgstr ""
+msgstr "Suporte ao formato mobi e melhoramentos na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for List View and other preference customizations"
 msgstr ""
+"Melhoramento na experiência do utilizador na Visualização em lista e outras "
+"personalizações de preferências"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics Support and UX improvements"
-msgstr ""
+msgstr "Suporte a Comics e melhoramentos na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF Support and UX improvements"
-msgstr ""
+msgstr "Suporte a PDF e melhoramentos na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Lançamento incial com suporte ao formato EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
