@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 10:47+0100\n"
+"POT-Creation-Date: 2019-03-24 11:23+0100\n"
 "PO-Revision-Date: 2019-01-21 21:19+0000\n"
 "Last-Translator: NathanBnm\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -521,7 +521,9 @@ msgstr "Vue de lecture de Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr "Cette version apporte quelques nouveautés, corrections et nouvelles traductions :"
+msgstr ""
+"Cette version apporte quelques nouveautés, corrections et nouvelles "
+"traductions :"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
@@ -530,7 +532,9 @@ msgstr "Nouvelles fonctionnalités :"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
-msgstr "Clic droit sur un mot sélectionné cherche sa définition dans un dictionnaire en ligne"
+msgstr ""
+"Clic droit sur un mot sélectionné cherche sa définition dans un dictionnaire "
+"en ligne"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
@@ -544,17 +548,23 @@ msgstr "Corrections :"
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
-msgstr "Empêche Bookworm d'ouvrir des liens HTTP, FTP, etc. et utilise le navigateur par défaut pour les ouvrir"
+msgstr ""
+"Empêche Bookworm d'ouvrir des liens HTTP, FTP, etc. et utilise le navigateur "
+"par défaut pour les ouvrir"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr "Correction d'un problème où les lignes se chevauchaient pour les deux premières pages du livre"
+msgstr ""
+"Correction d'un problème où les lignes se chevauchaient pour les deux "
+"premières pages du livre"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr "Utilisation de GResource pour accélérer le chargement des icônes, des scripts, etc."
+msgstr ""
+"Utilisation de GResource pour accélérer le chargement des icônes, des "
+"scripts, etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
@@ -570,7 +580,8 @@ msgstr "Prise en charge du script de lecture de doite à gauche"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr "Une nouvelle icône resplendissante et de nouvelles images de couverture"
+msgstr ""
+"Une nouvelle icône resplendissante et de nouvelles images de couverture"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
@@ -586,7 +597,9 @@ msgstr "Prise en charge du format MOBI et améliorations de l'interface"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
-msgstr "Améliorations de l'interface pour la vue en liste et autres préférences de personnalisation"
+msgstr ""
+"Améliorations de l'interface pour la vue en liste et autres préférences de "
+"personnalisation"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
