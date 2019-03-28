@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-11 00:20+0530\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-03-13 13:02+0000\n"
 "Last-Translator: advocatux <advocatux@airpost.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
@@ -70,7 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Buscar por título, autor y etiquetas"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Parece que Bookworm no tiene libros."
 
 #: src/constants.vala.in:44
@@ -486,9 +487,10 @@ msgid "A focused eBook reader"
 msgstr "Un lector centrado en los libros electrónicos"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
+#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
-"complexities like epub, pdf, mobi, cbr, etc."
+"complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "Lea los libros que ama sin tener que preocuparse de la complejidad de los "
 "distintos formatos, como epub, pdf, mobi, cbr, etc."
@@ -503,8 +505,9 @@ msgstr ""
 "metadatos y filtrado por etiquetas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
+#, fuzzy
 msgid ""
-"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
 "Esta versión soporta los formatos CBR y CBZ (para cómics) además de EPUB, "
@@ -519,8 +522,8 @@ msgid "Bookworm Reading View"
 msgstr "Vista de lectura de Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
-msgid ""
-"This release has some new features, fixes and includes new translations:"
+#, fuzzy
+msgid "This release has some new features, fixes and new translations:"
 msgstr ""
 "Esta publicación tiene algunas características nuevas, correcciones e "
 "incluye nuevas traducciones:"
@@ -530,14 +533,16 @@ msgid "New Features:"
 msgstr "Nuevas características:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
+#, fuzzy
 msgid ""
-"Right click a selected word and look up its meaning using a online dictionary"
+"Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
 "Pulse con el botón derecho del ratón una palabra seleccionada y consulte su "
 "significado usando un diccionario en línea"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-msgid "Added a preference option to customize highlight colour"
+#, fuzzy
+msgid "Added option to customize highlight colour"
 msgstr ""
 "Añadida una opción de preferencia para personalizar el color del resaltado"
 
@@ -546,9 +551,10 @@ msgid "Fixes:"
 msgstr "Correcciones:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
+#, fuzzy
 msgid ""
-"Prevent Bookworm from opening links like http, ftp etc and use the default "
-"browser to open the same"
+"Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
+"browser to open them"
 msgstr ""
 "Evita que Bookworm abra enlaces como http, ftp, etc y use el navegador "
 "predeterminado para abrir el mismo"
@@ -576,7 +582,8 @@ msgid "Right to Left Reading"
 msgstr "Lectura de derecha a izquierda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
-msgid "Support for Right to Left Reading"
+#, fuzzy
+msgid "Support for right-to-left script"
 msgstr "Soporte para la lectura de derecha a izquierda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
@@ -584,29 +591,35 @@ msgid "A shiny new icon and new cover images"
 msgstr "Un nuevo icono resplandeciente y nuevas imágenes de portada"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
-msgid "Better support for EPUB Table of Contents"
+#, fuzzy
+msgid "Better support for EPUB table of contents"
 msgstr "Soporte mejorado de la tabla de contenidos de EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-msgid "Annotations and Two Page Views"
+#, fuzzy
+msgid "Annotations and two page views"
 msgstr "Anotaciones y vista a doble página"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
-msgid "Support mobi format and UX improvements"
+#, fuzzy
+msgid "Support for MOBI format and UX improvements"
 msgstr "Soporte del formato de mobi y mejoras en la experiencia de usuario"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
-msgid "UX improvements for List View and other preference customizations"
+#, fuzzy
+msgid "UX improvements for list view and other preference customizations"
 msgstr ""
 "Mejoras de la experiencia de usuario para la vista de lista y otras "
 "preferencias de personalización"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
-msgid "Comics Support and UX improvements"
+#, fuzzy
+msgid "Comics support and UX improvements"
 msgstr "Soporte de comics y mejoras de la experiencia de usuario"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
-msgid "PDF Support and UX improvements"
+#, fuzzy
+msgid "PDF support and UX improvements"
 msgstr "Soporte de PDF y mejoras de la experiencia de usuario"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83

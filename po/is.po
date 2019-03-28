@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-10 14:36+0530\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2019-03-13 13:02+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -71,7 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Leita eftir titli, höfundi og merkjum"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Það lítur út fyrir að Bókaormurinn sé ekki með neinar bækur."
 
 #: src/constants.vala.in:44
@@ -478,9 +479,10 @@ msgid "A focused eBook reader"
 msgstr "Rafbókalesari"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
+#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
-"complexities like epub, pdf, mobi, cbr, etc."
+"complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "Lestu bækur eins og þig lystir, án þess að þurfa að hugsa um mismun á "
 "flóknum skráasniðum eins og epub, pdf, mobi, cbr, o.sv.frv."
@@ -494,8 +496,9 @@ msgstr ""
 "nýtist svo til að leita að bókum hratt og vel."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
+#, fuzzy
 msgid ""
-"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
 "Þessi útgáfa styður EPUB, MOBI, PRC, PDF og Comic (CBR og CBZ) skráasnið auk "
@@ -510,8 +513,8 @@ msgid "Bookworm Reading View"
 msgstr "Keyra Bókaorm í lesham"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
-msgid ""
-"This release has some new features, fixes and includes new translations:"
+#, fuzzy
+msgid "This release has some new features, fixes and new translations:"
 msgstr ""
 "Þessi útgáfa er með nokkra nýja eiginleika, lagfæringar og nýjar þýðingar:"
 
@@ -520,13 +523,15 @@ msgid "New Features:"
 msgstr "Nýir eiginleikar:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
+#, fuzzy
 msgid ""
-"Right click a selected word and look up its meaning using a online dictionary"
+"Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
 "Hægri-smella á valið orð og fletta merkingu þess upp í orðasafni á netinu"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-msgid "Added a preference option to customize highlight colour"
+#, fuzzy
+msgid "Added option to customize highlight colour"
 msgstr "Bætt við kjörstillingu til að sérsníða áherslulitun"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
@@ -534,9 +539,10 @@ msgid "Fixes:"
 msgstr "Lagfæringar:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
+#, fuzzy
 msgid ""
-"Prevent Bookworm from opening links like http, ftp etc and use the default "
-"browser to open the same"
+"Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
+"browser to open them"
 msgstr ""
 "Komið í veg fyrir að Bookworm opni tengla á borð við http, ftp, o.s.frv. og "
 "nota freka sjálfgefinn vafra til þess"
@@ -561,7 +567,8 @@ msgid "Right to Left Reading"
 msgstr "Lestur frá hægri-til-vinstri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
-msgid "Support for Right to Left Reading"
+#, fuzzy
+msgid "Support for right-to-left script"
 msgstr "Bætir við stuðningi fyrir lestur frá hægri-til-vinstri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
@@ -569,27 +576,33 @@ msgid "A shiny new icon and new cover images"
 msgstr "Glansandi ný táknmynd og nyjar forsíðumyndir"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
-msgid "Better support for EPUB Table of Contents"
+#, fuzzy
+msgid "Better support for EPUB table of contents"
 msgstr "Betri stuðningur við efnisyfirlit í EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-msgid "Annotations and Two Page Views"
+#, fuzzy
+msgid "Annotations and two page views"
 msgstr "Glósur og tveggja-síðna sýnir"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
-msgid "Support mobi format and UX improvements"
+#, fuzzy
+msgid "Support for MOBI format and UX improvements"
 msgstr "Stuðningur við MOBI-snið og endurbætur á viðmóti"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
-msgid "UX improvements for List View and other preference customizations"
+#, fuzzy
+msgid "UX improvements for list view and other preference customizations"
 msgstr "Endurbætur á viðmóti í listasýn og öðrum sérsniðnum kjörstillingum"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
-msgid "Comics Support and UX improvements"
+#, fuzzy
+msgid "Comics support and UX improvements"
 msgstr "Stuðningur við Comics og endurbætur á viðmóti"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
-msgid "PDF Support and UX improvements"
+#, fuzzy
+msgid "PDF support and UX improvements"
 msgstr "Stuðningur við PDF og endurbætur á viðmóti"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83

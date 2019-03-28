@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-11 00:20+0530\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
 "PO-Revision-Date: 2018-12-14 07:08+0000\n"
 "Last-Translator: Alexandros Sigalas <alxarch@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -74,7 +74,7 @@ msgstr "Αναζήτηση  βάσει Τίτλου, Συγγραφέα και �
 
 #: src/constants.vala.in:43
 #, fuzzy
-msgid "Looks like Bookworm has no books."
+msgid "Looks like Bookworm has no books"
 msgstr "Φαίνεται ότι το Bookworm δεν έχει κανένα βιβλίο!"
 
 #: src/constants.vala.in:44
@@ -517,9 +517,10 @@ msgid "A focused eBook reader"
 msgstr "Ένας αναγνώστης ηλεκτρονικών βιβλίων"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
+#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
-"complexities like epub, pdf, mobi, cbr, etc."
+"complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "Διαβάστε τα αγαπημένα σας βιβλία χωρίς να ανησυχείτε για τους διαφορετικούς "
 "τύπους αρχείων (π.χ. epub, pdf, mobi, cbr)"
@@ -531,8 +532,9 @@ msgid ""
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
+#, fuzzy
 msgid ""
-"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
 "Η έκδοση αυτή υποστηρίζει ηλεκτρονικά βιβλία σε αρχεία EPUB, MOBI, PRC, PDF "
@@ -548,8 +550,7 @@ msgid "Bookworm Reading View"
 msgstr "Εκτέλεση Bookworm σε λειτουργία ανάγνωσης"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
-msgid ""
-"This release has some new features, fixes and includes new translations:"
+msgid "This release has some new features, fixes and new translations:"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
@@ -558,11 +559,11 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
-"Right click a selected word and look up its meaning using a online dictionary"
+"Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-msgid "Added a preference option to customize highlight colour"
+msgid "Added option to customize highlight colour"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
@@ -571,8 +572,8 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
-"Prevent Bookworm from opening links like http, ftp etc and use the default "
-"browser to open the same"
+"Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
+"browser to open them"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
@@ -594,7 +595,7 @@ msgid "Right to Left Reading"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
-msgid "Support for Right to Left Reading"
+msgid "Support for right-to-left script"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
@@ -602,28 +603,28 @@ msgid "A shiny new icon and new cover images"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
-msgid "Better support for EPUB Table of Contents"
+msgid "Better support for EPUB table of contents"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
 #, fuzzy
-msgid "Annotations and Two Page Views"
+msgid "Annotations and two page views"
 msgstr "Ετικέτες επισημείωσης"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
-msgid "Support mobi format and UX improvements"
+msgid "Support for MOBI format and UX improvements"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
-msgid "UX improvements for List View and other preference customizations"
+msgid "UX improvements for list view and other preference customizations"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
-msgid "Comics Support and UX improvements"
+msgid "Comics support and UX improvements"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
-msgid "PDF Support and UX improvements"
+msgid "PDF support and UX improvements"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83

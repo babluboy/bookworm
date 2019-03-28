@@ -482,9 +482,10 @@ msgid "A focused eBook reader"
 msgstr "Um leitor de livros digitais"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
+#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
-"complexities like epub, pdf, mobi, cbr, etc."
+"complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "Leia os livros que gosta sem ter que se preocupar com as complexidades de "
 "formatos diferentes, como ePub, pdf, mobi, cbr, etc."
@@ -499,8 +500,9 @@ msgstr ""
 "filtragem baseada em etiquetas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
+#, fuzzy
 msgid ""
-"This version supports EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) formats "
+"This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
 "Esta versão suporta os formatos EPUB, MOBI, PRC, PDF e Comics (CBR e CBZ) "
@@ -515,8 +517,7 @@ msgid "Bookworm Reading View"
 msgstr "Modo de leitura Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
-msgid ""
-"This release has some new features, fixes and includes new translations:"
+msgid "This release has some new features, fixes and new translations:"
 msgstr ""
 "Este lançamento tem algumas funcionalidades novas, correções e inclui novas "
 "traduções:"
@@ -527,13 +528,13 @@ msgstr "Novas funcionalidades:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
-"Right click a selected word and look up its meaning using a online dictionary"
+"Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
 "Clique com o botão direito do rato numa palavra selecionada e veja o seu "
 "significado utilizando um dicionário na Internet"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-msgid "Added a preference option to customize highlight colour"
+msgid "Added option to customize highlight colour"
 msgstr ""
 "Adicionada uma opção nas preferências para personalizar a cor de destaque"
 
@@ -543,8 +544,8 @@ msgstr "Correções:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
-"Prevent Bookworm from opening links like http, ftp etc and use the default "
-"browser to open the same"
+"Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
+"browser to open them"
 msgstr ""
 "Impedir que o Bookworm abra hiperligações como http, ftp, etc. e utilize o "
 "navegador padrão para o abrir"
@@ -591,7 +592,7 @@ msgid "Support mobi format and UX improvements"
 msgstr "Suporte ao formato mobi e melhoramentos na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
-msgid "UX improvements for List View and other preference customizations"
+msgid "UX improvements for list view and other preference customizations"
 msgstr ""
 "Melhoramento na experiência do utilizador na Visualização em lista e outras "
 "personalizações de preferências"
