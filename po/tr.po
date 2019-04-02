@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-11 00:20+0530\n"
-"PO-Revision-Date: 2018-06-01 19:43+0000\n"
-"Last-Translator: monolifed <monolifed@gmail.com>\n"
+"PO-Revision-Date: 2019-04-03 15:03+0000\n"
+"Last-Translator: Gökhan Gökkaya <gokhanlnx@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tr/>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.0\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -205,7 +205,7 @@ msgstr "&&& içinde '$$$' için eşleşme bulunmadı"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Kitaptan bir kelime seçin ve anlamını bulmak için sağ tıklayın"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
@@ -469,15 +469,15 @@ msgstr "Kitap"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "eKitapları oku ve yönet"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ekitap;Okuyucu;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 #, fuzzy
