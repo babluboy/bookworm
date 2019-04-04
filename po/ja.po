@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2018-12-02 18:31+0000\n"
+"PO-Revision-Date: 2019-04-05 15:03+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -72,9 +72,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "タイトル・著者・タグで検索"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "本が見つかりません。"
+msgstr "本がない可能性があります"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -304,9 +303,8 @@ msgstr ""
 "選択された本をライブラリから削除します (電子書籍ファイル自体は残ります)"
 
 #: src/constants.vala.in:97
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "読みたい電子書籍を選択します"
+msgstr "削除可能にする本を選択します"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
@@ -488,13 +486,10 @@ msgid "A focused eBook reader"
 msgstr "電子書籍向けリーダー"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
-msgstr ""
-"ePub・PDF・MOBI・CBR など異なったファイル形式の複雑さを気にせずに愛読書を読み"
-"ましょう。"
+msgstr "EPUB・PDF・MOBI・CBR など異なったファイル形式の複雑さを気にせずに愛読書を読みましょう。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -505,13 +500,12 @@ msgstr ""
 "検索とタグに基づくフィルタリングを使用し本を素早く見つけましょう。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
-"このバージョンは EPUB・MOBI・PRC・PDFとコミックス (CBR と CBZ) 形式をサポート"
-"しています。まもなく、さらなるファイル形式がサポートされます。"
+"このバージョンは EPUB・MOBI・PRC・PDF とコミックス (CBR と CBZ) "
+"形式をサポートしています。まもなく、さらなるファイル形式がサポートされます。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -523,40 +517,40 @@ msgstr "Bookworm リーディングビュー"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "このリリースは、いくつかの新機能と修正、新しい翻訳を含んでいます:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "新機能:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
-msgstr ""
+msgstr "選択した単語を右クリックして、意味をオンライン辞書で調べる"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "ハイライトされた色をカスタマイズするオプションを追加"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "修正:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
-msgstr ""
+msgstr "HTTP や FTS などのリンクを、Bookworm ではなくデフォルトのブラウザで開くように修正"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "本の最初の数ページの行が重なってしまう問題を修正"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "GResource を使用することで、アイコンやスクリプトなどの読み込みを高速化"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
@@ -564,44 +558,43 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "右から左に文字が書かれた本に対応"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "RTL のスクリプトへの対応"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "一新されたアイコンとカバー画像"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "EPUB の表の内容への対応を強化"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "注釈タグ"
+msgstr "注釈と 2 ページごとのビュー"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "MOBI 形式への対応と、UX の改善"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "リストビューの UX の改善と、その他パフォーマンスのカスタマイズ"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "コミックスへの対応と、UX の改善"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF への対応と、UX の改善"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "EPUB 形式に対応した、初めてのリリース"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
