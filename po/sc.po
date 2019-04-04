@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-03-14 15:03+0000\n"
+"PO-Revision-Date: 2019-04-05 15:03+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sc/>\n"
@@ -70,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Chirca pro tìtulu, autore e etichetas"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Paret chi Bookworm non tengiat libros."
+msgstr "Paret chi Bookworm non tengiat libros"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -489,13 +488,12 @@ msgid "A focused eBook reader"
 msgstr "Unu leghidore de libros eletrònicos"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "Leghe sos libros chi amas chene tènnere bisòngiu de ti preocupare de sa "
-"complessidade de sos formados diferentes comente epub, pdf, mobi, cbr, etz."
+"complessidade de sos formados diferentes comente a EPUB, PDF, MOBI, CBR, etz."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -507,7 +505,6 @@ msgstr ""
 "sos filtros cun sas etichetas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
@@ -525,7 +522,6 @@ msgid "Bookworm Reading View"
 msgstr "Vista de leghidura de Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
-#, fuzzy
 msgid "This release has some new features, fixes and new translations:"
 msgstr ""
 "Custa versione tenet carchi funtzionalidade noa, curretziones de errores e "
@@ -536,31 +532,26 @@ msgid "New Features:"
 msgstr "Funtzionalidades noas:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
-#, fuzzy
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
 "Incarca cun sa tecla destra una paràula ischertada e abbàida su significadu "
-"suo impreende unu ditzionàriu in lìnia"
+"suo in unu ditzionàriu in lìnia"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Added option to customize highlight colour"
-msgstr ""
-"Annanta una optzione de preferèntzia pro personalizare su colore de "
-"evidentziatzione"
+msgstr "Annanta un'optzione pro personalizare su colore de evidentziatzione"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
 msgstr "Acontzos:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
-#, fuzzy
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
-"Non permìtere a Bookworm de abèrrere ligàmenes comente a http, ftp etz. e "
+"Non permìtere a Bookworm de abèrrere ligàmenes comente a HTTP, FTP etz. e "
 "imprea s'esploradore (browser) predefinidu pro los abèrrere"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
@@ -572,7 +563,6 @@ msgstr ""
 "prima pàia de pàginas de su libru"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
-#, fuzzy
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
 "Impreu de GResource pro illestrare su carrigamentu de iconas, testos de "
@@ -587,7 +577,6 @@ msgid "Right to Left Reading"
 msgstr "Leghidura dae destra a manca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
-#, fuzzy
 msgid "Support for right-to-left script"
 msgstr "Suportu pro sa leghidura dae destra a manca"
 
@@ -596,37 +585,31 @@ msgid "A shiny new icon and new cover images"
 msgstr "Una icona noa e immàgines de cobertedda noas"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
-#, fuzzy
 msgid "Better support for EPUB table of contents"
 msgstr "Unu suportu megioradu pro sas tabellas de cuntenutos de sos EPUBs"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
 msgstr "Notas e vistas a duas pàginas"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
-#, fuzzy
 msgid "Support for MOBI format and UX improvements"
 msgstr ""
-"Suportu de su formadu mobi e megiorias de s'esperièntzia de s'impreadore (UX)"
+"Suportu de su formadu MOBI e megiorias de s'esperièntzia de s'impreadore (UX)"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
-#, fuzzy
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
 "Megiorias de s'esperièntzia de s'impreadore (UX) pro sa vista de sa lista e "
 "àteras personalizaziones de sas preferèntzias"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
-#, fuzzy
 msgid "Comics support and UX improvements"
 msgstr ""
 "Megiorias pro su suportu pro sos fumetos e pro s'esperièntzia de "
 "s'impreadore (UX)"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
-#, fuzzy
 msgid "PDF support and UX improvements"
 msgstr ""
 "Megiorias pro su suportu pro sos PDF e pro s'esperièntzia de s'impreadore "
