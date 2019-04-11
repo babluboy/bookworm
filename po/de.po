@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-02-20 19:17+0000\n"
-"Last-Translator: Mich Wyser <mich@mk2.ch>\n"
+"PO-Revision-Date: 2019-04-12 20:03+0000\n"
+"Last-Translator: Andrea Bruehlmann <login@swisscreatebusinessmanager.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -528,10 +528,12 @@ msgstr "Bookworm Lese-Ansicht"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
 msgstr ""
+"Dieses Release hat ein paar neue Funktionen, Korrekturen und neue "
+"Übersetzungen:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "Neue Features:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
