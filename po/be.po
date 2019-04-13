@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2018-12-10 18:08+0000\n"
+"PO-Revision-Date: 2019-04-14 10:03+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/be/>\n"
@@ -10,9 +10,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -71,9 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Пошук па назве, аўтару і тэгам"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Выглядае, што ў Bookworm няма кніг."
+msgstr "Выглядае, што Bookworm не мае кніг"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -299,9 +298,8 @@ msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Выдаліць абраныя кнігі з бібліятэкі (файл кнігі не будзе выдалены)"
 
 #: src/constants.vala.in:97
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Абраць электронную кнігу для чытання"
+msgstr "Абраць кнігі, каб дазволіць выдаленне"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
@@ -481,12 +479,11 @@ msgid "A focused eBook reader"
 msgstr "Засяроджаны на чытанні электронных кніг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
-"Чытайце кнігі, якія вы любіце, не турбуючыся аб розных складанасцях "
+"Чытайце кнігі, якія вы любіце, не турбуючыся аб складанасцях розных "
 "фарматаў, такіх як EPUB, PDF, MOBI, CBR і г.д."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
@@ -499,7 +496,6 @@ msgstr ""
 "тэгаў."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
@@ -517,85 +513,89 @@ msgstr "Чытальніцкі выгляд Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Гэты выпуск мае некаторыя новыя функцыі, выпраўленні і новыя пераклады:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "Новыя функцыі:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Пстрыкніце правай кнопкай па абраных слове і знайдзіце яго значэнне ў анлайн "
+"слоўніку"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Дададзеная магчымасць налады колеру падсвятлення"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "Выпраўленні:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Прадухіляе Bookworm ад адкрыцця спасылак, такіх як HTTP, FTP і іншых, і "
+"выкарыстоўвае агаданы аглядальнік, каб адкрыць іх"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "Выпраўлена праблема перакрыцця радкоў на першай пары старонак у кнізе"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
+"Выкарыстоўваць GResource для паскарэння загрузкі іконак, сцэнароў і іншага."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Некаторая нязначная CSS-сумяшчальнасць з Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Чытанне справа на лева"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Падтрымка пісьма справа на лева"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Бліскучы новы значок і новыя выявы вокладкі"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Палепшаная падтрымка зместу EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "Тэгі анатацыі"
+msgstr "Від анатацый і дзвюх старонак"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Падтрымка фармату MOBI і паляпшэнні UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "Паляпшэнні UX для выгляду спіса і іншых налад пераваг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Падтрымка Comics і паляпшэнні UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "Падтрымка PDF і паляпшэнні UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Першы выпуск з падтрымкай фармату EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
