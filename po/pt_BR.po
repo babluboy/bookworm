@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-02-20 19:17+0000\n"
-"Last-Translator: Glauco Vinicius <gl4uc0@gmail.com>\n"
+"PO-Revision-Date: 2019-04-19 12:33+0000\n"
+"Last-Translator: Rui Mendes <xz9@protonmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -480,13 +480,12 @@ msgid "A focused eBook reader"
 msgstr "Um leitor de eBooks"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "Leia seus livros favoritos sem se preocupar com diferentes formatos como "
-"epub, pdf, mobi, cbr, etc."
+"EPUB, PDF, MOBI, CBR, etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -519,7 +518,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "Novas funcionalidades:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
@@ -532,7 +531,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "Correções:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
