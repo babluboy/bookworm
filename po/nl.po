@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-02-22 18:17+0000\n"
-"Last-Translator: Rowan Hoogervorst <rowtricker@gmail.com>\n"
+"PO-Revision-Date: 2019-04-20 16:33+0000\n"
+"Last-Translator: Xoronic <stefgijsberts.sg@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "nl/>\n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.6\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -185,9 +185,8 @@ msgid "Edit annotation for:"
 msgstr "Pas annotatie aan voor:"
 
 #: src/constants.vala.in:66
-#, fuzzy
 msgid "Click on a link to jump to an annotated section"
-msgstr "Klik op een link om naar de gebladwijzerde sectie te springen"
+msgstr "Klik op een koppeling om naar een geannoteerde sectie te springen"
 
 #: src/constants.vala.in:67
 msgid ""
