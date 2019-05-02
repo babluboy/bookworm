@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-04-12 20:03+0000\n"
+"PO-Revision-Date: 2019-05-03 15:47+0000\n"
 "Last-Translator: Andrea Bruehlmann <login@swisscreatebusinessmanager.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -309,9 +309,8 @@ msgstr ""
 "nicht gelöscht)"
 
 #: src/constants.vala.in:97
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Buch auswählen"
+msgstr "Bücher zum Löschen auswählen"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
@@ -491,13 +490,12 @@ msgid "A focused eBook reader"
 msgstr "Ein fokussierter E-Book-Reader"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
-"Lese deine Lieblingsbücher, ohne dir über verschiedenen Formate wie epub, "
-"pdf, mobi, cbr usw. den Kopf zu zerbrechen."
+"Lies deine Lieblingsbücher, ohne dir über verschiedene Formate wie EPUB, "
+"PDF, MOBI, CBR usw. den Kopf zu zerbrechen."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -539,6 +537,8 @@ msgstr "Neue Features:"
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Rechtsklicken Sie auf einem ausgewählten Wort und schlagen Sie seine "
+"Bedeutung in einem Online-Wörterbuch nach"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
