@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-05-03 15:47+0000\n"
-"Last-Translator: Andrea Bruehlmann <login@swisscreatebusinessmanager.com>\n"
+"PO-Revision-Date: 2019-05-06 16:47+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -70,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Nach Titel, Autor und Schlagwörtern suchen"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Es scheint, dass Bookworm keine Bücher hat."
+msgstr "Sieht so aus, als hätte Bookworm keine Bücher"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -507,13 +506,12 @@ msgstr ""
 "Markierungen zu filtern."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
 "Diese Version unterstützt die Formate EPUB, MOBI, PRC, PDF und Comics (CBR "
-"und CBZ), die Unterstützung für mehr Formate folgt bald."
+"und CBZ), die Unterstützung für weitere Formate folgt bald."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -542,72 +540,78 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Option zur Anpassung der Hervorhebungsfarbe hinzugefügt"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "Fehlerbehebungen:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Verhindern Sie, dass Bookworm Links wie HTTP, FTP usw. öffnet und verwenden "
+"Sie den Standardbrowser, um sie zu öffnen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"Es wurde ein Problem behoben, bei dem sich die Zeilen bei den ersten paar "
+"Seiten des Buches überlappen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
+"Verwendung von GResource zur Beschleunigung des Ladens von Symbolen, "
+"Skripten usw."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Einige kleinere CSS-Kompatibilität mit Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Rechts nach linkes Darstellung"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Unterstützung für Rechts-nach-Links-Texte"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Ein glänzend neues Icon und neue Coverbilder"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Bessere Unterstützung des EPUB-Inhaltsverzeichnisses"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "Kommentar-Schlagwörter"
+msgstr "Anmerkungen und Doppelseitenansicht"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Unterstützung für das MOBI-Format und UX-Verbesserungen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
+"UX-Verbesserungen für die Listenansicht und andere Einstellungsanpassungen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Comic-Unterstützung und UX-Verbesserungen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF-Unterstützung und UX-Verbesserungen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Erstveröffentlichung mit Unterstützung für das EPUB-Format"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
