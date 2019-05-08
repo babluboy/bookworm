@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-11 00:20+0530\n"
-"PO-Revision-Date: 2019-04-03 15:03+0000\n"
-"Last-Translator: Gökhan Gökkaya <gokhanlnx@gmail.com>\n"
+"PO-Revision-Date: 2019-05-09 04:47+0000\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tr/>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -70,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Başlığa, Yazara ve Etiketlere Göre Ara"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Bookworm'da hiç kitap yokmuş gibi görünüyor."
+msgstr "Bookworm'da hiç kitap yokmuş gibi görünüyor"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -87,18 +86,19 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Kitabın içeriklerini çıkartmada sorun oluştu. Şu konumda geçerli eKitap "
+"Kitap içeriklerini çıkartmada sorun oluştu. Şu konumda geçerli eKitap "
 "dosyası olduğundan emin ol: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Geçersiz MIME türü algılandı. Konumdaki kitabın biçimini doğrulayın : "
+msgstr ""
+"Geçersiz MIME türü algılandı. Konumdaki kitabın biçimini kontrol edin : "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Geçersiz içerik bulundu. Şu konumda geçerli eKitap dosyası olduğundan emin "
-"olun : "
+"olun: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
@@ -116,7 +116,7 @@ msgid ""
 "found here: "
 msgstr ""
 "İstenen içerik alınamıyor. Lütfen şu konumdaki eKitap dosyasını kaldırın ve "
-"ekleyin : "
+"ekleyin: "
 
 #: src/constants.vala.in:52
 msgid "Library"
@@ -147,18 +147,16 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Yer işaretli bölüme atlamak için bir bağlantıya tıklatın"
 
 #: src/constants.vala.in:59
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
 "BBB içinde hiç bir yer imi ayarlanmadı, Sayfaya yer imi eklemek için başlık "
-"çubuğundaki Bookworm simgesine tıklayın"
+"çubuğundaki yer imi simgesine tıklayın"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Kelime Anlamına Bak"
+msgstr "Kelimenin Anlamı"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
@@ -298,12 +296,11 @@ msgstr "Kitaplığa kitaplar ekle"
 
 #: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr "Kitaplıktan seçilen kitapları kaldır (eKitap dosyası silinmeyecek)"
+msgstr "Seçilen kitapları kitaplıktan kaldır (eKitap dosyası silinmeyecek)"
 
 #: src/constants.vala.in:97
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Okumak için bir eKitap seç"
+msgstr "Kaldırmayı etkinleştirmek için bir kitap seç"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
@@ -327,7 +324,7 @@ msgstr "Bu yer imini kaldırmak için tıklayın"
 
 #: src/constants.vala.in:103
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr "Yazı boyutunu artır (Ctrl + Shift + '+')"
+msgstr "Yazı tipi boyutunu artır (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:104
 msgid "Decrease font size (Ctrl + '-')"
@@ -418,9 +415,8 @@ msgid "Background"
 msgstr "Arka plan"
 
 #: src/constants.vala.in:128
-#, fuzzy
 msgid "Highlight"
-msgstr "Sağa hizala"
+msgstr "Vurgula"
 
 #: src/constants.vala.in:129
 msgid "Add folders to scan for books"
@@ -464,9 +460,8 @@ msgstr "Kitap"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Kitap"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
@@ -481,9 +476,8 @@ msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 msgstr "Bookworm;Ekitap;Okuyucu;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
-msgstr "Bir eKitap Okuyucu"
+msgstr "Odaklanmış eKitap okuyucu"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
@@ -508,9 +502,8 @@ msgid "Bookworm Library View"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "Bookworm'u bilgi kipinde çalıştır"
+msgstr "Bookworm Okuma Görünümü"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
@@ -570,9 +563,8 @@ msgid "Better support for EPUB table of contents"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "Açıklama Etiketleri"
+msgstr "Notlandırma ve çift sayfa görünümü"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
