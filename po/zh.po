@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-02-20 19:17+0000\n"
-"Last-Translator: 追求真空 <ziwo520@gmail.com>\n"
+"PO-Revision-Date: 2019-05-13 01:48+0000\n"
+"Last-Translator: Hao <hao.coding@dorabot.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hans/>\n"
 "Language: zh\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: src/bookworm.vala:106
 msgid "Display version number"
@@ -19,11 +19,11 @@ msgstr "显示版本号"
 
 #: src/bookworm.vala:107
 msgid "Run Bookworm in debug mode"
-msgstr "以调试模式运行 Bookworm"
+msgstr "以调试模式运行书虫"
 
 #: src/bookworm.vala:108
 msgid "Run Bookworm in info mode"
-msgstr "以普通模式运行 Bookworm"
+msgstr "以信息模式运行书虫"
 
 #: src/bookworm.vala:109
 msgid "Automatically add new books from watched folders"
@@ -70,13 +70,12 @@ msgid "Search by Title, Author and Tags"
 msgstr "通过题目，作者，标签查找"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "看起来书虫没有书目."
+msgstr "貌似书虫中没有书籍"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "添加新书来建设你的书库"
+msgstr "通过添加新书建立你的书库"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
@@ -86,11 +85,11 @@ msgstr "选择一本书以阅读"
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr "提取书目内容出现错误.请确保此为有效电子书: "
+msgstr "提取书籍内容时出现错误。请确认电子书是有效的: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "检测到无效 MIME 类型。请检查该电子书的格式： "
+msgstr "检测到无效 MIME 类型。请确认此书的格式： "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -102,13 +101,13 @@ msgstr "无法解析电子书. 请确保存在有效电子书: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "书虫不支持此种格式 "
+msgstr "书虫不支持该格式 "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr "无法获取所请求的内容。请删除并将找到的电子书添加到这里： "
+msgstr "无法获取所请求的内容。请删除并重新添加此电子书： "
 
 #: src/constants.vala.in:52
 msgid "Library"
@@ -150,7 +149,7 @@ msgstr "词语含义"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
-msgstr "查找结果"
+msgstr "搜索结果"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
@@ -192,7 +191,7 @@ msgstr "在 &&& 中没有找到匹配 '$$$' 的"
 
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "在文中选择词语右击鼠标查询词义"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
@@ -216,11 +215,11 @@ msgstr "更新作者"
 
 #: src/constants.vala.in:78
 msgid "Enter full screen view (F11)"
-msgstr "进入全屏模式 (F11)"
+msgstr "进入全屏视图 (F11)"
 
 #: src/constants.vala.in:79
 msgid "Exit full screen view (Esc)"
-msgstr "退出全屏模式 (Esc)"
+msgstr "退出全屏视图 (Esc)"
 
 #: src/constants.vala.in:80
 msgid "Check Word Meaning"
@@ -276,20 +275,19 @@ msgstr "天"
 
 #: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "将于书虫关闭时搜索新书"
 
 #: src/constants.vala.in:95
 msgid "Add books to library"
-msgstr "添加书目到书库"
+msgstr "将书籍加入书库"
 
 #: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr "从书库移除选定书目 (电子书文件不会被删除)"
+msgstr "将选中的书籍移出书库(不删除文件)"
 
 #: src/constants.vala.in:97
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "选择一本书以阅读"
+msgstr "选择需要删除的书"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
@@ -349,11 +347,11 @@ msgstr "更新封面"
 
 #: src/constants.vala.in:112
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "将主题应用到这项颜色配置"
 
 #: src/constants.vala.in:113 src/constants.vala.in:114
 msgid "Enter full screen view and Esc key to undo"
-msgstr "进入全屏浏览；按 Esc 键以取消"
+msgstr "进入全屏视图；按 Esc 键取消"
 
 #: src/constants.vala.in:115
 msgid "Add folder to scan for books"
@@ -361,11 +359,11 @@ msgstr "添加文件夹以扫描书籍"
 
 #: src/constants.vala.in:116
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "不再对当前显示的文件夹进行书籍扫描"
 
 #: src/constants.vala.in:117
 msgid "Add annotation to selected text"
-msgstr "注释选取的文字"
+msgstr "为选中的文字添加注释"
 
 #: src/constants.vala.in:119 src/constants.vala.in:145
 msgid "Preferences"
@@ -381,7 +379,7 @@ msgstr "启用缓存"
 
 #: src/constants.vala.in:122
 msgid "Always show library on startup"
-msgstr "启动总显示书库"
+msgstr "启动时显示书库"
 
 #: src/constants.vala.in:123
 msgid "Enable two page reading"
@@ -393,7 +391,7 @@ msgstr "选择字体"
 
 #: src/constants.vala.in:125
 msgid "Customize reading profile"
-msgstr ""
+msgstr "更改阅读配置"
 
 #: src/constants.vala.in:126
 msgid "Text"
@@ -409,11 +407,11 @@ msgstr "高亮"
 
 #: src/constants.vala.in:129
 msgid "Add folders to scan for books"
-msgstr "添加书籍扫描文件夹"
+msgstr "添加文件夹以扫描书籍"
 
 #: src/constants.vala.in:130
 msgid "Profile"
-msgstr ""
+msgstr "配置"
 
 #: src/constants.vala.in:131
 msgid "Reset to default values"
@@ -466,127 +464,119 @@ msgstr ""
 "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;书虫;电子书;阅读器;漫画;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
-msgstr "专门的电子书阅读器"
+msgstr "专业电子书阅读器"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
-msgstr ""
-"只管阅读你喜欢的图书，不用再在意像 epub、pdf、mobi、cbr 等等的复杂格式。"
+msgstr "只管阅读你喜欢的图书，无需在意格式，如 epub、pdf、mobi、cbr 等。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
-msgstr ""
+msgstr "通过标记和更新书籍上的元数据来管理你的书库，使用元数据搜索和基于标签的过滤来快速找到书籍。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
-msgstr ""
-"此版本支持 EPUB、MOBI、PRC、PDF 和 漫画（CBR 和 CBZ）格式。以后还会支持更多格"
-"式。"
+msgstr "当前版本支持 EPUB、MOBI、PRC、PDF 和 漫画（CBR 和 CBZ）格式。未来将支持更多格式。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "书虫书库视图"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "以普通模式运行 Bookworm"
+msgstr "书虫阅读视图"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "这个版本包含了新的特性、修复以及翻译："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "新特性："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
-msgstr ""
+msgstr "右击选中的词，可以通过在线词典查看其含义"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "增加了自定义高亮颜色的选项"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "修复："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
-msgstr ""
+msgstr "阻止书虫打开HTTP、FTP等超链接，改用默认浏览器打开"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "修复了书籍前几页的行重叠问题"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "使用GResource来加速载入图标、脚本等等"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "一些CSS和Juno兼容性的小问题"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "从右往左阅读"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "支持从右往左的脚本"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "崭新的图标和封面图"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "对EPUB目录支持得更好了"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "注释标签"
+msgstr "注释和双页视图"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "支持MOBI格式，改进用户体验"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "改进列表视图和其他自定义选项的用户体验"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "支持漫画，改进用户体验"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "支持PDF，改进用户体验"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "最初版本，支持EPUB格式"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Website"
 #~ msgstr "网站"
