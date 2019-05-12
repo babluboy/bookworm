@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-05-12 01:18+0000\n"
-"Last-Translator: Hao <hao.coding@dorabot.com>\n"
+"PO-Revision-Date: 2019-05-13 01:48+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ja/>\n"
 "Language: ja\n"
@@ -554,7 +554,7 @@ msgstr "GResource を使用することで、アイコンやスクリプトな�
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr "JunoとCSSの相性問題"
+msgstr "Juno との CSS の互換性"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
