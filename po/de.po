@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-24 11:26+0100\n"
-"PO-Revision-Date: 2019-05-06 16:47+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2019-06-05 11:23+0000\n"
+"Last-Translator: CM <c.matthies.mail+weblate@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -43,7 +43,7 @@ msgstr "Speichern"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Ein E-Book-Reader"
+msgstr "Ein E-Book-Rea­der"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -51,7 +51,7 @@ msgstr "Weblate Übersetzer"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Webseite | Übersetzung | Bug Tracker"
+msgstr "Webseite | Übersetzung | Bugtracker"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -63,7 +63,7 @@ msgstr "E-Book-Reader"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr "Dieses Buch durchsuchen …"
+msgstr "Dieses Buch durchsuchen…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
@@ -91,19 +91,19 @@ msgstr ""
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
-msgstr "Ungültiger MIME-Type entdeckt. Format dieses eBook überprüfen: "
+msgstr "Ungültiger MIME-Type entdeckt. Format dieses E-Book überprüfen: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Ungültiger Inhalt gefunden. Vergewissern Sie sich, dass es hier eine gültige "
-"eBook-Datei befindet: "
+"E-Book-Datei befindet: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
-"eBook konnte nicht analysiert werden. Vergewissern Sie sich, dass sich hier "
-"eine gültige eBook-Datei befindet: "
+"E-Book konnte nicht analysiert werden. Vergewissern Sie sich, dass sich hier "
+"eine gültige E-Book-Datei befindet: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -209,8 +209,8 @@ msgstr "Keine Treffer für „$$$” in &&& gefunden"
 #: src/constants.vala.in:71
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
-"Wählen Sie ein Wort im Buch aus und klicken Sie mit der rechten Maustaste, "
-"um seine Bedeutung nachzuschlagen"
+"Wählen Sie ein Wort im Buch aus und rechts-klicken Sie dieses um dessen "
+"Bedeutung nachzuschauen"
 
 #: src/constants.vala.in:72
 msgid "Edit Info for"
@@ -295,7 +295,7 @@ msgstr "Tage"
 #: src/constants.vala.in:93
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr ""
-"Das Entdecken von Büchern wird gestartet, nachdem Bookworm geschlossen wurde."
+"Das Entdecken von Büchern wird gestartet, nachdem Bookworm geschlossen wurde"
 
 #: src/constants.vala.in:95
 msgid "Add books to library"
@@ -304,8 +304,8 @@ msgstr "Bücher zur Bibliothek hinzufügen"
 #: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Ausgewählten Bücher aus der Bibliothek entfernen (E-Book Dateien werden "
-"nicht gelöscht)"
+"Ausgewählte Bücher aus der Bibliothek entfernen (E-Book Dateien werden nicht "
+"gelöscht)"
 
 #: src/constants.vala.in:97
 msgid "Select books to enable removal"
@@ -361,7 +361,7 @@ msgstr "Links ausrichten"
 
 #: src/constants.vala.in:110
 msgid "Align right"
-msgstr "Rechtsbündig"
+msgstr "Rechts ausrichten"
 
 #: src/constants.vala.in:111
 msgid "Update cover image"
