@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:26+0100\n"
+"POT-Creation-Date: 2019-06-09 10:55+0530\n"
 "PO-Revision-Date: 2019-05-13 01:48+0000\n"
 "Last-Translator: Hao <hao.coding@dorabot.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -477,13 +477,17 @@ msgstr "只管阅读你喜欢的图书，无需在意格式，如 epub、pdf、m
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
-msgstr "通过标记和更新书籍上的元数据来管理你的书库，使用元数据搜索和基于标签的过滤来快速找到书籍。"
+msgstr ""
+"通过标记和更新书籍上的元数据来管理你的书库，使用元数据搜索和基于标签的过滤来"
+"快速找到书籍。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
-msgstr "当前版本支持 EPUB、MOBI、PRC、PDF 和 漫画（CBR 和 CBZ）格式。未来将支持更多格式。"
+msgstr ""
+"当前版本支持 EPUB、MOBI、PRC、PDF 和 漫画（CBR 和 CBZ）格式。未来将支持更多格"
+"式。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"

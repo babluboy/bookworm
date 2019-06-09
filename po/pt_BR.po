@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 11:26+0100\n"
+"POT-Creation-Date: 2019-06-09 10:55+0530\n"
 "PO-Revision-Date: 2019-06-09 04:53+0000\n"
 "Last-Translator: Raí Toffoletto <rai@raibtoffoletto.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -550,7 +550,8 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr "Utiliza GResource para acelerar o carregamento de ícones, scripts, etc."
+msgstr ""
+"Utiliza GResource para acelerar o carregamento de ícones, scripts, etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-11 00:20+0530\n"
+"POT-Creation-Date: 2019-06-09 10:55+0530\n"
 "PO-Revision-Date: 2019-04-19 12:33+0000\n"
 "Last-Translator: Rui Mendes <xz9@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
@@ -71,7 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Procurar por título, autor e etiquetas"
 
 #: src/constants.vala.in:43
-msgid "Looks like Bookworm has no books."
+#, fuzzy
+msgid "Looks like Bookworm has no books"
 msgstr "Parece que o Bookworm está sem livros."
 
 #: src/constants.vala.in:44
@@ -570,7 +571,8 @@ msgid "Right to Left Reading"
 msgstr "Leitura da direita para a esquerda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
-msgid "Support for Right to Left Reading"
+#, fuzzy
+msgid "Support for right-to-left script"
 msgstr "Suporte a leitura da direita para a esquerda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
@@ -578,15 +580,18 @@ msgid "A shiny new icon and new cover images"
 msgstr "Um novo ícone e novas imagens de capas"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
-msgid "Better support for EPUB Table of Contents"
+#, fuzzy
+msgid "Better support for EPUB table of contents"
 msgstr "Melhor suporte a Índices EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-msgid "Annotations and Two Page Views"
+#, fuzzy
+msgid "Annotations and two page views"
 msgstr "Visualizações de anotações e página dupla"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
-msgid "Support mobi format and UX improvements"
+#, fuzzy
+msgid "Support for MOBI format and UX improvements"
 msgstr "Suporte ao formato mobi e melhoramentos na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
@@ -596,11 +601,13 @@ msgstr ""
 "personalizações de preferências"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
-msgid "Comics Support and UX improvements"
+#, fuzzy
+msgid "Comics support and UX improvements"
 msgstr "Suporte a Comics e melhoramentos na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
-msgid "PDF Support and UX improvements"
+#, fuzzy
+msgid "PDF support and UX improvements"
 msgstr "Suporte a PDF e melhoramentos na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
