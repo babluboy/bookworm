@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-09 10:55+0530\n"
+"POT-Creation-Date: 2019-06-10 18:53+0530\n"
 "PO-Revision-Date: 2019-06-09 04:53+0000\n"
 "Last-Translator: THANOS SIOURDAKIS <siourdakisthanos@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -13,19 +13,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.7-dev\n"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Προβολή αριθμού έκδοσης"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτωσης"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
 msgstr "Εκτέλεση του Bookworm σε λειτουργία πληροφοριών"
 
-#: src/bookworm.vala:109
+#: src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr "Αυτόματη προσθήκη βιβλίων από τους φακέλους υπό παρακολούθηση"
 
@@ -384,63 +384,71 @@ msgstr "Αφαίρεση εμφανιζόμενου φακέλου από τη �
 msgid "Add annotation to selected text"
 msgstr "Προσθήκη επισημείωσης για το επιλεγμένο κείμενο"
 
-#: src/constants.vala.in:119 src/constants.vala.in:145
+#: src/constants.vala.in:118
+msgid "Go to previous page"
+msgstr ""
+
+#: src/constants.vala.in:119
+msgid "Go to next page"
+msgstr ""
+
+#: src/constants.vala.in:121 src/constants.vala.in:147
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: src/constants.vala.in:120
+#: src/constants.vala.in:122
 msgid "Turn on Dark Mode"
 msgstr "Ενεργοποίηση σκοτεινής λειτουργίας"
 
-#: src/constants.vala.in:121
+#: src/constants.vala.in:123
 msgid "Enable cache (opens books faster)"
 msgstr "Ενεργοποίηση κρυφής μνήμης (ταχύτερο άνοιγμα βιβλίων)"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:124
 msgid "Always show library on startup"
 msgstr "Εμφάνιση της βιβλιοθήκης κατά την εκκίνηση"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:125
 msgid "Enable two page reading"
 msgstr "Ανάγνωση σε δισέλιδα"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:126
 msgid "Select Font"
 msgstr "Επιλογή γραμματοσειράς"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:127
 msgid "Customize reading profile"
 msgstr "Τροποποίηση του προφίλ ανάγνωσης"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:128
 msgid "Text"
 msgstr "Κείμενο"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:129
 msgid "Background"
 msgstr "Φόντο"
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:130
 msgid "Highlight"
 msgstr "Υπογράμμιση"
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:131
 msgid "Add folders to scan for books"
 msgstr "Προσθήκη φακέλων για ανεύρεση βιβλίων"
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:132
 msgid "Profile"
 msgstr "Προφίλ"
 
-#: src/constants.vala.in:131
+#: src/constants.vala.in:133
 msgid "Reset to default values"
 msgstr "Επαναφορά στις προεπιλεγμένες ρυθμίσεις"
 
-#: src/constants.vala.in:143
+#: src/constants.vala.in:145
 msgid "Unknown Book"
 msgstr "Άγνωστο Βιβλίο"
 
-#: src/constants.vala.in:144
+#: src/constants.vala.in:146
 msgid "About"
 msgstr "Περί"
 
@@ -452,7 +460,7 @@ msgstr "Επιλογή Εικόνας"
 msgid "Select folder"
 msgstr "Επιλογή φακέλου"
 
-#: src/window.vala:301 src/window.vala:542
+#: src/window.vala:318 src/window.vala:585
 msgid "Select eBook"
 msgstr "Επιλογή Βιβλίου"
 

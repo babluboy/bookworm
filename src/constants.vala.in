@@ -115,6 +115,8 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_ADD_DIRECTORY = _("Add folder to scan for books");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY = _("Remove displayed folder from book scan");
 	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION = _("Add annotation to selected text");
+    public const string TOOLTIP_TEXT_FOR_PREV_PAGE = _("Go to previous page");
+    public const string TOOLTIP_TEXT_FOR_NEXT_PAGE = _("Go to next page");
 
 	public const string TEXT_FOR_PREFERENCES_DIALOG_TITLE = _("Preferences");
 	public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Dark Mode");

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-09 10:55+0530\n"
+"POT-Creation-Date: 2019-06-10 18:53+0530\n"
 "PO-Revision-Date: 2019-04-19 12:33+0000\n"
 "Last-Translator: Rui Mendes <xz9@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
@@ -13,19 +13,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.6-dev\n"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Ver o número da versão"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Executar o Bookworm em modo de depuração"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
 msgstr "Executar o Bookworm em modo de informação"
 
-#: src/bookworm.vala:109
+#: src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr ""
 "Adicionar novos livros automaticamente a partir das pastas monitorizadas"
@@ -381,63 +381,71 @@ msgstr "Remover pasta mostrada da pesquisa por livros eletrónicos"
 msgid "Add annotation to selected text"
 msgstr "Adicionar anotação ao texto selecionado"
 
-#: src/constants.vala.in:119 src/constants.vala.in:145
+#: src/constants.vala.in:118
+msgid "Go to previous page"
+msgstr ""
+
+#: src/constants.vala.in:119
+msgid "Go to next page"
+msgstr ""
+
+#: src/constants.vala.in:121 src/constants.vala.in:147
 msgid "Preferences"
 msgstr "Preferências"
 
-#: src/constants.vala.in:120
+#: src/constants.vala.in:122
 msgid "Turn on Dark Mode"
 msgstr "Ativar modo noturno"
 
-#: src/constants.vala.in:121
+#: src/constants.vala.in:123
 msgid "Enable cache (opens books faster)"
 msgstr "Ativar cache (abre os livros mais rapidamente)"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:124
 msgid "Always show library on startup"
 msgstr "Mostrar sempre a biblioteca no arranque"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:125
 msgid "Enable two page reading"
 msgstr "Ativar modo de visualização de página dupla"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:126
 msgid "Select Font"
 msgstr "Selecionar a fonte"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:127
 msgid "Customize reading profile"
 msgstr "Personalizar o perfil de leitura"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:128
 msgid "Text"
 msgstr "Texto"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:129
 msgid "Background"
 msgstr "Fundo"
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:130
 msgid "Highlight"
 msgstr "Destacar"
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:131
 msgid "Add folders to scan for books"
 msgstr "Adicionar pastas para pesquisar livros digitais"
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:132
 msgid "Profile"
 msgstr "Perfil"
 
-#: src/constants.vala.in:131
+#: src/constants.vala.in:133
 msgid "Reset to default values"
 msgstr "Repor valores de origem"
 
-#: src/constants.vala.in:143
+#: src/constants.vala.in:145
 msgid "Unknown Book"
 msgstr "Livro desconhecido"
 
-#: src/constants.vala.in:144
+#: src/constants.vala.in:146
 msgid "About"
 msgstr "Sobre"
 
@@ -449,7 +457,7 @@ msgstr "Selecionar imagem"
 msgid "Select folder"
 msgstr "Selecionar pasta"
 
-#: src/window.vala:301 src/window.vala:542
+#: src/window.vala:318 src/window.vala:585
 msgid "Select eBook"
 msgstr "Selecionar livro digital"
 

@@ -602,7 +602,7 @@ public class BookwormApp.Library {
 
   public static async void addBooksToLibrary (){
         debug("[START] [FUNCTION:addBooksToLibrary]");
-        debug("books to be added="+BookwormApp.Bookworm.pathsOfBooksToBeAdded.length.to_string());        
+        debug("books to be added="+BookwormApp.Bookworm.pathsOfBooksToBeAdded.length.to_string());
         double progress = 0d;
 		//loop through the command line and add books to library
 		foreach(string pathToSelectedBook in BookwormApp.Bookworm.pathsOfBooksToBeAdded){
@@ -714,4 +714,37 @@ public class BookwormApp.Library {
 		}
         debug("[END] [FUNCTION:addBookToLibrary] book.location="+aBook.getBookLocation());
 	}
+    public static void paginateLibrary(){
+        //Query DB for the next/prev page
+        debug("Executing paginated query for books with"+
+               " current_page_counter="+ BookwormApp.Bookworm.current_page_counter.to_string()+
+               " on paginationlist:" + string.joinv(", ",(BookwormApp.Bookworm.paginationlist.to_array()))
+        );
+        BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB(
+                    BookwormApp.Bookworm.paginationlist.get(BookwormApp.Bookworm.current_page_counter)
+        );
+
+        //Remove books currently on grid view
+        GLib.List<weak Gtk.Widget> children_grid = BookwormApp.AppWindow.library_grid.get_children ();
+        foreach (Gtk.Widget element in children_grid){
+            BookwormApp.AppWindow.library_grid.remove (element);
+        }
+        //Remove boooks currently on list view
+        ArrayList<Gtk.TreeIter ?> listOfItersToBeRemoved = new ArrayList<Gtk.TreeIter ?> ();
+		Gtk.TreeModelForeachFunc print_row = (model, path, iter) => {
+			listOfItersToBeRemoved.add(iter);
+			return false;
+		};
+		BookwormApp.AppWindow.library_table_liststore.foreach (print_row);
+		foreach(Gtk.TreeIter iterToBeRemoved in listOfItersToBeRemoved){
+            //remove item for list store - vala_36 compatibility wrapper
+            #if VALA_0_36
+                BookwormApp.AppWindow.library_table_liststore.remove (ref iterToBeRemoved);
+            #else
+                BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
+            #endif
+		}
+        //Update the library view
+        BookwormApp.Library.updateLibraryViewFromDB();
+    }
 }

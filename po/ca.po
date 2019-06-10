@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-09 10:55+0530\n"
+"POT-Creation-Date: 2019-06-10 18:53+0530\n"
 "PO-Revision-Date: 2018-10-27 14:24+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bookworm/"
@@ -13,19 +13,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.3-dev\n"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Mostra el número de versió"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Executa el Bookworm en el mode de depuració"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
 msgstr "Executa el Bookworm en el mode d’informació"
 
-#: src/bookworm.vala:109
+#: src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr "Afegeix automticament llibres nous de les carpetes observades"
 
@@ -383,63 +383,71 @@ msgstr "Suprimeix la carpeta mostrada de la cerca de llibres"
 msgid "Add annotation to selected text"
 msgstr "Afegeix una anotació al text seleccionat"
 
-#: src/constants.vala.in:119 src/constants.vala.in:145
+#: src/constants.vala.in:118
+msgid "Go to previous page"
+msgstr ""
+
+#: src/constants.vala.in:119
+msgid "Go to next page"
+msgstr ""
+
+#: src/constants.vala.in:121 src/constants.vala.in:147
 msgid "Preferences"
 msgstr "Preferències"
 
-#: src/constants.vala.in:120
+#: src/constants.vala.in:122
 msgid "Turn on Dark Mode"
 msgstr "Habilita el mode fosc"
 
-#: src/constants.vala.in:121
+#: src/constants.vala.in:123
 msgid "Enable cache (opens books faster)"
 msgstr "Habilita la memòria cau (obre els llibres més ràpidament)"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:124
 msgid "Always show library on startup"
 msgstr "Mostra sempre la biblioteca en iniciar"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:125
 msgid "Enable two page reading"
 msgstr "Habilita la lectura de dues pàgines"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:126
 msgid "Select Font"
 msgstr "Tria el tipus de lletra"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:127
 msgid "Customize reading profile"
 msgstr "Personalitza el perfil de lectura"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:128
 msgid "Text"
 msgstr "Text"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:129
 msgid "Background"
 msgstr "Fons"
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:130
 msgid "Highlight"
 msgstr "Ressalta"
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:131
 msgid "Add folders to scan for books"
 msgstr "Afegeix carpetes on cercar llibres"
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:132
 msgid "Profile"
 msgstr "Perfil"
 
-#: src/constants.vala.in:131
+#: src/constants.vala.in:133
 msgid "Reset to default values"
 msgstr "Reinicialitza als valors per defecte"
 
-#: src/constants.vala.in:143
+#: src/constants.vala.in:145
 msgid "Unknown Book"
 msgstr "Llibre desconegut"
 
-#: src/constants.vala.in:144
+#: src/constants.vala.in:146
 msgid "About"
 msgstr "Quant a"
 
@@ -451,7 +459,7 @@ msgstr "Selecciona una imatge"
 msgid "Select folder"
 msgstr "Selecciona una carpeta"
 
-#: src/window.vala:301 src/window.vala:542
+#: src/window.vala:318 src/window.vala:585
 msgid "Select eBook"
 msgstr "Selecciona un llibre"
 

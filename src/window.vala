@@ -122,6 +122,22 @@ public class BookwormApp.AppWindow {
         remove_book_button.set_sensitive(false);
         remove_book_button.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_REMOVE_BOOK_UNSELECTED);
 
+        //Set up buttons for paginating the library
+        Gtk.Box library_page_switcher_box = new Gtk.Box (Orientation.HORIZONTAL, 0);
+        library_page_switcher_box.set_border_width (0);
+
+        Gtk.Button page_button_prev = new Gtk.Button ();
+        page_button_prev.set_image (BookwormApp.Bookworm.back_page_image);
+        page_button_prev.set_relief (ReliefStyle.NONE);
+        page_button_prev.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_PREV_PAGE);
+        library_page_switcher_box.pack_start(page_button_prev);
+
+        Gtk.Button page_button_next = new Gtk.Button ();
+        page_button_next.set_image (BookwormApp.Bookworm.forward_page_image);
+        page_button_next.set_relief (ReliefStyle.NONE);
+        page_button_next.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_NEXT_PAGE);
+        library_page_switcher_box.pack_start(page_button_next);
+
         //Set up the progress bar for addition of books to library
         bookAdditionBar = new Gtk.ProgressBar ();
         bookAdditionBar.set_valign(Gtk.Align.CENTER);
@@ -132,7 +148,8 @@ public class BookwormApp.AppWindow {
         add_remove_footer_box.pack_start (select_book_button);
         add_remove_footer_box.pack_start (add_book_button);
         add_remove_footer_box.pack_start (remove_book_button);
-        add_remove_footer_box.pack_end (bookAdditionBar);
+        add_remove_footer_box.pack_start (bookAdditionBar);
+        add_remove_footer_box.pack_end (library_page_switcher_box);
 
         //Create a MessageBar to show status messages
         infobar = new Gtk.InfoBar ();
@@ -476,6 +493,32 @@ public class BookwormApp.AppWindow {
             }
             isWebViewRequestCompleted = true;
             return true;
+        });
+
+        //Add action for paginating the library
+        page_button_next.clicked.connect (() => {
+            //activate the previous page button if it is disabled
+            if(!page_button_prev.get_sensitive()){
+                page_button_prev.set_sensitive (true);
+            }
+            BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter + 1;
+            BookwormApp.Library.paginateLibrary();
+            //disable the forward button if this query did not fetch results
+            if(BookwormApp.Bookworm.paginationlist.get(BookwormApp.Bookworm.current_page_counter) != "-1"){
+                page_button_next.set_sensitive (false);
+            }
+        });
+        page_button_prev.clicked.connect (() => {
+            if(BookwormApp.Bookworm.current_page_counter > 0){
+                //activate the next page button if it is disabled
+                if(!page_button_next.get_sensitive()){
+                    page_button_next.set_sensitive (true);
+                }
+                BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter - 1;
+                BookwormApp.Library.paginateLibrary();
+            }else{
+                page_button_prev.set_sensitive(false);
+            }
         });
 
         info("[END] [FUNCTION:createBoookwormUI]");

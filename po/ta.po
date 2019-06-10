@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-09 10:55+0530\n"
+"POT-Creation-Date: 2019-06-10 18:53+0530\n"
 "PO-Revision-Date: 2019-03-01 16:17+0000\n"
 "Last-Translator: Deenadayalan Chandrakumaran <deenadayalancs@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -13,19 +13,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.5-dev\n"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:110
 msgid "Display version number"
 msgstr ""
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr ""
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
 msgstr ""
 
-#: src/bookworm.vala:109
+#: src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr ""
 
@@ -365,63 +365,71 @@ msgstr ""
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: src/constants.vala.in:119 src/constants.vala.in:145
+#: src/constants.vala.in:118
+msgid "Go to previous page"
+msgstr ""
+
+#: src/constants.vala.in:119
+msgid "Go to next page"
+msgstr ""
+
+#: src/constants.vala.in:121 src/constants.vala.in:147
 msgid "Preferences"
 msgstr ""
 
-#: src/constants.vala.in:120
+#: src/constants.vala.in:122
 msgid "Turn on Dark Mode"
 msgstr ""
 
-#: src/constants.vala.in:121
+#: src/constants.vala.in:123
 msgid "Enable cache (opens books faster)"
 msgstr ""
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:124
 msgid "Always show library on startup"
 msgstr ""
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:125
 msgid "Enable two page reading"
 msgstr ""
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:126
 msgid "Select Font"
 msgstr ""
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:127
 msgid "Customize reading profile"
 msgstr ""
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:128
 msgid "Text"
 msgstr ""
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:129
 msgid "Background"
 msgstr ""
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:130
 msgid "Highlight"
 msgstr ""
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:131
 msgid "Add folders to scan for books"
 msgstr ""
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:132
 msgid "Profile"
 msgstr ""
 
-#: src/constants.vala.in:131
+#: src/constants.vala.in:133
 msgid "Reset to default values"
 msgstr ""
 
-#: src/constants.vala.in:143
+#: src/constants.vala.in:145
 msgid "Unknown Book"
 msgstr ""
 
-#: src/constants.vala.in:144
+#: src/constants.vala.in:146
 msgid "About"
 msgstr ""
 
@@ -433,7 +441,7 @@ msgstr ""
 msgid "Select folder"
 msgstr ""
 
-#: src/window.vala:301 src/window.vala:542
+#: src/window.vala:318 src/window.vala:585
 msgid "Select eBook"
 msgstr ""
 

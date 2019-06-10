@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-09 10:55+0530\n"
+"POT-Creation-Date: 2019-06-10 18:53+0530\n"
 "PO-Revision-Date: 2019-04-04 10:38+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -14,19 +14,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
 "X-Generator: Weblate 3.6-dev\n"
 
-#: src/bookworm.vala:106
+#: src/bookworm.vala:110
 msgid "Display version number"
 msgstr "Birta útgáfunúmer"
 
-#: src/bookworm.vala:107
+#: src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
 msgstr "Keyra Bókaorm í aflúsunarham"
 
-#: src/bookworm.vala:108
+#: src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
 msgstr "Keyra Bókaorm í upplýsingaham"
 
-#: src/bookworm.vala:109
+#: src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
 msgstr "Bæta sjálfkrafa við bókum úr vöktuðum möppum"
 
@@ -376,63 +376,71 @@ msgstr "Fjarlægja birta möppu úr bókaskönnun"
 msgid "Add annotation to selected text"
 msgstr "Bæta glósu við valinn texta"
 
-#: src/constants.vala.in:119 src/constants.vala.in:145
+#: src/constants.vala.in:118
+msgid "Go to previous page"
+msgstr ""
+
+#: src/constants.vala.in:119
+msgid "Go to next page"
+msgstr ""
+
+#: src/constants.vala.in:121 src/constants.vala.in:147
 msgid "Preferences"
 msgstr "Kjörstillingar"
 
-#: src/constants.vala.in:120
+#: src/constants.vala.in:122
 msgid "Turn on Dark Mode"
 msgstr "Kveikja á dökkum ham"
 
-#: src/constants.vala.in:121
+#: src/constants.vala.in:123
 msgid "Enable cache (opens books faster)"
 msgstr "Virkja skyndiminni (flýtir fyrir opnun bóka)"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:124
 msgid "Always show library on startup"
 msgstr "Alltaf birta safn eftir ræsingu"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:125
 msgid "Enable two page reading"
 msgstr "Virkja tveggja-síðna lestur"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:126
 msgid "Select Font"
 msgstr "Veldu letur"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:127
 msgid "Customize reading profile"
 msgstr "Sérsníða lestrarsnið"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:128
 msgid "Text"
 msgstr "Texti"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:129
 msgid "Background"
 msgstr "Bakgrunnur"
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:130
 msgid "Highlight"
 msgstr "Áherslulita"
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:131
 msgid "Add folders to scan for books"
 msgstr "Bæta við möppum þar sem leita á að bókum"
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:132
 msgid "Profile"
 msgstr "Lestrarsnið"
 
-#: src/constants.vala.in:131
+#: src/constants.vala.in:133
 msgid "Reset to default values"
 msgstr "Frumstilla í sjálfgefin gildi"
 
-#: src/constants.vala.in:143
+#: src/constants.vala.in:145
 msgid "Unknown Book"
 msgstr "Óþekkt bók"
 
-#: src/constants.vala.in:144
+#: src/constants.vala.in:146
 msgid "About"
 msgstr "Um hugbúnaðinn"
 
@@ -444,7 +452,7 @@ msgstr "Veldu mynd"
 msgid "Select folder"
 msgstr "Veldu möppu"
 
-#: src/window.vala:301 src/window.vala:542
+#: src/window.vala:318 src/window.vala:585
 msgid "Select eBook"
 msgstr "Veldu rafbók"
 

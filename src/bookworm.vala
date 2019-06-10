@@ -77,6 +77,8 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static Gtk.Image pref_menu_icon_align_right;
 	public static Gtk.Image back_button_image;
 	public static Gtk.Image forward_button_image;
+	public static Gtk.Image back_page_image;
+	public static Gtk.Image forward_page_image;
 
 	public static string BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[0];
 	public static Gee.HashMap<string, BookwormApp.Book> libraryViewMap = new Gee.HashMap<string, BookwormApp.Book>();
@@ -84,7 +86,6 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static string[] pathsOfBooksToBeAdded;
 	public static int noOfBooksAddedFromCommand = 0;
 	public static bool isBookBeingAddedToLibrary = false;
-	public static ArrayList<string> profileColourList = new ArrayList<string> ();
 	public static bool isPageScrollRequired = false;
 	public static StringBuilder pathsOfBooksInLibraryOnLoadStr = new StringBuilder("");
 	public static StringBuilder pathsOfBooksNotAddedStr = new StringBuilder("");
@@ -94,6 +95,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 	public static TreeMap<string,string> searchResultsMap = new TreeMap<string,string>();
   	public static StringBuilder aContentFileToBeSearched = new StringBuilder ("");
   	public static string[] profileColorList;
+	public static string no_of_books_per_page = "21";
+	public static ArrayList<string> paginationlist = new ArrayList<string> ();
+	public static int current_page_counter = 0;
 
 	construct {
 		build_version = BookwormApp.Constants.bookworm_version;
@@ -157,7 +161,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 			info ("error: %s\n", e.message);
 			return 0;
 		}
-		
+
 		if(command_line_option_version){
 			print("Bookworm Version "+BookwormApp.Constants.bookworm_version+"\n");
 		} 
@@ -355,6 +359,16 @@ public class BookwormApp.Bookworm : Granite.Application {
 			}else{
 				forward_button_image = new Gtk.Image.from_resource (BookwormApp.Constants.NEXT_PAGE_ICON_IMAGE_LOCATION);
 			}
+			if (Gtk.IconTheme.get_default ().has_icon ("go-previous-symbolic")) {
+				back_page_image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU);
+			}else{
+				back_page_image = new Gtk.Image.from_resource (BookwormApp.Constants.PREV_PAGE_ICON_IMAGE_LOCATION);
+			}
+			if (Gtk.IconTheme.get_default ().has_icon ("go-next-symbolic")) {
+				forward_page_image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.MENU);
+			}else{
+				forward_page_image = new Gtk.Image.from_resource (BookwormApp.Constants.NEXT_PAGE_ICON_IMAGE_LOCATION);
+			}
 		}catch(GLib.Error e){
 			warning("Image could not be loaded. Error:"+e.message);
 		}
@@ -430,7 +444,13 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//set the library view
 		BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = settings.library_view_mode;
 		//Fetch details of Books from the database
+		BookwormApp.Bookworm.paginationlist.add("");
+		BookwormApp.Bookworm.current_page_counter = 0;
 		BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB();
+		debug("After first paginated query for books,"+
+                   " current_page_counter="+ BookwormApp.Bookworm.current_page_counter.to_string()+
+                   " on paginationlist:" + string.joinv(", ",(BookwormApp.Bookworm.paginationlist.to_array()))
+        );
 		//Update the library view
 		BookwormApp.Library.updateLibraryViewFromDB();
 

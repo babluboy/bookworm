@@ -163,17 +163,28 @@ public class BookwormApp.DB{
     return true;
   }
 
-  public static ArrayList<BookwormApp.Book> getBooksFromDB(){
+  public static ArrayList<BookwormApp.Book> getBooksFromDB(string modification_date_for_pagination = ""){
     info("[START] [FUNCTION:getBooksFromDB]");
     ArrayList<BookwormApp.Book> listOfBooks = new ArrayList<BookwormApp.Book> ();
     Statement stmt;
-    queryString = "SELECT id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, BOOK_LAST_READ_PAGE_NUMBER, BOOK_PUBLISH_DATE, TAGS, ANNOTATION_TAGS, RATINGS, CONTENT_EXTRACTION_LOCATION, BOOK_TOTAL_PAGES, creation_date, modification_date FROM "
-+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" ORDER BY modification_date DESC";
+    string last_modification_date = "";
+    queryString = "SELECT id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, BOOK_LAST_READ_PAGE_NUMBER, BOOK_PUBLISH_DATE, TAGS, ANNOTATION_TAGS, RATINGS, CONTENT_EXTRACTION_LOCATION, BOOK_TOTAL_PAGES, creation_date, modification_date FROM " + BOOKWORM_TABLE_BASE_NAME + BOOKWORM_TABLE_VERSION;
+    //set the value of the next page variable based on the executed query
+    if(modification_date_for_pagination == ""){
+        queryString = queryString + " ORDER BY modification_date DESC LIMIT " + BookwormApp.Bookworm.no_of_books_per_page;
+        debug("Paginated Query with last_modification_date[" + modification_date_for_pagination + "]:" + queryString);
+    }else{
+        queryString = queryString + " where modification_date  < CAST('"+modification_date_for_pagination+"' AS INT) "+
+                      "ORDER BY modification_date DESC LIMIT " + BookwormApp.Bookworm.no_of_books_per_page;
+        debug("Paginated Query with last_modification_date[" + modification_date_for_pagination + "]:" + queryString);
+    }
     executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
     if (executionStatus != Sqlite.OK) {
         debug("Error on executing Query:"+queryString);
 	 		warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-	    }else{
+	}else{
+      //set the modification date to -1 so that if no results are obtained the pagination can be stopped
+      last_modification_date = "-1";
       while (stmt.step () == ROW) {
         BookwormApp.Book aBook = new BookwormApp.Book();
         aBook.setBookId(stmt.column_int(0));
@@ -211,7 +222,11 @@ public class BookwormApp.DB{
         listOfBooks.add(aBook);
         //build the string of book paths in the library
         BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.append(aBook.getBookLocation());
+        //capture the last modification date of the books in the page
+        last_modification_date = aBook.getBookLastModificationDate();
       }
+      //set the last book's modification date for pagination
+      BookwormApp.Bookworm.paginationlist.add(last_modification_date);
       stmt.reset ();
     }
     info("[END] [FUNCTION:getBooksFromDB] listOfBooks.size="+listOfBooks.size.to_string());
