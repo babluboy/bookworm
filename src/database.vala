@@ -163,20 +163,30 @@ public class BookwormApp.DB{
     return true;
   }
 
-  public static ArrayList<BookwormApp.Book> getBooksFromDB(string modification_date_for_pagination = ""){
+  public static ArrayList<BookwormApp.Book> getBooksFromDB(string criteria, string mode){
     info("[START] [FUNCTION:getBooksFromDB]");
     ArrayList<BookwormApp.Book> listOfBooks = new ArrayList<BookwormApp.Book> ();
     Statement stmt;
     string last_modification_date = "";
     queryString = "SELECT id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, BOOK_LAST_READ_PAGE_NUMBER, BOOK_PUBLISH_DATE, TAGS, ANNOTATION_TAGS, RATINGS, CONTENT_EXTRACTION_LOCATION, BOOK_TOTAL_PAGES, creation_date, modification_date FROM " + BOOKWORM_TABLE_BASE_NAME + BOOKWORM_TABLE_VERSION;
-    //set the value of the next page variable based on the executed query
-    if(modification_date_for_pagination == ""){
+    if(criteria == "" && mode == "PAGINATED_SEARCH"){
+        //initial query on app load without pagination criteria
         queryString = queryString + " ORDER BY modification_date DESC LIMIT " + BookwormApp.Bookworm.no_of_books_per_page;
-        debug("Paginated Query with last_modification_date[" + modification_date_for_pagination + "]:" + queryString);
-    }else{
-        queryString = queryString + " where modification_date  < CAST('"+modification_date_for_pagination+"' AS INT) "+
+        debug("Paginated Query with last_modification_date[" + criteria + "]:" + queryString);
+    }else if(mode == "LIBRARY_SEARCH"){
+        //query db for matching search criteria on all book meta data
+        queryString = queryString + " WHERE " +
+                            " BOOK_TITLE LIKE '%"+criteria+"%' OR "+
+                            " BOOK_LOCATION LIKE '%"+criteria+"%' OR "+
+                            " BOOK_AUTHOR LIKE '%"+criteria+"%' OR "+
+                            " TAGS LIKE '%"+criteria+"%' OR "+
+                            " ANNOTATION_TAGS LIKE '%"+criteria+"%'";
+        debug("Library Search Query with criteria[" + criteria + "]:" + queryString);
+    }else if (mode == "PAGINATED_SEARCH"){
+        //query for pagination criteria
+        queryString = queryString + " where modification_date  < CAST('"+criteria+"' AS INT) "+
                       "ORDER BY modification_date DESC LIMIT " + BookwormApp.Bookworm.no_of_books_per_page;
-        debug("Paginated Query with last_modification_date[" + modification_date_for_pagination + "]:" + queryString);
+        debug("Paginated Query with last_modification_date[" + criteria + "]:" + queryString);
     }
     executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
     if (executionStatus != Sqlite.OK) {
@@ -225,8 +235,10 @@ public class BookwormApp.DB{
         //capture the last modification date of the books in the page
         last_modification_date = aBook.getBookLastModificationDate();
       }
-      //set the last book's modification date for pagination
-      BookwormApp.Bookworm.paginationlist.add(last_modification_date);
+      if(mode == "PAGINATED_SEARCH"){
+        //set the last book's modification date for pagination
+        BookwormApp.Bookworm.paginationlist.add(last_modification_date);
+      }
       stmt.reset ();
     }
     info("[END] [FUNCTION:getBooksFromDB] listOfBooks.size="+listOfBooks.size.to_string());

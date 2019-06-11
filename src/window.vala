@@ -56,7 +56,7 @@ public class BookwormApp.AppWindow {
         library_grid.row_spacing = BookwormApp.Constants.SPACING_WIDGETS;
         library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
         library_grid.set_valign(Gtk.Align.START);
-        library_grid.set_filter_func(BookwormApp.Library.libraryViewFilter);
+        //library_grid.set_filter_func(BookwormApp.Library.libraryViewFilter);
 
         library_grid_scroll = new ScrolledWindow (null, null);
         library_grid_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -131,6 +131,7 @@ public class BookwormApp.AppWindow {
         page_button_prev.set_relief (ReliefStyle.NONE);
         page_button_prev.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_PREV_PAGE);
         library_page_switcher_box.pack_start(page_button_prev);
+        page_button_prev.set_sensitive (false); //disable the prev button on first time load
 
         Gtk.Button page_button_next = new Gtk.Button ();
         page_button_next.set_image (BookwormApp.Bookworm.forward_page_image);
@@ -502,7 +503,7 @@ public class BookwormApp.AppWindow {
                 page_button_prev.set_sensitive (true);
             }
             BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter + 1;
-            BookwormApp.Library.paginateLibrary();
+            BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
             //disable the forward button if this query did not fetch results
             if(BookwormApp.Bookworm.paginationlist.get(BookwormApp.Bookworm.current_page_counter) != "-1"){
                 page_button_next.set_sensitive (false);
@@ -515,7 +516,7 @@ public class BookwormApp.AppWindow {
                     page_button_next.set_sensitive (true);
                 }
                 BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter - 1;
-                BookwormApp.Library.paginateLibrary();
+                BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
             }else{
                 page_button_prev.set_sensitive(false);
             }

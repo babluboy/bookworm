@@ -110,17 +110,43 @@ public class BookwormApp.AppHeaderBar {
         headerSearchBar.set_placeholder_text(Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH);
         headerbar.pack_end(headerSearchBar);
 
-        //Set actions for HeaderBar search
+        //Search while typing with 150 millisecond delay
         headerSearchBar.search_changed.connect (() => {
-              //Call the filter only if the Library View Mode is active
+              //Type ahead search only if Library Grid View or Library List View is active
               if(!(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1] ||
                     BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4])){
-                    BookwormApp.Bookworm.libraryTreeModelFilter.refilter();
-                    BookwormApp.AppWindow.library_grid.invalidate_filter ();
+                    //BookwormApp.Bookworm.libraryTreeModelFilter.refilter();
+                    //BookwormApp.AppWindow.library_grid.invalidate_filter ();
+                    //execute filter only if the search text is not the default one or not blank
+		            if(BookwormApp.AppHeaderBar.headerSearchBar.get_text() != BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH &&
+			           BookwormApp.AppHeaderBar.headerSearchBar.get_text().strip() != ""
+		            ){
+                        //----This is commented out as quick update of library is leaving duplicates on the view ---//
+                        /*BookwormApp.Library.paginateLibrary(
+                            BookwormApp.AppHeaderBar.headerSearchBar.get_text().strip(), 
+                            "LIBRARY_SEARCH"
+                          );*/
+                    }else{
+                        //return back to paginated view once the user has removed the search criteria
+                        BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
+                    }
               }
         });
-
+        //Search after on hitting enter
         headerSearchBar.activate.connect (() => {
+              //Perform library search only if the Library Grid View or Library List View is active
+              if(!(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1] ||
+                    BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4])){
+                    //execute filter only if the search text is not the default one or not blank
+		            if(BookwormApp.AppHeaderBar.headerSearchBar.get_text() != BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH &&
+			           BookwormApp.AppHeaderBar.headerSearchBar.get_text().strip() != ""
+		            ){
+                        BookwormApp.Library.paginateLibrary(BookwormApp.AppHeaderBar.headerSearchBar.get_text().strip(), "LIBRARY_SEARCH");
+                    }else{
+                        //return back to paginated view
+                        BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
+                    }
+              }
               //Perform book search only if the Reading View or Info View is active
               if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1] ||
                  BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[4]){

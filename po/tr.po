@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 18:53+0530\n"
+"POT-Creation-Date: 2019-06-11 15:05+0530\n"
 "PO-Revision-Date: 2019-05-09 04:47+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
@@ -454,11 +454,11 @@ msgstr "Resim Seç"
 msgid "Select folder"
 msgstr "Klasör seç"
 
-#: src/window.vala:318 src/window.vala:585
+#: src/window.vala:319 src/window.vala:586
 msgid "Select eBook"
 msgstr "eKitap seç"
 
-#: src/library.vala:623
+#: src/library.vala:625
 msgid "Adding "
 msgstr "Ekleniyor "
 

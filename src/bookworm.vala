@@ -446,7 +446,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//Fetch details of Books from the database
 		BookwormApp.Bookworm.paginationlist.add("");
 		BookwormApp.Bookworm.current_page_counter = 0;
-		BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB();
+		BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB("","PAGINATED_SEARCH");
 		debug("After first paginated query for books,"+
                    " current_page_counter="+ BookwormApp.Bookworm.current_page_counter.to_string()+
                    " on paginationlist:" + string.joinv(", ",(BookwormApp.Bookworm.paginationlist.to_array()))
@@ -519,6 +519,7 @@ public class BookwormApp.Bookworm : Granite.Application {
             //content size should be greater than 1 if the book data has been loaded
 			aBook = BookwormApp.DB.getBookMetaDataFromDB(aBook);
 		}
+		debug("Book details before attempting to open book for reading:"+ aBook.to_string());
 		//Handle the case when the page number of the book is not set
     	if(aBook.getBookPageNumber() == -1){
 			aBook.setBookPageNumber(0);

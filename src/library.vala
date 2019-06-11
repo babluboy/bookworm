@@ -84,7 +84,7 @@ public class BookwormApp.Library {
         //add book details to libraryView Map
         BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
         BookwormApp.Bookworm.libraryTreeModelFilter = new Gtk.TreeModelFilter (BookwormApp.AppWindow.library_table_liststore, null);
-        BookwormApp.Bookworm.libraryTreeModelFilter.set_visible_func(filterTree);
+        //BookwormApp.Bookworm.libraryTreeModelFilter.set_visible_func(filterTree);
         Gtk.TreeModelSort aTreeModelSort = new TreeModelSort.with_model (BookwormApp.Bookworm.libraryTreeModelFilter);
         BookwormApp.AppWindow.library_table_treeview.set_model(aTreeModelSort);
         //set treeview columns for sorting
@@ -228,7 +228,7 @@ public class BookwormApp.Library {
             //register the book with the filter function
             var aFlowBoxChild = new Gtk.FlowBoxChild();
             aFlowBoxChild.add(aEventBox);
-            libraryViewFilter(aFlowBoxChild);
+            //libraryViewFilter(aFlowBoxChild);
 
             //add the book to the library view
             BookwormApp.AppWindow.library_grid.add (aFlowBoxChild);
@@ -449,7 +449,7 @@ public class BookwormApp.Library {
         debug("[END] [FUNCTION:updateGridViewForSelection]");
     }
 
-	public static bool filterTree(TreeModel model, TreeIter iter){
+	/*public static bool filterTree(TreeModel model, TreeIter iter){
         debug("[START] [FUNCTION:filterTree]");
 		bool isFilterCriteriaMatch = true;
 		string modelValueString = "";
@@ -459,7 +459,7 @@ public class BookwormApp.Library {
 		//extract data from the tree model and match againt the filter input
 		}else{
             /* Filter on text visible on the tree view*/
-		    GLib.Value modelValue;
+		    /*GLib.Value modelValue;
 		    int noOfColumns = model.get_n_columns();
 			for (int count = 0; count < noOfColumns; count++){
 				model.get_value (iter, count, out modelValue);
@@ -481,9 +481,10 @@ public class BookwormApp.Library {
 		}
         debug("[END] [FUNCTION:filterTree]");
 		return isFilterCriteriaMatch;
-	}
+	}*/
 
-  public static bool libraryViewFilter (FlowBoxChild aFlowBoxWidget) {
+    /*
+    public static bool libraryViewFilter (FlowBoxChild aFlowBoxWidget) {
         debug("[START] [FUNCTION:libraryViewFilter]");
 		//execute filter only if the search text is not the default one or not blank
 		if(BookwormApp.AppHeaderBar.headerSearchBar.get_text() != BookwormApp.Constants.TEXT_FOR_HEADERBAR_LIBRARY_SEARCH &&
@@ -512,8 +513,9 @@ public class BookwormApp.Library {
         debug("[END] [FUNCTION:libraryViewFilter]");
 		return true;
 	}
+    */
 
-  public static void removeSelectedBooksFromLibrary(){
+    public static void removeSelectedBooksFromLibrary(){
         debug("[START] [FUNCTION:removeSelectedBooksFromLibrary]");
 		ArrayList<string> listOfBooksToBeRemoved = new ArrayList<string> ();
 		//loop through the Library View Hashmap and remove the selected books from the Library View Model
@@ -714,15 +716,22 @@ public class BookwormApp.Library {
 		}
         debug("[END] [FUNCTION:addBookToLibrary] book.location="+aBook.getBookLocation());
 	}
-    public static void paginateLibrary(){
-        //Query DB for the next/prev page
-        debug("Executing paginated query for books with"+
-               " current_page_counter="+ BookwormApp.Bookworm.current_page_counter.to_string()+
-               " on paginationlist:" + string.joinv(", ",(BookwormApp.Bookworm.paginationlist.to_array()))
-        );
-        BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB(
-                    BookwormApp.Bookworm.paginationlist.get(BookwormApp.Bookworm.current_page_counter)
-        );
+    public static void paginateLibrary(string library_search_data, string mode){
+        if(mode == "LIBRARY_SEARCH"){
+            //Perform library search for results
+            debug("Executing library search query with criteria: "+ library_search_data);
+            BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB(library_search_data, mode);
+        }else{
+            //Query DB for the next/prev page
+            debug("Executing paginated query for books with"+
+                   " current_page_counter="+ BookwormApp.Bookworm.current_page_counter.to_string()+
+                   " on paginationlist:" + string.joinv(", ",(BookwormApp.Bookworm.paginationlist.to_array()))
+            );
+            BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB(
+                        BookwormApp.Bookworm.paginationlist.get(BookwormApp.Bookworm.current_page_counter),
+                        mode
+            );
+        }
 
         //Remove books currently on grid view
         GLib.List<weak Gtk.Widget> children_grid = BookwormApp.AppWindow.library_grid.get_children ();
@@ -744,6 +753,8 @@ public class BookwormApp.Library {
                 BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
             #endif
 		}
+        //Clear the paths of the loaded books
+        BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.erase(0, -1);
         //Update the library view
         BookwormApp.Library.updateLibraryViewFromDB();
     }

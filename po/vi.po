@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 18:53+0530\n"
+"POT-Creation-Date: 2019-06-11 15:05+0530\n"
 "PO-Revision-Date: 2019-02-22 18:17+0000\n"
 "Last-Translator: Vu Nhan <vunhan93@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
@@ -455,11 +455,11 @@ msgstr "Chọn ảnh"
 msgid "Select folder"
 msgstr "Chọn thư mục"
 
-#: src/window.vala:318 src/window.vala:585
+#: src/window.vala:319 src/window.vala:586
 msgid "Select eBook"
 msgstr "Chọn ebook"
 
-#: src/library.vala:623
+#: src/library.vala:625
 msgid "Adding "
 msgstr "Đang thêm vào "
 

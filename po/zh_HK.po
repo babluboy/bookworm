@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 18:53+0530\n"
+"POT-Creation-Date: 2019-06-11 15:05+0530\n"
 "PO-Revision-Date: 2018-11-08 21:06+0000\n"
 "Last-Translator: Kenman <kentsangkm@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <https://hosted.weblate.org/projects/"
@@ -444,11 +444,11 @@ msgstr "揀選圖片"
 msgid "Select folder"
 msgstr "揀選文件夾"
 
-#: src/window.vala:318 src/window.vala:585
+#: src/window.vala:319 src/window.vala:586
 msgid "Select eBook"
 msgstr "揀選電子書"
 
-#: src/library.vala:623
+#: src/library.vala:625
 msgid "Adding "
 msgstr "增加 "
 
