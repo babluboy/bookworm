@@ -43,30 +43,11 @@ public class BookwormApp.Shortcuts: Gtk.Widget {
       }
       //Left Arrow Key pressed : Move library page backward
       if (ev.keyval == Gdk.Key.Left) {
-            if(BookwormApp.Bookworm.current_page_counter > 0 && BookwormApp.AppWindow.page_button_prev.get_sensitive()){
-                //activate the next page button if it is disabled
-                if(!BookwormApp.AppWindow.page_button_next.get_sensitive()){
-                    BookwormApp.AppWindow.page_button_next.set_sensitive (true);
-                }
-                BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter - 1;
-                BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
-            }else{
-                BookwormApp.AppWindow.page_button_prev.set_sensitive(false);
-            }
+            BookwormApp.AppWindow.handleLibraryPageButtons("PREV_PAGE");
       }
       //Right Arrow Key pressed : Move library page forward
       if (ev.keyval == Gdk.Key.Right) {
-            if(BookwormApp.AppWindow.page_button_next.get_sensitive()){
-                if(!BookwormApp.AppWindow.page_button_prev.get_sensitive()){
-                    BookwormApp.AppWindow.page_button_prev.set_sensitive (true);
-                }
-                BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter + 1;
-                BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
-                //disable the forward button if this query did not fetch results
-                if(BookwormApp.Bookworm.paginationlist.get(BookwormApp.Bookworm.current_page_counter) != "-1"){
-                    BookwormApp.AppWindow.page_button_next.set_sensitive (false);
-                }
-            }
+            BookwormApp.AppWindow.handleLibraryPageButtons("NEXT_PAGE");
       }
     }
     //Keyboard shortcuts only if the current view is Reading View

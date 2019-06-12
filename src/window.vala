@@ -501,32 +501,48 @@ public class BookwormApp.AppWindow {
 
         //Add action for paginating the library
         page_button_next.clicked.connect (() => {
+            handleLibraryPageButtons("NEXT_PAGE");
+        });
+        page_button_prev.clicked.connect (() => {
+            handleLibraryPageButtons("PREV_PAGE");
+        });
+
+        info("[END] [FUNCTION:createBoookwormUI]");
+        return main_ui_box;
+    }
+
+    public static void handleLibraryPageButtons(string mode){
+        if (mode == "NEXT_PAGE") {
             //activate the previous page button if it is disabled
             if(!page_button_prev.get_sensitive()){
                 page_button_prev.set_sensitive (true);
             }
+            //move the counter to the next position
             BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter + 1;
+            //perform the query for the paginated results and library view refresh
             BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
-            //disable the forward button if this query did not fetch results
-            if(BookwormApp.Bookworm.paginationlist.get(BookwormApp.Bookworm.current_page_counter) != "-1"){
+            //disable the forward button if the last modification date returned -1 for this page position
+            if(BookwormApp.Bookworm.paginationlist.contains("-1")){
                 page_button_next.set_sensitive (false);
             }
-        });
-        page_button_prev.clicked.connect (() => {
+        }
+        if (mode == "PREV_PAGE") {
             if(BookwormApp.Bookworm.current_page_counter > 0){
                 //activate the next page button if it is disabled
                 if(!page_button_next.get_sensitive()){
                     page_button_next.set_sensitive (true);
                 }
+                //remove -1 from the paginated list if present of last modification dates to allow the forward button to work
+                if(BookwormApp.Bookworm.paginationlist.contains("-1")){
+                    BookwormApp.Bookworm.paginationlist.remove("-1");
+                }
                 BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter - 1;
                 BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
             }else{
+                //disable the prev button as the counter is on the first page
                 page_button_prev.set_sensitive(false);
             }
-        });
-
-        info("[END] [FUNCTION:createBoookwormUI]");
-        return main_ui_box;
+        }
     }
 
     public static bool updateLibraryListViewData(string path, string new_text, int column){

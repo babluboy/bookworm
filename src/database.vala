@@ -164,10 +164,10 @@ public class BookwormApp.DB{
   }
 
   public static ArrayList<BookwormApp.Book> getBooksFromDB(string criteria, string mode){
-    info("[START] [FUNCTION:getBooksFromDB]");
+    info("[START] [FUNCTION:getBooksFromDB] Quering with mode["+mode+"] and criteria["+criteria+"]");
     ArrayList<BookwormApp.Book> listOfBooks = new ArrayList<BookwormApp.Book> ();
     Statement stmt;
-    string last_modification_date = "";
+    string last_modification_date = "-1";
     queryString = "SELECT id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, BOOK_LAST_READ_PAGE_NUMBER, BOOK_PUBLISH_DATE, TAGS, ANNOTATION_TAGS, RATINGS, CONTENT_EXTRACTION_LOCATION, BOOK_TOTAL_PAGES, creation_date, modification_date FROM " + BOOKWORM_TABLE_BASE_NAME + BOOKWORM_TABLE_VERSION;
     if(criteria == "" && mode == "PAGINATED_SEARCH"){
         //initial query on app load without pagination criteria
@@ -193,8 +193,6 @@ public class BookwormApp.DB{
         debug("Error on executing Query:"+queryString);
 	 		warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
 	}else{
-      //set the modification date to -1 so that if no results are obtained the pagination can be stopped
-      last_modification_date = "-1";
       while (stmt.step () == ROW) {
         BookwormApp.Book aBook = new BookwormApp.Book();
         aBook.setBookId(stmt.column_int(0));
@@ -232,16 +230,21 @@ public class BookwormApp.DB{
         listOfBooks.add(aBook);
         //build the string of book paths in the library
         BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.append(aBook.getBookLocation());
-        //capture the last modification date of the books in the page
+        //capture the last_modification_date of the book
         last_modification_date = aBook.getBookLastModificationDate();
       }
       if(mode == "PAGINATED_SEARCH"){
-        //set the last book's modification date for pagination
-        BookwormApp.Bookworm.paginationlist.add(last_modification_date);
+            //Only capture the last modification date if the resutls are equal to the page size
+            if(listOfBooks.size == int.parse (BookwormApp.Bookworm.no_of_books_per_page)){
+                //set the last book's modification date for pagination
+                BookwormApp.Bookworm.paginationlist.add(last_modification_date);
+            }else{
+                BookwormApp.Bookworm.paginationlist.add("-1");
+            }
       }
       stmt.reset ();
     }
-    info("[END] [FUNCTION:getBooksFromDB] listOfBooks.size="+listOfBooks.size.to_string());
+    info("[END] [FUNCTION:getBooksFromDB] no. of books fetched ["+listOfBooks.size.to_string()+"], last_modification_date of books fetched["+last_modification_date+"]");
     return listOfBooks;
   }
 

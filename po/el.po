@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-11 23:35+0530\n"
+"POT-Creation-Date: 2019-06-12 16:55+0530\n"
 "PO-Revision-Date: 2019-06-09 04:53+0000\n"
 "Last-Translator: THANOS SIOURDAKIS <siourdakisthanos@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -464,7 +464,7 @@ msgstr "Επιλογή Εικόνας"
 msgid "Select folder"
 msgstr "Επιλογή φακέλου"
 
-#: src/window.vala:322 src/window.vala:589
+#: src/window.vala:322 src/window.vala:605
 msgid "Select eBook"
 msgstr "Επιλογή Βιβλίου"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-11 23:35+0530\n"
+"POT-Creation-Date: 2019-06-12 16:55+0530\n"
 "PO-Revision-Date: 2019-01-21 21:19+0000\n"
 "Last-Translator: NathanBnm\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -465,7 +465,7 @@ msgstr "Sélectionner une image"
 msgid "Select folder"
 msgstr "Sélectionner un dossier"
 
-#: src/window.vala:322 src/window.vala:589
+#: src/window.vala:322 src/window.vala:605
 msgid "Select eBook"
 msgstr "Sélectionnez un livre électronique"
 
