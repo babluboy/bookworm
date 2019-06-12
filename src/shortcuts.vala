@@ -41,13 +41,42 @@ public class BookwormApp.Shortcuts: Gtk.Widget {
         settings.library_view_mode = BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE;
         BookwormApp.Bookworm.toggleUIState();
       }
+      //Left Arrow Key pressed : Move library page backward
+      if (ev.keyval == Gdk.Key.Left) {
+            if(BookwormApp.Bookworm.current_page_counter > 0 && BookwormApp.AppWindow.page_button_prev.get_sensitive()){
+                //activate the next page button if it is disabled
+                if(!BookwormApp.AppWindow.page_button_next.get_sensitive()){
+                    BookwormApp.AppWindow.page_button_next.set_sensitive (true);
+                }
+                BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter - 1;
+                BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
+            }else{
+                BookwormApp.AppWindow.page_button_prev.set_sensitive(false);
+            }
+      }
+      //Right Arrow Key pressed : Move library page forward
+      if (ev.keyval == Gdk.Key.Right) {
+            if(BookwormApp.AppWindow.page_button_next.get_sensitive()){
+                if(!BookwormApp.AppWindow.page_button_prev.get_sensitive()){
+                    BookwormApp.AppWindow.page_button_prev.set_sensitive (true);
+                }
+                BookwormApp.Bookworm.current_page_counter = BookwormApp.Bookworm.current_page_counter + 1;
+                BookwormApp.Library.paginateLibrary("", "PAGINATED_SEARCH");
+                //disable the forward button if this query did not fetch results
+                if(BookwormApp.Bookworm.paginationlist.get(BookwormApp.Bookworm.current_page_counter) != "-1"){
+                    BookwormApp.AppWindow.page_button_next.set_sensitive (false);
+                }
+            }
+      }
     }
     //Keyboard shortcuts only if the current view is Reading View
     if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
       //L Key pressed : Set action of return to Library View
       if (BookwormApp.Shortcuts.isControlKeyPressed && (ev.keyval == Gdk.Key.L || ev.keyval == Gdk.Key.l)) {
         //Get the current scroll position of the book and add it to the book object
-        (BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead)).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
+        (BookwormApp.Bookworm.libraryViewMap.get(
+                BookwormApp.Bookworm.locationOfEBookCurrentlyRead
+        )).setBookScrollPos(BookwormApp.contentHandler.getScrollPos());
         //Update header to remove title of book being read
         BookwormApp.AppHeaderBar.headerbar.title = Constants.TEXT_FOR_SUBTITLE_HEADERBAR;
         //set UI in library view mode

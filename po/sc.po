@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-11 15:05+0530\n"
+"POT-Creation-Date: 2019-06-11 23:35+0530\n"
 "PO-Revision-Date: 2019-04-05 15:03+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
@@ -394,7 +394,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:121 src/constants.vala.in:147
+#: src/constants.vala.in:121 src/constants.vala.in:148
 msgid "Preferences"
 msgstr "Preferèntzias"
 
@@ -443,26 +443,30 @@ msgid "Profile"
 msgstr "Profilu"
 
 #: src/constants.vala.in:133
+msgid "Number of books per page on library"
+msgstr ""
+
+#: src/constants.vala.in:134
 msgid "Reset to default values"
 msgstr "Torra a sos valores predefinidos"
 
-#: src/constants.vala.in:145
+#: src/constants.vala.in:146
 msgid "Unknown Book"
 msgstr "Libru disconnotu"
 
-#: src/constants.vala.in:146
+#: src/constants.vala.in:147
 msgid "About"
 msgstr "A pitzu de"
 
-#: src/dialog.vala:63
+#: src/dialog.vala:65
 msgid "Select Image"
 msgstr "Ischerta un'immàgine"
 
-#: src/dialog.vala:545
+#: src/dialog.vala:562
 msgid "Select folder"
 msgstr "Ischerta una cartella"
 
-#: src/window.vala:319 src/window.vala:586
+#: src/window.vala:322 src/window.vala:589
 msgid "Select eBook"
 msgstr "Ischerta unu e-libru"
 

@@ -130,6 +130,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PROFILE_CUSTOMIZATION_HIGHLIGHT_COLOR = _("Highlight");
 	public const string TEXT_FOR_PREFERENCES_BOOKS_DISCOVERY = _("Add folders to scan for books");
 	public const string TEXT_FOR_PROFILE_BUTTON_LABEL = _("Profile");
+    public const string TEXT_FOR_PREFERENCES_LIBRARY_PAGE_ITEMS = _("Number of books per page on library");
 	public const string TEXT_FOR_PREFERENCES_VALUES_RESET = _("Reset to default values");
 
 	public const int SPACING_WIDGETS = 12;

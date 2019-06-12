@@ -43,6 +43,8 @@ public class BookwormApp.AppWindow {
         public static BookwormApp.Settings settings;
         public static bool isWebViewRequestCompleted = true;
         public static Gtk.Button remove_book_button;
+        public static Gtk.Button page_button_prev;
+        public static Gtk.Button page_button_next;
         public static int noOfBooksSelected = 0;
 
     public static Gtk.Box createBoookwormUI() {
@@ -54,7 +56,7 @@ public class BookwormApp.AppWindow {
         library_grid.set_border_width (0);
         library_grid.column_spacing = 0;
         library_grid.row_spacing = BookwormApp.Constants.SPACING_WIDGETS;
-        library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
+        //library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
         library_grid.set_valign(Gtk.Align.START);
         //library_grid.set_filter_func(BookwormApp.Library.libraryViewFilter);
 
@@ -64,14 +66,15 @@ public class BookwormApp.AppWindow {
 
         //Create a treeview and Liststore to display the list of books in the library
         library_table_liststore = new Gtk.ListStore (8, 
-                                                                            typeof (Gdk.Pixbuf), 
-                                                                            typeof (string), 
-                                                                            typeof (string), 
-                                                                            typeof (string), 
-                                                                            typeof (Gdk.Pixbuf), 
-                                                                            typeof (string), 
-                                                                            typeof (string), 
-                                                                            typeof (string));
+                     typeof (Gdk.Pixbuf), 
+                     typeof (string), 
+                     typeof (string), 
+                     typeof (string), 
+                     typeof (Gdk.Pixbuf), 
+                     typeof (string), 
+                     typeof (string), 
+                     typeof (string)
+        );
         library_table_treeview = new Gtk.TreeView();
         library_table_treeview.activate_on_single_click = true;
         //Set up the various cell types for the library metadata
@@ -126,14 +129,14 @@ public class BookwormApp.AppWindow {
         Gtk.Box library_page_switcher_box = new Gtk.Box (Orientation.HORIZONTAL, 0);
         library_page_switcher_box.set_border_width (0);
 
-        Gtk.Button page_button_prev = new Gtk.Button ();
+        page_button_prev = new Gtk.Button ();
         page_button_prev.set_image (BookwormApp.Bookworm.back_page_image);
         page_button_prev.set_relief (ReliefStyle.NONE);
         page_button_prev.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_PREV_PAGE);
         library_page_switcher_box.pack_start(page_button_prev);
         page_button_prev.set_sensitive (false); //disable the prev button on first time load
 
-        Gtk.Button page_button_next = new Gtk.Button ();
+        page_button_next = new Gtk.Button ();
         page_button_next.set_image (BookwormApp.Bookworm.forward_page_image);
         page_button_next.set_relief (ReliefStyle.NONE);
         page_button_next.set_tooltip_markup (BookwormApp.Constants.TOOLTIP_TEXT_FOR_NEXT_PAGE);

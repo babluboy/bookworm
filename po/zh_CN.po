@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-11 15:05+0530\n"
+"POT-Creation-Date: 2019-06-11 23:35+0530\n"
 "PO-Revision-Date: 2017-11-27 16:45+0000\n"
 "Last-Translator: Jack Yu <jackyu1996@hotmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -396,7 +396,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:121 src/constants.vala.in:147
+#: src/constants.vala.in:121 src/constants.vala.in:148
 msgid "Preferences"
 msgstr "选项"
 
@@ -447,26 +447,30 @@ msgid "Profile"
 msgstr ""
 
 #: src/constants.vala.in:133
+msgid "Number of books per page on library"
+msgstr ""
+
+#: src/constants.vala.in:134
 msgid "Reset to default values"
 msgstr ""
 
-#: src/constants.vala.in:145
+#: src/constants.vala.in:146
 msgid "Unknown Book"
 msgstr "未知书籍"
 
-#: src/constants.vala.in:146
+#: src/constants.vala.in:147
 msgid "About"
 msgstr "关于"
 
-#: src/dialog.vala:63
+#: src/dialog.vala:65
 msgid "Select Image"
 msgstr "选择图像"
 
-#: src/dialog.vala:545
+#: src/dialog.vala:562
 msgid "Select folder"
 msgstr "选择文件夹"
 
-#: src/window.vala:319 src/window.vala:586
+#: src/window.vala:322 src/window.vala:589
 msgid "Select eBook"
 msgstr "选择电子书"
 

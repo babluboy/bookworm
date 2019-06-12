@@ -43,6 +43,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
   public bool is_two_page_enabled { get; set; }
   public string current_info_tab { get; set; }
   public bool is_fullscreen { get; set; }
+  public int library_page_items { get; set; }
 
   public static Settings get_instance () {
     if (instance == null) {

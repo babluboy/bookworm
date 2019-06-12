@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-11 15:05+0530\n"
+"POT-Creation-Date: 2019-06-11 23:35+0530\n"
 "PO-Revision-Date: 2018-07-31 16:43+0000\n"
 "Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
@@ -388,7 +388,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:121 src/constants.vala.in:147
+#: src/constants.vala.in:121 src/constants.vala.in:148
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -437,26 +437,30 @@ msgid "Profile"
 msgstr "Profil"
 
 #: src/constants.vala.in:133
+msgid "Number of books per page on library"
+msgstr ""
+
+#: src/constants.vala.in:134
 msgid "Reset to default values"
 msgstr "Återställ till standardvärden"
 
-#: src/constants.vala.in:145
+#: src/constants.vala.in:146
 msgid "Unknown Book"
 msgstr "Okänd bok"
 
-#: src/constants.vala.in:146
+#: src/constants.vala.in:147
 msgid "About"
 msgstr "Om"
 
-#: src/dialog.vala:63
+#: src/dialog.vala:65
 msgid "Select Image"
 msgstr "Välj bild"
 
-#: src/dialog.vala:545
+#: src/dialog.vala:562
 msgid "Select folder"
 msgstr "Välj mapp"
 
-#: src/window.vala:319 src/window.vala:586
+#: src/window.vala:322 src/window.vala:589
 msgid "Select eBook"
 msgstr "Välj e-bok"
 

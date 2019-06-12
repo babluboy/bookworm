@@ -15,7 +15,7 @@
 		<key name="window-height" type="i">
 			<default>800</default>
 			<summary>The saved height of the window.</summary>
-    </key>
+        </key>
 		<key name="window-is-maximized" type="b">
 				<default>false</default>
 				<summary>Save maximized state of window</summary>
@@ -85,15 +85,15 @@
 				<summary>Save fullscreen state</summary>
 		</key>
 		<key name="list-of-profile-colors" type="s">
-        <default>"#000000,#fbfbfb,#E8ED00,#586e75,#fdf6e3,#87FF2B,#93a1a1,#002b36,#3465A4"</default>
-        <summary>
+            <default>"#000000,#fbfbfb,#E8ED00,#586e75,#fdf6e3,#87FF2B,#93a1a1,#002b36,#3465A4"</default>
+            <summary>
 			List of profile colours. Each profiles has three colors - First color is text color, second one is bgcolor and third color is highlight color. The first three sets are customizable and the last two sets are the default light and dark profiles
-		</summary>
-    </key>
-		<key name="list-of-scan-dirs" type="s">
-        <default>""</default>
-        <summary>List of directories to be scanned for new books</summary>
-    </key>
+		    </summary>
+        </key>
+		    <key name="list-of-scan-dirs" type="s">
+            <default>""</default>
+            <summary>List of directories to be scanned for new books</summary>
+        </key>
 		<key name="book-being-read" type="s">
 				<default>""</default>
 				<summary>Save the path of the book being read if the user closes the app while reading</summary>
@@ -101,6 +101,10 @@
 		<key name="current-info-tab" type="s">
 				<default>"content-list"</default>
 				<summary>Save the last viewed info tab</summary>
+		</key>
+        <key name="library-page-items" type="i">
+				<default>21</default>
+				<summary>Number of books to show per library page in both grid and list views</summary>
 		</key>
   </schema>
 </schemalist>

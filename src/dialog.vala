@@ -23,7 +23,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 	public static Gtk.ComboBoxText directoryComboBox;
 	public static StringBuilder scanDirList = new StringBuilder("");
 	public static BookwormApp.Settings settings;
-	
+
 	public AppDialog () {
 		settings = BookwormApp.Settings.get_instance();
 		scanDirList.assign(BookwormApp.Bookworm.settings.list_of_scan_dirs);
@@ -60,8 +60,13 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		updateCoverImageBox.pack_start(updateCoverImageButton,false, true, 0);
 		//Add action for setting cover image
 		updateCoverImageButton.clicked.connect (() => {
-			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(Gtk.FileChooserAction.OPEN, _("Select Image"), 	
-																																	  BookwormApp.Bookworm.window, false, "IMAGES");
+			ArrayList<string> selectedFiles = BookwormApp.Utils.selectFileChooser(
+                        Gtk.FileChooserAction.OPEN, 
+                        _("Select Image"), 
+                        BookwormApp.Bookworm.window, 
+                        false, 
+                        "IMAGES"
+            );
 			if(selectedFiles != null && selectedFiles.size > 0){
 				string selectedCoverImagePath = selectedFiles.get(0);
 				//copy cover image to bookworm cover image cache
@@ -85,7 +90,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 					debug("Updated cover to image located at path:"+selectedCoverImagePath);
 				}catch(GLib.Error e){
 					warning("Error in getting the book cover image from location ["+aBook.getBookCoverLocation()+"] :" + e.message);
-				}				
+				}
 			}
 		});
 
@@ -245,7 +250,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		debug("[START] [FUNCTION:createPreferencesDialog]");
 		AppDialog dialog = new AppDialog ();
 		dialog.set_transient_for(BookwormApp.Bookworm.window);
-		
+
     	dialog.title = BookwormApp.Constants.TEXT_FOR_PREFERENCES_DIALOG_TITLE;
 		dialog.border_width = 5;
 		dialog.set_default_size (600, 200);
@@ -321,7 +326,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		Gtk.Box textColourBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
 		textColourBox.pack_start(textColourLabel, false, false);
 		textColourBox.pack_start(textColourButton, false, false);
-		
+
 		Gtk.Label highlightColourLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PROFILE_CUSTOMIZATION_HIGHLIGHT_COLOR);
 		Gtk.ColorButton highlightColourButton = new Gtk.ColorButton ();
 		highlightColourButton.set_relief (ReliefStyle.HALF);
@@ -342,7 +347,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		var aRGBABackgroundColor = Gdk.RGBA();
 		aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[1]);
 		backgroundColourButton.rgba = aRGBABackgroundColor;
-		
+
 		var aRGBAHighlightColor = Gdk.RGBA();
 		aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[2]);
 		highlightColourButton.rgba = aRGBAHighlightColor;
@@ -378,12 +383,19 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		discoverBooksBox.pack_start(remove_scan_directory_button, false, false);
 		discoverBooksBox.pack_end(directoryComboBox, false, false);
 
+		Gtk.Box libraryPageItemsBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 1);
+		Gtk.Label libraryPageItemsLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_LIBRARY_PAGE_ITEMS);
+		Gtk.Entry libraryPageItemsEntry = new Gtk.Entry();
+		libraryPageItemsEntry.text = settings.library_page_items.to_string();
+		libraryPageItemsBox.pack_start(libraryPageItemsLabel, false, false);
+		libraryPageItemsBox.pack_end(libraryPageItemsEntry, false, false);
+
 		Gtk.Box customProfileBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 		customProfileBox.pack_start(profileCombobox, false, false);
 		customProfileBox.pack_end(highlightColourBox, false, false);
 		customProfileBox.pack_end(textColourBox, false, false);
 		customProfileBox.pack_end(backgroundColourBox, false, false);
-		
+
 		var dialog_toast = new Granite.Widgets.Toast(BookwormApp.Constants.TEXT_BOOK_DISCOVERY_TOAST);
 
     	Gtk.Box content = dialog.get_content_area() as Gtk.Box;
@@ -395,9 +407,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		content.pack_start (fontBox, false, false, 0);
 		content.pack_start (customProfileBox, false, false, 0);
 		content.pack_start (discoverBooksBox, false, false, 0);
+		content.pack_start (libraryPageItemsBox, false, false, 0);
 		content.pack_end (resetBox, true, true, 5);
 		content.pack_end (dialog_toast, true, true, 0); //this should be the last item vertically
-		
+
 		dialog.show_all ();
 
     	//Set up Actions
@@ -407,7 +420,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			string selectedFontFamily = fontButton.get_font_family().get_name();
 			int selectedFontSize = 12;
 			if(selectedFontandSize.index_of(" ") != -1){
-				selectedFontSize = int.parse(selectedFontandSize.slice(selectedFontandSize.last_index_of(" "), selectedFontandSize.length));
+				selectedFontSize = int.parse(selectedFontandSize.slice(
+											selectedFontandSize.last_index_of(" "), 
+											selectedFontandSize.length)
+				);
 			}
 			BookwormApp.Bookworm.settings.reading_font_name = selectedFontandSize;
 			BookwormApp.Bookworm.settings.reading_font_name_family = selectedFontFamily;
@@ -469,7 +485,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[1]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
-				
+
 				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[2]);
 				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
@@ -479,7 +495,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[4]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
-				
+
 				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[5]);
 				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
@@ -489,7 +505,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 				aRGBABackgroundColor.parse(BookwormApp.Bookworm.profileColorList[7]);
 				backgroundColourButton.rgba = aRGBABackgroundColor;
-				
+
 				aRGBAHighlightColor.parse(BookwormApp.Bookworm.profileColorList[8]);
 				highlightColourButton.rgba = aRGBAHighlightColor;
 			}
@@ -524,7 +540,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			//Refresh the page if it is open
 			BookwormApp.contentHandler.refreshCurrentPage();
 		});
-		
+
 		highlightColourButton.color_set.connect (() => {
 			if(profileCombobox.get_active_text().contains(" 1")){
 				BookwormApp.Bookworm.profileColorList[2] = rgba_to_hex(highlightColourButton.rgba,false, true);
@@ -542,7 +558,11 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
 		//Add selected watched folder
 		add_scan_directory_button.clicked.connect ( () => {
-			ArrayList<string> selectedDir = BookwormApp.Utils.selectDirChooser(_("Select folder"), BookwormApp.Bookworm.window, false);
+			ArrayList<string> selectedDir = BookwormApp.Utils.selectDirChooser(
+					_("Select folder"), 
+					BookwormApp.Bookworm.window, 
+					false
+			);
 			TreeModel aTreeModel = directoryComboBox.get_model();
 			TreeIter iter;
 			aTreeModel.get_iter_first (out iter);
@@ -571,6 +591,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				directoryComboBox.remove(currentActiveID);
 			}
 		});
+		//Set user provided value for number of books on library page
+		libraryPageItemsEntry.changed.connect (() => {
+			BookwormApp.Bookworm.settings.library_page_items = int.parse (libraryPageItemsEntry.get_text());
+        });
 		preferencesReset.activate_link.connect (() => {
 			//Reset Profile Colors
 			GLib.Settings bookwormSettings = new GLib.Settings (BookwormApp.Constants.bookworm_id);
@@ -625,6 +649,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 			BookwormApp.Bookworm.settings.reading_font_name_family = (string) bookwormSettings.get_default_value ("reading-font-name-family");
 			BookwormApp.Bookworm.settings.reading_font_size = (int) bookwormSettings.get_default_value ("reading-font-size");
 			fontButton.set_font_name(BookwormApp.Bookworm.settings.reading_font_name);
+
+			//Reset number of books per library page
+			libraryPageItemsEntry.text = ((int)bookwormSettings.get_default_value ("library-page-items")).to_string();
+			BookwormApp.Bookworm.settings.library_page_items = (int)bookwormSettings.get_default_value ("library-page-items");
 
 			//Refresh the page if it is open
 			BookwormApp.contentHandler.refreshCurrentPage();

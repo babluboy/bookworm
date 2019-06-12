@@ -439,6 +439,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 		if(BookwormApp.Bookworm.settings.is_dark_theme_enabled){
 			Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 		}
+		//set the number of books per library page as per user set value
+		no_of_books_per_page = settings.library_page_items.to_string();
+
 		//check if the database exists otherwise create database and required tables
 		BookwormApp.DB.initializeBookWormDB(BookwormApp.Bookworm.bookworm_config_path);
 		//set the library view
