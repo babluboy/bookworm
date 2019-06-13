@@ -732,30 +732,32 @@ public class BookwormApp.Library {
                         mode
             );
         }
-
-        //Remove books currently on grid view
-        GLib.List<weak Gtk.Widget> children_grid = BookwormApp.AppWindow.library_grid.get_children ();
-        foreach (Gtk.Widget element in children_grid){
-            BookwormApp.AppWindow.library_grid.remove (element);
+        //check for the condition where no books are returned from the DB for the page criteria
+        if(BookwormApp.Library.listOfBooksInLibraryOnLoad.size != 0){
+            //Remove books currently on grid view
+            GLib.List<weak Gtk.Widget> children_grid = BookwormApp.AppWindow.library_grid.get_children ();
+            foreach (Gtk.Widget element in children_grid){
+                BookwormApp.AppWindow.library_grid.remove (element);
+            }
+            //Remove boooks currently on list view
+            ArrayList<Gtk.TreeIter ?> listOfItersToBeRemoved = new ArrayList<Gtk.TreeIter ?> ();
+		    Gtk.TreeModelForeachFunc print_row = (model, path, iter) => {
+			    listOfItersToBeRemoved.add(iter);
+			    return false;
+		    };
+		    BookwormApp.AppWindow.library_table_liststore.foreach (print_row);
+		    foreach(Gtk.TreeIter iterToBeRemoved in listOfItersToBeRemoved){
+                //remove item for list store - vala_36 compatibility wrapper
+                #if VALA_0_36
+                    BookwormApp.AppWindow.library_table_liststore.remove (ref iterToBeRemoved);
+                #else
+                    BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
+                #endif
+		    }
+            //Clear the paths of the loaded books
+            BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.erase(0, -1);
+            //Update the library view
+            BookwormApp.Library.updateLibraryViewFromDB();
         }
-        //Remove boooks currently on list view
-        ArrayList<Gtk.TreeIter ?> listOfItersToBeRemoved = new ArrayList<Gtk.TreeIter ?> ();
-		Gtk.TreeModelForeachFunc print_row = (model, path, iter) => {
-			listOfItersToBeRemoved.add(iter);
-			return false;
-		};
-		BookwormApp.AppWindow.library_table_liststore.foreach (print_row);
-		foreach(Gtk.TreeIter iterToBeRemoved in listOfItersToBeRemoved){
-            //remove item for list store - vala_36 compatibility wrapper
-            #if VALA_0_36
-                BookwormApp.AppWindow.library_table_liststore.remove (ref iterToBeRemoved);
-            #else
-                BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
-            #endif
-		}
-        //Clear the paths of the loaded books
-        BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.erase(0, -1);
-        //Update the library view
-        BookwormApp.Library.updateLibraryViewFromDB();
     }
 }
