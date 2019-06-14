@@ -759,5 +759,8 @@ public class BookwormApp.Library {
             //Update the library view
             BookwormApp.Library.updateLibraryViewFromDB();
         }
+        //set the status of the library buttons based on the paginate query results
+        ////false : will prevent another paginate call
+        BookwormApp.AppWindow.handleLibraryPageButtons("", false);
     }
 }

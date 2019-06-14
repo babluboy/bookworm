@@ -456,6 +456,8 @@ public class BookwormApp.Bookworm : Granite.Application {
         );
 		//Update the library view
 		BookwormApp.Library.updateLibraryViewFromDB();
+		//Set the library pagination buttons based on the paginate call
+		BookwormApp.AppWindow.handleLibraryPageButtons("", false);
 
 		info("[END] [FUNCTION:loadBookwormState]");
 	}

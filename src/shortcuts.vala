@@ -43,11 +43,11 @@ public class BookwormApp.Shortcuts: Gtk.Widget {
       }
       //Left Arrow Key pressed : Move library page backward
       if (ev.keyval == Gdk.Key.Left) {
-            BookwormApp.AppWindow.handleLibraryPageButtons("PREV_PAGE");
+            BookwormApp.AppWindow.handleLibraryPageButtons("PREV_PAGE", true);
       }
       //Right Arrow Key pressed : Move library page forward
       if (ev.keyval == Gdk.Key.Right) {
-            BookwormApp.AppWindow.handleLibraryPageButtons("NEXT_PAGE");
+            BookwormApp.AppWindow.handleLibraryPageButtons("NEXT_PAGE", true);
       }
     }
     //Keyboard shortcuts only if the current view is Reading View
