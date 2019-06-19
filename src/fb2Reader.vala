@@ -17,6 +17,8 @@
 */
 
 using Gee;
+using GLib;
+using Gdk;
 public class BookwormApp.fb2Reader {
   public static BookwormApp.Book parseFictionBook (owned BookwormApp.Book aBook) {
     info("[START] [FUNCTION:parseFictionBook] book.location="+aBook.getBookLocation());
@@ -63,25 +65,25 @@ public class BookwormApp.fb2Reader {
         info("[START] [FUNCTION:isFB2Format] extractionLocation="+aBook.getBookLocation());
         bool fb2Format = false;
         string eBookLocation = "";
-        try{
-            eBookLocation = aBook.getBookLocation();
-            ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
-            inputDataList.add(
-                new XMLData() {
-                                containerTagName = "FictionBook",
-                                inputTagName = "body",
-                                inputAttributeName="",
-                                isXMLExtraction = true
-                }
-            );
-            XmlParser thisParser = new XmlParser();
-            ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
-            extractedDataList = thisParser.extractDataFromXML(eBookLocation, inputDataList);
-            if(extractedDataList.size > 0){
-                fb2Format = true;
+
+        eBookLocation = aBook.getBookLocation();
+        ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
+        inputDataList.add(
+            new XMLData() {
+                            containerTagName = "FictionBook",
+                            inputTagName = "body",
+                            inputAttributeName="",
+                            isXMLExtraction = true
             }
-        }catch (Error e){
-            warning ("Error while checking format of FB2 file ["+eBookLocation+"]:"+e.message);
+        );
+        XmlParser thisParser = new XmlParser();
+        ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
+        extractedDataList = thisParser.extractDataFromXML(eBookLocation, inputDataList);
+        if(extractedDataList.size > 0){
+            fb2Format = true;
+        }
+        if (!fb2Format){
+            warning ("Error while checking format of FB2 file ["+eBookLocation+"], tag name \"FictionBook\" not found");
         }
 
         info("[END] [FUNCTION:isFB2Format] fb2Format check:"+fb2Format.to_string());
@@ -93,66 +95,71 @@ public class BookwormApp.fb2Reader {
         string extractionLocation = "false";
         string status = "false";
         string eBookLocation = "";
-        try{
-            eBookLocation = aBook.getBookLocation();
-            //create a location for extraction of eBook based on local storage prefference
-            if(BookwormApp.Bookworm.settings == null){
-                BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
-            }
-            if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
-                extractionLocation = BookwormApp.Bookworm.bookworm_config_path + 
-                                        "/books/" + 
-                                        File.new_for_path(eBookLocation).get_basename();
-            }else{
-                extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + 
-                                     File.new_for_path(eBookLocation).get_basename();
-            }
-            debug("Based on caching preference, the extraction location determined as:"+extractionLocation);
-            //check and create directory for extracting contents of ebook
-            BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
-            debug ("Directory created for extraction location:"+extractionLocation);
-            aBook.setBookExtractionLocation(extractionLocation);
-        }catch (Error e){
-            warning("Failure in determining extraction location for FB2 file ["+eBookLocation+"]:"+e.message);
-            aBook.setBookExtractionLocation("false");
+
+        eBookLocation = aBook.getBookLocation();
+        //create a location for extraction of eBook based on local storage prefference
+        if(BookwormApp.Bookworm.settings == null){
+            BookwormApp.Bookworm.settings = BookwormApp.Settings.get_instance();
         }
-        try{
-            //Fetch the text from the <body><section>
-            ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
-            inputDataList.add(
-                new XMLData() {
-                                containerTagName = "body",
-                                inputTagName = "section",
-                                inputAttributeName="",
-                                isXMLExtraction = true
-                }
-            );
-            XmlParser thisParser = new XmlParser();
-            ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
-            extractedDataList = thisParser.extractDataFromXML(eBookLocation, inputDataList);
-            debug("No. of sections found in FB2 file:"+(extractedDataList.size).to_string());
-            //Write the extracted text into html files
-            int filecount = 1;
-            foreach(XMLData aExtractedData in extractedDataList){
-                foreach(string aTagValue in aExtractedData.extractedTagValues){
-                    string filename = File.new_for_path(eBookLocation).get_basename() + "_" + filecount.to_string() + ".html";
-                    status = BookwormApp.Utils.fileOperations (
-                                "WRITE", 
-                                extractionLocation, 
-                                filename, 
-                                "<html><body>"+aTagValue+"</body></html>"
-                            );
-                    filecount = filecount + 1;
+        if(BookwormApp.Bookworm.settings.is_local_storage_enabled){
+            extractionLocation = BookwormApp.Bookworm.bookworm_config_path + 
+                                    "/books/" + 
+                                    File.new_for_path(eBookLocation).get_basename();
+        }else{
+            extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + 
+                                 File.new_for_path(eBookLocation).get_basename();
+        }
+        debug("Based on caching preference, the extraction location determined as:"+extractionLocation);
+        //check and create directory for extracting contents of ebook
+        BookwormApp.Utils.fileOperations("CREATEDIR", extractionLocation, "", "");
+        debug ("Directory created for extraction location:"+extractionLocation);
+        aBook.setBookExtractionLocation(extractionLocation);
+        if("false" == extractionLocation){
+            warning("Failure in determining extraction location for FB2 file ["+eBookLocation+"]");
+            aBook.setBookExtractionLocation("false");
+            return aBook;
+        }
+
+        //Fetch the text from the <body><section>
+        ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
+        inputDataList.add(
+            new XMLData() {
+                            containerTagName = "body",
+                            inputTagName = "section",
+                            inputAttributeName="",
+                            isXMLExtraction = true
+            }
+        );
+        XmlParser thisParser = new XmlParser();
+        ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
+        extractedDataList = thisParser.extractDataFromXML(eBookLocation, inputDataList);
+        debug("No. of sections found in FB2 file:"+(extractedDataList.size).to_string());
+        //Write the extracted text into html files
+        int filecount = 1;
+        foreach(XMLData aExtractedData in extractedDataList){
+            foreach(string aTagValue in aExtractedData.extractedTagValues){
+                string filename = File.new_for_path(eBookLocation).get_basename() + "_" + filecount.to_string() + ".html";
+                status = BookwormApp.Utils.fileOperations (
+                            "WRITE", 
+                            extractionLocation, 
+                            filename, 
+                            "<html><body>"+aTagValue+"</body></html>"
+                        );
+                filecount = filecount + 1;
+                if("true" == status){
                     aBook.setBookContentList( extractionLocation + "/" + filename);
                     debug ("Extracted contents written to file:"+ extractionLocation + "/" + filename);
                 }
             }
-            string baseLocationOfContents = extractionLocation;
-            aBook.setBaseLocationOfContents(baseLocationOfContents);
-            debug("Base location for FB2 extracted contents:"+baseLocationOfContents);
-        }catch (Error e){
-            warning("Failure in extracting contents of FB2 file ["+eBookLocation+"]:"+e.message);
+        }
+        string baseLocationOfContents = extractionLocation;
+        aBook.setBaseLocationOfContents(baseLocationOfContents);
+        debug("Base location for FB2 extracted contents:"+baseLocationOfContents);
+        //check if extracted contents were written to html files
+        if(aBook.getBookContentList().size < 1){
+            warning("Failure in extracting contents of FB2 file ["+eBookLocation+"]");
             aBook.setBookExtractionLocation("false");
+            return aBook;
         }
         info("[END] [FUNCTION:extractEBook] extractionLocation="+aBook.getBookExtractionLocation());
         return aBook;
@@ -162,14 +169,77 @@ public class BookwormApp.fb2Reader {
     info("[START] [FUNCTION:setCoverImage] book.location="+aBook.getBookLocation());
     string bookCoverLocation = "";
 
+    //get images from base64 encoded data
+    ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
+    inputDataList.add(
+        new XMLData() {
+                        containerTagName = "FictionBook",
+                        inputTagName = "binary",
+                        inputAttributeName="id"
+        }
+    );
+    inputDataList.add(
+        new XMLData() {
+                        containerTagName = "FictionBook",
+                        inputTagName = "binary",
+                        inputAttributeName="content-type"
+        }
+    );
+    XmlParser thisParser = new XmlParser();
+    ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
+    extractedDataList = thisParser.extractDataFromXML(aBook.getBookLocation(), inputDataList);
+    string image_id = "";
+    string image_type = "";
+    foreach(XMLData aExtractedData in extractedDataList){
+        foreach(string aAttributeValue in aExtractedData.extractedTagAttributes){
+            //check if the attribute is an image type attribute
+            if(aAttributeValue.contains("image/")){
+                image_type = aAttributeValue.replace("image/","");
+                debug("Image Type determined as:"+image_type);
+            }else{
+                //attribute is the image id
+                image_id = aAttributeValue;
+                debug("Image Id determined as:"+image_id);
+            }
+        }
+        //base64 encoded text will come in both the XML queries, 
+        //so ensure both image id and image type are determined before decoding the data to image file
+        if(
+            aExtractedData.extractedTagValues.size > 0 &&
+            image_id != "" &&
+            image_type != ""
+        ){
+            string encoded_image_data = extractedDataList[0].extractedTagValues[0];
+            debug("Found encoded image data:"+encoded_image_data);
+            uchar[] data = Base64.decode(encoded_image_data);
+            MemoryInputStream mis = new MemoryInputStream.from_data(data);
+            Pixbuf pixbuf = new Pixbuf.from_stream (mis);
+            string image_location = aBook.getBookExtractionLocation()+"/"+image_id;
+            try{
+                pixbuf.save(image_location, image_type);
+                //set the first decoded image as the book cover
+                if(bookCoverLocation == ""){
+                    bookCoverLocation = image_location;
+                }
+            }catch (Error e){
+                warning("Failure in writting decoded image data in FB2 file ["+aBook.getBookLocation()+"]:"+e.message);
+                bookCoverLocation = "";
+            }
+            debug("Image data decoded and saved as image:"+bookCoverLocation);
+            //reset image id and image type
+            image_id = "";
+            image_type = "";
 
-    //check if cover was still not found and assign flag for default cover to be used
-    if( bookCoverLocation.length < 1 &&
-        "true" == BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, "") )
-    {
+        }
+    }
+
+    //check if cover was not found and assign flag for default cover to be used
+    if( bookCoverLocation.length < 1){
         aBook.setIsBookCoverImagePresent(false);
-        debug("Cover image not found for book located at:"+aBook.getBookExtractionLocation());
-    } else{
+        debug("Cover image not found for book:"+aBook.getBookLocation());
+    }
+    //if assigned coverlocation exists as a file, copy the cover image to cache
+    if("true" == BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, "")){
         //copy cover image to bookworm cover image cache
         aBook = BookwormApp.Utils.setBookCoverImage(aBook, bookCoverLocation);
     }

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-19 13:44+0530\n"
+"POT-Creation-Date: 2019-06-20 01:16+0530\n"
 "PO-Revision-Date: 2019-02-20 19:17+0000\n"
 "Last-Translator: More Software <weblate@moresw.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
