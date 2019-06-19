@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 01:16+0530\n"
-"PO-Revision-Date: 2019-02-19 15:20+0000\n"
-"Last-Translator: Przemek Dyś <przemek.dys@gmail.com>\n"
+"POT-Creation-Date: 2019-06-20 01:38+0530\n"
+"PO-Revision-Date: 2019-06-19 19:55+0000\n"
+"Last-Translator: DamN <damiannadolski@wp.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "pl/>\n"
 "Language: pl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.7\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -157,9 +157,8 @@ msgstr ""
 "aby dodać zakładkę do strony"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid "Word Meaning"
-msgstr "Sprawdź znaczenie słowa"
+msgstr "Znaczenie słowa"
 
 #: src/constants.vala.in:61
 msgid "Search Results"
@@ -305,9 +304,8 @@ msgstr ""
 "Usuń zaznaczone książki z biblioteki (pliki e-booków nie zostaną usunięte)"
 
 #: src/constants.vala.in:97
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Wybierz e-booka do czytania"
+msgstr "Wybierz książki żeby umożliwić usunięcie"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
@@ -387,15 +385,15 @@ msgstr "Dodaj przypis do zaznaczonego tekstu"
 
 #: src/constants.vala.in:118
 msgid "Go to previous page"
-msgstr ""
+msgstr "Przejdź do poprzedniej strony"
 
 #: src/constants.vala.in:119
 msgid "Go to next page"
-msgstr ""
+msgstr "Przejdź do następnej strony"
 
 #: src/constants.vala.in:121 src/constants.vala.in:148
 msgid "Preferences"
-msgstr "Preferencje"
+msgstr "Właściwości"
 
 #: src/constants.vala.in:122
 msgid "Turn on Dark Mode"
@@ -403,11 +401,11 @@ msgstr "Ustaw ciemny motyw"
 
 #: src/constants.vala.in:123
 msgid "Enable cache (opens books faster)"
-msgstr "Włącz cachowanie (książki otwierają się szybciej)"
+msgstr "Włącz pamięć podręczną (książki otwierają się szybciej)"
 
 #: src/constants.vala.in:124
 msgid "Always show library on startup"
-msgstr "Zawsze pokazuj bibliotekę przy starcie programu"
+msgstr "Zawsze pokazuj bibliotekę przy starcie"
 
 #: src/constants.vala.in:125
 msgid "Enable two page reading"
@@ -443,7 +441,7 @@ msgstr "Profil"
 
 #: src/constants.vala.in:133
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Liczba książek na stronę w bibliotece"
 
 #: src/constants.vala.in:134
 msgid "Reset to default values"
@@ -471,7 +469,7 @@ msgstr "Wybierz e-booka"
 
 #: src/library.vala:625
 msgid "Adding "
-msgstr "Dodaję... "
+msgstr "Dodaję "
 
 #: src/mobiReader.vala:329
 msgid "Book"
@@ -500,13 +498,12 @@ msgid "A focused eBook reader"
 msgstr "Czytnik e-booków"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "Czytaj książki, które kochasz nie martwiąc się o formaty w jakich są "
-"zapisane, takie jak  epub, pdf, mobi, cbr itp."
+"zapisane, takie jak  EPUB, PDF, MOBI, CBR itp."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
