@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-15 22:20+0530\n"
-"PO-Revision-Date: 2019-05-13 01:48+0000\n"
+"PO-Revision-Date: 2019-06-19 08:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 3.7\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -384,11 +384,11 @@ msgstr "選択されたテキストに注釈を追加します"
 
 #: src/constants.vala.in:118
 msgid "Go to previous page"
-msgstr ""
+msgstr "前のページに移動します"
 
 #: src/constants.vala.in:119
 msgid "Go to next page"
-msgstr ""
+msgstr "次のページに移動します"
 
 #: src/constants.vala.in:121 src/constants.vala.in:148
 msgid "Preferences"
@@ -440,7 +440,7 @@ msgstr "プロファイル"
 
 #: src/constants.vala.in:133
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "ライブラリ 1 ページあたりに表示する本の数"
 
 #: src/constants.vala.in:134
 msgid "Reset to default values"
