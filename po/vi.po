@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-15 22:20+0530\n"
-"PO-Revision-Date: 2019-02-22 18:17+0000\n"
-"Last-Translator: Vu Nhan <vunhan93@gmail.com>\n"
+"POT-Creation-Date: 2019-03-24 11:26+0100\n"
+"PO-Revision-Date: 2019-06-19 03:00+0000\n"
+"Last-Translator: Le Do Anh Khoa <ledoanhkhoa@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/vi/>\n"
 "Language: vi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.7\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -70,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Tìm kiếm theo Tiêu đề, Tác giả và Tag"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Không có sách nào."
+msgstr "Hình như Bookworm không có sách nào"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -87,6 +86,7 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Vấn đề trong trích xuất nội dung của sách. Đảm bảo rằng file eBook hợp lệ: "
 
 #: src/constants.vala.in:47
 msgid "Invalid MIME-type detected. Check format for this eBook: "
@@ -99,14 +99,12 @@ msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr "Nội dung không phù hợp. Hãy đảm bảo rằng bạn đã chèn ebook phù hợp. "
 
 #: src/constants.vala.in:49
-#, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr "Không thể xử lý eBook. Hãy đảm bảo rằng file ebook hợp lệ ở : "
+msgstr "Không thể đọc được eBook. Đảm bảo rằng file ebook hợp lệ: "
 
 #: src/constants.vala.in:50
-#, fuzzy
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm không hỗ trợ định dạng của file đã tìm thấy ở : "
+msgstr "Bookworm không hỗ trợ định dạng của file đã tìm thấy: "
 
 #: src/constants.vala.in:51
 msgid ""
@@ -138,7 +136,7 @@ msgstr "Đánh dấu trang"
 
 #: src/constants.vala.in:57
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Đánh dấu #NNN cho Phần PPP"
 
 #: src/constants.vala.in:58
 msgid "Click on a link to jump to bookmarked section"
@@ -162,11 +160,11 @@ msgstr "Kết quả tìm kiếm"
 
 #: src/constants.vala.in:62
 msgid "Annotations"
-msgstr ""
+msgstr "Chú thích"
 
 #: src/constants.vala.in:63
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Thẻ chú thích"
 
 #: src/constants.vala.in:64
 msgid "Comma-separated tags for this annotation"
