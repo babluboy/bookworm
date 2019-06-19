@@ -556,8 +556,14 @@ public class BookwormApp.Bookworm : Granite.Application {
 		){
 			//extraction of book not required
 			aBook.setIsBookParsed(true);
+			debug("Book has already been extracted and the extracted contents exist at:"+aBook.getBookExtractionLocation());
 		}else{
 			//Extract and Parse the eBook (this will overwrite the contents already extracted)
+			debug("Extracted contents of the book was not found at expected location ["
+					+ aBook.getBookExtractionLocation() +
+				  "], attempting to load book from original location ["
+					+ aBook.getBookLocation() +
+				  "]");
 			aBook = genericParser(aBook);
 			//If ebook was not parsed successfully, show the warning info banner message
 			if(!aBook.getIsBookParsed()){
@@ -714,6 +720,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 						break;
 					case ".PRC":
 						aBook = BookwormApp.mobiReader.parseMobiBook(aBook);
+						break;
+					case ".FB2":
+						aBook = BookwormApp.fb2Reader.parseFictionBook(aBook);
 						break;
 					default:
 						aBook.setIsBookParsed(false);

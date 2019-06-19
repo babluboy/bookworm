@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-14 08:52+0530\n"
+"POT-Creation-Date: 2019-06-19 11:52+0530\n"
 "PO-Revision-Date: 2017-07-25 08:58+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://hosted.weblate.org/projects/bookworm/"
@@ -478,7 +478,7 @@ msgstr "O programu"
 msgid "Select Image"
 msgstr "Odaberi sliku"
 
-#: src/dialog.vala:562
+#: src/dialog.vala:567
 #, fuzzy
 msgid "Select folder"
 msgstr "Odaberi sliku"

@@ -23,6 +23,9 @@ public class BookwormApp.Library {
 
   public static void updateLibraryView(owned BookwormApp.Book aBook){
     info("[START] [FUNCTION:updateLibraryView]");
+    //add book details to libraryView Map
+    BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+    //update the library views
     updateLibraryListView(aBook);
     updateLibraryGridView(aBook);
     info("[END] [FUNCTION:updateLibraryView]");
@@ -81,8 +84,6 @@ public class BookwormApp.Library {
                                 6, aBook.getBookRating().to_string(),
                                 7, aBook.getBookLocation()
                               );
-        //add book details to libraryView Map
-        BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
         BookwormApp.Bookworm.libraryTreeModelFilter = new Gtk.TreeModelFilter (BookwormApp.AppWindow.library_table_liststore, null);
         //BookwormApp.Bookworm.libraryTreeModelFilter.set_visible_func(filterTree);
         Gtk.TreeModelSort aTreeModelSort = new TreeModelSort.with_model (BookwormApp.Bookworm.libraryTreeModelFilter);
@@ -289,8 +290,7 @@ public class BookwormApp.Library {
 	                return true;
                 }
             });
-            //add book details to libraryView Map
-            BookwormApp.Bookworm.libraryViewMap.set(aBook.getBookLocation(), aBook);
+            //Show the grid view based on state
             if( BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[0] ||
                 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[2] ||
                 BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[3])

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-15 22:20+0530\n"
+"POT-Creation-Date: 2019-06-19 13:44+0530\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
@@ -433,7 +433,7 @@ msgstr ""
 msgid "Select Image"
 msgstr ""
 
-#: src/dialog.vala:562
+#: src/dialog.vala:567
 msgid "Select folder"
 msgstr ""
 

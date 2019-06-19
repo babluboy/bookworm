@@ -246,7 +246,7 @@ public class BookwormApp.ePubReader {
             }
         }
     }
-    
+
     // Create the content list  - clear the content list of any previous items
     aBook.clearBookContentList();
     //loop over all idref attributes in spine data
@@ -294,7 +294,7 @@ public class BookwormApp.ePubReader {
     XmlParser thisParser = new XmlParser();
     ArrayList<XMLData> opfItemsList = new ArrayList<XMLData>();
     opfItemsList = thisParser.extractDataFromXML(locationOfOPFFile, inputDataList);
-    
+
     int count = 0;
     //epub3.1 : Check for a MANIFEST item with "properties" attribute contaning the word "cover-image"
     foreach(string properties in opfItemsList[3].extractedTagAttributes){
@@ -310,7 +310,7 @@ public class BookwormApp.ePubReader {
         }
         count++;
     }
-    
+
     //If cover could not be located in properties="cover-image" : 
     //Check for a MANIFEST item with "id" attribute contaning the word "cover"
     if( bookCoverLocation.length < 1 &&
@@ -331,7 +331,7 @@ public class BookwormApp.ePubReader {
             count++;
         }
     }
-    
+
     //check if cover was still not found and assign flag for default cover to be used
     if( bookCoverLocation.length < 1 &&
         "true" == BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, "") )

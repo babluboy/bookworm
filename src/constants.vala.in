@@ -204,7 +204,7 @@ namespace BookwormApp.Constants {
 	public const string PLACEHOLDER_COVER_IMAGE_LOCATION = RESOURCE_PREFIX+"bookworm-placeholder-cover.svg";
 
 
-	public const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc"};
+	public const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc", "*.fb2"};
 	public const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
 
 

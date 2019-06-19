@@ -74,7 +74,12 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 				aBook.setWasBookOpened(true);
 				//Refresh the library view to show the new cover image
 				try{
-					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_resource_at_scale(aBook.getBookCoverLocation(), 150, 200, false);
+					Gdk.Pixbuf aBookCover = new Gdk.Pixbuf.from_resource_at_scale(
+                            aBook.getBookCoverLocation(), 
+                            150, 
+                            200, 
+                            false
+                    );
 					Gtk.Image aCoverImage = new Gtk.Image.from_pixbuf(aBookCover);
 					aCoverImage.set_halign(Align.START);
 					aCoverImage.set_valign(Align.START);

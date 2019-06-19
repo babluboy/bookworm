@@ -29,6 +29,7 @@ public class BookwormApp.XMLData {
         public string containerTagName;
         public string inputTagName;
         public string inputAttributeName;
+        public bool isXMLExtraction = false;
         public bool enforceAttributeData = false;
         public ArrayList<string> extractedTagValues = new ArrayList<string>();
         public ArrayList<string> extractedTagAttributes = new ArrayList<string>();
@@ -39,8 +40,8 @@ public class BookwormApp.XmlParser {
 
     public XmlParser(){
         thisXMLData = null;
-    }    
-    
+    }
+
     /*
     public static int main(string[] args) {
         Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
@@ -50,13 +51,13 @@ public class BookwormApp.XmlParser {
         //string pathToXMLFile = "/home/sid/Documents/Projects/misc/xmlFiles/test.opf";
         //string pathToXMLFile = "/home/sid/Documents/Projects/misc/xmlFiles/container.xml";
         //string pathToXMLFile = "/home/sid/.config/bookworm/books/The Da Vinci Code.epub/OEBPS/Content.opf";
-        
+
         ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
         inputDataList.add(new XMLData() {
-                            containerTagName = "rootfiles",
-                            inputTagName = "rootfile",
-                            inputAttributeName="full-path"}
-                        );
+                                        containerTagName = "rootfiles",
+                                        inputTagName = "rootfile",
+                                        inputAttributeName="full-path"}
+                                        );
         inputDataList.add(new XMLData() {
                                         containerTagName = "manifest",
                                         inputTagName = "item",
@@ -73,15 +74,15 @@ public class BookwormApp.XmlParser {
                                         inputAttributeName="idref"}
                                         );
         inputDataList.add(new XMLData() {
-                                    containerTagName = "",
-                                    inputTagName = "spine",
-                                    inputAttributeName="toc"}
-                                    );
+                                        containerTagName = "",
+                                        inputTagName = "spine",
+                                        inputAttributeName="toc"}
+                                        );
         inputDataList.add(new XMLData() {
-                                    containerTagName = "",
-                                    inputTagName = "subject",
-                                    inputAttributeName=""}
-                                    ); 
+                                        containerTagName = "",
+                                        inputTagName = "subject",
+                                        inputAttributeName=""}
+                                        ); 
         inputDataList.add(new XMLData() {
                             containerTagName = "navLabel",
                             inputTagName = "text",
@@ -92,7 +93,13 @@ public class BookwormApp.XmlParser {
                             inputTagName = "content",
                             inputAttributeName="src"}
                         );
-    
+        inputDataList.add(new XMLData() {
+                            containerTagName = "",
+                            inputTagName = "content",
+                            inputAttributeName="src",
+                            isXMLExtraction = true} //obtain all xml content as extracted data
+                        );
+
         XmlParser thisParser = new XmlParser();
         ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
         extractedDataList = thisParser.extractDataFromXML(pathToXMLFile, inputDataList);
@@ -100,8 +107,10 @@ public class BookwormApp.XmlParser {
         //Display the extracted data
         foreach(XMLData aExtractedData in extractedDataList){
             debug("************************************Showing Extracted Data for "+
-                                    aExtractedData.containerTagName+"/"+aExtractedData.inputTagName+"/"+aExtractedData.inputAttributeName+
-                         "**********************");
+                                aExtractedData.containerTagName+"/"+
+                                aExtractedData.inputTagName+"/"+
+                                aExtractedData.inputAttributeName+
+                  "**********************");
             debug("Items in List:"+aExtractedData.extractedTagValues.size.to_string());
             foreach(string aTagValue in aExtractedData.extractedTagValues){
                 debug("Tag Value:"+aTagValue);
@@ -116,13 +125,17 @@ public class BookwormApp.XmlParser {
     }
     */
 
-    public ArrayList<XMLData> extractDataFromXML (string path, owned ArrayList<XMLData> inputDataList){
+    public ArrayList<XMLData> extractDataFromXML (
+                    string path, 
+                    owned ArrayList<XMLData> inputDataList, 
+                    bool isXMLExtraction = false //optional: set to true only for extracting xml sub-content
+    ){
         info("[START] [FUNCTION:extractDataFromXML] extracting xml from file="+path);
         int count = 0;
         foreach(XMLData aXMLData in inputDataList){
             debug("Reading XML to extract data for input set #"+count.to_string()+":"+
                           aXMLData.containerTagName+"/"+aXMLData.inputTagName+"/"+aXMLData.inputAttributeName);
-            thisXMLData = aXMLData;        
+            thisXMLData = aXMLData;
             parseXML(path);
             inputDataList[count] = thisXMLData;
             count++;
@@ -151,7 +164,7 @@ public class BookwormApp.XmlParser {
         if(thisXMLData.currentTagName == thisXMLData.containerTagName) {
             thisXMLData.isContainerTagMatched = true;
         }
-        
+
         //Check if the tag name matches the input tag name
         if(thisXMLData.currentTagName == thisXMLData.inputTagName){
             //Check if a container tag is required and if it has been matched - set extraction flag to true
@@ -168,12 +181,13 @@ public class BookwormApp.XmlParser {
         }
 
         //If Extraction criteria is met and attribute extraction is required, extract required attribute
-        if(thisXMLData.shouldExtractionStart && thisXMLData.inputAttributeName.length > 0) { //check whether attributes are expected
+        if(thisXMLData.shouldExtractionStart && thisXMLData.inputAttributeName.length > 0) {
+            //check whether attributes are expected
             int count = 0;
             bool wasAttributeExtracted = false;
             foreach (string attribute in attributeList) {
                 if(attributeList.length >= count+1){
-                    if(thisXMLData.inputAttributeName == attributeList[count]) {            
+                    if(thisXMLData.inputAttributeName == attributeList[count]) {
                         //extract the odd attribute data as the even attribute is the name of the attribute
                         thisXMLData.extractedTagAttributes.add(attributeList[count+1]);
                         wasAttributeExtracted = true;
@@ -187,11 +201,23 @@ public class BookwormApp.XmlParser {
                 thisXMLData.extractedTagAttributes.add("");
             }
         }
+        //If Extraction criteria is met and sub-xml exraction is required, add tag name to extracted data
+        if(thisXMLData.shouldExtractionStart && thisXMLData.isXMLExtraction) {
+            //to preserve the tag names, add the start tag to the collected data
+            thisXMLData.charBuffer.append("<").append(name).append(">");
+        }
     }
 
     public void end_element(string name) {
         //debug("<<<<<End Tag:"+name);
         string processed_name = process_tagname(name);
+
+        //If sub-xml exraction is required, add the end tag to extracted data
+        if(thisXMLData.shouldExtractionStart && thisXMLData.isXMLExtraction) {
+            //to preserve the tag names, add the start tag to the collected data
+            thisXMLData.charBuffer.append("</").append(name).append(">");
+        }
+
         //If End element matches container tag - set container flag to false and extraction flag to false
         if(processed_name == thisXMLData.containerTagName) {
             thisXMLData.isContainerTagMatched = false;
@@ -201,10 +227,16 @@ public class BookwormApp.XmlParser {
         //Check if tag name has been matched - set extraction flag to false
         if(processed_name == thisXMLData.inputTagName){
             //Add the collected tag value data into the extracted list
-            if( thisXMLData.shouldExtractionStart && 
-                thisXMLData.currentTagName == thisXMLData.inputTagName ) //this check ensures unrelated tags within a required tag are not picked up
-            {
-                thisXMLData.extractedTagValues.add(thisXMLData.charBuffer.str);
+            if(thisXMLData.shouldExtractionStart){
+                if(!thisXMLData.isXMLExtraction){
+                    //this check ensures unrelated tags within a required tag are not picked up
+                    if(thisXMLData.currentTagName == thisXMLData.inputTagName ){ 
+                        thisXMLData.extractedTagValues.add(thisXMLData.charBuffer.str);
+                    }
+                }else{
+                    //this extracts contents of other tags within the required tag
+                    thisXMLData.extractedTagValues.add(thisXMLData.charBuffer.str);
+                }
             }
             thisXMLData.shouldExtractionStart = false;
             thisXMLData.currentTagName = "";
@@ -214,10 +246,16 @@ public class BookwormApp.XmlParser {
     public void get_text (string chars, int len){
         //debug("........Tag Data [len="+len.to_string()+"] :"+chars.slice(0, len));
         //Extract tag value if extraction criteria is met       
-        if( thisXMLData.shouldExtractionStart && 
-            thisXMLData.currentTagName == thisXMLData.inputTagName ) //this check ensures unrelated tags within a required tag are not picked up
-        {
-            thisXMLData.charBuffer.append(chars.slice(0, len));
+        if( thisXMLData.shouldExtractionStart){
+            if(!thisXMLData.isXMLExtraction){
+                //this check ensures unrelated tags within a required tag are not picked up
+                if(thisXMLData.currentTagName == thisXMLData.inputTagName ){ 
+                    thisXMLData.charBuffer.append(chars.slice(0, len));
+                }
+            }else{
+                //this extracts contents of other tags within the required tag
+                thisXMLData.charBuffer.append(chars.slice(0, len));
+            }
         }
     }
 

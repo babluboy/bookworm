@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-15 22:20+0530\n"
+"POT-Creation-Date: 2019-06-19 13:44+0530\n"
 "PO-Revision-Date: 2018-09-02 07:17+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -448,7 +448,7 @@ msgstr ""
 msgid "Select Image"
 msgstr "בחירת תמונה"
 
-#: src/dialog.vala:562
+#: src/dialog.vala:567
 msgid "Select folder"
 msgstr "בחירת תיקייה"
 

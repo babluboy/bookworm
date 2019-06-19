@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-15 22:20+0530\n"
+"POT-Creation-Date: 2019-06-19 13:44+0530\n"
 "PO-Revision-Date: 2019-06-05 11:23+0000\n"
 "Last-Translator: Andrea Bruehlmann <login@swisscreatebusinessmanager.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -463,7 +463,7 @@ msgstr "Über …"
 msgid "Select Image"
 msgstr "Grafik auswählen"
 
-#: src/dialog.vala:562
+#: src/dialog.vala:567
 msgid "Select folder"
 msgstr "Verzeichnis wählen"
 

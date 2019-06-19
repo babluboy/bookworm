@@ -328,7 +328,7 @@ public class BookwormApp.contentHandler {
             );
         }
         debug("[END] [FUNCTION:adjustPageContent] pageContent.length="+pageContent.str.length.to_string());
-        debug("\n\n\n"+pageContent.str);
+        //debug("\n\n\n"+pageContent.str);
         return pageContent.str;
     }
 

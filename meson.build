@@ -53,6 +53,7 @@ executable(
     'src/comicsReader.vala',
     'src/backgroundTasks.vala',
     'src/mobiReader.vala',
+    'src/fb2Reader.vala',
     'src/shortcuts.vala',
     'src/xmlHandler.vala',
     asresources,
