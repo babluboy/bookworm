@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 01:38+0530\n"
-"PO-Revision-Date: 2019-04-05 15:03+0000\n"
+"POT-Creation-Date: 2019-06-19 13:44+0530\n"
+"PO-Revision-Date: 2019-06-21 08:00+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sc/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 3.7\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -75,7 +75,7 @@ msgstr "Paret chi Bookworm non tengiat libros"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Ammània sa libreria tua agiunghende libros eletrònicos"
+msgstr "Ammània sa biblioteca tua agiunghende libros eletrònicos"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Library"
-msgstr "Libreria"
+msgstr "Biblioteca"
 
 #: src/constants.vala.in:53
 msgid "Resume"
@@ -296,12 +296,12 @@ msgstr ""
 
 #: src/constants.vala.in:95
 msgid "Add books to library"
-msgstr "Agiunghe libros a sa libreria"
+msgstr "Agiunghe libros a sa biblioteca"
 
 #: src/constants.vala.in:96
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Boga sos libros ischertados dae sa libreria (su documentu de su libru "
+"Boga sos libros ischertados dae sa biblioteca (su documentu de su libru "
 "eletrònicu no at a èssere iscantzelladu)"
 
 #: src/constants.vala.in:97
@@ -310,7 +310,7 @@ msgstr "Ischerta libros pro abilitare s'iscantzelladura issoro"
 
 #: src/constants.vala.in:98
 msgid "Select one or more books in library"
-msgstr "Ischerta unu o prus libros in sa libreria"
+msgstr "Ischerta unu o prus libros in sa biblioteca"
 
 #: src/constants.vala.in:99
 msgid "See Table of Contents, Bookmarks and Search Results"
@@ -388,11 +388,11 @@ msgstr "Annanghe una nota a su testu ischertadu"
 
 #: src/constants.vala.in:118
 msgid "Go to previous page"
-msgstr ""
+msgstr "Bae a sa pàgina anteposta"
 
 #: src/constants.vala.in:119
 msgid "Go to next page"
-msgstr ""
+msgstr "Bae a sa pàgina imbeniente"
 
 #: src/constants.vala.in:121 src/constants.vala.in:148
 msgid "Preferences"
@@ -408,7 +408,7 @@ msgstr "Abìlita sa cache (aberit sos libros prus in presse)"
 
 #: src/constants.vala.in:124
 msgid "Always show library on startup"
-msgstr "Ammustra semper sa libreria in s'abertura"
+msgstr "Ammustra semper sa biblioteca in s'abertura"
 
 #: src/constants.vala.in:125
 msgid "Enable two page reading"
@@ -444,7 +444,7 @@ msgstr "Profilu"
 
 #: src/constants.vala.in:133
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Nùmeru de libros pro pàgina in sa biblioteca"
 
 #: src/constants.vala.in:134
 msgid "Reset to default values"
@@ -512,7 +512,7 @@ msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
-"Manìgia sa libreria tua etichetende e carrighende sos metadatos de sos "
+"Manìgia sa biblioteca tua etichetende e carrighende sos metadatos de sos "
 "libros, pro agatare in presse libros impreende sa chirca cun sos metadatos e "
 "sos filtros cun sas etichetas."
 
