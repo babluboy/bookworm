@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-20 01:38+0530\n"
-"PO-Revision-Date: 2019-03-12 09:02+0000\n"
+"PO-Revision-Date: 2019-06-21 16:19+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/nb_NO/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 3.7\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -381,11 +381,11 @@ msgstr "Legg til anmerkning for valgt tekst"
 
 #: src/constants.vala.in:118
 msgid "Go to previous page"
-msgstr ""
+msgstr "Gå til forrige side"
 
 #: src/constants.vala.in:119
 msgid "Go to next page"
-msgstr ""
+msgstr "Gå til neste side"
 
 #: src/constants.vala.in:121 src/constants.vala.in:148
 msgid "Preferences"
@@ -437,7 +437,7 @@ msgstr "Profil"
 
 #: src/constants.vala.in:133
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Antall bøker per side i biblioteket"
 
 #: src/constants.vala.in:134
 msgid "Reset to default values"
