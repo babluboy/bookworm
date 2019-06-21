@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 01:38+0530\n"
+"POT-Creation-Date: 2019-06-21 21:36+0530\n"
 "PO-Revision-Date: 2019-02-03 08:09+0000\n"
 "Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -120,34 +120,38 @@ msgstr ""
 "nalezený soubor s elektronickou knihou: "
 
 #: src/constants.vala.in:52
+msgid "Issue in page navigation, please move the pages forward or backward."
+msgstr ""
+
+#: src/constants.vala.in:53
 msgid "Library"
 msgstr "Knihovna"
 
-#: src/constants.vala.in:53
+#: src/constants.vala.in:54
 msgid "Resume"
 msgstr "Pokračovat"
 
-#: src/constants.vala.in:54
+#: src/constants.vala.in:55
 msgid "Contents"
 msgstr "Obsah"
 
-#: src/constants.vala.in:55
+#: src/constants.vala.in:56
 msgid "Content #"
 msgstr "Obsah #"
 
-#: src/constants.vala.in:56
+#: src/constants.vala.in:57
 msgid "Bookmarks"
 msgstr "Záložky"
 
-#: src/constants.vala.in:57
+#: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
 msgstr "Dát #NNN do záložek pro oddíl PPP"
 
-#: src/constants.vala.in:58
+#: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
 msgstr "Klepnout na odkaz pro skok na oddíl přidaný do záložek"
 
-#: src/constants.vala.in:59
+#: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
@@ -155,35 +159,35 @@ msgstr ""
 "V BBB nenastaveny žádné záložky. Klepněte na ikonu záložek v pruhu záhlaví "
 "pro přidání této strany do záložek"
 
-#: src/constants.vala.in:60
+#: src/constants.vala.in:61
 msgid "Word Meaning"
 msgstr "Význam slova"
 
-#: src/constants.vala.in:61
+#: src/constants.vala.in:62
 msgid "Search Results"
 msgstr "Výsledky hledání"
 
-#: src/constants.vala.in:62
+#: src/constants.vala.in:63
 msgid "Annotations"
 msgstr "Vysvětlivky"
 
-#: src/constants.vala.in:63
+#: src/constants.vala.in:64
 msgid "Annotation Tags"
 msgstr "Značky poznámek"
 
-#: src/constants.vala.in:64
+#: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
 msgstr "Čárkami oddělené značky pro tuto poznámku"
 
-#: src/constants.vala.in:65
+#: src/constants.vala.in:66
 msgid "Edit annotation for:"
 msgstr "Upravit poznámku pro:"
 
-#: src/constants.vala.in:66
+#: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
 msgstr "Klepnout na odkaz pro skok na oddíl opatřený poznámkou"
 
-#: src/constants.vala.in:67
+#: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -191,270 +195,270 @@ msgstr ""
 "V BBB nenastaveny žádné poznámky. Klepněte pravým tlačítkem myši na stranu v "
 "knize a v související nabídce pro přidání poznámek vyberte poznámku"
 
-#: src/constants.vala.in:68
+#: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
 msgstr "Hledá se '$$$' v &&&:"
 
-#: src/constants.vala.in:69
+#: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "Nalezeny následující shody pro '$$$' v &&&:"
 
-#: src/constants.vala.in:70
+#: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
 msgstr "Nalezeny žádné shody pro '$$$' v &&&"
 
-#: src/constants.vala.in:71
+#: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
 "Vyberte v knize slovo a klepněte pravým tlačítkem myši pro vyhledání jeho "
 "významu"
 
-#: src/constants.vala.in:72
+#: src/constants.vala.in:73
 msgid "Edit Info for"
 msgstr "Upravit údaje pro"
 
-#: src/constants.vala.in:73 src/constants.vala.in:77
+#: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
 msgstr "Aktualizovat obrázek obalu"
 
-#: src/constants.vala.in:74
+#: src/constants.vala.in:75
 msgid "Update Title"
 msgstr "Aktualizovat název"
 
-#: src/constants.vala.in:75
+#: src/constants.vala.in:76
 msgid "Update Tags"
 msgstr "Aktualizovat značky"
 
-#: src/constants.vala.in:76
+#: src/constants.vala.in:77
 msgid "Update Author"
 msgstr "Aktualizovat autora"
 
-#: src/constants.vala.in:78
+#: src/constants.vala.in:79
 msgid "Enter full screen view (F11)"
 msgstr "Otevřít zobrazení celé obrazovky (F11)"
 
-#: src/constants.vala.in:79
+#: src/constants.vala.in:80
 msgid "Exit full screen view (Esc)"
 msgstr "Ukončit zobrazení na celou obrazovku (Esc)"
 
-#: src/constants.vala.in:80
+#: src/constants.vala.in:81
 msgid "Check Word Meaning"
 msgstr "Prověřit význam slova"
 
-#: src/constants.vala.in:81
+#: src/constants.vala.in:82
 msgid "Annotate selected text"
 msgstr "Opatřit vybraný text poznámkou"
 
-#: src/constants.vala.in:82
+#: src/constants.vala.in:83
 msgid "Books"
 msgstr "Knihy"
 
-#: src/constants.vala.in:83
+#: src/constants.vala.in:84
 msgid "Images"
 msgstr "Obrázky"
 
-#: src/constants.vala.in:84
+#: src/constants.vala.in:85
 msgid "All Files"
 msgstr "Všechny soubory"
 
-#: src/constants.vala.in:85
+#: src/constants.vala.in:86
 msgid "Title"
 msgstr "Název"
 
-#: src/constants.vala.in:86
+#: src/constants.vala.in:87
 msgid "Author"
 msgstr "Autor"
 
-#: src/constants.vala.in:87
+#: src/constants.vala.in:88
 msgid "Last Opened"
 msgstr "Naposledy otevřené"
 
-#: src/constants.vala.in:88
+#: src/constants.vala.in:89
 msgid "Rating"
 msgstr "Hodnocení"
 
-#: src/constants.vala.in:89
+#: src/constants.vala.in:90
 msgid "Tags"
 msgstr "Značky"
 
-#: src/constants.vala.in:90
+#: src/constants.vala.in:91
 msgid "Today"
 msgstr "Dnes"
 
-#: src/constants.vala.in:91
+#: src/constants.vala.in:92
 msgid "Yesterday"
 msgstr "Včera"
 
-#: src/constants.vala.in:92
+#: src/constants.vala.in:93
 msgid "Days"
 msgstr "Dny"
 
-#: src/constants.vala.in:93
+#: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr "Objevování knih bude zahájeno po zavření programu Bookworm"
 
-#: src/constants.vala.in:95
+#: src/constants.vala.in:96
 msgid "Add books to library"
 msgstr "Přidat knihu do knihovny"
 
-#: src/constants.vala.in:96
+#: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "Odstranit vybrané knihy z knihovny (soubor s elektronickou knihou nebude "
 "smazán)"
 
-#: src/constants.vala.in:97
+#: src/constants.vala.in:98
 #, fuzzy
 msgid "Select books to enable removal"
 msgstr "Vybrat elektronickou knihu ke čtení"
 
-#: src/constants.vala.in:98
+#: src/constants.vala.in:99
 msgid "Select one or more books in library"
 msgstr "Vyberte v knihovně jednu nebo více knih"
 
-#: src/constants.vala.in:99
+#: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Vidět obsah, záložky a výsledky hledání"
 
-#: src/constants.vala.in:100
+#: src/constants.vala.in:101
 msgid "Reading preferences"
 msgstr "Nastavení čtení"
 
-#: src/constants.vala.in:101
+#: src/constants.vala.in:102
 msgid "Click to bookmark this page"
 msgstr "Klepnout pro přidání této strany do záložek"
 
-#: src/constants.vala.in:102
+#: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
 msgstr "Klepnout pro odstranění této záložky"
 
-#: src/constants.vala.in:103
+#: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Zvětšit velikost písma (Ctrl + Shift + '+')"
 
-#: src/constants.vala.in:104
+#: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Zmenšit velikost písma (Ctrl + '-')"
 
-#: src/constants.vala.in:105
+#: src/constants.vala.in:106
 msgid "Increase line width"
 msgstr "Zvětšit šířku řádku"
 
-#: src/constants.vala.in:106
+#: src/constants.vala.in:107
 msgid "Decrease line width"
 msgstr "Zmenšit šířku řádku"
 
-#: src/constants.vala.in:107
+#: src/constants.vala.in:108
 msgid "Increase line spacing"
 msgstr "Zvětšit odstup řádku"
 
-#: src/constants.vala.in:108
+#: src/constants.vala.in:109
 msgid "Decrease line spacing"
 msgstr "Zmenšit odstup řádku"
 
-#: src/constants.vala.in:109
+#: src/constants.vala.in:110
 msgid "Align left"
 msgstr "Zarovnat vlevo"
 
-#: src/constants.vala.in:110
+#: src/constants.vala.in:111
 msgid "Align right"
 msgstr "Zarovnat vpravo"
 
-#: src/constants.vala.in:111
+#: src/constants.vala.in:112
 msgid "Update cover image"
 msgstr "Aktualizovat obrázek obalu"
 
-#: src/constants.vala.in:112
+#: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
 msgstr "Použít vzhled pro tento barevný profil"
 
-#: src/constants.vala.in:113 src/constants.vala.in:114
+#: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter full screen view and Esc key to undo"
 msgstr ""
 "Vstoupit do zobrazení na celou obrazovku a stisknout klávesu Esc pro jeho "
 "opuštění"
 
-#: src/constants.vala.in:115
+#: src/constants.vala.in:116
 msgid "Add folder to scan for books"
 msgstr "Přidat složku k prohledávání na knihy"
 
-#: src/constants.vala.in:116
+#: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
 msgstr "Odstranit zobrazenou složku z prohledávaných"
 
-#: src/constants.vala.in:117
+#: src/constants.vala.in:118
 msgid "Add annotation to selected text"
 msgstr "Přidat k vybranému textu poznámku"
 
-#: src/constants.vala.in:118
+#: src/constants.vala.in:119
 msgid "Go to previous page"
 msgstr ""
 
-#: src/constants.vala.in:119
+#: src/constants.vala.in:120
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:121 src/constants.vala.in:148
+#: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
 msgstr "Zapnout tmavý vzhled"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
 msgstr "Povolit vyrovnávací paměť (knihy se otevírají rychleji)"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:125
 msgid "Always show library on startup"
 msgstr "Při spuštění vždy ukazovat knihovnu"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:126
 msgid "Enable two page reading"
 msgstr "Povolit zobrazení dvou stran"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:127
 msgid "Select Font"
 msgstr "Vybrat písmo"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:128
 msgid "Customize reading profile"
 msgstr "Přizpůsobit čtecí profil"
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:129
 msgid "Text"
 msgstr "Text"
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:130
 msgid "Background"
 msgstr "Pozadí"
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:131
 msgid "Highlight"
 msgstr "Zvýraznění"
 
-#: src/constants.vala.in:131
+#: src/constants.vala.in:132
 msgid "Add folders to scan for books"
 msgstr "Přidat složky k prohledávání na knihy"
 
-#: src/constants.vala.in:132
+#: src/constants.vala.in:133
 msgid "Profile"
 msgstr "Profil"
 
-#: src/constants.vala.in:133
+#: src/constants.vala.in:134
 msgid "Number of books per page on library"
 msgstr ""
 
-#: src/constants.vala.in:134
+#: src/constants.vala.in:135
 msgid "Reset to default values"
 msgstr "Obnovit výchozí hodnoty"
 
-#: src/constants.vala.in:146
+#: src/constants.vala.in:147
 msgid "Unknown Book"
 msgstr "Neznámá kniha"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "About"
 msgstr "O programu"
 

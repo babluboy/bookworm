@@ -33,7 +33,7 @@ public class BookwormApp.Library {
 
   public static void updateLibraryListView(owned BookwormApp.Book aBook){
     debug("[START] [FUNCTION:updateLibraryListView] book.location="+aBook.getBookLocation());
-    if(aBook.getBookTitle != null && aBook.getBookTitle().length > 1) {
+    //if(aBook.getBookTitle != null && aBook.getBookTitle().length > 1) {
         debug("Started updating Library List View for book:"+aBook.getBookLocation());
         //set the rating image
         Gdk.Pixbuf image_rating;
@@ -104,13 +104,13 @@ public class BookwormApp.Library {
 
         BookwormApp.AppWindow.library_table_treeview.get_column(5).set_sort_column_id(5);
         BookwormApp.AppWindow.library_table_treeview.get_column(5).set_sort_order(SortType.DESCENDING);
-    }
+    //}
     debug("[END] [FUNCTION:updateLibraryListView] book.location="+aBook.getBookLocation());
   }
 
   public static void updateLibraryGridView(owned BookwormApp.Book aBook){
     debug("[START] [FUNCTION:updateLibraryGridView] book.location="+aBook.getBookLocation());
-    if(aBook.getBookTitle != null && aBook.getBookTitle().length > 1) {
+    //if(aBook.getBookTitle != null && aBook.getBookTitle().length > 1) {
         debug("Started updating Library Grid View for book:"+aBook.getBookLocation());
         Gtk.Image aCoverImage;
         Gtk.Label titleTextLabel = new Gtk.Label("");
@@ -298,7 +298,7 @@ public class BookwormApp.Library {
                 BookwormApp.AppWindow.library_grid.show_all();
             }
             debug("Completed updating Library View for book:"+aBook.getBookLocation());
-        }
+       // }
         debug("[END] [FUNCTION:updateLibraryGridView] book.location="+aBook.getBookLocation());
 	}
 
@@ -717,6 +717,13 @@ public class BookwormApp.Library {
         debug("[END] [FUNCTION:addBookToLibrary] book.location="+aBook.getBookLocation());
 	}
     public static void paginateLibrary(string library_search_data, string mode){
+        //update the current set of books into the library db
+        foreach (var book in BookwormApp.Bookworm.libraryViewMap.values){
+			if(((BookwormApp.Book)book).getWasBookOpened()){
+				BookwormApp.DB.updateBookToDataBase((BookwormApp.Book)book);
+				debug("Completed saving the book data into DB");
+			}
+		}
         if(mode == "LIBRARY_SEARCH"){
             //Perform library search for results
             debug("Executing library search query with criteria: "+ library_search_data);

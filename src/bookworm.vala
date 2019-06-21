@@ -449,13 +449,7 @@ public class BookwormApp.Bookworm : Granite.Application {
 		//Fetch details of Books from the database
 		BookwormApp.Bookworm.paginationlist.add("");
 		BookwormApp.Bookworm.current_page_counter = 0;
-		BookwormApp.Library.listOfBooksInLibraryOnLoad = BookwormApp.DB.getBooksFromDB("","PAGINATED_SEARCH");
-		debug("After first paginated query for books,"+
-                   " current_page_counter="+ BookwormApp.Bookworm.current_page_counter.to_string()+
-                   " on paginationlist:" + string.joinv(", ",(BookwormApp.Bookworm.paginationlist.to_array()))
-        );
-		//Update the library view
-		BookwormApp.Library.updateLibraryViewFromDB();
+		BookwormApp.Library.paginateLibrary("","PAGINATED_SEARCH");
 		//Set the library pagination buttons based on the paginate call
 		BookwormApp.AppWindow.handleLibraryPageButtons("", false);
 
@@ -689,6 +683,9 @@ public class BookwormApp.Bookworm : Granite.Application {
 
 	public static BookwormApp.Book genericParser(owned BookwormApp.Book aBook){
 		info("[START] [FUNCTION:genericParser] book.location="+aBook.getBookLocation());
+		//set defaults for title and author - this will be over-ridden with extracted data if found
+        aBook.setBookAuthor(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
+        aBook.setBookTitle(BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE);
 		//check if ebook is present at provided location
 		if("false" == BookwormApp.Utils.fileOperations("EXISTS", "", aBook.getBookLocation(), "")){
 			warning("EBook not found at provided location:"+aBook.getBookLocation());
@@ -721,6 +718,16 @@ public class BookwormApp.Bookworm : Granite.Application {
 					case ".PRC":
 						aBook = BookwormApp.mobiReader.parseMobiBook(aBook);
 						break;
+					case ".ZIP":
+						//check if the file is a zipped FB2 file
+						if(ebookFileName.up().last_index_of (".FB2.ZIP") != -1){
+							aBook = BookwormApp.fb2Reader.parseFictionBook(aBook);
+							break;
+						}else{
+							aBook.setIsBookParsed(false);
+							aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_FORMAT_NOT_SUPPORTED);
+							break;
+						}
 					case ".FB2":
 						aBook = BookwormApp.fb2Reader.parseFictionBook(aBook);
 						break;

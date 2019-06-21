@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 01:38+0530\n"
+"POT-Creation-Date: 2019-06-21 21:36+0530\n"
 "PO-Revision-Date: 2019-06-19 03:00+0000\n"
 "Last-Translator: Le Do Anh Khoa <ledoanhkhoa@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
@@ -115,34 +115,38 @@ msgstr ""
 "được tìm thấy ở đây. "
 
 #: src/constants.vala.in:52
+msgid "Issue in page navigation, please move the pages forward or backward."
+msgstr ""
+
+#: src/constants.vala.in:53
 msgid "Library"
 msgstr "Thư viện"
 
-#: src/constants.vala.in:53
+#: src/constants.vala.in:54
 msgid "Resume"
 msgstr "Tiếp tục"
 
-#: src/constants.vala.in:54
+#: src/constants.vala.in:55
 msgid "Contents"
 msgstr "Nội dung"
 
-#: src/constants.vala.in:55
+#: src/constants.vala.in:56
 msgid "Content #"
 msgstr "Nội dung"
 
-#: src/constants.vala.in:56
+#: src/constants.vala.in:57
 msgid "Bookmarks"
 msgstr "Đánh dấu trang"
 
-#: src/constants.vala.in:57
+#: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
 msgstr "Đánh dấu #NNN cho Phần PPP"
 
-#: src/constants.vala.in:58
+#: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
 msgstr "Bấm vào đường dẫn để chuyển đến phần được đánh dấu"
 
-#: src/constants.vala.in:59
+#: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
@@ -150,302 +154,302 @@ msgstr ""
 "Không có đánh dấu trang tại BBB, bấm vào biểu tượng đánh dấu trang trên "
 "thanh tiêu đề để đánh dấu trang này"
 
-#: src/constants.vala.in:60
+#: src/constants.vala.in:61
 msgid "Word Meaning"
 msgstr "Nghĩa của từ"
 
-#: src/constants.vala.in:61
+#: src/constants.vala.in:62
 msgid "Search Results"
 msgstr "Kết quả tìm kiếm"
 
-#: src/constants.vala.in:62
+#: src/constants.vala.in:63
 msgid "Annotations"
 msgstr "Chú thích"
 
-#: src/constants.vala.in:63
+#: src/constants.vala.in:64
 msgid "Annotation Tags"
 msgstr "Thẻ chú thích"
 
-#: src/constants.vala.in:64
+#: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
 msgstr ""
 
-#: src/constants.vala.in:65
+#: src/constants.vala.in:66
 msgid "Edit annotation for:"
 msgstr ""
 
-#: src/constants.vala.in:66
+#: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
 msgstr ""
 
-#: src/constants.vala.in:67
+#: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
 
-#: src/constants.vala.in:68
+#: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
 msgstr ""
 
-#: src/constants.vala.in:69
+#: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr ""
 
-#: src/constants.vala.in:70
+#: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
 msgstr ""
 
-#: src/constants.vala.in:71
+#: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
 
-#: src/constants.vala.in:72
+#: src/constants.vala.in:73
 msgid "Edit Info for"
 msgstr ""
 
-#: src/constants.vala.in:73 src/constants.vala.in:77
+#: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
 msgstr "Cập nhật Ảnh bìa"
 
-#: src/constants.vala.in:74
+#: src/constants.vala.in:75
 msgid "Update Title"
 msgstr "Cập nhật Tiêu đề"
 
-#: src/constants.vala.in:75
+#: src/constants.vala.in:76
 msgid "Update Tags"
 msgstr "Cập nhật Tag"
 
-#: src/constants.vala.in:76
+#: src/constants.vala.in:77
 msgid "Update Author"
 msgstr "Cập nhật Tác giả"
 
-#: src/constants.vala.in:78
+#: src/constants.vala.in:79
 msgid "Enter full screen view (F11)"
 msgstr "Xem toàn màn hình (F11)"
 
-#: src/constants.vala.in:79
+#: src/constants.vala.in:80
 msgid "Exit full screen view (Esc)"
 msgstr "Thoát (Esc)"
 
-#: src/constants.vala.in:80
+#: src/constants.vala.in:81
 msgid "Check Word Meaning"
 msgstr ""
 
-#: src/constants.vala.in:81
+#: src/constants.vala.in:82
 msgid "Annotate selected text"
 msgstr ""
 
-#: src/constants.vala.in:82
+#: src/constants.vala.in:83
 msgid "Books"
 msgstr "Sách"
 
-#: src/constants.vala.in:83
+#: src/constants.vala.in:84
 msgid "Images"
 msgstr "Ảnh"
 
-#: src/constants.vala.in:84
+#: src/constants.vala.in:85
 msgid "All Files"
 msgstr "Tất cả các file"
 
-#: src/constants.vala.in:85
+#: src/constants.vala.in:86
 msgid "Title"
 msgstr "Tiêu đề"
 
-#: src/constants.vala.in:86
+#: src/constants.vala.in:87
 msgid "Author"
 msgstr "Tác giả"
 
-#: src/constants.vala.in:87
+#: src/constants.vala.in:88
 msgid "Last Opened"
 msgstr ""
 
-#: src/constants.vala.in:88
+#: src/constants.vala.in:89
 msgid "Rating"
 msgstr "Đánh giá"
 
-#: src/constants.vala.in:89
+#: src/constants.vala.in:90
 msgid "Tags"
 msgstr "Tag"
 
-#: src/constants.vala.in:90
+#: src/constants.vala.in:91
 msgid "Today"
 msgstr "Hôm nay"
 
-#: src/constants.vala.in:91
+#: src/constants.vala.in:92
 msgid "Yesterday"
 msgstr "Hôm qua"
 
-#: src/constants.vala.in:92
+#: src/constants.vala.in:93
 msgid "Days"
 msgstr "Ngày"
 
-#: src/constants.vala.in:93
+#: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr ""
 
-#: src/constants.vala.in:95
+#: src/constants.vala.in:96
 msgid "Add books to library"
 msgstr "Thêm sách vào thư viện"
 
-#: src/constants.vala.in:96
+#: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Xóa sách đã chọn khỏi thư viện (file ebook không bị xóa)"
 
-#: src/constants.vala.in:97
+#: src/constants.vala.in:98
 #, fuzzy
 msgid "Select books to enable removal"
 msgstr "Chọn ebook để đọc"
 
-#: src/constants.vala.in:98
+#: src/constants.vala.in:99
 msgid "Select one or more books in library"
 msgstr "Chọn một hoặc nhiều sách trong thư viện"
 
-#: src/constants.vala.in:99
+#: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "Xem Mục lục, Dấu trang và Kết quả tìm kiếm"
 
-#: src/constants.vala.in:100
+#: src/constants.vala.in:101
 #, fuzzy
 msgid "Reading preferences"
 msgstr "Tùy chỉnh"
 
-#: src/constants.vala.in:101
+#: src/constants.vala.in:102
 msgid "Click to bookmark this page"
 msgstr ""
 
-#: src/constants.vala.in:102
+#: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
 msgstr ""
 
-#: src/constants.vala.in:103
+#: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "Tăng cỡ chữ (Ctrl + Shift + '+')"
 
-#: src/constants.vala.in:104
+#: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "Giảm cỡ chữ (Ctrl + '-')"
 
-#: src/constants.vala.in:105
+#: src/constants.vala.in:106
 msgid "Increase line width"
 msgstr "Tăng độ rộng của dòng"
 
-#: src/constants.vala.in:106
+#: src/constants.vala.in:107
 msgid "Decrease line width"
 msgstr "Giảm độ rộng của dòng"
 
-#: src/constants.vala.in:107
+#: src/constants.vala.in:108
 msgid "Increase line spacing"
 msgstr "Tăng khoảng cách giữa các dòng"
 
-#: src/constants.vala.in:108
+#: src/constants.vala.in:109
 msgid "Decrease line spacing"
 msgstr "Giảm khoảng cách giữa các dòng"
 
-#: src/constants.vala.in:109
+#: src/constants.vala.in:110
 msgid "Align left"
 msgstr ""
 
-#: src/constants.vala.in:110
+#: src/constants.vala.in:111
 msgid "Align right"
 msgstr ""
 
-#: src/constants.vala.in:111
+#: src/constants.vala.in:112
 msgid "Update cover image"
 msgstr "Cập nhật ảnh bìa"
 
-#: src/constants.vala.in:112
+#: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
 msgstr ""
 
-#: src/constants.vala.in:113 src/constants.vala.in:114
+#: src/constants.vala.in:114 src/constants.vala.in:115
 #, fuzzy
 msgid "Enter full screen view and Esc key to undo"
 msgstr "Thoát (Esc)"
 
-#: src/constants.vala.in:115
+#: src/constants.vala.in:116
 msgid "Add folder to scan for books"
 msgstr "Thêm thư mục để quét sách"
 
-#: src/constants.vala.in:116
+#: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
 msgstr ""
 
-#: src/constants.vala.in:117
+#: src/constants.vala.in:118
 msgid "Add annotation to selected text"
 msgstr ""
 
-#: src/constants.vala.in:118
+#: src/constants.vala.in:119
 msgid "Go to previous page"
 msgstr ""
 
-#: src/constants.vala.in:119
+#: src/constants.vala.in:120
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:121 src/constants.vala.in:148
+#: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
 msgstr "Tùy chỉnh"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
 msgstr "Bật chế độ ban đêm"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
 msgstr "Bật cache (mở sách nhanh hơn)"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:125
 #, fuzzy
 msgid "Always show library on startup"
 msgstr "Luôn hiển thị thư viện khi bắt đầu"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:126
 msgid "Enable two page reading"
 msgstr "Bật tính năng đọc hai trang"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:127
 #, fuzzy
 msgid "Select Font"
 msgstr "Chọn ebook"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:128
 msgid "Customize reading profile"
 msgstr ""
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:129
 msgid "Text"
 msgstr ""
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:130
 msgid "Background"
 msgstr ""
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:131
 msgid "Highlight"
 msgstr ""
 
-#: src/constants.vala.in:131
+#: src/constants.vala.in:132
 msgid "Add folders to scan for books"
 msgstr "Thêm thư mục để quét sách"
 
-#: src/constants.vala.in:132
+#: src/constants.vala.in:133
 msgid "Profile"
 msgstr "Profile"
 
-#: src/constants.vala.in:133
+#: src/constants.vala.in:134
 msgid "Number of books per page on library"
 msgstr ""
 
-#: src/constants.vala.in:134
+#: src/constants.vala.in:135
 msgid "Reset to default values"
 msgstr "Đặt lại giá trị mặc định"
 
-#: src/constants.vala.in:146
+#: src/constants.vala.in:147
 msgid "Unknown Book"
 msgstr ""
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "About"
 msgstr "About"
 

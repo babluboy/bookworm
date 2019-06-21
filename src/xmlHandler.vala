@@ -204,7 +204,11 @@ public class BookwormApp.XmlParser {
         //If Extraction criteria is met and sub-xml exraction is required, add tag name to extracted data
         if(thisXMLData.shouldExtractionStart && thisXMLData.isXMLExtraction) {
             //to preserve the tag names, add the start tag to the collected data
-            thisXMLData.charBuffer.append("<").append(name).append(">");
+            thisXMLData.charBuffer.append(" <")
+                                  .append(name)
+                                  .append(" ")
+                                  .append(string.joinv(" ", attributeList))
+                                  .append(">");
         }
     }
 
@@ -215,7 +219,7 @@ public class BookwormApp.XmlParser {
         //If sub-xml exraction is required, add the end tag to extracted data
         if(thisXMLData.shouldExtractionStart && thisXMLData.isXMLExtraction) {
             //to preserve the tag names, add the start tag to the collected data
-            thisXMLData.charBuffer.append("</").append(name).append(">");
+            thisXMLData.charBuffer.append(" </").append(name).append(">");
         }
 
         //If End element matches container tag - set container flag to false and extraction flag to false

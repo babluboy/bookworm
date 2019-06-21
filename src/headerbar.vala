@@ -162,6 +162,10 @@ public class BookwormApp.AppHeaderBar {
         BookwormApp.Bookworm.library_view_button.clicked.connect (() => {
               //Set action of return to Library View if the current view is Reading View
               if(BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE == BookwormApp.Constants.BOOKWORM_UI_STATES[1]){
+                    //Hide the infobar if the same is visible on the reading view before going to library view
+                    if(BookwormApp.AppWindow.infobarLabel.visible == true){
+			            BookwormApp.AppWindow.infobar.hide();
+		            }
                     //Get the current scroll position of the book and add it to the book object
                     (BookwormApp.Bookworm.libraryViewMap.get(
                                 BookwormApp.Bookworm.locationOfEBookCurrentlyRead)

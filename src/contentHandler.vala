@@ -67,25 +67,36 @@ public class BookwormApp.contentHandler {
                     ", contentLocation="+contentLocation.to_string()+
                     ", mode="+mode);
         StringBuilder contents = new StringBuilder();
-        if(contentLocation > -1 && aBook.getBookContentList() != null && aBook.getBookContentList().size > contentLocation){
-            //handle the case when the content list has html escape chars for the URI
-            string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
-            //fetch content from extracted book
-            contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
-            //find list of relative urls with src, href, etc and convert them to absolute ones
-            foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
-                string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
-                StringBuilder srcItemFullPath = new StringBuilder();
-                foreach(string srcItem in srcList){
-                    srcItemFullPath.assign(BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem));
-                    contents.assign(
-                        contents.str.replace(tagname+srcItem+"\"",
-                        BookwormApp.Utils.encodeHTMLChars(tagname+srcItemFullPath.str)+"\"")
-                    );
+        if(aBook.getBookContentList() != null){
+            if(contentLocation > -1 && aBook.getBookContentList().size > contentLocation){
+                //handle the case when the content list has html escape chars for the URI
+                string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars(aBook.getBookContentList().get(contentLocation));
+                //fetch content from extracted book
+                contents.assign(BookwormApp.Utils.fileOperations("READ_FILE", bookLocationToRead, "", ""));
+                //find list of relative urls with src, href, etc and convert them to absolute ones
+                foreach(string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS){
+                    string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings(contents.str, tagname, "\"");
+                    StringBuilder srcItemFullPath = new StringBuilder();
+                    foreach(string srcItem in srcList){
+                        srcItemFullPath.assign(
+                            BookwormApp.Utils.getFullPathFromFilename(aBook.getBookExtractionLocation(), srcItem)
+                        );
+                        contents.assign(
+                            contents.str.replace(tagname+srcItem+"\"",
+                            BookwormApp.Utils.encodeHTMLChars(tagname+srcItemFullPath.str)+"\"")
+                        );
+                    }
                 }
+                //update the content for required manipulation
+                contents.assign(adjustPageContent(aBook, contents.str, mode));
+            //handle the case for contentLocation set to -1 when the book is added to the DB
+            }else if(contentLocation == -1 && aBook.getBookContentList().size > 0){
+                provideContent (aBook, 0, mode);
+            }else{
+                //requested content not available
+                aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_NAVIGATION_ISSUE);
+                BookwormApp.AppWindow.showInfoBar(aBook, Gtk.MessageType.WARNING);
             }
-            //update the content for required manipulation
-            contents.assign(adjustPageContent(aBook, contents.str, mode));
         }else{
             //requested content not available
             aBook.setParsingIssue(BookwormApp.Constants.TEXT_FOR_CONTENT_NOT_FOUND_ISSUE);

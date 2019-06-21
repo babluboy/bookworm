@@ -49,6 +49,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_PARSING_ISSUE = _("eBook could not be parsed. Ensure there is a valid eBook file here: ");
 	public const string TEXT_FOR_FORMAT_NOT_SUPPORTED = _("Bookworm does not support the format of the file found here: ");
 	public const string TEXT_FOR_CONTENT_NOT_FOUND_ISSUE = _("Requested content could not be fetched. Please remove and add the eBook file found here: ");
+    public const string TEXT_FOR_NAVIGATION_ISSUE = _("Issue in page navigation, please move the pages forward or backward.");
 	public const string TEXT_FOR_LIBRARY_BUTTON = _("Library");
 	public const string TEXT_FOR_RESUME_BUTTON = _("Resume");
 	public const string TEXT_FOR_INFO_TAB_CONTENTS = _("Contents");
@@ -204,7 +205,7 @@ namespace BookwormApp.Constants {
 	public const string PLACEHOLDER_COVER_IMAGE_LOCATION = RESOURCE_PREFIX+"bookworm-placeholder-cover.svg";
 
 
-	public const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc", "*.fb2"};
+	public const string FILE_CHOOSER_FILTER_EBOOKS[] = {"*.epub", "*.pdf", "*.cbr", "*.cbz", "*.mobi", "*.prc", "*.fb2", "*.fb2.zip"};
 	public const string FILE_CHOOSER_FILTER_IMAGES[] = {"*.jpg", "*.jpeg", "*.gif", "*.png", "*.svg"};
 
 

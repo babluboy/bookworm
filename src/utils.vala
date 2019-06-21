@@ -835,4 +835,5 @@ namespace BookwormApp.Utils {
 			}
 			return formattedString.str;
 		}
+
 }

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 01:38+0530\n"
+"POT-Creation-Date: 2019-06-21 21:36+0530\n"
 "PO-Revision-Date: 2019-06-19 08:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
@@ -122,34 +122,38 @@ msgstr ""
 "して追加してください: "
 
 #: src/constants.vala.in:52
+msgid "Issue in page navigation, please move the pages forward or backward."
+msgstr ""
+
+#: src/constants.vala.in:53
 msgid "Library"
 msgstr "ライブラリ"
 
-#: src/constants.vala.in:53
+#: src/constants.vala.in:54
 msgid "Resume"
 msgstr "戻る"
 
-#: src/constants.vala.in:54
+#: src/constants.vala.in:55
 msgid "Contents"
 msgstr "コンテンツ"
 
-#: src/constants.vala.in:55
+#: src/constants.vala.in:56
 msgid "Content #"
 msgstr "コンテンツ #"
 
-#: src/constants.vala.in:56
+#: src/constants.vala.in:57
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: src/constants.vala.in:57
+#: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
 msgstr "セクション PPP のブックマーク #NNN"
 
-#: src/constants.vala.in:58
+#: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
 msgstr "リンクをクリックするとブックマークされた箇所に移動します"
 
-#: src/constants.vala.in:59
+#: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
@@ -157,35 +161,35 @@ msgstr ""
 "BBB にはブックマークがありません。ページをブックマークするには、ヘッダーバー"
 "のブックマークアイコンをクリックしてください"
 
-#: src/constants.vala.in:60
+#: src/constants.vala.in:61
 msgid "Word Meaning"
 msgstr "単語の意味"
 
-#: src/constants.vala.in:61
+#: src/constants.vala.in:62
 msgid "Search Results"
 msgstr "検索結果"
 
-#: src/constants.vala.in:62
+#: src/constants.vala.in:63
 msgid "Annotations"
 msgstr "注釈"
 
-#: src/constants.vala.in:63
+#: src/constants.vala.in:64
 msgid "Annotation Tags"
 msgstr "注釈タグ"
 
-#: src/constants.vala.in:64
+#: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
 msgstr "この注釈に対するコンマで区切られたタグ"
 
-#: src/constants.vala.in:65
+#: src/constants.vala.in:66
 msgid "Edit annotation for:"
 msgstr "以下の注釈を編集:"
 
-#: src/constants.vala.in:66
+#: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
 msgstr "注釈がついたセクションに移動するにはリンクをクリックしてください"
 
-#: src/constants.vala.in:67
+#: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
@@ -193,264 +197,264 @@ msgstr ""
 "BBB には注釈がついていません。注釈を追加するには、本のページを右クリックして"
 "コンテキストメニューから注釈を選択してください"
 
-#: src/constants.vala.in:68
+#: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
 msgstr "&&& 内で '$$$' を検索しています:"
 
-#: src/constants.vala.in:69
+#: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
 msgstr "&&& 内に以下の一致する '$$$' が見つかりました:"
 
-#: src/constants.vala.in:70
+#: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
 msgstr "&&& 内には '$$$' に一致するものがありませんでした"
 
-#: src/constants.vala.in:71
+#: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr "本の中の単語の意味を調べるには、単語を選択して右クリックしてください"
 
-#: src/constants.vala.in:72
+#: src/constants.vala.in:73
 msgid "Edit Info for"
 msgstr "情報を編集:"
 
-#: src/constants.vala.in:73 src/constants.vala.in:77
+#: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
 msgstr "カバー画像を更新"
 
-#: src/constants.vala.in:74
+#: src/constants.vala.in:75
 msgid "Update Title"
 msgstr "タイトルを更新"
 
-#: src/constants.vala.in:75
+#: src/constants.vala.in:76
 msgid "Update Tags"
 msgstr "タグを更新"
 
-#: src/constants.vala.in:76
+#: src/constants.vala.in:77
 msgid "Update Author"
 msgstr "著者名を更新"
 
-#: src/constants.vala.in:78
+#: src/constants.vala.in:79
 msgid "Enter full screen view (F11)"
 msgstr "全画面表示 (F11)"
 
-#: src/constants.vala.in:79
+#: src/constants.vala.in:80
 msgid "Exit full screen view (Esc)"
 msgstr "全画面モードを終了 (Esc)"
 
-#: src/constants.vala.in:80
+#: src/constants.vala.in:81
 msgid "Check Word Meaning"
 msgstr "単語の意味を調べる"
 
-#: src/constants.vala.in:81
+#: src/constants.vala.in:82
 msgid "Annotate selected text"
 msgstr "選択されたテキストに注釈を追加"
 
-#: src/constants.vala.in:82
+#: src/constants.vala.in:83
 msgid "Books"
 msgstr "本"
 
-#: src/constants.vala.in:83
+#: src/constants.vala.in:84
 msgid "Images"
 msgstr "画像"
 
-#: src/constants.vala.in:84
+#: src/constants.vala.in:85
 msgid "All Files"
 msgstr "すべてのファイル"
 
-#: src/constants.vala.in:85
+#: src/constants.vala.in:86
 msgid "Title"
 msgstr "タイトル"
 
-#: src/constants.vala.in:86
+#: src/constants.vala.in:87
 msgid "Author"
 msgstr "著者"
 
-#: src/constants.vala.in:87
+#: src/constants.vala.in:88
 msgid "Last Opened"
 msgstr "最後に開かれた日時"
 
-#: src/constants.vala.in:88
+#: src/constants.vala.in:89
 msgid "Rating"
 msgstr "評価"
 
-#: src/constants.vala.in:89
+#: src/constants.vala.in:90
 msgid "Tags"
 msgstr "タグ"
 
-#: src/constants.vala.in:90
+#: src/constants.vala.in:91
 msgid "Today"
 msgstr "今日"
 
-#: src/constants.vala.in:91
+#: src/constants.vala.in:92
 msgid "Yesterday"
 msgstr "昨日"
 
-#: src/constants.vala.in:92
+#: src/constants.vala.in:93
 msgid "Days"
 msgstr "日前"
 
-#: src/constants.vala.in:93
+#: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
 msgstr "本の検出は Bookworm が終了した際に開始されます"
 
-#: src/constants.vala.in:95
+#: src/constants.vala.in:96
 msgid "Add books to library"
 msgstr "ライブラリに本を追加します"
 
-#: src/constants.vala.in:96
+#: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
 "選択された本をライブラリから削除します (電子書籍ファイル自体は残ります)"
 
-#: src/constants.vala.in:97
+#: src/constants.vala.in:98
 msgid "Select books to enable removal"
 msgstr "削除可能にする本を選択します"
 
-#: src/constants.vala.in:98
+#: src/constants.vala.in:99
 msgid "Select one or more books in library"
 msgstr "ライブラリ内の 1 つまたは複数の本を選択します"
 
-#: src/constants.vala.in:99
+#: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
 msgstr "コンテンツの表・ブックマーク・検索結果を参照します"
 
-#: src/constants.vala.in:100
+#: src/constants.vala.in:101
 msgid "Reading preferences"
 msgstr "リーディングの設定"
 
-#: src/constants.vala.in:101
+#: src/constants.vala.in:102
 msgid "Click to bookmark this page"
 msgstr "このページをブックマークするにはクリックしてください"
 
-#: src/constants.vala.in:102
+#: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
 msgstr "このブックマークを削除するにはクリックしてください"
 
-#: src/constants.vala.in:103
+#: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
 msgstr "フォントサイズを大きくします (Ctrl + Shift + '+')"
 
-#: src/constants.vala.in:104
+#: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
 msgstr "フォントサイズを小さくします (Ctrl + '-')"
 
-#: src/constants.vala.in:105
+#: src/constants.vala.in:106
 msgid "Increase line width"
 msgstr "行の幅を広くします"
 
-#: src/constants.vala.in:106
+#: src/constants.vala.in:107
 msgid "Decrease line width"
 msgstr "行の幅をせまくします"
 
-#: src/constants.vala.in:107
+#: src/constants.vala.in:108
 msgid "Increase line spacing"
 msgstr "行の間隔を広くします"
 
-#: src/constants.vala.in:108
+#: src/constants.vala.in:109
 msgid "Decrease line spacing"
 msgstr "行の間隔をせまくします"
 
-#: src/constants.vala.in:109
+#: src/constants.vala.in:110
 msgid "Align left"
 msgstr "左揃えにします"
 
-#: src/constants.vala.in:110
+#: src/constants.vala.in:111
 msgid "Align right"
 msgstr "右揃えにします"
 
-#: src/constants.vala.in:111
+#: src/constants.vala.in:112
 msgid "Update cover image"
 msgstr "カバー画像を更新します"
 
-#: src/constants.vala.in:112
+#: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
 msgstr "このカラープロファイルにテーマを適用します"
 
-#: src/constants.vala.in:113 src/constants.vala.in:114
+#: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter full screen view and Esc key to undo"
 msgstr "全画面表示を終了するには Esc キーを押してください"
 
-#: src/constants.vala.in:115
+#: src/constants.vala.in:116
 msgid "Add folder to scan for books"
 msgstr "本をスキャンするフォルダーを追加します"
 
-#: src/constants.vala.in:116
+#: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
 msgstr "表示されたフォルダーを本のスキャンから除外します"
 
-#: src/constants.vala.in:117
+#: src/constants.vala.in:118
 msgid "Add annotation to selected text"
 msgstr "選択されたテキストに注釈を追加します"
 
-#: src/constants.vala.in:118
+#: src/constants.vala.in:119
 msgid "Go to previous page"
 msgstr "前のページに移動します"
 
-#: src/constants.vala.in:119
+#: src/constants.vala.in:120
 msgid "Go to next page"
 msgstr "次のページに移動します"
 
-#: src/constants.vala.in:121 src/constants.vala.in:148
+#: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
 msgstr "設定"
 
-#: src/constants.vala.in:122
+#: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
 msgstr "ダークモードを有効にする"
 
-#: src/constants.vala.in:123
+#: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
 msgstr "キャッシュを有効にする (本を開くのが速くなります)"
 
-#: src/constants.vala.in:124
+#: src/constants.vala.in:125
 msgid "Always show library on startup"
 msgstr "起動時にライブラリを常に表示"
 
-#: src/constants.vala.in:125
+#: src/constants.vala.in:126
 msgid "Enable two page reading"
 msgstr "見開き表示を有効にする"
 
-#: src/constants.vala.in:126
+#: src/constants.vala.in:127
 msgid "Select Font"
 msgstr "フォントを選択"
 
-#: src/constants.vala.in:127
+#: src/constants.vala.in:128
 msgid "Customize reading profile"
 msgstr "リーディングプロファイル"
 
-#: src/constants.vala.in:128
+#: src/constants.vala.in:129
 msgid "Text"
 msgstr "テキスト"
 
-#: src/constants.vala.in:129
+#: src/constants.vala.in:130
 msgid "Background"
 msgstr "背景"
 
-#: src/constants.vala.in:130
+#: src/constants.vala.in:131
 msgid "Highlight"
 msgstr "ハイライト"
 
-#: src/constants.vala.in:131
+#: src/constants.vala.in:132
 msgid "Add folders to scan for books"
 msgstr "本をスキャンするフォルダーを追加"
 
-#: src/constants.vala.in:132
+#: src/constants.vala.in:133
 msgid "Profile"
 msgstr "プロファイル"
 
-#: src/constants.vala.in:133
+#: src/constants.vala.in:134
 msgid "Number of books per page on library"
 msgstr "ライブラリ 1 ページあたりに表示する本の数"
 
-#: src/constants.vala.in:134
+#: src/constants.vala.in:135
 msgid "Reset to default values"
 msgstr "デフォルト値にリセット"
 
-#: src/constants.vala.in:146
+#: src/constants.vala.in:147
 msgid "Unknown Book"
 msgstr "不明な本"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "About"
 msgstr "このアプリケーションについて"
 

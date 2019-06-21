@@ -234,7 +234,7 @@ public class BookwormApp.DB{
         last_modification_date = aBook.getBookLastModificationDate();
       }
       if(mode == "PAGINATED_SEARCH"){
-            //Only capture the last modification date if the resutls are equal to the page size
+            //Only capture the last modification date if the results are equal to the page size
             if(listOfBooks.size == int.parse (BookwormApp.Bookworm.no_of_books_per_page)){
                 //set the last book's modification date for pagination
                 BookwormApp.Bookworm.paginationlist.add(last_modification_date);
@@ -349,10 +349,10 @@ public class BookwormApp.DB{
   }
 
   public static bool updateBookToDataBase(BookwormApp.Book aBook){
-    info("[START] [FUNCTION:updateBookToDataBase] book.location="+aBook.getBookLocation());
+    info("[START] [FUNCTION:updateBookToDataBase] Updating book to DB for the following details:"+aBook.to_string());
     Sqlite.Statement stmt;
     queryString = "UPDATE "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+
-    " SET BOOK_LAST_READ_PAGE_NUMBER = ?, BOOK_TITLE = ?, BOOK_AUTHOR = ?, BOOK_COVER_IMAGE_LOCATION = ?, IS_BOOK_COVER_IMAGE_PRESENT = ?, TAGS = ?, ANNOTATION_TAGS = ?, RATINGS = ?, CONTENT_EXTRACTION_LOCATION = ?, BOOK_TOTAL_PAGES = ?, modification_date = CAST(? AS INT) WHERE BOOK_LOCATION = ? ";
+    " SET BOOK_LAST_READ_PAGE_NUMBER = ?, BOOK_TITLE = ?, BOOK_AUTHOR = ?, BOOK_COVER_IMAGE_LOCATION = ?, IS_BOOK_COVER_IMAGE_PRESENT = ?, TAGS = ?, ANNOTATION_TAGS = ?, RATINGS = ?, CONTENT_EXTRACTION_LOCATION = ?, BOOK_TOTAL_PAGES = ?, modification_date = CAST(? AS INT) WHERE ID = ? ";
      executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
      if (executionStatus != Sqlite.OK) {
        debug("Error on executing Query:"+queryString);
@@ -370,7 +370,7 @@ public class BookwormApp.DB{
      stmt.bind_text (9, aBook.getBookExtractionLocation());
      stmt.bind_text (10, aBook.getBookTotalPages().to_string());
      stmt.bind_text (11, aBook.getBookLastModificationDate());
-     stmt.bind_text (12, aBook.getBookLocation());
+     stmt.bind_int (12, aBook.getBookId());
      stmt.step ();
      stmt.reset ();
      debug("Updated library details to "+BOOKWORM_TABLE_BASE_NAME+BOOKWORM_TABLE_VERSION+" for book:"+aBook.getBookTitle()+"["+aBook.getBookId().to_string()+"]");
