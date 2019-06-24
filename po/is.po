@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2019-06-24 14:46+0000\n"
-"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"PO-Revision-Date: 2019-06-25 15:01+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
 "Language: is\n"
@@ -118,7 +118,7 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr "Vandamál með færslu  milli síðna, færðu síðurnar fram eða aftur."
+msgstr "Vandamál með færslu milli síðna, færðu síðurnar fram eða aftur."
 
 #: src/constants.vala.in:53
 msgid "Library"
