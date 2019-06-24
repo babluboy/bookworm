@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2019-04-04 10:38+0000\n"
+"PO-Revision-Date: 2019-06-24 14:46+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 3.7.1-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -118,7 +118,7 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Vandamál með færslu  milli síðna, færðu síðurnar fram eða aftur."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -382,11 +382,11 @@ msgstr "Bæta glósu við valinn texta"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Fara á fyrri síðu"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Fara á næstu síðu"
 
 #: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
@@ -438,7 +438,7 @@ msgstr "Lestrarsnið"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Fjöldi bóka á hverri síðu í safninu"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
