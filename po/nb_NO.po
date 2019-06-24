@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2019-06-21 16:19+0000\n"
+"PO-Revision-Date: 2019-06-25 15:01+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/nb_NO/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7\n"
+"X-Generator: Weblate 3.7.1-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -118,8 +118,9 @@ msgstr ""
 "plasseringen: "
 
 #: src/constants.vala.in:52
+#, fuzzy
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Feil i sidenavigasjon, flytt sidene forover eller bakover."
 
 #: src/constants.vala.in:53
 msgid "Library"
