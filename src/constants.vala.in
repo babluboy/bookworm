@@ -44,7 +44,7 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_WELCOME_MESSAGE_SUBTITLE = _("Build your library by adding eBooks");
 	public const string TEXT_FOR_WELCOME_OPENDIR_MESSAGE = _("Select an eBook to read");
 	public const string TEXT_FOR_EXTRACTION_ISSUE = _("Problem in extracting contents of book. Ensure there is a valid eBook file here: ");
-	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid MIME-type detected. Check format for this eBook: ");
+	public const string TEXT_FOR_MIMETYPE_ISSUE = _("Invalid media type detected. Check format for this eBook: ");
 	public const string TEXT_FOR_CONTENT_ISSUE = _("Invalid content found. Ensure there is a valid eBook file here: ");
 	public const string TEXT_FOR_PARSING_ISSUE = _("eBook could not be parsed. Ensure there is a valid eBook file here: ");
 	public const string TEXT_FOR_FORMAT_NOT_SUPPORTED = _("Bookworm does not support the format of the file found here: ");
@@ -76,8 +76,8 @@ namespace BookwormApp.Constants {
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_TAGS = _("Update Tags");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_AUTHOR = _("Update Author");
 	public const string TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER = _("Update Cover Image");
-	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view (F11)");
-	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Exit full screen view (Esc)");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter fullscreen view (F11)");
+	public const string TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Exit fullscreen view (Esc)");
 	public const string TEXT_FOR_PAGE_CONTEXTMENU_WORD_MEANING = _("Check Word Meaning");
 	public const string TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION = _("Annotate selected text");
 	public const string TEXT_FOR_FILE_CHOOSER_FILTER_BOOKS = _("Books");
@@ -111,8 +111,8 @@ namespace BookwormApp.Constants {
 	public const string TOOLTIP_TEXT_FOR_READING_RIGHT_ALIGN = _("Align right");
 	public const string TOOLTIP_TEXT_FOR_UPDATING_COVER_IMAGE = _("Update cover image");
 	public const string TOOLTIP_TEXT_FOR_PROFILE = _("Apply theme for this colour profile");
-	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter full screen view and Esc key to undo");
-	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Enter full screen view and Esc key to undo");
+	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_ENTRY = _("Enter fullscreen view and Esc key to undo");
+	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_FULL_SCREEN_EXIT = _("Enter fullscreen view and Esc key to undo");
 	public const string TOOLTIP_TEXT_FOR_ADD_DIRECTORY = _("Add folder to scan for books");
 	public const string TOOLTIP_TEXT_FOR_REMOVE_DIRECTORY = _("Remove displayed folder from book scan");
 	public const string TOOLTIP_TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION = _("Add annotation to selected text");
