@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2019-04-19 12:33+0000\n"
-"Last-Translator: Rui Mendes <xz9@protonmail.com>\n"
+"PO-Revision-Date: 2019-06-27 13:01+0000\n"
+"Last-Translator: gabriellluz <andriusgabriel@live.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/pt/>\n"
 "Language: pt\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 3.7.1-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -71,9 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Procurar por título, autor e etiquetas"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Parece que o Bookworm está sem livros."
+msgstr "Parece que o Bookworm está sem livros"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -120,6 +119,8 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Problema na navegação de páginas. Por favor, avance as páginas para frente "
+"ou retorne."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -387,11 +388,11 @@ msgstr "Adicionar anotação ao texto selecionado"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Ir para a página anterior"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Ir para a próxima página"
 
 #: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
@@ -443,7 +444,7 @@ msgstr "Perfil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Número de livros por página na biblioteca"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -587,28 +588,24 @@ msgid "Right to Left Reading"
 msgstr "Leitura da direita para a esquerda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
-#, fuzzy
 msgid "Support for right-to-left script"
-msgstr "Suporte a leitura da direita para a esquerda"
+msgstr "Suporte à leitura de direita para a esquerda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
 msgstr "Um novo ícone e novas imagens de capas"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
-#, fuzzy
 msgid "Better support for EPUB table of contents"
 msgstr "Melhor suporte a Índices EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
 msgstr "Visualizações de anotações e página dupla"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
-#, fuzzy
 msgid "Support for MOBI format and UX improvements"
-msgstr "Suporte ao formato mobi e melhoramentos na experiência do utilizador"
+msgstr "Suporte ao formato MOBI e melhorias na experiência do usuário"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
@@ -617,14 +614,12 @@ msgstr ""
 "personalizações de preferências"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
-#, fuzzy
 msgid "Comics support and UX improvements"
-msgstr "Suporte a Comics e melhoramentos na experiência do utilizador"
+msgstr "Suporte a quadrinhos e melhorias na experiência do usuário"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
-#, fuzzy
 msgid "PDF support and UX improvements"
-msgstr "Suporte a PDF e melhoramentos na experiência do utilizador"
+msgstr "Suporte a PDF e melhorias na experiência do usuário"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
