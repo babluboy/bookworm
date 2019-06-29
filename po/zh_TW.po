@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2019-01-12 18:06+0000\n"
-"Last-Translator: Louies <louies0623@gmail.com>\n"
+"PO-Revision-Date: 2019-06-30 14:01+0000\n"
+"Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -47,7 +47,7 @@ msgstr "一個電子書閱讀器"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Weblate 翻譯"
+msgstr "Weblate 翻譯者"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
@@ -70,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "透過標題、作者和標籤搜尋"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "看來Bookworm沒任何書。"
+msgstr "看來 Bookworm 沒任何書"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -112,7 +111,7 @@ msgstr "無法取得要求的內容。請移除和添加此電子書： "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "在頁面導航中有問題，請向前或向後移動頁面。"
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -291,9 +290,8 @@ msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "從書庫移除選取的書藉（電字書檔案不會被刪除）"
 
 #: src/constants.vala.in:98
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "選一本書閱讀"
+msgstr "選擇書籍以啟用移除"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
@@ -373,11 +371,11 @@ msgstr "註釋選取的文字"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "前往上一頁"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "前往下一頁"
 
 #: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
@@ -429,7 +427,7 @@ msgstr "簡介"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "書庫中每一頁的書籍數量"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -485,12 +483,10 @@ msgid "A focused eBook reader"
 msgstr "一個電子書閱讀器"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
-msgstr ""
-"閱讀您喜愛的書籍，而不必擔心不同的格式複雜性，如epub，pdf，mobi，cbr等。"
+msgstr "閱讀您喜愛的書籍，而不必擔心不同的格式複雜性，如 EPUB、PDF、MOBI、CBR 等。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -501,16 +497,14 @@ msgstr ""
 "找到書籍。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
-msgstr ""
-"此版本支持EPUB，MOBI，PRC，PDF和漫畫（CBR和CBZ）格式，支持更多格式即將推出。"
+msgstr "此版本支援 EPUB、MOBI、PRC、PDF 和漫畫（CBR 和 CBZ）格式，支援更多格式的版本即將推出。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr "Bookworm 圖書館視圖"
+msgstr "Bookworm 書庫視圖"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
@@ -518,85 +512,84 @@ msgstr "Bookworm 閱讀視圖"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "這個版本包含一些新的特性、修復以及翻譯："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "新特性："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
-msgstr ""
+msgstr "在選取的文字上按右鍵，在線上字典查詢它的意思"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "加入自訂高亮度標示顏色的選項"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "修復："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
-msgstr ""
+msgstr "避免 Bookworm 開啟連結，例如 HTTP、FTP 等，並使用預設瀏覽器開啟它們"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "修復了書籍中前幾頁列重疊的問題"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "使用 GResource 來加速載入圖示、腳本等等。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "一些 CSS 與 Juno 相容性的小問題"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "從右到左閱讀"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "支援從右到左的書寫"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "嶄新的圖示和新的封面圖片"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "對 EPUB 目錄較好的支援"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "註釋標籤"
+msgstr "註釋和雙頁視圖"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "支援 MOBI 格式和改進使用者體驗"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "改進清單視圖和其他偏好設定的使用者體驗"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "漫畫支援和改進使用者體驗"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF 支援和改進使用者體驗"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "最初版本，支援 EPUB 格式"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
