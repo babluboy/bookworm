@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2019-06-05 11:23+0000\n"
-"Last-Translator: Andrea Bruehlmann <login@swisscreatebusinessmanager.com>\n"
+"PO-Revision-Date: 2019-06-30 14:01+0000\n"
+"Last-Translator: Andreas Kleinert <Andy.Kleinert@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Problem in der Seitennavigation. Bitte vor- oder zurückblättern."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -393,11 +393,11 @@ msgstr "Kommentar zum markierten Text hinzufügen"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Vorherige Seite öffnen"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Nächste Seite öffnen"
 
 #: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
@@ -449,7 +449,7 @@ msgstr "Profil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Anzahl von Büchern pro Seite in der Übersicht"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
