@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-20 01:38+0530\n"
-"PO-Revision-Date: 2019-06-23 22:01+0000\n"
-"Last-Translator: Gökhan Demirden <gkdemirden@gmail.com>\n"
+"PO-Revision-Date: 2019-07-14 20:01+0000\n"
+"Last-Translator: abdullahcanakci <abdullahcanakci.0@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tr/>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1-dev\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -120,7 +120,7 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Sayfa yönlendirmede hata, lütfen önceki veya sonraki sayfaya geçiniz."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -440,7 +440,7 @@ msgstr "Profil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Kütüphanede sayfa başına kitap sayısı"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -500,18 +500,24 @@ msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"Sevdiğiniz kitapları EPUB, PDF, MOBI, CBR vb. format sıkıntısı yaşamadan "
+"okuyun."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Kitaplığınızdaki kitapları etiketleyerek ve meta verilerini güncelleyerek, "
+"arama sırasında daha çabuk bulabilirsiniz."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
+"Bu version EPUB, MOBI, PRC, PDF ve çizgi romanları (CBR ve CBZ) "
+"desteklemektedir. Daha fazla format desteği planlanmaktadır."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -523,7 +529,7 @@ msgstr "Bookworm Okuma Görünümü"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Bu güncelleme kimi yeni özellikler, düzeltmeler ve çeviriler içeriyor:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
@@ -533,50 +539,55 @@ msgstr "Yeni Özellikler:"
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Vurgulanmış bir kelimeye sağ tıklayarak çevrimiçi sözlükte anlamına "
+"bakabilirsiniz"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Vurgu rengini kişiselleştirme seçeneği eklendi"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "Düzeltmeler:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"HTTP, FTP gibi linkleri Bookworm'un açmasını engelleyerek, onlar için "
+"varsayılan tarayıcıyı kullan"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"Kitabın ilk bir kaç sayfasında satırların üst üste gelme sorunu düzeltildi"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "GResource kullanılarak simge, betik vb. yükleme hızı arttırıldı."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Juno'ya uygunluk için kimi CSS düzeltmeleri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Sağdan sola okuma"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Sağdan sola dizgi için destek"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Gözalıcı yeni simge ve kapak resimleri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "EPUB, içindekiler için daha iyi destek"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
 msgid "Annotations and two page views"
@@ -584,27 +595,27 @@ msgstr "Notlandırma ve çift sayfa görünümü"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "MOBI için destek ve kullanıcı deneyimi geliştirmeleri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "Liste görünümü için deneyim geliştirmesi ve kişiselleştirme seçenekleri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Çizgi roman desteği ve kullanıcı deneyimi geliştirmeleri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF desteği ve kullanıcı deneyimi geliştirmeleri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "EPUB desteği ile ilk yayın"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
 
 #~ msgid "Website"
 #~ msgstr "Web Sitesi"
