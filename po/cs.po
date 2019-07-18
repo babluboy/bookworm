@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2019-02-03 08:09+0000\n"
+"PO-Revision-Date: 2019-07-19 09:05+0000\n"
 "Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "cs/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -70,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Hledat podle názvu, autora a značek"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Vypadá to, že v Bookwormu (knihomolovi) nejsou žádné knihy."
+msgstr "Vypadá to, že v Bookwormu (knihomolovi) nejsou žádné knihy"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -122,6 +121,7 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Potíže při pohybu po stranách. Posuňte, prosím, strany dopředu nebo dozadu."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -308,9 +308,8 @@ msgstr ""
 "smazán)"
 
 #: src/constants.vala.in:98
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Vybrat elektronickou knihu ke čtení"
+msgstr "Vybrat knihy pro povolení odstranění"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
@@ -392,11 +391,11 @@ msgstr "Přidat k vybranému textu poznámku"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Jít na předchozí stranu"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Jít na další stranu"
 
 #: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
@@ -448,7 +447,7 @@ msgstr "Profil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Počet knih na stranu v knihovně"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -506,13 +505,12 @@ msgid "A focused eBook reader"
 msgstr "Pozoruhodná čtečka elektronických knih"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
-"Čtěte milované knihy bez starostí kvůli odlišným formátům (EPUB, PDF, MOBI, "
-"CBR a další)."
+"Čtěte milované knihy bez starostí kvůli záludnostem odlišných formátů, jako "
+"jsou EPUB, PDF, MOBI, CBR a další."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -524,13 +522,12 @@ msgstr ""
 "značkách založeného filtrování rychle."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
-"Tato verze podporuje formáty elektronických knih EPUB, MOBI, PRC, PDF a "
-"formáty kreslených příběhů (CBR a CBZ) s tím, že podpora dalších přijde brzy."
+"Tato verze podporuje knižní formáty EPUB, MOBI, PRC, PDF a formáty "
+"kreslených příběhů (CBR a CBZ) s tím, že podpora dalších přijde brzy."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -542,85 +539,89 @@ msgstr "Čtenářský pohled"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Toto vydání má některé nové vlastnosti, opravy a nové překlady:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "Nové vlastnosti:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Klepnutí pravým tlačítkem myši na vybrané slovo a vyhledání jeho významu v "
+"internetovém slovníku"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Přidána volby pro přizpůsobení barvy zvýraznění"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "Opravy:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Zabránění Bookwormu v otevírání odkazů, jako jsou HTTP, FTP a další, a "
+"použití výchozího prohlížeče k jejich otevření"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"Opraven problém s překrýváním řádků na několika prvních stranách v knize"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "Použití GResource ke zrychlení nahrávání ikon, skriptů atd."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Menší slučitelnost CSS s Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Čtení zprava doleva"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Podpora pro skript zprava doleva"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Blýskající se nová ikona a nové obrázky obalů"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Lepší podpora pro obsah EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "Značky poznámek"
+msgstr "Vysvětlivky a zobrazení na dvě strany"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Podpora pro formát MOBI a vylepšení UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "Vylepšení UX pro seznamové zobrazení a jiné úpravy nastavení"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Podpora pro kreslené příběhy a vylepšení UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "Podpora pro PDF a vylepšení UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Počáteční vydání s podporou pro formát EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
 msgid "Siddhartha Das"
