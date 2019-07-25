@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2018-12-30 14:08+0000\n"
+"PO-Revision-Date: 2019-08-01 05:12+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/et/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -71,9 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Otsi tiitli, autori ja siltide järgi"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Tundub, et Bookwormil ei ole raamatuid."
+msgstr "Tundub, et Bookwormil ei ole raamatuid"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -119,6 +118,8 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Probleem lehekülgede navigeerimisel. Palun liiguta lehekülgi edasi või "
+"tagasi."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -301,9 +302,8 @@ msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "Kustuta valitud raamatud raamatukogust (eRaamatu fail jääb alles)"
 
 #: src/constants.vala.in:98
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Vali lugemiseks e-raamat"
+msgstr "Eemaldamise lubamiseks vali raamatuid"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
@@ -383,11 +383,11 @@ msgstr "Lisa valitud tekstile märkmeid"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Mine eelmisele leheküljele"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Mine järgmisele leheküljele"
 
 #: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
@@ -439,7 +439,7 @@ msgstr "Profiil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Raamatukogu raamatute arv leheküljel"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -495,13 +495,12 @@ msgid "A focused eBook reader"
 msgstr "Koondav e-raamatu luger"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
-"Loe armastatud raamatuid muretsemata erinevate vormingute nagu epub, pdf, "
-"mobi, cbr jt. keerukusele."
+"Loe erinevates oma armastatud raamatuid muretsemata nende vormingute nagu "
+"EPUB, PDF, MOBI, CBR jt pärast."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -512,13 +511,12 @@ msgstr ""
 "et metaandmete abil raamatuid kiirelt otsida ja siltide põhjal filtreerida."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
-"See versioon toetab EPUB, MOBI, PRC, PDF and Comics (CBR and CBZ) "
-"vorminguid; täiendavate vormingute tugi lisandub peagi."
+"See versioon toetab EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) vorminguid;"
+" täiendavate vormingute tugi lisandub peagi."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -530,11 +528,11 @@ msgstr "Käivita Bookworm lugemisrežiimis"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Sellel versioonil on mõned uued funktsioonid, parandused ja tõlked:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "Uued funktsioonid:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
@@ -586,9 +584,8 @@ msgid "Better support for EPUB table of contents"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "Annotatsioonide sildid"
+msgstr "Annotatsioonid ja kahe lehe vaated"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
