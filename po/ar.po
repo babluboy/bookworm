@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 21:36+0530\n"
-"PO-Revision-Date: 2018-10-30 21:23+0000\n"
-"Last-Translator: Youssif Shaaban Alsager <ysh-alsager@hotmail.com>\n"
+"PO-Revision-Date: 2019-08-06 22:23+0000\n"
+"Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ar/>\n"
 "Language: ar\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -71,9 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "البحث بحسب العنوان والمؤلف والعلامات"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "يبدو أن دودة الكتب لا يحتوي على أي كتب."
+msgstr "يبدو أن دودة الكتب لا يحتوي على أي كتب"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -120,7 +119,7 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "مشكلة في تصفح الصفحة، ارجع أو تقدم رجاءا."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -151,12 +150,11 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "اضغط علي رابط للإنتقال إلى الإشارة المرجعية"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"لم يتم تعيين إشارات مرجعية في BBB، اضغط على رمز دودة الكتب فى الشريط العلوي "
+"لم يتم تعيين إشارات مرجعية في BBB، اضغط على رمز دودة الكتب في الشريط العلوي "
 "لإضافة علامة"
 
 #: src/constants.vala.in:61
@@ -304,9 +302,8 @@ msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr "إزالة الكتب المحددة من المكتبة (لن يتم حذف ملف الكتاب الإلكتروني)"
 
 #: src/constants.vala.in:98
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "اختر كتاب إلكتروني لقراءته"
+msgstr "اختر كتبا لتمكين الحذف"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
@@ -386,11 +383,11 @@ msgstr "إضافة تعليق توضيحي إلى النص المحدد"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "ارجع للصفحة السابقة"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "اذهب للصفحة التالية"
 
 #: src/constants.vala.in:122 src/constants.vala.in:149
 msgid "Preferences"
@@ -442,7 +439,7 @@ msgstr "الملف الشخصي"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "عدد الكتب في الصفحة في المكتبة"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -486,12 +483,10 @@ msgid "Read and manage eBooks"
 msgstr "قراءة وإدارة الكتب اﻹلكترونية"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
-#, fuzzy
 msgid "com.github.babluboy.bookworm"
 msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
-#, fuzzy
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
@@ -500,13 +495,12 @@ msgid "A focused eBook reader"
 msgstr "قارئ كتب الكتروني متقدم"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
-#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
-"اقرأ الكتب التي تحب دون الحاجة إلى القلق حول مختلف الصيغ المعقدة مثل epub, "
-"pdf, mobi, cbr, إلخ."
+"اقرأ الكتب التي تحب دون الانشغال بمختلف الصيغ المعقدة مثل epub, pdf, mobi, "
+"cbr, إلخ."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -518,13 +512,12 @@ msgstr ""
 "باستخدام العلامات."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
 "with support for more formats to follow soon."
 msgstr ""
-"يدعم هذا الإصدار تنسيقات EPUBو MOBIو PRCو PDF و Comics (CBR و CBZ) مع إضافة "
-"دعم لمزيد من التنسيقات قريبا."
+"يدعم هذا الإصدار تنسيقات   EPUBو MOBIو PRCو PDF و Comics (CBR و CBZ) مع "
+"إضافة دعم لمزيد من التنسيقات قريبا."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -536,87 +529,87 @@ msgstr "عرض قراءة دودة الكتب"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "هذا الإصدار به مزايا وإصلاح وترجمات جديدة:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 msgid "New Features:"
-msgstr ""
+msgstr "مزايا جديدة:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
-msgstr ""
+msgstr "انقر باليمنى على الكلمة المختارة وابحث عن معناها في معجم على النت"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "ميزة مضافة لتخصيص لون الإبراز"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 msgid "Fixes:"
-msgstr ""
+msgstr "إصلاحات:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"منع دودة الكتب من فتح روابط مثل HTTP وFTP وغيرها، واستعمل المتصفح التلقائية "
+"لفتحها"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "إصلاح مشكلة تداخل السطر في الصفحتين الأوليين في الكتاب"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "استعمل GResource لتسريع تحميل الأيقونات والسكريبتات وغيرها."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "بعض  ملاءمة طفيفة لأنماط العرض CSS مع Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:48
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "قراءة من اليمين إلى اليسار"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:50
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "دعم الكتابة من اليمين إلى اليسار"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "أيقونة لامعة وصورة غلاف جديدتين"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:52
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "دعم أفضل لجدول محتويات EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:58
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "علامات التعليقات التوضيحية"
+msgstr "عرض التعليقات التوضيحية  والصفحتين"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:63
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "دعم صيغة MOBI  وتحسين تجربة المستخدم"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:68
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "تحسين تجربة المستخدم لعرض ا لقائمة وتخصيص الإعدادات الأخرى"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:73
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "دعم القصص المصورة وتجربة المستخدم"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "دعم PDF وتحسين تجربة المستخدم"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:83
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "الإصدار الأول  بدعم صيغة EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:87
-#, fuzzy
 msgid "Siddhartha Das"
 msgstr "Siddhartha Das"
