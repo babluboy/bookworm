@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-08-06 22:23+0000\n"
 "Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -91,7 +91,8 @@ msgstr ""
 "صالح هنا: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
 "تم اكتشاف نوع بروتوكول امتدادات رسائل الإنترنت غير صالح. تحقق من تنسيق هذا "
 "الكتاب الإلكتروني: "
@@ -230,11 +231,13 @@ msgid "Update Author"
 msgstr "تحديث المؤلف"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "الدخول إلى عرض ملء الشاشة (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "إنهاء عرض ملء الشاشة (Esc)"
 
 #: src/constants.vala.in:81
@@ -366,7 +369,8 @@ msgid "Apply theme for this colour profile"
 msgstr "تطبيق السمة على ملف تعريف اللون المحدد"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "الدخول إلى عرض ملء الشاشة (مفتاح Esc للتراجع)"
 
 #: src/constants.vala.in:116
@@ -389,7 +393,7 @@ msgstr "ارجع للصفحة السابقة"
 msgid "Go to next page"
 msgstr "اذهب للصفحة التالية"
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "التفضيلات"
 
@@ -445,27 +449,27 @@ msgstr "عدد الكتب في الصفحة في المكتبة"
 msgid "Reset to default values"
 msgstr "إعادة التعيين إلى القيم الافتراضية"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "كتاب غير معروف"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "حول"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "اختيار صورة"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "اختر مجلد"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "اختر كتاب إلكتروني"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "جاري الإضافة "
 

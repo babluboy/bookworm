@@ -248,6 +248,58 @@ public class BookwormApp.DB{
     return listOfBooks;
   }
 
+  public static BookwormApp.Book getBookFromDB(string book_location){
+    info("[START] [FUNCTION:getBookFromDB] Attempting to search DB for book.location="+book_location);
+    Statement stmt;
+    BookwormApp.Book aBook = new BookwormApp.Book();
+    queryString = "SELECT id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, BOOK_LAST_READ_PAGE_NUMBER, BOOK_PUBLISH_DATE, TAGS, ANNOTATION_TAGS, RATINGS, CONTENT_EXTRACTION_LOCATION, BOOK_TOTAL_PAGES, creation_date, modification_date FROM " + BOOKWORM_TABLE_BASE_NAME + BOOKWORM_TABLE_VERSION;
+    //query db for matching book location
+    queryString = queryString + " WHERE " + " BOOK_LOCATION LIKE '"+book_location+"'";
+    debug("Library Search Query with criteria[" + book_location + "]:" + queryString);
+    executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
+    if (executionStatus != Sqlite.OK) {
+        debug("Error on executing Query:"+queryString);
+	 		warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+	}else{
+        while (stmt.step () == ROW) {
+            aBook.setBookId(stmt.column_int(0));
+            aBook.setBookLocation(stmt.column_text (1));
+            aBook.setBookTitle(stmt.column_text (2));
+            aBook.setBookAuthor(stmt.column_text (3));
+            aBook.setBookCoverLocation(stmt.column_text (4));
+            aBook.setIsBookCoverImagePresent((stmt.column_text (5) == "true") ? true:false);
+            aBook.setBookPageNumber(int.parse(stmt.column_text(6)));
+            aBook.setBookPublishDate(stmt.column_text (7));
+            aBook.setBookTags(stmt.column_text (8));
+            aBook.setAnnotationTags(stmt.column_text (9));
+            aBook.setBookRating(int.parse(stmt.column_text(10)));
+            aBook.setBookExtractionLocation(stmt.column_text (11));
+            aBook.setBookTotalPages(int.parse(stmt.column_text (12)));
+            aBook.setBookCreationDate(stmt.column_text (13));
+            aBook.setBookLastModificationDate(stmt.column_text (14));
+            debug("Book details fetched from DB: id="+stmt.column_int(0).to_string()+ 
+                      ",BOOK_LOCATION="+stmt.column_text (1)+
+                      ",BOOK_TITLE="+stmt.column_text (2)+
+                      ",BOOK_AUTHOR="+stmt.column_text (3)+
+                      ",BOOK_COVER_IMAGE_LOCATION="+stmt.column_text (4)+
+                      ",IS_BOOK_COVER_IMAGE_PRESENT="+stmt.column_text (5)+
+                      ",BOOK_LAST_READ_PAGE_NUMBER="+stmt.column_text (6)+
+                      ",BOOK_PUBLISH_DATE="+stmt.column_text (7)+
+                      ",TAGS="+stmt.column_text (8)+
+                      ",ANNOTATION_TAGS="+stmt.column_text (9)+
+                      ",RATINGS="+stmt.column_text (10)+
+                      ",CONTENT_EXTRACTION_LOCATION="+stmt.column_text (11)+
+                      ",BOOK_TOTAL_PAGES="+stmt.column_text (12)+
+                      ",creation_date="+stmt.column_text (13)+
+                      ",modification_date="+stmt.column_text (14)
+                  );
+        }
+    }
+    stmt.reset ();
+    info("[END] [FUNCTION:getBookFromDB] Book fetched ["+aBook.getBookLocation()+"]");
+    return aBook;
+  }
+
   public static BookwormApp.Book getBookMetaDataFromDB(owned BookwormApp.Book aBook){
     info("[START] [FUNCTION:getBookMetaDataFromDB] book.location="+aBook.getBookLocation());
     Statement stmt;

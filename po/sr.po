@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2017-07-25 08:55+0000\n"
 "Last-Translator: Bojan Savnik <bojan.savnik@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bookworm/"
@@ -97,7 +97,7 @@ msgstr ""
 
 #: src/constants.vala.in:47
 #, fuzzy
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr "Откривен неважећи Mime тип. Провери формат књиге на: "
 
 #: src/constants.vala.in:48
@@ -239,12 +239,12 @@ msgstr "Обнови аутора"
 
 #: src/constants.vala.in:79
 #, fuzzy
-msgid "Enter full screen view (F11)"
+msgid "Enter fullscreen view (F11)"
 msgstr "Уђите у режим целог екрана"
 
 #: src/constants.vala.in:80
 #, fuzzy
-msgid "Exit full screen view (Esc)"
+msgid "Exit fullscreen view (Esc)"
 msgstr "Изађи из режима целог екрана"
 
 #: src/constants.vala.in:81
@@ -383,7 +383,7 @@ msgstr ""
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 #, fuzzy
-msgid "Enter full screen view and Esc key to undo"
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Режим целог екрана, \"Esc\" тастер за излаз"
 
 #: src/constants.vala.in:116
@@ -406,7 +406,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Жељене поставке"
 
@@ -464,28 +464,28 @@ msgstr ""
 msgid "Reset to default values"
 msgstr ""
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Непозната књига"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "О програму"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Одабери слику"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 #, fuzzy
 msgid "Select folder"
 msgstr "Одабери слику"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "Одабери еКњигу"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr ""
 

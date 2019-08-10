@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-07-19 09:05+0000\n"
 "Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -90,7 +90,8 @@ msgstr ""
 "elektronické knihy: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
 "Zjištěn neplatný typ MIME. Zkontrolujte formát této elektronické knihy: "
 
@@ -234,11 +235,13 @@ msgid "Update Author"
 msgstr "Aktualizovat autora"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "Otevřít zobrazení celé obrazovky (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "Ukončit zobrazení na celou obrazovku (Esc)"
 
 #: src/constants.vala.in:81
@@ -372,7 +375,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Použít vzhled pro tento barevný profil"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr ""
 "Vstoupit do zobrazení na celou obrazovku a stisknout klávesu Esc pro jeho "
 "opuštění"
@@ -397,7 +401,7 @@ msgstr "Jít na předchozí stranu"
 msgid "Go to next page"
 msgstr "Jít na další stranu"
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Nastavení"
 
@@ -453,27 +457,27 @@ msgstr "Počet knih na stranu v knihovně"
 msgid "Reset to default values"
 msgstr "Obnovit výchozí hodnoty"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Neznámá kniha"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "O programu"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Vybrat obrázek"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Vybrat složku"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "Vybrat elektronickou knihu"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "Přidání "
 

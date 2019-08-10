@@ -266,22 +266,22 @@ public class BookwormApp.fb2Reader {
             debug("Results of cover page query:"+name_of_cover_image);
             if(name_of_cover_image.length > 1 && (name_of_cover_image.split(" ")).length>1){
                 for(int i=0; i<(name_of_cover_image.split(" ")).length;i++){
-                    debug(name_of_cover_image.split(" ") [i]);
                     if(name_of_cover_image.split(" ") [i].contains("href") && (i<(name_of_cover_image.split(" ")).length)){
                         name_of_cover_image = name_of_cover_image.split(" ") [i+1];
                         name_of_cover_image = name_of_cover_image.replace("#","").replace(">","").strip();
-                        if( name_of_cover_image.contains(".png") || 
-                            name_of_cover_image.contains(".jpg") ||
-                            name_of_cover_image.contains(".jpeg") ||
-                            name_of_cover_image.contains(".svg") ||
-                            name_of_cover_image.contains(".gif")
-                        ){
-                            debug("Determined cover image as:"+ name_of_cover_image);
-                            bookCoverLocation = BookwormApp.Utils.getFullPathFromFilename(
-                                    aBook.getBookExtractionLocation(), 
-                                    name_of_cover_image
-                            );
-                            debug ("Overriding image location to:"+ bookCoverLocation);
+                        debug("Determined cover image name as:"+name_of_cover_image);
+                        for(i=0; i<BookwormApp.Constants.FILE_CHOOSER_FILTER_IMAGES.length;i++){
+                            //check if the image is a known file type
+                            debug("Checking if cover image is of type:"+BookwormApp.Constants.FILE_CHOOSER_FILTER_IMAGES[i]);
+                            if(name_of_cover_image.contains(BookwormApp.Constants.FILE_CHOOSER_FILTER_IMAGES[i].replace("*",""))){
+                                debug("Determined cover image as:"+ name_of_cover_image);
+                                bookCoverLocation = BookwormApp.Utils.getFullPathFromFilename(
+                                        aBook.getBookExtractionLocation(), 
+                                        name_of_cover_image
+                                );
+                                debug ("Overriding image location to:"+ bookCoverLocation);
+                                break;
+                            }
                         }
                     }
                 }
@@ -334,14 +334,17 @@ public class BookwormApp.fb2Reader {
         XmlParser thisParser = new XmlParser();
         ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
         extractedDataList = thisParser.extractDataFromXML(fb2_location, inputDataList);
+        //set the author first name
         if(extractedDataList.size > 0 && extractedDataList[0].extractedTagValues.size > 0){
             aBook.setBookAuthor(BookwormApp.Utils.decodeHTMLChars(extractedDataList[0].extractedTagValues[0]));
         }
+        //add the author last name
         if(extractedDataList.size > 1 && extractedDataList[1].extractedTagValues.size > 0){
             aBook.setBookAuthor(
                 aBook.getBookAuthor() + " " +
                 BookwormApp.Utils.decodeHTMLChars(extractedDataList[1].extractedTagValues[0]));
         }
+        //set the title of the book
         if(extractedDataList.size > 2 && extractedDataList[2].extractedTagValues.size > 0){
             aBook.setBookTitle(BookwormApp.Utils.decodeHTMLChars(extractedDataList[2].extractedTagValues[0]));
         }

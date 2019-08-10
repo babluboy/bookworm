@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2017-09-12 22:48+0000\n"
 "Last-Translator: Cûndûllah el-Kurdî <mckucukaslan47@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/bookworm/"
@@ -97,7 +97,7 @@ msgstr ""
 
 #: src/constants.vala.in:47
 #, fuzzy
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
 ":Cureyeke nederbesbar a MIME hat dîtin. Formata pirtûkê di cihê de kontrol "
 "bikin "
@@ -247,12 +247,12 @@ msgstr "Nivîskarê Rojane Bike"
 
 #: src/constants.vala.in:79
 #, fuzzy
-msgid "Enter full screen view (F11)"
+msgid "Enter fullscreen view (F11)"
 msgstr "Herin Dîmendera Tije"
 
 #: src/constants.vala.in:80
 #, fuzzy
-msgid "Exit full screen view (Esc)"
+msgid "Exit fullscreen view (Esc)"
 msgstr "Ji Dîmendera Tije Der Bikeve"
 
 #: src/constants.vala.in:81
@@ -391,7 +391,7 @@ msgstr ""
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 #, fuzzy
-msgid "Enter full screen view and Esc key to undo"
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Ji bo dîmendera tije bitikîne û ji bo jê derkeve pêl ESC bike"
 
 #: src/constants.vala.in:116
@@ -414,7 +414,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Vebijark"
 
@@ -472,27 +472,27 @@ msgstr ""
 msgid "Reset to default values"
 msgstr ""
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Pirtûkê Nenas"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "Derbare"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Wêne Hilbijêre"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Belgeyê Hilbijêre"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "ePirtûk Hilbijêre"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr ""
 

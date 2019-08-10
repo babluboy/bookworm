@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-07-21 22:07+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
@@ -10,8 +10,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.8-dev\n"
 
 #: src/bookworm.vala:110
@@ -91,7 +91,8 @@ msgstr ""
 "файла кнігі: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr "Выяўлены няправільны MIME-тып. Праверце фармат гэтай кнігі: "
 
 #: src/constants.vala.in:48
@@ -230,11 +231,13 @@ msgid "Update Author"
 msgstr "Аднавіць аўтара"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "Уключыць поўнаэкранны выгляд (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "Адключыць поўнаэкранны выгляд (Esc)"
 
 #: src/constants.vala.in:81
@@ -366,7 +369,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Прыняць тэму для гэтага каляровага профілю"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Поўнаэкранны выгляд і клавіша Esc для адмены"
 
 #: src/constants.vala.in:116
@@ -389,7 +393,7 @@ msgstr "Перайсці да папярэдняй старонкі"
 msgid "Go to next page"
 msgstr "Перайсці да наступнай старонкі"
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Налады"
 
@@ -445,27 +449,27 @@ msgstr "Колькасць кніг на адной старонцы біблі�
 msgid "Reset to default values"
 msgstr "Скінуць да агаданых значэнняў"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Невядомая кніга"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "Аб"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Абраць выяву"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Абраць каталог"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "Абраць электронную кнігу"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "Дадаванне "
 

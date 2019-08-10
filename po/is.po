@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-07-14 20:01+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
@@ -91,7 +91,8 @@ msgstr ""
 "rafbók finnist hér: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr "Ógilt MIME-snið fannst. Athugaðu skráarsnið þessarar rafbókar: "
 
 #: src/constants.vala.in:48
@@ -229,11 +230,13 @@ msgid "Update Author"
 msgstr "Uppfæra höfund"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "Fara í skjáfylliham (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "Fara úr skjáfylliham (Esc)"
 
 #: src/constants.vala.in:81
@@ -365,7 +368,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Virkja þema fyrir þetta litasnið"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Fara í skjáfylliham og ESC-lykill mun afturkalla það"
 
 #: src/constants.vala.in:116
@@ -388,7 +392,7 @@ msgstr "Fara á fyrri síðu"
 msgid "Go to next page"
 msgstr "Fara á næstu síðu"
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Kjörstillingar"
 
@@ -444,27 +448,27 @@ msgstr "Fjöldi bóka á hverri síðu í safninu"
 msgid "Reset to default values"
 msgstr "Frumstilla í sjálfgefin gildi"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Óþekkt bók"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "Um hugbúnaðinn"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Veldu mynd"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Veldu möppu"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "Veldu rafbók"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "Bæti við "
 

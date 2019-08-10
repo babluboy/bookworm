@@ -205,7 +205,6 @@ public class BookwormApp.Info:Gtk.Window {
     dictionary_scroll.add (dictionary_box);
     string dictionaryResults = "";
     //Show help text if no word is available for dictionary lookup
-    debug(word);
     if(word == null || word.strip().length < 1){
             dictionaryResultsLabel.set_text( BookwormApp.Constants.TEXT_FOR_DICTIONARY_LOOKUP_TEXT);
     }else{
@@ -239,10 +238,16 @@ public class BookwormApp.Info:Gtk.Window {
     bool hasResultsBeenFound = false;
     bool isSearchResultFocussed = false;
 
-    Gtk.Label searchLabel = new Label(BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_PROCESSING
-                                                                                        .replace("$$$", BookwormApp.Utils.minimizeStringLength
-                                                                                                                     (BookwormApp.AppHeaderBar.headerSearchBar.get_text(), 50))
-                                                                                        .replace("&&&", BookwormApp.Utils.minimizeStringLength(aBook.getBookTitle(), 35)));
+    Gtk.Label searchLabel = new Label(
+                                    BookwormApp.Constants.TEXT_FOR_SEARCH_RESULTS_PROCESSING
+                                        .replace(
+                                            "$$$", BookwormApp.Utils.minimizeStringLength(
+                                                        BookwormApp.AppHeaderBar.headerSearchBar.get_text(), 50)
+                                        )
+                                        .replace(
+                                            "&&&", BookwormApp.Utils.minimizeStringLength(aBook.getBookTitle(), 35)
+                                        )
+                            );
     searchresults_box.pack_start(searchLabel,false,false,0);
 
     //Remove the existing search results Gtk.Box and add the current one

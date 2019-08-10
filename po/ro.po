@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-01-21 21:19+0000\n"
 "Last-Translator: Alexandru Simion <simimy@yahoo.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
@@ -92,7 +92,8 @@ msgstr ""
 "valid pentru a fi citit: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr "Tip MIME nevalid detectat. Verifică formatul acestu eBook: "
 
 #: src/constants.vala.in:48
@@ -231,11 +232,13 @@ msgid "Update Author"
 msgstr "Actualizează Autorul"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "Intră in modul ecran complet (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "Ieși din modul ecran complet (Esc)"
 
 #: src/constants.vala.in:81
@@ -369,7 +372,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Aplică tema pentru acest profil de culor"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Intră în modul ecran complet și apasă ESC pentru a anula"
 
 #: src/constants.vala.in:116
@@ -392,7 +396,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Preferințe"
 
@@ -448,27 +452,27 @@ msgstr ""
 msgid "Reset to default values"
 msgstr "Resetează la valorile implicite"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Carte Necunoscută"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "Despre"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Selectează Imaginea"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Selectează Directorul"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "Selectează eBook"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "Adăugare "
 

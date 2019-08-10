@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-06-19 03:00+0000\n"
 "Last-Translator: Le Do Anh Khoa <ledoanhkhoa@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bookworm/"
@@ -89,7 +89,8 @@ msgstr ""
 "Vấn đề trong trích xuất nội dung của sách. Đảm bảo rằng file eBook hợp lệ: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
 "Định dạng không được hỗ trợ, vui lòng kiểm tra lại định dạng của sách điện "
 "tử. "
@@ -225,11 +226,13 @@ msgid "Update Author"
 msgstr "Cập nhật Tác giả"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "Xem toàn màn hình (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "Thoát (Esc)"
 
 #: src/constants.vala.in:81
@@ -364,7 +367,7 @@ msgstr ""
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 #, fuzzy
-msgid "Enter full screen view and Esc key to undo"
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Thoát (Esc)"
 
 #: src/constants.vala.in:116
@@ -387,7 +390,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Tùy chỉnh"
 
@@ -445,27 +448,27 @@ msgstr ""
 msgid "Reset to default values"
 msgstr "Đặt lại giá trị mặc định"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr ""
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "About"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Chọn ảnh"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Chọn thư mục"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "Chọn ebook"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "Đang thêm vào "
 

@@ -37,11 +37,8 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		contextTitle.append(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_HEADER)
 							.append(" ")
 							.append(aBook.getBookTitle());
-		//restrict the length of the label to 35 characters
-		if(contextTitle.str.length > 35){
-			contextTitle.assign(contextTitle.str.slice(0,35));
-			contextTitle.append("...");
-		}
+		//restrict the length of the label
+		contextTitle.assign(BookwormApp.Utils.minimizeStringLength(contextTitle.str, 35));
 		Label contextTitleLabel = new Label(contextTitle.str);
 		//Add button for updating cover Image
 		Gtk.Label updateCoverLabel = new Gtk.Label(BookwormApp.Constants.TEXT_FOR_BOOK_CONTEXTMENU_UPDATE_COVER);
@@ -109,15 +106,29 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		//Add action for setting Book Title
 		updateTitleEntry.focus_out_event.connect (() => {
 			if(updateTitleEntry.get_text() != null && updateTitleEntry.get_text().length > 0){
-				aBook.setBookTitle(updateTitleEntry.get_text());
+				string title = updateTitleEntry.get_text();
+				if(title == null || title.length < 1){
+				    title = BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE;
+				}
+				//replace special chars from title
+				title = title.replace ("&","and");
+				title = BookwormApp.Utils.minimizeStringLength(title, 4 * BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_BOOK_TITLE);
+				aBook.setBookTitle(title);
 				aBook.setWasBookOpened(true);
 				if(!aBook.getIsBookCoverImagePresent()){
 					//refresh the library view
 					Gtk.Label titleTextLabel = (Gtk.Label) aBook.getBookWidget("TITLE_TEXT_LABEL");
-					titleTextLabel.set_text("<b>"+aBook.getBookTitle()+"</b>");
-					titleTextLabel.set_xalign(0.0f);
+					titleTextLabel.set_text(
+				            "<b>"+
+				            BookwormApp.Utils.breakString(  title, 
+				                                            BookwormApp.Constants.MAX_NUMBER_OF_CHARS_FOR_BOOK_TITLE, 
+				                                            "\n"
+				            )+
+				            "</b>"
+					);
 					titleTextLabel.set_use_markup (true);
 					titleTextLabel.set_line_wrap (true);
+					titleTextLabel.set_halign (Gtk.Align.CENTER);
 		      		titleTextLabel.set_margin_start(BookwormApp.Constants.SPACING_WIDGETS);
 		      		titleTextLabel.set_margin_end(BookwormApp.Constants.SPACING_WIDGETS);
 		      		titleTextLabel.set_max_width_chars(-1);
@@ -716,8 +727,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 		annotationDialog.set_default_size (600, 400);
 		BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap.get(BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
 
-		Gtk.Label annotationsLabel = new Label(BookwormApp.Constants.TEXT_FOR_ANNOTATION +
-																			BookwormApp.Utils.minimizeStringLength (" " + textForAnnotation, 35));
+		Gtk.Label annotationsLabel = new Label(
+					BookwormApp.Constants.TEXT_FOR_ANNOTATION +
+					BookwormApp.Utils.minimizeStringLength (" " + textForAnnotation, 35)
+		);
 		annotationsLabel.set_line_wrap (true);
     	Gtk.TextView annotationsInputTextView = new Gtk.TextView();
     	annotationsInputTextView.set_wrap_mode (Gtk.WrapMode.WORD);

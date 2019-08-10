@@ -143,6 +143,7 @@ namespace BookwormApp.Constants {
 	public const int MAX_NUMBER_OF_LINES_PER_PAGE = 30;
 	public const int MAX_NUMBER_OF_CHARS_PER_LINE = 80;
 	public const int MAX_NUMBER_OF_CHARS_FOR_ANNOTATION_TAB = 50;
+	public const int MAX_NUMBER_OF_CHARS_FOR_BOOK_TITLE = 18;
 
 	public const string TEXT_FOR_UNKNOWN_TITLE = _("Unknown Book");
 	public const string TEXT_FOR_PREF_MENU_ABOUT_ITEM = _("About");

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-06-25 15:01+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
@@ -90,7 +90,8 @@ msgstr ""
 "Verìfica chi bi siet unu documentu vàlidu in sa positzione: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
 "Casta de MIME non vàlida agatada. Verìfica su formatu pro custu libru: "
 
@@ -236,11 +237,13 @@ msgid "Update Author"
 msgstr "Agiorna s'autore"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "Intra in sa vista a ischermu intreu (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "Essi dae sa vista a ischermu intreu (Esc)"
 
 #: src/constants.vala.in:81
@@ -377,7 +380,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Àplica su tema pro custu profilu de colores"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Intra in sa vista a ischermu intreu e incarca sa tecla Esc pro essire"
 
 #: src/constants.vala.in:116
@@ -400,7 +404,7 @@ msgstr "Bae a sa pàgina anteposta"
 msgid "Go to next page"
 msgstr "Bae a sa pàgina imbeniente"
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Preferèntzias"
 
@@ -456,27 +460,27 @@ msgstr "Nùmeru de libros pro pàgina in sa biblioteca"
 msgid "Reset to default values"
 msgstr "Torra a sos valores predefinidos"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Libru disconnotu"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "A pitzu de"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Ischerta un'immàgine"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Ischerta una cartella"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "Ischerta unu e-libru"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "Annanghende "
 

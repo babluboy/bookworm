@@ -468,18 +468,14 @@ public class BookwormApp.contentHandler {
             //check and continue the last book being read - if "Always show library on start is false"
             if((!BookwormApp.Bookworm.settings.is_show_library_on_start) && (BookwormApp.Bookworm.settings.book_being_read != "")){
                 //check if the library contains the book being read last
-                if(BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.str.index_of(
-                        BookwormApp.Bookworm.settings.book_being_read) != -1)
-                    {
+                BookwormApp.Book lastReadBook = BookwormApp.DB.getBookFromDB(BookwormApp.Bookworm.settings.book_being_read);
+                if(lastReadBook.getBookLocation() != null && lastReadBook.getBookLocation().length > 1){
+                    debug("Opening the last read book ["+BookwormApp.Bookworm.settings.book_being_read+"]");
+                    BookwormApp.Bookworm.locationOfEBookCurrentlyRead = BookwormApp.Bookworm.settings.book_being_read;
                     //Initiate Reading the book
-                    BookwormApp.Book lastReadBook = BookwormApp.Bookworm.libraryViewMap.get(
-                                BookwormApp.Bookworm.settings.book_being_read);
-                    if(lastReadBook != null){
-                        //set the name of the book being currently read
-                        BookwormApp.Bookworm.locationOfEBookCurrentlyRead = BookwormApp.Bookworm.settings.book_being_read;
-                        //Initiate Reading the book
-                        BookwormApp.Bookworm.readSelectedBook(lastReadBook);
-                    }
+                    BookwormApp.Bookworm.readSelectedBook(lastReadBook);
+                }else{
+                    warning("The last read book ["+BookwormApp.Bookworm.settings.book_being_read+"] was not found in the library, so showing the library view instead of opening the last read book");
                 }
             }
         }

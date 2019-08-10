@@ -810,7 +810,7 @@ namespace BookwormApp.Utils {
 		public static string breakString (string originalString, int breakLength, string breakString){
 			StringBuilder formattedString = new StringBuilder("");
 			//check if the string is at least as long as the specified break length
-			if(originalString.length > breakLength) {			
+			if(originalString.length > breakLength) {
 				StringBuilder extractedString = new StringBuilder("");
 				int charCount = 0;
 				//loop until there are enough chars left in the string
@@ -825,8 +825,8 @@ namespace BookwormApp.Utils {
 					}else{
 						//the extracted string does not have a break - introduce the break
 						formattedString.append(extractedString.str).append(breakString);
-					}		
-					charCount = charCount+breakLength;		
+					}
+					charCount = charCount+breakLength;
 				}
 				//append any left over chars
 				formattedString.append(originalString.slice(charCount, originalString.length));

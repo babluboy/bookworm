@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-06-25 15:01+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -91,7 +91,8 @@ msgstr ""
 "gyldig e-bok her: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr "Ugyldig MIME-type oppdaget. Sjekk bokformatet for denne e-boken: "
 
 #: src/constants.vala.in:48
@@ -232,11 +233,13 @@ msgid "Update Author"
 msgstr "Oppdater forfatter"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "Fullskjermsvisning (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "Avslutt fullskjermsvisning (Esc)"
 
 #: src/constants.vala.in:81
@@ -369,7 +372,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Ikle drakt for denne fargeprofilen"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Gå inn i fullskjermsvisning og trykk Esc-knappen for å angre"
 
 #: src/constants.vala.in:116
@@ -392,7 +396,7 @@ msgstr "Gå til forrige side"
 msgid "Go to next page"
 msgstr "Gå til neste side"
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Innstillinger"
 
@@ -448,27 +452,27 @@ msgstr "Antall bøker per side i biblioteket"
 msgid "Reset to default values"
 msgstr "Tilbakestill til forvalgte verdier"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Ukjent bok"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "Om"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Velg bilde"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Velg mappe"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "Velg e-bok"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "Legger til "
 

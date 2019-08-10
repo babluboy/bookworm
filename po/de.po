@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2019-06-30 14:01+0000\n"
 "Last-Translator: Andreas Kleinert <Andy.Kleinert@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -90,7 +90,8 @@ msgstr ""
 "es hier eine gültige eBook-Datei gibt: "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr "Ungültiger MIME-Type entdeckt. Format dieses E-Book überprüfen: "
 
 #: src/constants.vala.in:48
@@ -237,11 +238,13 @@ msgid "Update Author"
 msgstr "Autor aktualisieren"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "Vollbildmodus starten (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "Vollbildmodus beenden (ESC)"
 
 #: src/constants.vala.in:81
@@ -376,7 +379,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Design für dieses Farbprofil festlegen"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Vollbildmodus öffnen und mit ESC beenden"
 
 #: src/constants.vala.in:116
@@ -399,7 +403,7 @@ msgstr "Vorherige Seite öffnen"
 msgid "Go to next page"
 msgstr "Nächste Seite öffnen"
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -455,27 +459,27 @@ msgstr "Anzahl von Büchern pro Seite in der Übersicht"
 msgid "Reset to default values"
 msgstr "Auf Standardwerte zurücksetzen"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "Unbekanntes Buch"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "Über …"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "Grafik auswählen"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "Verzeichnis wählen"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "E-Book auswählen"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "Wird hinzugefügt … "
 

@@ -53,12 +53,10 @@ public class BookwormApp.AppWindow {
 
         //Create a grid to display the books cover images in library
         library_grid = new Gtk.FlowBox();
-        library_grid.set_border_width (0);
-        library_grid.column_spacing = 0;
+        library_grid.set_border_width (BookwormApp.Constants.SPACING_WIDGETS);
+        library_grid.column_spacing = BookwormApp.Constants.SPACING_WIDGETS;
         library_grid.row_spacing = BookwormApp.Constants.SPACING_WIDGETS;
-        //library_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
         library_grid.set_valign(Gtk.Align.START);
-        //library_grid.set_filter_func(BookwormApp.Library.libraryViewFilter);
 
         library_grid_scroll = new ScrolledWindow (null, null);
         library_grid_scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -396,6 +394,7 @@ public class BookwormApp.AppWindow {
                                             pageActionAnnotateSelection, 
                                             BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION, 
                                             null);
+
                 context_menu.append(pageContextMenuItemWordMeaning);
                 context_menu.append(pageContextMenuItemAnnotateSelection);
 
@@ -407,9 +406,16 @@ public class BookwormApp.AppWindow {
 
                 //Set Context menu items
                 pageActionWordMeaning.activate.connect (() => {
-                    BookwormApp.Info.populateDictionaryResults (
-                        BookwormApp.Utils.setWebViewTitle("document.title = getSelectionText()")
-                    );
+                    string selected_text = BookwormApp.Utils.setWebViewTitle("document.title = getSelectionText()");
+                    if(selected_text != null && selected_text.length > 0){
+                        BookwormApp.Info.populateDictionaryResults (selected_text);
+                    }
+                });
+                pageActionAnnotateSelection.activate.connect (() => {
+                    string selected_text = BookwormApp.Utils.setWebViewTitle("document.title = getSelectionText()");
+                    if(selected_text != null && selected_text.length > 0){
+                        BookwormApp.AppDialog.createAnnotationDialog (selected_text);
+                    }
                 });
                 pageActionFullScreenEntry.activate.connect (() => {
                     book_reading_footer_box.hide();
@@ -419,11 +425,7 @@ public class BookwormApp.AppWindow {
                     book_reading_footer_box.show();
                     BookwormApp.Bookworm.window.unfullscreen();
                 });
-                pageActionAnnotateSelection.activate.connect (() => {
-                    BookwormApp.AppDialog.createAnnotationDialog (
-                        BookwormApp.Utils.setWebViewTitle("document.title = getSelectionText()")
-                    );
-                });
+
                 return false;
         });
         //capture the url clicked on the webview and action the navigation type clicks

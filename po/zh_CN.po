@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2017-11-27 16:45+0000\n"
 "Last-Translator: Jack Yu <jackyu1996@hotmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -94,7 +94,7 @@ msgstr "提取书籍内容出现问题。请检查指定位置是否有书籍可
 
 #: src/constants.vala.in:47
 #, fuzzy
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr "检测到的 Mime 类型无效。请检查该位置的电子书格式： "
 
 #: src/constants.vala.in:48
@@ -234,12 +234,12 @@ msgstr "更新作者"
 
 #: src/constants.vala.in:79
 #, fuzzy
-msgid "Enter full screen view (F11)"
+msgid "Enter fullscreen view (F11)"
 msgstr "进入全屏模式"
 
 #: src/constants.vala.in:80
 #, fuzzy
-msgid "Exit full screen view (Esc)"
+msgid "Exit fullscreen view (Esc)"
 msgstr "退出全屏模式"
 
 #: src/constants.vala.in:81
@@ -377,7 +377,7 @@ msgstr ""
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 #, fuzzy
-msgid "Enter full screen view and Esc key to undo"
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "进入全屏模式，按 Esc 键退出"
 
 #: src/constants.vala.in:116
@@ -400,7 +400,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "选项"
 
@@ -458,27 +458,27 @@ msgstr ""
 msgid "Reset to default values"
 msgstr ""
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "未知书籍"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "关于"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "选择图像"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "选择文件夹"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "选择电子书"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr ""
 

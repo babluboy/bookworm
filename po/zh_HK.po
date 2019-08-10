@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 21:36+0530\n"
+"POT-Creation-Date: 2019-08-10 18:50+0530\n"
 "PO-Revision-Date: 2018-11-08 21:06+0000\n"
 "Last-Translator: Kenman <kentsangkm@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <https://hosted.weblate.org/projects/"
@@ -89,7 +89,8 @@ msgid ""
 msgstr "打唔開本電子書。你肯定本書仲係喥? "
 
 #: src/constants.vala.in:47
-msgid "Invalid MIME-type detected. Check format for this eBook: "
+#, fuzzy
+msgid "Invalid media type detected. Check format for this eBook: "
 msgstr "唔支援呢種MIME格式。請查下本書格式: "
 
 #: src/constants.vala.in:48
@@ -220,11 +221,13 @@ msgid "Update Author"
 msgstr "更改作者資料"
 
 #: src/constants.vala.in:79
-msgid "Enter full screen view (F11)"
+#, fuzzy
+msgid "Enter fullscreen view (F11)"
 msgstr "全畫面 (F11)"
 
 #: src/constants.vala.in:80
-msgid "Exit full screen view (Esc)"
+#, fuzzy
+msgid "Exit fullscreen view (Esc)"
 msgstr "關閉全畫面 (Esc)"
 
 #: src/constants.vala.in:81
@@ -357,7 +360,8 @@ msgid "Apply theme for this colour profile"
 msgstr "套用主題"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-msgid "Enter full screen view and Esc key to undo"
+#, fuzzy
+msgid "Enter fullscreen view and Esc key to undo"
 msgstr "全畫面 (Esc 離開)"
 
 #: src/constants.vala.in:116
@@ -380,7 +384,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:122 src/constants.vala.in:149
+#: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
 msgstr "設定"
 
@@ -436,27 +440,27 @@ msgstr ""
 msgid "Reset to default values"
 msgstr "重設"
 
-#: src/constants.vala.in:147
+#: src/constants.vala.in:148
 msgid "Unknown Book"
 msgstr "不知名書本"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "About"
 msgstr "關於"
 
-#: src/dialog.vala:65
+#: src/dialog.vala:62
 msgid "Select Image"
 msgstr "揀選圖片"
 
-#: src/dialog.vala:567
+#: src/dialog.vala:578
 msgid "Select folder"
 msgstr "揀選文件夾"
 
-#: src/window.vala:322 src/window.vala:612
+#: src/window.vala:320 src/window.vala:614
 msgid "Select eBook"
 msgstr "揀選電子書"
 
-#: src/library.vala:625
+#: src/library.vala:576
 msgid "Adding "
 msgstr "增加 "
 
