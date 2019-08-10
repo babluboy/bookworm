@@ -1,5 +1,5 @@
 [Contractor Entry]
 Name=Bookworm
 Description=eBook Reader
-MimeType=application/epub+zip;application/pdf;application/x-pdf;application/cbr;application/x-cbz;application/x-mobipocket-ebook;
+MimeType=application/epub+zip;application/pdf;application/x-pdf;application/cbr;application/x-cbz;application/x-mobipocket-ebook;application/fb2+xml;application/fb2+zip;
 Exec=com.github.babluboy.bookworm %F
