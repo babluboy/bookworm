@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-10 19:22+0530\n"
+"POT-Creation-Date: 2019-08-10 23:39+0530\n"
 "PO-Revision-Date: 2019-06-09 04:53+0000\n"
 "Last-Translator: THANOS SIOURDAKIS <siourdakisthanos@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -523,9 +523,10 @@ msgstr ""
 "αναζήτηση μετα-δεδομένων και φιλτράρισμα με βάση τις ετικέτες."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
+#, fuzzy
 msgid ""
-"This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
-"with support for more formats to follow soon."
+"This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
+"formats with support for more formats to follow soon."
 msgstr ""
 "Η έκδοση αυτή υποστηρίζει EPUB, MOBI, PRC, PDF και κόμικ (CBR και CBZ) με "
 "την υποστήριξη για περισσότερους τύπους αρχείων να έπεται."
@@ -539,31 +540,93 @@ msgid "Bookworm Reading View"
 msgstr "Εκτέλεση Bookworm σε λειτουργία ανάγνωσης"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
+#: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
 msgstr ""
 "Αυτή η έκδοση έχει κάποια νέα χαρακτηριστικά, επιδιορθώσεις και νέες "
 "μεταφράσεις:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
+#: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
 msgstr "Νέα χαρακτηριστικά:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
+msgid "Library is paginated to load large libraries quickly"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:35
+#, fuzzy
+msgid "Support for FB2 Format - .fb2 and .fb2.zip"
+msgstr "Υποστήριξη για τη MOBI format και βελτιώσεις ΕΧ"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:37
+#: data/com.github.babluboy.bookworm.appdata.xml.in:67
+msgid "Fixes:"
+msgstr "Διορθώσεις:"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:39
+msgid "Intuitive representation of book removal button on library"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:40
+msgid ""
+"Fix for keeping the preference dialog open untill all adjustments are "
+"completed"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:41
+msgid "Fix for header title changing during open"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:42
+msgid "Fix for handling cancelation of dialog to open an ebook"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:43
+msgid "Fix for toggling between full screen mode with F11"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:44
+msgid "Fix for annotation dialog for books with empty titles"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:45
+msgid "Fix for returning to the page position from the info view"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:51
+#: data/com.github.babluboy.bookworm.appdata.xml.in:78
+msgid "Right to Left Reading"
+msgstr "Δεξιά προς αριστερά ανάγνωση"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:53
+#: data/com.github.babluboy.bookworm.appdata.xml.in:80
+msgid "Support for right-to-left script"
+msgstr "Υποστήριξη για δεξιά προς τα αριστερά γραφή"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:54
+#: data/com.github.babluboy.bookworm.appdata.xml.in:81
+msgid "A shiny new icon and new cover images"
+msgstr "Ένα λαμπερό νέο εικονίδιο και νέες εικόνες καλύμματος"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:55
+#: data/com.github.babluboy.bookworm.appdata.xml.in:82
+msgid "Better support for EPUB table of contents"
+msgstr "Καλύτερη υποστήριξη για τον πίνακα περιεχομένων EPUB"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
 "Κάντε δεξί κλικ σε μια επιλεγμένη λέξη και αναζητήστε τη σημασία της σε ένα "
 "διαδικτυακό λεξικό"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:35
+#: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
 msgstr "Προστέθηκε επιλογή για την προσαρμογή του χρώματος επισήμανσης"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:37
-msgid "Fixes:"
-msgstr "Διορθώσεις:"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:39
+#: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
@@ -571,7 +634,7 @@ msgstr ""
 "Αποτρέψτε το Bookworm από το να ανοίγει συνδέσμους όπως HTTP, FTP κτλ και "
 "χρησιμοποιείστε το προεπιλεγμένο πρόγραμμα αναζήτησης για να τους ανοίξετε"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:40
+#: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
@@ -579,57 +642,41 @@ msgstr ""
 "Διορθώθηκε ένα πρόβλημα όπου οι γραμμές επικαλύπτονται για τις πρώτες "
 "σελίδες στο βιβλίο"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:41
+#: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
 "Χρήση του GResource για την επιτάχυνση της φόρτωσης εικονιδίων, δεσμών "
 "ενεργειών κλπ."
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:42
+#: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
 msgstr "Κάποια μικρή συμβατότητα CSS με το Juno"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:48
-msgid "Right to Left Reading"
-msgstr "Δεξιά προς αριστερά ανάγνωση"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:50
-msgid "Support for right-to-left script"
-msgstr "Υποστήριξη για δεξιά προς τα αριστερά γραφή"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:51
-msgid "A shiny new icon and new cover images"
-msgstr "Ένα λαμπερό νέο εικονίδιο και νέες εικόνες καλύμματος"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:52
-msgid "Better support for EPUB table of contents"
-msgstr "Καλύτερη υποστήριξη για τον πίνακα περιεχομένων EPUB"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:58
+#: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
 msgstr "Σχολιασμοί και προβολές δύο σελιδών"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:63
+#: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
 msgstr "Υποστήριξη για τη MOBI format και βελτιώσεις ΕΧ"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:68
+#: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr "Βελτιώσεις ΕΧ για την προβολή λίστας και άλλες προσαρμογές προτιμήσεων"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:73
+#: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
 msgstr "Υποστήριξη κόμικς και βελτιώσεις ΕΧ"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:78
+#: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
 msgstr "Υποστήριξη PDF και βελτιώσεις ΕΧ"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:83
+#: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
 msgstr "Αρχική έκδοση με υποστήριξη για EPUB format"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+#: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
 msgstr "Σιντάρτα Ντας"
 

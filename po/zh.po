@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-10 19:22+0530\n"
+"POT-Creation-Date: 2019-08-10 23:39+0530\n"
 "PO-Revision-Date: 2019-05-13 01:48+0000\n"
 "Last-Translator: Hao <hao.coding@dorabot.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -502,9 +502,10 @@ msgstr ""
 "快速找到书籍。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
+#, fuzzy
 msgid ""
-"This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
-"with support for more formats to follow soon."
+"This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
+"formats with support for more formats to follow soon."
 msgstr ""
 "当前版本支持 EPUB、MOBI、PRC、PDF 和 漫画（CBR 和 CBZ）格式。未来将支持更多格"
 "式。"
@@ -518,87 +519,133 @@ msgid "Bookworm Reading View"
 msgstr "书虫阅读视图"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
+#: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
 msgstr "这个版本包含了新的特性、修复以及翻译："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
+#: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
 msgstr "新特性："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
-msgid ""
-"Right click a selected word and look up its meaning in an online dictionary"
-msgstr "右击选中的词，可以通过在线词典查看其含义"
+msgid "Library is paginated to load large libraries quickly"
+msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-msgid "Added option to customize highlight colour"
-msgstr "增加了自定义高亮颜色的选项"
+#, fuzzy
+msgid "Support for FB2 Format - .fb2 and .fb2.zip"
+msgstr "支持MOBI格式，改进用户体验"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
+#: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
 msgstr "修复："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
+msgid "Intuitive representation of book removal button on library"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:40
+msgid ""
+"Fix for keeping the preference dialog open untill all adjustments are "
+"completed"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:41
+msgid "Fix for header title changing during open"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:42
+msgid "Fix for handling cancelation of dialog to open an ebook"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:43
+msgid "Fix for toggling between full screen mode with F11"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:44
+msgid "Fix for annotation dialog for books with empty titles"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:45
+msgid "Fix for returning to the page position from the info view"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:51
+#: data/com.github.babluboy.bookworm.appdata.xml.in:78
+msgid "Right to Left Reading"
+msgstr "从右往左阅读"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:53
+#: data/com.github.babluboy.bookworm.appdata.xml.in:80
+msgid "Support for right-to-left script"
+msgstr "支持从右往左的脚本"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:54
+#: data/com.github.babluboy.bookworm.appdata.xml.in:81
+msgid "A shiny new icon and new cover images"
+msgstr "崭新的图标和封面图"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:55
+#: data/com.github.babluboy.bookworm.appdata.xml.in:82
+msgid "Better support for EPUB table of contents"
+msgstr "对EPUB目录支持得更好了"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:64
+msgid ""
+"Right click a selected word and look up its meaning in an online dictionary"
+msgstr "右击选中的词，可以通过在线词典查看其含义"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:65
+msgid "Added option to customize highlight colour"
+msgstr "增加了自定义高亮颜色的选项"
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr "阻止书虫打开HTTP、FTP等超链接，改用默认浏览器打开"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:40
+#: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr "修复了书籍前几页的行重叠问题"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:41
+#: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr "使用GResource来加速载入图标、脚本等等"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:42
+#: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
 msgstr "一些CSS和Juno兼容性的小问题"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:48
-msgid "Right to Left Reading"
-msgstr "从右往左阅读"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:50
-msgid "Support for right-to-left script"
-msgstr "支持从右往左的脚本"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:51
-msgid "A shiny new icon and new cover images"
-msgstr "崭新的图标和封面图"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:52
-msgid "Better support for EPUB table of contents"
-msgstr "对EPUB目录支持得更好了"
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:58
+#: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
 msgstr "注释和双页视图"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:63
+#: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
 msgstr "支持MOBI格式，改进用户体验"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:68
+#: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr "改进列表视图和其他自定义选项的用户体验"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:73
+#: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
 msgstr "支持漫画，改进用户体验"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:78
+#: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
 msgstr "支持PDF，改进用户体验"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:83
+#: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
 msgstr "最初版本，支持EPUB格式"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+#: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
 msgstr "Siddhartha Das"
 

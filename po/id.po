@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-10 19:22+0530\n"
+"POT-Creation-Date: 2019-08-10 23:39+0530\n"
 "PO-Revision-Date: 2018-12-14 07:08+0000\n"
 "Last-Translator: ditokp <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bookworm/"
@@ -521,8 +521,8 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 #, fuzzy
 msgid ""
-"This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats "
-"with support for more formats to follow soon."
+"This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
+"formats with support for more formats to follow soon."
 msgstr ""
 "Versi ini mendukung format EPUB, MOBI, PRC, PDF dan Komik (CBR dan CBZ) "
 "dengan format lainnya yang akan segera didukung."
@@ -538,88 +538,133 @@ msgid "Bookworm Reading View"
 msgstr "Bookworm Reading View"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
+#: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
+#: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
-msgid ""
-"Right click a selected word and look up its meaning in an online dictionary"
+msgid "Library is paginated to load large libraries quickly"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-msgid "Added option to customize highlight colour"
+msgid "Support for FB2 Format - .fb2 and .fb2.zip"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
+#: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
+msgid "Intuitive representation of book removal button on library"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:40
+msgid ""
+"Fix for keeping the preference dialog open untill all adjustments are "
+"completed"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:41
+msgid "Fix for header title changing during open"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:42
+msgid "Fix for handling cancelation of dialog to open an ebook"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:43
+msgid "Fix for toggling between full screen mode with F11"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:44
+msgid "Fix for annotation dialog for books with empty titles"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:45
+msgid "Fix for returning to the page position from the info view"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:51
+#: data/com.github.babluboy.bookworm.appdata.xml.in:78
+msgid "Right to Left Reading"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:53
+#: data/com.github.babluboy.bookworm.appdata.xml.in:80
+msgid "Support for right-to-left script"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:54
+#: data/com.github.babluboy.bookworm.appdata.xml.in:81
+msgid "A shiny new icon and new cover images"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:55
+#: data/com.github.babluboy.bookworm.appdata.xml.in:82
+msgid "Better support for EPUB table of contents"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:64
+msgid ""
+"Right click a selected word and look up its meaning in an online dictionary"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:65
+msgid "Added option to customize highlight colour"
+msgstr ""
+
+#: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:40
+#: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:41
+#: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:42
+#: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:48
-msgid "Right to Left Reading"
-msgstr ""
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:50
-msgid "Support for right-to-left script"
-msgstr ""
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:51
-msgid "A shiny new icon and new cover images"
-msgstr ""
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:52
-msgid "Better support for EPUB table of contents"
-msgstr ""
-
-#: data/com.github.babluboy.bookworm.appdata.xml.in:58
+#: data/com.github.babluboy.bookworm.appdata.xml.in:88
 #, fuzzy
 msgid "Annotations and two page views"
 msgstr "Label Anotasi"
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:63
+#: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:68
+#: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:73
+#: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:78
+#: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:83
+#: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
 msgstr ""
 
-#: data/com.github.babluboy.bookworm.appdata.xml.in:87
+#: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
 msgstr "Siddhartha Das"
 

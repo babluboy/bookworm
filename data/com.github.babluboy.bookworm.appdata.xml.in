@@ -10,7 +10,7 @@
   <description>
     <p>Read the books you love without having to worry about the different format complexities like EPUB, PDF, MOBI, CBR, etc.</p>
     <p>Manage your library by tagging and updating metadata on books, to quickly find books using metadata searching and tag based filtering.</p>
-    <p>This version supports EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
+    <p>This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) formats with support for more formats to follow soon.</p>
   </description>
   <screenshots>
       <screenshot type="default">
@@ -26,6 +26,36 @@
     <binary>com.github.babluboy.bookworm</binary>
   </provides>
   <releases>
+    <release version="1.1.2" date="2019-08-10">
+        <description>
+          <p>This release has some new features, fixes and new translations:</p>
+          <p>New Features:</p>
+          <ul>
+            <li>Library is paginated to load large libraries quickly</li>
+            <li>Support for FB2 Format - .fb2 and .fb2.zip</li>
+          </ul>
+          <p>Fixes:</p>
+          <ul>
+            <li>Intuitive representation of book removal button on library</li>
+            <li>Fix for keeping the preference dialog open untill all adjustments are completed</li>
+            <li>Fix for header title changing during open</li>
+            <li>Fix for handling cancelation of dialog to open an ebook</li>
+            <li>Fix for toggling between full screen mode with F11</li>
+            <li>Fix for annotation dialog for books with empty titles</li>
+            <li>Fix for returning to the page position from the info view</li>
+          </ul>
+        </description>
+     </release>
+     <release version="1.0.0" date="2018-02-11">
+      <description>
+        <p>Right to Left Reading</p>
+        <ul>
+            <li>Support for right-to-left script</li>
+            <li>A shiny new icon and new cover images</li>
+            <li>Better support for EPUB table of contents</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.1.0" date="2018-09-30">
         <description>
           <p>This release has some new features, fixes and new translations:</p>
