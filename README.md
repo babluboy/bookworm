@@ -3,7 +3,7 @@ A simple, focused eBook reader
 
 Author: Siddhartha Das
 
-Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc. This version supports EPUB, MOBI, FB2, PDF and Comics (CBR and CBZ) formats with support for more formats to follow soon.
+Read the books you love without having to worry about the different format complexities like epub, pdf, mobi, cbr, etc. This version supports EPUB, MOBI, FB2, PDF, FB2 and Comics (CBR and CBZ) formats with support for more formats to follow soon.
 
 Check the Bookworm website for details on features, shortcuts, installation guides for supported distros : https://babluboy.github.io/bookworm/
 
