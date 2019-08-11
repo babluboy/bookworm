@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 15:38+0530\n"
+"POT-Creation-Date: 2019-08-11 15:55+0530\n"
 "PO-Revision-Date: 2019-05-13 01:48+0000\n"
 "Last-Translator: Hao <hao.coding@dorabot.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"

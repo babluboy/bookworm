@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 15:38+0530\n"
-"PO-Revision-Date: 2019-06-25 15:01+0000\n"
+"POT-Creation-Date: 2019-08-11 15:55+0530\n"
+"PO-Revision-Date: 2019-08-11 10:05+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.7.1-dev\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -92,10 +92,9 @@ msgstr ""
 "ことを確認してください: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
-"無効な MIME タイプが検出されました。この電子書籍のファイル形式を確認してくだ"
+"無効なメディアタイプを検出しました。この電子書籍のファイル形式を確認してくだ"
 "さい: "
 
 #: src/constants.vala.in:48
@@ -237,12 +236,10 @@ msgid "Update Author"
 msgstr "著者名を更新"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "全画面表示 (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "全画面モードを終了 (Esc)"
 
@@ -376,7 +373,6 @@ msgid "Apply theme for this colour profile"
 msgstr "このカラープロファイルにテーマを適用します"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
 msgstr "全画面表示を終了するには Esc キーを押してください"
 
