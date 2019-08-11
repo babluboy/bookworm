@@ -2,9 +2,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-10 23:48+0530\n"
-"PO-Revision-Date: 2019-07-14 20:01+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"POT-Creation-Date: 2019-08-10 19:22+0530\n"
+"PO-Revision-Date: 2019-08-11 10:05+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
 "Language: is\n"
@@ -91,9 +91,9 @@ msgstr ""
 "rafbók finnist hér: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Ógilt MIME-snið fannst. Athugaðu skráarsnið þessarar rafbókar: "
+msgstr ""
+"Ógilt gerð margmiðlunarefnis fannst. Athugaðu skráarsnið þessarar rafbókar: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -230,12 +230,10 @@ msgid "Update Author"
 msgstr "Uppfæra höfund"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Fara í skjáfylliham (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Fara úr skjáfylliham (Esc)"
 
@@ -368,7 +366,6 @@ msgid "Apply theme for this colour profile"
 msgstr "Virkja þema fyrir þetta litasnið"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Fara í skjáfylliham og ESC-lykill mun afturkalla það"
 
