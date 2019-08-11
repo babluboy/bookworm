@@ -197,6 +197,7 @@ public class BookwormApp.AppWindow {
         pageSlider = new Gtk.Scale(Gtk.Orientation.HORIZONTAL, pageAdjustment);
         pageSlider.set_digits (0);
         pageSlider.set_valign (Gtk.Align.START);
+        pageSlider.set_value_pos (Gtk.PositionType.RIGHT);
         pageSlider.set_hexpand(true);
 
         //Set up contents of the footer

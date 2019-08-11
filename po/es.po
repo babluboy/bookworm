@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-10 23:48+0530\n"
+"POT-Creation-Date: 2019-08-11 15:38+0530\n"
 "PO-Revision-Date: 2019-06-27 13:01+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
@@ -470,7 +470,7 @@ msgstr "Seleccionar imagen"
 msgid "Select folder"
 msgstr "Seleccionar carpeta"
 
-#: src/window.vala:320 src/window.vala:614
+#: src/window.vala:321 src/window.vala:615
 msgid "Select eBook"
 msgstr "Seleccionar libro electrónico"
 
