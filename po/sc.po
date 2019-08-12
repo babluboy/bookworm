@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-10 23:48+0530\n"
-"PO-Revision-Date: 2019-06-25 15:01+0000\n"
+"PO-Revision-Date: 2019-08-13 11:23+0000\n"
 "Last-Translator: Ajeje Brazorf <lmelonimamo@yahoo.it>\n"
 "Language-Team: Sardinian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sc/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1-dev\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -90,10 +90,10 @@ msgstr ""
 "Verìfica chi bi siet unu documentu vàlidu in sa positzione: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
-"Casta de MIME non vàlida agatada. Verìfica su formatu pro custu libru: "
+"Casta de documentu multimediale non vàlida agatada. Verìfica su formadu pro "
+"custu libru: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -237,12 +237,10 @@ msgid "Update Author"
 msgstr "Agiorna s'autore"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Intra in sa vista a ischermu intreu (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Essi dae sa vista a ischermu intreu (Esc)"
 
@@ -380,9 +378,9 @@ msgid "Apply theme for this colour profile"
 msgstr "Àplica su tema pro custu profilu de colores"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Intra in sa vista a ischermu intreu e incarca sa tecla Esc pro essire"
+msgstr ""
+"Intra in sa vista a ischermu intreu e incarca sa tecla Esc pro annullare"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
@@ -527,7 +525,6 @@ msgstr ""
 "sos filtros cun sas etichetas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
@@ -558,13 +555,11 @@ msgstr "Funtzionalidades noas:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Sa biblioteca est impaginada pro carrigare bibliotecas mannas in presse"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
-"Suportu de su formadu MOBI e megiorias de s'esperièntzia de s'impreadore (UX)"
+msgstr "Suportu pro su formadu FB2 - .fb2 e .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -574,32 +569,43 @@ msgstr "Acontzos:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
 msgstr ""
+"Rapresentatzione intuitiva de su butone pro bogare sos libros in sa "
+"biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
 msgstr ""
+"Acontzu pro mantènnere abertu su diàlogu de sas preferèntzias finas a cando "
+"totu sas regulatziones sunt acabadas"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
+#, fuzzy
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Acontzu pro sa muda de su tìtulu durante s'abertura"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"Acontzu pro contipigiare s'annulladura de su diàlogu pro abèrrere unu libru"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
 msgstr ""
+"Acontzu pro allughere o istudare sa modalidade a ischermu intreu incarchende "
+"F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
 msgstr ""
+"Acontzu pro su diàlogu de annotatzione pro sos libros cun tìtulos bòidos"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"Acontzu pro torrare a sa positzione in sa pàgina dae sa vista de sas "
+"informatziones"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
