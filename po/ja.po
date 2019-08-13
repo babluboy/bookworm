@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-08-11 10:05+0000\n"
+"POT-Creation-Date: 2019-08-10 19:22+0530\n"
+"PO-Revision-Date: 2019-08-13 11:23+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ja/>\n"
@@ -520,13 +520,12 @@ msgstr ""
 "検索とタグに基づくフィルタリングを使用し本を素早く見つけましょう。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"このバージョンは EPUB・MOBI・PRC・PDF とコミックス (CBR と CBZ) 形式をサポー"
-"トしています。まもなく、さらなるファイル形式がサポートされます。"
+"このバージョンは EPUB・MOBI・PRC・PDF・FB2 とコミックス (CBR と CBZ) "
+"形式をサポートしています。まもなく、さらなるファイル形式がサポートされます。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -548,12 +547,11 @@ msgstr "新機能:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "大きなライブラリを素早く読み込めるように、ライブラリのページ割りをしました"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "MOBI 形式への対応と、UX の改善"
+msgstr "FB2 形式 (.fb2、.fb2 zip) への対応"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -562,17 +560,17 @@ msgstr "修正:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "ライブラリの本の削除ボタンを直感的な表示に変更"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
-msgstr ""
+msgstr "すべての調整が完了するまで設定ダイアログを閉じないように修正"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "本を開く際にヘッダーのタイトルを変更するように修正"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
@@ -580,15 +578,15 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "F11 キーで全画面表示モードを切り替えできるように修正"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "タイトルのない本における注釈ダイアログの修正"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "情報ビューからページの位置に戻るように修正"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78

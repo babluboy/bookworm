@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-08-11 10:05+0000\n"
+"POT-Creation-Date: 2019-08-10 19:22+0530\n"
+"PO-Revision-Date: 2019-08-13 11:23+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/is/>\n"
@@ -511,7 +511,6 @@ msgstr ""
 "nýtist svo til að leita að bókum hratt og vel."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
@@ -540,12 +539,11 @@ msgstr "Nýir eiginleikar:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Safninu er skipt upp í síður til að flýta fyrir innhleðslu stórra safna"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Stuðningur við MOBI-snið og endurbætur á viðmóti"
+msgstr "Stuðningur við FB2-snið - .fb2 og .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -554,33 +552,35 @@ msgstr "Lagfæringar:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Augljósari framsetning hnapps til að fjarlægja bækur úr safni"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
 msgstr ""
+"Lagfæring til að halda kjörstillingaglugga opnum þar til öllum breytingum er "
+"lokið"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Lagfæring til að breyta titli við opnun"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Lagfæring við að hætta við í samskiptaglugga til að opna rafbók"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Lagfæring við að víxla á milli skjáfyllihams með F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Lagfæring á glósuglugga fyrir bækur með auða titla"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Lagfæring til að fara á staðsetningu á síðu úr upplýsingasýn"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
