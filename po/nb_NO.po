@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-08-18 03:23+0000\n"
+"PO-Revision-Date: 2019-08-22 05:24+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/nb_NO/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -568,33 +568,36 @@ msgstr "Fikser:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Intuitiv representasjon av bokfjerningsknapp ved tillegg i bibliotek"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
-msgstr ""
+msgstr "Fiks for vedvarende innstillingsdialog til alle justeringer er fullført"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
+#, fuzzy
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Fiks for hodetittelsendring under åpning"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Fiks for håndtering av dialogsendring for åpning av e-bok"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Fiks for veksling av fullskjermsmodus med F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
+#, fuzzy
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Fiks for underteksttitteldialog for bøker med tomme titler"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
+#, fuzzy
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Fiks for å gå tilbake til sideposisjon fra infovisning"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
