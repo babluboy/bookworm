@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-01-21 21:19+0000\n"
-"Last-Translator: NathanBnm\n"
+"PO-Revision-Date: 2019-08-24 23:23+0000\n"
+"Last-Translator: Swann Martinet <swann.ranskassa@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "fr/>\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -91,9 +91,9 @@ msgstr ""
 "est à l'emplacement : "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Type MIME invalide détecté. Vérifiez le format de ce livre : "
+msgstr ""
+"Type de média invalide détecté. Vérifiez le format de ce livre numérique : "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -124,6 +124,8 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Problème de navigation avec cette page ; veuillez avancer ou retourner en "
+"arrière."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -236,12 +238,10 @@ msgid "Update Author"
 msgstr "Mettre à jour l'auteur"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Passer en mode plein écran (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Quitter le mode plein écran (Échap)"
 
@@ -377,9 +377,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Définir le thème pour le profil de couleur"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Passer en vue plein écran (Échap pour sortir)"
+msgstr "Passer en mode plein écran (Échap pour sortir)"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
@@ -395,11 +394,11 @@ msgstr "Ajouter une note au texte sélectionné"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Aller à la page précédente"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Aller à la lage suivante"
 
 #: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
@@ -451,7 +450,7 @@ msgstr "Profil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Nombre de livres par page dans la bibliothèque"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -524,13 +523,12 @@ msgstr ""
 "de métadonnées et du filtrage basé sur les étiquettes."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Cette version supporte les formats EPUB, MOBI, PRC, PDF et Comics (CBR et "
-"CBZ) et d'autres formats à venir."
+"Cette version prend en charge les formats EPUB, MOBI, PRC, PDF et Comics ("
+"CBR et CBZ) et d'autres formats à venir."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -555,11 +553,11 @@ msgstr "Nouvelles fonctionnalités :"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
 msgstr ""
+"La bibliothèque est paginée pour charger de larges bibliothèques rapidement"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Prise en charge du format MOBI et améliorations de l'interface"
+msgstr "Prise en charge de FB2 Format - .fb2 and .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -569,12 +567,15 @@ msgstr "Corrections :"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
 msgstr ""
+"Représentation intuitive du bouton de retrait de livre dans la bibliothèque"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
 msgstr ""
+"Correction pour garder le dialogue de préférences ouvert jusqu'à ce que tous "
+"les ajustements soient faits"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
