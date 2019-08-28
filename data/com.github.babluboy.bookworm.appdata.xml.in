@@ -37,7 +37,7 @@
           <p>Fixes:</p>
           <ul>
             <li>Intuitive representation of book removal button on library</li>
-            <li>Fix for keeping the preference dialog open untill all adjustments are completed</li>
+            <li>Fix for keeping the preference dialog open until all adjustments are completed</li>
             <li>Fix for header title changing during open</li>
             <li>Fix for handling cancelation of dialog to open an ebook</li>
             <li>Fix for toggling between full screen mode with F11</li>
