@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-08-01 05:12+0000\n"
+"PO-Revision-Date: 2019-08-30 04:24+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/et/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -91,9 +91,8 @@ msgstr ""
 "on siin: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Avastati kehtetu MIME-tüüp. Kontrolli selle raamatu vormingut: "
+msgstr "Tuvastati kehtetu meediatüüp. Kontrolli selle e-raamatu vormingut: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -231,14 +230,12 @@ msgid "Update Author"
 msgstr "Värskenda autorit"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
-msgstr "Lülitu täisekraanivaatesse (F11)"
+msgstr "Lülitu täisekraani vaatesse (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
-msgstr "Välju täisekraanivaatest (Esc)"
+msgstr "Välju täisekraani vaatest (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
@@ -369,9 +366,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Rakenda selle värviprofiili teema"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Lülitu täisekraanivaatesse ja välju klahviga Esc"
+msgstr "Lülitu täisekraani vaatesse; välju klahviga Esc"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
@@ -515,13 +511,12 @@ msgstr ""
 "et metaandmete abil raamatuid kiirelt otsida ja siltide põhjal filtreerida."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"See versioon toetab EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) "
-"vorminguid; täiendavate vormingute tugi lisandub peagi."
+"See versioon toetab EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) vorminguid;"
+" täiendavate vormingute tugi lisandub peagi."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -542,67 +537,70 @@ msgid "New Features:"
 msgstr "Uued funktsioonid:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
+#, fuzzy
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Suurte raamatukogude kiireks laadimiseks on raamatukogu nummerdatud"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "FB2-vormingu tugi - .fb2 ja .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "Parandused:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Raamatu raamatukogust eemaldamise nupu intuitiivne esitus"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
 msgstr ""
+"Parandus hoidmaks eelistuste dialoog avatuna kuni kõik muudatused on "
+"lõpetatud"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Parandus päise tiitli muutmiseks avamisel"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Parandus e-raamatu avamise dialoogist loobumiseks"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Parandus lülitumiseks klahviga F11 täisekraami vaatesse"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Parandus e-raamatute annotatsiooni dialoogis, kui raamatu tiitel puudub"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Parandus, et infovaatest naasmisel jõuda samale leheküljele"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Paremalt vasakule lugemine"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Paremalt vasakule skripti tugi"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Uus särav ikoon ja uus kaanepilt"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Parem tugi EPUB vormingu sisukorrale"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
