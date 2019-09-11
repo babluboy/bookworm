@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-06-09 04:53+0000\n"
-"Last-Translator: Saul Rubio <saulrubio98@hotmail.com>\n"
+"PO-Revision-Date: 2019-09-12 02:23+0000\n"
+"Last-Translator: Alejandro Elí <oner.waa@gmail.com>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/es_MX/>\n"
 "Language: es_MX\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -96,9 +96,9 @@ msgstr ""
 "ubicado en: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Tipo de medio (MIME) inválido. Verifica el libro ubicado en: "
+msgstr ""
+"Tipo de medio inválido detectado. Verifica el formato del libro ubicado en: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -123,7 +123,7 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Hubo un problema en la navegación, por favor pase de página."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -236,14 +236,12 @@ msgid "Update Author"
 msgstr "Modificar autor"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
-msgstr "Abrir en pantalla completa (F11)"
+msgstr "Ver en pantalla completa (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
-msgstr "Cerrar pantalla completa (F11)"
+msgstr "Salir del modo pantalla completa (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
@@ -376,10 +374,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Aplicar el tema para este perfil de color"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
-"Acceder a la vista de pantalla completa; presione la tecla Esc para deshacer"
+msgstr "Entrar en modo pantalla completa; presione Esc para salir"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
@@ -395,11 +391,11 @@ msgstr "Añadir nota al texto seleccionado"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Ir a la página anterior"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Ir a la página siguiente"
 
 #: src/constants.vala.in:122 src/constants.vala.in:150
 msgid "Preferences"
@@ -451,7 +447,7 @@ msgstr "Perfil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Numero de libros por página en la biblioteca"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -526,13 +522,12 @@ msgstr ""
 "metadatos y el filtrado por etiquetas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Esta versión soporta los formatos de EPUB, MOBI, PRC, PDF  además  para "
-"cómics (CBR y CBZ ) pronto abra soporte para otros formatos"
+"Esta versión soporta los formatos EPUB, MOBI, PRC, PDF y cómics CBR y CBZ. "
+"Pronto habrá soporte para otros formatos."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -557,10 +552,12 @@ msgstr "Nuevas funcionalidades:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
 msgstr ""
+"La biblioteca está paginada, así puede cargar extensas bibliotecas "
+"rápidamente"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "Soporta el formato FB2 (.fb2, .fb2.zip)"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -569,17 +566,19 @@ msgstr "Mejoramientos:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Representación del botón para eliminar libros de la biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
 msgstr ""
+"Mantener abierto el diálogo de preferencias hasta que todas las tareas sean "
+"completadas"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Cambiar el encabezado al abrir"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
@@ -587,7 +586,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Alternar el modo pantalla completa con F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
@@ -610,31 +609,29 @@ msgstr "Soporte para el script rigth-to-left"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr "Un reluciente icono y nueva portada de las imágenes"
+msgstr "Nuevo icono y nueva portada"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr "Mejor soporte en el contenido de EPUB para tabletas"
+msgstr "Soporte para tablas de contenido EPUB mejorado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
-"Click derecho en la palabra deseada y observe su significado en el "
-"diccionario online"
+"Clic derecho en alguna palabra seleccionada para buscar su significado en "
+"línea"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr "Añadido la opción de personalizar el color del subrayado"
+msgstr "Añadida la opción para cambiar el color del subrayado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
-msgstr ""
-"Evita que Bookworm abrir links como HTTTP, FTP y usa tu navegador "
-"predeterminado para abrilos"
+msgstr "Usar el navegador por defecto para abrir enlaces"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
