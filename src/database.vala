@@ -68,8 +68,7 @@ public class BookwormApp.DB{
                    + "modification_date INTEGER)";
 		executionStatus = bookwormDB.exec (queryString, null, out errmsg);
 	 	if (executionStatus != Sqlite.OK) {
-            debug("Error on executing Query:"+queryString);
-	 		warning ("Error details: %s\n", errmsg);
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
             return false;
 	 	} else {
             debug("Successfully checked/created table:"+BOOKWORM_TABLE_NAME);
@@ -87,8 +86,7 @@ public class BookwormApp.DB{
                    + "modification_date INTEGER)";
 		executionStatus = bookwormDB.exec (queryString, null, out errmsg);
 	 	if (executionStatus != Sqlite.OK) {
-            debug("Error on executing Query:"+queryString);
-	 		warning ("Error details: %s\n", errmsg);
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
             return false;
 	 	} else {
             debug("Successfully checked/created table:"+BOOKMETADATA_TABLE_NAME);
@@ -99,9 +97,8 @@ public class BookwormApp.DB{
         queryString = "SELECT NAME FROM SQLITE_MASTER WHERE TYPE='table' ORDER BY NAME";
         executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
         if (executionStatus != Sqlite.OK) {
-            debug("Error on executing Query:"+queryString);
-	 		warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-	 	}
+          report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
+        }
         while (stmt.step () == ROW) {
             listOfTables.add(stmt.column_text (0).strip());
         }
@@ -121,8 +118,7 @@ public class BookwormApp.DB{
                                " ( id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT,BOOK_PUBLISH_DATE, BOOK_TOTAL_NUMBER_OF_PAGES, BOOK_LAST_READ_PAGE_NUMBER, TAGS, RATINGS,CONTENT_EXTRACTION_LOCATION, creation_date, modification_date) SELECT id, BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, BOOK_PUBLISH_DATE, BOOK_TOTAL_NUMBER_OF_PAGES, BOOK_LAST_READ_PAGE_NUMBER, TAGS, RATINGS, CONTENT_EXTRACTION_LOCATION, creation_date, modification_date FROM BOOK_LIBRARY_TABLE5";
         executionStatus = bookwormDB.exec (queryString, null, out errmsg);
         if (executionStatus != Sqlite.OK) {
-            debug("Executed Query:"+queryString);
-            warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+          report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
         }else{
           debug("Successfully migrated "+bookwormDB.changes().to_string()+" rows from BOOK_LIBRARY_TABLE5 into "+BOOKWORM_TABLE_NAME);
           //copy data to new meta data table
@@ -130,8 +126,7 @@ public class BookwormApp.DB{
                         "      ( id, BOOK_TOC_DATA, BOOKMARKS, CONTENT_DATA_LIST, BOOK_LAST_SCROLL_POSITION, creation_date, modification_date) SELECT id, BOOK_TOC_DATA, BOOKMARKS, CONTENT_DATA_LIST, BOOK_LAST_SCROLL_POSITION, creation_date, modification_date FROM BOOK_LIBRARY_TABLE5";
           executionStatus = bookwormDB.exec (queryString, null, out errmsg);
           if (executionStatus != Sqlite.OK) {
-            debug("Executed Query:"+queryString);
-            warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+            report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
           }else{
             debug("Successfully migrated "+bookwormDB.changes().to_string()+" rows from BOOK_LIBRARY_TABLE5 into"+
                         BOOKMETADATA_TABLE_NAME);
@@ -139,8 +134,7 @@ public class BookwormApp.DB{
             queryString = "DROP TABLE IF EXISTS BOOK_LIBRARY_TABLE5";
             executionStatus = bookwormDB.exec (queryString, null, out errmsg);
             if (executionStatus != Sqlite.OK) {
-                debug("Executed Query:"+queryString);
-                warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+              report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
             }else{
               debug("Successfully dropped old table LIBRARY_TABLE5");
             }
@@ -153,8 +147,7 @@ public class BookwormApp.DB{
         queryString = "DROP TABLE IF EXISTS VERSION_TABLE";
         executionStatus = bookwormDB.exec (queryString, null, out errmsg);
         if (executionStatus != Sqlite.OK) {
-          debug("Executed Query:"+queryString);
-          warning ("Error: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+          report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
         }else{
           debug("Successfully dropped old table VERSION_TABLE");
         }
@@ -192,8 +185,7 @@ public class BookwormApp.DB{
     }
     executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
     if (executionStatus != Sqlite.OK) {
-        debug("Error on executing Query:"+queryString);
-	 		warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
 	}else{
       while (stmt.step () == ROW) {
         BookwormApp.Book aBook = new BookwormApp.Book();
@@ -260,8 +252,7 @@ public class BookwormApp.DB{
     debug("Library Search Query with criteria[" + book_location + "]:" + queryString);
     executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
     if (executionStatus != Sqlite.OK) {
-        debug("Error on executing Query:"+queryString);
-	 		warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
 	}else{
         while (stmt.step () == ROW) {
             aBook.setBookId(stmt.column_int(0));
@@ -308,8 +299,7 @@ public class BookwormApp.DB{
     queryString = "SELECT BOOK_TOC_DATA, BOOKMARKS, CONTENT_DATA_LIST, BOOK_LAST_SCROLL_POSITION, BOOK_ANNOTATIONS FROM "+BOOKMETADATA_TABLE_NAME+ " WHERE id = ?";
     executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
     if (executionStatus != Sqlite.OK) {
-      debug("Error on executing Query:"+queryString);
-	 		warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
 	 	}
     stmt.bind_int (1, aBook.getBookId());
     while (stmt.step () == ROW) {
@@ -338,8 +328,7 @@ public class BookwormApp.DB{
     queryString = "INSERT INTO "+BOOKWORM_TABLE_NAME+"(BOOK_LOCATION, BOOK_TITLE, BOOK_AUTHOR, BOOK_COVER_IMAGE_LOCATION, IS_BOOK_COVER_IMAGE_PRESENT, CONTENT_EXTRACTION_LOCATION, creation_date, modification_date) "+ "VALUES (?,?,?,?,?,?, CAST(strftime('%s', 'now') AS INT), CAST(strftime('%s', 'now') AS INT))";
      executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
      if (executionStatus != Sqlite.OK) {
-       debug("Error on executing Query:"+queryString);
-       warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
        return -1;
      }
      stmt.bind_text (1, aBook.getBookLocation());
@@ -357,8 +346,7 @@ public class BookwormApp.DB{
 
      executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
      if (executionStatus != Sqlite.OK) {
-       debug("Error on executing Query:"+queryString);
-       warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
      }
      stmt.bind_text (1, aBook.getBookLocation());
      while (stmt.step () == ROW) {
@@ -376,8 +364,7 @@ public class BookwormApp.DB{
     queryString = "DELETE FROM "+BOOKWORM_TABLE_NAME+" WHERE id = ?";
     executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
     if (executionStatus != Sqlite.OK) {
-      debug("Error on executing Query:"+queryString);
-      warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
       return false;
     }else{
           stmt.bind_int (1, aBook.getBookId());
@@ -389,8 +376,7 @@ public class BookwormApp.DB{
           queryString = "DELETE FROM "+BOOKMETADATA_TABLE_NAME+" WHERE id = ?";
           executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
           if (executionStatus != Sqlite.OK) {
-            debug("Error on executing Query:"+queryString);
-            warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+            report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
             return false;
           }else{
             stmt.bind_int (1, aBook.getBookId());
@@ -409,8 +395,7 @@ public class BookwormApp.DB{
     " SET BOOK_LAST_READ_PAGE_NUMBER = ?, BOOK_TITLE = ?, BOOK_AUTHOR = ?, BOOK_COVER_IMAGE_LOCATION = ?, IS_BOOK_COVER_IMAGE_PRESENT = ?, TAGS = ?, ANNOTATION_TAGS = ?, RATINGS = ?, CONTENT_EXTRACTION_LOCATION = ?, BOOK_TOTAL_PAGES = ?, modification_date = CAST(? AS INT) WHERE ID = ? ";
      executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
      if (executionStatus != Sqlite.OK) {
-       debug("Error on executing Query:"+queryString);
-       warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
        return false;
      }
      stmt.bind_text (1, aBook.getBookPageNumber().to_string());
@@ -434,8 +419,7 @@ public class BookwormApp.DB{
                             " (BOOK_TOC_DATA, BOOKMARKS, CONTENT_DATA_LIST, BOOK_LAST_SCROLL_POSITION, BOOK_ANNOTATIONS, modification_date, id) " + "VALUES (?,?,?,?,?,CAST(strftime('%s', 'now') AS INT),?);";
      executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
      if (executionStatus != Sqlite.OK) {
-       debug("Error on executing Query:"+queryString);
-       warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+      report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
        return false;
      }
      stmt.bind_text (1, BookwormApp.Utils.convertTOCToString(aBook));
@@ -452,8 +436,7 @@ public class BookwormApp.DB{
                               " SET BOOK_TOC_DATA = ?, BOOKMARKS = ?, CONTENT_DATA_LIST = ?, BOOK_LAST_SCROLL_POSITION = ?, BOOK_ANNOTATIONS = ?, modification_date = CAST(strftime('%s', 'now') AS INT) WHERE id = ? ";
        executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
        if (executionStatus != Sqlite.OK) {
-         debug("Error on executing Query:"+queryString);
-         warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
+        report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
          return false;
        }
        stmt.bind_text (1, BookwormApp.Utils.convertTOCToString(aBook));
@@ -481,9 +464,8 @@ public class BookwormApp.DB{
                                 " ORDER BY id DESC";
         executionStatus = bookwormDB.prepare_v2 (queryString, queryString.length, out stmt);
         if (executionStatus != Sqlite.OK) {
-          debug("Error on executing Query:"+queryString);
-          warning ("Error details: %d: %s\n", bookwormDB.errcode (), bookwormDB.errmsg ());
-         	}
+          report_query_execution_error (queryString, bookwormDB.errcode (), bookwormDB.errmsg ());
+        }
         while (stmt.step () == ROW) {
           bookIDList.add(stmt.column_int(0).to_string()+"::"+stmt.column_text (1));
         }
@@ -491,4 +473,10 @@ public class BookwormApp.DB{
         info("[END] [FUNCTION:getBookIDListFromDB] bookIDList.size"+bookIDList.size.to_string());
         return bookIDList;
   }
+
+  private static void report_query_execution_error (string query, int errcode, string errmsg) {
+    debug   ("Error on executing Query: %s\n", query);
+    warning ("Error(%d) details: %s\n", errcode, errmsg);
+  }
+
 }
