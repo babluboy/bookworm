@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-09-17 21:45+0000\n"
+"PO-Revision-Date: 2019-09-17 22:15+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tr/>\n"
@@ -91,7 +91,7 @@ msgstr ""
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Geçersiz ortam türü algılandı.E-kitap biçimini kontrol edin: "
+msgstr "Geçersiz ortam türü algılandı. eKitap biçimini kontrol edin: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -230,12 +230,10 @@ msgid "Update Author"
 msgstr "Yazarı Güncelle"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Tam ekran görünümününe geç (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Tam ekran görünümünden çık (Esc)"
 
@@ -556,32 +554,36 @@ msgstr "Düzeltmeler:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
 msgstr ""
+"Kitap kaldırma düğmesi kütüphane üzerinde artık sezgisel olarak temsil "
+"ediliyor"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
 msgstr ""
+"Tercihler iletişim kutusu tüm ayarlamalar tamamlanıncaya kadar artık açık "
+"tutuluyor"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Açılış sırasında değişen üst başlık için düzeltme"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Ekitap açmak için iletişim kutusunun iptal edilmesiyle ilgili düzeltme"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "F11 ile tam ekran kipi arasında geçiş yapmak ile ilgili düzeltme"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Boş başlıkları olan kitaplar için açıklama iletişim kutusunu düzelt"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Bilgi görünümünden sayfa konumuna geri dönmek ile ilgili düzeltme"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
@@ -639,7 +641,7 @@ msgstr "Juno'ya uygunluk için kimi CSS düzeltmeleri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr "Notlandırma ve çift sayfa görünümü"
+msgstr "Açıklama ve çift sayfa görünümü"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
