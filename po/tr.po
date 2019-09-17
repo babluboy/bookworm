@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-07-14 20:01+0000\n"
-"Last-Translator: abdullahcanakci <abdullahcanakci.0@gmail.com>\n"
+"PO-Revision-Date: 2019-09-17 21:45+0000\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tr/>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -90,10 +90,8 @@ msgstr ""
 "dosyası olduğundan emin ol: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr ""
-"Geçersiz MIME türü algılandı. Konumdaki kitabın biçimini kontrol edin : "
+msgstr "Geçersiz ortam türü algılandı.E-kitap biçimini kontrol edin: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -370,9 +368,10 @@ msgid "Apply theme for this colour profile"
 msgstr "Bu renk profili için tema ayarla"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Tam ekran moduna geçmek için basın, geri almak için ESC tuşuna basın"
+msgstr ""
+"Tam ekran moduna geçmek için Enter tuşuna basın, geri almak için ESC tuşuna "
+"basın"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
@@ -516,13 +515,12 @@ msgstr ""
 "arama sırasında daha çabuk bulabilirsiniz."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Bu version EPUB, MOBI, PRC, PDF ve çizgi romanları (CBR ve CBZ) "
-"desteklemektedir. Daha fazla format desteği planlanmaktadır."
+"Bu sürüm EPUB, MOBI, PRC, PDF, FB2 ve çizgi roman biçimlerini (CBR ve CBZ) "
+"desteklemektedir. Daha fazla biçim desteği planlanmaktadır."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -544,12 +542,11 @@ msgstr "Yeni Özellikler:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Büyük kütüphaneleri hızlıca yüklemek için kütüphane sayfalandırıldı"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "MOBI için destek ve kullanıcı deneyimi geliştirmeleri"
+msgstr "FB2 biçim desteği - .fb2 ve .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
