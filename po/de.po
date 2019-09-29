@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-06-30 14:01+0000\n"
-"Last-Translator: Andreas Kleinert <Andy.Kleinert@gmail.com>\n"
+"PO-Revision-Date: 2019-09-30 10:56+0000\n"
+"Last-Translator: nautilusx <mail.ka@mailbox.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -90,9 +90,9 @@ msgstr ""
 "es hier eine gültige eBook-Datei gibt: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Ungültiger MIME-Type entdeckt. Format dieses E-Book überprüfen: "
+msgstr ""
+"Ungültiger Medientyp erkannt. Überprüfen Sie das Format für dieses E-Book: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -238,12 +238,10 @@ msgid "Update Author"
 msgstr "Autor aktualisieren"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Vollbildmodus starten (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Vollbildmodus beenden (ESC)"
 
@@ -379,7 +377,6 @@ msgid "Apply theme for this colour profile"
 msgstr "Design für dieses Farbprofil festlegen"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Vollbildmodus öffnen und mit ESC beenden"
 
@@ -526,13 +523,12 @@ msgstr ""
 "Markierungen zu filtern."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Diese Version unterstützt die Formate EPUB, MOBI, PRC, PDF und Comics (CBR "
-"und CBZ), die Unterstützung für weitere Formate folgt bald."
+"Diese Version unterstützt EPUB, MOBI, PRC, PDF, FB2 und Comics (CBR und CBZ) "
+"Formate und die Unterstützung für weitere Formate folgt bald."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -559,9 +555,8 @@ msgid "Library is paginated to load large libraries quickly"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Unterstützung für das MOBI-Format und UX-Verbesserungen"
+msgstr "Unterstützung für das FB2-Format - .fb2 und .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -571,12 +566,16 @@ msgstr "Fehlerbehebungen:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
 msgstr ""
+"Intuitive Darstellung der Schaltfläche zum Entfernen von Büchern in der "
+"Bibliothek"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
 msgstr ""
+"Korrektur, dass der Einstellungsdialog geöffnet bleibt, bis alle "
+"Einstellungen abgeschlossen sind"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
@@ -588,7 +587,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Korrektur für das Umschalten zwischen Vollbildmodus mit F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
@@ -596,7 +595,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Korrektur für die Rückkehr zur Seitenposition aus der Info-Ansicht"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
