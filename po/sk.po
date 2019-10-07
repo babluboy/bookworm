@@ -2,87 +2,96 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
+"PO-Revision-Date: 2019-10-08 07:56+0000\n"
+"Last-Translator: Michal Srnanský <msrnansky@gmail.com>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/bookworm/bookworm/"
+"sk/>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
-msgstr ""
+msgstr "Zobraziť číslo verzie"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Spustiť Bookworm v ladiacom móde"
 
 #: src/bookworm.vala:112
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Spustiť Bookworm v informačnom móde"
 
 #: src/bookworm.vala:113
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Automaticky pridať nové knihy zo sledovaných priečinkov"
 
 #: src/utils.vala:520 src/utils.vala:594
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušiť"
 
 #: src/utils.vala:522 src/utils.vala:595
 msgid "Open"
-msgstr ""
+msgstr "Otvoriť"
 
 #: src/utils.vala:524
 msgid "Save"
-msgstr ""
+msgstr "Uložiť"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Čítačka elektronických kníh"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Prekladatelia"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Webova stránka | Preklad | Hlásenie chýb"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "Nedostupné"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "Čítačka elektronických chýb"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Hľadať v tejto knihe…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Hľadať podľa Názvu, Autora a Značiek"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Vyzerá to  že v Bookworme nie sú žiadne knihy"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Vytvorte svoju knižnicu pridaním elektronických kníh"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Vybrať knihu na čítanie"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Problém z rozbalením obsahu knihy. Uistite sa, že je tu platný súbor "
+"elektronicke knihy: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr ""
+msgstr "Zistený nesprávny typ média. Overte formát tejto elektronickej knihy: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
