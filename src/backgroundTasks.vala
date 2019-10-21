@@ -20,155 +20,144 @@
 */
 using Gee;
 public class BookwormApp.BackgroundTasks {
-  public static ArrayList<string> listOfBooks;
-  public static BookwormApp.Settings settings;
-  
-  public static void performTasks(){
-        initialization();
+    public static ArrayList<string> listOfBooks;
+    public static BookwormApp.Settings settings;
+
+    public static void performTasks () {
+        initialization ();
         //Add any new books from the watched folders
-        discoverBooks();
+        discoverBooks ();
         //refresh list of books in DB due to new books being added
-        listOfBooks = BookwormApp.DB.getBookIDListFromDB();
+        listOfBooks = BookwormApp.DB.getBookIDListFromDB ();
         //Remove cahched data and cover thumbs which are no longer used
-        cleanBookCacheContent();
-        cleanBookCoverImages();
-  }
+        cleanBookCacheContent ();
+        cleanBookCoverImages ();
+    }
 
-  public static void initialization(){
-        settings = BookwormApp.Settings.get_instance();
+    public static void initialization () {
+        settings = BookwormApp.Settings.get_instance ();
         //check if the database exists otherwise create database and required tables
-        BookwormApp.DB.initializeBookWormDB(BookwormApp.Bookworm.bookworm_config_path);
-        listOfBooks = BookwormApp.DB.getBookIDListFromDB();
-  }
+        BookwormApp.DB.initializeBookWormDB (BookwormApp.Bookworm.bookworm_config_path);
+        listOfBooks = BookwormApp.DB.getBookIDListFromDB ();
+    }
 
-  public static void discoverBooks(){
-    print("\nStarted process for discovery of books....");
-    ArrayList<string> scanDirList = new ArrayList<string>();
-    //find the folders to scan from the settings
-    if( settings != null &&
-        settings.list_of_scan_dirs != null && 
-        settings.list_of_scan_dirs.length > 1)
-    {
-        debug(settings.list_of_scan_dirs);
-        string[] scanDirArray = settings.list_of_scan_dirs.split ("~~");
-        foreach (string token in scanDirArray){
-            scanDirList.add(token);
-        }
-        
-        if(scanDirList.size > 0) {
-            //create the find command
-            StringBuilder findCmd = new StringBuilder("find ");
-            foreach (string scanDir in scanDirList) {
-              if(scanDir != null && scanDir.length > 1){
-                findCmd.append("\"").append(scanDir).append("\"").append(" ");
-              }
+    public static void discoverBooks () {
+        print ("\nStarted process for discovery of books....");
+        ArrayList<string> scanDirList = new ArrayList<string> ();
+        //find the folders to scan from the settings
+        if (settings != null && settings.list_of_scan_dirs != null && settings.list_of_scan_dirs.length > 1) {
+            debug (settings.list_of_scan_dirs);
+            string[] scanDirArray = settings.list_of_scan_dirs.split ("~~");
+            foreach (string token in scanDirArray) {
+                scanDirList.add (token);
             }
-            findCmd.append("! -readable -prune -o -type f \\( -iname \\*.mobi -o -iname \\*.pdf -o -iname \\*.epub -o -iname \\*.cbr -o -iname \\*.cbz \\) -print");
-            string findCmdOutput = BookwormApp.Utils.execute_sync_command(findCmd.str);
-            if(findCmdOutput.contains("\n")){
-                string[] findCmdOutputResults = findCmdOutput.strip().split ("\n",-1);
-                foreach (string findResult in findCmdOutputResults) {
-                    bool noMatchFound = true;
-                    foreach (string book in listOfBooks) {
-                        if(book.contains(findResult)){
-                            noMatchFound = false;
-                            break;
-                        }
+
+            if (scanDirList.size > 0) {
+                //create the find command
+                StringBuilder findCmd = new StringBuilder ("find ");
+                foreach (string scanDir in scanDirList) {
+                    if (scanDir != null && scanDir.length > 1) {
+                        findCmd.append ("\"").append (scanDir).append ("\"").append (" ");
                     }
-                    if(noMatchFound){
-                        print("\nAttempting to add book located at:"+findResult);
-                        BookwormApp.Book aBook = new BookwormApp.Book();
-                        aBook.setBookLocation(findResult);
-                        File eBookFile = File.new_for_path (findResult);
-                        if(eBookFile.query_exists() && eBookFile.query_file_type(0) != FileType.DIRECTORY){
-                            int bookID = BookwormApp.DB.addBookToDataBase(aBook);
-                            aBook.setBookId(bookID);
-                            aBook.setBookLastModificationDate((new DateTime.now_utc().to_unix()).to_string());
-                            aBook.setWasBookOpened(true);
-                            //parse eBook to populate cache and book meta data
-                            aBook = BookwormApp.Bookworm.genericParser(aBook);
-                            if(!aBook.getIsBookParsed()){
-                                BookwormApp.DB.removeBookFromDB(aBook);
-                            }else{
-                                BookwormApp.DB.updateBookToDataBase(aBook);
-                                print("\nSuccessfully added book located at:"+findResult);
+                }
+                findCmd.append ("! -readable -prune -o -type f \\ ( -iname \\*.mobi -o -iname \\*.pdf -o -iname \\*.epub -o -iname \\*.cbr -o -iname \\*.cbz \\) -print");
+                string findCmdOutput = BookwormApp.Utils.execute_sync_command (findCmd.str);
+                if (findCmdOutput.contains ("\n")) {
+                    string[] findCmdOutputResults = findCmdOutput.strip ().split ("\n",-1);
+                    foreach (string findResult in findCmdOutputResults) {
+                        bool noMatchFound = true;
+                        foreach (string book in listOfBooks) {
+                            if (book.contains (findResult)) {
+                                noMatchFound = false;
+                                break;
                             }
                         }
-                  }
-              }
+                        if (noMatchFound) {
+                            print ("\nAttempting to add book located at:" + findResult);
+                            BookwormApp.Book aBook = new BookwormApp.Book ();
+                            aBook.setBookLocation (findResult);
+                            File eBookFile = File.new_for_path (findResult);
+                            if (eBookFile.query_exists () && eBookFile.query_file_type (0) != FileType.DIRECTORY) {
+                                int bookID = BookwormApp.DB.addBookToDataBase (aBook);
+                                aBook.setBookId (bookID);
+                                aBook.setBookLastModificationDate ((new DateTime.now_utc ().to_unix ()).to_string ());
+                                aBook.setWasBookOpened (true);
+                                //parse eBook to populate cache and book meta data
+                                aBook = BookwormApp.Bookworm.genericParser (aBook);
+                                if (!aBook.getIsBookParsed ()) {
+                                    BookwormApp.DB.removeBookFromDB (aBook);
+                                } else {
+                                    BookwormApp.DB.updateBookToDataBase (aBook);
+                                    print ("\nSuccessfully added book located at:" + findResult);
+                                }
+                            }
+                        }
+                    }
+                }
+                print ("\nCompleted process for discovery of books....\n");
             }
-            print("\nCompleted process for discovery of books....\n");
         }
     }
-  }
 
-  public static void cleanBookCacheContent(){
-    print ("\nStarting to delete un-necessary cache data...");
-    //list the folders in the cache
-    string cacheFolders = BookwormApp.Utils.execute_sync_command(
-                            "ls -1 " + BookwormApp.Bookworm.bookworm_config_path + "/books/"
-                          );
-    cacheFolders = cacheFolders.replace("\r", "^^^").replace("\n", "^^^");
-    string[] cacheFolderList = cacheFolders.split("^^^");
-    //loop through each folder name
-    bool folderMatched = false;
-    foreach (string cacheFolder in cacheFolderList) {
-      folderMatched = false;
-      cacheFolder = cacheFolder.strip();
-      if(cacheFolder == null || cacheFolder.length < 1){
-        folderMatched = true;
-      }
-      foreach (string bookData in listOfBooks){
-        if(cacheFolder != null && cacheFolder.length > 0){
-          //check if the folder is part of a book in the library
-          if((bookData.split("::")[1]).index_of(cacheFolder) != -1){
-            folderMatched = true;
-            break;
-          }
+    public static void cleanBookCacheContent () {
+        print ("\nStarting to delete un-necessary cache data...");
+        //list the folders in the cache
+        string cacheFolders = BookwormApp.Utils.execute_sync_command ("ls -1 " + BookwormApp.Bookworm.bookworm_config_path + "/books/");
+        cacheFolders = cacheFolders.replace ("\r", "^^^").replace ("\n", "^^^");
+        string[] cacheFolderList = cacheFolders.split ("^^^");
+        //loop through each folder name
+        bool folderMatched = false;
+        foreach (string cacheFolder in cacheFolderList) {
+            folderMatched = false;
+            cacheFolder = cacheFolder.strip ();
+            if (cacheFolder == null || cacheFolder.length < 1) {
+                folderMatched = true;
+            }
+            foreach (string bookData in listOfBooks) {
+                if (cacheFolder != null && cacheFolder.length > 0) {
+                    //check if the folder is part of a book in the library
+                    if ((bookData.split ("::")[1]).index_of (cacheFolder) != -1) {
+                        folderMatched = true;
+                        break;
+                    }
+                }
+            }
+            if (!folderMatched) {
+                //delete the folder and content if it is not a part of any book in the library
+                BookwormApp.Utils.execute_sync_command ("rm -Rf \"" + BookwormApp.Bookworm.bookworm_config_path + "/books/" + cacheFolder + "\"");
+                print ("\nCache Folder deleted:" + cacheFolder);
+            }
         }
-      }
-      if(!folderMatched){
-        //delete the folder and content if it is not a part of any book in the library
-        BookwormApp.Utils.execute_sync_command(
-                "rm -Rf \"" + BookwormApp.Bookworm.bookworm_config_path + "/books/" + cacheFolder + "\""
-        );
-        print ("\nCache Folder deleted:"+cacheFolder);
-      }
     }
-  }
 
-  public static void cleanBookCoverImages(){
-    print ("\nStarting to delete un-necessary cover image data...");
-    //list the cover images in the cache
-    string cacheImages = BookwormApp.Utils.execute_sync_command(
-                                "ls -1 " + BookwormApp.Bookworm.bookworm_config_path + "/covers/"
-                         );
-    cacheImages = cacheImages.replace("\r", "^^^").replace("\n", "^^^");
-    string[] cacheImageList = cacheImages.split("^^^");
-    //loop through each cover image in cache
-    bool imageMatched = false;
-    foreach (string cacheImage in cacheImageList) {
-      imageMatched = false;
-      cacheImage = cacheImage.strip();
-      if(cacheImage == null || cacheImage.length < 1){
-        imageMatched = true;
-      }
-      foreach (string bookData in listOfBooks){
-        if(cacheImage != null && cacheImage.length > 0){
-          //check if the folder is part of a book in the library
-          if(cacheImage.index_of((bookData.split("::")[0])) != -1){
-            imageMatched = true;
-            break;
-          }
+    public static void cleanBookCoverImages () {
+        print ("\nStarting to delete un-necessary cover image data...");
+        //list the cover images in the cache
+        string cacheImages = BookwormApp.Utils.execute_sync_command ("ls -1 " + BookwormApp.Bookworm.bookworm_config_path + "/covers/");
+        cacheImages = cacheImages.replace ("\r", "^^^").replace ("\n", "^^^");
+        string[] cacheImageList = cacheImages.split ("^^^");
+        //loop through each cover image in cache
+        bool imageMatched = false;
+        foreach (string cacheImage in cacheImageList) {
+            imageMatched = false;
+            cacheImage = cacheImage.strip ();
+            if (cacheImage == null || cacheImage.length < 1) {
+                imageMatched = true;
+            }
+            foreach (string bookData in listOfBooks) {
+                if (cacheImage != null && cacheImage.length > 0) {
+                    //check if the folder is part of a book in the library
+                    if (cacheImage.index_of ((bookData.split ("::")[0])) != -1) {
+                        imageMatched = true;
+                        break;
+                    }
+                }
+            }
+            if (!imageMatched) {
+                //delete the folder and content if it is not a part of any book in the library
+                BookwormApp.Utils.execute_sync_command ("rm -f \"" + BookwormApp.Bookworm.bookworm_config_path + "/covers/" + cacheImage + "\"");
+                print ("\nCache Image deleted:" + cacheImage);
+            }
         }
-      }
-      if(!imageMatched){
-        //delete the folder and content if it is not a part of any book in the library
-        BookwormApp.Utils.execute_sync_command(
-                "rm -f \"" + BookwormApp.Bookworm.bookworm_config_path + "/covers/" + cacheImage + "\""
-        );
-        print ("\nCache Image deleted:"+cacheImage);
-      }
     }
-  }
 }
