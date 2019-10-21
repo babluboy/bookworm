@@ -266,7 +266,7 @@ public class BookwormApp.mobiReader {
                                 int splitStartPos = 0;
                                 int splitEndPos = mobiHTMLContent.str.length;
                                 StringBuilder tocIDValue = new StringBuilder ("");
-                                StringBuilder splitFileName = new StringBuilder ("_ (Start)");
+                                StringBuilder splitFileName = new StringBuilder ("_(Start)");
                                 StringBuilder splitHTMLContent = new StringBuilder ("");
                                 StringBuilder splitPosIdentifierString = new StringBuilder ("");
                                 StringBuilder tocName = new StringBuilder ("");
@@ -317,13 +317,13 @@ public class BookwormApp.mobiReader {
                                     aBook.setBookContentList (locationOfBookHTMLFile);
                                     //set TOC name and path to the unpacked HTML file
                                     HashMap<string, string> TOCMapItem = new HashMap<string, string> ();
-                                    TOCMapItem.set (locationOfBookHTMLFile, _ ("Book"));
+                                    TOCMapItem.set (locationOfBookHTMLFile, _("Book"));
                                     aBook.setTOC (TOCMapItem);
                                     /*
                                     //No chapter IDs in the NCX file : split file by <mbp:pagebreak/>
                                     splitPosIdentifierString.assign ("<mbp:pagebreak/>");
                                     int countOfSections = 1;
-                                    tocName.assign (_ ("Section ") + countOfSections.to_string ());
+                                    tocName.assign (_("Section ") + countOfSections.to_string ());
                                     splitFileName.assign (tocName.str);
                                     //check if pagebreak tag is present in html data
                                     while ( (splitStartPos > -1) && (mobiHTMLContent.str.index_of (splitPosIdentifierString.str, splitStartPos + 1) != -1)) {
@@ -343,7 +343,7 @@ public class BookwormApp.mobiReader {
                                         splitStartPos = mobiHTMLContent.str.index_of (splitPosIdentifierString.str, splitStartPos + splitPosIdentifierString.str.length);
                                         debug ("splitStartPos:" + splitStartPos.to_string ());
                                         countOfSections++;
-                                        tocName.assign (_ ("Section ") + countOfSections.to_string ());
+                                        tocName.assign (_("Section ") + countOfSections.to_string ());
                                         splitFileName.assign (tocName.str);
                                     }*/
                                 }
