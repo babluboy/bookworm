@@ -20,30 +20,29 @@ using Xml;
 using Gee;
 
 public class BookwormApp.XMLData {
-        public bool shouldExtractionStart = false;
-        public bool useLocalTagName = true;
-        public bool isContainerTagMatched = false;
-        public string currentTagName;
-        public StringBuilder charBuffer = new StringBuilder("");
+    public bool shouldExtractionStart = false;
+    public bool useLocalTagName = true;
+    public bool isContainerTagMatched = false;
+    public string currentTagName;
+    public StringBuilder charBuffer = new StringBuilder ("");
 
-        public string containerTagName;
-        public string inputTagName;
-        public string inputAttributeName;
-        public bool isXMLExtraction = false;
-        public bool enforceAttributeData = false;
-        public ArrayList<string> extractedTagValues = new ArrayList<string>();
-        public ArrayList<string> extractedTagAttributes = new ArrayList<string>();
+    public string containerTagName;
+    public string inputTagName;
+    public string inputAttributeName;
+    public bool isXMLExtraction = false;
+    public bool enforceAttributeData = false;
+    public ArrayList<string> extractedTagValues = new ArrayList<string> ();
+    public ArrayList<string> extractedTagAttributes = new ArrayList<string> ();
 }
 
 public class BookwormApp.XmlParser {
     private static XMLData thisXMLData;
 
-    public XmlParser(){
+    public XmlParser () {
         thisXMLData = null;
     }
 
-    /*
-    public static int main(string[] args) {
+    /*public static int main (string[] args) {
         Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
         Log.set_handler ("", GLib.LogLevelFlags.LEVEL_DEBUG, GLib.Log.default_handler);
 
@@ -52,144 +51,137 @@ public class BookwormApp.XmlParser {
         //string pathToXMLFile = "/home/sid/Documents/Projects/misc/xmlFiles/container.xml";
         //string pathToXMLFile = "/home/sid/.config/bookworm/books/The Da Vinci Code.epub/OEBPS/Content.opf";
 
-        ArrayList<XMLData> inputDataList = new ArrayList<XMLData>();
-        inputDataList.add(new XMLData() {
-                                        containerTagName = "rootfiles",
-                                        inputTagName = "rootfile",
-                                        inputAttributeName="full-path"}
-                                        );
-        inputDataList.add(new XMLData() {
-                                        containerTagName = "manifest",
-                                        inputTagName = "item",
-                                        inputAttributeName="id"}
-                                        );
-        inputDataList.add(new XMLData() {
-                                        containerTagName = "manifest",
-                                        inputTagName = "item",
-                                        inputAttributeName="href"}
-                                        );
-        inputDataList.add(new XMLData() {
-                                        containerTagName = "spine",
-                                        inputTagName = "itemref",
-                                        inputAttributeName="idref"}
-                                        );
-        inputDataList.add(new XMLData() {
-                                        containerTagName = "",
-                                        inputTagName = "spine",
-                                        inputAttributeName="toc"}
-                                        );
-        inputDataList.add(new XMLData() {
-                                        containerTagName = "",
-                                        inputTagName = "subject",
-                                        inputAttributeName=""}
-                                        ); 
-        inputDataList.add(new XMLData() {
-                            containerTagName = "navLabel",
-                            inputTagName = "text",
-                            inputAttributeName=""}
-                        );
-        inputDataList.add(new XMLData() {
-                            containerTagName = "",
-                            inputTagName = "content",
-                            inputAttributeName="src"}
-                        );
-        inputDataList.add(new XMLData() {
-                            containerTagName = "",
-                            inputTagName = "content",
-                            inputAttributeName="src",
-                            isXMLExtraction = true} //obtain all xml content as extracted data
-                        );
+        ArrayList<XMLData> inputDataList = new ArrayList<XMLData> ();
+        inputDataList.add (new XMLData () {
+            containerTagName = "rootfiles",
+            inputTagName = "rootfile",
+            inputAttributeName="full-path"
+        });
+        inputDataList.add (new XMLData () {
+            containerTagName = "manifest",
+            inputTagName = "item",
+            inputAttributeName="id"
+        });
+        inputDataList.add (new XMLData () {
+            containerTagName = "manifest",
+            inputTagName = "item",
+            inputAttributeName="href"
+        });
+        inputDataList.add (new XMLData () {
+            containerTagName = "spine",
+            inputTagName = "itemref",
+            inputAttributeName="idref"
+        });
+        inputDataList.add (new XMLData () {
+            containerTagName = "",
+            inputTagName = "spine",
+            inputAttributeName="toc"
+        });
+        inputDataList.add (new XMLData () {
+            containerTagName = "",
+            inputTagName = "subject",
+            inputAttributeName=""
+        });
+        inputDataList.add (new XMLData () {
+            containerTagName = "navLabel",
+            inputTagName = "text",
+            inputAttributeName=""
+        });
+        inputDataList.add (new XMLData () {
+            containerTagName = "",
+            inputTagName = "content",
+            inputAttributeName="src"
+        });
+        inputDataList.add (new XMLData () {
+            containerTagName = "",
+            inputTagName = "content",
+            inputAttributeName="src",
+            isXMLExtraction = true //obtain all xml content as extracted data
+        });
 
-        XmlParser thisParser = new XmlParser();
-        ArrayList<XMLData> extractedDataList = new ArrayList<XMLData>();
-        extractedDataList = thisParser.extractDataFromXML(pathToXMLFile, inputDataList);
+        XmlParser thisParser = new XmlParser ();
+        ArrayList<XMLData> extractedDataList = new ArrayList<XMLData> ();
+        extractedDataList = thisParser.extractDataFromXML (pathToXMLFile, inputDataList);
 
         //Display the extracted data
-        foreach(XMLData aExtractedData in extractedDataList){
-            debug("************************************Showing Extracted Data for "+
-                                aExtractedData.containerTagName+"/"+
-                                aExtractedData.inputTagName+"/"+
-                                aExtractedData.inputAttributeName+
-                  "**********************");
-            debug("Items in List:"+aExtractedData.extractedTagValues.size.to_string());
-            foreach(string aTagValue in aExtractedData.extractedTagValues){
-                debug("Tag Value:"+aTagValue);
+        foreach (XMLData aExtractedData in extractedDataList) {
+            debug ("********************* Showing Extracted Data for " +
+                aExtractedData.containerTagName + "/" +
+                aExtractedData.inputTagName + "/" +
+                aExtractedData.inputAttributeName + " **********************");
+            debug ("Items in List: " + aExtractedData.extractedTagValues.size.to_string ());
+            foreach (string aTagValue in aExtractedData.extractedTagValues) {
+                debug ("Tag Value: " + aTagValue);
             }
-            debug("Items in List:"+aExtractedData.extractedTagAttributes.size.to_string());
-            foreach(string aAttributeValue in aExtractedData.extractedTagAttributes){
-                debug("Attribute Value:"+aAttributeValue);
+            debug ("Items in List: " + aExtractedData.extractedTagAttributes.size.to_string ());
+            foreach (string aAttributeValue in aExtractedData.extractedTagAttributes) {
+                debug ("Attribute Value: " + aAttributeValue);
             }
         }
-
         return 0;
-    }
-    */
+    }*/
 
     public ArrayList<XMLData> extractDataFromXML (
-                    string path, 
-                    owned ArrayList<XMLData> inputDataList, 
-                    bool isXMLExtraction = false //optional: set to true only for extracting xml sub-content
-    ){
-        info("[START] [FUNCTION:extractDataFromXML] extracting xml from file="+path);
+        string path, owned ArrayList<XMLData> inputDataList,
+        bool isXMLExtraction = false //optional: set to true only for extracting xml sub-content
+    ) {
+        info ("[START] [FUNCTION:extractDataFromXML] extracting xml from file=" + path);
         int count = 0;
-        foreach(XMLData aXMLData in inputDataList){
-            debug("Reading XML to extract data for input set #"+count.to_string()+":"+
-                          aXMLData.containerTagName+"/"+aXMLData.inputTagName+"/"+aXMLData.inputAttributeName);
+        foreach (XMLData aXMLData in inputDataList) {
+            debug ("Reading XML to extract data for input set #" + count.to_string () + ":" +
+                aXMLData.containerTagName + "/" + aXMLData.inputTagName + "/" + aXMLData.inputAttributeName);
             thisXMLData = aXMLData;
-            parseXML(path);
+            parseXML (path);
             inputDataList[count] = thisXMLData;
             count++;
         }
-        info("[END] [FUNCTION:extractDataFromXML] extracting xml from file="+path);
+        info ("[END] [FUNCTION:extractDataFromXML] extracting xml from file=" + path);
         return inputDataList;
     }
 
-    public void parseXML(string path) {
-        Parser.init();
-        var handler = SAXHandler();
+    public void parseXML (string path) {
+        Parser.init ();
+        var handler = SAXHandler ();
         void* user_data = null;
-
         handler.startElement = start_element;
         handler.characters = get_text;
         handler.endElement = end_element;
-
-        handler.user_parse_file(user_data, path);
-        Parser.cleanup();
+        handler.user_parse_file (user_data, path);
+        Parser.cleanup ();
     }
 
-    public void start_element(string name, string[] attributeList) {
-        //debug(">>>>>Start Tag:"+name);
-        thisXMLData.currentTagName = process_tagname(name);
-        //If Start element matches container tag - set container flag to true 
-        if(thisXMLData.currentTagName == thisXMLData.containerTagName) {
+    public void start_element (string name, string[] attributeList) {
+        //debug (">>>>>Start Tag: " + name);
+        thisXMLData.currentTagName = process_tagname (name);
+        //If Start element matches container tag - set container flag to true
+        if (thisXMLData.currentTagName == thisXMLData.containerTagName) {
             thisXMLData.isContainerTagMatched = true;
         }
 
         //Check if the tag name matches the input tag name
-        if(thisXMLData.currentTagName == thisXMLData.inputTagName){
+        if (thisXMLData.currentTagName == thisXMLData.inputTagName) {
             //Check if a container tag is required and if it has been matched - set extraction flag to true
-            if(thisXMLData.containerTagName.length != 0 && thisXMLData.isContainerTagMatched){
+            if (thisXMLData.containerTagName.length != 0 && thisXMLData.isContainerTagMatched) {
                 thisXMLData.shouldExtractionStart = true;
-                thisXMLData.charBuffer.assign("");
-            }else{
+                thisXMLData.charBuffer.assign ("");
+            } else {
                 //Check if no container tag is required and since the tag name has been matched - set extraction flag to true
-                if(thisXMLData.containerTagName.strip().length == 0){
+                if (thisXMLData.containerTagName.strip ().length == 0) {
                     thisXMLData.shouldExtractionStart = true;
-                    thisXMLData.charBuffer.assign("");
+                    thisXMLData.charBuffer.assign ("");
                 }
             }
         }
-
         //If Extraction criteria is met and attribute extraction is required, extract required attribute
-        if(thisXMLData.shouldExtractionStart && thisXMLData.inputAttributeName.length > 0) {
+        if (thisXMLData.shouldExtractionStart && thisXMLData.inputAttributeName.length > 0) {
             //check whether attributes are expected
             int count = 0;
             bool wasAttributeExtracted = false;
             foreach (string attribute in attributeList) {
-                if(attributeList.length >= count+1){
-                    if(thisXMLData.inputAttributeName == attributeList[count]) {
+                if (attributeList.length >= count + 1) {
+                    if (thisXMLData.inputAttributeName == attributeList[count]) {
                         //extract the odd attribute data as the even attribute is the name of the attribute
-                        thisXMLData.extractedTagAttributes.add(attributeList[count+1]);
+                        thisXMLData.extractedTagAttributes.add (attributeList[count + 1]);
                         wasAttributeExtracted = true;
                         break;
                     }
@@ -197,77 +189,73 @@ public class BookwormApp.XmlParser {
                 }
             }
             //Check if attribute was not extracted and the attribute value is forced, add an empty value
-            if(!wasAttributeExtracted && thisXMLData.enforceAttributeData){
-                thisXMLData.extractedTagAttributes.add("");
+            if (!wasAttributeExtracted && thisXMLData.enforceAttributeData) {
+                thisXMLData.extractedTagAttributes.add ("");
             }
         }
         //If Extraction criteria is met and sub-xml exraction is required, add tag name to extracted data
-        if(thisXMLData.shouldExtractionStart && thisXMLData.isXMLExtraction) {
+        if (thisXMLData.shouldExtractionStart && thisXMLData.isXMLExtraction) {
             //to preserve the tag names, add the start tag to the collected data
-            thisXMLData.charBuffer.append(" <")
-                                  .append(name)
-                                  .append(" ")
-                                  .append(string.joinv(" ", attributeList))
-                                  .append(">");
+            thisXMLData.charBuffer.append (" <").append (name).append (" ")
+                .append (string.joinv (" ", attributeList)).append (">");
         }
     }
 
-    public void end_element(string name) {
-        //debug("<<<<<End Tag:"+name);
-        string processed_name = process_tagname(name);
-
+    public void end_element (string name) {
+        //debug ("<<<<<End Tag: " + name);
+        string processed_name = process_tagname (name);
         //If sub-xml exraction is required, add the end tag to extracted data
-        if(thisXMLData.shouldExtractionStart && thisXMLData.isXMLExtraction) {
+        if (thisXMLData.shouldExtractionStart && thisXMLData.isXMLExtraction) {
             //to preserve the tag names, add the start tag to the collected data
-            thisXMLData.charBuffer.append(" </").append(name).append(">");
+            thisXMLData.charBuffer.append (" </").append (name).append (">");
         }
-
         //If End element matches container tag - set container flag to false and extraction flag to false
-        if(processed_name == thisXMLData.containerTagName) {
+        if (processed_name == thisXMLData.containerTagName) {
             thisXMLData.isContainerTagMatched = false;
             thisXMLData.shouldExtractionStart = false;
         }
-
         //Check if tag name has been matched - set extraction flag to false
-        if(processed_name == thisXMLData.inputTagName){
+        if (processed_name == thisXMLData.inputTagName) {
             //Add the collected tag value data into the extracted list
-            if(thisXMLData.shouldExtractionStart){
-                if(!thisXMLData.isXMLExtraction){
+            if (thisXMLData.shouldExtractionStart) {
+                if (!thisXMLData.isXMLExtraction) {
                     //this check ensures unrelated tags within a required tag are not picked up
-                    if(thisXMLData.currentTagName == thisXMLData.inputTagName ){ 
-                        thisXMLData.extractedTagValues.add(thisXMLData.charBuffer.str);
+                    if (thisXMLData.currentTagName == thisXMLData.inputTagName ) {
+                        thisXMLData.extractedTagValues.add (thisXMLData.charBuffer.str);
                     }
-                }else{
+                } else {
                     //this extracts contents of other tags within the required tag
-                    thisXMLData.extractedTagValues.add(thisXMLData.charBuffer.str);
+                    thisXMLData.extractedTagValues.add (thisXMLData.charBuffer.str);
                 }
             }
             thisXMLData.shouldExtractionStart = false;
             thisXMLData.currentTagName = "";
         }
     }
- 
-    public void get_text (string chars, int len){
-        //debug("........Tag Data [len="+len.to_string()+"] :"+chars.slice(0, len));
-        //Extract tag value if extraction criteria is met       
-        if( thisXMLData.shouldExtractionStart){
-            if(!thisXMLData.isXMLExtraction){
+
+    public void get_text (string chars, int len) {
+        //debug ("...Tag Data [len=" + len.to_string () + "] :" + chars.slice (0, len));
+        //Extract tag value if extraction criteria is met
+        if ( thisXMLData.shouldExtractionStart) {
+            if (!thisXMLData.isXMLExtraction) {
                 //this check ensures unrelated tags within a required tag are not picked up
-                if(thisXMLData.currentTagName == thisXMLData.inputTagName ){ 
-                    thisXMLData.charBuffer.append(chars.slice(0, len));
+                if (thisXMLData.currentTagName == thisXMLData.inputTagName ) {
+                    thisXMLData.charBuffer.append (chars.slice (0, len));
                 }
-            }else{
+            } else {
                 //this extracts contents of other tags within the required tag
-                thisXMLData.charBuffer.append(chars.slice(0, len));
+                thisXMLData.charBuffer.append (chars.slice (0, len));
             }
         }
     }
 
-    public string process_tagname (string tagname){
-        string local_tagname = tagname.strip();
-        if(thisXMLData.useLocalTagName){
-            if(local_tagname.index_of(":") != -1){
-                local_tagname = local_tagname.slice(local_tagname.index_of(":")+1, local_tagname.length);
+    public string process_tagname (string tagname) {
+        string local_tagname = tagname.strip ();
+        if (thisXMLData.useLocalTagName) {
+            if (local_tagname.index_of (":") != -1) {
+                local_tagname = local_tagname.slice (
+                    local_tagname.index_of (":") + 1,
+                    local_tagname.length);
             }
         }
         return local_tagname;

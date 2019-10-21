@@ -1,0 +1,13 @@
+# EditorConfig <https://EditorConfig.org>
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = tab
+indent_style = space
+insert_final_newline = true
+tab_width = 4
+
+[{*.yml,*.yaml}]
+tab_width = 2
