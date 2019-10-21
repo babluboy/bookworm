@@ -306,7 +306,7 @@ public class BookwormApp.AppWindow {
         //Add action for adding book (s) on the library view
         add_book_button.clicked.connect (() => {
             ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser (
-                Gtk.FileChooserAction.OPEN, _ ("Select eBook"), BookwormApp.Bookworm.window, true, "EBOOKS");
+                Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, "EBOOKS");
             BookwormApp.Bookworm.pathsOfBooksToBeAdded = new string[selectedEBooks.size];
             int countOfBooksToBeAdded = 0;
             foreach (string pathToSelectedBook in selectedEBooks) {
@@ -574,7 +574,7 @@ public class BookwormApp.AppWindow {
         //Add action for adding a book on the library view
         BookwormApp.Bookworm.welcomeWidget.activated.connect (() => {
             ArrayList<string> selectedEBooks = BookwormApp.Utils.selectFileChooser (
-                Gtk.FileChooserAction.OPEN, _ ("Select eBook"), BookwormApp.Bookworm.window, true, "EBOOKS");
+                Gtk.FileChooserAction.OPEN, _("Select eBook"), BookwormApp.Bookworm.window, true, "EBOOKS");
             //If ebooks were selected, remove the welcome widget from main window and show the library view
             if (selectedEBooks.size > 0) {
                 BookwormApp.Bookworm.window.remove (BookwormApp.Bookworm.welcomeWidget);

@@ -549,11 +549,11 @@ namespace BookwormApp.Utils {
     ) {
         Gtk.FileChooserDialog aFileChooserDialog = new Gtk.FileChooserDialog (title, parent, action);
         aFileChooserDialog.set_select_multiple (select_multiple);
-        aFileChooserDialog.add_button (_ ("Cancel"), Gtk.ResponseType.CANCEL);
+        aFileChooserDialog.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
         if (action == Gtk.FileChooserAction.OPEN) {
-            aFileChooserDialog.add_button (_ ("Open"), Gtk.ResponseType.ACCEPT);
+            aFileChooserDialog.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
         } else {
-            aFileChooserDialog.add_button (_ ("Save"), Gtk.ResponseType.ACCEPT);
+            aFileChooserDialog.add_button (_("Save"), Gtk.ResponseType.ACCEPT);
             aFileChooserDialog.set_current_name ("");
         }
         aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
@@ -636,8 +636,8 @@ namespace BookwormApp.Utils {
         ArrayList<string> selectedDirList = new ArrayList<string> ();
         Gtk.FileChooserDialog aFileChooserDialog = new Gtk.FileChooserDialog (
             title, parent, Gtk.FileChooserAction.SELECT_FOLDER);
-        aFileChooserDialog.add_button (_ ("Cancel"), Gtk.ResponseType.CANCEL);
-        aFileChooserDialog.add_button (_ ("Open"), Gtk.ResponseType.ACCEPT);
+        aFileChooserDialog.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+        aFileChooserDialog.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
         aFileChooserDialog.set_default_response (Gtk.ResponseType.ACCEPT);
         if (BookwormApp.Utils.last_file_chooser_path != null &&
             BookwormApp.Utils.last_file_chooser_path.length != 0)

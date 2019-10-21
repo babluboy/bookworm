@@ -540,8 +540,8 @@ public class BookwormApp.Library {
             if (BookwormApp.Constants.bookworm_id != pathToSelectedBook.strip ()) {
                 //set progress for the UI Book addition progress bar
                 progress = (((double) (BookwormApp.Bookworm.noOfBooksAddedFromCommand))/((double) (BookwormApp.Bookworm.pathsOfBooksToBeAdded.length)));
-                BookwormApp.AppWindow.bookAdditionBar.set_text (_ ("Adding ") +
-                    ((int) (progress*100)).to_string () + "% : " + File.new_for_path (pathToSelectedBook).get_basename ());
+                BookwormApp.AppWindow.bookAdditionBar.set_text (_("Adding ") +
+                    ((int) (progress * 100)).to_string () + "% : " + File.new_for_path (pathToSelectedBook).get_basename ());
                 BookwormApp.AppWindow.bookAdditionBar.set_fraction (progress);
             }
             //Return control back for any further actions only if multiple books are being added
