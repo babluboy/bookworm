@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2019-06-27 13:01+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2019-11-20 22:04+0000\n"
+"Last-Translator: Eduardo Vega <eduardo.vegarct@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/es/>\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1-dev\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: src/bookworm.vala:110
 msgid "Display version number"
@@ -553,7 +553,7 @@ msgstr "Prestaciones nuevas:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "La librería está paginada para cargar librerías rápidamente"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 #, fuzzy
@@ -568,32 +568,41 @@ msgstr "Correcciones:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
 msgstr ""
+"Botón de representación intuitiva para la eliminación de libros en la "
+"biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
 msgstr ""
+"Correción para mantener el diálogo de preferencias abiarto hasta que todos "
+"los cambios se hayan finalizado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Corrección para cambiar el texto del título mientras este abierto"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"Corrección para manejar la cancelación del diálogo de apartura de un libro "
+"electrónico"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
 msgstr ""
+"Corrección para poder intercambiar el modo de pantalla completa con la tecla "
+"F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Corrección para el diálogo de anotación para libros sin título"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"Corrección para regresar a la página previa desde la vista de información"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
