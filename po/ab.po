@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-11 15:55+0530\n"
-"PO-Revision-Date: 2017-09-29 10:44+0000\n"
-"Last-Translator: goychikua <goychiku@gmail.com>\n"
+"PO-Revision-Date: 2019-11-24 13:32+0000\n"
+"Last-Translator: GUIDE APK MM <apk.guide.net.mm@gmail.com>\n"
 "Language-Team: Abkhazian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ab/>\n"
 "Language: ab\n"
@@ -11,631 +11,774 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: src/bookworm.vala:110
+#, fuzzy
 msgid "Display version number"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/bookworm.vala:112
+#, fuzzy
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/bookworm.vala:113
+#, fuzzy
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/utils.vala:520 src/utils.vala:594
+#, fuzzy
 msgid "Cancel"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/utils.vala:522 src/utils.vala:595
+#, fuzzy
 msgid "Open"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/utils.vala:524
 msgid "Save"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:29
+#, fuzzy
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:31
+#, fuzzy
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:37
+#, fuzzy
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:39
+#, fuzzy
 msgid "Not Available"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
+#, fuzzy
 msgid "eBook Reader"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:41
+#, fuzzy
 msgid "Search this book…"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:42
+#, fuzzy
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:43
+#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:44
+#, fuzzy
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:45
+#, fuzzy
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:46
+#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
-msgstr ""
+msgstr "Abkhazian "
 
 #: src/constants.vala.in:47
+#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr ""
+msgstr "Abkhazian "
 
 #: src/constants.vala.in:48
+#, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Abkhazian "
 
 #: src/constants.vala.in:49
+#, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Abkhazian "
 
 #: src/constants.vala.in:50
+#, fuzzy
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Abkhazian "
 
 #: src/constants.vala.in:51
+#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
-msgstr ""
+msgstr "Abkhazian "
 
 #: src/constants.vala.in:52
+#, fuzzy
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:53
+#, fuzzy
 msgid "Library"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:54
+#, fuzzy
 msgid "Resume"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:55
+#, fuzzy
 msgid "Contents"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:56
+#, fuzzy
 msgid "Content #"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:57
+#, fuzzy
 msgid "Bookmarks"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:58
+#, fuzzy
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:59
+#, fuzzy
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:60
+#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:61
+#, fuzzy
 msgid "Word Meaning"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:62
+#, fuzzy
 msgid "Search Results"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:63
+#, fuzzy
 msgid "Annotations"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:64
+#, fuzzy
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:65
+#, fuzzy
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:66
+#, fuzzy
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:67
+#, fuzzy
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:68
+#, fuzzy
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:69
+#, fuzzy
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:70
+#, fuzzy
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:71
+#, fuzzy
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:72
+#, fuzzy
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:73
+#, fuzzy
 msgid "Edit Info for"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
+#, fuzzy
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:75
+#, fuzzy
 msgid "Update Title"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:76
+#, fuzzy
 msgid "Update Tags"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:77
+#, fuzzy
 msgid "Update Author"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:79
+#, fuzzy
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:80
+#, fuzzy
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:81
+#, fuzzy
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:82
+#, fuzzy
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:83
+#, fuzzy
 msgid "Books"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:84
+#, fuzzy
 msgid "Images"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:85
+#, fuzzy
 msgid "All Files"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:86
+#, fuzzy
 msgid "Title"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:87
+#, fuzzy
 msgid "Author"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:88
+#, fuzzy
 msgid "Last Opened"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:89
+#, fuzzy
 msgid "Rating"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:90
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:91
+#, fuzzy
 msgid "Today"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:92
+#, fuzzy
 msgid "Yesterday"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:93
+#, fuzzy
 msgid "Days"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:94
+#, fuzzy
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:96
+#, fuzzy
 msgid "Add books to library"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:97
+#, fuzzy
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:98
+#, fuzzy
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:99
+#, fuzzy
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:100
+#, fuzzy
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:101
+#, fuzzy
 msgid "Reading preferences"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:102
+#, fuzzy
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:103
+#, fuzzy
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:104
+#, fuzzy
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:105
+#, fuzzy
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:106
+#, fuzzy
 msgid "Increase line width"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:107
+#, fuzzy
 msgid "Decrease line width"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:108
+#, fuzzy
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:109
+#, fuzzy
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:110
+#, fuzzy
 msgid "Align left"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:111
+#, fuzzy
 msgid "Align right"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:112
+#, fuzzy
 msgid "Update cover image"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:113
+#, fuzzy
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
+#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:116
+#, fuzzy
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:117
+#, fuzzy
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:118
+#, fuzzy
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:119
+#, fuzzy
 msgid "Go to previous page"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:120
+#, fuzzy
 msgid "Go to next page"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:122 src/constants.vala.in:150
+#, fuzzy
 msgid "Preferences"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:123
+#, fuzzy
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:124
+#, fuzzy
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:125
+#, fuzzy
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:126
+#, fuzzy
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:127
 #, fuzzy
 msgid "Select Font"
-msgstr "Select Image"
+msgstr "Select Image Abkhazian"
 
 #: src/constants.vala.in:128
+#, fuzzy
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:129
+#, fuzzy
 msgid "Text"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:130
+#, fuzzy
 msgid "Background"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:131
+#, fuzzy
 msgid "Highlight"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:132
+#, fuzzy
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:133
+#, fuzzy
 msgid "Profile"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:134
+#, fuzzy
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:135
+#, fuzzy
 msgid "Reset to default values"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:148
+#, fuzzy
 msgid "Unknown Book"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/constants.vala.in:149
+#, fuzzy
 msgid "About"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/dialog.vala:62
 #, fuzzy
 msgid "Select Image"
-msgstr "Select Image"
+msgstr "Select ImageAbkhazian"
 
 #: src/dialog.vala:578
+#, fuzzy
 msgid "Select folder"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/window.vala:321 src/window.vala:615
+#, fuzzy
 msgid "Select eBook"
-msgstr ""
+msgstr "Abkhazian"
 
 #: src/library.vala:576
+#, fuzzy
 msgid "Adding "
-msgstr ""
+msgstr "Abkhazian "
 
 #: src/mobiReader.vala:329
+#, fuzzy
 msgid "Book"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
+#, fuzzy
 msgid "Bookworm"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
+#, fuzzy
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
+#, fuzzy
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
+#, fuzzy
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
+#, fuzzy
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
+#, fuzzy
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
+#, fuzzy
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
+#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
+#, fuzzy
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
+#, fuzzy
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
+#, fuzzy
 msgid "New Features:"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
+#, fuzzy
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
+#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
+#, fuzzy
 msgid "Fixes:"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
+#, fuzzy
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
+#, fuzzy
 msgid ""
 "Fix for keeping the preference dialog open untill all adjustments are "
 "completed"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
+#, fuzzy
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
+#, fuzzy
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
+#, fuzzy
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
+#, fuzzy
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
+#, fuzzy
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
+#, fuzzy
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
+#, fuzzy
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
+#, fuzzy
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
+#, fuzzy
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
+#, fuzzy
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
+#, fuzzy
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
+#, fuzzy
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
+#, fuzzy
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
+#, fuzzy
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
+#, fuzzy
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
+#, fuzzy
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
+#, fuzzy
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
+#, fuzzy
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
+#, fuzzy
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
+#, fuzzy
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Abkhazian"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
+#, fuzzy
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Abkhazian"
