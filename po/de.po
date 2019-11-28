@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 13:48+0530\n"
+"POT-Creation-Date: 2019-11-28 15:06+0530\n"
 "PO-Revision-Date: 2019-10-21 08:53+0000\n"
 "Last-Translator: nautilusx <mail.ka@mailbox.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"

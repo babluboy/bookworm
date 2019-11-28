@@ -18,6 +18,6 @@ Standards-Version: 4.1.1
 
 Package: com.github.babluboy.bookworm
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, unzip, poppler-utils, unar, html2text
+Depends: ${misc:Depends}, ${shlibs:Depends}, unzip, poppler-utils, unar, html2text, python2, curl, appstream, ninja
 Description: eBook Reader
  A simple and focussed eBook reader
