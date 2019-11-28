@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 15:55+0530\n"
+"POT-Creation-Date: 2019-11-28 13:48+0530\n"
 "PO-Revision-Date: 2019-08-30 04:24+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
@@ -14,31 +14,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9-dev\n"
 
-#: src/bookworm.vala:110
+#: src/bookworm.vala:109
 msgid "Display version number"
 msgstr "Kuva versiooninumber"
 
-#: src/bookworm.vala:111
+#: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
 msgstr "Käivita Bookworm silumisrežiimis"
 
-#: src/bookworm.vala:112
+#: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
 msgstr "Käivita Bookworm inforežiimis"
 
-#: src/bookworm.vala:113
+#: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
 msgstr "Lisa uued raamatud jälgimiskasutadest automaatselt"
 
-#: src/utils.vala:520 src/utils.vala:594
+#: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
 msgstr "Loobu"
 
-#: src/utils.vala:522 src/utils.vala:595
+#: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
 msgstr "Ava"
 
-#: src/utils.vala:524
+#: src/utils.vala:556
 msgid "Save"
 msgstr "Salvesta"
 
@@ -453,23 +453,23 @@ msgstr "Tundmatu raamat"
 msgid "About"
 msgstr "Programmist"
 
-#: src/dialog.vala:62
+#: src/dialog.vala:59
 msgid "Select Image"
 msgstr "Vali pilt"
 
-#: src/dialog.vala:578
+#: src/dialog.vala:544
 msgid "Select folder"
 msgstr "Vali kaust"
 
-#: src/window.vala:321 src/window.vala:615
+#: src/window.vala:309 src/window.vala:577
 msgid "Select eBook"
 msgstr "Vali e-raamat"
 
-#: src/library.vala:576
+#: src/library.vala:543
 msgid "Adding "
 msgstr "Lisamine "
 
-#: src/mobiReader.vala:329
+#: src/mobiReader.vala:320
 msgid "Book"
 msgstr "Raamat"
 
@@ -515,8 +515,8 @@ msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"See versioon toetab EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) vorminguid;"
-" täiendavate vormingute tugi lisandub peagi."
+"See versioon toetab EPUB, MOBI, PRC, PDF and comics (CBR and CBZ) "
+"vorminguid; täiendavate vormingute tugi lisandub peagi."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -555,8 +555,9 @@ msgid "Intuitive representation of book removal button on library"
 msgstr "Raamatu raamatukogust eemaldamise nupu intuitiivne esitus"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
+#, fuzzy
 msgid ""
-"Fix for keeping the preference dialog open untill all adjustments are "
+"Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
 "Parandus hoidmaks eelistuste dialoog avatuna kuni kõik muudatused on "
@@ -576,7 +577,8 @@ msgstr "Parandus lülitumiseks klahviga F11 täisekraami vaatesse"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr "Parandus e-raamatute annotatsiooni dialoogis, kui raamatu tiitel puudub"
+msgstr ""
+"Parandus e-raamatute annotatsiooni dialoogis, kui raamatu tiitel puudub"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"

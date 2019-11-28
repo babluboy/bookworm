@@ -10,7 +10,7 @@ Check the Bookworm website for details on features, shortcuts, installation guid
 
 ## Building, Testing, and Installation
 
-You'll need the following dependencies to build:
+You'll need the following dependencies to build on Ubuntu based distros:
 * libgranite-dev
 * webkit2gtk-4.0
 * libwebkit2gtk-4.0-37
@@ -21,13 +21,14 @@ You'll need the following dependencies to build:
 * curl
 * meson
 * valac
+* gettext
 
 Run `meson build` to configure the build environment and run `ninja test` to build
 
     git clone https://github.com/babluboy/bookworm.git
     cd bookworm
     meson build --prefix=/usr
-    mkdir build && cd build
+    mkdir -p build && cd build
     ninja
 
 To install, use `ninja install`, then execute with `com.github.babluboy.bookworm`

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-10 19:22+0530\n"
+"POT-Creation-Date: 2019-11-28 13:48+0530\n"
 "PO-Revision-Date: 2019-08-13 11:23+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
@@ -13,31 +13,31 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 3.8-dev\n"
 
-#: src/bookworm.vala:110
+#: src/bookworm.vala:109
 msgid "Display version number"
 msgstr "バージョン番号を表示します"
 
-#: src/bookworm.vala:111
+#: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
 msgstr "Bookworm をデバッグモードで実行します"
 
-#: src/bookworm.vala:112
+#: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
 msgstr "Bookworm を情報モードで実行します"
 
-#: src/bookworm.vala:113
+#: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
 msgstr "監視中のフォルダにある新しい本を自動で追加します"
 
-#: src/utils.vala:520 src/utils.vala:594
+#: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: src/utils.vala:522 src/utils.vala:595
+#: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
 msgstr "開く"
 
-#: src/utils.vala:524
+#: src/utils.vala:556
 msgid "Save"
 msgstr "保存"
 
@@ -460,23 +460,23 @@ msgstr "不明な本"
 msgid "About"
 msgstr "このアプリケーションについて"
 
-#: src/dialog.vala:62
+#: src/dialog.vala:59
 msgid "Select Image"
 msgstr "画像を選択"
 
-#: src/dialog.vala:578
+#: src/dialog.vala:544
 msgid "Select folder"
 msgstr "フォルダを選択"
 
-#: src/window.vala:321 src/window.vala:615
+#: src/window.vala:309 src/window.vala:577
 msgid "Select eBook"
 msgstr "電子書籍を選択"
 
-#: src/library.vala:576
+#: src/library.vala:543
 msgid "Adding "
 msgstr "追加 "
 
-#: src/mobiReader.vala:329
+#: src/mobiReader.vala:320
 msgid "Book"
 msgstr "本"
 
@@ -524,8 +524,8 @@ msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"このバージョンは EPUB・MOBI・PRC・PDF・FB2 とコミックス (CBR と CBZ) "
-"形式をサポートしています。まもなく、さらなるファイル形式がサポートされます。"
+"このバージョンは EPUB・MOBI・PRC・PDF・FB2 とコミックス (CBR と CBZ) 形式をサ"
+"ポートしています。まもなく、さらなるファイル形式がサポートされます。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -547,7 +547,8 @@ msgstr "新機能:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr "大きなライブラリを素早く読み込めるように、ライブラリのページ割りをしました"
+msgstr ""
+"大きなライブラリを素早く読み込めるように、ライブラリのページ割りをしました"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
@@ -563,8 +564,9 @@ msgid "Intuitive representation of book removal button on library"
 msgstr "ライブラリの本の削除ボタンを直感的な表示に変更"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
+#, fuzzy
 msgid ""
-"Fix for keeping the preference dialog open untill all adjustments are "
+"Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr "すべての調整が完了するまで設定ダイアログを閉じないように修正"
 

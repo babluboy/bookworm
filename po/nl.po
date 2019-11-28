@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 15:55+0530\n"
+"POT-Creation-Date: 2019-11-28 13:48+0530\n"
 "PO-Revision-Date: 2019-04-20 16:33+0000\n"
 "Last-Translator: Xoronic <stefgijsberts.sg@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -13,31 +13,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.6\n"
 
-#: src/bookworm.vala:110
+#: src/bookworm.vala:109
 msgid "Display version number"
 msgstr "Versienummer weergeven"
 
-#: src/bookworm.vala:111
+#: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
 msgstr "Bookworm in debug modus uitvoeren"
 
-#: src/bookworm.vala:112
+#: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
 msgstr "Bookworm in info modus uitvoeren"
 
-#: src/bookworm.vala:113
+#: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
 msgstr "Voeg automatisch boeken toe uit gevolgde mappen"
 
-#: src/utils.vala:520 src/utils.vala:594
+#: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
 msgstr "Annuleer"
 
-#: src/utils.vala:522 src/utils.vala:595
+#: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
 msgstr "Open"
 
-#: src/utils.vala:524
+#: src/utils.vala:556
 msgid "Save"
 msgstr "Opslaan"
 
@@ -460,23 +460,23 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: src/dialog.vala:62
+#: src/dialog.vala:59
 msgid "Select Image"
 msgstr "Selecteer afbeelding"
 
-#: src/dialog.vala:578
+#: src/dialog.vala:544
 msgid "Select folder"
 msgstr "Selecteer map"
 
-#: src/window.vala:321 src/window.vala:615
+#: src/window.vala:309 src/window.vala:577
 msgid "Select eBook"
 msgstr "Selecteer e-boek"
 
-#: src/library.vala:576
+#: src/library.vala:543
 msgid "Adding "
 msgstr ""
 
-#: src/mobiReader.vala:329
+#: src/mobiReader.vala:320
 #, fuzzy
 msgid "Book"
 msgstr "Bladwijzers"
@@ -560,7 +560,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
-"Fix for keeping the preference dialog open untill all adjustments are "
+"Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
 

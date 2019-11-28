@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 15:55+0530\n"
+"POT-Creation-Date: 2019-11-28 13:48+0530\n"
 "PO-Revision-Date: 2019-11-24 13:32+0000\n"
 "Last-Translator: GUIDE APK MM <apk.guide.net.mm@gmail.com>\n"
 "Language-Team: Abkhazian <https://hosted.weblate.org/projects/bookworm/"
@@ -13,36 +13,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.10-dev\n"
 
-#: src/bookworm.vala:110
+#: src/bookworm.vala:109
 #, fuzzy
 msgid "Display version number"
 msgstr "Abkhazian"
 
-#: src/bookworm.vala:111
+#: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
 msgstr "Abkhazian"
 
-#: src/bookworm.vala:112
+#: src/bookworm.vala:111
 #, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Abkhazian"
 
-#: src/bookworm.vala:113
+#: src/bookworm.vala:112
 #, fuzzy
 msgid "Automatically add new books from watched folders"
 msgstr "Abkhazian"
 
-#: src/utils.vala:520 src/utils.vala:594
+#: src/utils.vala:552 src/utils.vala:639
 #, fuzzy
 msgid "Cancel"
 msgstr "Abkhazian"
 
-#: src/utils.vala:522 src/utils.vala:595
+#: src/utils.vala:554 src/utils.vala:640
 #, fuzzy
 msgid "Open"
 msgstr "Abkhazian"
 
-#: src/utils.vala:524
+#: src/utils.vala:556
 msgid "Save"
 msgstr "Abkhazian"
 
@@ -544,27 +544,27 @@ msgstr "Abkhazian"
 msgid "About"
 msgstr "Abkhazian"
 
-#: src/dialog.vala:62
+#: src/dialog.vala:59
 #, fuzzy
 msgid "Select Image"
 msgstr "Select ImageAbkhazian"
 
-#: src/dialog.vala:578
+#: src/dialog.vala:544
 #, fuzzy
 msgid "Select folder"
 msgstr "Abkhazian"
 
-#: src/window.vala:321 src/window.vala:615
+#: src/window.vala:309 src/window.vala:577
 #, fuzzy
 msgid "Select eBook"
 msgstr "Abkhazian"
 
-#: src/library.vala:576
+#: src/library.vala:543
 #, fuzzy
 msgid "Adding "
 msgstr "Abkhazian "
 
-#: src/mobiReader.vala:329
+#: src/mobiReader.vala:320
 #, fuzzy
 msgid "Book"
 msgstr "Abkhazian"
@@ -661,7 +661,7 @@ msgstr "Abkhazian"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 #, fuzzy
 msgid ""
-"Fix for keeping the preference dialog open untill all adjustments are "
+"Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr "Abkhazian"
 
