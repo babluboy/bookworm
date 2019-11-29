@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 15:06+0530\n"
+"POT-Creation-Date: 2019-11-29 21:31+0530\n"
 "PO-Revision-Date: 2019-10-21 08:53+0000\n"
 "Last-Translator: nautilusx <mail.ka@mailbox.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -400,7 +400,7 @@ msgstr "Vorherige Seite öffnen"
 msgid "Go to next page"
 msgstr "Nächste Seite öffnen"
 
-#: src/constants.vala.in:122 src/constants.vala.in:150
+#: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -456,11 +456,11 @@ msgstr "Anzahl von Büchern pro Seite in der Übersicht"
 msgid "Reset to default values"
 msgstr "Auf Standardwerte zurücksetzen"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "Unknown Book"
 msgstr "Unbekanntes Buch"
 
-#: src/constants.vala.in:149
+#: src/constants.vala.in:150
 msgid "About"
 msgstr "Über …"
 
@@ -472,7 +472,7 @@ msgstr "Grafik auswählen"
 msgid "Select folder"
 msgstr "Verzeichnis wählen"
 
-#: src/window.vala:309 src/window.vala:577
+#: src/window.vala:295 src/window.vala:609
 msgid "Select eBook"
 msgstr "E-Book auswählen"
 

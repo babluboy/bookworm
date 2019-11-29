@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 15:06+0530\n"
+"POT-Creation-Date: 2019-11-29 21:31+0530\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
@@ -371,7 +371,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:122 src/constants.vala.in:150
+#: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
 msgstr ""
 
@@ -427,11 +427,11 @@ msgstr ""
 msgid "Reset to default values"
 msgstr ""
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "Unknown Book"
 msgstr ""
 
-#: src/constants.vala.in:149
+#: src/constants.vala.in:150
 msgid "About"
 msgstr ""
 
@@ -443,7 +443,7 @@ msgstr ""
 msgid "Select folder"
 msgstr ""
 
-#: src/window.vala:309 src/window.vala:577
+#: src/window.vala:295 src/window.vala:609
 msgid "Select eBook"
 msgstr ""
 

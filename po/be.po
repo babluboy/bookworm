@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 15:06+0530\n"
+"POT-Creation-Date: 2019-11-29 21:31+0530\n"
 "PO-Revision-Date: 2019-07-21 22:07+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/bookworm/"
@@ -393,7 +393,7 @@ msgstr "Перайсці да папярэдняй старонкі"
 msgid "Go to next page"
 msgstr "Перайсці да наступнай старонкі"
 
-#: src/constants.vala.in:122 src/constants.vala.in:150
+#: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
 msgstr "Налады"
 
@@ -449,11 +449,11 @@ msgstr "Колькасць кніг на адной старонцы біблі�
 msgid "Reset to default values"
 msgstr "Скінуць да агаданых значэнняў"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "Unknown Book"
 msgstr "Невядомая кніга"
 
-#: src/constants.vala.in:149
+#: src/constants.vala.in:150
 msgid "About"
 msgstr "Аб"
 
@@ -465,7 +465,7 @@ msgstr "Абраць выяву"
 msgid "Select folder"
 msgstr "Абраць каталог"
 
-#: src/window.vala:309 src/window.vala:577
+#: src/window.vala:295 src/window.vala:609
 msgid "Select eBook"
 msgstr "Абраць электронную кнігу"
 

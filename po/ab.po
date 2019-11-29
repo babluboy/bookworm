@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 15:06+0530\n"
+"POT-Creation-Date: 2019-11-29 21:31+0530\n"
 "PO-Revision-Date: 2019-11-24 13:32+0000\n"
 "Last-Translator: GUIDE APK MM <apk.guide.net.mm@gmail.com>\n"
 "Language-Team: Abkhazian <https://hosted.weblate.org/projects/bookworm/"
@@ -464,7 +464,7 @@ msgstr "Abkhazian"
 msgid "Go to next page"
 msgstr "Abkhazian"
 
-#: src/constants.vala.in:122 src/constants.vala.in:150
+#: src/constants.vala.in:122 src/constants.vala.in:151
 #, fuzzy
 msgid "Preferences"
 msgstr "Abkhazian"
@@ -534,12 +534,12 @@ msgstr "Abkhazian"
 msgid "Reset to default values"
 msgstr "Abkhazian"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 #, fuzzy
 msgid "Unknown Book"
 msgstr "Abkhazian"
 
-#: src/constants.vala.in:149
+#: src/constants.vala.in:150
 #, fuzzy
 msgid "About"
 msgstr "Abkhazian"
@@ -554,7 +554,7 @@ msgstr "Select ImageAbkhazian"
 msgid "Select folder"
 msgstr "Abkhazian"
 
-#: src/window.vala:309 src/window.vala:577
+#: src/window.vala:295 src/window.vala:609
 #, fuzzy
 msgid "Select eBook"
 msgstr "Abkhazian"

@@ -839,7 +839,7 @@ namespace BookwormApp.Utils {
 
     public static string setWebViewTitle (string javascript) {
         string selectedText = "";
-        debug ("Javascrit for setting Webview Title: " + javascript);
+        debug ("Javascript for setting Webview Title: " + javascript);
         var loop = new MainLoop ();
         BookwormApp.AppWindow.aWebView.run_javascript.begin (javascript, null, (obj, res) => {
             try {

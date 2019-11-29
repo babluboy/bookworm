@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 15:06+0530\n"
+"POT-Creation-Date: 2019-11-29 21:31+0530\n"
 "PO-Revision-Date: 2017-09-18 07:01+0000\n"
 "Last-Translator: Pablo Mariño <pablo.marino.boga@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bookworm/"
@@ -409,7 +409,7 @@ msgstr ""
 msgid "Go to next page"
 msgstr ""
 
-#: src/constants.vala.in:122 src/constants.vala.in:150
+#: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -467,11 +467,11 @@ msgstr ""
 msgid "Reset to default values"
 msgstr "Restaurar os valores predeterminados"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "Unknown Book"
 msgstr "Libro descoñecido"
 
-#: src/constants.vala.in:149
+#: src/constants.vala.in:150
 msgid "About"
 msgstr "Acerca de"
 
@@ -483,7 +483,7 @@ msgstr "Escolle Imaxe"
 msgid "Select folder"
 msgstr "Escolle cartafol"
 
-#: src/window.vala:309 src/window.vala:577
+#: src/window.vala:295 src/window.vala:609
 msgid "Select eBook"
 msgstr "Escolle un eBook"
 

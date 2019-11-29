@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 15:06+0530\n"
+"POT-Creation-Date: 2019-11-29 21:31+0530\n"
 "PO-Revision-Date: 2019-10-07 00:56+0000\n"
 "Last-Translator: Hsiu-Ming Chang <cges30901@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -377,7 +377,7 @@ msgstr "前往上一頁"
 msgid "Go to next page"
 msgstr "前往下一頁"
 
-#: src/constants.vala.in:122 src/constants.vala.in:150
+#: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
 msgstr "偏好設定"
 
@@ -433,11 +433,11 @@ msgstr "書庫中每一頁的書籍數量"
 msgid "Reset to default values"
 msgstr "重設所有設定"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "Unknown Book"
 msgstr "未知書藉"
 
-#: src/constants.vala.in:149
+#: src/constants.vala.in:150
 msgid "About"
 msgstr "關於"
 
@@ -449,7 +449,7 @@ msgstr "選擇圖片"
 msgid "Select folder"
 msgstr "選擇文件夾"
 
-#: src/window.vala:309 src/window.vala:577
+#: src/window.vala:295 src/window.vala:609
 msgid "Select eBook"
 msgstr "選擇電子書"
 

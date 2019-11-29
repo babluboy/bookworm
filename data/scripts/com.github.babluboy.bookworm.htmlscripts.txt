@@ -1,5 +1,6 @@
 <script>
     var is_search_result_found = "false";
+
     function setTwoPageView() {
         var lengthOfData = document.getElementsByTagName("BODY")[0].innerText.length;
         if(lengthOfData > 500){

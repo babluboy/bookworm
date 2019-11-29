@@ -262,25 +262,11 @@ public class BookwormApp.AppWindow {
         });
         //Add action on the forward button for reading
         forward_button.clicked.connect (() => {
-            //get object for this ebook and call the next page
-            BookwormApp.Book currentBookForForward = new BookwormApp.Book ();
-            currentBookForForward = BookwormApp.Bookworm.libraryViewMap.get (BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-            debug ("Initiating read forward for eBook:" + currentBookForForward.getBookLocation ());
-            currentBookForForward = BookwormApp.contentHandler.renderPage (currentBookForForward, "FORWARD");
-            //update book details to libraryView Map
-            BookwormApp.Bookworm.libraryViewMap.set (currentBookForForward.getBookLocation (), currentBookForForward);
-            BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForForward.getBookLocation ();
+            handleBookNavigation ("NEXT");
         });
         //Add action on the backward button for reading
         back_button.clicked.connect (() => {
-            //get object for this ebook and call the next page
-            BookwormApp.Book currentBookForReverse = new BookwormApp.Book ();
-            currentBookForReverse = BookwormApp.Bookworm.libraryViewMap.get (BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
-            debug ("Initiating read previous for eBook:" + currentBookForReverse.getBookLocation ());
-            currentBookForReverse = BookwormApp.contentHandler.renderPage (currentBookForReverse, "BACKWARD");
-            //update book details to libraryView Map
-            BookwormApp.Bookworm.libraryViewMap.set (currentBookForReverse.getBookLocation (), currentBookForReverse);
-            BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForReverse.getBookLocation ();
+            handleBookNavigation ("PREV");
         });
         //Add action for moving the pages for the page slider
         pageSlider.change_value.connect ((scroll, new_value) => {
@@ -357,6 +343,27 @@ public class BookwormApp.AppWindow {
         //Add action for removing a selected book on the library view
         remove_book_button.clicked.connect (() => {
             BookwormApp.Library.removeSelectedBooksFromLibrary ();
+        });
+        //handle mouse click on webview (reading mode)
+        aWebView.button_press_event.connect ((event) => {
+            int width;
+            int height;
+            //capture the current window size
+            BookwormApp.Bookworm.window.get_size (out width, out height);
+            //capture which mouse button was clicked on the book in the library
+            uint mouseButtonClicked;
+            event.get_button (out mouseButtonClicked);
+            //handle left button click for page navigation if the click is near the left and right margins
+            if (event.get_event_type () == Gdk.EventType.BUTTON_PRESS && mouseButtonClicked == 1) {
+                //check if mouse is clicked near the right margin 10% of page width and go to previous page
+                if(event.x < ((BookwormApp.Constants.PERCENTAGE_WIDTH_FOR_PAGE_NAVIGATION_ON_CLICK/100) * width)){
+                    handleBookNavigation ("PREV");
+                }
+                if(event.x > (width - ((BookwormApp.Constants.PERCENTAGE_WIDTH_FOR_PAGE_NAVIGATION_ON_CLICK/100) * width))){
+                    handleBookNavigation ("NEXT");
+                }
+            };
+            return false; //return false to propagate the action further
         });
         //handle context menu on the webview reader
         aWebView.context_menu.connect ((context_menu, event, hit_test_result) => {
@@ -479,6 +486,31 @@ public class BookwormApp.AppWindow {
         });
         info ("[END] [FUNCTION:createBoookwormUI]");
         return main_ui_box;
+    }
+
+    public static void handleBookNavigation (string action){
+        //action for NEXT page
+        if(action == "NEXT") {
+            //get object for this ebook and call the next page
+            BookwormApp.Book currentBookForForward = new BookwormApp.Book ();
+            currentBookForForward = BookwormApp.Bookworm.libraryViewMap.get (BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+            debug ("Initiating read forward for eBook:" + currentBookForForward.getBookLocation ());
+            currentBookForForward = BookwormApp.contentHandler.renderPage (currentBookForForward, "FORWARD");
+            //update book details to libraryView Map
+            BookwormApp.Bookworm.libraryViewMap.set (currentBookForForward.getBookLocation (), currentBookForForward);
+            BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForForward.getBookLocation ();
+        }
+        //action for PREV page
+        if(action == "PREV") {
+            //get object for this ebook and call the next page
+            BookwormApp.Book currentBookForReverse = new BookwormApp.Book ();
+            currentBookForReverse = BookwormApp.Bookworm.libraryViewMap.get (BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+            debug ("Initiating read previous for eBook:" + currentBookForReverse.getBookLocation ());
+            currentBookForReverse = BookwormApp.contentHandler.renderPage (currentBookForReverse, "BACKWARD");
+            //update book details to libraryView Map
+            BookwormApp.Bookworm.libraryViewMap.set (currentBookForReverse.getBookLocation (), currentBookForReverse);
+            BookwormApp.Bookworm.locationOfEBookCurrentlyRead = currentBookForReverse.getBookLocation ();
+        }
     }
 
     public static void handleLibraryPageButtons (string mode, bool isPaginateRequired) {

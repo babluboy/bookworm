@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 15:06+0530\n"
+"POT-Creation-Date: 2019-11-29 21:31+0530\n"
 "PO-Revision-Date: 2019-08-13 11:23+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
@@ -396,7 +396,7 @@ msgstr "前のページに移動します"
 msgid "Go to next page"
 msgstr "次のページに移動します"
 
-#: src/constants.vala.in:122 src/constants.vala.in:150
+#: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
 msgstr "設定"
 
@@ -452,11 +452,11 @@ msgstr "ライブラリ 1 ページあたりに表示する本の数"
 msgid "Reset to default values"
 msgstr "デフォルト値にリセット"
 
-#: src/constants.vala.in:148
+#: src/constants.vala.in:149
 msgid "Unknown Book"
 msgstr "不明な本"
 
-#: src/constants.vala.in:149
+#: src/constants.vala.in:150
 msgid "About"
 msgstr "このアプリケーションについて"
 
@@ -468,7 +468,7 @@ msgstr "画像を選択"
 msgid "Select folder"
 msgstr "フォルダを選択"
 
-#: src/window.vala:309 src/window.vala:577
+#: src/window.vala:295 src/window.vala:609
 msgid "Select eBook"
 msgstr "電子書籍を選択"
 
