@@ -265,6 +265,14 @@ public class BookwormApp.AppWindow {
         // Add action to go to next or previous page in reponse to a finger
         // swipe gesture from right to left to or left to right respectively
         gesture_swipe.swipe.connect((x, y) => {
+          // Avoid triggering nagivation actions on mostly vertical swipes that
+          // should scroll down the page rather then flip it.
+          // The y-value is relatively arbitrary but seems to feel right in
+          // testing
+          if (y.abs() > 800) {
+            return;
+          }
+
           // x == 0 on tap, so we ignore that
           if (x > 0) {
             handleBookNavigation("PREV");
