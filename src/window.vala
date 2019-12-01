@@ -266,10 +266,10 @@ public class BookwormApp.AppWindow {
         // swipe gesture from right to left to or left to right respectively
         gesture_swipe.swipe.connect((x, y) => {
           // Avoid triggering nagivation actions on mostly vertical swipes that
-          // should scroll down the page rather then flip it.
-          // The y-value is relatively arbitrary but seems to feel right in
-          // testing
-          if (y.abs() > 800) {
+          // should scroll up or down the page rather then flip it.
+          // The x and y-values here are relatively arbitrary but seems to feel
+          // right in testing.
+          if (y.abs() > 800 || x.abs() < 800) {
             return;
           }
 
