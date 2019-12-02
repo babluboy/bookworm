@@ -36,6 +36,7 @@ public class BookwormApp.AppWindow {
     public static Gtk.Box book_reading_footer_box;
     public static Gtk.Box bookReading_ui_box;
     public static Gtk.Button forward_button;
+    public static Gtk.GestureSwipe gesture_swipe;
     public static Gtk.Button back_button;
     public static Gtk.ProgressBar bookAdditionBar;
     public static Adjustment pageAdjustment;
@@ -95,7 +96,6 @@ public class BookwormApp.AppWindow {
         library_view_box.set_border_width (0);
         library_view_box.pack_start (library_grid_scroll, true, true, 0);
         library_view_box.pack_start (library_list_scroll, true, true, 0);
-
         //Set up Button for selecting books
         Gtk.Button select_book_button = new Gtk.Button ();
         select_book_button.set_image (BookwormApp.Bookworm.select_book_image);
@@ -174,6 +174,8 @@ public class BookwormApp.AppWindow {
         //webkitSettings.set_default_font_family (aWebView.get_style_context ().get_font (StateFlags.NORMAL).get_family ());
         webkitSettings.set_default_font_size (BookwormApp.Bookworm.settings.reading_font_size);
         webkitSettings.set_default_font_family (BookwormApp.Bookworm.settings.reading_font_name);
+        gesture_swipe = new Gtk.GestureSwipe(aWebView);
+        gesture_swipe.set_propagation_phase(Gtk.PropagationPhase.CAPTURE);
 
         //Set up Button for previous page
         back_button = new Gtk.Button ();
@@ -259,6 +261,24 @@ public class BookwormApp.AppWindow {
                 */
             };
             return false; //return false to propagate the action further i.e. row activation
+        });
+        // Add action to go to next or previous page in reponse to a finger
+        // swipe gesture from right to left to or left to right respectively
+        gesture_swipe.swipe.connect((x, y) => {
+          // Avoid triggering nagivation actions on mostly vertical swipes that
+          // should scroll up or down the page rather then flip it.
+          // The x and y-values here are relatively arbitrary but seems to feel
+          // right in testing.
+          if (y.abs() > 800 || x.abs() < 800) {
+            return;
+          }
+
+          // x == 0 on tap, so we ignore that
+          if (x > 0) {
+            handleBookNavigation("PREV");
+          } else if (x < 0) {
+            handleBookNavigation("NEXT");
+          }
         });
         //Add action on the forward button for reading
         forward_button.clicked.connect (() => {
