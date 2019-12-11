@@ -60,7 +60,7 @@ public class BookwormApp.BackgroundTasks {
                         findCmd.append ("\"").append (scanDir).append ("\"").append (" ");
                     }
                 }
-                findCmd.append ("! -readable -prune -o -type f \\ ( -iname \\*.mobi -o -iname \\*.pdf -o -iname \\*.epub -o -iname \\*.cbr -o -iname \\*.cbz \\) -print");
+                findCmd.append ("! -readable -prune -o -type f \\( -iname \\*.mobi -o -iname \\*.pdf -o -iname \\*.epub -o -iname \\*.cbr -o -iname \\*.cbz \\) -print");
                 string findCmdOutput = BookwormApp.Utils.execute_sync_command (findCmd.str);
                 if (findCmdOutput.contains ("\n")) {
                     string[] findCmdOutputResults = findCmdOutput.strip ().split ("\n",-1);
