@@ -2,20 +2,28 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 21:31+0530\n"
+"PO-Revision-Date: 2019-12-15 14:21+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"Language-Team: Marathi <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/mr/>\n"
+"Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "आवृत्ती क्रमांक प्रदर्शित करा"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "डीबग मोडमध्ये बुकवॉर्म चालवा"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "माहिती मोडमध्ये बुकवॉर्म चालवा"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
@@ -23,43 +31,43 @@ msgstr ""
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करा"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "उघडा"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "जतन करा"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "एक ईबुक रीडर"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "वेबलेट भाषांतरकार"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "वेबसाइट | भाषांतर | बग ट्रॅकर"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "उपलब्ध नाही"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "ई - पुस्तक रीडर"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "हे पुस्तक शोधा …"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "शीर्षक, लेखक आणि टॅग्जनुसार शोधा"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
@@ -67,25 +75,27 @@ msgstr ""
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "ईपुस्तके जोडून आपली लायब्ररी तयार करा"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "वाचण्यासाठी ईबुक निवडा"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"पुस्तकाची सामग्री काढण्यात समस्या. येथे वैध ईबुक फाइल असल्याचे सुनिश्चित करा:"
+" "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr ""
+msgstr "अवैध मीडिया प्रकार आढळला. या ईबुकसाठी स्वरूप तपासा: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "अवैध सामग्री आढळली. येथे वैध ईबुक फाइल असल्याचे सुनिश्चित करा: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
@@ -93,7 +103,7 @@ msgstr ""
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "बुकवर्म येथे सापडलेल्या फाईलच्या स्वरूपाचे समर्थन करत नाही: "
 
 #: src/constants.vala.in:51
 msgid ""
@@ -103,27 +113,27 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "पृष्ठ नॅव्हिगेशनमध्ये जारी करा, कृपया पृष्ठे पुढे किंवा मागे हलवा."
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "ग्रंथालय"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "पुन्हा सुरू करा"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "सामग्री"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "सामग्री #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "बुकमार्क"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
