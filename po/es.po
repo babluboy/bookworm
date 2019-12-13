@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 21:31+0530\n"
-"PO-Revision-Date: 2019-11-20 22:04+0000\n"
-"Last-Translator: Eduardo Vega <eduardo.vegarct@gmail.com>\n"
+"PO-Revision-Date: 2019-12-15 14:21+0000\n"
+"Last-Translator: gabe9 <gabe.roche@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/es/>\n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr "Mostrar el número de versión"
+msgstr "Mostrar número de versión"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
@@ -23,7 +23,7 @@ msgstr "Ejecutar Bookworm en modo de depuración"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Ejecutar Bookworm en modo informativo"
+msgstr "Ejecutar Bookworm en modo de información"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
@@ -51,7 +51,7 @@ msgstr "Traductores de Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Sitio web | Traducción | Seguimiento de errores"
+msgstr "Sitio web | Traducción | Seguidor de errores"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -234,14 +234,12 @@ msgid "Update Author"
 msgstr "Actualizar el autor"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
-msgstr "Vista de pantalla completa (F11)"
+msgstr "Vista en pantalla completa (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
-msgstr "Salir de la vista de pantalla completa (Esc)"
+msgstr "Salir de la vista pantalla completa (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
@@ -374,9 +372,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Aplicar tema para este perfil de colores"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Entrar en la vista de pantalla completa; Esc para deshacer"
+msgstr "Entrar en la vista en pantalla completa; presione Esc para deshacer"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
@@ -523,13 +520,12 @@ msgstr ""
 "metadatos y filtrado por etiquetas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Esta versión admite los formatos EPUB, MOBI, PRC, PDF, así como CBR y CBZ "
-"(para cómics), y próximamente se añadirá compatibilidad para más."
+"Esta versión admite los formatos EPUB, MOBI, PRC, PDF, FB2 así como formatos "
+"CBR y CBZ (para cómics), y próximamente se añadirá compatibilidad para más."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -556,9 +552,8 @@ msgid "Library is paginated to load large libraries quickly"
 msgstr "La librería está paginada para cargar librerías rápidamente"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Compatibilidad con el formato MOBI y mejoras de experiencia de usuario"
+msgstr "Compatibilidad con el formato FB2 - .fb2 y .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -572,12 +567,11 @@ msgstr ""
 "biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
-#, fuzzy
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
-"Correción para mantener el diálogo de preferencias abiarto hasta que todos "
+"Correción para mantener el diálogo de preferencias abierto hasta que todos "
 "los cambios se hayan finalizado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
@@ -671,7 +665,6 @@ msgid "Support for MOBI format and UX improvements"
 msgstr "Compatibilidad con el formato MOBI y mejoras de experiencia de usuario"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
-#, fuzzy
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
 "Mejoras de la experiencia de usuario para la vista de lista y otras "
