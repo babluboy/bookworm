@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 21:31+0530\n"
-"PO-Revision-Date: 2019-06-09 04:53+0000\n"
+"PO-Revision-Date: 2019-12-15 14:21+0000\n"
 "Last-Translator: THANOS SIOURDAKIS <siourdakisthanos@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "el/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -90,11 +90,10 @@ msgstr ""
 "το ηλεκτρονικό βιβλίο είναι διαθέσιμο στην τοποθεσία: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
-"Εντοπίστηκε μη έγκυρος τύπος Mime. Ελέγξτε το μορφότυπο του ηλεκτρονικού "
-"βιβλίου στην τοποθεσία: "
+"Εντοπίστηκε μη έγκυρος τύπος μέσου. Έλεγχος μορφής για αυτό το ηλεκτρονικό "
+"βιβλίο: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -123,6 +122,8 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Πρόβλημα στην πλοήγηση σελίδων, παρακαλώ μετακινήστε τις σελίδες προς τα "
+"εμπρός ή προς τα πίσω."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -235,12 +236,10 @@ msgid "Update Author"
 msgstr "Ενημέρωση Συγγραφέα"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Είσοδος σε προβολή πλήρους οθόνης (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Έξοδος από προβολή πλήρους οθόνης (Esc)"
 
@@ -376,9 +375,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Εφαρμογή θέματος για αυτό το χρωματικό προφίλ"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Μπείτε σε προβολή πλήρους οθόνης και το πλήκτρο Esc για έξοδο"
+msgstr "Μπείτε σε προβολή πλήρους οθόνης και πιέστε το πλήκτρο Esc για έξοδο"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
@@ -394,11 +392,11 @@ msgstr "Προσθήκη επισημείωσης για το επιλεγμέν
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Μεταβείτε στην προηγούμενη σελίδα"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Μεταβείτε στην επόμενη σελίδα"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
@@ -450,7 +448,7 @@ msgstr "Προφίλ"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Αριθμός βιβλίων ανά σελίδα στη βιβλιοθήκη"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -523,13 +521,12 @@ msgstr ""
 "αναζήτηση μετα-δεδομένων και φιλτράρισμα με βάση τις ετικέτες."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Η έκδοση αυτή υποστηρίζει EPUB, MOBI, PRC, PDF και κόμικ (CBR και CBZ) με "
-"την υποστήριξη για περισσότερους τύπους αρχείων να έπεται."
+"Η έκδοση αυτή υποστηρίζει EPUB, MOBI, PRC, PDF, FB2 και κόμικ (CBR και CBZ) "
+"με την υποστήριξη για περισσότερους τύπους αρχείων να έπεται."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -556,9 +553,8 @@ msgid "Library is paginated to load large libraries quickly"
 msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Υποστήριξη για τη MOBI format και βελτιώσεις ΕΧ"
+msgstr "Υποστήριξη για τύπο αρχείου FB2 - .fb2 και .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
