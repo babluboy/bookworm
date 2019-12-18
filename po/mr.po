@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 21:31+0530\n"
-"PO-Revision-Date: 2019-12-18 20:21+0000\n"
+"PO-Revision-Date: 2019-12-19 22:21+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/mr/>\n"
@@ -27,7 +27,7 @@ msgstr "माहिती मोडमध्ये बुकवॉर्म च
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "पाहिलेले फोल्डरमधून स्वयंचलितपणे नवीन पुस्तके जोडा"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -100,6 +100,7 @@ msgstr "अवैध सामग्री आढळली. येथे वै�
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"ईबुक विश्लेषित करणे शक्य नाही. येथे वैध ईबुक फाइल असल्याचे सुनिश्चित करा: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -110,6 +111,8 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"विनंती केलेली सामग्री आणली जाऊ शकली नाही. कृपया येथे आढळलेली ईबुक फाइल काढा "
+"आणि जोडा: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -137,11 +140,11 @@ msgstr "बुकमार्क"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "विभाग PPPसाठी #NNN बुकमार्क करा"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "बुकमार्क केलेल्या विभागात जाण्यासाठी दुव्यावर क्लिक करा"
 
 #: src/constants.vala.in:60
 msgid ""
@@ -151,27 +154,27 @@ msgstr ""
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "शब्द अर्थ"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "शोध परिणाम"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "टीपा"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "भाष्य टॅग्ज"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "या भाष्यसाठी स्वल्पविरामाने विभक्त केलेले टॅग"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "यासाठी भाष्य संपादित करा:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
