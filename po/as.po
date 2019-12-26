@@ -2,86 +2,96 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 21:31+0530\n"
+"PO-Revision-Date: 2019-12-27 16:21+0000\n"
+"Last-Translator: Mohsin Ali <mohsin13089@gmail.com>\n"
+"Language-Team: Assamese <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/as/>\n"
+"Language: as\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "সংস্কৰণৰ সংখ্যা দেখুৱাওক"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "ডিবাগ ম'ডত Bookworm চলাওক"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "তথ্য ম'ডত Bookworm চলাওক"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "চোৱা ফ'ল্ডাৰসমূহৰ পৰা নতুন কিতাপ স্বয়ংক্ৰিয়ভাৱে যোগ কৰক"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "খোলক"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "সঞ্চয়"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "এক ই-কিতাপ ৰীডাৰ"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Weblate অনুবাদক"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "ৱেবছাইট | অনুবাদ | বাগ ট্রেকাৰ"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "উপলব্ধ নহয়"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "ই-কিতাপ ৰীডাৰ"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "এই কিতাপখনৰ সন্ধান কৰক…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "শীৰ্ষক, লেখক আৰু টেগ অনুসৰি সন্ধান কৰক"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "এনে লাগিছে যেন Bookworm-ৰ এখনো কিতাপ নাই"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "ই-কিতাপ যোগ কৰি আপোনাৰ পুথিভঁৰাল বনাওক"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "পঢ়িবলৈ এখন ই-কিতাপ বাছনি কৰক"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"কিতাপৰ সমল উলিয়াওঁতে সমস্যা হৈছে। ইয়াত এটা বৈধ ই-কিতাপ ফাইল থকাটো নিশ্চিত "
+"কৰক: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr ""
+msgstr "অবৈধ মিডিয়াৰ প্ৰকাৰ ধৰা পৰিছে। এই ই-কিতাপৰ সজ্জা পৰীক্ষা কৰক: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -107,31 +117,31 @@ msgstr ""
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "পুথিভঁৰাল"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "পুনৰাৰম্ভ কৰক"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "সমল"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "সমল #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "বুকমাৰ্ক"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "PPP শাখাৰ বাবে #NNN বুকমাৰ্ক কৰক"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "বুকমাৰ্ক কৰা শাখালৈ যাবলৈ লিংক এটাত ক্লিক কৰক"
 
 #: src/constants.vala.in:60
 msgid ""
@@ -191,23 +201,23 @@ msgstr ""
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "ইয়াৰ বাবে তথ্য সম্পাদনা কৰক"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "আৱৰণৰ ছবি আপডেট কৰক"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "শীৰ্ষক আপডেট কৰক"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "টেগ আপডেট কৰক"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "লেখক আপডেট কৰক"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
@@ -219,7 +229,7 @@ msgstr ""
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "শব্দাৰ্থ চাওক"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
@@ -227,71 +237,71 @@ msgstr ""
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "কিতাপ"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "ছবি"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "সকলো ফাইল"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "শীৰ্ষক"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "লেখক"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "শেষবাৰ খোলা হৈছিল"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "ৰেটিং"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "টেগ"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "আজি"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "যোৱাকালি"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "দিন"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Bookworm বন্ধ হ'লে কিতাপৰ আৱিষ্কাৰ আৰম্ভ কৰা হ'ব"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "পুথিভঁৰালত কিতাপ যোগ কৰক"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "পুথিভঁৰালৰ পৰা বাছনি কৰা কিতাপকেইখন আঁতৰাওক (ই-কিতাপ ফাইল মচা নহ'ব)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "আঁতৰোৱা কাৰ্য্য সক্ষম কৰিবলৈ কিতাপ বাছনি কৰক"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "পুথিভঁৰালত এখন বা অধিক কিতাপ বাছনি কৰক"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "সমলৰ তালিকা, বুকমাৰ্ক আৰু সন্ধানৰ ফলাফল চাওক"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
@@ -299,19 +309,19 @@ msgstr ""
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "এই পৃষ্ঠাখন বুকমাৰ্ক কৰিবলৈ ক্লিক কৰক"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "এই বুকমাৰ্কটো আঁতৰাবলৈ ক্লিক কৰক"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "ফ'ণ্টৰ আকাৰ বৃদ্ধি কৰক (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "ফ'ণ্টৰ আকাৰ হ্ৰাস কৰক (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
@@ -331,15 +341,15 @@ msgstr ""
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "বাওঁ সংৰেখন"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "সোঁ সংৰেখন"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "আৱৰণৰ ছবি আপডেট কৰক"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
@@ -351,7 +361,7 @@ msgstr ""
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "কিতাপৰ বাবে স্কেন কৰিবলৈ ফ'ল্ডাৰ যোগ কৰক"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
@@ -363,23 +373,23 @@ msgstr ""
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "পূৰ্বৱৰ্তী পৃষ্ঠালৈ যাওক"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "পৰৱৰ্তী পৃষ্ঠালৈ যাওক"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "পছন্দসমূহ"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "আন্ধাৰ ম'ড চালু কৰক"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "কেশ্ব সক্ষম কৰক (কিতাপ ক্ষিপ্ৰতাৰে খোলে)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
@@ -387,11 +397,11 @@ msgstr ""
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "দুই পৃষ্ঠা পঠন সক্ষম কৰক"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "ফ'ণ্ট বাছনি কৰক"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
@@ -399,76 +409,79 @@ msgstr ""
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "পাঠ"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "পৃষ্ঠভূমি"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "হাইলাইট"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "কিতাপৰ বাবে স্কেন কৰিবলৈ ফ'ল্ডাৰ যোগ কৰক"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "প্ৰ'ফাইল"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "পুথিভঁৰালত প্ৰতি পৃষ্ঠা কিতাপৰ সংখ্যা"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "ডিফ'ল্ট মানলৈ ৰিছেট কৰক"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "অজ্ঞাত কিতাপ"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "বিষয়ে"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "ছবি বাছনি কৰক"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "ফ'ল্ডাৰ বাছনি কৰক"
 
 #: src/window.vala:295 src/window.vala:609
 msgid "Select eBook"
-msgstr ""
+msgstr "ই-কিতাপ বাছনি কৰক"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "যোগ কৰি থকা হৈছে "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "কিতাপ"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
+#, fuzzy
 msgid "Bookworm"
-msgstr ""
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "ই-কিতাপ পঢ়ক আৰু পৰিচালনা কৰক"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
+#, fuzzy
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
+#, fuzzy
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
