@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-29 21:31+0530\n"
+"POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2019-12-27 16:21+0000\n"
 "Last-Translator: Mohsin Ali <mohsin13089@gmail.com>\n"
 "Language-Team: Assamese <https://hosted.weblate.org/projects/bookworm/"
@@ -86,8 +86,7 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"কিতাপৰ সমল উলিয়াওঁতে সমস্যা হৈছে। ইয়াত এটা বৈধ ই-কিতাপ ফাইল থকাটো নিশ্চিত "
-"কৰক: "
+"কিতাপৰ সমল উলিয়াওঁতে সমস্যা হৈছে। ইয়াত এটা বৈধ ই-কিতাপ ফাইল থকাটো নিশ্চিত কৰক: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
@@ -451,7 +450,7 @@ msgstr "ছবি বাছনি কৰক"
 msgid "Select folder"
 msgstr "ফ'ল্ডাৰ বাছনি কৰক"
 
-#: src/window.vala:295 src/window.vala:609
+#: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
 msgstr "ই-কিতাপ বাছনি কৰক"
 

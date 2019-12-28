@@ -135,7 +135,8 @@
           /* Control line spacing */
           line-height: $READING_LINE_HEIGHT%;
           /* Control page margins */
-          margin:auto; max-width: $READING_WIDTH%;
+          margin:auto !important; 
+          max-width: $READING_WIDTH% !important;
           /* Control fonts */
           font-family: $FONT_FAMILY !important;
           font-size: $FONT_SIZEpx !important;

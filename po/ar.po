@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-29 21:31+0530\n"
+"POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2019-08-06 22:23+0000\n"
 "Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bookworm/bookworm/"
@@ -465,7 +465,7 @@ msgstr "اختيار صورة"
 msgid "Select folder"
 msgstr "اختر مجلد"
 
-#: src/window.vala:295 src/window.vala:609
+#: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
 msgstr "اختر كتاب إلكتروني"
 
