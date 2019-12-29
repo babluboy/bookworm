@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 21:31+0530\n"
-"PO-Revision-Date: 2019-12-27 16:21+0000\n"
-"Last-Translator: zstanecic <zvonimirek222@yandex.com>\n"
+"PO-Revision-Date: 2019-12-30 20:21+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/hr/>\n"
 "Language: hr\n"
@@ -16,19 +16,19 @@ msgstr ""
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr "Prikaži inačicu"
+msgstr "Prikaži verziju"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Pokreni Bookworm u modusu otkrivanja pogrešaka"
+msgstr "Pokreni Bibliofil u modusu za otkrivanja pogrešaka"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Pokreni Bookworm u modusu info"
+msgstr "Pokreni Bibliofil u modusu za informacije"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Automatski dodaje nove knjige iz praćenih foldera"
+msgstr "Automatski dodaje nove knjige iz praćenih mapa"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -44,15 +44,15 @@ msgstr "Spremi"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Čitač elektronskih knjiga"
+msgstr "Čitač e-knjiga"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Weblate Prevoditelji"
+msgstr "Weblate prevoditelji"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Web stranica | Prijevod | Bug Tracker"
+msgstr "Web stranica | Prijevod | Sustav za praćenje grešaka"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -60,68 +60,69 @@ msgstr "Nije dostupno"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "Čitač elektronskih knjiga"
+msgstr "Čitač e-knjiga"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr "Traženje po elektronskoj knjizi…"
+msgstr "Traži ovu knjigu …"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "Traži po naslovu, autoru i tagovima"
+msgstr "Traži po naslovu, autoru i oznakama"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr "Izgleda da Bookworm nema knjiga"
+msgstr "Čini se da Bibliofil nema knjiga"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Punite svoju biblioteku dodajući e-knjige"
+msgstr "Gradi svoju biblioteku dodajući e-knjige"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Odaberite e-knjigu koju želite pročitati"
+msgstr "Odaberi e-knjigu koju želiš pročitati"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problem pri raspakiravanju sadržaja knjige. Uvjerite se da je datoteka e-"
-"knjige prisutna: "
+"Problem pri raspakiravanju sadržaja knjige. Osiguraj da ovdje postoji "
+"ispravna datoteka e-knjige: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Neispravan tip multimedije je otkriven. Provjerite format e-knjige: "
+msgstr ""
+"Otrkivena je neispravna vrsta multimedije. Provjeri format za ovu e-knjigu: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
-"Pronađen neispravan sadržaj. Uvjerite se da postoji pravilan tip e-knjige: "
+"Otkriven je neispravan sadržaj. Osiguraj da ovdje postoji ispravna datoteka "
+"e-knjige: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
-"E-knjiga ne može biti analizirana. Uvjerite se da postoji ispravna datoteka "
+"E-knjiga se ne može analizirati. Osiguraj da ovdje postoji ispravna datoteka "
 "e-knjige: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm ne podržava datotečni format: "
+msgstr "Bibliofil ne podržava ovdje pronađeni datotečni format: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"Zatraženi sadržaje ne može biti dostavljen. Molimo uklonite i dodajte e-"
-"knjigu koju ste našli ovdje: "
+"Nije bilo moguće dohvatiti zatraženi sadržaj. Ukloni i dodaj datoteku e-"
+"knjige koja je ovdje nađena: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
-"Problem ti navigaciji na stranicu, molimo premještajte se po stranicama "
-"naprijed ili nazad."
+"Problem s navigacijom na stranicama, pomakni stranice naprijed ili natrag."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -133,11 +134,11 @@ msgstr "Nastavi"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr "Sadržaj"
+msgstr "Kazalo"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr "Sadržaj #"
+msgstr "Sadržaj br."
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
@@ -145,19 +146,19 @@ msgstr "Knjižne oznake"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr "Knjižna oznaka #NNN za oznaku PPP"
+msgstr "Knjižna oznaka br. NNN za odlomak PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr "Kliknite na poveznicu, kako bi ste skočili na označeni odlomak"
+msgstr "Klikni na poveznicu i skoči na označeni odlomak"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Nema postavljenih knjižnih oznaka u BBB, Kliknite ikonu knjižnih oznaka u "
-"naslovnoj traci za dodavanje knjižnih oznaka"
+"Nema postavljenih knjižnih oznaka u BBB, klikni ikonu knjižnih oznaka u "
+"naslovnoj traci za dodavanje knjižne oznake za stranicu"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
@@ -165,487 +166,504 @@ msgstr "Značenje riječi"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "Rezultati pretrage"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "Napomene"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Oznake za napomene"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Zarezom razdijeljene oznake za ovu napomenu"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Uredi napomenu za:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Klikni poveznicu za skakanje na jedan odjeljak s napomenom"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"U BBB nema postavljenih napomena, desnim klikom na stranicu knjige odaberi "
+"napomenu iz kontekstnog izbornika za dodavanje napomene"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Traži se „$$$” u &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Pronađena su sljedeća podudaranja za „$$$” u &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Nema podudaranja za „$$$” u &&&"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Odaberi riječ u knjizi i desnim klikom pretraži njeno značenje"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "Uredi informacije za"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Aktualiziraj sliku korica"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "Aktualiziraj naslov"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "Aktualiziraj oznake"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "Aktualiziraj autora"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "Aktiviraj prikaz preko cijelog ekrana (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "Deaktiviraj prikaz preko cijelog ekrana (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Provjeri značenje riječi"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Pribilježi odabrani tekst"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "Knjige"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "Slike"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "Sve datoteke"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Naslov"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "Zadnje otvoreno"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "Ocjena"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "Oznake"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "Danas"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "Jučer"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "Dana"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Otkrivanje knjiga će započeti kad se Bibliofil zatvori"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "Dodaj knjige u knjižnicu"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "Uklni knjige iz knjižnice (e-knjige se neće izbrisati)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "Odaberi knjige, ako želiš ukloniti knjige"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Odaberi jednu ili više knjiga u knjižnici"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Pogledaj kazalo, knjižne oznake i rezultate pretrage"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr ""
+msgstr "Postavke za čitanje"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Klikni za označavanje ove stranice"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Klikni za uklanjanje ove stranice"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Povećaj veličinu fonta (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Smanji veličinu fonta (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "Povećaj širinu redaka"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "Smanji širinu redaka"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Povećaj prored"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Smanji prored"
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "Poravnaj lijevo"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "Poravnaj desno"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "Aktualiziraj sliku korica"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Primijeni dizajn za ovaj profil boja"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "Aktiviraj prikaz preko cijelog ekrana, Esc za deaktiviranje"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Dodaj mapu za pretraživanje knjiga"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Ukloni prikazanu mapu iz pretraživanja knjiga"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Dodaj napomenu odabranom tekstu"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Idi na sljedeću stranicu"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Idi na prethodnu stranicu"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "Postavke"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Uključi modus tamnog dizajna"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Aktiviraj predmemoriju (brže otvara knjige)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Uvijek prikaži knjižnicu nakon pokretanja sustava"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Aktiviraj dvostranično čitanje"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "Odaberi font"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Prilagodi profil za čitanje"
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "Pozadina"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "Istakni"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Dodaj mape za traženje knjiga"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Broj knjiga po stranici knjižnice"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "Vrati na standardne vrijednosti"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "Nepoznata knjiga"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "Informacije"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "Odaberi sliku"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "Odaberi mapu"
 
 #: src/window.vala:295 src/window.vala:609
 msgid "Select eBook"
-msgstr ""
+msgstr "Odaberi e-knjigu"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "Dodavanje "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "Knjiga"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "Bibliofil"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Čitaj i upravljaj e-knjigama"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bibliofil;E-knjiga;Čitač;Epub;Mobi;Strip;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "Fokusirani čitač e-knjiga"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"Čitaj knjige koje voliš bez da si razbijaš glavu o raznim formatima kao što "
+"su EPUB, PDF, MOBI, CBR itd."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Upravljaj svojom knjižnicom označavanjem i aktualiziranjem metapodataka "
+"knjiga za brzo pronalaženje knjiga pomoću pretraživanja metapodataka i "
+"filtriranja na temelju oznaka."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
+"Ova verzija podržava EPUB, MOBI, PRC, PDF, FB2 i formate stripova (CBR i CBZ)"
+", a uskoro će podržati i daljnje formate."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Bibliofil – prikaz knjižnica"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "Bibliofil – prikaz za čitanje"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Ovo izdanje sadrži poneke nove funkcije, ispravke i nove prijevode:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "Nove funkcije:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Knjižnica je paginirana za brzo učitavanje velikih knjižnica"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "Podrška za FB2 format – .fb2 i .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "Ispravci:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Intuitivni prikaz gumba za uklanjanje knjiga u knjižnici"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Ispravak: ostavljanje dijaloga postavki otvorenim, dok se prilagođavanja ne "
+"dovrše"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Ispravak: promjena naslova zaglavlja za vrijeme otvaranja"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Ispravak: rukovanje prekidanjem dijaloga za otvaranje e-knjige"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Ispravak: prebacivanje na modus prikaza preko cijelog ekrana pomoću F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Ispravak: dijalog za napomene knjiga s praznim naslovima"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Ispravak: vraćanje na položaj stranice iz prikaza informacija"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Čitanje s desna nalijevo"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Podrška za pisma koja se pišu s desna nalijevo"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Potpuno nova ikona i nova slika naslovnice"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Bolja podrška za EPUB kazalo"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Desni klik na odabranu riječ za pretraživanje značenja u internetskom "
+"rječniku"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Dodana opcija za prilagođavanje boje za isticanje"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Spriječi Bibliofil otvoriti poveznice kao što su HTTP, FTP itd. i koristi "
+"standardog preglednika za otvaranje tih poveznica"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "Popravljen problem preklapanja redaka u prvim stranicama knjige"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "Koristi se GResource za brže učitavanje ikona, skripta itd."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Poneke manje CSS kompatibilnosti s Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "Napomene i prikazi dviju stranica"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Podrška za MOBI format i poboljšanja korisničkog doživljaja"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
+"Poboljšanja korisničkog doživljaja za prikaz popisa i druga prilagođavanja "
+"postavki"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Podrška za stripove i poboljšanja korisničkog doživljaja"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "Podrška za PDF i poboljšanja korisničkog doživljaja"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Prvo izdanje s podrškom za EPUB format"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
