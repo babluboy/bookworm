@@ -2,541 +2,574 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
+"PO-Revision-Date: 2020-01-23 22:05+0000\n"
+"Last-Translator: odamite <odamite@gmail.com>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/fi/>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "Näytä versionumero"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Suorita Bookworm vianetsintätilassa"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Suorita Bookworm info-tilassa"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Lisää uudet kirjat automaattisesti seuratuista kansioista"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "Peru"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "Avaa"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "E-kirjan lukija"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Weblate-kääntäjät"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Verkkosivusto | Käännös | Vianseuranta"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "Ei saatavilla"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "E-kirjan lukija"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Hae tästä kirjasta…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Hae otsikon, kirjoittajan ja tunnisteen mukaan"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Näyttää siltä, että Bookwormissa ei ole kirjoja"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Rakenna kirjastosi lisäämällä e-kirjoja"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Valitse luettava e-kirja"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Ongelma kirjan sisällön lukemisessa. Varmista, että seuraavasta polusta "
+"löytyy e-kirjatiedosto: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
+"Virheellinen mediatyyppi havaittu. Tarkista seuraavan e-kirjan tiedostomuoto:"
+" "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"Sisältö on virheellinen. Varmista, että seuraavasta polusta löytyy virheetön "
+"e-kirjatiedosto: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"E-kirjan jäsennys epäonnistui. Varmista, että seuraavasta polusta löytyy "
+"virheetön e-kirjatiedosto: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookworm ei tue seuraavan tiedoston tiedostomuotoa: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Pyydetyn sisällön haku epäonnistui. Poista ja lisää seuraava e-kirjatiedosto:"
+" "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Virhe sivun vaihdossa. Siirrä sivuja eteen- tai taaksepäin."
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "Kirjasto"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "Jatka"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "Sisällysluettelo"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "Sisältö #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "Kirjanmerkit"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Kirjanmerkki #NNN lukuun PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Siirry merkattuun lukuun painamalla linkkiä"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"Ei kirjanmerkkejä kirjassa BBB, merkkaa tämä sivu painamalla "
+"kirjanmerkkikuvaketta yläpalkissa"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "Sanan merkitys"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "Hakutulokset"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "Huomautukset"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Huomautuksen tunnisteet"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Pilkulla erotetut tunnisteet tälle huomautukselle"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Muokkaa huomautusta:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Siirry huomioituun lukuun painamalla linkkiä"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Ei huomautuksia kirjassa BBB, lisää huomautuksia painamalla sivun päällä "
+"hiiren oikeaa painiketta ja valitsemalla huomautus valikosta"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Haetaan '$$$' kohteessa &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Löydettin '$$$' kohteessa &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Haku '$$$' ei tuottanut tuloksia kohteessa &&&"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Etsi merkitys sanalle painamalla hiiren oikeaa painiketta sen päällä"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "Muokkaa tietoja"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Päivitä kansikuva"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "Päivitä otsikko"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "Päivitä tunnisteet"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "Päivitä kirjoittaja"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "Siirry kokoruututilaan (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "Poistu kokoruututilasta (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Tarkista sanan merkitys"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Huomioi valittu teksti"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "Kirjat"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "Kuvat"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "Kaikki tiedostot"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Otsikko"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "Kirjoittaja"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "Avattu viimeksi"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "Arviointi"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "Tunnisteet"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "Tänään"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "Eilen"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "Päivää"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Kirjojen etsintä aloitetaan kun Bookworm on suljettu"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "Lisää kirjoja kirjastoon"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "Poista valitut kirjat kirjastosta (e-kirjatiedostoa ei poisteta)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "Valitse poistettavat kirjat"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Valitse yksi tai useampi kirja kirjastosta"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Näytä sisällysluettelo, kirjanmerkit ja hakutulokset"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr ""
+msgstr "Lukuasetukset"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Lisää kirjanmerkki painamalla sivua"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Poista kirjanmerkki painamalla sivua"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Suurenna tekstiä (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Pienennä tekstiä (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "Suurenna rivin leveyttä"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "Pienennä rivin leveyttä"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Suurenna riviväliä"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Pienennä riviväliä"
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "Tasaa vasemmalle"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "Tasaa oikealle"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "Päivitä kansikuvaa"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Aseta teema tälle väriprofiilille"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "Siirry kokoruututilaan ja poistu esc-näppäimellä"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Etsi kirjoja kansioista"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Älä etsi kirjoja näytetystä kansiosta"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Lisää huomautus valittuun tekstiin"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Siirry edelliselle sivulle"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Siirry seuraavalle sivulle"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "Asetukset"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Ota tumma tila käyttöön"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Käytä välimuistia (kirjat avautuvat nopeammin)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Näytä kirjasto aina käynnistäessä"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Näytä kaksi sivua kerrallaan"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "Valitse kirjaisin"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Muokkaa lukuprofiilia"
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "Teksti"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "Tausta"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "Korostus"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Etsi kirjoja kansioista"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "Profiili"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Kirjojen lukumäärä yhdellä kirjaston sivulla"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "Nollaa oletusarvoihin"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "Tuntematon kirja"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "Tietoja"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "Valitse kuva"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "Valitse kansio"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr ""
+msgstr "Valitse e-kirja"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "Lisätään "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "Kirja"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Luo ja järjestä e-kirjoja"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "Keskittynyt e-kirjan lukija"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"Lue rakastamiasi kirjoja välittämättä eri tiedostomuodoista kuten EPUB, PDF, "
+"MOBI, CBR, jne."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Järjestä kirjastosi lisäämällä tunnisteita ja päivittämällä kirjoja "
+"metatietoja. Näin löydät etsimäsi kirjat nopeasti haun avulla ja tunnisteita "
+"suodattamalla."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
+"Tämä versio tukee EPUB-, MOBI-, PRC-, PDF-, FB2- ja sarjakuvatiedostoja (CBR "
+"ja CBZ). Pian myös muita tiedostoja tuetaan."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Bookwormin kirjastonäkymä"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "Bookwormin lukunäkymä"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
 msgstr ""
+"Tässä versiossa on joitakin uusia ominaisuuksia, korjauksia ja uusia "
+"käännöksiä:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "Uudet ominaisuudet:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
 msgstr ""
+"Kirjasto on jaettu usealle sivulle, jotta suurien kirjastoja lataaminen on "
+"nopeaa"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "Tuki FB2-tiedostoille (.fb2 ja .fb2.zip)"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "Korjaukset:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
 msgstr ""
+"Kirjan poistamiseen käytetyn painikkeen intuitiivinen esitys kirjastossa"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
-msgstr ""
+msgstr "Älä sulje asetusikkunaa ennen kuin kaikki muutokset on tehty"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Korjaa yläpalkin otsikko vaihtuminen avauksen aikana"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
