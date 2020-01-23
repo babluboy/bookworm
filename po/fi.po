@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-01-23 22:05+0000\n"
+"PO-Revision-Date: 2020-01-23 22:37+0000\n"
 "Last-Translator: odamite <odamite@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/fi/>\n"
@@ -149,19 +149,19 @@ msgstr "Kirjanmerkki #NNN lukuun PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr "Siirry merkattuun lukuun painamalla linkkiä"
+msgstr "Siirry kirjanmerkkiin napsauttamalla linkkiä"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Ei kirjanmerkkejä kirjassa BBB, merkkaa tämä sivu painamalla "
+"Ei kirjanmerkkejä kirjassa BBB, lisää kirjanmerkki napsauttamalla "
 "kirjanmerkkikuvaketta yläpalkissa"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr "Sanan merkitys"
+msgstr "Sanan määritelmä"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
@@ -185,15 +185,15 @@ msgstr "Muokkaa huomautusta:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr "Siirry huomioituun lukuun painamalla linkkiä"
+msgstr "Siirry huomautukseen napsauttamalla linkkiä"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
-"Ei huomautuksia kirjassa BBB, lisää huomautuksia painamalla sivun päällä "
-"hiiren oikeaa painiketta ja valitsemalla huomautus valikosta"
+"Ei huomautuksia kirjassa BBB, lisää sivulle huomautuksia napsauttamalla "
+"hiiren oikeaa painiketta ja valitsemalla \"lisää huomautus\""
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
@@ -209,7 +209,9 @@ msgstr "Haku '$$$' ei tuottanut tuloksia kohteessa &&&"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr "Etsi merkitys sanalle painamalla hiiren oikeaa painiketta sen päällä"
+msgstr ""
+"Valitse kirjasta sana ja etsi sen määritelmä napsauttamalla hiiren oikeaa "
+"painiketta"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
@@ -241,11 +243,11 @@ msgstr "Poistu kokoruututilasta (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr "Tarkista sanan merkitys"
+msgstr "Etsi sanan määritelmä"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr "Huomioi valittu teksti"
+msgstr "Lisää huomautus valittuun tekstiin"
 
 #: src/constants.vala.in:83
 msgid "Books"
@@ -321,11 +323,11 @@ msgstr "Lukuasetukset"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr "Lisää kirjanmerkki painamalla sivua"
+msgstr "Lisää kirjanmerkki tälle sivulle"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr "Poista kirjanmerkki painamalla sivua"
+msgstr "Poista kirjanmerkki tältä sivulta"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
@@ -581,7 +583,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Korjaa huomautusikkuna nimettömissä kirjoissa"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
@@ -611,6 +613,8 @@ msgstr ""
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Napsauttamalla hiiren oikeaa painiketta valitun sanan päällä pystyt etsimään "
+"sen määritelmän verkkosanakirjasta"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
@@ -638,7 +642,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "Huomautukset ja kahden sivun näkymät"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
