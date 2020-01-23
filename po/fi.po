@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-01-23 22:37+0000\n"
+"PO-Revision-Date: 2020-01-24 23:21+0000\n"
 "Last-Translator: odamite <odamite@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/fi/>\n"
@@ -156,7 +156,7 @@ msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Ei kirjanmerkkejä kirjassa BBB, lisää kirjanmerkki napsauttamalla "
+"Ei kirjanmerkkejä kirjassa BBB, lisää sivulle kirjanmerkki napsauttamalla "
 "kirjanmerkkikuvaketta yläpalkissa"
 
 #: src/constants.vala.in:61
@@ -311,7 +311,7 @@ msgstr "Valitse poistettavat kirjat"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr "Valitse yksi tai useampi kirja kirjastosta"
+msgstr "Valitse kirjastosta yksi tai useampi kirja"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
@@ -575,7 +575,7 @@ msgstr "Korjaa yläpalkin otsikko vaihtuminen avauksen aikana"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Korjaa e-kirjan avaus -ikkunan peruminen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
@@ -607,7 +607,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Perempi tuki EPUB-tiedostojen sisällysluetteloille"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
@@ -618,13 +618,13 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Korostuksen väriä on nyt mahdollista muuttaa"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
-msgstr ""
+msgstr "Avaa HTTP, FTP, yms. -linkit WWW-selaimessa Bookwormin sijasta"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
