@@ -2,17 +2,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-07-01 19:01+0000\n"
-"Last-Translator: Tolstovka <tolstovka@tuta.io>\n"
+"PO-Revision-Date: 2020-01-26 20:21+0000\n"
+"Last-Translator: Володимир Бриняк <bardvv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.11-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -93,7 +93,7 @@ msgstr ""
 #: src/constants.vala.in:47
 #, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Виявлено неправильний тип MIME. Перевірте формат електронної книги: "
+msgstr "Виявлено неприпустимий тип носія. Перевірте формат електронної книги: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -547,8 +547,9 @@ msgid "New Features:"
 msgstr "Нові функції:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
+#, fuzzy
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Бібліотека пронумерована для швидкого завантаження великих бібліотек"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 #, fuzzy
@@ -569,6 +570,8 @@ msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Визначити, щоб діалогове вікно налаштувань було відкритим до тих пір, поки "
+"всі налаштування не будуть виконані"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
@@ -639,7 +642,8 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
-"Використання GResource дало прискорити завантаження іконок, текстів та іншого"
+"Використання GResource для прискорення завантаження піктограм, сценаріїв "
+"тощо."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
