@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2018-06-16 19:39+0000\n"
-"Last-Translator: Ishan Bhanuka <f2016075@pilani.bits-pilani.ac.in>\n"
+"PO-Revision-Date: 2020-02-15 06:50+0000\n"
+"Last-Translator: Pranshu Gaba <pranshugaba@gmail.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "hi/>\n"
 "Language: hi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.11-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "खोलें"
 
 #: src/utils.vala:556
 msgid "Save"
