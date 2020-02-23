@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-11-28 08:12+0000\n"
-"Last-Translator: Mattias Münster <mattiasmun@gmail.com>\n"
+"PO-Revision-Date: 2020-02-24 06:32+0000\n"
+"Last-Translator: Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sv/>\n"
 "Language: sv\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -554,12 +554,11 @@ msgid "Intuitive representation of book removal button on library"
 msgstr "Intuitiv representation av bokborttagningsknappen på biblioteket"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
-#, fuzzy
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
-"Fix för att hålla inställningsdialogrutan öppen tills alla justeringar är "
+"Åtgärd för att hålla inställningsdialogrutan öppen tills alla justeringar är "
 "slutförda"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
