@@ -142,70 +142,90 @@ public class BookwormApp.contentHandler {
     public static string adjustPageContent (BookwormApp.Book aBook, owned string pageContentStr, string mode) {
         debug ("[START] [FUNCTION:adjustPageContent] book.location=" + aBook.getBookLocation () + 
             ", pageContentStr.length=" + pageContentStr.length.to_string () + ", mode=" + mode);
-        //load javascript data from resource if it has not been loaded already
-        if (BookwormApp.Bookworm.bookwormScripts == null || BookwormApp.Bookworm.bookwormScripts.length < 1) {
-            uint8[] bookwormScriptsData;
-            GLib.File.new_for_uri (BookwormApp.Constants.HTML_SCRIPT_RESOURCE_LOCATION)
-                .load_contents (null, out bookwormScriptsData, null);
-            BookwormApp.Bookworm.bookwormScripts = (string)bookwormScriptsData;
-            debug ("Loaded javascript data from resource:\n" + BookwormApp.Bookworm.bookwormScripts);
-        }
         StringBuilder pageContent = new StringBuilder (pageContentStr);
-        settings = BookwormApp.Settings.get_instance ();
-        string cssForTextAndBackgroundColor = "";
-        BookwormApp.Bookworm.onLoadJavaScript.assign ("onload=\"");
-        string currentBookwormScripts = BookwormApp.Bookworm.bookwormScripts;
 
         //Remove the empty title if it is present
         pageContent.assign (pageContentStr.replace ("<title/>",""));
 
+        constructOnLoadJavascript(aBook, mode);
+
+        string currentBookwormStyles = createPageStyles(aBook, pageContentStr);
+
+        BookwormApp.AppWindow.aWebView.get_user_content_manager().remove_all_style_sheets();
+        BookwormApp.AppWindow.aWebView.get_user_content_manager().add_style_sheet(
+            new WebKit.UserStyleSheet(currentBookwormStyles, WebKit.UserContentInjectedFrames.ALL_FRAMES, WebKit.UserStyleLevel.AUTHOR, null, null));
+
+        debug ("[END] [FUNCTION:adjustPageContent] pageContent.length=" + pageContent.str.length.to_string ());
+        //debug ("\n\n\n" + pageContent.str);
+        return pageContent.str;
+    }
+
+    private static string createPageStyles(BookwormApp.Book aBook, owned string pageContentStr) {
+        if (BookwormApp.Bookworm.bookwormStyles == null || BookwormApp.Bookworm.bookwormStyles.length < 1) {
+            uint8[] bookwormStylesData;
+            GLib.File.new_for_uri (BookwormApp.Constants.HTML_SCRIPT_STYLES_RESOURCE_LOCATION)
+                .load_contents (null, out bookwormStylesData, null);
+            BookwormApp.Bookworm.bookwormStyles = (string)bookwormStylesData;
+            debug ("Loaded styles data from resource:\n" + BookwormApp.Bookworm.bookwormStyles);
+        }
+        string currentBookwormStyles = BookwormApp.Bookworm.bookwormStyles;
+        string cssForTextAndBackgroundColor = "";
+
         //For the Title Page (first or second page), resize height and width of images
         if (aBook.getBookPageNumber () < 2 && (pageContentStr.contains ("<image") || pageContentStr.contains ("<img"))) {
-            currentBookwormScripts = currentBookwormScripts.replace ("$TITLE_PAGE_IMAGE", "img, image");
+            currentBookwormStyles = currentBookwormStyles.replace ("$TITLE_PAGE_IMAGE", "img, image");
         }
         //Set background and font colour based on profile
         if (BookwormApp.Constants.BOOKWORM_READING_MODE[4] == BookwormApp.Bookworm.settings.reading_profile) {
             //default dark profile
             cssForTextAndBackgroundColor = " background-color: #002b36 !important; color: #93a1a1 !important;";
-            currentBookwormScripts = currentBookwormScripts
+            currentBookwormStyles = currentBookwormStyles
                 .replace ("$SCROLLBAR_BACKGROUND", "#002b36")
                 .replace ("$HIGHLIGHT_COLOR", "#3465A4");
         } else if (BookwormApp.Constants.BOOKWORM_READING_MODE[3] == BookwormApp.Bookworm.settings.reading_profile) {
             //default light profile
             cssForTextAndBackgroundColor = " background-color: #fbfbfb !important; color: #000000 !important;";
-            currentBookwormScripts = currentBookwormScripts
+            currentBookwormStyles = currentBookwormStyles
                 .replace ("$SCROLLBAR_BACKGROUND", "#fbfbfb")
                 .replace ("$HIGHLIGHT_COLOR", "#E8ED00");
         } else if (BookwormApp.Constants.BOOKWORM_READING_MODE[2] == BookwormApp.Bookworm.settings.reading_profile) {
             cssForTextAndBackgroundColor =
                 " background-color: " + BookwormApp.Bookworm.profileColorList[7] + " !important;" +
                            " color: " + BookwormApp.Bookworm.profileColorList[6] + " !important;";
-            currentBookwormScripts = currentBookwormScripts
+            currentBookwormStyles = currentBookwormStyles
                 .replace ("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[7])
                 .replace ("$HIGHLIGHT_COLOR",      BookwormApp.Bookworm.profileColorList[8]);
         } else if (BookwormApp.Constants.BOOKWORM_READING_MODE[1] == BookwormApp.Bookworm.settings.reading_profile) {
             cssForTextAndBackgroundColor =
                 " background-color: " + BookwormApp.Bookworm.profileColorList[4] + " !important;" +
                            " color: " + BookwormApp.Bookworm.profileColorList[3] + " !important;";
-            currentBookwormScripts = currentBookwormScripts
+            currentBookwormStyles = currentBookwormStyles
                 .replace ("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[4])
                 .replace ("$HIGHLIGHT_COLOR",      BookwormApp.Bookworm.profileColorList[5]);
         } else {
             cssForTextAndBackgroundColor =
                 " background-color: " + BookwormApp.Bookworm.profileColorList[1] + " !important;" +
                            " color: " + BookwormApp.Bookworm.profileColorList[0] + " !important;";
-            currentBookwormScripts = currentBookwormScripts
+            currentBookwormStyles = currentBookwormStyles
                 .replace ("$SCROLLBAR_BACKGROUND", BookwormApp.Bookworm.profileColorList[1])
                 .replace ("$HIGHLIGHT_COLOR",      BookwormApp.Bookworm.profileColorList[2]);
         }
         //Set up CSS for book as per preference settings - this will override any css in the book contents
-        currentBookwormScripts = currentBookwormScripts
+        currentBookwormStyles = currentBookwormStyles
             .replace ("$READING_LINE_HEIGHT", BookwormApp.Bookworm.settings.reading_line_height)
             .replace ("$READING_WIDTH", (100 - int.parse (BookwormApp.Bookworm.settings.reading_width)).to_string ())
             .replace ("$FONT_FAMILY", BookwormApp.Bookworm.settings.reading_font_name_family)
             .replace ("$FONT_SIZE", BookwormApp.Bookworm.settings.reading_font_size.to_string ())
             .replace ("$READING_TEXT_ALIGN", BookwormApp.Bookworm.settings.text_alignment)
             .replace ("$TEXT_AND_BACKGROUND_COLOR", cssForTextAndBackgroundColor);
+        return currentBookwormStyles;
+    }
+
+    private static void constructOnLoadJavascript(BookwormApp.Book aBook, string mode) {
+        settings = BookwormApp.Settings.get_instance ();
+        //BookwormApp.Bookworm.onLoadJavaScript.assign ("onload=\"");
+        BookwormApp.Bookworm.onLoadJavaScript.assign ("");
+
         //Scroll to the previous vertical position - this should be used:
         // (1) when the book is re-opened from the library and
         // (2) when a book existing in the library is opened from File Explorer using Bookworm
@@ -286,26 +306,7 @@ public class BookwormApp.contentHandler {
             }
         }
         //complete the onload javascript string
-        BookwormApp.Bookworm.onLoadJavaScript.append ("\"");
-
-        //add onload javascript and css to body tag
-        if (pageContent.str.index_of ("<BODY") != -1) {
-            pageContent.assign (pageContent.str.replace (
-                "<BODY", currentBookwormScripts + "<BODY " +
-                BookwormApp.Bookworm.onLoadJavaScript.str));
-        } else if (pageContent.str.index_of ("<body") != -1) {
-            pageContent.assign (pageContent.str.replace (
-                "<body", currentBookwormScripts + "<body " +
-                BookwormApp.Bookworm.onLoadJavaScript.str));
-        } else {
-            pageContent.assign (
-                currentBookwormScripts + "<BODY " +
-                BookwormApp.Bookworm.onLoadJavaScript.str +
-                ">" + pageContent.str + "</BODY>");
-        }
-        debug ("[END] [FUNCTION:adjustPageContent] pageContent.length=" + pageContent.str.length.to_string ());
-        //debug ("\n\n\n" + pageContent.str);
-        return pageContent.str;
+        //BookwormApp.Bookworm.onLoadJavaScript.append ("\"");
     }
 
     public static void searchHTMLContents () {
@@ -388,6 +389,16 @@ public class BookwormApp.contentHandler {
 
     public static void performStartUpActions () {
         debug ("[START] [FUNCTION:performStartUpActions]");
+        //load javascript data from resource if it has not been loaded already
+        if (BookwormApp.Bookworm.bookwormScripts == null || BookwormApp.Bookworm.bookwormScripts.length < 1) {
+            uint8[] bookwormScriptsData;
+            GLib.File.new_for_uri (BookwormApp.Constants.HTML_SCRIPT_FUNCTIONS_RESOURCE_LOCATION)
+                .load_contents (null, out bookwormScriptsData, null);
+            BookwormApp.Bookworm.bookwormScripts = (string)bookwormScriptsData;
+            WebKit.UserScript userScript = new WebKit.UserScript(BookwormApp.Bookworm.bookwormScripts, WebKit.UserContentInjectedFrames.ALL_FRAMES, WebKit.UserScriptInjectionTime.END, null, null);
+            BookwormApp.AppWindow.aWebView.get_user_content_manager().add_script(userScript);
+            debug ("Loaded javascript data from resource:\n" + BookwormApp.Bookworm.bookwormScripts);
+        }
         //open the book added, if only one book path is present on command line
         //if this book was not in the library, then the library view will be shown
         if (BookwormApp.Bookworm.pathsOfBooksToBeAdded.length == 2 && //check if only one book is on the command line
