@@ -416,7 +416,7 @@ public class BookwormApp.AppWindow {
                 pageActionAnnotateSelection, BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION, null);
             context_menu.append (pageContextMenuItemWordMeaning);
             context_menu.append (pageContextMenuItemAnnotateSelection);
-            if (book_reading_footer_box.get_visible ()) {
+            if (!settings.is_fullscreen) {
                 context_menu.append (pageContextMenuItemFullScreenEntry);
             } else {
                 context_menu.append (pageContextMenuItemFullScreenExit);
