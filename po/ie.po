@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2018-09-07 20:22+0000\n"
+"PO-Revision-Date: 2020-03-16 08:36+0000\n"
 "Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
 "Language-Team: Occidental <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ie/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -70,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Serchar titul, autor e tags"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Apare que Bookworm ne have libres."
+msgstr "Apare que Bookworm ne have libres"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -91,9 +90,8 @@ msgstr ""
 "valid file de eLibre in: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Ínvalid MIME-tip trovat. Controla li formate de ci eLibre: "
+msgstr "Ínvalid MIME-tip detectet. Controla li formate de ci eLibre: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -114,10 +112,12 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Li contenete ne posse esser obtenet. Ples remover e re-adjunter li file que "
+"es trovat ta-ci: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Problema de navigation, ples ear al precedent o secuent págine."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -133,7 +133,7 @@ msgstr "Contenete"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "Contenete #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
@@ -141,7 +141,7 @@ msgstr "Marca-págines"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Marca-págines nró NNN por section PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
@@ -152,6 +152,8 @@ msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"Null marca-págines in BBB, in prim fa un clic sur li icone de marca-págines "
+"por marcar li págine"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
@@ -167,11 +169,11 @@ msgstr "Anotationes"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Tags de annotation"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Tags de ti-ci annotation (separat per commas)"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
@@ -186,6 +188,8 @@ msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Null annotationes in BBB, fa un dextri clic sur un págine e selecte "
+"«Annotation» por adjunter annotationes"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
@@ -225,12 +229,10 @@ msgid "Update Author"
 msgstr "Actualisar li autor"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Mode de plen-ecran (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Anullar li mode plen-ecran (Esc)"
 
@@ -288,7 +290,7 @@ msgstr "Dies"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Decovrition de libres va iniciar pos que on clude Bookworm"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
@@ -301,9 +303,8 @@ msgstr ""
 "deletet)"
 
 #: src/constants.vala.in:98
-#, fuzzy
 msgid "Select books to enable removal"
-msgstr "Selecte un eLibre por leer"
+msgstr "Selecte libres por remover les"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
@@ -366,9 +367,8 @@ msgid "Apply theme for this colour profile"
 msgstr "Applicar un tema por ti-ci profil de color"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Anullar li mode plen-ecran (Esc)"
+msgstr "Activar li mode plen-ecran, Esc por desactivar"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
@@ -376,7 +376,7 @@ msgstr "Adjunter un fólder por trovar libres"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Remover li monstrat fólder del examination"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
@@ -384,11 +384,11 @@ msgstr "Adjunter un anotation al selectet textu"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Ear al precedent págine"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Ear al sequent págine"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
@@ -428,11 +428,11 @@ msgstr "Funde"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "Colorar"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Adjunter fólderes por trovar libres"
 
 #: src/constants.vala.in:133
 msgid "Profile"
@@ -440,11 +440,11 @@ msgstr "Profil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Númere de libres per un págine del biblioteca"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "Reverter al predefinit valores"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
@@ -476,32 +476,32 @@ msgstr "Libre"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Libre"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Leer e gerer eLibres"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;ELibre;Leer;Letor;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
-msgstr "Un letor de eLibres"
+msgstr "Un focat letor de eLibres"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"Leer li libres que vu ama sin egard a complicaties de formates quam EPUB, "
+"PDF, MOBI, CBR, etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -517,22 +517,21 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Vise de biblioteca de Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
-msgstr "Lansar Bookworm in un informativ mode"
+msgstr "Vise de letion de Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Ti-ci version have quelc nov functiones, correctiones e traductiones:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "Nov functiones:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
@@ -540,12 +539,12 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "Supporte de formate FB2 - .fb2 e .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "Correctiones:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
@@ -580,7 +579,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Letion dextri-al-levul"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
@@ -620,7 +619,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "Usa de GResource por accelerar carga de icones, scriptes etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
@@ -652,4 +651,4 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
