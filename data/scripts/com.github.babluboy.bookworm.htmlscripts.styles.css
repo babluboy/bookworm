@@ -1,0 +1,78 @@
+/* Set the style for the webkit scroll bar (Reading View) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 7px;
+    background: $SCROLLBAR_BACKGROUND;
+    border-radius: 10px;
+}
+::-webkit-scrollbar:hover {
+    background: #7a7a7a;
+}
+::-webkit-scrollbar-track {
+    background: $SCROLLBAR_BACKGROUND;
+}
+::-webkit-scrollbar-track:hover {
+    background: #848484;
+}
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-button {
+    display: none;
+}
+::-webkit-scrollbar-thumb {
+    background-color: $SCROLLBAR_BACKGROUND;
+    border-radius: 3ex;
+    border: 2px;
+    min-height: 40px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: $SCROLLBAR_BACKGROUND;
+    border: none;
+}
+
+/* Set style for the whole document */
+*{
+      /* Set hyphenation */
+      /*-webkit-hyphens: auto; */
+      /* Control line spacing */
+      line-height: $READING_LINE_HEIGHT%;
+      /* Control page margins */
+      margin:auto !important; 
+      max-width: $READING_WIDTH% !important;
+      /* Control fonts */
+      font-family: $FONT_FAMILY !important;
+      font-size: $FONT_SIZEpx !important;
+      /* Control text and background color */
+      $TEXT_AND_BACKGROUND_COLOR
+      /* Control text alignment */
+      text-align: $READING_TEXT_ALIGN;
+}
+
+/* Re-size and center cover images for the title page (first or second page)*/
+$TITLE_PAGE_IMAGE {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width:auto;
+    height:auto;
+    max-width:50vh !important;
+    max-height:70vh !important;
+}
+
+/* Set style for two page view */
+.two_page {
+      -webkit-column-count: 2;
+      -webkit-column-gap: 40px;
+      -webkit-column-rule-style: solid;
+      column-rule-style: solid;
+      -webkit-column-rule-width: 1px;
+      column-rule-color: lightgrey;
+}
+/* Set style for text highlight */
+span.bookworm_search_result_highlight {
+    background-color: $HIGHLIGHT_COLOR !important;
+}
+span.bookworm_annotation_highlight {
+    background-color: $HIGHLIGHT_COLOR !important;
+}
+

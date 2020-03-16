@@ -48,6 +48,7 @@ public class BookwormApp.AppWindow {
     public static Gtk.Button page_button_next;
     public static int noOfBooksSelected = 0;
 
+
     public static Gtk.Box createBoookwormUI () {
         info ("[START] [FUNCTION:createBoookwormUI]");
         settings = BookwormApp.Settings.get_instance ();
@@ -169,6 +170,19 @@ public class BookwormApp.AppWindow {
         webkitSettings.set_auto_load_images (true);
         aWebView = new WebKit.WebView.with_settings (webkitSettings);
         aWebView.set_zoom_level (BookwormApp.Settings.get_instance ().zoom_level);
+        aWebView.load_changed.connect((loadEvent) => {
+            switch (loadEvent) {
+                case WebKit.LoadEvent.STARTED:
+                    break;
+                case WebKit.LoadEvent.REDIRECTED:
+                    break;
+                case WebKit.LoadEvent.COMMITTED:
+                    break;
+                case WebKit.LoadEvent.FINISHED:
+                    aWebView.run_javascript(BookwormApp.Bookworm.onLoadJavaScript.str, null);
+                    break;
+            }
+        });
         webkitSettings.set_enable_javascript (true);
         //This is for setting the font to the system font - Is this required ?
         //webkitSettings.set_default_font_family (aWebView.get_style_context ().get_font (StateFlags.NORMAL).get_family ());
@@ -692,5 +706,6 @@ public class BookwormApp.AppWindow {
             }
         }
     }
+
 
 }

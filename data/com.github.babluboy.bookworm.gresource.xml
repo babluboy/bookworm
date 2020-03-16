@@ -58,7 +58,8 @@
 
 		<file alias="256-com.github.babluboy.bookworm.svg" compressed="true" preprocess="xml-stripblanks">icons/256/com.github.babluboy.bookworm.svg</file>
 		
-		<file alias="com.github.babluboy.bookworm.htmlscripts.txt" compressed="true">scripts/com.github.babluboy.bookworm.htmlscripts.txt</file>
+		<file alias="com.github.babluboy.bookworm.htmlscripts.functions.js" compressed="true">scripts/com.github.babluboy.bookworm.htmlscripts.functions.js</file>
+		<file alias="com.github.babluboy.bookworm.htmlscripts.styles.css" compressed="true">scripts/com.github.babluboy.bookworm.htmlscripts.styles.css</file>
 	</gresource>
   
 </gresources>

@@ -91,6 +91,7 @@ public class BookwormApp.Bookworm : Granite.Application {
     public static StringBuilder pathsOfBooksNotAddedStr = new StringBuilder ("");
     public static StringBuilder onLoadJavaScript = new StringBuilder ("");
     public static string bookwormScripts = "";
+    public static string bookwormStyles = "";
     public static string bookTextSearchString = "";
     public static TreeMap<string,string> searchResultsMap = new TreeMap<string,string> ();
     public static StringBuilder aContentFileToBeSearched = new StringBuilder ("");
