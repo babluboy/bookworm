@@ -33,7 +33,7 @@ public class BookwormApp.AppWindow {
     public static WebKit.WebView aWebView;
     public static WebKit.Settings webkitSettings;
     public static Gtk.EventBox book_reading_footer_eventbox;
-    public static Gtk.Box book_reading_footer_box;
+    public static Gtk.ActionBar book_reading_footer_box;
     public static Gtk.Box bookReading_ui_box;
     public static Gtk.Button forward_button;
     public static Gtk.GestureSwipe gesture_swipe;
@@ -210,7 +210,7 @@ public class BookwormApp.AppWindow {
         pageSlider.set_hexpand (true);
 
         //Set up contents of the footer
-        ActionBar book_reading_footer_box = new ActionBar ();
+        book_reading_footer_box = new ActionBar ();
         book_reading_footer_box.pack_start (back_button);
         book_reading_footer_box.pack_start (pageSlider);
         book_reading_footer_box.pack_end (forward_button);
@@ -416,7 +416,7 @@ public class BookwormApp.AppWindow {
                 pageActionAnnotateSelection, BookwormApp.Constants.TEXT_FOR_PAGE_CONTEXTMENU_ANNOTATE_SELECTION, null);
             context_menu.append (pageContextMenuItemWordMeaning);
             context_menu.append (pageContextMenuItemAnnotateSelection);
-            if (book_reading_footer_box.get_visible ()) {
+            if (!settings.is_fullscreen) {
                 context_menu.append (pageContextMenuItemFullScreenEntry);
             } else {
                 context_menu.append (pageContextMenuItemFullScreenExit);
