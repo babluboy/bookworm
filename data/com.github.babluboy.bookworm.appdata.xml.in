@@ -46,16 +46,6 @@
           </ul>
         </description>
      </release>
-     <release version="1.0.0" date="2018-02-11">
-      <description>
-        <p>Right to Left Reading</p>
-        <ul>
-            <li>Support for right-to-left script</li>
-            <li>A shiny new icon and new cover images</li>
-            <li>Better support for EPUB table of contents</li>
-        </ul>
-      </description>
-    </release>
     <release version="1.1.0" date="2018-09-30">
         <description>
           <p>This release has some new features, fixes and new translations:</p>
