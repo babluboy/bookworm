@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-03-04 19:33+0000\n"
+"PO-Revision-Date: 2020-03-24 20:46+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/mr/>\n"
@@ -296,39 +296,39 @@ msgstr ""
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "लायब्ररीत एक किंवा अधिक पुस्तके निवडा"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "अनुक्रमणिका, बुकमार्क आणि शोध परिणाम पहा"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr ""
+msgstr "वाचन प्राधान्ये"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "हे पृष्ठ बुकमार्क करण्यासाठी क्लिक करा"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "हा बुकमार्क काढण्यासाठी क्लिक करा"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "फॉन्ट आकार वाढवा (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "फॉन्ट आकार कमी करा (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "ओळीची रुंदी वाढवा"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "ओळीची रुंदी कमी करा"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
