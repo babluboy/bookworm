@@ -99,6 +99,8 @@ public class BookwormApp.Bookworm : Granite.Application {
     public static string no_of_books_per_page = "21";
     public static ArrayList<string> paginationlist = new ArrayList<string> ();
     public static int current_page_counter = 0;
+    public static ShortcutsAssocsHolder shortcutAssocs;
+    public static AccelGroup accel;
 
     construct {
         build_version = BookwormApp.Constants.bookworm_version;
@@ -197,8 +199,27 @@ public class BookwormApp.Bookworm : Granite.Application {
             loadImages ();
             //add window components
             window.set_titlebar (BookwormApp.AppHeaderBar.create_headerbar ());
+
             BookwormApp.AppWindow.createWelcomeScreen ();
             bookWormUIBox = BookwormApp.AppWindow.createBoookwormUI ();
+
+            accel = new AccelGroup ();
+
+            shortcutAssocs = BookwormApp.ShortcutsAssocsHolder.readFromSettings ();
+            BookwormApp.Shortcuts.attachShortcutsToWidgets ();
+
+            /*
+            var accelMap = AccelMap.@get ();
+            accelMap.add_entry ("<Root-Window>/some-path", Gdk.Key.F10, Gdk.ModifierType.CONTROL_MASK);
+            accelMap.add_entry ("<Root-Window>/some-path", Gdk.Key.Cyrillic_TE, Gdk.ModifierType.CONTROL_MASK);
+            accelMap.add_entry ("<Root-Window>/some-path", Gdk.Key.Cyrillic_TE, Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
+            accel.connect_by_path ("<Root-Window>/some-path", () => {
+                info ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ sunshine 2");
+                return false;
+            });
+            */
+            window.add_accel_group (accel);
+
             //load saved books from DB and add them to Library view
             loadBookwormState ();
             //show welcome screen if no book is present in library instead of the normal library view
@@ -221,8 +242,6 @@ public class BookwormApp.Bookworm : Granite.Application {
             });
             //Add keyboard shortcuts on the window
             window.add_events (Gdk.EventMask.KEY_PRESS_MASK);
-            window.key_press_event.connect (BookwormApp.Shortcuts.handleKeyPress);
-            window.key_release_event.connect (BookwormApp.Shortcuts.handleKeyRelease);
 
             window.window_state_event.connect (BookwormApp.AppWindow.handleWindowStateEvents);
 

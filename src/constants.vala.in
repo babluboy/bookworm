@@ -33,6 +33,7 @@ namespace BookwormApp.Constants {
     public const string bug_url = "https://github.com/babluboy/bookworm/issues";
     public const string help_url = "https://github.com/babluboy/bookworm/wiki";
     public const string translate_url = "https://hosted.weblate.org/projects/bookworm/bookworm/";
+    public const string bookworm_shortcuts_id = "com.github.babluboy.bookworm.shortcuts";
 
     public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = _("Website | Translation | Bug Tracker");
     public const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://babluboy.github.io/bookworm";
