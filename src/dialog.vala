@@ -435,9 +435,14 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
         var shortcutAssocs = BookwormApp.Bookworm.shortcutAssocs;
 
+        var assocViewHelper = new ShortcutsToActionAssocViewHelper (shortcutAssocs);
+        assocViewHelper.parentDialog = dialog;
+
         Gtk.Grid shortcutsGrid = new Gtk.Grid ();
-        shortcutsGrid.set_row_spacing (10);
-        shortcutsGrid.set_column_spacing (10);
+        assocViewHelper.shortcutsGrid = shortcutsGrid;
+        shortcutsGrid.expand = true;
+        // shortcutsGrid.set_row_spacing (10);
+        // shortcutsGrid.set_column_spacing (5);
 
         var shortcutsSearchEntry = new Gtk.Entry ();
 
@@ -459,15 +464,35 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
         searchPaneBox.pack_start (showAllShortcutsLink, false, false);
 
+
+        var shortcutsGridHeadersBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+
+        var groupHeaderBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        assocViewHelper.groupHeaderBox = groupHeaderBox;
+        var groupLabel = new Gtk.Label ("group");
+        groupHeaderBox.pack_start (groupLabel, true, true, 5);
+
+        var shortcutsHeaderBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        assocViewHelper.shortcutsHeaderBox = shortcutsHeaderBox;
+        var shortcutsLabel = new Gtk.Label ("shortcuts");
+        shortcutsHeaderBox.pack_start (shortcutsLabel, true, true, 5);
+
+        var actionHeaderBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        assocViewHelper.actionHeaderBox = actionHeaderBox;
+        var actionLabel = new Gtk.Label ("action");
+        actionHeaderBox.pack_start (actionLabel, true, true, 5);
+
+        shortcutsGridHeadersBox.pack_start (groupHeaderBox);
+        shortcutsGridHeadersBox.pack_start (shortcutsHeaderBox);
+        shortcutsGridHeadersBox.pack_start (actionHeaderBox);
+
         shortcutAssocs.foreachAssocWithIndex ((assoc, rownum) => {
-            shortcutsGrid.attach (new Gtk.Label (assoc.shortcutGroup.to_string ()), 0, rownum, 1, 1);
-            shortcutsGrid.attach (ShortcutsToActionAssocViewUtils.buildShortcutsBox (dialog, assoc, shortcutAssocs), 1, rownum, 1, 1);
-            shortcutsGrid.attach (new Gtk.Label (assoc.action), 2, rownum, 1, 1);
+            assocViewHelper.attachRowToGrid (assoc, rownum);
         });
 
         var shortcutsScroll = new Gtk.ScrolledWindow(null, null);
         shortcutsScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-        shortcutsScroll.add (shortcutsGrid);
+        shortcutsScroll.add_with_viewport (shortcutsGrid);
 
         var shortcutsBottomButtonsBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
 
@@ -486,9 +511,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
             shortcutsGrid.foreach ((elem) => shortcutsGrid.remove (elem));
             shortcutAssocs.foreachAssocWithIndex ((assoc, rownum) => {
-                shortcutsGrid.attach (new Gtk.Label (assoc.shortcutGroup.to_string ()), 0, rownum, 1, 1);
-                shortcutsGrid.attach (ShortcutsToActionAssocViewUtils.buildShortcutsBox (dialog, assoc, shortcutAssocs), 1, rownum, 1, 1);
-                shortcutsGrid.attach (new Gtk.Label (assoc.action), 2, rownum, 1, 1);
+                assocViewHelper.attachRowToGrid (assoc, rownum);
             });
             shortcutsGrid.show_all();
 
@@ -520,8 +543,9 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
 
         var shortcutsBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
 
-        shortcutsBox.pack_start (searchPaneBox, false, false, 5);
+        shortcutsBox.pack_start (shortcutsGridHeadersBox, false, false, 5);
         shortcutsBox.pack_start (shortcutsScroll, true, true);
+        shortcutsBox.pack_start (searchPaneBox, false, false);
         shortcutsBox.pack_start (shortcutsBottomButtonsBox, false, false);
 
 
@@ -810,9 +834,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
             shortcutAssocs.foreachFilteredAssocWithIndex (assocPredicate, (assoc, rownum) => {
                 debug ("assoc with action " + assoc.action);
                 debug ("termToSearch equals assoc.shortcut. adding a row to grid.");
-                shortcutsGrid.attach (new Gtk.Label (assoc.shortcutGroup.to_string ()), 0, rownum, 1, 1);
-                shortcutsGrid.attach (ShortcutsToActionAssocViewUtils.buildShortcutsBox (dialog, assoc, shortcutAssocs), 1, rownum, 1, 1);
-                shortcutsGrid.attach (new Gtk.Label (assoc.action), 2, rownum, 1, 1);
+                assocViewHelper.attachRowToGrid (assoc, rownum);
             });
             showAllShortcutsLink.set_visible (true);
             shortcutsGrid.show_all();
@@ -822,9 +844,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         showAllShortcutsLink.activate_link.connect (() => {
             shortcutsGrid.foreach ((elem) => shortcutsGrid.remove (elem));
             shortcutAssocs.foreachAssocWithIndex ((assoc, rownum) => {
-                shortcutsGrid.attach (new Gtk.Label (assoc.shortcutGroup.to_string ()), 0, rownum, 1, 1);
-                shortcutsGrid.attach (ShortcutsToActionAssocViewUtils.buildShortcutsBox (dialog, assoc, shortcutAssocs), 1, rownum, 1, 1);
-                shortcutsGrid.attach (new Gtk.Label (assoc.action), 2, rownum, 1, 1);
+                assocViewHelper.attachRowToGrid (assoc, rownum);
             });
             shortcutsSearchEntry.set_text ("");
             showAllShortcutsLink.set_visible (false);
@@ -929,38 +949,103 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
     }
 }
 
-class BookwormApp.ShortcutsToActionAssocViewUtils {
+class BookwormApp.ShortcutsToActionAssocViewHelper {
+    private BookwormApp.ShortcutsAssocsHolder shortcutsAssocsHolder;
+    public Gtk.Grid shortcutsGrid;
+    public Gtk.Dialog parentDialog;
+    public Gtk.Box groupHeaderBox;
+    public Gtk.Box shortcutsHeaderBox;
+    public Gtk.Box actionHeaderBox;
 
-    public static Gtk.Box buildShortcutsBox(Gtk.Dialog parentDialog, ShortcutsToActionAssoc assoc, BookwormApp.ShortcutsAssocsHolder shortcutsAssocsHolder) {
+    public ShortcutsToActionAssocViewHelper (BookwormApp.ShortcutsAssocsHolder shortcutsAssocsHolder) {
+        this.shortcutsAssocsHolder = shortcutsAssocsHolder;
+    }
+
+    public void attachRowToGrid (ShortcutsToActionAssoc assoc,
+                                        int rownum) {
+        var shortcutGroupBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        var shortcutGroupLabel = new Gtk.Label (assoc.shortcutGroup.to_string ());
+        shortcutGroupBox.pack_start (shortcutGroupLabel, true, true, 5);
+
+        var shortcutsBox = buildShortcutsBox (assoc);
+
+        var actionBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        actionBox.hexpand = true;
+
+        var actionLabel = new Gtk.Label (assoc.action);
+        actionLabel.halign = Gtk.Align.START;
+        actionBox.pack_start (actionLabel, true, true, 5);
+
+        var styleClass = styleClassByRownum (rownum);
+
+        shortcutGroupBox.get_style_context ().add_class (styleClass);
+        shortcutsBox.get_style_context ().add_class (styleClass);
+        actionBox.get_style_context ().add_class (styleClass);
+
+        //if (rownum == 0) {
+            shortcutGroupBox.draw.connect_after ((ctx) => {
+                groupHeaderBox.set_size_request (shortcutGroupBox.get_allocated_width () - 5, -1);
+                return false;
+            });
+            shortcutsBox.draw.connect_after ((ctx) => {
+                shortcutsHeaderBox.set_size_request (shortcutsBox.get_allocated_width () - 5, -1);
+                return false;
+            });
+            actionBox.draw.connect_after ((ctx) => {
+                actionHeaderBox.set_size_request (actionBox.get_allocated_width () - 5, -1);
+                return false;
+            });
+        //}
+
+        shortcutsGrid.attach (shortcutGroupBox, 0, rownum, 1, 1);
+        shortcutsGrid.attach (shortcutsBox, 1, rownum, 1, 1);
+        shortcutsGrid.attach (actionBox, 2, rownum, 1, 1);
+    }
+
+    private string styleClassByRownum (int rownum) {
+        if (rownum % 2 == 0) {
+            return "bg-color-white";
+        } else {
+            return "bg-color-whitesmoke";
+        }
+    }
+
+    public Gtk.Box buildShortcutsBox(ShortcutsToActionAssoc assoc) {
         Gtk.Box actionShortcutsBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
-        fillShortcutsBoxContents (parentDialog, actionShortcutsBox, assoc, shortcutsAssocsHolder);
+        Gtk.Box innerBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+        innerBox.margin = 5;
+        fillShortcutsBoxContents (innerBox, assoc);
+        actionShortcutsBox.pack_start (innerBox, true, true, 5);
         return actionShortcutsBox;
     }
 
-    private static void fillShortcutsBoxContents(Gtk.Dialog parentDialog, Gtk.Box actionShortcutsBox, ShortcutsToActionAssoc assoc, BookwormApp.ShortcutsAssocsHolder shortcutsAssocsHolder) {
+    private void fillShortcutsBoxContents(Gtk.Box actionShortcutsBox, ShortcutsToActionAssoc assoc) {
         assoc.foreachShortcut ((shortcut) => {
 
             Gtk.Box shortcutBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
-            shortcutBox.pack_start (new Gtk.Label (shortcut.to_ui_string ()), false, false);
             var btnClear = new Gtk.Button.with_label ("\u2613");
             shortcutBox.pack_start (btnClear, false, false);
+            shortcutBox.pack_start (new Gtk.Label (shortcut.to_ui_string ()), false, false);
 
             actionShortcutsBox.pack_start (shortcutBox, false, false);
 
             btnClear.clicked.connect(() => {
                 assoc.removeShortcut (shortcut);
                 actionShortcutsBox.foreach ((elem) => actionShortcutsBox.remove (elem));
-                fillShortcutsBoxContents (parentDialog, actionShortcutsBox, assoc, shortcutsAssocsHolder);
+                fillShortcutsBoxContents (actionShortcutsBox, assoc);
                 actionShortcutsBox.show_all();
+                shortcutsGrid.queue_draw ();
             });
         });
         var btnAddShortcut = new Gtk.Button.with_label ("+");
+        btnAddShortcut.hexpand = false;
+        btnAddShortcut.halign = Gtk.Align.START;
         btnAddShortcut.clicked.connect(() => {
             Gtk.Dialog shortcutDialog = showNewShortcutDialog (parentDialog, assoc, shortcutsAssocsHolder);
 
             shortcutDialog.destroy.connect (() => {
                 actionShortcutsBox.foreach ((elem) => actionShortcutsBox.remove (elem));
-                fillShortcutsBoxContents (parentDialog, actionShortcutsBox, assoc, shortcutsAssocsHolder);
+                fillShortcutsBoxContents (actionShortcutsBox, assoc);
                 actionShortcutsBox.show_all();
             });
         });
