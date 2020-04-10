@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Estonian (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-08-30 04:24+0000\n"
+"PO-Revision-Date: 2020-04-11 16:09+0000\n"
 "Last-Translator: Kristjan Räts <kristjanrats@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/et/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -537,9 +537,9 @@ msgid "New Features:"
 msgstr "Uued funktsioonid:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
-#, fuzzy
 msgid "Library is paginated to load large libraries quickly"
-msgstr "Suurte raamatukogude kiireks laadimiseks on raamatukogu nummerdatud"
+msgstr ""
+"Raamatukogu on jagatud lehtedeks, et kiirelt laadida suured raamatukogud"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
@@ -555,7 +555,6 @@ msgid "Intuitive representation of book removal button on library"
 msgstr "Raamatu raamatukogust eemaldamise nupu intuitiivne esitus"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
-#, fuzzy
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
@@ -608,30 +607,35 @@ msgstr "Parem tugi EPUB vormingu sisukorrale"
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Vaatamaks sõna tähendust onlain sõnastikust tee valitud sõnal paremklõps"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Lisati võimalus esiletõstu värvi kohandamiseks"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Takista Bookwormil HTTP, FTP jt. linkide avamist ning kasuta nende avamiseks "
+"vaikesirvijat"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"Parandati viga, kus raamatu esimestel lehekülgedel tekkis ridade ülekattumine"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
+"GResource'i kasutamine ikoonide, skriptide jms. laadimise kiirendamiseks."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Mõningane CSSi ühilduvus Junoga"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
@@ -639,23 +643,24 @@ msgstr "Annotatsioonid ja kahe lehe vaated"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "MOBI vormingu tugi ja kasutajakogemuse täiustused"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
+"Loendi vaate ja teiste eelistuste kohandamise kasutuskogemuse täiendused"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Koomiksite tugi ja kasutuskogemuse täiustused"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDFi tugi ja kasutuskogemuse täiustused"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Algne väljalase EPUB vormingu toega"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
