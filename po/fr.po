@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-04-11 22:55+0000\n"
+"PO-Revision-Date: 2020-04-11 22:56+0000\n"
 "Last-Translator: Jeannette L <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "fr/>\n"
@@ -214,8 +214,8 @@ msgstr "Aucune occurrence trouvée pour « $$$ » dans &&&"
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
-"Sélectionnez un mot dans le livre et cliquez avec le bouton droit de la "
-"souris pour en rechercher la signification"
+"Sélectionnez un mot du livre et faite un clic droit pour chercher sa "
+"signification"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
@@ -491,7 +491,7 @@ msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr "Lisez et gérez des livres électroniques"
+msgstr "Lisez et gérez des livres numériques"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
