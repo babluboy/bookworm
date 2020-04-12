@@ -106,5 +106,60 @@
 				<default>21</default>
 				<summary>Number of books to show per library page in both grid and list views</summary>
 		</key>
+		<child name="shortcuts" schema="com.github.babluboy.bookworm.shortcuts" />
+  </schema>
+  <schema id="com.github.babluboy.bookworm.shortcuts" gettext-domain="bookworm-shortcuts">
+		<key name="toggle-library-view" type="as">
+			<default>["v 4", "V 4"]</default>
+			<summary>toggleLibraryView</summary>
+		</key>
+		<key name="move-library-page-backward" type="as">
+			<default>["Left 0"]</default>
+			<summary>moveLibraryPageBackward</summary>
+		</key>
+		<key name="move-library-page-forward" type="as">
+			<default>["Right 0"]</default>
+			<summary>moveLibraryPageForward</summary>
+		</key>
+		<key name="return-to-library-view" type="as">
+			<default>["l 4", "L 4"]</default>
+			<summary>returnToLibraryView</summary>
+		</key>
+		<key name="move-page-backward" type="as">
+			<default>["Left 0"]</default>
+			<summary>movePageBackward</summary>
+		</key>
+		<key name="move-page-forward" type="as">
+			<default>["Right 0"]</default>
+			<summary>movePageForward</summary>
+		</key>
+		<key name="increase-zoom-level" type="as">
+			<default>["plus 4", "plus 5"]</default>
+			<summary>increaseZoomLevel</summary>
+		</key>
+		<key name="decrease-zoom-level" type="as">
+			<default>["minus 4"]</default>
+			<summary>decreaseZoomLevel</summary>
+		</key>
+		<key name="toggle-bookmark" type="as">
+			<default>["d 4", "D 4"]</default>
+			<summary>toggleBookmark</summary>
+		</key>
+		<key name="unfullscreen" type="as">
+			<default>["Escape 0"]</default>
+			<summary>unfullscreen</summary>
+		</key>
+		<key name="toggle-fullscreen" type="as">
+			<default>["F11 0"]</default>
+			<summary>toggleFullScreen</summary>
+		</key>
+		<key name="close-bookworm-completely" type="as">
+			<default>["q 4", "Q 4"]</default>
+			<summary>closeBookwormCompletely</summary>
+		</key>
+		<key name="focus-on-header-search-bar" type="as">
+			<default>["f 4", "F 4"]</default>
+			<summary>focusOnHeaderSearchBar</summary>
+		</key>
   </schema>
 </schemalist>

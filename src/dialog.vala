@@ -383,17 +383,184 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         var dialog_toast = new Granite.Widgets.Toast (BookwormApp.Constants.TEXT_BOOK_DISCOVERY_TOAST);
 
         Gtk.Box content = dialog.get_content_area () as Gtk.Box;
-        content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
-        content.pack_start (prefBox, false, false, 0);
-        content.pack_start (localStorageBox, false, false, 0);
-        content.pack_start (showLibraryAtStartBox, false, false, 0);
-        content.pack_start (twoPageViewBox, false, false, 0);
-        content.pack_start (fontBox, false, false, 0);
-        content.pack_start (customProfileBox, false, false, 0);
-        content.pack_start (discoverBooksBox, false, false, 0);
-        content.pack_start (libraryPageItemsBox, false, false, 0);
-        content.pack_end (resetBox, true, true, 5);
-        content.pack_end (dialog_toast, true, true, 0); //this should be the last item vertically
+        Gtk.Box settingsBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 1);
+        settingsBox.spacing = BookwormApp.Constants.SPACING_WIDGETS;
+        settingsBox.pack_start (prefBox, false, false, 10);
+        settingsBox.pack_start (localStorageBox, false, false, 0);
+        settingsBox.pack_start (showLibraryAtStartBox, false, false, 0);
+        settingsBox.pack_start (twoPageViewBox, false, false, 0);
+        settingsBox.pack_start (fontBox, false, false, 0);
+        settingsBox.pack_start (customProfileBox, false, false, 0);
+        settingsBox.pack_start (discoverBooksBox, false, false, 0);
+        settingsBox.pack_start (libraryPageItemsBox, false, false, 0);
+        settingsBox.pack_end (resetBox, true, true, 5);
+        settingsBox.pack_end (dialog_toast, true, true, 0); //this should be the last item vertically
+
+        var tabsPane = new Gtk.Notebook ();
+        tabsPane.set_show_border (false);
+        tabsPane.append_page (settingsBox, new Gtk.Label ("Settings"));
+
+        content.pack_start (tabsPane, false, false, 5);
+
+        /*
+        Gtk.TreeView shortcutsTreeView = new Gtk.TreeView ();
+        shortcutsTreeView.insert_column_with_attributes(-1, "shortcut", new Gtk.CellRendererText (), "text", 0);
+        shortcutsTreeView.insert_column_with_attributes(-1, "action", new Gtk.CellRendererText (), "text", 1);
+        ////shortcutsTreeView.insert_column_with_attributes(-1, "shortcut", new Gtk.CellRendererText (), "text", 0);
+        ////shortcutsTreeView.insert_column_with_attributes(-1, "shortcut", new Gtk.CellRendererText (), "text", 0);
+        //Gtk.ListStore shortcutsListStore = new Gtk.ListStore (4, typeof(string), typeof(string), typeof(Gtk.Button), typeof(Gtk.Button));
+        Gtk.ListStore shortcutsListStore = new Gtk.ListStore (2, typeof(string), typeof(string));
+        TreeIter shortcutsTreeViewIter;
+
+        shortcutsListStore.append (out shortcutsTreeViewIter);
+        shortcutsListStore.set (shortcutsTreeViewIter,
+                                0, "Ctrl-A"
+                                , 1, "Some A Action"
+                                //, 2, new Gtk.Button.with_label ("edit")
+                                //, 3, new Gtk.Button.with_label ("clear")
+                                );
+
+        shortcutsListStore.append (out shortcutsTreeViewIter);
+        shortcutsListStore.set (shortcutsTreeViewIter,
+                                0, "Ctrl-B"
+                                , 1, "Some B Action"
+                                //, 2, new Gtk.Button.with_label ("edit")
+                                //, 3, new Gtk.Button.with_label ("clear")
+                                );
+
+        //
+
+        shortcutsTreeView.set_model (shortcutsListStore);
+        */
+
+        var shortcutAssocs = BookwormApp.Bookworm.shortcutAssocs;
+
+        var assocViewHelper = new ShortcutsToActionAssocViewHelper (shortcutAssocs);
+        assocViewHelper.parentDialog = dialog;
+
+        Gtk.Grid shortcutsGrid = new Gtk.Grid ();
+        assocViewHelper.shortcutsGrid = shortcutsGrid;
+        shortcutsGrid.expand = true;
+        // shortcutsGrid.set_row_spacing (10);
+        // shortcutsGrid.set_column_spacing (5);
+
+        var shortcutsSearchEntry = new Gtk.Entry ();
+
+        var searchPaneBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        searchPaneBox.pack_start (new Gtk.Label ("Search"), false, false);
+        searchPaneBox.pack_start (shortcutsSearchEntry, false, false);
+
+        var radioButtonSearchByShortcut = new Gtk.RadioButton (null);
+        radioButtonSearchByShortcut.set_label ("by shortcut");
+        var radioButtonSearchByActionTitle = new Gtk.RadioButton.with_label (radioButtonSearchByShortcut.get_group(), "by action title");
+
+        searchPaneBox.pack_start (radioButtonSearchByShortcut, false, false);
+        searchPaneBox.pack_start (radioButtonSearchByActionTitle, false, false);
+
+        var showAllShortcutsLink = new Gtk.LinkButton.with_label ("", "back to all shortcuts");
+        showAllShortcutsLink.visible = false;
+        showAllShortcutsLink.no_show_all = true;
+        showAllShortcutsLink.has_tooltip = false;
+
+        searchPaneBox.pack_start (showAllShortcutsLink, false, false);
+
+
+        var shortcutsGridHeadersBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+
+        var groupHeaderBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        assocViewHelper.groupHeaderBox = groupHeaderBox;
+        var groupLabel = new Gtk.Label ("group");
+        groupHeaderBox.pack_start (groupLabel, true, true, 5);
+
+        var shortcutsHeaderBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        assocViewHelper.shortcutsHeaderBox = shortcutsHeaderBox;
+        var shortcutsLabel = new Gtk.Label ("shortcuts");
+        shortcutsHeaderBox.pack_start (shortcutsLabel, true, true, 5);
+
+        var actionHeaderBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        assocViewHelper.actionHeaderBox = actionHeaderBox;
+        var actionLabel = new Gtk.Label ("action");
+        actionHeaderBox.pack_start (actionLabel, true, true, 5);
+
+        shortcutsGridHeadersBox.pack_start (groupHeaderBox);
+        shortcutsGridHeadersBox.pack_start (shortcutsHeaderBox);
+        shortcutsGridHeadersBox.pack_start (actionHeaderBox);
+
+        shortcutAssocs.foreachAssocWithIndex ((assoc, rownum) => {
+            assocViewHelper.attachRowToGrid (assoc, rownum);
+        });
+
+        var shortcutsScroll = new Gtk.ScrolledWindow(null, null);
+        shortcutsScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+        shortcutsScroll.add_with_viewport (shortcutsGrid);
+
+        var shortcutsBottomButtonsBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+
+        var shortcutsTabLabel = new Gtk.Label ("Shortcuts");
+
+        var discardShortcutsChangesButton = new Gtk.Button.with_label ("discard changes");
+        discardShortcutsChangesButton.sensitive = false;
+
+        var applyShortcutsChangesButton = new Gtk.Button.with_label ("apply changes");
+        applyShortcutsChangesButton.sensitive = false;
+
+        discardShortcutsChangesButton.clicked.connect (() => {
+            shortcutAssocs.foreachAssoc ((assoc) => {
+                assoc.discardChanges ();
+            });
+
+            shortcutsGrid.foreach ((elem) => shortcutsGrid.remove (elem));
+            shortcutAssocs.foreachAssocWithIndex ((assoc, rownum) => {
+                assocViewHelper.attachRowToGrid (assoc, rownum);
+            });
+            shortcutsGrid.show_all();
+
+            shortcutsSearchEntry.set_text ("");
+            showAllShortcutsLink.set_visible (false);
+
+            shortcutsTabLabel.set_text ("Shortcuts");
+            applyShortcutsChangesButton.sensitive = false;
+            discardShortcutsChangesButton.sensitive = false;
+        });
+
+        applyShortcutsChangesButton.clicked.connect (() => {
+            BookwormApp.Shortcuts.removeOldShortcutsFromWidgets ();
+            shortcutAssocs.foreachAssoc ((assoc) => {
+                if (!assoc.isSameAsSettings) {
+                    assoc.saveChanges ();
+                    BookwormApp.Shortcuts.updateShortcutAssocInSettings (assoc);
+                }
+            });
+            BookwormApp.Shortcuts.attachShortcutsToWidgets ();
+
+            shortcutsTabLabel.set_text ("Shortcuts");
+            applyShortcutsChangesButton.sensitive = false;
+            discardShortcutsChangesButton.sensitive = false;
+        });
+
+        shortcutsBottomButtonsBox.pack_end (applyShortcutsChangesButton, false, false);
+        shortcutsBottomButtonsBox.pack_end (discardShortcutsChangesButton, false, false);
+
+        var shortcutsBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+
+        shortcutsBox.pack_start (shortcutsGridHeadersBox, false, false, 5);
+        shortcutsBox.pack_start (shortcutsScroll, true, true);
+        shortcutsBox.pack_start (searchPaneBox, false, false);
+        shortcutsBox.pack_start (shortcutsBottomButtonsBox, false, false);
+
+
+        shortcutAssocs.stateChanged.connect ((isSameAsSettingsNow) => {
+            if (isSameAsSettingsNow) {
+                shortcutsTabLabel.set_text ("Shortcuts");
+            } else {
+                shortcutsTabLabel.set_text ("Shortcuts*");
+            }
+            applyShortcutsChangesButton.sensitive = !isSameAsSettingsNow;
+            discardShortcutsChangesButton.sensitive = !isSameAsSettingsNow;
+        });
+
+        tabsPane.append_page (shortcutsBox, shortcutsTabLabel);
+        //tabsPane.append_page (shortcutsTreeView, new Gtk.Label ("Shortcuts"));
 
         dialog.show_all ();
 
@@ -639,8 +806,63 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
             return true;
         });
 
+        shortcutsSearchEntry.key_press_event.connect((event) => {
+            bool isByActionTitle = radioButtonSearchByActionTitle.get_active();
+            bool isByShortcut = radioButtonSearchByShortcut.get_active();
+            bool isEnter = (event.keyval == Gdk.Key.Return);
+            if (isByActionTitle && !isEnter) {
+                return false;
+            }
+            string termToSearch = "";
+            ShortcutStruct shortcutStruct = ShortcutStruct.null ();
+            if (isByActionTitle && isEnter) {
+                termToSearch = shortcutsSearchEntry.get_text();
+            }
+            if (isByShortcut) {
+                var modifiers_state = (event.state & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK | Gdk.ModifierType.SHIFT_MASK));
+                shortcutStruct = new ShortcutStruct (event.keyval, modifiers_state);
+                shortcutsSearchEntry.set_text (shortcutStruct.to_ui_string ());
+            }
+            shortcutsGrid.foreach ((elem) => shortcutsGrid.remove (elem));
+            debug ("shortcutStruct: " + shortcutStruct.to_ui_string() + ", shortcuts.length: " + shortcutAssocs.assocsCount ().to_string ());
+            Gee.Predicate<ShortcutsToActionAssoc> assocPredicate;
+            if (isByShortcut) {
+                assocPredicate = (assoc) => assoc.containsShortcut(shortcutStruct);
+            } else { // isByActionTitle
+                assocPredicate = (assoc) => assoc.action.contains (termToSearch);
+            }
+            shortcutAssocs.foreachFilteredAssocWithIndex (assocPredicate, (assoc, rownum) => {
+                debug ("assoc with action " + assoc.action);
+                debug ("termToSearch equals assoc.shortcut. adding a row to grid.");
+                assocViewHelper.attachRowToGrid (assoc, rownum);
+            });
+            showAllShortcutsLink.set_visible (true);
+            shortcutsGrid.show_all();
+            return true;
+        });
+
+        showAllShortcutsLink.activate_link.connect (() => {
+            shortcutsGrid.foreach ((elem) => shortcutsGrid.remove (elem));
+            shortcutAssocs.foreachAssocWithIndex ((assoc, rownum) => {
+                assocViewHelper.attachRowToGrid (assoc, rownum);
+            });
+            shortcutsSearchEntry.set_text ("");
+            showAllShortcutsLink.set_visible (false);
+            shortcutsGrid.show_all();
+            return true;
+        });
+
         dialog.response.connect (() => {
             updateProfileColorToSettings ();
+        });
+        dialog.delete_event.connect (() => {
+            if (shortcutAssocs.containsAssocMatching ((assoc) => !assoc.isSameAsSettings)) {
+                var msgDialog = new Gtk.MessageDialog (dialog, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, "There are unsaved changes in shortcuts.");
+                msgDialog.response.connect (() => msgDialog.destroy ());
+                msgDialog.run ();
+                return true;
+            }
+            return false;
         });
         debug ("[END] [FUNCTION:createPreferencesDialog]");
     }
@@ -724,5 +946,183 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
             aBook = BookwormApp.contentHandler.renderPage (aBook, "");
         });
         debug ("[END] [FUNCTION:createAnnotationDialog] textForAnnotation=" + textForAnnotation);
+    }
+}
+
+class BookwormApp.ShortcutsToActionAssocViewHelper {
+    private BookwormApp.ShortcutsAssocsHolder shortcutsAssocsHolder;
+    public Gtk.Grid shortcutsGrid;
+    public Gtk.Dialog parentDialog;
+    public Gtk.Box groupHeaderBox;
+    public Gtk.Box shortcutsHeaderBox;
+    public Gtk.Box actionHeaderBox;
+
+    public ShortcutsToActionAssocViewHelper (BookwormApp.ShortcutsAssocsHolder shortcutsAssocsHolder) {
+        this.shortcutsAssocsHolder = shortcutsAssocsHolder;
+    }
+
+    public void attachRowToGrid (ShortcutsToActionAssoc assoc,
+                                        int rownum) {
+        var shortcutGroupBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        var shortcutGroupLabel = new Gtk.Label (assoc.shortcutGroup.to_string ());
+        shortcutGroupBox.pack_start (shortcutGroupLabel, true, true, 5);
+
+        var shortcutsBox = buildShortcutsBox (assoc);
+
+        var actionBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        actionBox.hexpand = true;
+
+        var actionLabel = new Gtk.Label (assoc.action);
+        actionLabel.halign = Gtk.Align.START;
+        actionBox.pack_start (actionLabel, true, true, 5);
+
+        var styleClass = styleClassByRownum (rownum);
+
+        shortcutGroupBox.get_style_context ().add_class (styleClass);
+        shortcutsBox.get_style_context ().add_class (styleClass);
+        actionBox.get_style_context ().add_class (styleClass);
+
+        //if (rownum == 0) {
+            shortcutGroupBox.draw.connect_after ((ctx) => {
+                groupHeaderBox.set_size_request (shortcutGroupBox.get_allocated_width () - 5, -1);
+                return false;
+            });
+            shortcutsBox.draw.connect_after ((ctx) => {
+                shortcutsHeaderBox.set_size_request (shortcutsBox.get_allocated_width () - 5, -1);
+                return false;
+            });
+            actionBox.draw.connect_after ((ctx) => {
+                actionHeaderBox.set_size_request (actionBox.get_allocated_width () - 5, -1);
+                return false;
+            });
+        //}
+
+        shortcutsGrid.attach (shortcutGroupBox, 0, rownum, 1, 1);
+        shortcutsGrid.attach (shortcutsBox, 1, rownum, 1, 1);
+        shortcutsGrid.attach (actionBox, 2, rownum, 1, 1);
+    }
+
+    private string styleClassByRownum (int rownum) {
+        if (rownum % 2 == 0) {
+            return "bg-color-white";
+        } else {
+            return "bg-color-whitesmoke";
+        }
+    }
+
+    public Gtk.Box buildShortcutsBox(ShortcutsToActionAssoc assoc) {
+        Gtk.Box actionShortcutsBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+        Gtk.Box innerBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+        innerBox.margin = 5;
+        fillShortcutsBoxContents (innerBox, assoc);
+        actionShortcutsBox.pack_start (innerBox, true, true, 5);
+        return actionShortcutsBox;
+    }
+
+    private void fillShortcutsBoxContents(Gtk.Box actionShortcutsBox, ShortcutsToActionAssoc assoc) {
+        assoc.foreachShortcut ((shortcut) => {
+
+            Gtk.Box shortcutBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+            var btnClear = new Gtk.Button.with_label ("\u2613");
+            shortcutBox.pack_start (btnClear, false, false);
+            shortcutBox.pack_start (new Gtk.Label (shortcut.to_ui_string ()), false, false);
+
+            actionShortcutsBox.pack_start (shortcutBox, false, false);
+
+            btnClear.clicked.connect(() => {
+                assoc.removeShortcut (shortcut);
+                actionShortcutsBox.foreach ((elem) => actionShortcutsBox.remove (elem));
+                fillShortcutsBoxContents (actionShortcutsBox, assoc);
+                actionShortcutsBox.show_all();
+                shortcutsGrid.queue_draw ();
+            });
+        });
+        var btnAddShortcut = new Gtk.Button.with_label ("+");
+        btnAddShortcut.hexpand = false;
+        btnAddShortcut.halign = Gtk.Align.START;
+        btnAddShortcut.clicked.connect(() => {
+            Gtk.Dialog shortcutDialog = showNewShortcutDialog (parentDialog, assoc, shortcutsAssocsHolder);
+
+            shortcutDialog.destroy.connect (() => {
+                actionShortcutsBox.foreach ((elem) => actionShortcutsBox.remove (elem));
+                fillShortcutsBoxContents (actionShortcutsBox, assoc);
+                actionShortcutsBox.show_all();
+            });
+        });
+        actionShortcutsBox.pack_start (btnAddShortcut, false, false);
+    }
+
+    public static Gtk.Dialog showNewShortcutDialog(Gtk.Dialog parentDialog, ShortcutsToActionAssoc assoc, BookwormApp.ShortcutsAssocsHolder shortcutsAssocsHolder) {
+        Gtk.Dialog shortcutDialog = new Gtk.Dialog ();
+        shortcutDialog.title = "";
+        shortcutDialog.set_transient_for (parentDialog);
+        shortcutDialog.border_width = BookwormApp.Constants.SPACING_BUTTONS;
+        shortcutDialog.set_default_size (300, 200);
+
+        Gtk.Box shortcutDialogBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+        //shortcutDialogBox.get_style_context ().add_class ("smth-yellow-box");
+
+        Gtk.Box shortcutEntryBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        shortcutEntryBox.pack_start (new Gtk.Label ("Shortcut:"), false, false);
+        Gtk.Entry shortcutEntry = new Gtk.Entry ();
+        shortcutEntryBox.pack_start (shortcutEntry, false, false);
+
+        Gtk.Box buttonsBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+        buttonsBox.set_valign (Gtk.Align.END);
+        //buttonsBox.get_style_context ().add_class ("smth-box");
+        Gtk.Button okButton = new Gtk.Button.with_label ("add");
+        okButton.sensitive = false;
+        Gtk.Button cancelButton = new Gtk.Button.with_label ("cancel");
+        buttonsBox.pack_end (okButton, false, false);
+        buttonsBox.pack_end (cancelButton, false, false);
+
+        Gtk.Label infoLabel = new Gtk.Label ("");
+
+        var shortcutValue = "";
+        ShortcutStruct shortcutStruct = ShortcutStruct.null ();
+
+        shortcutEntry.key_press_event.connect ((event) => {
+
+            var modifiers_state = (event.state & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK | Gdk.ModifierType.SHIFT_MASK));
+            shortcutStruct = new ShortcutStruct (event.keyval, modifiers_state);
+            shortcutEntry.set_text(shortcutStruct.to_ui_string ());
+
+            var assocHoldingShortcut = shortcutsAssocsHolder.findAssoc ((someAssoc) =>
+                someAssoc.containsShortcut(shortcutStruct) &&
+                    (assoc.shortcutGroup & someAssoc.shortcutGroup) != 0
+            );
+            if (assocHoldingShortcut == null) {
+                infoLabel.set_text ("");
+                okButton.sensitive = true;
+            } else {
+                infoLabel.set_text ("shortcut invokes action \"" + assocHoldingShortcut.action + "\"");
+                okButton.sensitive = false;
+            }
+            return true;
+        });
+
+        okButton.clicked.connect(() => {
+            if (!ShortcutStruct.isNull (shortcutStruct)) {
+                assoc.addShortcut (shortcutStruct);
+            }
+            shortcutDialog.destroy ();
+        });
+
+        cancelButton.clicked.connect(() => {
+            shortcutDialog.destroy ();
+        });
+
+        shortcutDialogBox.pack_start (shortcutEntryBox, false, false);
+        shortcutDialogBox.pack_start (infoLabel, true, true);
+        shortcutDialogBox.pack_end (buttonsBox, true, true);
+
+        Gtk.Box content = (Gtk.Box) shortcutDialog.get_content_area ();
+        //content.get_style_context ().add_class ("smth-green-box");
+        //content.spacing = BookwormApp.Constants.SPACING_WIDGETS;
+        content.spacing = 0;
+        content.pack_end (shortcutDialogBox, true, true, 0);
+        shortcutDialog.show_all ();
+
+        return shortcutDialog;
     }
 }

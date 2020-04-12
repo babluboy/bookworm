@@ -44,6 +44,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
     public string current_info_tab { get; set; }
     public bool is_fullscreen { get; set; }
     public int library_page_items { get; set; }
+    public SettingsOfShortcuts shortcuts { get; set; }
 
     public static Settings get_instance () {
         if (instance == null) {
@@ -54,5 +55,28 @@ public class BookwormApp.Settings : Granite.Services.Settings {
 
     private Settings () {
         base (BookwormApp.Constants.bookworm_id);
+        this.shortcuts = new SettingsOfShortcuts ();
     }
+}
+
+public class BookwormApp.SettingsOfShortcuts : Granite.Services.Settings {
+
+    public SettingsOfShortcuts () {
+        base.with_path (BookwormApp.Constants.bookworm_shortcuts_id, "/com/github/babluboy/bookworm/shortcuts/");
+    }
+
+    public string[] toggle_library_view { get; set; }
+    public string[] move_library_page_backward { get; set; }
+    public string[] move_library_page_forward { get; set; }
+    public string[] return_to_library_view { get; set; }
+    public string[] move_page_backward { get; set; }
+    public string[] move_page_forward { get; set; }
+    public string[] increase_zoom_level { get; set; }
+    public string[] decrease_zoom_level { get; set; }
+    public string[] toggle_bookmark { get; set; }
+    public string[] unfullscreen { get; set; }
+    public string[] toggle_fullscreen { get; set; }
+    public string[] close_bookworm_completely { get; set; }
+    public string[] focus_on_header_search_bar { get; set; }
+
 }
