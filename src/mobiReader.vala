@@ -1,8 +1,8 @@
 /* Copyright 2017 Siddhartha Das (bablu.boy@gmail.com)
 *
-* This file is part of Bookworm and is used for parsing MOBI file formats
-* The Mobi unpack utility mobi_unpack.py (v0.47) by adamselene
-* is used to extract the contents of the mobi file
+* This file is part of Bookworm and is used for parsing MOBI/PRC file formats
+* The content of the mobi files are extracted using the KindleUnpack software 
+* available here: https://github.com/kevinhendricks/KindleUnpack
 *
 * Bookworm is free software: you can redistribute it
 * and/or modify it under the terms of the GNU General Public License as
@@ -105,13 +105,48 @@ public class BookwormApp.mobiReader {
         info ("[START] [FUNCTION:getOPFFileLocation] extractionLocation=" + extractionLocation);
         string locationOfOPFFile = "false";
         //Check if the "mobi7" folder is present
-        string isMobiExtractionFolderPresent = BookwormApp.Utils.fileOperations ("DIR_EXISTS", extractionLocation + "/mobi7", "", "");
+        string isMobiExtractionFolderPresent = BookwormApp.Utils.fileOperations (
+                "DIR_EXISTS", extractionLocation + "/mobi7", "", ""
+        );
         if ("false" != isMobiExtractionFolderPresent) {
             //check for presence of .opf file
             locationOfOPFFile = BookwormApp.Utils.execute_sync_command ("find " +
                 "\"" + extractionLocation + "/mobi7/" + "\"" + " -iname *.OPF").strip ();
+            if(locationOfOPFFile.length < 1 ||
+                "true" != BookwormApp.Utils.fileOperations ("EXISTS", locationOfOPFFile, "", ""))
+            {
+                //Check if the "mobi8" folder is present
+                isMobiExtractionFolderPresent = BookwormApp.Utils.fileOperations (
+                    "DIR_EXISTS", extractionLocation + "/mobi8", "", ""
+                );
+                if ("false" != isMobiExtractionFolderPresent) {
+                    //check for presence of .opf file
+                    locationOfOPFFile = BookwormApp.Utils.execute_sync_command ("find " +
+                    "\"" + extractionLocation + "/mobi8/" + "\"" + " -iname *.OPF").strip ();
+                    if(locationOfOPFFile.length < 1 ||
+                        "true" != BookwormApp.Utils.fileOperations ("EXISTS", locationOfOPFFile, "", ""))
+                    {
+                        return "false";
+                    }
+                } else {
+                    return "false";
+                }
+            }
         } else {
-            return "false";
+            //Check if the "mobi8" folder is present
+            isMobiExtractionFolderPresent = BookwormApp.Utils.fileOperations (
+                "DIR_EXISTS", extractionLocation + "/mobi8", "", ""
+            );
+            if ("false" != isMobiExtractionFolderPresent) {
+                //check for presence of .opf file
+                locationOfOPFFile = BookwormApp.Utils.execute_sync_command ("find " +
+                "\"" + extractionLocation + "/mobi8/" + "\"" + " -iname *.OPF").strip ();
+                if("true" != BookwormApp.Utils.fileOperations ("EXISTS", locationOfOPFFile, "", "")){
+                    return "false";
+                }
+            } else {
+                return "false";
+            }
         }
         info ("[END] [FUNCTION:getOPFFileLocation] locationOfOPFFile=" + locationOfOPFFile);
         return locationOfOPFFile;

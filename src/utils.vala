@@ -342,7 +342,7 @@ namespace BookwormApp.Utils {
         File fileDir = null;
         File file = null;
         try {
-            if (path != null || path.length > 1) {
+            if (path != null && path.length > 1) {
                 fileDir = File.new_for_commandline_arg (path);
             }
             if (filename != null && filename.length > 1) {

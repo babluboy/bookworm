@@ -75,7 +75,7 @@ public class BookwormApp.contentHandler {
                         //requested content not available
                         aBook.setParsingIssue (BookwormApp.Constants.TEXT_FOR_NAVIGATION_ISSUE);
                         BookwormApp.AppWindow.showInfoBar (aBook, Gtk.MessageType.WARNING);
-                        warn ("[END] [FUNCTION:provideContent] Page could not be loaded from location:"+bookLocationToRead);
+                        warning ("[END] [FUNCTION:provideContent] Page could not be loaded from location:"+bookLocationToRead);
                         return contents.str;
                     }
                 }

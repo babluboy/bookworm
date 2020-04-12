@@ -708,6 +708,9 @@ public class BookwormApp.Bookworm : Granite.Application {
                     case ".PRC":
                         aBook = BookwormApp.mobiReader.parseMobiBook (aBook);
                         break;
+                    case ".AZW3":
+                        aBook = BookwormApp.mobiReader.parseMobiBook (aBook);
+                        break;
                     case ".ZIP":
                         //check if the file is a zipped FB2 file
                         if (ebookFileName.up ().last_index_of (".FB2.ZIP") != -1) {
