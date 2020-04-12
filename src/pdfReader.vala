@@ -161,12 +161,16 @@ public class BookwormApp.pdfReader {
         try {
             //determine the title of the book if it is not already available
             debug ("Initiated process for title of eBook located at:" + aBook.getBookExtractionLocation ());
-            if (aBook.getBookTitle () != null && aBook.getBookTitle ().length < 1) {
+            if (aBook.getBookTitle () != null && (
+                                aBook.getBookTitle () == BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE ||
+                                aBook.getBookTitle ().length < 1
+                        )
+            ) {
                 pdfDocument = new Document.from_gfile (File.new_for_path (aBook.getBookLocation ()), null);
                 bookTitle = pdfDocument.get_title ();
                 if (bookTitle != null && bookTitle.length > 0) {
                     aBook.setBookTitle (bookTitle);
-                    debug ("Determined Title as:" + bookTitle + " for book located at:" + aBook.getBookExtractionLocation ());
+                    debug ("File name set as Title::" + bookTitle);
                 } else {
                     //If the book title has not been determined, use the file name as book title
                     bookTitle = File.new_for_path (aBook.getBookLocation ()).get_basename ();

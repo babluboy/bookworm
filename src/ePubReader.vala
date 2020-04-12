@@ -356,7 +356,11 @@ public class BookwormApp.ePubReader {
                 debug ("Determined eBook Title as:" + bookTitle);
             } else {
                 //If the book title has not been determined, use the file name as book title
-                if (aBook.getBookTitle () != null && aBook.getBookTitle ().length < 1) {
+                if (aBook.getBookTitle () != null && (
+                                    aBook.getBookTitle () == BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE ||
+                                    aBook.getBookTitle ().length < 1
+                                )
+                ) {
                     bookTitle = File.new_for_path (aBook.getBookExtractionLocation ()).get_basename ();
                     if (bookTitle.last_index_of (".") != -1) {
                         bookTitle = bookTitle.slice (0, bookTitle.last_index_of ("."));

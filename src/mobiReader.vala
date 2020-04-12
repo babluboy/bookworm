@@ -386,7 +386,11 @@ public class BookwormApp.mobiReader {
     public static BookwormApp.Book setBookMetaData (owned BookwormApp.Book aBook, string locationOfOPFFile) {
         info ("[START] [FUNCTION:setBookMetaData] book.location=" + aBook.getBookLocation ());
         //determine the title of the book from contents if it is not already available
-        if (aBook.getBookTitle () != null && aBook.getBookTitle ().length < 1) {
+        if (aBook.getBookTitle () != null && (
+                        aBook.getBookTitle () == BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE || 
+                        aBook.getBookTitle ().length < 1
+                        )
+        ) {
             if (OpfContents.contains ("<dc:title") && OpfContents.contains ("</dc:title>")) {
                 int startOfTitleText = OpfContents.index_of (">", OpfContents.index_of ("<dc:title"));
                 int endOfTittleText = OpfContents.index_of ("</dc:title>", startOfTitleText);
@@ -398,7 +402,11 @@ public class BookwormApp.mobiReader {
             }
         }
         //If the book title has still not been determined, use the file name as book title
-        if (aBook.getBookTitle () != null && aBook.getBookTitle ().length < 1) {
+        if (aBook.getBookTitle () != null && (
+                            aBook.getBookTitle () == BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE || 
+                            aBook.getBookTitle ().length < 1
+                    )
+        ) {
             string bookTitle = File.new_for_path (aBook.getBookExtractionLocation ()).get_basename ();
             if (bookTitle.last_index_of (".") != -1) {
                 bookTitle = bookTitle.slice (0, bookTitle.last_index_of ("."));

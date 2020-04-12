@@ -307,6 +307,20 @@ public class BookwormApp.fb2Reader {
         //set the title of the book
         if (extractedDataList.size > 2 && extractedDataList[2].extractedTagValues.size > 0) {
             aBook.setBookTitle (BookwormApp.Utils.decodeHTMLChars (extractedDataList[2].extractedTagValues[0]));
+        } else {
+            //If the book title has not been determined, use the file name as book title
+            if (aBook.getBookTitle () != null && (
+                                aBook.getBookTitle () == BookwormApp.Constants.TEXT_FOR_UNKNOWN_TITLE || 
+                                aBook.getBookTitle ().length < 1
+                            )
+            ) {
+                string bookTitle = File.new_for_path (aBook.getBookExtractionLocation ()).get_basename ();
+                if (bookTitle.last_index_of (".") != -1) {
+                    bookTitle = bookTitle.slice (0, bookTitle.last_index_of ("."));
+                }
+                aBook.setBookTitle (bookTitle);
+                debug ("File name set as Title:" + bookTitle);
+            }
         }
         info ("[END] [FUNCTION:setBookMetaData] Determined author[" + aBook.getBookAuthor () + "] and title[" + aBook.getBookTitle () + "]");
         return aBook;
