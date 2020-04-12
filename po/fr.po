@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-04-11 22:57+0000\n"
+"PO-Revision-Date: 2020-04-12 23:11+0000\n"
 "Last-Translator: Jeannette L <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "fr/>\n"
@@ -87,8 +87,8 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problème d'extraction du contenu du livre. Assurez-vous que le fichier eBook "
-"est à l'emplacement : "
+"Problème d'extraction du contenu du livre. Assurez-vous que le fichier du "
+"livre est à l'emplacement : "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
@@ -338,7 +338,7 @@ msgstr "Cliquez pour supprimer ce marque-page"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr "Augmenter la taille de la police (Ctrl + Maj + '+')"
+msgstr "Augmenter la taille de la police (Ctrl + Maj + « + »)"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
@@ -491,7 +491,7 @@ msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr "Lisez et gérez des livres numériques"
+msgstr "Lire et gérer des livres numériques"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
@@ -589,15 +589,16 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Correction pour basculer entre le mode plein écran avec F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Correvtion pour le dialogue d'annotation avec des titres vides"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"Correction pour retourner sur la position de la page depuis la vue d'infos"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
