@@ -168,7 +168,7 @@ namespace BookwormApp.Constants {
     public const string HTML_SCRIPT_FUNCTIONS_RESOURCE_LOCATION = "resource:///" + RESOURCE_PREFIX + BOOKWORM_HTML_SCRIPT_FUNCTIONS;
     public const string HTML_SCRIPT_STYLES_RESOURCE_LOCATION = "resource:///" + RESOURCE_PREFIX + BOOKWORM_HTML_SCRIPT_STYLES;
 
-    public const string MOBIUNPACK_SCRIPT_LOCATION = INSTALL_MOBILIB_DIR + "/mobi_unpack.py";
+    public const string MOBIUNPACK_SCRIPT_LOCATION = INSTALL_MOBILIB_DIR + "/kindleunpack.py";
 
     //Set resource paths for images and icons
     public const string PREV_PAGE_ICON_IMAGE_LOCATION = RESOURCE_PREFIX+"16-bookworm-go-previous.svg";
