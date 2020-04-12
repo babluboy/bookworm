@@ -65,9 +65,20 @@ public class BookwormApp.contentHandler {
             ", contentLocation=" + contentLocation.to_string () + ", mode=" + mode);
         StringBuilder contents = new StringBuilder ();
         if (aBook.getBookContentList () != null) {
+            string bookLocationToRead = "";
             if (contentLocation > -1 && aBook.getBookContentList ().size > contentLocation) {
-                //handle the case when the content list has html escape chars for the URI
-                string bookLocationToRead = BookwormApp.Utils.decodeHTMLChars (aBook.getBookContentList ().get (contentLocation));
+                bookLocationToRead = aBook.getBookContentList ().get (contentLocation);
+                if("true" != BookwormApp.Utils.fileOperations ("EXISTS", bookLocationToRead, "", "")){
+                    //handle the case when the content list has html escape chars for the URI
+                    bookLocationToRead = BookwormApp.Utils.decodeHTMLChars (aBook.getBookContentList ().get (contentLocation));
+                    if("true" != BookwormApp.Utils.fileOperations ("EXISTS", bookLocationToRead, "", "")){
+                        //requested content not available
+                        aBook.setParsingIssue (BookwormApp.Constants.TEXT_FOR_NAVIGATION_ISSUE);
+                        BookwormApp.AppWindow.showInfoBar (aBook, Gtk.MessageType.WARNING);
+                        warn ("[END] [FUNCTION:provideContent] Page could not be loaded from location:"+bookLocationToRead);
+                        return contents.str;
+                    }
+                }
                 //fetch content from extracted book
                 contents.assign (BookwormApp.Utils.fileOperations ("READ_FILE", bookLocationToRead, "", ""));
                 //find list of relative urls with src, href, etc and convert them to absolute ones
@@ -75,7 +86,10 @@ public class BookwormApp.contentHandler {
                     string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings (contents.str, tagname, "\"");
                     StringBuilder srcItemFullPath = new StringBuilder ();
                     foreach (string srcItem in srcList) {
-                        srcItemFullPath.assign (BookwormApp.Utils.getFullPathFromFilename (aBook.getBookExtractionLocation (), srcItem));
+                        srcItemFullPath.assign (
+                                BookwormApp.Utils.getFullPathFromFilename (
+                                            aBook.getBookExtractionLocation (), srcItem)
+                        );
                         contents.assign (
                             contents.str.replace (tagname + srcItem + "\"",
                             BookwormApp.Utils.encodeHTMLChars (tagname + srcItemFullPath.str) + "\""));
