@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-12-15 14:21+0000\n"
-"Last-Translator: THANOS SIOURDAKIS <siourdakisthanos@gmail.com>\n"
+"PO-Revision-Date: 2020-04-16 11:11+0000\n"
+"Last-Translator: george k <norhorn@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "el/>\n"
 "Language: el\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 4.0.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -23,7 +23,7 @@ msgstr "Εκτέλεση Bookworm σε λειτουργία αποσφαλμάτ
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Εκτέλεση του Bookworm σε λειτουργία πληροφοριών"
+msgstr "Εκτέλεση του Bookworm με εμφάνιση πληροφοριών"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
@@ -47,7 +47,7 @@ msgstr "Ένας αναγνώστης ηλεκτρονικών βιβλίων"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Μεταφραστές από το Weblate"
+msgstr "Μεταφραστές Webplate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
@@ -63,7 +63,7 @@ msgstr "Αναγνώστης βιβλίων"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr "Αναζήτηση του βιβλίου…"
+msgstr "Αναζήτηση βιβλίου…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
@@ -86,8 +86,8 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Παρουσιάστηκε πρόβλημα στην εξαγωγή των περιεχομένων του βιβλίου. Ελέγξτε αν "
-"το ηλεκτρονικό βιβλίο είναι διαθέσιμο στην τοποθεσία: "
+"Παρουσιάστηκε πρόβλημα εξαγωγής περιεχομένων του βιβλίου. Ελέγξτε εαν το "
+"βιβλίο είναι διαθέσιμο στην τοποθεσία: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
@@ -550,7 +550,7 @@ msgstr "Νέα χαρακτηριστικά:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Η βιβλιοθήκη είναι σελιδοποιημένη για γρήγορη φόρτωση"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
@@ -563,33 +563,37 @@ msgstr "Διορθώσεις:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Αναπαράσταση του κουμπιού αφαίρεσης βιβλίων"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Επιδιόρθωση για διατήρηση του διαλόγου προτιμήσεων ανοιχτό μέχρι να "
+"ολοκληρωθούν όλες οι ρυθμίσεις"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Επιδιόρθωση για αλλαγή τίτλου επικεφαλίδας κατά το άνοιγμα"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"Επιδιόρθωση χειρισμού ακύρωσης του παραθύρου διαλόγου κατά το άνοιγμα ebook"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Επιδιόρθωση εναλλαγής λειτουργίας πλήρους οθόνης με το F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Επιδιόρθωση διαλόγου σχολιασμού για βιβλία χωρίς τίτλους"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"Επιδιόρθωση για επιστροφή στη θέση της σελίδας από την προβολή πληροφοριών"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
