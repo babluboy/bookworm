@@ -75,4 +75,9 @@ span.bookworm_search_result_highlight {
 span.bookworm_annotation_highlight {
     background-color: $HIGHLIGHT_COLOR !important;
 }
-
+/* Set content size for pagination */
+#page {
+	width: 90vw;	/*95% of viewport height*/
+	height: 90vh; 	/*85% of viewport height*/
+	padding: 10px;
+}

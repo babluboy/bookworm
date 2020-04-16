@@ -25,37 +25,54 @@ public class BookwormApp.contentHandler {
     public static BookwormApp.Book renderPage (owned BookwormApp.Book aBook, owned string direction) {
         debug ("[START] [FUNCTION:renderPage] book.location=" + aBook.getBookLocation () + ", direction=" + direction);
         int currentContentLocation = aBook.getBookPageNumber ();
+        bool shouldReloadPage = true;
         //set page number based on direction of navigation
         switch (direction) {
             case "FORWARD"://This is for moving the book forward
-                if (aBook.getIfPageForward ()) {
-                    currentContentLocation++;
-                    aBook.setBookPageNumber (currentContentLocation);
+                //Attempt to go forward on the paginated content
+                string status = BookwormApp.Utils.setWebViewTitle ("forward()");
+                if(status.contains(":END:")){
+                    //paginated content has reached its end - go to the next content
+                    if (aBook.getIfPageForward ()) {
+                        currentContentLocation++;
+                        aBook.setBookPageNumber (currentContentLocation);
+                    }
+                }else{
+                    //paginated content is still avalable, donot load new content
+                    shouldReloadPage = false;
                 }
                 break;
             case "BACKWARD"://This is for moving the book backwards
-                if (aBook.getIfPageBackward ()) {
-                    currentContentLocation--;
-                    aBook.setBookPageNumber (currentContentLocation);
+                //Attempt to go back on the paginated content
+                string status = BookwormApp.Utils.setWebViewTitle ("back()");
+                if(status.contains(":START:")){
+                    //paginated content has reached its begginging - go to the previous content
+                    if (aBook.getIfPageBackward ()) {
+                        currentContentLocation--;
+                        aBook.setBookPageNumber (currentContentLocation);
+                    }
+                }else{
+                    //paginated content is still avalable, donot load new content
+                    shouldReloadPage = false;
                 }
                 break;
             case "SEARCH"://Load the page and scroll to the search text
                 break;
             default://This is for opening the current page of the book
-                    //No change of page number required
+                    //Do not change the page number
                 break;
         }
-        string bookContent = contentHandler.provideContent (aBook,currentContentLocation, direction);
-        //debug for checking page contents
-        //debug (bookContent);
-        //render the content on webview
-        BookwormApp.AppWindow.aWebView.load_html (bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
-        //set the bookmak icon on the header
-        handleBookMark ("DISPLAY");
-        //set the navigation controls
-        aBook = controlNavigation (aBook);
-        //set the current value of the page slider
-        BookwormApp.AppWindow.pageAdjustment.set_value (currentContentLocation + 1);
+        if(shouldReloadPage){
+            string bookContent = contentHandler.provideContent (aBook,currentContentLocation, direction);
+            //render the content on webview
+            BookwormApp.AppWindow.aWebView.load_html (bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
+            //set the bookmak icon on the header
+            handleBookMark ("DISPLAY");
+            //set the navigation controls
+            aBook = controlNavigation (aBook);
+            //set the current value of the page slider
+            BookwormApp.AppWindow.pageAdjustment.set_value (currentContentLocation + 1);
+        }
         debug ("[END] [FUNCTION:renderPage]");
         return aBook;
     }
@@ -156,21 +173,28 @@ public class BookwormApp.contentHandler {
     public static string adjustPageContent (BookwormApp.Book aBook, owned string pageContentStr, string mode) {
         debug ("[START] [FUNCTION:adjustPageContent] book.location=" + aBook.getBookLocation () + 
             ", pageContentStr.length=" + pageContentStr.length.to_string () + ", mode=" + mode);
-        StringBuilder pageContent = new StringBuilder (pageContentStr);
-
+        //wrap the html content in a div tag for pagination
+        StringBuilder pageContent = new StringBuilder (
+            "<body><div id='page'>"+
+            pageContentStr+
+            "</div></body>"
+        );
         //Remove the empty title if it is present
-        pageContent.assign (pageContentStr.replace ("<title/>",""));
-
+        pageContent.assign (pageContent.str
+            .replace ("<title/>","")
+        );
         constructOnLoadJavascript(aBook, mode);
-
         string currentBookwormStyles = createPageStyles(aBook, pageContentStr);
 
         BookwormApp.AppWindow.aWebView.get_user_content_manager().remove_all_style_sheets();
         BookwormApp.AppWindow.aWebView.get_user_content_manager().add_style_sheet(
-            new WebKit.UserStyleSheet(currentBookwormStyles, WebKit.UserContentInjectedFrames.ALL_FRAMES, WebKit.UserStyleLevel.AUTHOR, null, null));
-
+        new WebKit.UserStyleSheet(currentBookwormStyles, 
+                                  WebKit.UserContentInjectedFrames.ALL_FRAMES, 
+                                  WebKit.UserStyleLevel.AUTHOR, 
+                                  null, null)
+        );
         debug ("[END] [FUNCTION:adjustPageContent] pageContent.length=" + pageContent.str.length.to_string ());
-        //debug ("\n\n\n" + pageContent.str);
+        debug ("\n\n\n" + pageContent.str);
         return pageContent.str;
     }
 
@@ -239,6 +263,8 @@ public class BookwormApp.contentHandler {
         settings = BookwormApp.Settings.get_instance ();
         //BookwormApp.Bookworm.onLoadJavaScript.assign ("onload=\"");
         BookwormApp.Bookworm.onLoadJavaScript.assign ("");
+        //This function is for pagination
+        BookwormApp.Bookworm.onLoadJavaScript.append (" init_pagination();");
 
         //Scroll to the previous vertical position - this should be used:
         // (1) when the book is re-opened from the library and
@@ -248,7 +274,9 @@ public class BookwormApp.contentHandler {
         if (BookwormApp.Bookworm.isPageScrollRequired) {
             //check if an Anchor is present and set up the javascript for the same
             if (aBook.getAnchor ().length > 0) {
-                BookwormApp.Bookworm.onLoadJavaScript.append (" document.getElementById('" + aBook.getAnchor () + "').scrollIntoView();");
+                BookwormApp.Bookworm.onLoadJavaScript.append (
+                " document.getElementById('" + aBook.getAnchor () + "').scrollIntoView();"
+                );
             } else { //set up the javascript for scrolling to last read position
                 BookwormApp.Bookworm.onLoadJavaScript.append (" window.scrollTo (0," + (
                     BookwormApp.Bookworm.libraryViewMap.get (

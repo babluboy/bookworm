@@ -94,4 +94,113 @@ function getSelectionText() {
     }
     return text;
 }
+//These section is for pagination
+var pageStart = 0;
+var pageEnd = 0;
+var splitContent=[];
 
+function checkOverflow(el){
+	var curOverflow = el.style.overflow;
+	if ( !curOverflow || curOverflow === "visible" )
+		el.style.overflow = "hidden";
+	var isOverflowing = el.clientWidth < el.scrollWidth 
+	|| el.clientHeight < el.scrollHeight;
+	el.style.overflow = curOverflow;
+	return isOverflowing;
+}
+function splitInput( input ) {
+	// split the input into an array of tags containing arrays of words
+	input = input.replace(/(\r\n\t|\n|\r\t)/gm,"");
+	var words = [];
+	while ( input.length > 0 ) {
+		if ( input.charAt( 0 ) == "<" ) {
+				words.push( input.substr( 0, input.indexOf( ">") + 1 ) );
+				input = input.substr( input.indexOf( ">") + 1 ).trim();
+				var next = indexOfMultiple( input, " <" )
+				words[ words.length - 1 ] += input.substr( 0, next ); // attach tags to their closest word
+				input = input.substr( next ).trim();
+		}
+		var next = indexOfMultiple( input, " <" )
+		words.push( input.substr( 0, next ) );
+		input = input.substr( next ).trim();
+	}
+	return words;
+}
+function indexOfMultiple( str, compare ) {
+	// finds index of first occurence of a character in compare
+	for( var i = 0; i < str.length; i++ ) {
+		var c = str.charAt(i);
+		for ( var j = 0; j < compare.length; j++ ) {
+			if ( c == compare[ j ] ) {
+				return i;
+			}
+		}
+	}
+	return str.length;
+}
+function fillPage( page, direction ) {
+	var oldContent = "";
+	var newContent = "";
+	page.innerHTML = "";
+	while ( ! checkOverflow( page ) ) {
+		// fill the page until it overflows
+		if ( ( pageEnd >= splitContent.length ) && ( direction == "forward" ) ) {
+			return;
+		}
+		oldContent = newContent;
+		newContent = "";
+		for ( var i = pageStart; i < pageEnd; i++ ) {
+			newContent += splitContent[ i ] + " ";
+		}
+		page.innerHTML = newContent;
+		if ( direction == "forward" ) {
+			pageEnd++;
+		}
+		if ( direction == "back" ) {
+			pageStart--;
+			if ( pageStart <= 0 ) {
+				pageStart = 0;
+				direction = "forward";
+			}
+		}
+	}
+	page.innerHTML = oldContent;
+	if ( oldContent.charAt( 0 ) != "<" ) {
+		// put beginning tags if missing
+		var i = pageStart;
+		while (
+	        ( splitContent[ i ].charAt( i ) != "<" ) || 
+	        ( splitContent[ i ].substr( 0, 2 ) == "</" ) 
+        ) {
+		    i--;
+	    }
+		page.innerHTML = splitContent[ i ] + oldContent;
+	}
+	pageEnd-=2;
+}
+function forward() {
+    if(pageEnd >= splitContent.length){
+        //set the title to mark the end of the split page
+        document.title=":END:pageStart="+pageStart+",pageEnd="+pageEnd+",splitContent.length="+splitContent.length;
+	    return;
+    }
+    pageStart = pageEnd;
+    fillPage( document.getElementById( "page" ), "forward" );
+    document.title=":CONTINUE:pageStart="+pageStart+",pageEnd="+pageEnd+",splitContent.length="+splitContent.length;
+}
+function back() {
+    if(pageStart <= 0){
+        //set the title to mark the start of the split page
+        document.title=":START:pageStart="+pageStart+",pageEnd="+pageEnd+",splitContent.length="+splitContent.length;
+	    return;
+	}
+    pageEnd = pageStart;
+	fillPage( document.getElementById( "page" ), "back" );
+	document.title=":CONTINUE:pageStart="+pageStart+",pageEnd="+pageEnd+",splitContent.length="+splitContent.length;
+}
+function init_pagination() {
+	var page = document.getElementById( "page" );
+	splitContent = splitInput( page.innerHTML );
+	page.innerHTML = "";
+	fillPage( page, "forward" );
+}
