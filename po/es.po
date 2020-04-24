@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-12-15 14:21+0000\n"
-"Last-Translator: gabe9 <gabe.roche@gmail.com>\n"
+"PO-Revision-Date: 2020-04-24 09:13+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/es/>\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 4.0.2-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -51,7 +51,7 @@ msgstr "Traductores de Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Sitio web | Traducción | Seguidor de errores"
+msgstr "Sitio web | Traducción | Seguimiento de errores"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -90,10 +90,9 @@ msgstr ""
 "haya un libro válido aquí: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
-"Se detectó un tipo MIME no válido. Revise el formato de este libro "
+"Se detectó un tipo de archivo no válido. Revise el formato de este libro "
 "electrónico: "
 
 #: src/constants.vala.in:48
@@ -239,7 +238,7 @@ msgstr "Vista en pantalla completa (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr "Salir de la vista pantalla completa (Esc)"
+msgstr "Salir de la vista en pantalla completa (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
@@ -549,7 +548,7 @@ msgstr "Prestaciones nuevas:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr "La librería está paginada para cargar librerías rápidamente"
+msgstr "La biblioteca está paginada para cargar bibliotecas grandes velozmente"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
