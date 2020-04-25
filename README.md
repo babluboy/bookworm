@@ -10,6 +10,10 @@ Check the Bookworm website for details on features, shortcuts, installation guid
 
 ## Building, Testing, and Installation
 
+To install on **fedora**-31 and up:
+
+    sudo dnf install bookworm
+
 You'll need the following dependencies to build and run on Ubuntu/Debian based distros:
 * unzip
 * poppler-utils
