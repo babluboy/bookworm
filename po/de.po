@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2020-05-30 17:41+0000\n"
-"Last-Translator: CM <c.matthies.mail+weblate@gmail.com>\n"
+"Last-Translator: Carsten Bachert <caba@bachert.info>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -392,11 +392,11 @@ msgstr "Kommentar zum markierten Text hinzufügen"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr "Vorherige Seite öffnen"
+msgstr "Gehe zu vorheriger Seite"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr "Nächste Seite öffnen"
+msgstr "Gehe zur nächsten Seite"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
@@ -550,7 +550,9 @@ msgstr "Neue Features:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr "Bibliothek mit Seitenzahlen, um große Bibliotheken schnell zu laden"
+msgstr ""
+"Die Bibliothek wird mit Seitenzahlen versehen, um große Bibliotheken "
+"schneller zu laden."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
