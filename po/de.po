@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-04-12 23:11+0000\n"
-"Last-Translator: Jeannette L <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2020-05-29 17:21+0000\n"
+"Last-Translator: Carsten Bachert <caba@bachert.info>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -11,11 +11,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr "Versionsnummer anzeigen"
+msgstr "Die Versionsnummer anzeigen"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
@@ -79,15 +79,15 @@ msgstr "Bücher zu Ihrer Bibliothek hinzufügen"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Buch auswählen"
+msgstr "Ein Buch auswählen"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problem beim Extrahieren des Inhalts des Buches. Vergewissern Sie sich, dass "
-"es hier eine gültige eBook-Datei gibt: "
+"Ein Problem beim Extrahieren des Bucheinhalts ist aufgetreten. Vergewissern "
+"Sie sich, dass es hier eine gültige eBook-Datei gibt: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
@@ -115,10 +115,8 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"Ungültiger Inhalt gefunden. Stellen Sie sicher, dass sich eine gültige E-"
-"Book Datei an folgendem Ort befindet:\n"
-"Angeforderte Inhalte konnten nicht abgeholt werden. Bitte entfernen Sie die "
-"eBook-Datei und fügen Sie sie die hier vorhandene Datei erneut hinzu: "
+"Ungültiger Inhalt gefunden. Bitte entfernen Sie die eBook-Datei und fügen "
+"Sie die hier vorhandene Datei erneut hinzu: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -201,7 +199,7 @@ msgstr ""
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr "Nach „$$$$” n &&&& suchen:"
+msgstr "Nach „$$$$” in &&&& suchen:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
