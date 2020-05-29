@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-05-29 17:21+0000\n"
+"PO-Revision-Date: 2020-05-30 17:41+0000\n"
 "Last-Translator: CM <c.matthies.mail+weblate@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
@@ -79,15 +79,15 @@ msgstr "Bauen Sie Ihre Bibliothek auf, indem Sie E-Books hinzufügen"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Ein Buch auswählen"
+msgstr "E-Buch auswählen"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Ein Problem beim Extrahieren des Bucheinhalts ist aufgetreten. Vergewissern "
-"Sie sich, dass es hier eine gültige eBook-Datei gibt: "
+"Problem beim Extrahieren des Buchinhalts. Stellen Sie sicher, dass dies eine "
+"gültige eBook-Datei ist: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
@@ -115,8 +115,8 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"Ungültiger Inhalt gefunden. Bitte entfernen Sie die eBook-Datei und fügen "
-"Sie die hier vorhandene Datei erneut hinzu: "
+"Der angeforderte Inhalt konnte nicht abgerufen werden. Bitte entfernen Sie "
+"die folgende E-Book-Datei und fügen Sie sie erneut hinzu:"
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -199,7 +199,7 @@ msgstr ""
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr "Nach „$$$$” in &&&& suchen:"
+msgstr "Nach „$$$” n &&& suchen:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
@@ -320,19 +320,19 @@ msgstr "Ein oder mehrere Bücher auswählen"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr "Inhaltsverzeichnis, Lesezeichen und Suchergebnisse"
+msgstr "Inhaltsverzeichnis, Lesezeichen und Suchergebnisse anzeigen"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr "Leseeinstellungen anpassen"
+msgstr "Leseeinstellungen"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr "Lesezeichen für diese Seite speichern"
+msgstr "Lesezeichen für diese Seite setzen"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr "Lesezeichen für diese Seite entfernen"
+msgstr "Klicken um dieses Lesezeichen zu entfernen"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
@@ -412,7 +412,7 @@ msgstr "Zwischenspeicher aktivieren (Bücher werden schneller geöffnet)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr "Bibliothek immer beim Start anzeigen"
+msgstr "Bibliothek beim Start immer anzeigen"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
@@ -436,7 +436,7 @@ msgstr "Hintergrund"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr "Hervorheben"
+msgstr "Hervorhebung"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
@@ -464,7 +464,7 @@ msgstr "Über …"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr "Grafik auswählen"
+msgstr "Bild auswählen"
 
 #: src/dialog.vala:544
 msgid "Select folder"
