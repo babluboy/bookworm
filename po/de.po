@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2020-05-29 17:21+0000\n"
-"Last-Translator: Carsten Bachert <caba@bachert.info>\n"
+"Last-Translator: CM <c.matthies.mail+weblate@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -19,7 +19,7 @@ msgstr "Die Versionsnummer anzeigen"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Bookworm im Fehlersuchmodus ausführen"
+msgstr "Bookworm im Debugmodus ausführen"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
@@ -27,7 +27,7 @@ msgstr "Bookworm im Infomodus ausführen"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Neue Bücher automatisch von überwachten Ordnern hinzufügen"
+msgstr "Neue Bücher aus überwachten Ordnern automatisch hinzufügen"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -75,7 +75,7 @@ msgstr "Sieht so aus, als hätte Bookworm keine Bücher"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Bücher zu Ihrer Bibliothek hinzufügen"
+msgstr "Bauen Sie Ihre Bibliothek auf, indem Sie E-Books hinzufügen"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
