@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-07-19 09:05+0000\n"
+"PO-Revision-Date: 2020-06-13 06:41+0000\n"
 "Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "cs/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -90,7 +90,6 @@ msgstr ""
 "elektronické knihy: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
 "Zjištěn neplatný typ MIME. Zkontrolujte formát této elektronické knihy: "
@@ -235,12 +234,10 @@ msgid "Update Author"
 msgstr "Aktualizovat autora"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
-msgstr "Otevřít zobrazení celé obrazovky (F11)"
+msgstr "Vstoupit do zobrazení na celou obrazovku (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Ukončit zobrazení na celou obrazovku (Esc)"
 
@@ -375,7 +372,6 @@ msgid "Apply theme for this colour profile"
 msgstr "Použít vzhled pro tento barevný profil"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
 msgstr ""
 "Vstoupit do zobrazení na celou obrazovku a stisknout klávesu Esc pro jeho "
@@ -526,12 +522,11 @@ msgstr ""
 "značkách založeného filtrování rychle."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Tato verze podporuje knižní formáty EPUB, MOBI, PRC, PDF a formáty "
+"Tato verze podporuje knižní formáty EPUB, MOBI, PRC, PDF, FB2 a formáty "
 "kreslených příběhů (CBR a CBZ) s tím, že podpora dalších přijde brzy."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
@@ -554,12 +549,11 @@ msgstr "Nové vlastnosti:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Knihovna je kvůli rychlému nahrávání rozsáhlých knihoven stránkována"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Podpora pro formát MOBI a vylepšení UX"
+msgstr "Podpora pro formát FB2 - .fb2 a .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -568,29 +562,32 @@ msgstr "Opravy:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Znázornění tlačítka pro odstranění knihy v knihovně"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Oprava kvůli zachování dialogu nastavení otevřeného, dokud nejsou dokončeny "
+"všechny úpravy"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Oprava pro změnu názvu záhlaví během otevírání"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"Oprava pro zacházení se zrušením dialogu pro otevření elektronické knihy"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Oprava pro přepínání mezi režimem na celou obrazovku pomocí F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Oprava pro dialog vysvětlivky pro knihy s prázdnými názvy"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
