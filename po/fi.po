@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-01-24 23:21+0000\n"
-"Last-Translator: odamite <odamite@gmail.com>\n"
+"PO-Revision-Date: 2020-06-21 16:41+0000\n"
+"Last-Translator: S L <binys@pm.me>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/fi/>\n"
 "Language: fi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -602,7 +602,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Kiiltävä uusi kuvake ja uusia kansikuvia"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
@@ -646,7 +646,7 @@ msgstr "Huomautukset ja kahden sivun näkymät"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Tuki MOBI formaatille ja UX parannuksia"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
