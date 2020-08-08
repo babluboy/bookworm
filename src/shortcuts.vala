@@ -42,6 +42,19 @@ public class BookwormApp.Shortcuts {
                         ", uistring: " + shortcutStruct.to_ui_string() +
                         ", modifier: " + shortcutStruct.get_modifier_type().to_string()
                         );
+                    if (BookwormApp.AppHeaderBar.headerSearchBar.has_focus) {
+                        unichar unicode_keyval = Gdk.keyval_to_unicode (shortcutStruct.keyval);
+                        bool isNotModifier = shortcutStruct.get_modifier_type () == 0;
+                        bool isprintable = isNotModifier && unicode_keyval.validate() && unicode_keyval.isgraph();
+                        if (isprintable ||
+                            shortcutStruct.keyval == Gdk.Key.BackSpace ||
+                            shortcutStruct.keyval == Gdk.Key.Return ||
+                            shortcutStruct.keyval == Gdk.Key.Left ||
+                            shortcutStruct.keyval == Gdk.Key.Right
+                            ) {
+                            return false;
+                        }
+                    }
                     return BookwormApp.Shortcuts.dispatchByActionName (assoc.action, shortcutStruct);
                 });
             });

@@ -984,15 +984,15 @@ class BookwormApp.ShortcutsToActionAssocViewHelper {
 
         //if (rownum == 0) {
             shortcutGroupBox.draw.connect_after ((ctx) => {
-                groupHeaderBox.set_size_request (shortcutGroupBox.get_allocated_width () - 5, -1);
+                groupHeaderBox.set_size_request (shortcutGroupBox.get_allocated_width () - 25, -1);
                 return false;
             });
             shortcutsBox.draw.connect_after ((ctx) => {
-                shortcutsHeaderBox.set_size_request (shortcutsBox.get_allocated_width () - 5, -1);
+                shortcutsHeaderBox.set_size_request (shortcutsBox.get_allocated_width () - 25, -1);
                 return false;
             });
             actionBox.draw.connect_after ((ctx) => {
-                actionHeaderBox.set_size_request (actionBox.get_allocated_width () - 5, -1);
+                actionHeaderBox.set_size_request (actionBox.get_allocated_width () - 25, -1);
                 return false;
             });
         //}
