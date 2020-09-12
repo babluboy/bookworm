@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-05-13 01:48+0000\n"
-"Last-Translator: Hao <hao.coding@dorabot.com>\n"
+"PO-Revision-Date: 2020-08-23 11:36+0000\n"
+"Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hans/>\n"
 "Language: zh\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 4.2.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -88,9 +88,8 @@ msgid ""
 msgstr "提取书籍内容时出现错误。请确认电子书是有效的: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "检测到无效 MIME 类型。请确认此书的格式： "
+msgstr "检测到无效的媒体类型。检查本电子书的格式： "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -112,7 +111,7 @@ msgstr "无法获取所请求的内容。请删除并重新添加此电子书：
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "页面导航有问题，请将页面向前或向后移动。"
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -219,12 +218,10 @@ msgid "Update Author"
 msgstr "更新作者"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "进入全屏视图 (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "退出全屏视图 (Esc)"
 
@@ -357,7 +354,6 @@ msgid "Apply theme for this colour profile"
 msgstr "将主题应用到这项颜色配置"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
 msgstr "进入全屏视图；按 Esc 键取消"
 
@@ -375,11 +371,11 @@ msgstr "为选中的文字添加注释"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "到前一页"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "到下一页"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
@@ -431,7 +427,7 @@ msgstr "配置"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "书库每一页包含的书籍数目"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -502,13 +498,10 @@ msgstr ""
 "快速找到书籍。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
-msgstr ""
-"当前版本支持 EPUB、MOBI、PRC、PDF 和 漫画（CBR 和 CBZ）格式。未来将支持更多格"
-"式。"
+msgstr "当前版本支持 EPUB、MOBI、PRC、PDF、FB2 和漫画（CBR 和 CBZ）格式。未来将支持更多格式。"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -530,12 +523,11 @@ msgstr "新特性："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "为快速加载大型库，应用对书库进行分页"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "支持MOBI格式，改进用户体验"
+msgstr "支持FB2格式- .fb2和.fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -544,33 +536,33 @@ msgstr "修复："
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "书库中直观展现书籍移除按钮"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
-msgstr ""
+msgstr "修复了首选项对话框在所有调整完成前就关闭的错误"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "修复标题在书籍打开期间改变的错误"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "修复了处理取消打开电子书对话框方面的问题"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "修复了用F11 键进入/退出全屏模式方面的问题"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "修复了和标题为空的书籍的注释对话框有关的问题"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "修复了和从信息视图返回到页面位置有关的问题"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
