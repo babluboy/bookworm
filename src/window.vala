@@ -427,6 +427,11 @@ public class BookwormApp.AppWindow {
             pageActionWordMeaning.activate.connect (() => {
                 string selected_text = BookwormApp.Utils.setWebViewTitle ("document.title = getSelectionText ()");
                 if (selected_text != null && selected_text.length > 0) {
+					//Save the page scroll position of the book being read
+                    BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap
+                        .get (BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+                    aBook.setBookScrollPos (BookwormApp.contentHandler.getScrollPos ());
+
                     BookwormApp.Info.populateDictionaryResults (selected_text);
                 }
             });
