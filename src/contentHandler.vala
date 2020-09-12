@@ -29,31 +29,15 @@ public class BookwormApp.contentHandler {
         //set page number based on direction of navigation
         switch (direction) {
             case "FORWARD"://This is for moving the book forward
-                //Attempt to go forward on the paginated content
-                string status = BookwormApp.Utils.setWebViewTitle ("forward()");
-                if(status.contains(":END:")){
-                    //paginated content has reached its end - go to the next content
-                    if (aBook.getIfPageForward ()) {
-                        currentContentLocation++;
-                        aBook.setBookPageNumber (currentContentLocation);
-                    }
-                }else{
-                    //paginated content is still avalable, donot load new content
-                    shouldReloadPage = false;
+                if (aBook.getIfPageForward ()) {
+                    currentContentLocation++;
+                    aBook.setBookPageNumber (currentContentLocation);
                 }
                 break;
             case "BACKWARD"://This is for moving the book backwards
-                //Attempt to go back on the paginated content
-                string status = BookwormApp.Utils.setWebViewTitle ("back()");
-                if(status.contains(":START:")){
-                    //paginated content has reached its begginging - go to the previous content
-                    if (aBook.getIfPageBackward ()) {
-                        currentContentLocation--;
-                        aBook.setBookPageNumber (currentContentLocation);
-                    }
-                }else{
-                    //paginated content is still avalable, donot load new content
-                    shouldReloadPage = false;
+                if (aBook.getIfPageBackward ()) {
+                    currentContentLocation--;
+                    aBook.setBookPageNumber (currentContentLocation);
                 }
                 break;
             case "SEARCH"://Load the page and scroll to the search text
@@ -62,17 +46,15 @@ public class BookwormApp.contentHandler {
                     //Do not change the page number
                 break;
         }
-        if(shouldReloadPage){
-            string bookContent = contentHandler.provideContent (aBook,currentContentLocation, direction);
-            //render the content on webview
-            BookwormApp.AppWindow.aWebView.load_html (bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
-            //set the bookmak icon on the header
-            handleBookMark ("DISPLAY");
-            //set the navigation controls
-            aBook = controlNavigation (aBook);
-            //set the current value of the page slider
-            BookwormApp.AppWindow.pageAdjustment.set_value (currentContentLocation + 1);
-        }
+        string bookContent = contentHandler.provideContent (aBook,currentContentLocation, direction);
+        //render the content on webview
+        BookwormApp.AppWindow.aWebView.load_html (bookContent, BookwormApp.Constants.PREFIX_FOR_FILE_URL);
+        //set the bookmak icon on the header
+        handleBookMark ("DISPLAY");
+        //set the navigation controls
+        aBook = controlNavigation (aBook);
+        //set the current value of the page slider
+        BookwormApp.AppWindow.pageAdjustment.set_value (currentContentLocation + 1);
         debug ("[END] [FUNCTION:renderPage]");
         return aBook;
     }
@@ -174,11 +156,7 @@ public class BookwormApp.contentHandler {
         debug ("[START] [FUNCTION:adjustPageContent] book.location=" + aBook.getBookLocation () + 
             ", pageContentStr.length=" + pageContentStr.length.to_string () + ", mode=" + mode);
         //wrap the html content in a div tag for pagination
-        StringBuilder pageContent = new StringBuilder (
-            "<body><div id='page'>"+
-            pageContentStr+
-            "</div></body>"
-        );
+        StringBuilder pageContent = new StringBuilder (pageContentStr);
         //Remove the empty title if it is present
         pageContent.assign (pageContent.str
             .replace ("<title/>","")
@@ -263,8 +241,6 @@ public class BookwormApp.contentHandler {
         settings = BookwormApp.Settings.get_instance ();
         //BookwormApp.Bookworm.onLoadJavaScript.assign ("onload=\"");
         BookwormApp.Bookworm.onLoadJavaScript.assign ("");
-        //This function is for pagination
-        BookwormApp.Bookworm.onLoadJavaScript.append (" init_pagination();");
 
         //Scroll to the previous vertical position - this should be used:
         // (1) when the book is re-opened from the library and
