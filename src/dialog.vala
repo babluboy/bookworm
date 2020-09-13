@@ -270,6 +270,16 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         twoPageViewBox.pack_start (twoPageViewLabel, false, false);
         twoPageViewBox.pack_end (twoPageViewSwitch, false, false);
 
+        Gtk.Label leafOverPageByEdgeLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_LEAF_OVER_PAGE_BY_EDGE);
+        Gtk.Switch leafOverPageByEdgeSwitch = new Gtk.Switch ();
+        //Set the switch to on if leaf-over-page-by-edge is set by saved settings
+        if (BookwormApp.Bookworm.settings.is_leaf_over_page_by_edge_enabled) {
+            leafOverPageByEdgeSwitch.set_active (true);
+        }
+        Gtk.Box leafOverPageByEdgeBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+        leafOverPageByEdgeBox.pack_start (leafOverPageByEdgeLabel, false, false);
+        leafOverPageByEdgeBox.pack_end (leafOverPageByEdgeSwitch, false, false);
+
         Gtk.Label showLibraryAtStartLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_SKIP_LIBRARY);
         Gtk.Switch showLibraryAtStartSwitch = new Gtk.Switch ();
         //Set the switch to skip the library view and go straight to the last book being read
@@ -389,6 +399,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         settingsBox.pack_start (localStorageBox, false, false, 0);
         settingsBox.pack_start (showLibraryAtStartBox, false, false, 0);
         settingsBox.pack_start (twoPageViewBox, false, false, 0);
+        settingsBox.pack_start (leafOverPageByEdgeBox, false, false, 0);
         settingsBox.pack_start (fontBox, false, false, 0);
         settingsBox.pack_start (customProfileBox, false, false, 0);
         settingsBox.pack_start (discoverBooksBox, false, false, 0);
@@ -607,6 +618,14 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
             BookwormApp.contentHandler.refreshCurrentPage ();
         });
 
+        leafOverPageByEdgeSwitch.notify["active"].connect (() => {
+            if (leafOverPageByEdgeSwitch.active) {
+                BookwormApp.Bookworm.settings.is_leaf_over_page_by_edge_enabled = true;
+            } else {
+                BookwormApp.Bookworm.settings.is_leaf_over_page_by_edge_enabled = false;
+            }
+        });
+
         nightModeSwitch.notify["active"].connect (() => {
             if (nightModeSwitch.active) {
                 //Set the dark theme
@@ -777,6 +796,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
             //Reset Two-Page-View
             twoPageViewSwitch.set_active (false);
             BookwormApp.Bookworm.settings.is_two_page_enabled = (bool) bookwormSettings.get_default_value ("is-two-page-enabled");
+
+            //Reset Leaf-Over-Page-By-Edge
+            leafOverPageByEdgeSwitch.set_active (false);
+            BookwormApp.Bookworm.settings.is_leaf_over_page_by_edge_enabled = (bool) bookwormSettings.get_default_value ("is-leaf-over-page-by-edge-enabled");
 
             //Reset Caching
             localStorageSwitch.set_active (true);

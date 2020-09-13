@@ -253,6 +253,7 @@ public class BookwormApp.contentHandler {
                 BookwormApp.Bookworm.onLoadJavaScript.append (
                 " document.getElementById('" + aBook.getAnchor () + "').scrollIntoView();"
                 );
+                aBook.setAnchor("");
             } else { //set up the javascript for scrolling to last read position
                 BookwormApp.Bookworm.onLoadJavaScript.append (" window.scrollTo (0," + (
                     BookwormApp.Bookworm.libraryViewMap.get (
