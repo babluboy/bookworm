@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-06-27 13:01+0000\n"
-"Last-Translator: gabriellluz <andriusgabriel@live.com>\n"
+"PO-Revision-Date: 2020-08-18 15:49+0100\n"
+"Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/pt/>\n"
 "Language: pt\n"
@@ -11,7 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1-dev\n"
+"X-Generator: Poedit 2.4.1\n"
+"Project-Id-Version: \n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -91,9 +92,8 @@ msgstr ""
 "livro digital válido em: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "O tipo MIME é inválido. Verifique o formato deste livro digital: "
+msgstr "O tipo de mídia é inválido. Verifique o formato deste livro digital:"
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -103,7 +103,7 @@ msgstr "Conteúdo inválido. Verifique se existe um livro digital válido em: "
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "Não foi possível processar o livro digital. Verifique se existe um livro "
-"digital válido em: "
+"digital válido em:"
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -120,8 +120,8 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
-"Problema na navegação de páginas. Por favor, avance as páginas para frente "
-"ou retorne."
+"Problema na navegação de páginas. Por favor, avance para as páginas "
+"seguintes ou retorne."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -234,12 +234,10 @@ msgid "Update Author"
 msgstr "Atualizar autor"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Entrar no modo de ecrã inteiro (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Sair do modo de ecrã inteiro (Esc)"
 
@@ -374,7 +372,6 @@ msgid "Apply theme for this colour profile"
 msgstr "Aplicar o tema para este perfil de cor"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Entrar em modo de ecrã inteiro e Esc para sair"
 
@@ -521,7 +518,6 @@ msgstr ""
 "filtragem baseada em etiquetas."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
@@ -552,11 +548,12 @@ msgstr "Novas funcionalidades:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
 msgstr ""
+"A biblioteca está paginada para carregar uma grande quantidade de "
+"bibliotecas rapidamente"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Suporte ao formato MOBI e melhorias na experiência do usuário"
+msgstr "Suporte para o formato FB2 - fb2 e .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -565,33 +562,39 @@ msgstr "Correções:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Representação intuitiva do botão que remove os livros na biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Correção para manter o dialogo de preferências aberto até que todos os "
+"ajustamentos estejam completos"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
 msgstr ""
+"Correção para a mudança do título do cabeçalho enquanto este está aberto"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"Correção do comportamento do dialogo de cancelamento para a abertura um "
+"livro digital"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Correção ao alternar entre o modo de ecrã inteiro com o F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Correção do dialogo de anotações para livros com o título vazio"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"Correção para quando voltar à posição da página da vista de informações"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
@@ -630,7 +633,7 @@ msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
-"Impedir que o Bookworm abra hiperligações como http, ftp, etc. e utilize o "
+"Impedir que o Bookworm abra hiperligações como HTTP, FTP, etc. e utilize o "
 "navegador padrão para o abrir"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
