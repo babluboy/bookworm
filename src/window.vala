@@ -379,8 +379,10 @@ public class BookwormApp.AppWindow {
             BookwormApp.Library.removeSelectedBooksFromLibrary ();
         });
         //handle mouse click on webview (reading mode)
-        /*
         aWebView.button_press_event.connect ((event) => {
+            if (!settings.is_leaf_over_page_by_edge_enabled) {
+                return false;
+            }
             int width;
             int height;
             //capture the current window size
@@ -400,7 +402,6 @@ public class BookwormApp.AppWindow {
             };
             return false; //return false to propagate the action further
         });
-        */
         //handle context menu on the webview reader
         aWebView.context_menu.connect ((context_menu, event, hit_test_result) => {
             context_menu.remove_all ();
