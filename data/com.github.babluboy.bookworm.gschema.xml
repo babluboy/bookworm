@@ -44,6 +44,10 @@
 				<default>false</default>
 				<summary>Always show the library view on start</summary>
 		</key>
+		<key name="is-screen-sized-pages-enabled" type="b">
+				<default>true</default>
+				<summary>Divide chapters to screen-sized pages</summary>
+		</key>
 		<key name="is-dark-theme-enabled" type="b">
 				<default>false</default>
 				<summary>Enable dark theme</summary>

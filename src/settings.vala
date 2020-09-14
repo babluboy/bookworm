@@ -30,6 +30,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
     public bool is_dark_theme_enabled { get; set; }
     public bool is_local_storage_enabled { get; set; }
     public bool is_show_library_on_start { get; set; }
+    public bool is_screen_sized_pages_enabled { get; set; }
     public string reading_width { get; set; }
     public string reading_line_height { get; set; }
     public string text_alignment { get; set; }

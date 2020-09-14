@@ -124,6 +124,7 @@ namespace BookwormApp.Constants {
     public const string TEXT_FOR_PREFERENCES_COLOUR_SCHEME = _("Turn on Dark Mode");
     public const string TEXT_FOR_PREFERENCES_LOCAL_STORAGE = _("Enable cache (opens books faster)");
     public const string TEXT_FOR_PREFERENCES_SKIP_LIBRARY = _("Always show library on startup");
+    public const string TEXT_FOR_PREFERENCES_SCREEN_SIZED_PAGES = _("Divide chapters to screen-sized pages");
     public const string TEXT_FOR_PREFERENCES_TWO_PAGE = _("Enable two page reading");
     public const string TEXT_FOR_PREFERENCES_FONT = _("Select Font");
     public const string TEXT_FOR_PROFILE_CUSTOMIZATION = _("Customize reading profile");

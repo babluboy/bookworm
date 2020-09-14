@@ -280,6 +280,15 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         showLibraryAtStartBox.pack_start (showLibraryAtStartLabel, false, false);
         showLibraryAtStartBox.pack_end (showLibraryAtStartSwitch, false, false);
 
+        Gtk.Label screenSizedPagesEnabledLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_SCREEN_SIZED_PAGES);
+        Gtk.Switch screenSizedPagesEnabledSwitch = new Gtk.Switch ();
+        if (BookwormApp.Bookworm.settings.is_screen_sized_pages_enabled) {
+            screenSizedPagesEnabledSwitch.set_active (true);
+        }
+        Gtk.Box screenSizedPagesEnabledBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, BookwormApp.Constants.SPACING_WIDGETS);
+        screenSizedPagesEnabledBox.pack_start (screenSizedPagesEnabledLabel, false, false);
+        screenSizedPagesEnabledBox.pack_end (screenSizedPagesEnabledSwitch, false, false);
+
         Gtk.Label fontChooserLabel = new Gtk.Label (BookwormApp.Constants.TEXT_FOR_PREFERENCES_FONT);
         Gtk.FontButton fontButton = new Gtk.FontButton ();
         fontButton.set_filter_func (filterFont);
@@ -388,6 +397,7 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
         settingsBox.pack_start (prefBox, false, false, 10);
         settingsBox.pack_start (localStorageBox, false, false, 0);
         settingsBox.pack_start (showLibraryAtStartBox, false, false, 0);
+        settingsBox.pack_start (screenSizedPagesEnabledBox, false, false, 0);
         settingsBox.pack_start (twoPageViewBox, false, false, 0);
         settingsBox.pack_start (fontBox, false, false, 0);
         settingsBox.pack_start (customProfileBox, false, false, 0);
@@ -597,6 +607,16 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
             }
         });
 
+        screenSizedPagesEnabledSwitch.notify["active"].connect (() => {
+            if (screenSizedPagesEnabledSwitch.active) {
+                BookwormApp.Bookworm.settings.is_screen_sized_pages_enabled = true;
+            } else {
+                BookwormApp.Bookworm.settings.is_screen_sized_pages_enabled = false;
+            }
+            //Refresh the page if it is open
+            BookwormApp.contentHandler.refreshCurrentPage ();
+        });
+
         twoPageViewSwitch.notify["active"].connect (() => {
             if (twoPageViewSwitch.active) {
                 BookwormApp.Bookworm.settings.is_two_page_enabled = true;
@@ -785,6 +805,10 @@ public class BookwormApp.AppDialog : Gtk.Dialog {
             //Reset Library at start option
             showLibraryAtStartSwitch.set_active (false);
             BookwormApp.Bookworm.settings.is_show_library_on_start = (bool) bookwormSettings.get_default_value ("is-show-library-on-start");;
+
+            //Reset Screen-Sized pages option
+            BookwormApp.Bookworm.settings.is_screen_sized_pages_enabled = (bool) bookwormSettings.get_default_value ("is-screen-sized-pages-enabled");;
+            screenSizedPagesEnabledSwitch.set_active (BookwormApp.Bookworm.settings.is_screen_sized_pages_enabled);
 
             //Reset Dark Theme
             nightModeSwitch.set_active (false);
