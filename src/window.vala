@@ -380,6 +380,9 @@ public class BookwormApp.AppWindow {
         });
         //handle mouse click on webview (reading mode)
         aWebView.button_press_event.connect ((event) => {
+            if (!settings.is_leaf_over_page_by_edge_enabled) {
+                return false;
+            }
             int width;
             int height;
             //capture the current window size
@@ -425,6 +428,11 @@ public class BookwormApp.AppWindow {
             pageActionWordMeaning.activate.connect (() => {
                 string selected_text = BookwormApp.Utils.setWebViewTitle ("document.title = getSelectionText ()");
                 if (selected_text != null && selected_text.length > 0) {
+					//Save the page scroll position of the book being read
+                    BookwormApp.Book aBook = BookwormApp.Bookworm.libraryViewMap
+                        .get (BookwormApp.Bookworm.locationOfEBookCurrentlyRead);
+                    aBook.setBookScrollPos (BookwormApp.contentHandler.getScrollPos ());
+
                     BookwormApp.Info.populateDictionaryResults (selected_text);
                 }
             });
@@ -483,8 +491,11 @@ public class BookwormApp.AppWindow {
                     isWebViewRequestCompleted = true;
                 }
                 //Handle file:/// type links to other content of the book i.e. Table of Contents
+                string anchor = "";
                 if (url_clicked_on_webview.index_of ("#") != -1) {
-                    url_clicked_on_webview = url_clicked_on_webview.slice (0, url_clicked_on_webview.index_of ("#"));
+                    string[] url_splitted_by_hashtag = url_clicked_on_webview.split("#", 2);
+                    url_clicked_on_webview = url_splitted_by_hashtag[0];
+                    anchor = url_splitted_by_hashtag[1];
                 }
                 url_clicked_on_webview = File.new_for_path (url_clicked_on_webview).get_basename ();
                 int contentLocationPosition = 0;
@@ -497,6 +508,10 @@ public class BookwormApp.AppWindow {
                         aBook.setBookPageNumber (contentLocationPosition);
                         //update book details to libraryView Map
                         BookwormApp.Bookworm.libraryViewMap.set (aBook.getBookLocation (), aBook);
+                        if (anchor.len() > 0) { // anchor - id in link after # symbol
+                            BookwormApp.Bookworm.isPageScrollRequired = true;
+                            aBook.setAnchor(anchor);
+                        }
                         aBook = BookwormApp.contentHandler.renderPage (aBook, "");
                         //Set the mode back to Reading mode
                         BookwormApp.Bookworm.BOOKWORM_CURRENT_STATE = BookwormApp.Constants.BOOKWORM_UI_STATES[1];

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-04-12 23:11+0000\n"
-"Last-Translator: Jeannette L <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2020-09-14 17:36+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "fr/>\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.3-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -185,7 +185,7 @@ msgstr "Étiquettes séparées par des virgules pour cette note"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr "Modifier l'annotation pour : "
+msgstr "Modifier l'annotation pour :"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
@@ -205,7 +205,7 @@ msgstr "Recherche de « $$$ » dans &&& :"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Trouver les occurrences  du mot « $$$ » dans &&& :"
+msgstr "Trouver les occurrences du mot « $$$ » dans &&& :"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"

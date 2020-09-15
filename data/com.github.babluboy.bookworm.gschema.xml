@@ -80,6 +80,10 @@
 				<default>false</default>
 				<summary>Enable two page view</summary>
 		</key>
+		<key name="is-leaf-over-page-by-edge-enabled" type="b">
+				<default>false</default>
+				<summary>Enable leaf over page by clicking on edge</summary>
+		</key>
 		<key name="library-view-mode" type="s">
 				<default>"LIBRARY_MODE_GRID"</default>
 				<summary>Save the library view mode</summary>
