@@ -42,6 +42,7 @@ public class BookwormApp.Settings : Granite.Services.Settings {
     public string list_of_scan_dirs { get; set; }
     public string book_being_read { get; set; }
     public bool is_two_page_enabled { get; set; }
+    public bool is_leaf_over_page_by_edge_enabled { get; set; }
     public string current_info_tab { get; set; }
     public bool is_fullscreen { get; set; }
     public int library_page_items { get; set; }

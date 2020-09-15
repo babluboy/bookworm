@@ -126,6 +126,7 @@ namespace BookwormApp.Constants {
     public const string TEXT_FOR_PREFERENCES_SKIP_LIBRARY = _("Always show library on startup");
     public const string TEXT_FOR_PREFERENCES_SCREEN_SIZED_PAGES = _("Divide chapters to screen-sized pages");
     public const string TEXT_FOR_PREFERENCES_TWO_PAGE = _("Enable two page reading");
+    public const string TEXT_FOR_PREFERENCES_LEAF_OVER_PAGE_BY_EDGE = _("Leaf over page by clicking on edge.");
     public const string TEXT_FOR_PREFERENCES_FONT = _("Select Font");
     public const string TEXT_FOR_PROFILE_CUSTOMIZATION = _("Customize reading profile");
     public const string TEXT_FOR_PROFILE_CUSTOMIZATION_FONT_COLOR = _("Text");
