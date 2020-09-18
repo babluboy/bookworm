@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-09-16 23:36+0000\n"
+"PO-Revision-Date: 2020-09-19 22:40+0000\n"
 "Last-Translator: ihor_ck <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/uk/>\n"
@@ -214,7 +214,7 @@ msgstr ""
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr "Змінити інформацію для"
+msgstr "Змінити відомості для"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
@@ -526,11 +526,11 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr "Перегляд бібліотеки Bookworm"
+msgstr "Подання бібліотеки Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr "Перегляд читання Bookworm"
+msgstr "Подання для читання Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
@@ -585,7 +585,7 @@ msgstr "Виправлення діалогового вікна приміто�
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr "Виправлено повернення до положення сторінки з інформаційного огляду"
+msgstr "Виправлено повернення до положення сторінки з подання відомостей"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
@@ -652,7 +652,7 @@ msgstr "Підтримка формату MOBI та поліпшення зру�
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
-msgstr "Поліпшено зручність перегляду списку книг та інші налаштування"
+msgstr "Поліпшено зручність подання списку книг та інші налаштування"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
