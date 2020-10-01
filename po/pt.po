@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-08-18 15:49+0100\n"
-"Last-Translator: André Barata <andretiagob@protonmail.com>\n"
+"PO-Revision-Date: 2020-10-02 20:41+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/pt/>\n"
 "Language: pt\n"
@@ -11,8 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 2.4.1\n"
-"Project-Id-Version: \n"
+"X-Generator: Weblate 4.3-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -659,7 +659,7 @@ msgstr "Visualizações de anotações e página dupla"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr "Suporte ao formato MOBI e melhorias na experiência do usuário"
+msgstr "Suporte ao formato MOBI e melhorias na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
@@ -669,11 +669,11 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr "Suporte a quadrinhos e melhorias na experiência do usuário"
+msgstr "Suporte a banda desenhada e melhorias na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr "Suporte a PDF e melhorias na experiência do usuário"
+msgstr "Suporte a PDF e melhorias na experiência do utilizador"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
