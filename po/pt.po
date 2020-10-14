@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-10-02 20:41+0000\n"
+"PO-Revision-Date: 2020-10-15 19:26+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/pt/>\n"
@@ -93,7 +93,7 @@ msgstr ""
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "O tipo de mídia é inválido. Verifique o formato deste livro digital:"
+msgstr "O tipo de média é inválido. Verifique o formato deste livro digital: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -103,7 +103,7 @@ msgstr "Conteúdo inválido. Verifique se existe um livro digital válido em: "
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "Não foi possível processar o livro digital. Verifique se existe um livro "
-"digital válido em:"
+"digital válido em: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
