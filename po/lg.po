@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-10-05 16:26+0000\n"
+"PO-Revision-Date: 2020-10-17 14:47+0000\n"
 "Last-Translator: Phillip Samuel <phillipsamuelk3@gmail.com>\n"
 "Language-Team: Luganda <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/lg/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.3.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -35,11 +35,11 @@ msgstr ""
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "Gulawo"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "Tereka"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
@@ -63,7 +63,7 @@ msgstr ""
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Nonya mu kitabo…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
@@ -71,11 +71,11 @@ msgstr ""
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Kilabika Bookworm terina bitabo"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Tekayo ebitabo okuze olulalaka lw'ebitabo"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
