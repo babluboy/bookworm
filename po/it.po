@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2020-10-21 09:45+0000\n"
-"Last-Translator: Francesco Franchina <cescus92@gmail.com>\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/it/>\n"
 "Language: it\n"
@@ -526,7 +526,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr "Bookworm in Visualizzazione Libreria"
+msgstr "Bookworm in visualizzazione biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
