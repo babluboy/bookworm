@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-06-21 16:41+0000\n"
+"PO-Revision-Date: 2020-10-23 07:26+0000\n"
 "Last-Translator: S L <binys@pm.me>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/fi/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.3.1\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -597,7 +597,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Tuki oikealta vasemmalle skriptille"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
