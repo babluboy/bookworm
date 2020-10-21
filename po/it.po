@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2020-10-21 09:44+0000\n"
-"Last-Translator: Francesco Franchina <cescus92@gmail.com>\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/it/>\n"
 "Language: it\n"
@@ -71,7 +71,7 @@ msgstr "Cerca per Titolo, Autore, Tag"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr "Sembra che Bookworm non contenga libri"
+msgstr "Sembra che Bookworm non abbia libri"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -87,12 +87,13 @@ msgid ""
 "here: "
 msgstr ""
 "Si è verificato un problema durante l'estrazione dei contenuti del libro. "
-"Verifica che sia presente un file eBook valido alla posizione: "
+"Verifica che sia presente un file di libro digitale valido alla posizione: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
-"Rilevato tipo di file non valido. Controlla il formato di questo eBook: "
+"Rilevato tipo di file non valido. Controlla il formato di questo libro "
+"digitale: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -155,8 +156,8 @@ msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Nessun segnalibro impostato in BBB, clicca l'icona del segnalibro sulla "
-"barra superiore per impostarne uno"
+"Nessun segnalibro impostato in BBB, clicca l'icona Segnalibro sulla barra "
+"superiore per impostarne uno"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
@@ -197,11 +198,11 @@ msgstr ""
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr "Ricerca '$$$' in &&&:"
+msgstr "Ricerca in corso per «$$$» in &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Trovati i seguenti risultati per '$$$' in &&&:"
+msgstr "Trovati i seguenti risultati per «$$$» in &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
@@ -564,13 +565,12 @@ msgstr ""
 "Rappresentazione intuitiva del pulsante di rimozione libri nella libreria"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
-#, fuzzy
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
-"Correzione per mantenere aperto il pannello delle preferenze finchè tutte le "
-"modifiche sono state ultimate"
+"Correzione per mantenere aperta la finestra di dialogo delle preferenze fino "
+"al completamento di tutte le regolazioni"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
