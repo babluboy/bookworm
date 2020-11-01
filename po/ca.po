@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-10-03 05:56+0000\n"
+"PO-Revision-Date: 2020-11-02 19:26+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ca/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 4.3.2-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -131,7 +131,7 @@ msgstr "Biblioteca"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr "Reanuda"
+msgstr "Reprèn"
 
 #: src/constants.vala.in:55
 msgid "Contents"
@@ -566,7 +566,6 @@ msgstr ""
 "Representació intuïtiva del botó de supressió de llibres a la biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
-#, fuzzy
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
@@ -583,6 +582,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"S’ha arreglat la cancel·lació del diàleg per a obrir un llibre electrònic"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
@@ -632,6 +632,8 @@ msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"El Bookworm evita obrir enllaços HTTP i FTP, entre d’altres; en comptes d’"
+"això, s’utilitza el navegador per defecte"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
@@ -655,19 +657,21 @@ msgstr "Anotacions y visualitzacions de dues pàgines"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Compatibilitat amb el format MOBI i millores d’experiència d’usuari"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
+"Millores d’experiència d’usuari en la visualització de llista i altres "
+"personalitzacions de preferències"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Compatibilitat amb còmics i millores d’experiència d’usuari"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "Compatibilitat amb PDF i millores d’experiència d’usuari"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
