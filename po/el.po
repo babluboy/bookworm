@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-04-16 11:11+0000\n"
+"PO-Revision-Date: 2020-11-29 17:29+0000\n"
 "Last-Translator: george k <norhorn@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "el/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0.1-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -67,7 +67,7 @@ msgstr "Αναζήτηση βιβλίου…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "Αναζήτηση  βάσει Τίτλου, Συγγραφέα και Ετικετών"
+msgstr "Αναζήτηση βάσει τίτλου, συγγραφέα και ετικετών"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
@@ -516,7 +516,7 @@ msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
-"Διαχειριστείτε τη βιβλιοθήκη σας προσθέτοντας ετικέτες  και ενημερώνοντας "
+"Διαχειριστείτε τη βιβλιοθήκη σας προσθέτοντας ετικέτες και ενημερώνοντας "
 "μετα-δεδομένα σε βιβλία, για να βρείτε γρήγορα βιβλία χρησιμοποιόντας "
 "αναζήτηση μετα-δεδομένων και φιλτράρισμα με βάση τις ετικέτες."
 
