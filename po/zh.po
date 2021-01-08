@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-01-08 04:57+0000\n"
-"Last-Translator: Liao junchao <liaojunchao@outlook.com>\n"
+"PO-Revision-Date: 2021-01-09 05:32+0000\n"
+"Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/zh_Hans/>\n"
 "Language: zh\n"
@@ -638,9 +638,8 @@ msgid "Initial release with support for EPUB format"
 msgstr "最初版本，支持EPUB格式"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
-#, fuzzy
 msgid "Siddhartha Das"
-msgstr "Siddhartha Das"
+msgstr ""
 
 #~ msgid "Website"
 #~ msgstr "网站"
