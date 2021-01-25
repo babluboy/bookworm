@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-12-12 19:13+0000\n"
+"PO-Revision-Date: 2021-01-26 22:32+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/uk/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -108,15 +108,15 @@ msgstr ""
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm не підтримує формат файлу, який знаходиться тут: "
+msgstr "Bookworm не підтримує формат файлу, який розміщено тут: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"Запитаний вміст неможливо отримати. Будь ласка, вилучіть та додайте файл "
-"електронної книги, що знаходиться тут: "
+"Запитаний вміст неможливо отримати. Вилучіть та додайте файл електронної "
+"книги, що розміщено тут: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
