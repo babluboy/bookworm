@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-02-08 17:24+0000\n"
+"PO-Revision-Date: 2021-02-17 02:50+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/id/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.5\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -27,7 +27,7 @@ msgstr "Jalankan Bookworm dalam mode info"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Menambahkan buku baru secara otomatis  dari folder yang diamati"
+msgstr "Menambahkan buku baru secara otomatis dari folder yang diamati"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -71,7 +71,7 @@ msgstr "Cari berdasarkan Judul, Penulis, dan Label"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr "Tampaknya Bookworm tidak memiliki buku."
+msgstr "Tampaknya Bookworm tidak memiliki buku"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
