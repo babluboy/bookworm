@@ -165,10 +165,15 @@ public class BookwormApp.AppWindow {
 
         //create the webview to display page content
         webkitSettings = new WebKit.Settings ();
-        webkitSettings.set_allow_file_access_from_file_urls (true);
-        webkitSettings.set_allow_universal_access_from_file_urls (true); //this gives launchpad build error for Yaketty
+        //webkitSettings.set_allow_file_access_from_file_urls (true);
+        //webkitSettings.set_allow_universal_access_from_file_urls (true); //this gives launchpad build error for Yaketty
         webkitSettings.set_auto_load_images (true);
-        aWebView = new WebKit.WebView.with_settings (webkitSettings);
+        //webkitSettings.set_enable_javascript_markup (false);
+        var webContext = new WebKit.WebContext ();
+        //webContext.set_sandbox_enabled (true);
+        //aWebView = new WebKit.WebView.with_settings (webkitSettings);
+        aWebView = new WebKit.WebView.with_context (webContext);
+        aWebView.set_settings (webkitSettings);
         aWebView.set_zoom_level (BookwormApp.Settings.get_instance ().zoom_level);
         aWebView.load_changed.connect((loadEvent) => {
             switch (loadEvent) {
