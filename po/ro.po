@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-01-21 21:19+0000\n"
-"Last-Translator: Alexandru Simion <simimy@yahoo.com>\n"
+"PO-Revision-Date: 2020-09-23 21:40+0000\n"
+"Last-Translator: Cătălin George Feștilă <catalinfest@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ro/>\n"
 "Language: ro\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 4.3-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -71,9 +71,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Caută după Titlu, Autor și Etichete"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Se pare că Bookworm nu are nicio carte."
+msgstr "Se pare că Bookworm nu are nici o carte"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -92,9 +91,10 @@ msgstr ""
 "valid pentru a fi citit: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Tip MIME nevalid detectat. Verifică formatul acestu eBook: "
+msgstr ""
+"A fost detectat un tip de suport nevalid. Verificați formatul pentru această "
+"carte electronică: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -120,6 +120,8 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Problemă în navigarea paginilor, vă rugăm să mutați paginile înainte sau "
+"înapoi."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -232,12 +234,10 @@ msgid "Update Author"
 msgstr "Actualizează Autorul"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "Intră in modul ecran complet (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Ieși din modul ecran complet (Esc)"
 
@@ -307,7 +307,6 @@ msgstr ""
 "Elimină cărțile selectate din librărie (fișierele eBook nu vor fi șterse)"
 
 #: src/constants.vala.in:98
-#, fuzzy
 msgid "Select books to enable removal"
 msgstr "Selectează un eBook pentru a-l citi"
 
@@ -372,7 +371,6 @@ msgid "Apply theme for this colour profile"
 msgstr "Aplică tema pentru acest profil de culor"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
 msgstr "Intră în modul ecran complet și apasă ESC pentru a anula"
 
@@ -390,11 +388,11 @@ msgstr "Adaugă o adnotare textului selectat"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Accesați pagina anterioară"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Accesați pagina următoare"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
@@ -446,7 +444,7 @@ msgstr "Profil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Numărul de cărți pe pagină din bibliotecă"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -482,9 +480,8 @@ msgstr "Carte"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
-#, fuzzy
 msgid "Bookworm"
-msgstr "Carte"
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
@@ -492,14 +489,13 @@ msgstr "Citește și administrează eBook-uri"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
-#, fuzzy
 msgid "A focused eBook reader"
 msgstr "Un Cititor de eBook-uri"
 
@@ -508,15 +504,19 @@ msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"Citiți cărțile pe care le iubiți fără să vă faceți griji cu privire la "
+"diferitele complexități de format, cum ar fi EPUB, PDF, MOBI, CBR etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Gestionați-vă biblioteca prin etichetarea și actualizarea metadatelor din "
+"cărți, pentru a găsi rapid cărți folosind căutarea metadatelor și filtrarea "
+"bazată pe etichete."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
@@ -526,140 +526,151 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Vizualizare bibliotecă Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
-#, fuzzy
 msgid "Bookworm Reading View"
 msgstr "Rulează Bookworm în modul info"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Această versiune are câteva funcții noi, remedieri și noi traduceri:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "Funcții noi:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Biblioteca este paginată pentru a încărca rapid bibliotecile mari"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "Suport pentru formatul FB2 - .fb2 și .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "Remedii:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Reprezentare intuitivă a butonului de eliminare a cărții din bibliotecă"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Remediere pentru menținerea dialogului de preferințe deschis până la "
+"finalizarea tuturor ajustărilor"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Remediere pentru schimbarea titlului antetului în timpul deschiderii"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Remediere pentru schimbarea titlului antetului în timpul deschiderii"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Remediere pentru comutarea între modul ecran complet cu F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Remedierea dialogului de adnotare pentru cărțile cu titluri goale"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"Remediere pentru revenirea la poziția paginii din vizualizarea cu informații"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Lectură de la dreapta la stânga"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Suport pentru scriptul de la dreapta la stânga"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "O nouă pictogramă strălucitoare și noi imagini de copertă"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Suport mai bun pentru cuprinsul EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Faceți clic dreapta pe un cuvânt selectat și căutați semnificația acestuia "
+"într-un dicționar online"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Opțiune adăugată pentru a personaliza culoarea evidențiată"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Împiedicați Bookworm să deschidă linkuri precum HTTP, FTP etc. și utilizați "
+"browserul implicit pentru a le deschide"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"S-a rezolvat o problemă în care liniile se suprapuneau pentru primele două "
+"pagini din carte"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
+"Utilizarea GResource pentru a accelera încărcarea pictogramelor, "
+"scripturilor etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Unele compatibilități CSS minore cu Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
-#, fuzzy
 msgid "Annotations and two page views"
 msgstr "Etichetele Adnotării"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Suport pentru îmbunătățirea formatului MOBI și UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
+"Îmbunătățiri UX pentru vizualizarea listei și alte personalizări ale "
+"preferințelor"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Suport pentru benzi desenate și îmbunătățiri UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "Suport PDF și îmbunătățiri UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Lansare inițială cu suport pentru formatul EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"

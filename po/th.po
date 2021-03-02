@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2018-06-30 08:43+0000\n"
-"Last-Translator: kong <ph.kp111@gmail.com>\n"
+"PO-Revision-Date: 2020-09-29 13:40+0000\n"
+"Last-Translator: Passachol Tassanakul <ptassanakul@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "th/>\n"
 "Language: th\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 4.3-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -31,15 +31,15 @@ msgstr "เพิ่มหนังสือใหม่จากโฟล์เ
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "เปิด"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "บันทึก"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"

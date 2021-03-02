@@ -13,11 +13,12 @@ Build-Depends: debhelper,
                libxml2,
                libxml2-dev,
                libwebkit2gtk-4.0-dev,
-               libpoppler-glib-dev
+               libpoppler-glib-dev,
+               ninja-build
 Standards-Version: 4.1.1
 
 Package: com.github.babluboy.bookworm
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, unzip, poppler-utils, unar, html2text, python2, curl, appstream, ninja
+Depends: ${misc:Depends}, ${shlibs:Depends}, unzip, poppler-utils, unar, html2text, python2, curl, appstream
 Description: eBook Reader
  A simple and focussed eBook reader
