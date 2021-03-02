@@ -195,14 +195,11 @@ public class BookwormApp.contentHandler {
     public static string adjustPageContent (BookwormApp.Book aBook, owned string pageContentStr, string mode) {
         debug ("[START] [FUNCTION:adjustPageContent] book.location=" + aBook.getBookLocation () + 
             ", pageContentStr.length=" + pageContentStr.length.to_string () + ", mode=" + mode);
+        pageContentStr = insertContentSecurityPolicy (pageContentStr);
         StringBuilder pageContent;
         if (settings.is_screen_sized_pages_enabled) {
             //wrap the html content in a div tag for pagination
-            pageContent = new StringBuilder (
-                "<body><div id='page'>"+
-                pageContentStr+
-                "</div></body>"
-            );
+            pageContent = wrapBodyContentsWithDiv (pageContentStr);
         } else {
             pageContent = new StringBuilder (pageContentStr);
         }
@@ -222,6 +219,71 @@ public class BookwormApp.contentHandler {
         );
         debug ("[END] [FUNCTION:adjustPageContent] pageContent.length=" + pageContent.str.length.to_string ());
         debug ("\n\n\n" + pageContent.str);
+        return pageContent.str;
+    }
+
+    private static StringBuilder wrapBodyContentsWithDiv(owned string pageContentStr) {
+        debug ("[START] [FUNCTION:wrapBodyContentsWithDiv]");
+        StringBuilder pageContent;
+        var wrapperDivId = "page";
+        var bodyTagIndex = pageContentStr.index_of ("<body");
+        var closingBodyTagIndex = pageContentStr.index_of ("</body", bodyTagIndex);
+        var containsBodyTag = bodyTagIndex != -1;
+        var containsClosingBodyTag = closingBodyTagIndex != -1;
+        if (containsBodyTag && containsClosingBodyTag) {
+            var endOfBodyTag = pageContentStr.index_of (">", bodyTagIndex);
+            var bodyContentsStr = pageContentStr.slice (endOfBodyTag + 1, closingBodyTagIndex);
+            pageContent = new StringBuilder (pageContentStr);
+            pageContent.assign(
+                pageContentStr.splice (endOfBodyTag + 1, closingBodyTagIndex, "<div id='" + wrapperDivId + "'>" + bodyContentsStr + "</div>")
+                );
+        } else {
+            pageContent = new StringBuilder (
+                "<body><div id='" + wrapperDivId + "'>"+
+                pageContentStr+
+                "</div></body>"
+            );
+        }
+        debug ("[END] [FUNCTION:wrapBodyContentsWithDiv]");
+        return pageContent;
+    }
+
+    private static string insertContentSecurityPolicy(owned string pageContentStr) {
+        debug ("[START] [FUNCTION:insertContentSecurityPolicy]");
+        StringBuilder pageContent = new StringBuilder (pageContentStr);
+        var cspTag = "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self' blob:; script-src 'self'; style-src 'self' blob: 'unsafe-inline'; object-src 'none'; connect-src 'self' blob: *; img-src 'self' blob: data:;\">";
+        var closingHeadTag = "</head>";
+        var closingHeadTagIndex = pageContent.str.index_of (closingHeadTag);
+        var containsHead = closingHeadTagIndex != -1;
+        if (containsHead) {
+            pageContent.assign(pageContent.str.splice(
+                    closingHeadTagIndex,
+                    closingHeadTagIndex + closingHeadTag.len () + 1,
+                    cspTag + closingHeadTag));
+        } else {
+            var headSection = "<head>" + cspTag + "</head>";
+            var htmlTagIndex = pageContent.str.index_of ("<html");
+            var containsHtmlTag = htmlTagIndex != -1;
+            if (containsHtmlTag) {
+                var endOfHtmlTagIndex = pageContent.str.index_of (">", htmlTagIndex);
+                if (endOfHtmlTagIndex != -1 && endOfHtmlTagIndex < pageContent.str.len () - 1) {
+                    pageContent.assign(pageContent.str.splice(
+                            endOfHtmlTagIndex + 1,
+                            endOfHtmlTagIndex + 2,
+                            headSection));
+                }
+            } else {
+                pageContent.assign(
+                    "<html>" +
+                    headSection +
+                    "<body>" +
+                    pageContent.str +
+                    "</body>" +
+                    "</html>"
+                    );
+            }
+        }
+        debug ("[END] [FUNCTION:insertContentSecurityPolicy]");
         return pageContent.str;
     }
 
