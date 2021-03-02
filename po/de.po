@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-07-13 22:41+0000\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"PO-Revision-Date: 2020-10-23 07:26+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.3.1\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -43,7 +43,7 @@ msgstr "Speichern"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Ein E-Book-Rea­der"
+msgstr "Ein E-Buch-Lesegerät"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -59,7 +59,7 @@ msgstr "Nicht verfügbar"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "E-Book-Reader"
+msgstr "E-Buch-Lesegerät"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
@@ -75,7 +75,7 @@ msgstr "Sieht so aus, als hätte Bookworm keine Bücher"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Bauen Sie Ihre Bibliothek auf, indem Sie E-Books hinzufügen"
+msgstr "Bauen Sie Ihre Bibliothek auf, indem Sie E-Bücher hinzufügen"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
@@ -87,24 +87,24 @@ msgid ""
 "here: "
 msgstr ""
 "Problem beim Extrahieren des Buchinhalts. Stellen Sie sicher, dass dies eine "
-"gültige eBook-Datei ist: "
+"gültige E-Buch-Datei ist: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
-"Ungültiger Medientyp erkannt. Überprüfen Sie das Format für dieses E-Book: "
+"Ungültiger Medientyp erkannt. Überprüfen Sie das Format für dieses E-Buch: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
 "Ungültiger Inhalt gefunden. Vergewissern Sie sich, dass es hier eine gültige "
-"E-Book-Datei befindet: "
+"E-Buch-Datei befindet: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
 "E-Book konnte nicht analysiert werden. Vergewissern Sie sich, dass sich hier "
-"eine gültige E-Book-Datei befindet: "
+"eine gültige E-Buch-Datei befindet: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -116,7 +116,7 @@ msgid ""
 "found here: "
 msgstr ""
 "Der angeforderte Inhalt konnte nicht abgerufen werden. Bitte entfernen Sie "
-"die folgende E-Book-Datei und fügen Sie sie erneut hinzu: "
+"die folgende E-Buch-Datei und fügen Sie sie erneut hinzu: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -199,15 +199,15 @@ msgstr ""
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr "Nach „$$$” n &&& suchen:"
+msgstr "Nach „$$$“ n &&& suchen:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Die Suche nach „$$$” in &&& ergab folgende Treffer:"
+msgstr "Die Suche nach „$$$“ in &&& ergab folgende Treffer:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr "Keine Treffer für „$$$” in &&& gefunden"
+msgstr "Keine Treffer für „$$$“ in &&& gefunden"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
@@ -307,7 +307,7 @@ msgstr "Bücher zur Bibliothek hinzufügen"
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Ausgewählte Bücher aus der Bibliothek entfernen (E-Book Dateien werden nicht "
+"Ausgewählte Bücher aus der Bibliothek entfernen (E-Buch-Dateien werden nicht "
 "gelöscht)"
 
 #: src/constants.vala.in:98
@@ -392,11 +392,11 @@ msgstr "Kommentar zum markierten Text hinzufügen"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr "Gehe zu vorheriger Seite"
+msgstr "Geh zur vorherigen Seite"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr "Gehe zur nächsten Seite"
+msgstr "Geh zur nächsten Seite"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
@@ -472,7 +472,7 @@ msgstr "Verzeichnis wählen"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr "E-Book auswählen"
+msgstr "E-Buch auswählen"
 
 #: src/library.vala:543
 msgid "Adding "
@@ -489,7 +489,7 @@ msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr "Lese und verwalte E-Books"
+msgstr "Lese und verwalte E-Bücher"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
@@ -501,7 +501,7 @@ msgstr "Bookworm;E-Book;E-Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr "Ein fokussierter E-Book-Reader"
+msgstr "Ein fokussierter E-Buch-Lesegerät"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
@@ -551,8 +551,8 @@ msgstr "Neue Features:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
 msgstr ""
-"Die Bibliothek wird mit Seitenzahlen versehen, um große Bibliotheken "
-"schneller zu laden"
+"Die Bibliothek hat eine Seitenzahlnummerierung, um große Bibliotheken "
+"schneller zu laden zü können"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
@@ -584,7 +584,7 @@ msgstr "Korrektur für die Änderung der Titelüberschrift während des Öffnens
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
-"Korrektur für die Handhabung des Abbruchdialogs zum Öffnen eines E-Books"
+"Korrektur für die Handhabung des Abbruchdialogs zum Öffnen eines E-Buchs"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"

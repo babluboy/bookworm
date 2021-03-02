@@ -2,25 +2,25 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-01-26 20:21+0000\n"
-"Last-Translator: Володимир Бриняк <bardvv@gmail.com>\n"
+"PO-Revision-Date: 2021-01-26 22:32+0000\n"
+"Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr "Відобразити номер версії"
+msgstr "Показати номер версії"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Запустити Bookworm у режимі налагодження"
+msgstr "Запустити Bookworm у режимі зневадження"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
@@ -52,7 +52,7 @@ msgstr "Weblate перекладачів"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Сайт | Переклад | Баг-трекер"
+msgstr "Сайт | Переклад | Відстеження вад"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -68,7 +68,7 @@ msgstr "Шукати цю книгу…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "Пошук за назвою, автором і тегами"
+msgstr "Пошук за назвою, автором і мітками"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
@@ -91,9 +91,8 @@ msgstr ""
 "електронний файл: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Виявлено неприпустимий тип носія. Перевірте формат електронної книги: "
+msgstr "Виявлено недійсний медіа-тип. Перевірте формат електронної книги: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -109,19 +108,19 @@ msgstr ""
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm не підтримує формат файлу, який знаходиться тут: "
+msgstr "Bookworm не підтримує формат файлу, який розміщено тут: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"Запитаний вміст неможливо отримати. Будь-ласка, видаліть та додайте файл "
-"електронної книги, що знаходиться тут: "
+"Запитаний вміст неможливо отримати. Вилучіть та додайте файл електронної "
+"книги, що розміщено тут: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr "Проблема в перегортанні. Перегорніть вперед чи назад, будь ласка."
+msgstr "Проблема гортання. Перегорніть вперед чи назад, будь ласка."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -156,7 +155,7 @@ msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Немає закладок в BBB, натисніть піктограму закладки на рядку заголовка, щоб "
+"Немає закладок в BBB, натисніть піктограму закладки в рядку заголовка, щоб "
 "створити закладку сторінки"
 
 #: src/constants.vala.in:61
@@ -169,19 +168,19 @@ msgstr "Результати пошуку"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr "Анотації"
+msgstr "Примітки"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr "Теги анотації"
+msgstr "Мітки приміток"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr "Комбінація розділених тегів для цієї анотації"
+msgstr "Розділені комою мітки для цієї примітки"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr "Редагувати анотацію для:"
+msgstr "Змінити примітку для:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
@@ -192,8 +191,8 @@ msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
-"У BBB немає анотацій, натисніть правою кнопкою миші на сторінці книги та "
-"оберіть анотацію з контекстного меню, щоб додати анотації"
+"У BBB немає приміток, натисніть правою кнопкою миші на сторінці книги та "
+"виберіть примітку з контекстного меню, щоб додати примітки"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
@@ -201,7 +200,7 @@ msgstr "Пошук '$$$' в &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Знайдено наступні збіги для '$$$' в &&&:"
+msgstr "Знайдено такі збіги для '$$$' в &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
@@ -215,7 +214,7 @@ msgstr ""
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr "Змінити інформацію для"
+msgstr "Змінити відомості для"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
@@ -227,19 +226,17 @@ msgstr "Оновити назву"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr "Оновити теги"
+msgstr "Оновити мітки"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
 msgstr "Оновити автора"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
-msgstr "Введіть повноекранний режим (F11)"
+msgstr "Переглянути на весь екран (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Вийти з повноекранного перегляду (Esc)"
 
@@ -277,11 +274,11 @@ msgstr "Останнє відкриття"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr "Рейтинг"
+msgstr "Оцінка"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr "Теги"
+msgstr "Мітки"
 
 #: src/constants.vala.in:91
 msgid "Today"
@@ -306,11 +303,11 @@ msgstr "Додати книги до бібліотеки"
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Видалити вибрані книги з бібліотеки (файл електронної книги не видаляється)"
+"Вилучити вибрані книги з бібліотеки (файл електронної книги не видаляється)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr "Оберіть книги, щоб можна було їх видалити"
+msgstr "Виберіть книги, щоб можна було їх вилучити"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
@@ -326,11 +323,11 @@ msgstr "Налаштування читання"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr "Натиснути, щоб додати сторінку"
+msgstr "Натиснути, щоб закласти сторінку"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr "Натиснути, щоб видалити закладку"
+msgstr "Натиснути, щоб вилучити закладку"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
@@ -373,21 +370,21 @@ msgid "Apply theme for this colour profile"
 msgstr "Застосувати тему для цього кольорового профілю"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Ввести повноекранний перегляд та клавішу Esc, щоб скасувати"
+msgstr ""
+"Перехід до повноекранного перегляду, натисніть клавішу Esc, щоб скасувати"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr "Додайте папку для сканування книг"
+msgstr "Додайте теку для пошуку книг"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr "Видалити папку зі списку сканування"
+msgstr "Видалити теку з переліку для пошуку"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr "Додайте анотацію до вибраного тексту"
+msgstr "Додайте примітку до вибраного тексту"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
@@ -407,7 +404,7 @@ msgstr "Увімкнути темний режим"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr "Включити кеш (відкриває книги швидше)"
+msgstr "Увімкнути кешування (відкриває книги швидше)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
@@ -415,15 +412,15 @@ msgstr "Завжди показувати бібліотеку під час з�
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr "Включити двухсторонній режим читання"
+msgstr "Увімкнути двосторінковий режим читання"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr "Виберіть шрифт"
+msgstr "Вибрати шрифт"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr "Налаштувати профіль для читання"
+msgstr "Налаштувати профіль читання"
 
 #: src/constants.vala.in:129
 msgid "Text"
@@ -431,7 +428,7 @@ msgstr "Текст"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr "Фон"
+msgstr "Тло"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
@@ -439,7 +436,7 @@ msgstr "Підсвічування"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr "Додайте папки для сканування книг"
+msgstr "Додайте теки для пошуку книг"
 
 #: src/constants.vala.in:133
 msgid "Profile"
@@ -451,7 +448,7 @@ msgstr "Кількість книг на одній сторінці біблі�
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr "Відновити значення за замовчанням"
+msgstr "Відновити типові значення"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
@@ -467,7 +464,7 @@ msgstr "Вибрати зображення"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr "Виберіть папку"
+msgstr "Вибрати теку"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
@@ -496,7 +493,7 @@ msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr "Книга;Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
@@ -508,38 +505,37 @@ msgid ""
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "Читайте улюблені книги, не турбуючись про різницю форматів EPUB, PDF, MOBI, "
-"CBR та їх подібних."
+"CBR тощо."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
-"Керування своєю бібліотекою, позначивши та оновлюючи метадані в книгах, щоб "
-"швидко знаходити книги за допомогою пошуку метаданих та фільтрування на "
-"основі тегів."
+"Керувуйте своєю бібліотекою за допомогою міток та оновлюючи метадані книг, "
+"щоб швидко знаходити книги за допомогою пошуку метаданих та фільтрування за "
+"мітками."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Ця версія підтримує EPUB, MOBI, PRC, PDF і формати коміксів: CBR та CBZ. У "
-"майбутньому — ще більше форматів."
+"Ця версія підтримує EPUB, MOBI, PRC, PDF, FB2 і формати коміксів(CBR та CBZ)"
+". Та ще більше форматів у майбутньому."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr "Перегляд бібліотеки Bookworm"
+msgstr "Подання бібліотеки Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr "Перегляд читання Bookworm"
+msgstr "Подання для читання Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr "У цьому релізі — нові функції, виправлення помилок і переклади:"
+msgstr "У цьому випуску — нові функції, виправлення помилок і нові переклади:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
@@ -547,14 +543,12 @@ msgid "New Features:"
 msgstr "Нові функції:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
-#, fuzzy
 msgid "Library is paginated to load large libraries quickly"
-msgstr "Бібліотека пронумерована для швидкого завантаження великих бібліотек"
+msgstr "Бібліотеку пронумеровано для швидкого завантаження великих бібліотек"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Підтримка формату MOBI та покращення UX"
+msgstr "Підтримка формату FB2 - .fb2 та .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -563,35 +557,35 @@ msgstr "Виправлення помилок:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Очевидніший вигляд кнопки вилучення книг з бібліотеки"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
-"Визначити, щоб діалогове вікно налаштувань було відкритим до тих пір, поки "
-"всі налаштування не будуть виконані"
+"Тепер діалогове вікно налаштувань буде відкритим доки всі налаштування не "
+"буде виконано"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Виправлено зміну назви заголовка під час відкриття"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Виправлено скасування відкривання діалогового вікна для відкриття книги"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Виправлено перемикання між повноекранним режимом за допомогою F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Виправлення діалогового вікна приміток для книг без назви"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Виправлено повернення до положення сторінки з подання відомостей"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
@@ -606,38 +600,37 @@ msgstr "Підтримка текстів справа наліво"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr "Нова яскрава іконка і нові зображення обкладинок"
+msgstr "Нова яскрава піктограма і нові зображення обкладинок"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr "Покращена підтримка змісту книг в EPUB"
+msgstr "Краща підтримка змісту книг в EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
 "Натисніть правою кнопкою миші на виділеному слові, щоб дізнатися його "
-"значення в онлайн-словнику"
+"значення в словнику з Мережі"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr "Додана можливість обрати колір виділення"
+msgstr "Додано можливість вибору кольору виділення"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
-"Посилання на кшталт HTTP, FTP і так далі тепер відкриваються не в Bookworm, "
-"а у браузері"
+"Посилання на зразок HTTP, FTP та подібні тепер відкриваються не в Bookworm, "
+"а в переглядачі"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
-"Виправлена проблема, коли перекривалися лінії на парі перших сторінок книги"
+msgstr "Виправлено проблему перекривання ліній на парі перших сторінок книги"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
@@ -647,31 +640,31 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr "Виправлені деякі невеликі проблеми сумісності CSS з Juno"
+msgstr "Виправлено незначні проблеми сумісності CSS з Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr "Анотації та перегляд двух сторінок"
+msgstr "Примітки та двосторінкове подання"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr "Підтримка формату MOBI та покращення UX"
+msgstr "Підтримка формату MOBI та поліпшення зручності"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
-msgstr "Покращення UX при перегляді списку книг та інші налаштування"
+msgstr "Поліпшено зручність подання списку книг та інші налаштування"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr "Підтримка коміксів та покращення UX"
+msgstr "Підтримка коміксів та поліпшено зручність"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr "Підтримка формату PDF та покращення UX"
+msgstr "Підтримка формату PDF та поліпшено зручність"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr "Перший реліз із підтримкою формату EPUB"
+msgstr "Початковий випуск із підтримкою формату EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
