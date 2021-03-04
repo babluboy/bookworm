@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-10-23 07:26+0000\n"
+"PO-Revision-Date: 2021-03-05 13:50+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "de/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.1\n"
+"X-Generator: Weblate 4.5.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -63,7 +63,7 @@ msgstr "E-Buch-Lesegerät"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr "Dieses Buch durchsuchen…"
+msgstr "Dieses Buch durchsuchen …"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
