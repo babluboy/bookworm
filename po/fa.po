@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-06-09 04:53+0000\n"
+"PO-Revision-Date: 2021-03-05 13:50+0000\n"
 "Last-Translator: Mehrad Mahmoudian <m.mahmoudian@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/fa/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 4.5.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -19,7 +19,7 @@ msgstr "نمایش ورژن"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "اجرای بوک‌ورم در حالت دیباگ"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
@@ -51,7 +51,7 @@ msgstr "مترجم های وب‌لت"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "وبسایت | ترجمه | ؟؟؟ باگ"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -82,13 +82,12 @@ msgid "Select an eBook to read"
 msgstr "یک کتاب الکترونیکی انتخاب کنید تا بخوانید"
 
 #: src/constants.vala.in:46
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
 "مشکل در استخراج مطلب از کتاب. اطمینان حاصل کنید که یک فایل کتاب الکترونیک "
-"مجاز ایناست: "
+"مجاز اینجاست: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
