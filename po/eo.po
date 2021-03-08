@@ -2,631 +2,665 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
+"PO-Revision-Date: 2021-03-09 03:02+0000\n"
+"Last-Translator: phlostically <phlostically@mailinator.com>\n"
+"Language-Team: Esperanto <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/eo/>\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.5.1\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "Montri versian numeron"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Ruli Bookworm en sencimiga reĝimo"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Ruli Bookworm en informa reĝimo"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Aŭtomate aldoni novajn librojn el atentataj dosierujoj"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "Nuligi"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "Malfermi"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "Konservi"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Bitlibro-Legilo"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Weblate-Tradukantoj"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Retejo | Traduko | Cimspuradilo"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "Ne Havebla"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "Bitlibro-Legilo"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Serĉi ĉi tiun libron…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Serĉi laŭ Titolo, Aŭtoro, kaj Etikedoj"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Ŝajne Bookworm havas neniun libron"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Aldonu bitlibrojn al via biblioteko"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Elektu legotan bitlibron"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Problemo pri elĉerpado de enhavoj de libro. Kontrolu, ĉu ekzistas valida "
+"bitlibro-dosiero tie: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
+"Nevalida dosierformo trovita. Kontrolu la dosierformon de la jena bitlibro: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"Troviĝis nevalida enhavo. Kontrolu, ĉu ekzistas valida bitlibro-dosiero tie: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"Bitlibro ne povis esti analizita. Kontrolu, ĉu ekzistas valida bitlibro-"
+"dosiero tie: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookworm ne subtenas la dosierformon de la dosiero trovita tie: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Petita enhavo ne estas akirebla. Bonvolu forigi kaj aldoni la bitlibran "
+"dosieron trovitan tie: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Problemo pri paĝa navigado: bonvolu movi la paĝojn antaŭen aŭ malantaŭen."
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "Biblioteko"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "Daŭrigi"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "Enhavoj"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "Enhavo #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "Legosignoj"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Legosigno #NNN en Sekcio PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Alklaku ligilon por salti al legosigna sekcio"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"Neniuj legosignoj en BBB; alklaku la legosignan ikono sur la kapobreto por "
+"aldoni legosignon al la paĝo"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "Vortsignifo"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "Serĉrezultoj"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "Notoj"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Notaj Etikedoj"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Kome apartigitaj etikedoj pri ĉi tiu noto"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Redakti noton pri:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Alklaku ligilon por salti al prinotita sekcio"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Neniuj notoj en BBB; dekstre alklaku la paĝon de libro kaj elektu notojn el "
+"la kunteksta menuo por prinoti"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Serĉante '$$$' en &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Trovis la jenajn kongruojn de '$$$' en &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Neniu kongruo de '$$$' trovita en &&&"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Elektu vorton en libro kaj dekstre alklaku por kontroli ĝian signifon"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "Redakti Informojn pri"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Ĝisdatigi Kovrilan Bildon"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "Ĝisdatigi Titolon"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "Ĝisdatigi Etikedojn"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "Ĝisdatigi Aŭtoron"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "Ŝalti plenekranan reĝimon (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "Malŝalti plenekranan reĝimon (Esk)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Kontroli Vortsignifon"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Prinoti elektitan tekston"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "Libroj"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "Bildoj"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "Ĉiuj Dosieroj"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "Aŭtoro"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "Laste Malfermita"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "Takso"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "Etikedoj"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "Hodiaŭ"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "Hieraŭ"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "Tagoj"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Trovado de libroj komencos post fermo de Bookworm"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "Aldoni librojn al biblioteko"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
+"Forigi elektitajn librojn el la biblioteko (bitlibraj dosieroj ne estos "
+"forviŝitaj)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "Elekti forigotajn librojn"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Elektu unu aŭ plurajn librojn el la biblioteko"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Vidi Enhavtabelon, Legosignojn, kaj Serĉrezultojn"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr ""
+msgstr "Preferoj pri legado"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Alklaku por aldoni legosignon al ĉi tiu paĝo"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Alklaku por forigi ĉi tiun legosignon"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Pligrandigi tiparon (Stir + Maj + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Malpligrandigi tiparon (Stir + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "Plialtigi linion"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "Malplialtigi linion"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Pligrandigi spacon inter linioj"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Malpligrandigi spacon inter linioj"
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "Ĝisrandigi maldekstren"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "Ĝisrandigi dekstren"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "Ĝisdatigi Kovrilan Bildon"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Apliki etoson al ĉi tiu kolorprofilo"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "Ŝalti plenekranan reĝimon; Eskapi-klavo malŝaltas ĝin"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Aldoni dosierujon por serĉi librojn"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Ne plu atenti montratan dosierujon por serĉi librojn"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Aldoni noton pri elektita teksto"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Iri al antaŭa paĝo"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Iri al sekva paĝo"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "Preferoj"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Ŝalti Malhelan Etoson"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Ŝalti kaŝmemoron (akceli malfermon de libroj)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Ĉiam montri bibliotekon post starto"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Ŝalti dupaĝan legreĝimon"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "Elektu Tiparon"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Agordi legprofilon"
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "Teksto"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "Fono"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "Reliefigo"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Aldoni dosierujojn por serĉi librojn"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "Profilo"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Nombro de libroj en unu paĝo de la biblioteko"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "Restaŭri apriorajn valorojn"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "Nekonata Libro"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "Pri"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "Elektu Bildon"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "Elektu dosierujon"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr ""
+msgstr "Elektu bitlibron"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "Aldonante "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "Libro"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Legu kaj mastrumu bitlibrojn"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Bitlibro;Legilo;Epub;Mobi;Bildlibro;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "Enfokusigita Bitlibro-Legilo"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"Legu amatajn librojn, sen zorgado pri la diversaj dosierformoj kiel EPUB, "
+"PDF, MOBI, CBR, ktp."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Mastrumu vian bibliotekon per etikedoj kaj ĝisdatigo de metadatenoj en "
+"libroj, por rapide trovi librojn per metadatena serĉado kaj etikeda filtrado."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
+"Ĉi tiu versio subtenas la dosierformojn EPUB, MOBI, PRC, PDF, FB2, kaj "
+"bildlibrojn (CBR kaj CBZ); pliaj dosierformoj baldaŭ subteniĝos."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Biblioteka Vido de Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "Lega Vido de Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Ĉi tiu eldono havas novajn funkciojn, korektojn kaj novajn tradukojn:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "Novaj Trajtoj:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Biblioteko estas paĝigita por ŝarĝi grandajn bibliotekojn rapide"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "Subteno de la dosierformo FB2 - .fb2 kaj .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "Korektoj:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Intuicia prezento de butono por forigi libron el biblioteko"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Korekto por teni la dialogon pri preferoj malfermita ĝis la agordado finiĝas"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Korekto pri ŝanĝado de titolo dum malfermado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Korekto pri nuligo de dialogo por malfermi bitlibron"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Korekto por baskuligi plenekranan reĝimon per F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Korekto pri prinota dialogo por libroj sen titoloj"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Korekto por reveni de la informa vido al la paĝa pozicio"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Dedekstre-Maldekstren-Legreĝimo"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Subteno de dedekstre-maldekstren-skribsistemoj"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Nova bela ikono kaj novaj kovrilaj bildoj"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "Pli bona subteno de EPUB-enhavtabeloj"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Dekstre alklaku elektitan vorton por kontroli ĝian signifon en interreta "
+"vortaro"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Aldonis opcion por personecigi reliefigan koloron"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Igi, ke Bookworm ne malfermos ligilojn de HTTP, FTP ktp kaj ke la implicita "
+"TTT-legilo malfermos tiajn ligilojn"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"Korektis problemon pri interkovrado de linioj en la unuaj du paĝoj en libro"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "Uzo de GResource por rapidigi ŝargon de ikonoj, programetoj ktp."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Kelkaj etaj kongruigoj de CSS kun Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "Notoj kaj dupaĝa legreĝimo"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Subteno de dosierformo MOBI; plibonigoj de fasado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "Plibonigoj de fasado pri lista vido kaj aliaj agordeblaĵoj"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Subteno de bildlibroj; plibonigoj de fasado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "Subteno de PDF; plibonigoj de fasado"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Unua eldono, subtenante la dosierformon EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
