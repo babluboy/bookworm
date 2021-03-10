@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-08-06 22:23+0000\n"
-"Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
+"PO-Revision-Date: 2021-03-11 12:02+0000\n"
+"Last-Translator: adel nasri <nsryadl8@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ar/>\n"
 "Language: ar\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -91,11 +91,10 @@ msgstr ""
 "صالح هنا: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
 "تم اكتشاف نوع بروتوكول امتدادات رسائل الإنترنت غير صالح. تحقق من تنسيق هذا "
-"الكتاب الإلكتروني: "
+"الكتاب الإلكتروني:· "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -231,12 +230,10 @@ msgid "Update Author"
 msgstr "تحديث المؤلف"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
 msgstr "الدخول إلى عرض ملء الشاشة (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "إنهاء عرض ملء الشاشة (Esc)"
 
@@ -369,7 +366,6 @@ msgid "Apply theme for this colour profile"
 msgstr "تطبيق السمة على ملف تعريف اللون المحدد"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
-#, fuzzy
 msgid "Enter fullscreen view and Esc key to undo"
 msgstr "الدخول إلى عرض ملء الشاشة (مفتاح Esc للتراجع)"
 
@@ -516,12 +512,11 @@ msgstr ""
 "باستخدام العلامات."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"يدعم هذا الإصدار تنسيقات   EPUBو MOBIو PRCو PDF و Comics (CBR و CBZ) مع "
+"يدعم هذا الإصدار تنسيقات EPUB و MOBI و PRC و PDF و Comics (CBR و CBZ) مع "
 "إضافة دعم لمزيد من التنسيقات قريبا."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
@@ -544,12 +539,11 @@ msgstr "مزايا جديدة:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "المكتبة مقسمة إلى صفحات لتحميل مكتبات كبيرة بسرعة"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "دعم صيغة MOBI  وتحسين تجربة المستخدم"
+msgstr "دعم تنسيق FB2 - .fb2 و. fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -558,33 +552,33 @@ msgstr "إصلاحات:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "تمثيل بديهي لزر إزالة الكتاب في المكتبة"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
-msgstr ""
+msgstr "إصلاح للإبقاء على مربع حوار التفضيلات مفتوحًا حتى تكتمل جميع التعديلات"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "إصلاح لتغيير عنوان الرأس أثناء الفتح"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "إصلاح للتعامل مع إلغاء مربع الحوار لفتح كتاب إلكتروني"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "إصلاح للتبديل بين وضع ملء الشاشة باستخدام F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "إصلاح لمربع حوار التعليقات التوضيحية للكتب ذات العناوين الفارغة"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "إصلاح للعودة إلى موضع الصفحة من عرض المعلومات"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
@@ -635,15 +629,15 @@ msgstr "استعمل GResource لتسريع تحميل الأيقونات وال
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr "بعض  ملاءمة طفيفة لأنماط العرض CSS مع Juno"
+msgstr "بعض أنماط العرض CSS تتوافق مع Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr "عرض التعليقات التوضيحية  والصفحتين"
+msgstr "عرض التعليقات التوضيحية و صفحتين"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr "دعم صيغة MOBI  وتحسين تجربة المستخدم"
+msgstr "دعم صيغة MOBI و تحسين UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
@@ -659,7 +653,7 @@ msgstr "دعم PDF وتحسين تجربة المستخدم"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr "الإصدار الأول  بدعم صيغة EPUB"
+msgstr "الإصدار الأولي مع دعم تنسيق EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
