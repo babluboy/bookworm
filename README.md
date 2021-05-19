@@ -48,6 +48,9 @@ To install, use `ninja install`, then execute with `com.github.babluboy.bookworm
     sudo ninja install
     com.github.babluboy.bookworm
 
+To install on **fedora**-31 and up:
+
+    sudo dnf install bookworm
 
 ## Screenshots
 
