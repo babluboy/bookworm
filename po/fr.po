@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-09-14 17:36+0000\n"
-"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
+"PO-Revision-Date: 2020-10-23 07:26+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "fr/>\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.3.1\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -44,7 +44,7 @@ msgstr "Enregistrer"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Un lecteur de livres électroniques"
+msgstr "Une liseuse numérique"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -60,7 +60,7 @@ msgstr "Indisponible"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "Lecteur de livres électroniques"
+msgstr "Liseuse numérique"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
@@ -72,7 +72,7 @@ msgstr "Rechercher par titre, auteur et mots-clés"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr "Il semble que Bookworm ne contienne pas de livre"
+msgstr "Il semble que Bookworm n'a aucun livre"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -80,7 +80,7 @@ msgstr "Créez votre bibliothèque en ajoutant des livres électroniques"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Sélectionnez un livre électronique pour le lire"
+msgstr "Sélectionnez un livre numérique à lire"
 
 #: src/constants.vala.in:46
 msgid ""
@@ -93,19 +93,19 @@ msgstr ""
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
-"Type de média invalide détecté. Vérifiez le format de ce livre numérique : "
+"Type de média invalide détecté. Vérifiez le format de ce livre numérique : "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
-"Contenu invalide trouvé. Assurez-vous que le livre électronique est valide à "
-"l'emplacement : "
+"Contenu invalide trouvé. Assurez-vous que le livre numérique est valide à "
+"l'emplacement : "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
-"L'eBook n'a pas pu être analysé. Assurez-vous que le fichier eBook est à "
-"l'emplacement : "
+"Le livre n'a pas pu être analysé. Assurez-vous que le fichier de livre "
+"numérique est à l'emplacement : "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -119,7 +119,7 @@ msgid ""
 "found here: "
 msgstr ""
 "Le contenu demandé n'a pas pu être récupéré. Supprimez et ajoutez le fichier "
-"eBook à l'emplacement : "
+"de livre numérique à l'emplacement : "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -308,8 +308,8 @@ msgstr "Ajouter des livres à la bibliothèque"
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Supprimer les livres sélectionnés de la bibliothèque (le livre électronique "
-"ne sera pas supprimé)"
+"Supprimer les livres sélectionnés de la bibliothèque (le livre numérique ne "
+"sera pas supprimé)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
@@ -474,7 +474,7 @@ msgstr "Sélectionner un dossier"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr "Sélectionnez un livre électronique"
+msgstr "Sélectionnez un livre"
 
 #: src/library.vala:543
 msgid "Adding "
@@ -503,7 +503,7 @@ msgstr "Bookworm;Ebook;Lecteur;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr "Un lecteur de livres électroniques"
+msgstr "Une liseuse numérique sans distraction"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""

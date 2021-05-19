@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-02-24 06:32+0000\n"
+"PO-Revision-Date: 2020-11-29 17:29+0000\n"
 "Last-Translator: Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sv/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -410,7 +410,7 @@ msgstr "Aktivera två sidläsning"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr "Välj typsnitt"
+msgstr "Välj teckensnitt"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
