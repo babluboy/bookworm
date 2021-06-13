@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-03-05 13:50+0000\n"
+"PO-Revision-Date: 2021-06-14 23:32+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/it/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.1-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -67,7 +67,7 @@ msgstr "Cerca questo libro…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "Cerca per Titolo, Autore, Tag"
+msgstr "Cerca per Titolo, Autore, Etichette"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
@@ -138,7 +138,7 @@ msgstr "Contenuti"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr "Contenuto #"
+msgstr "Contenuto nº"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
@@ -229,7 +229,7 @@ msgstr "Aggiorna il titolo"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr "Aggiorna i Tag"
+msgstr "Aggiorna le etichette"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
@@ -281,7 +281,7 @@ msgstr "Valutazione"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr "Tag"
+msgstr "Etichette"
 
 #: src/constants.vala.in:91
 msgid "Today"
