@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2021-06-13 22:04+0000\n"
-"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"Last-Translator: Daimar Stein <570cxat11@relay.firefox.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -90,9 +90,8 @@ msgstr ""
 "disponível em: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Formato inválido detectado. Verifique o formato deste livro: "
+msgstr "Tipo de mídia inválido detectado. Verifique o formato deste e-book: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -118,6 +117,7 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Problema na navegação da página, mova as páginas para frente ou para trás."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -141,11 +141,11 @@ msgstr "Favoritos"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr "Favorito #NNN para a Seção PPP"
+msgstr "Favoritos #NNN da Sessão PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr "Clique no link para ir à seção marcada"
+msgstr "Clique no link para ir à sessão favorita"
 
 #: src/constants.vala.in:60
 msgid ""
@@ -230,12 +230,10 @@ msgid "Update Author"
 msgstr "Atualizar Autor"
 
 #: src/constants.vala.in:79
-#, fuzzy
 msgid "Enter fullscreen view (F11)"
-msgstr "Utilizar em tela cheia (F11)"
+msgstr "Entrar em tela cheia (F11)"
 
 #: src/constants.vala.in:80
-#, fuzzy
 msgid "Exit fullscreen view (Esc)"
 msgstr "Sair da tela cheia (Esc)"
 
@@ -386,11 +384,11 @@ msgstr "Adicionar anotação ao texto selecionado"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Ir para a página anterior"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Ir para a próxima página"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
@@ -442,7 +440,7 @@ msgstr "Perfil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Número de livros por página na biblioteca"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
@@ -514,17 +512,16 @@ msgstr ""
 "filtros de pesquisa ."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
-#, fuzzy
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
-"Esta versão suporta EPUB, MOBI, PRC, PDF, quadrinhos (CBR e CBZ) e terá "
-"suporte para novos formatos em breve."
+"Esta versão suporta os formatos EPUB, MOBI, PRC, PDF, FB2 e quadrinhos (CBR "
+"e CBZ), com suporte para mais formatos em breve."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr "Visualização da Biblioteca Bookworm"
+msgstr "Visualizar a biblioteca do Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
@@ -542,12 +539,11 @@ msgstr "Novas funcionalidades:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "A biblioteca é paginada para carregar grandes bibliotecas rapidamente"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
-#, fuzzy
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr "Suporte para o formato MOBI e melhorias da interface"
+msgstr "Suporte para o formato FB2 - .fb2 e .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
@@ -556,33 +552,38 @@ msgstr "Correções:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Representação intuitiva do botão de remoção de livros na biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Correção para manter a caixa de diálogo de preferências aberta até que todos "
+"os ajustes sejam concluídos"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Correção para a alteração do título do cabeçalho durante a abertura"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"Correção para lidar com o cancelamento da caixa de diálogo para abrir um "
+"ebook"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Correção para alternar entre o modo de tela cheia com F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Correção na caixa de diálogo de anotação para livros com títulos vazios"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"Correção para retornar à posição da página na visualização de informações"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
@@ -660,7 +661,7 @@ msgstr "Suporte para Quadrinhos e melhorias de interface"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr "Supporte para PDF e outras melhorias"
+msgstr "Suporte para PDF e outras melhorias"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
