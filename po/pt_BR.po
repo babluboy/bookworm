@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-06-09 04:53+0000\n"
-"Last-Translator: Raí Toffoletto <rai@raibtoffoletto.com>\n"
+"PO-Revision-Date: 2021-06-13 22:04+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -43,7 +43,7 @@ msgstr "Salvar"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Um Leitor de eBook"
+msgstr "Um leitor de livros digitais"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -59,7 +59,7 @@ msgstr "Não disponível"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "Leitor de eBook"
+msgstr "Leitor de livros digitais"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
@@ -75,11 +75,11 @@ msgstr "Aparentemente o Bookworm não possui livros"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Construa sua biblioteca adicionando eBooks"
+msgstr "Construa sua biblioteca adicionando livros digitais"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Selecione um eBook para ler"
+msgstr "Selecione um livro digital para ler"
 
 #: src/constants.vala.in:46
 msgid ""
