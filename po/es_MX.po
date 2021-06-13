@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2021-06-13 22:27+0000\n"
-"Last-Translator: Saul Rubio <saulrubio98@hotmail.com>\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/es_MX/>\n"
 "Language: es_MX\n"
@@ -569,7 +569,6 @@ msgid "Intuitive representation of book removal button on library"
 msgstr "Representación del botón para eliminar libros de la biblioteca"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
-#, fuzzy
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
@@ -584,6 +583,8 @@ msgstr "Cambiar el encabezado al abrir"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"Corrección del manejo de la cancelación del diálogo para abrir un libro "
+"electrónico"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
@@ -591,11 +592,12 @@ msgstr "Alternar el modo pantalla completa con F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Corrección para el diálogo de anotación para libros sin título"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"Corrección para regresar a la página previa desde la vista de información"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
@@ -651,29 +653,30 @@ msgid "Some minor CSS compatibility with Juno"
 msgstr "Algunos cambios menores en la compatibilidad del CSS con Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
-#, fuzzy
 msgid "Annotations and two page views"
-msgstr "Etiquetas para las notas"
+msgstr "Vistas de anotaciones y de página doble"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "Compatibilidad con el formato MOBI y mejoras de experiencia de usuario"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
+"Mejoras de la experiencia de usuario para la vista de lista y otras "
+"preferencias de personalización"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Compatibilidad con cómics y mejoras de la experiencia de usuario"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "Compatibilidad con PDF y mejoras de la experiencia de usuario"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Versión inicial con compatibilidad con el formato EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
