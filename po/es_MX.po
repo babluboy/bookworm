@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-06-13 22:27+0000\n"
+"PO-Revision-Date: 2021-06-14 23:32+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Spanish (Mexico) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/es_MX/>\n"
@@ -49,7 +49,7 @@ msgstr "Guardar"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Un lector de eBook"
+msgstr "Un lector de libros electrónicos"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -65,7 +65,7 @@ msgstr "No disponible"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "Lector de eBook"
+msgstr "Lector de libros electrónicos"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
@@ -81,7 +81,7 @@ msgstr "Parece ser que Bookworm no tiene ningún libro"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Añade eBooks para crear tu biblioteca"
+msgstr "Añade libros para crear tu biblioteca"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
@@ -102,12 +102,11 @@ msgstr ""
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr "Contenido inválido.  Verifica que haya un libro válido en: "
+msgstr "Contenido inválido. Verifica que haya un libro válido en: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
-"El libro no pudo ser analizado.  Verifica que haya un libro válido en: "
+msgstr "El libro no pudo ser analizado. Verifica que haya un libro válido en: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
@@ -118,8 +117,8 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"El contenido solicitado no pudo ser encontrado.  Por favor elimine y añada "
-"el libro ubicado en: "
+"El contenido solicitado no pudo ser encontrado. Por favor elimine y añada el "
+"libro ubicado en: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -139,7 +138,7 @@ msgstr "Contenido"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr "Contenido #"
+msgstr "Contenido nº"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
@@ -158,8 +157,8 @@ msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"No hay ningún marcador en BBB.  Haz clic en el icono de marcador,  ubicado "
-"en la parte superior,  para marcar la página"
+"No hay ningún marcador en BBB. Haz clic en el icono de marcador, ubicado en "
+"la parte superior, para marcar la página"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
@@ -194,8 +193,8 @@ msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
-"No hay ninguna nota en BBB.  Haz clic derecho en la página y selecciona "
-"\"Nota\" en el menú contextual para añadir una"
+"No hay ninguna nota en BBB. Haz clic derecho en la página y selecciona «Nota»"
+" en el menú contextual para añadir una"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
@@ -319,7 +318,7 @@ msgstr "Selecciona uno o más libros de la biblioteca"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr "Ver tabla de contenidos,  marcadores y resultados de búsqueda"
+msgstr "Ver tabla de contenidos, marcadores y resultados de búsqueda"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
@@ -411,7 +410,7 @@ msgstr "Habilitar caché (abre los libros más rápido)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr "Mostrar siempre la  biblioteca al inicio"
+msgstr "Mostrar siempre la biblioteca al inicio"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
@@ -509,8 +508,8 @@ msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
-"Lea los libros que ama sin tener que preocuparse del formato, como epub, "
-"pdf, mobi, cbr, etc."
+"Lea los libros que ama sin tener que preocuparse del formato, como EPUB, "
+"PDF, MOBI, CBR, etc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
