@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-10-15 19:26+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2021-06-14 23:32+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/pt/>\n"
 "Language: pt\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr "Ver o número da versão"
+msgstr "Ver o número de versão"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
@@ -49,7 +49,7 @@ msgstr "Um leitor de livros digitais"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Tradutores do Weblate"
+msgstr "Tradutores no Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
@@ -145,7 +145,7 @@ msgstr "Marcadores"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr "Marcador ###NNN para a secção PPP"
+msgstr "Marcador #NNN para Secção PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
@@ -201,7 +201,7 @@ msgstr "A procurar por '$$$' em &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Foram encontrados os seguintes resultados para '$$$' em &&&:"
+msgstr "Foram encontrados os seguintes resultados da pesquisa «$$$» em &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
