@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-04-24 09:13+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2021-06-14 23:32+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/es/>\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0.2-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -136,7 +136,7 @@ msgstr "Contenido"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr "Contenido #"
+msgstr "Contenido nº"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
