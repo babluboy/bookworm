@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-10-19 13:26+0000\n"
-"Last-Translator: Pavel Fric <pavelfric@yahoo.com>\n"
+"PO-Revision-Date: 2021-06-20 12:32+0000\n"
+"Last-Translator: Deleted User <noreply+8673-7c3d5a624d@weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "cs/>\n"
 "Language: cs\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3.1-dev\n"
+"X-Generator: Weblate 4.7\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -47,7 +47,7 @@ msgstr "Čtečka elektronických knih"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Překladatelé"
+msgstr "Překladatele Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
