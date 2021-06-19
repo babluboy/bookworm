@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-06-14 23:32+0000\n"
+"PO-Revision-Date: 2021-06-20 12:32+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "fr/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -52,7 +52,7 @@ msgstr "Traducteurs Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Site web | Traduction | Bug Tracker"
+msgstr "Site web | Traduction | Suivi de problème"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
@@ -68,7 +68,7 @@ msgstr "Chercher dans ce livre…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "Rechercher par titre, auteur et mots-clés"
+msgstr "Rechercher par titre, auteur et étiquettes"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
@@ -231,7 +231,7 @@ msgstr "Mettre à jour le titre"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr "Mettre à jour les mots-clés"
+msgstr "Mettre à jour les étiquettes"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
@@ -283,7 +283,7 @@ msgstr "Note"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr "Mots-clés"
+msgstr "Étiquettes"
 
 #: src/constants.vala.in:91
 msgid "Today"
@@ -499,7 +499,7 @@ msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr "Bookworm;Ebook;Lecteur;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr "Bookworm;Livre;Livrel;Lecteur;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
@@ -619,7 +619,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr "Meilleur support pour la table des matières du format EPUB"
+msgstr "Meilleure prise en charge pour la table des matières du format EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
