@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-02-20 19:17+0000\n"
-"Last-Translator: Wasi Mohammed Abdullah <wasi0013@gmail.com>\n"
+"PO-Revision-Date: 2021-06-25 11:34+0000\n"
+"Last-Translator: Oymate <dhruboadittya96@gmail.com>\n"
 "Language-Team: Bengali <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/bn/>\n"
 "Language: bn\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -116,15 +116,15 @@ msgstr ""
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "গ্রন্থাগার"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "পুনরারম্ভ"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "বিষয়বস্তু"
 
 #: src/constants.vala.in:56
 msgid "Content #"
