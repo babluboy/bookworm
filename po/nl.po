@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-01-18 14:21+0000\n"
-"Last-Translator: Bunnywabbit <needmorecarrots@gmail.com>\n"
+"PO-Revision-Date: 2021-06-29 14:32+0000\n"
+"Last-Translator: Reinout van Schouwen <reinout@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "nl/>\n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10.2\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -70,9 +70,8 @@ msgid "Search by Title, Author and Tags"
 msgstr "Zoek op Titel, Auteur en Labels"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Het lijkt er op dat Bookworm geen boeken heeft."
+msgstr "Het lijkt er op dat Bookworm geen boeken heeft"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -83,13 +82,12 @@ msgid "Select an eBook to read"
 msgstr "Selecteer een e-boek om te lezen"
 
 #: src/constants.vala.in:46
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Er is een probleem opgetreden tijdens het uitlezen van het boek. Controleer "
-"of het boek op de volgende locatie is: "
+"Er is een probleem opgetreden tijdens het uitlezen van het boek. Zorg ervoor "
+"dat het e-book op de volgende locatie staat: "
 
 #: src/constants.vala.in:47
 #, fuzzy
