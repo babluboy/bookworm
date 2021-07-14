@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-12-15 14:21+0000\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"PO-Revision-Date: 2021-07-15 18:32+0000\n"
+"Last-Translator: Tur <tur+translate@simplelogin.fr>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tr/>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -19,15 +19,15 @@ msgstr "Sürüm numarasını göster"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Bookworm'u hata ayıklama kipinde çalıştır"
+msgstr "Bookworm'u hata ayıklama modunda çalıştır"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Bookworm'u bilgi kipinde çalıştır"
+msgstr "Bookworm'u bilgi modunda çalıştır"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Yeni kitapları izlenen klasörlerden kendiliğinden ekle"
+msgstr "Yeni kitapları izlenen klasörlerden otomatik ekle"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -43,19 +43,19 @@ msgstr "Kaydet"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Bir eKitap Okuyucu"
+msgstr "Bir e-kitap okuyucu"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Weblate Çevirmenleri"
+msgstr "Weblate çevirmenleri"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Web Sitesi | Çeviri | Hata İzleyici"
+msgstr "Website | Çeviri | Hata izleyici"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr "Kullanılamaz"
+msgstr "Uygun değil"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
@@ -75,39 +75,39 @@ msgstr "Bookworm'da hiç kitap yokmuş gibi görünüyor"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Kitaplığınızı eKitaplar ekleyerek oluşturun"
+msgstr "Kitaplığınızı e-kitap ekleyerek oluşturun"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Okumak için bir eKitap seç"
+msgstr "Okumak için bir e-kitap seç"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Kitap içeriklerini çıkartmada sorun oluştu. Şu konumda geçerli eKitap "
+"Kitap içeriklerini çıkartırken sorun oluştu. Şu konumda geçerli e-kitap "
 "dosyası olduğundan emin ol: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "Geçersiz ortam türü algılandı. eKitap biçimini kontrol edin: "
+msgstr "Geçersiz ortam türü algılandı. E-kitap formatını kontrol edin: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
-"Geçersiz içerik bulundu. Şu konumda geçerli eKitap dosyası olduğundan emin "
+"Geçersiz içerik bulundu. Şu konumda geçerli e-kitap dosyası olduğundan emin "
 "olun: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
-"eKitap işlenemedi. Şu konumda geçerli bir eKitap dosyası olduğundan emin "
+"E-kitap işlenemedi. Şu konumda geçerli bir e-kitap dosyası olduğundan emin "
 "olun: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm şu konumda bulunan dosyanın biçimini desteklemiyor : "
+msgstr "Bookworm şu konumda bulunan dosyanın formatını desteklemiyor : "
 
 #: src/constants.vala.in:51
 msgid ""
