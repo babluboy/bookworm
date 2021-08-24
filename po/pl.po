@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-08-26 12:23+0000\n"
-"Last-Translator: SciMar <S_Marcin@mail.com>\n"
+"PO-Revision-Date: 2021-08-25 16:34+0000\n"
+"Last-Translator: A M <augim3@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "pl/>\n"
 "Language: pl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -152,12 +152,11 @@ msgid "Click on a link to jump to bookmarked section"
 msgstr "Kliknij na link, żeby przejść do zaznaczonej sekcji"
 
 #: src/constants.vala.in:60
-#, fuzzy
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
-"Brak zdefiniowanych zakładek w BBB, kliknij ikonę Bookworma na pasku tytułu, "
+"Brak zdefiniowanych zakładek w BBB, kliknij ikonę zakładki na pasku tytułu, "
 "aby dodać zakładkę do strony"
 
 #: src/constants.vala.in:61
@@ -562,13 +561,12 @@ msgid "Intuitive representation of book removal button on library"
 msgstr "Intuicyjna prezentacja przycisku usuwania książek w bibliotece"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
-#, fuzzy
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
-"Od teraz okno dialogowe preferencji będzie otwarte do momentu zakończenia "
-"wszystkich korekt."
+"Zatrzymaj okno dialogowe preferencji otwarte do momentu zakończenia "
+"wszystkich korekt"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
