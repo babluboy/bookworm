@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-06-14 23:32+0000\n"
+"PO-Revision-Date: 2021-09-03 04:34+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bookworm/bookworm/pt_BR/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -133,7 +133,7 @@ msgstr "Conteúdo"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr "Conteúdo #"
+msgstr "Conteúdo nº"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
