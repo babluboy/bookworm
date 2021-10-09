@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2021-10-09 15:03+0000\n"
-"Last-Translator: Брат Васи-Пупкина <brat.vasi.pupkina@gmail.com>\n"
+"Last-Translator: Фёдор <fedor010908@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ru/>\n"
 "Language: ru\n"
@@ -486,7 +486,7 @@ msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr "Чтение и управление электронными книгами."
+msgstr "Чтение и управление электронными книгами"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
