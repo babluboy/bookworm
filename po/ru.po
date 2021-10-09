@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-10-09 15:03+0000\n"
+"PO-Revision-Date: 2021-10-10 07:44+0000\n"
 "Last-Translator: Фёдор <fedor010908@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ru/>\n"
@@ -634,7 +634,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
-"Использование GResource дало ускорить загрузку иконок, текстов и остального"
+"Использование GResource для ускорения загрузки иконок, текстов и остального."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
