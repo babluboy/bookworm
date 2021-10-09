@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-09-11 22:35+0000\n"
-"Last-Translator: Брат Васи-Пупкина <brat.vasi.pupkina@gmail.com>\n"
+"PO-Revision-Date: 2021-10-09 15:03+0000\n"
+"Last-Translator: Фёдор <fedor010908@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ru/>\n"
 "Language: ru\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -513,8 +513,8 @@ msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
-"Управляйте своей библиотекой с помощью тегов и метаданных, чтобы легко "
-"находить и фильтровать книги из вашей коллекции."
+"Управляйте своей библиотекой, добавляя теги и обновляя мета данные книг для "
+"того, чтобы находить их быстрее поиском по метаданным и фильтрацией по тегам."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
@@ -526,7 +526,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr "Обзор библиотеки Bookworm"
+msgstr "Режим библиотеки Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
