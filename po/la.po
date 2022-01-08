@@ -2,108 +2,126 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
+"PO-Revision-Date: 2022-01-09 06:55+0000\n"
+"Last-Translator: Michael Timothy Notopuro 12A1-23 MT BreakThrough "
+"<mt310804@gmail.com>\n"
+"Language-Team: Latin <https://hosted.weblate.org/projects/bookworm/bookworm/"
+"la/>\n"
+"Language: la\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "Propono numerus versionis"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Currere Bookworm in lusione"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Currere Bookworm in info modus"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Automatice novos libros a custodibus folder"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "oblittero"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "salvare"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "electronic librum lectorem"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Interpres Weblate"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "website | translation | quaestio venato"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "non available"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
+#, fuzzy
 msgid "eBook Reader"
-msgstr ""
+msgstr "electronic liber lector"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Quaere hunc librum…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Quaerere per Titulum, Auctorem et Tags"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Similis Bookworm non habet libros"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Aedificare bibliothecam tuam addendo libros electronicos"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Librum electronicum eligere ut legitur"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Queritur in extractione contentorum librium. Ut validum sit hic fasciculus "
+"libri electronici validus: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
+"Genus media invalida deprehenditur. Perscriptio forma huius libri "
+"electronici: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "Contentus invalidus inventus est. Ut validum sit eBook lima hic: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"liber electronic parsed non potuit. Ut validum sit hic fasciculus libri "
+"electronici validus: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Tabernus non suscipit formationem tabellae hic inventae: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Contentus petitus accersiri non potuit. Quaeso remove et addere fasciculum "
+"eBook hic inventum: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Exite in pagina navigationis, quaeso paginas antrorsum vel retro move."
 
 #: src/constants.vala.in:53
 msgid "Library"
