@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2022-04-29 17:10+0000\n"
-"Last-Translator: Matthew Choi <zeulkin@gmail.com>\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ko/>\n"
 "Language: ko\n"
@@ -383,11 +383,11 @@ msgstr ""
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr "다크 모드 키기"
+msgstr "어두운 모드 켜기"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "캐시 활성화 (책을 더 빨리 열 수 있음)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
