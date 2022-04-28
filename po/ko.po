@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2022-04-28 17:04+0000\n"
+"PO-Revision-Date: 2022-04-29 17:10+0000\n"
 "Last-Translator: Matthew Choi <zeulkin@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ko/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -443,15 +443,15 @@ msgstr ""
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "이미지 선택"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "폴더 선택"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr ""
+msgstr "전자책 선택"
 
 #: src/library.vala:543
 msgid "Adding "
