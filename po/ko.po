@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2022-04-28 17:04+0000\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"Last-Translator: Matthew Choi <zeulkin@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ko/>\n"
 "Language: ko\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
@@ -39,7 +39,7 @@ msgstr "열기"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "저장"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
@@ -227,7 +227,7 @@ msgstr "전체화면 보기 종료 (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "단어뜻 확인하기"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
@@ -235,19 +235,19 @@ msgstr ""
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "책"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "이미지"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "모든 파일"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "제목"
 
 #: src/constants.vala.in:87
 msgid "Author"
@@ -259,19 +259,19 @@ msgstr ""
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "평점"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "태그"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "오늘"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "어제"
 
 #: src/constants.vala.in:93
 msgid "Days"
@@ -383,7 +383,7 @@ msgstr ""
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "다크 모드 키기"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
