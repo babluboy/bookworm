@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2022-04-28 16:51+0000\n"
+"PO-Revision-Date: 2022-04-28 17:04+0000\n"
 "Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ko/>\n"
@@ -15,15 +15,15 @@ msgstr ""
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "버전 번호 화면표시"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "디버그 모드에서 Bookworm 실행"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "정보 모드에서 Bookworm 실행"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "열기"
 
 #: src/utils.vala:556
 msgid "Save"
@@ -43,7 +43,7 @@ msgstr ""
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "전자책 읽기도구"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -51,27 +51,27 @@ msgstr "Weblate 변역자"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "웹사이트 | 번역 | 버그수집기"
+msgstr "웹사이트 | 번역 | 버그 추적기"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "사용할 수 없음"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "전자책 읽기도구"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "이 책 검색…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "제목, 저자 및 태그로 검색"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Bookworm에 책이 없는 것 같습니다"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -119,19 +119,19 @@ msgstr ""
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "다시 시작"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "내용"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "내용 #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "책갈피"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
@@ -149,11 +149,11 @@ msgstr ""
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "단어 뜻"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "검색 결과"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
@@ -203,27 +203,27 @@ msgstr ""
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "표지 이미지 업데이트"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "제목 업데이트"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "태그 업데이트"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "저자 업데이트"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "전체화면 보기 시작 (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "전체화면 보기 종료 (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
@@ -251,7 +251,7 @@ msgstr ""
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "저자"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
@@ -307,19 +307,19 @@ msgstr ""
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "이 페이지를 책갈피하려면 클릭"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "이 책갈피를 제거하려면 클릭"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "글꼴 크기 늘리기 (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "글꼴 크기 줄이기 (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
@@ -511,7 +511,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "이 릴리스에는 몇 가지 새로운 기능, 수정 사항 및 새로운 번역이 있습니다:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
