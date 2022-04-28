@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2022-04-28 16:51+0000\n"
-"Last-Translator: Matthew Choi <zeulkin@gmail.com>\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ko/>\n"
 "Language: ko\n"
@@ -47,7 +47,7 @@ msgstr ""
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "Weblate 변역자"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
