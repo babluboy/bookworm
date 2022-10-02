@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-03-16 08:36+0000\n"
+"PO-Revision-Date: 2022-10-03 12:16+0000\n"
 "Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
 "Language-Team: Occidental <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ie/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -535,7 +535,7 @@ msgstr "Nov functiones:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Pagination del biblioteca por rapid carga"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
@@ -599,7 +599,7 @@ msgstr ""
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
-msgstr ""
+msgstr "Dextri clic por trovar li selectet parole in un dictionarium in li rete"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
@@ -647,7 +647,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Li version inicial con supporte por formate EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
