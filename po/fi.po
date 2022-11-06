@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-10-23 07:26+0000\n"
-"Last-Translator: S L <binys@pm.me>\n"
+"PO-Revision-Date: 2022-11-07 03:11+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/fi/>\n"
 "Language: fi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.1\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -137,7 +137,7 @@ msgstr "Sisällysluettelo"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr "Sisältö #"
+msgstr "Sisältö nro"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
