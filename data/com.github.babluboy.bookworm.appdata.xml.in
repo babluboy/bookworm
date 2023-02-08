@@ -37,7 +37,7 @@
           <p>Fixes:</p>
           <ul>
             <li>Intuitive representation of book removal button on library</li>
-            <li>Fix for keeping the preference dialog open until all adjustments are completed</li>
+            <li>Fix for keeping the preference dialog open until all adju   ments are completed</li>
             <li>Fix for header title changing during open</li>
             <li>Fix for handling cancelation of dialog to open an ebook</li>
             <li>Fix for toggling between full screen mode with F11</li>
@@ -113,6 +113,7 @@
      <value key="x-appcenter-color-primary">#e29ffc</value>
      <value key="x-appcenter-color-primary-text">#260063</value>
      <value key="x-appcenter-suggested-price">2</value>
+     <value key="x-appcenter-stripe">pk_live_i8u8qHGI7MRdJLNAdPYmewBc</value>
   </custom>
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">none</content_attribute>
