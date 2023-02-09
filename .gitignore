@@ -2,3 +2,4 @@
 **/*~
 .tables
 build/
+.flatpak-builder
