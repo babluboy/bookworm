@@ -1,31 +1,58 @@
 # This is the same ID that you've used in meson.build and other files
-app-id: com.github.babluboy.bookworm
+{
+"app-id": "com.github.babluboy.bookworm",
 
 # Instead of manually specifying a long list of build and runtime dependencies,
 # we can use a convenient pre-made runtime and SDK. For this example, we'll be
 # using the runtime and SDK provided by elementary.
-runtime: io.elementary.Platform
-runtime-version: '6.1'
-sdk: io.elementary.Sdk
+"runtime": "io.elementary.Platform",
+"runtime-version": "6.1",
+"sdk": "io.elementary.Sdk",
 
 # This should match the exec line in your .desktop file and usually is the same
 # as your app ID
-command: com.github.babluboy.bookworm
+command: com.github.babluboy.bookworm,
 
 # Here we can specify the kinds of permissions our app needs to run. Since we're
 # not using hardware like webcams, making sound, or reading external files, we
 # only need permission to draw our app on screen using either X11 or Wayland.
-finish-args:
-  - '--share=ipc'
-  - '--socket=fallback-x11'
-  - '--socket=wayland'
+"finish-args":[
+   '--share=ipc',
+   '--socket=fallback-x11',
+   '--socket=wayland'
+  ],
 
 # This section is where you list all the source code required to build your app.
 # If we had external dependencies that weren't included in our SDK, we would list
 # them here.
-modules:
-  - name: bookworm
-    buildsystem: meson
-    sources:
-      - type: dir
-        path: .
+"modules": [
+  {
+    "name": "cpython",
+    "sources": [{
+            "type": "archive",
+            "url": "https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz",
+            "sha256": "f434053ba1b5c8a5cc597e966ead3c5143012af827fd3f0697d21450bb8d87a6"
+    }]
+  },
+  {
+    "name": "poppler",
+    "buildsystem": "cmake-ninja",
+    "config-opts": [
+        "-DENABLE_BOOST=OFF"
+    ],
+    "sources": [{
+        "type": "archive",
+        "url": "https://poppler.freedesktop.org/poppler-23.02.0.tar.xz",
+        "sha256": "3315dda270fe2b35cf1f41d275948c39652fa863b90de0766f6b293d9a558fc9"
+    }]
+  },
+  { 
+    "name": "bookworm",
+    "buildsystem": "meson",
+    "sources": [{
+        "type": "dir",
+        "path": "."
+    }]
+  }
+]
+}

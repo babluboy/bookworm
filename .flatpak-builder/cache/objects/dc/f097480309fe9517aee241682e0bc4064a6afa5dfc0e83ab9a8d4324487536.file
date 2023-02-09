@@ -1,0 +1,4 @@
+[Application]
+name=com.github.babluboy.bookworm
+runtime=io.elementary.Platform/x86_64/6.1
+sdk=io.elementary.Sdk/x86_64/6.1
