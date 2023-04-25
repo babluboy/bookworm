@@ -35,25 +35,18 @@
        }]
      },
      {
-       "name": "gobject-introspection",
-       "buildsystem": "cmake-ninja",
-       "sources": [{
-               "type": "archive",
-               "url": "https://download.gnome.org/sources/gobject-introspection/1.76/gobject-introspection-1.76.1.tar.xz",
-               "md5": "5cb554fdd139db79f9b1be13892fddac"
-       }]
-     },
-     {
        "name": "poppler",
        "buildsystem": "cmake-ninja",
        "config-opts": [
+           "-DCMAKE_INSTALL_LIBDIR=/app/lib",
+           "-DCMAKE_INSTALL_INCLUDEDIR=/app/include",
            "-DENABLE_BOOST=OFF",
-           "-DENABLE_UNSTABLE_API_ABI_HEADERS=ON"
+           "-DENABLE_LIBOPENJPEG=none"
        ],
        "sources": [{
                "type": "archive",
                "url": "https://poppler.freedesktop.org/poppler-23.04.0.tar.xz",
-               "md5": "bcf3d31809f7d399fcd5b7288eee8ac0"
+               "sha256": "b6d893dc7dcd4138b9e9df59a13c59695e50e80dc5c2cacee0674670693951a1"
        }]
      },
      { 
