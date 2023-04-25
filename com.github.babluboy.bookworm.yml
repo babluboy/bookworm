@@ -1,59 +1,68 @@
 # This is the same ID that you've used in meson.build and other files
 {
-"app-id": "com.github.babluboy.bookworm",
+   "app-id": "com.github.babluboy.bookworm",
 
-# Instead of manually specifying a long list of build and runtime dependencies,
-# we can use a convenient pre-made runtime and SDK. For this example, we'll be
-# using the runtime and SDK provided by elementary.
-"runtime": "io.elementary.Platform",
-"runtime-version": "7.2",
-"sdk": "io.elementary.Sdk",
+   # Instead of manually specifying a long list of build and runtime dependencies,
+   # we can use a convenient pre-made runtime and SDK. For this example, we'll be
+   # using the runtime and SDK provided by elementary.
+   "runtime": "io.elementary.Platform",
+   "runtime-version": "7.2",
+   "sdk": "io.elementary.Sdk",
 
-# This should match the exec line in your .desktop file and usually is the same
-# as your app ID
-command: com.github.babluboy.bookworm,
+   # This should match the exec line in your .desktop file and usually is the same
+   # as your app ID
+   command: com.github.babluboy.bookworm,
 
-# Here we can specify the kinds of permissions our app needs to run. Since we're
-# not using hardware like webcams, making sound, or reading external files, we
-# only need permission to draw our app on screen using either X11 or Wayland.
-"finish-args":[
-   '--share=ipc',
-   '--socket=fallback-x11',
-   '--socket=wayland'
-  ],
+   # Here we can specify the kinds of permissions our app needs to run. Since we're
+   # not using hardware like webcams, making sound, or reading external files, we
+   # only need permission to draw our app on screen using either X11 or Wayland.
+   "finish-args":[
+      '--share=ipc',
+      '--socket=fallback-x11',
+      '--socket=wayland'
+     ],
 
-# This section is where you list all the source code required to build your app.
-# If we had external dependencies that weren't included in our SDK, we would list
-# them here.
-"modules": [
-  {
-    "name": "cpython",
-    "sources": [{
-            "type": "archive",
-            "url": "https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz",
-            "sha256": "f434053ba1b5c8a5cc597e966ead3c5143012af827fd3f0697d21450bb8d87a6"
-    }]
-  },
-  {
-    "name": "poppler",
-    "buildsystem": "cmake-ninja",
-    "config-opts": [
-        "-DENABLE_BOOST=OFF",
-        "-DCMAKE_INDTALL_LIBDIR=lib"
-    ],
-    "sources": [{
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/poppler/poppler",
-        "tag": "poppler-22.01.0"
-    }]
-  },
-  { 
-    "name": "bookworm",
-    "buildsystem": "meson",
-    "sources": [{
-        "type": "dir",
-        "path": "."
-    }]
-  }
-]
+   # This section is where you list all the source code required to build your app.
+   # If we had external dependencies that weren't included in our SDK, we would list
+   # them here.
+   "modules": [
+     {
+       "name": "cpython",
+       "sources": [{
+               "type": "archive",
+               "url": "https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz",
+               "sha256": "f434053ba1b5c8a5cc597e966ead3c5143012af827fd3f0697d21450bb8d87a6"
+       }]
+     },
+     {
+       "name": "gobject-introspection",
+       "buildsystem": "cmake-ninja",
+       "sources": [{
+               "type": "archive",
+               "url": "https://download.gnome.org/sources/gobject-introspection/1.76/gobject-introspection-1.76.1.tar.xz",
+               "md5": "5cb554fdd139db79f9b1be13892fddac"
+       }]
+     },
+     {
+       "name": "poppler",
+       "buildsystem": "cmake-ninja",
+       "config-opts": [
+           "-DENABLE_BOOST=OFF",
+           "-DENABLE_UNSTABLE_API_ABI_HEADERS=ON"
+       ],
+       "sources": [{
+               "type": "archive",
+               "url": "https://poppler.freedesktop.org/poppler-23.04.0.tar.xz",
+               "md5": "bcf3d31809f7d399fcd5b7288eee8ac0"
+       }]
+     },
+     { 
+       "name": "bookworm",
+       "buildsystem": "meson",
+       "sources": [{
+           "type": "dir",
+           "path": "."
+       }]
+     }
+   ]
 }
