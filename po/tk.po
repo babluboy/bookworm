@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2023-07-31 09:06+0000\n"
+"PO-Revision-Date: 2023-08-11 06:48+0000\n"
 "Last-Translator: Ejegyz Gurbanberdievna <ejegyzgurbanberdievna@gmail.com>\n"
 "Language-Team: Turkmen <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tk/>\n"
@@ -14,27 +14,22 @@ msgstr ""
 "X-Generator: Weblate 5.0-dev\n"
 
 #: src/bookworm.vala:109
-#, fuzzy
 msgid "Display version number"
 msgstr "Wersiýa belgisini görkeziň"
 
 #: src/bookworm.vala:110
-#, fuzzy
 msgid "Run Bookworm in debug mode"
 msgstr "Bookworm'y ýalňyş tapma modunda işlediň"
 
 #: src/bookworm.vala:111
-#, fuzzy
 msgid "Run Bookworm in info mode"
 msgstr "Bookworm'y informatsiýa modunda işlediň"
 
 #: src/bookworm.vala:112
-#, fuzzy
 msgid "Automatically add new books from watched folders"
 msgstr "Täze kitaplary görlen faýllardan awtomatik  goşuň"
 
 #: src/utils.vala:552 src/utils.vala:639
-#, fuzzy
 msgid "Cancel"
 msgstr "Goýbolsun et"
 
@@ -118,186 +113,195 @@ msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Gerekli maglumatlary tapyp bolmady. Pozup görkezilen salgydaky eBook faýly "
+"goşmagyňyzy haýeş edýän: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Indiki sahypa geçmekde ýalňyşlyk ýüze çykdy. Öňe ýa-da yza geçirmegiňizi "
+"haýyş edýäris."
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "Kitaphana"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "Dowam etmek"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "Mazmuny"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "Mazmuny#"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "Aýyrgaç"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "PPP bölüm üçin aýyrgaç#NNN"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "aýyrgaça geçmek üçin linka basyň"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"BBB -de aýyrgaç goýulmadyk, sahypa aýyrgaç goýmak üçin sözbaşy panelindäki "
+"aýyrgaç nyşanyna basyň"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "Sözüň manysy"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "Gözlegiň netijesi"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "Bellik"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "belgilenen bellikler"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Bu bellik üçin otur belgisi bilen aýratynlandyrylan bellikleriň sanawy"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Belligi üýtgetmek:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Aýyrgaça geçmek üçin link-e basyň"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"BBB üçin bellik ýok, bellik goşmak üçin kitabyň sahypasyna syçanjygyň sag "
+"düwmesi bilen basyň we kontekst menýusyndan belligi saýlaň"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& -de '$$$' gözlemek"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& -da '$$$' üçin indiki meňzeşlikler tapyldy"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "&&& -da '$$$' üçin indiki meňzeşlikler tapylmady"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "kitapdan sözi saýlaň we manysyny tapmak üçin sag düwmä basyň"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "maglumaty üýtget"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "daşyny üýtgetmek"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "adyny üýtgetmek"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "tegi üýtgetmek"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "awtory üýtgetmek"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "doly ekrana (F11) geçmek"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "doly ekrandan (Esc) çykmak"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "sözüň manysyny barlamak"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "bellenilen teksta bellik goşmak"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "kitaplar"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "suratlar"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "Hemme faýyllar"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Ady"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "Awtory"
 
 #: src/constants.vala.in:88
+#, fuzzy
 msgid "Last Opened"
-msgstr ""
+msgstr "Iň soňky okalan"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "Reýting"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "Teglar"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "Şu gün"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "Düýn"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "Günler"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Bookworm ýapylandan soň kitaplaryň gözlegi başlar"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "Kitaphana kitaplary goşmak"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "Kitaphanadan"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
