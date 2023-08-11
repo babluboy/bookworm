@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2023-08-11 06:48+0000\n"
+"PO-Revision-Date: 2023-08-12 10:46+0000\n"
 "Last-Translator: Ejegyz Gurbanberdievna <ejegyzgurbanberdievna@gmail.com>\n"
 "Language-Team: Turkmen <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tk/>\n"
@@ -305,259 +305,264 @@ msgstr "Kitaphanadan"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "Kitaplary aýyrmak üçin olary saýlap alyň"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Kitaphanadan bir ýa-da birnäçe kitaplary saýlap almak"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Mazmuny, aýyrgaçlary we gözlegleriň netijesini görmek"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr ""
+msgstr "okamaga degişli sazlamalar"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Sahypa aýyrgaç goşmak üçin basyň"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "pozmak üçin basyň"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Şrifty ulaltmak üçin (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Şrifty kiçeletmek üçin (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "Setriň inini ulaltmak üçin"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "Setriň inini kiçeltmek üçin"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
-msgstr ""
+msgstr "setirara interwaly ulaltmak"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "setirara interwaly kiçeltmek"
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "Çep tarapdan"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "Sag tarapdan"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "Daşyny üýtgetmek"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Reňkli profil üçin temany ulanmak"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "Doly ekrana girip we çykmak üçin Esc düwmä basyň"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Kitaplary skanirlemek üçin papkany goşmak"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Skanirleme sanawyndan papkany pozmak"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Bellenilen teksta bellik goşmak"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "öňki sahypa geçmek"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "indiki sahypa geçmek"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "Sazlamalar"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Gijeki režimy ýakmak"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Keşi ýakmak (kitaplary çalt açýar)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Işläp başlananda hemmişe kitaphanany görkezmek"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "ikisahypaly okamak režimy ýakmak"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "şrifty saýlap almak"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Okamak profili sazlamak"
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "Arka tarap"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "Reňk bilen bellemek"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Kitaplary skanirlemek üçin papklary goşmak"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Kitaphanan bir sahypasyndaky kitaplaryň sany"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "edilen işleri arassalamak"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "Nätanyş kitap"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "Programma barada"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "Suraty saýlap almak"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "Papkany saýlap almak"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr ""
+msgstr "Elektron kitaby saýlap almak"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "Goşmak "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "Kitap"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Elektron kitaplary okamak we dolandyrmak"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "elektron kitaplary ünsli okamak üçin programma"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"EPUB, PDF, MOBI, CBR we ş.m formatdaky gowy görýän kitaplaryňyzy alada etmän "
+"okaň"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Aňsat gözlemek üçin tegleri we kitaplary goşyň we öz kitaphanaňyzy dolandyryň"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
+"EPUB, MOBI, PRC, PDF, FB2 we komikslar (CBR we CBZ) formatlary kabul edýär. "
+"Geljekde has hem formatlaryň sany köpeler"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Bookworm kitaphana režim"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "Bookworm okamak režim"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Ýalňyşlary düzetmek we terjime funksiýalary bu relizde bar"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "Täze müňkinçilikler"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Çalt ýüklenmek üçin kitaphana sahypalara bölünen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "FB2 (.fb2 и .fb2.zip) formatlary kabul ediş"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "Ýalňyşlary düzetmek:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Kitaphanaň ekranyndaky görkezilen pozmak düwmesi"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
-msgstr ""
+msgstr "Doly ulanmak üçin sazlamalar dialogy açyk goýylan"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Kitap açylanda sözbaşy paneli düzetmek"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
