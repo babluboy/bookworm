@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2023-08-12 10:46+0000\n"
+"PO-Revision-Date: 2023-08-24 13:02+0000\n"
 "Last-Translator: Ejegyz Gurbanberdievna <ejegyzgurbanberdievna@gmail.com>\n"
 "Language-Team: Turkmen <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/tk/>\n"
@@ -27,7 +27,7 @@ msgstr "Bookworm'y informatsiýa modunda işlediň"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Täze kitaplary görlen faýllardan awtomatik  goşuň"
+msgstr "Täze kitaplary görlen faýllardan awtomatik goşuň"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -196,11 +196,11 @@ msgstr ""
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr "&&& -de '$$$' gözlemek"
+msgstr "&&& -de '$$$' gözlemek:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "&&& -da '$$$' üçin indiki meňzeşlikler tapyldy"
+msgstr "&&& -da '$$$' üçin indiki meňzeşlikler tapyldy:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
@@ -267,7 +267,6 @@ msgid "Author"
 msgstr "Awtory"
 
 #: src/constants.vala.in:88
-#, fuzzy
 msgid "Last Opened"
 msgstr "Iň soňky okalan"
 
@@ -490,7 +489,7 @@ msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
+msgstr "Bookworm;Ebook;Okyjy;Epub;Mobi;Komik;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
@@ -502,14 +501,15 @@ msgid ""
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
 "EPUB, PDF, MOBI, CBR we ş.m formatdaky gowy görýän kitaplaryňyzy alada etmän "
-"okaň"
+"okaň."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
-"Aňsat gözlemek üçin tegleri we kitaplary goşyň we öz kitaphanaňyzy dolandyryň"
+"Aňsat gözlemek üçin tegleri we kitaplary goşyň we öz kitaphanaňyzy "
+"dolandyryň."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
@@ -517,7 +517,7 @@ msgid ""
 "formats with support for more formats to follow soon."
 msgstr ""
 "EPUB, MOBI, PRC, PDF, FB2 we komikslar (CBR we CBZ) formatlary kabul edýär. "
-"Geljekde has hem formatlaryň sany köpeler"
+"Geljekde has hem formatlaryň sany köpeler."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
@@ -530,12 +530,12 @@ msgstr "Bookworm okamak režim"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr "Ýalňyşlary düzetmek we terjime funksiýalary bu relizde bar"
+msgstr "Ýalňyşlary düzetmek we terjime funksiýalary bu relizde bar:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr "Täze müňkinçilikler"
+msgstr "Täze müňkinçilikler:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
@@ -566,93 +566,95 @@ msgstr "Kitap açylanda sözbaşy paneli düzetmek"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Ebook kitaby açmak üçin goýbolsyn dialogy sazlamak"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "F11 basyp dolyekran režimden çalyşmagy sazlamak"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Ady yok kitaplar üçin bellik dialogyny sazlamak"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Maglumatlar ekrany ýapylandan soñ sahypanyñ ýerleşişini sazlamak"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Sagdan çepe tarap okamak"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Tekstyñ sagdan çepe sazlanmagy"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Täze ikonka we täze örtüji surat"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "EPUB -da kitaplañ mazmuny sazlanan"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Sag düwmesini basyp sözi saýlañ we onuñ manysyny online sözlükden gözlediñ"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Saýlanan tekstyñ reñkini üýtgetmek müñkinçiligi goşulan"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"HTTP, FTP ýaly formatdaky faýyllar Bookwormda däl-de saýlanan brauzerde açýar"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "Kitabyñ başdaky sahypalary üçin çyzyklaryñ ýapylma meselesi düzedilen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "Ikonlañ, tekstlañ ýüklenmesini çaltlandyrmak üçin GResource ulanmak."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "CSS -yñ Juno bilen gabat gelmeseniñ käbir meseleleri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "Annotasiýa we iki sahypany görmek"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "MOBI formatyñ goldanmagy we UX -yñ gowlanmagy"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "Ulanyjy sazlamalary we kitaplañ sanawyny görmek üçin UX -yñ gowlanmagy"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Komikslañ goldanmagy we UX -yñ gowlanmagy"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF formatyñ goldanmagy we UX -yñ gowlanmagy"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "EPUB formaty kabul edýän birinji reliz"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddartha Das"
