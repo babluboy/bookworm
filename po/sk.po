@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-10-08 07:56+0000\n"
-"Last-Translator: Michal Srnanský <msrnansky@gmail.com>\n"
+"PO-Revision-Date: 2023-10-13 10:03+0000\n"
+"Last-Translator: Milan Šalka <salka.milan@googlemail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "sk/>\n"
 "Language: sk\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -71,7 +71,7 @@ msgstr "Hľadať podľa Názvu, Autora a Značiek"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr "Vyzerá to  že v Bookworme nie sú žiadne knihy"
+msgstr "Vyzerá to že v Bookworme nie sú žiadne knihy"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
