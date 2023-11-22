@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-06-29 14:32+0000\n"
-"Last-Translator: Reinout van Schouwen <reinout@gmail.com>\n"
+"PO-Revision-Date: 2023-11-22 12:05+0000\n"
+"Last-Translator: Ranforingus <ranforingus@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "nl/>\n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 5.2\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -97,11 +97,10 @@ msgstr ""
 "locatie: "
 
 #: src/constants.vala.in:48
-#, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
-"Ongeldige inhoud gevonden. Controller of het e-boek gelig is op de volgende "
-"locatie: "
+"Ongeldige inhoud gevonden. Controleer of hier een geldig eBook-bestand staat:"
+" "
 
 #: src/constants.vala.in:49
 #, fuzzy
