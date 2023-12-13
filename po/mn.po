@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2023-01-22 10:09+0000\n"
-"Last-Translator: Soundview “soundview” <bilguunnar3@gmail.com>\n"
+"PO-Revision-Date: 2023-12-15 15:11+0000\n"
+"Last-Translator: Tsengel <tsengel.tech@gmail.com>\n"
 "Language-Team: Mongolian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/mn/>\n"
 "Language: mn\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 5.3\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -19,19 +19,19 @@ msgstr "Хувилбарын дугаарыг харуулах"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Bookworm-г алдаа засах горимд ажиллуулах"
+msgstr "Бүүквоормыг алдаа засах горимоор ажиллуулах"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Bookworm-г мэдээллийн горимд ажиллуулах"
+msgstr "Бүүквоормыг мэдээллийн горимоор ажиллуулах"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Үзсэн фолдеруудаас шинэ номнуудыг автоматаар нэмэх"
+msgstr "Үзсэн хавтсуудаас шинэ номуудыг автоматаар нэмэх"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr "цуцлах"
+msgstr "Цуцлах"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
@@ -51,235 +51,245 @@ msgstr "Weblate орчуулагчид"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr "Вэбсайт | Орчуулга | Алдаа мөрдөгч"
+msgstr "Вэбсайт | Орчуулга | Алдаа илрүүлэгч"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "Байхгүй"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "Цахим ном уншигч"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Энэ номыг хайх…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Нэр, зохиогч, шошгоор хайх"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Бүүквоорм уншигчид ном байхгүй бололтой"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Ном оруулж өөрийн номын санг үүсгэх"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Унших ном сонгох"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Номын агуулгыг задлах явцад алдаа гарлаа. Энд зөв цахим номын файл байгаа "
+"эсэхийг шалгана уу: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr ""
+msgstr "Буруу медиа байна. Энэ цахим номын форматыг шалгана уу: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"Буруу агуулга байна. Энд зөв цахим номын файл байгаа эсэхийг шалгана уу: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"Цахим номыг задлан шинжилж чадсангүй. Энд зөв цахим номын файл байгаа "
+"эсэхийг шалгана уу: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Бүүквоорм энд гарч ирсэн файлын форматыг дэмждэггүй: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Хүссэн агуулгыг авч чадсангүй. Энэхүү цахим номын файлыг устгаад нэмнэ үү: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "Хуудасны чиглүүлэгч гацсан тул хуудсыг урагш эсвэл хойш нь эргүүлнэ үү."
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "Номын сан"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "Сэргээх"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "Агуулгууд"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "Агуулга #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "Номын хавчуургууд"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "PPP хэсгийн #NNN хавчуурга"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Хавчуургатай хэсэг рүү шилжихийн тулд холбоос дээр дарна уу"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"BBB хэсэгт хавчуурга хийгээгүй тул гарчгийн мөрөн дэх хавчуургын дүрс дээр "
+"дарж хуудсанд хавчуурга хийнэ үү"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "Үгийн утга"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "Хайлтын үр дүн"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "Тайлбарууд"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Тайлбарын шошгууд"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Энэ тайлбарын таслалаар тусгаарлагдсан шошгууд"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Тайлбарыг засах:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Холбоос дээр дарж тайлбартай хэсэг рүү очно уу"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"BBB тайлбар байхгүй, тайлбар нэмэхдээ номын хуудасны баруун товчийг дараад "
+"агуулга цэснээс тайлбарыг сонгоно уу"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& дотор '$$$' хайж байна:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& дотор '$$$' тохирох дараах сонголтууд байна:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "&&& дотор '$$$' тохирох зүйл олдсонгүй"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Ном доторх үгийг сонгоод баруун товчийг дарж утгыг нь хайж олоорой"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "Мэдээллийг засварлах"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Хавтасны зургийг шинэчлэх"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "Нэр шинэчлэх"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "Шошгуудыг шинэчлэх"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "Зохиогчийг шинэчлэх"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "Бүтэн дэлгэцээр харах (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "Бүтэн дэлгэцээр харах горимоос гарах (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Үгийн утгыг шалгах"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Сонгосон бичвэрт тайлбар хийх"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "Номууд"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "Зургууд"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "Бүх файл"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Нэр"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "Зохиогч"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "Сүүлд нээсэн"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "Үнэлгээ"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "Шошгууд"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "Өнөөдөр"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "Өчигдөр"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "Өдөр"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Номын хорхойтон аппликэйшнийг хаахад номын нээлт эхэлнэ"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
