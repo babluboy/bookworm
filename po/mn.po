@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2023-12-15 15:11+0000\n"
+"PO-Revision-Date: 2023-12-18 08:09+0000\n"
 "Last-Translator: Tsengel <tsengel.tech@gmail.com>\n"
 "Language-Team: Mongolian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/mn/>\n"
@@ -19,11 +19,11 @@ msgstr "Хувилбарын дугаарыг харуулах"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Бүүквоормыг алдаа засах горимоор ажиллуулах"
+msgstr "Номын хорхойтон аппликэйшнийг алдаа засах горимоор ажиллуулах"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Бүүквоормыг мэдээллийн горимоор ажиллуулах"
+msgstr "Номын хорхойтон аппликэйшнийг мэдээллийн горимоор ажиллуулах"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
@@ -47,7 +47,7 @@ msgstr "Цахим ном уншигч"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr "Weblate орчуулагчид"
+msgstr "Веблэйт орчуулагчид"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
@@ -293,357 +293,369 @@ msgstr "Номын хорхойтон аппликэйшнийг хаахад н
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "Номын санд ном нэмэх"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "Сонгосон номуудыг номын сангаас хасах (Цахим номын файлыг устгахгүй)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "Устгахыг идэвхжүүлэхийн тулд номуудыг сонгоно уу"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Номын сангаас нэг буюу хэд хэдэн ном сонгох"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "Гарчиг, хавчуурга, хайлтын үр дүнг харах"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr ""
+msgstr "Лавлах унших"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "Энэ хуудаст хавчуурга хийхдээ товшино уу"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "Энэ хавчуургыг арилгахын тулд товшино уу"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "Үсгийн хэмжээг нэмэгдүүлэх (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "Үсгийн хэмжээг багасгах (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "Шугамын өргөнийг нэмэгдүүлэх"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "Шугамын өргөнийг багасгах"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
-msgstr ""
+msgstr "Мөр хоорондын зайг нэмэгдүүлэх"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "Мөр хоорондын зайг багасгах"
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "Зүүн талд зэрэгцүүлэх"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "Баруун талд зэрэгцүүлэх"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "Хавтасны зургийг шинэчлэх"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "Энэхүү өнгөт профайлд загвар оруулах"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "Бүтэн дэлгэцээр харах. Гарахдаа Esc товчийг дарна уу"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "Ном хайх хавтас нэмэх"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Харуулсан хавтсыг ном хайлтаас устгах"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "Сонгосон бичвэрт тайлбар оруулах"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "Өмнөх хуудас руу очих"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "Дараагийн хуудас руу очих"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "Лавлах"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "Харанхуй горимыг асаах"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "Cache идэвхжүүлэх (энэ нь номыг илүү хурдан нээдэг)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr ""
+msgstr "Апп эхлэх болгонд номын санг харуулах"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "Хоёр хуудсаар унших горимыг идэвхжүүлэх"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "Фонт сонгох"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr ""
+msgstr "Унших профайлыг өөрчлөх"
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "Бичвэр"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "Дэвсгэр"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "Гол хэсэг"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "Ном хайх хавтсууд нэмэх"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "Профайл"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "Номын сангийн хуудсанд ногдох номын тоо"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "Өгөгдмөл утгууд руу буцаан тохируулах"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "Үл мэдэгдэх ном"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "Тухай"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "Зураг сонгох"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "Хавтас сонгох"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr ""
+msgstr "Цахим ном сонгох"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "Нэмж байна "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "Ном"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "Номын хорхойтон апп"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "Цахим ном унших, зохион байгуулах"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "Чиглүүлсэн цахим ном уншигч"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"EPUB, PDF, MOBI, CBR гэх мэт төрөл бүрийн файлын форматын талаар санаа "
+"зовохгүйгээр дуртай номоо уншаарай."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"Номуудын мета өгөгдлийг шошголох, шинэчлэх замаар номын сангаа удирдаж, мета "
+"өгөгдөл хайх, шошгоор шүүж номыг хурдан олох боломжтой."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
+"Энэ хувилбар нь EPUB, MOBI, PRC, PDF, FB2 болон комикс (CBR болон CBZ) "
+"форматуудыг дэмждэг бөгөөд удахгүй бусад төрлийн форматуудыг дэмждэг болно."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Номын хорхойтон аппликэйшний номын сангийн харагдац"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "Номын хорхойтон аппликэйшний унших харагдац"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "Энэ хувилбарт шинэ боломжууд, засвар болон шинэ орчуулгууд багтсан:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "Шинээр нэмэгдсэн онцлогууд:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "Том номын сангуудыг хурдан ачаалахын тулд номын санг хуудасладаг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "FB2 формат болох .fb2 болон .fb2.zip дэмждэг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "Хийсэн засварууд:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "Номын сан дээрх ном устгах товч ил харагддаг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"Бүх тохиргоог хийж дуустал сонголтын харилцах цонхыг нээлттэй байлгах засвар"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "Нээлттэй үед толгойн гарчгийг өөрчлөх засвар"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "Цахим ном нээхдээ харилцах цонхыг хаах засвар"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "F11 товчоор бүтэн дэлгэцээр унших горимд сэлгэх засвар"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "Гарчиггүй номуудын тайлбарын харилцах цонхны засвар"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Мэдээллийн хэсгээс хуудас руу буцах боломжтой болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Баруунаас зүүн тийш унших"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "Баруунаас зүүн тийш бичгийг дэмждэг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "Гялалзсан шинэ дүрс, шинэ хавтасны зураг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "EPUB гарчигт зориулсан илүү нарийвчилсан тохиргоо"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"Сонгосон үг дээр хулганы баруун товчийг дараад утгыг нь онлайн толь бичгээс "
+"хайх боломжтой"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "Тодруулах өнгийг өөрчлөх сонголт нэмсэн"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Номын хорхойтон апп нь HTTP, FTP гэх мэт холбооснуудыг нээхээс сэргийлнэ. "
+"Тэдгээрийг нээхийн тулд өгөгдмөл хөтчийг ашиглана"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "Номын эхний хоёр хуудсанд мөрүүд давхцаж байсан алдааг зассан"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "Дүрс, бичиг гэх зэргийн ачааллыг хурдасгахын тулд GResource ашигладаг."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Juno болон CSS нийцтэй"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "Тайлбар болон хоёр хуудсаар үздэг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "MOBI формат дэмждэг, UX сайжруулалттай"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
 msgstr ""
+"Жагсаалтаар харах болон бусад лавлах тохируулгад зориулсан UX сайжруулалт"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Комикс дэмждэг, UX сайжруулалттай"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF дэмждэг, UX сайжруулалттай"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "EPUB форматыг дэмждэг анхны апп"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Сиддхарта Дас"
