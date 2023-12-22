@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2023-12-18 08:09+0000\n"
+"PO-Revision-Date: 2023-12-23 06:09+0000\n"
 "Last-Translator: Tsengel <tsengel.tech@gmail.com>\n"
 "Language-Team: Mongolian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/mn/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -19,15 +19,15 @@ msgstr "Хувилбарын дугаарыг харуулах"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Номын хорхойтон аппликэйшнийг алдаа засах горимоор ажиллуулах"
+msgstr "Номын хорхойтон аппийг алдаа засах горимоор ажиллуулах"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Номын хорхойтон аппликэйшнийг мэдээллийн горимоор ажиллуулах"
+msgstr "Номын хорхойтон аппийг мэдээллийн горимоор ажиллуулах"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Үзсэн хавтсуудаас шинэ номуудыг автоматаар нэмэх"
+msgstr "Үзсэн хавтаснуудаас шинэ номуудыг автоматаар нэмэх"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -71,7 +71,7 @@ msgstr "Нэр, зохиогч, шошгоор хайх"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr "Бүүквоорм уншигчид ном байхгүй бололтой"
+msgstr "Номын хорхойтон аппад уншигчид ном байхгүй бололтой"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Бүүквоорм энд гарч ирсэн файлын форматыг дэмждэггүй: "
+msgstr "Номын хорхойтон апп энд гарч ирсэн файлын форматыг дэмждэггүй: "
 
 #: src/constants.vala.in:51
 msgid ""
@@ -217,15 +217,15 @@ msgstr "Хавтасны зургийг шинэчлэх"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr "Нэр шинэчлэх"
+msgstr "Номын нэрийг засах"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr "Шошгуудыг шинэчлэх"
+msgstr "Шошгуудыг засах"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr "Зохиогчийг шинэчлэх"
+msgstr "Зохиогчийг засах"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
@@ -257,7 +257,7 @@ msgstr "Бүх файл"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr "Нэр"
+msgstr "Номын нэр"
 
 #: src/constants.vala.in:87
 msgid "Author"
@@ -289,7 +289,7 @@ msgstr "Өдөр"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr "Номын хорхойтон аппликэйшнийг хаахад номын нээлт эхэлнэ"
+msgstr "Номын хорхойтон аппийг хаахад ном хайлт эхэлнэ"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
@@ -301,7 +301,7 @@ msgstr "Сонгосон номуудыг номын сангаас хасах (
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr "Устгахыг идэвхжүүлэхийн тулд номуудыг сонгоно уу"
+msgstr "Устгах номуудыг сонгоно уу"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
@@ -518,11 +518,11 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr "Номын хорхойтон аппликэйшний номын сангийн харагдац"
+msgstr "Номын хорхойтон аппийн номын сангийн харагдац"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr "Номын хорхойтон аппликэйшний унших харагдац"
+msgstr "Номын хорхойтон аппийн унших харагдац"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
@@ -536,7 +536,8 @@ msgstr "Шинээр нэмэгдсэн онцлогууд:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr "Том номын сангуудыг хурдан ачаалахын тулд номын санг хуудасладаг"
+msgstr ""
+"Том хэмжээтэй номын сангуудыг хурдан ачаалахын тулд номын санг хуудасладаг"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
@@ -555,24 +556,23 @@ msgstr "Номын сан дээрх ном устгах товч ил хара�
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
-msgstr ""
-"Бүх тохиргоог хийж дуустал сонголтын харилцах цонхыг нээлттэй байлгах засвар"
+msgstr "Бүх тохиргоог хийж дуустал сонголтын харилцах цонх нээлттэй байх болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr "Нээлттэй үед толгойн гарчгийг өөрчлөх засвар"
+msgstr "Нээлттэй үед толгойн гарчгийг өөрчлөх боломжтой болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr "Цахим ном нээхдээ харилцах цонхыг хаах засвар"
+msgstr "Цахим ном нээхдээ харилцах цонхыг хааж болно"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr "F11 товчоор бүтэн дэлгэцээр унших горимд сэлгэх засвар"
+msgstr "F11 товчоор бүтэн дэлгэцээр унших горимд сэлгэх боломжтой болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr "Гарчиггүй номуудын тайлбарын харилцах цонхны засвар"
+msgstr "Нэргүй номуудад тайлбарын харилцах цонхтой болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
@@ -581,22 +581,22 @@ msgstr "Мэдээллийн хэсгээс хуудас руу буцах бо�
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr "Баруунаас зүүн тийш унших"
+msgstr "Баруунаас зүүн тийш унших боломжтой болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr "Баруунаас зүүн тийш бичгийг дэмждэг"
+msgstr "Баруунаас зүүн тийш бичгийг дэмждэг болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr "Гялалзсан шинэ дүрс, шинэ хавтасны зураг"
+msgstr "Гялалзсан шинэ дүрс, шинэ хавтасны зурагтай болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr "EPUB гарчигт зориулсан илүү нарийвчилсан тохиргоо"
+msgstr "EPUB гарчигт зориулсан илүү нарийвчилсан тохиргоотой болсон"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
@@ -607,7 +607,7 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr "Тодруулах өнгийг өөрчлөх сонголт нэмсэн"
+msgstr "Тодруулах өнгийг өөрчлөх сонголт нэмэгдсэн"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
@@ -615,7 +615,7 @@ msgid ""
 "browser to open them"
 msgstr ""
 "Номын хорхойтон апп нь HTTP, FTP гэх мэт холбооснуудыг нээхээс сэргийлнэ. "
-"Тэдгээрийг нээхийн тулд өгөгдмөл хөтчийг ашиглана"
+"Тэдгээрийг нээхдээ өгөгдмөл хөтчийг ашиглана"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
@@ -658,4 +658,4 @@ msgstr "EPUB форматыг дэмждэг анхны апп"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr "Сиддхарта Дас"
+msgstr "Сиддхарта Даас"
