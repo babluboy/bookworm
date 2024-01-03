@@ -471,7 +471,7 @@ public class BookwormApp.AppWindow {
                 WebKit.NavigationAction aNavAction = aNavDecision.get_navigation_action ();
                 WebKit.URIRequest aURIReq = aNavAction.get_request ();
                 string url_clicked_on_webview = BookwormApp.Utils.decodeHTMLChars (aURIReq.get_uri ().strip ());
-                url_clicked_on_webview = Soup.URI.decode (url_clicked_on_webview);
+                url_clicked_on_webview = GLib.Uri.unescape_string (url_clicked_on_webview);
                 debug ("URL Captured:" + url_clicked_on_webview);
                 //Handle external links (not file://) by opening the default browser i.e. http://, ftp://
                 if (url_clicked_on_webview.index_of ("file://") == -1) {
