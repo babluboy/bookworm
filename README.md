@@ -15,7 +15,6 @@ You'll need the following dependencies to build and run on Ubuntu/Debian based d
 * poppler-utils
 * unar
 * html2text
-* python2
 * libgtk-3-dev
 * libgee-0.8-dev
 * libgranite-dev
@@ -27,12 +26,11 @@ You'll need the following dependencies to build and run on Ubuntu/Debian based d
 * valac
 * gettext
 * curl
-* ninja-build
 * appstream
 
 Run the command below to install the above on Ubuntu and Debian distros:
 
-`sudo apt-get install unzip poppler-utils unar html2text python2.7 libgtk-3-dev libgee-0.8-dev libgranite-dev libsqlite3-dev libwebkit2gtk-4.1-dev libxml2-dev libpoppler-glib-dev meson valac gettext curl ninja-build appstream git`
+`sudo apt-get install unzip poppler-utils unar html2text libgtk-3-dev libgee-0.8-dev libgranite-dev libsqlite3-dev libwebkit2gtk-4.1-dev libxml2-dev libpoppler-glib-dev meson valac gettext curl appstream git`
 
 Run `git clone to download the source code, meson build` to configure the build environment and run `ninja test` to build
 
