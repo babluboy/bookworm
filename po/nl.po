@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2023-11-23 13:05+0000\n"
-"Last-Translator: Bunnywabbit <needmorecarrots@gmail.com>\n"
+"PO-Revision-Date: 2024-03-17 14:01+0000\n"
+"Last-Translator: Ranforingus <ranforingus@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "nl/>\n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2.1-rc\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -382,7 +382,7 @@ msgstr "Map toevoegen om naar boeken te zoeken"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "Weergegeven map verwijderen uit boekscan"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
