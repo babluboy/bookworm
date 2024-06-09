@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-12-14 04:29+0000\n"
+"PO-Revision-Date: 2024-06-09 01:36+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ja/>\n"
@@ -11,23 +11,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr "バージョン番号を表示します"
+msgstr "バージョン番号を表示する"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Bookworm をデバッグモードで実行します"
+msgstr "Bookworm をデバッグモードで実行する"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Bookworm を情報モードで実行します"
+msgstr "Bookworm を情報モードで実行する"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "監視中のフォルダにある新しい本を自動で追加します"
+msgstr "監視中のフォルダーにある新しい本を自動で追加する"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -73,7 +73,7 @@ msgstr "タイトル・著者・タグで検索"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr "本がない可能性があります"
+msgstr "本がありません"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -111,7 +111,7 @@ msgstr ""
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm はここで見つかったファイル形式をサポートしていません: "
+msgstr "Bookworm は以下で見つかったファイル形式をサポートしていません: "
 
 #: src/constants.vala.in:51
 msgid ""
@@ -123,9 +123,8 @@ msgstr ""
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
-"ページナビゲーションにおいて問題が発生しました。前か後ろのページに移動してく"
-"ださい。"
+msgstr "ページナビゲーションにおいて問題が発生しました。前か次のページに移動してくだ"
+"さい。"
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -346,7 +345,7 @@ msgstr "行の幅を広くします"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr "行の幅をせまくします"
+msgstr "行の幅を狭くします"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
@@ -354,7 +353,7 @@ msgstr "行の間隔を広くします"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr "行の間隔をせまくします"
+msgstr "行の間隔を狭くします"
 
 #: src/constants.vala.in:110
 msgid "Align left"
@@ -458,7 +457,7 @@ msgstr "不明な本"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr "このアプリケーションについて"
+msgstr "Bookworm について"
 
 #: src/dialog.vala:59
 msgid "Select Image"
@@ -466,7 +465,7 @@ msgstr "画像を選択"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr "フォルダを選択"
+msgstr "フォルダーを選択"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
