@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2024-06-14 00:15+0000\n"
-"Last-Translator: Wojciech Teichert <wojtekt99@gmail.com>\n"
+"PO-Revision-Date: 2024-11-27 03:02+0000\n"
+"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "pl/>\n"
 "Language: pl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -72,7 +72,7 @@ msgstr "Szukaj wg tytułu, autora lub tagów"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr "Wygląda na to, że biblioteka Bookworma jest pusta."
+msgstr "Wygląda na to, że biblioteka Bookworma jest pusta"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -504,8 +504,8 @@ msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
-"Czytaj książki, które kochasz nie martwiąc się o formaty w jakich są "
-"zapisane, takie jak  EPUB, PDF, MOBI, CBR itp."
+"Czytaj książki, które kochasz nie martwiąc się o formaty, w jakich są "
+"zapisane, takie jak EPUB, PDF, MOBI, CBR itp."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
@@ -545,7 +545,7 @@ msgstr "Nowe funkcje:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
 msgstr ""
-"Biblioteka jest podzielona na strony, aby szybko ładować duże biblioteki."
+"Biblioteka jest podzielona na strony, aby szybko wczytywać duże biblioteki"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
