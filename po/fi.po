@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2022-11-07 03:11+0000\n"
-"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2024-12-04 12:00+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/fi/>\n"
 "Language: fi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -579,7 +579,7 @@ msgstr "Korjaa e-kirjan avaus -ikkunan peruminen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "Korjaus koko näytön tilan välillä vaihtamiseen F11-näppäimellä"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
@@ -587,12 +587,12 @@ msgstr "Korjaa huomautusikkuna nimettömissä kirjoissa"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "Korjaus tietonäkymästä sivun sijaintiin palaamiseen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "Oikealta vasemmalle lukeminen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
@@ -631,14 +631,18 @@ msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"Korjattu vika, jossa rivit menivät päällekkäin kirjan parilla ensimmäisellä "
+"sivulla"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
+"GResourcen käyttö kuvakkeiden, komentosarjojen jne. lataamisen "
+"nopeuttamiseen."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Pientä CSS-yhteensopivuutta Junon kanssa"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
@@ -650,19 +654,19 @@ msgstr "Tuki MOBI formaatille ja UX parannuksia"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "UX-parannuksia luettelonäkymään ja muihin asetusten mukauttamiseen"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "Sarjakuvatuki ja UX-parannuksia"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF-tuki ja UX-parannuksia"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "Ensimmäinen julkaisu EPUB-muodon tuella"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
