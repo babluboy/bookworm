@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-03-01 16:17+0000\n"
-"Last-Translator: Deenadayalan Chandrakumaran <deenadayalancs@gmail.com>\n"
+"PO-Revision-Date: 2024-12-10 20:00+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ta/>\n"
 "Language: ta\n"
@@ -11,27 +11,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "பதிப்பு எண்ணைக் காண்பி"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "பிழைத்திருத்த பயன்முறையில் புத்தகப்புழு இயக்கவும்"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "செய்தி பயன்முறையில் புத்தகப்புழு இயக்கவும்"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "பார்த்த கோப்புறைகளிலிருந்து தானாகவே புதிய புத்தகங்களைச் சேர்க்கவும்"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்துசெய்"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
@@ -43,597 +43,623 @@ msgstr "சேமி"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "ஒரு மின்புத்தக வாசகர்"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "வலைபெயர்ப்பு மொழிபெயர்ப்பாளர்கள்"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "வலைத்தளம் | மொழிபெயர்ப்பு | பிழை டிராக்கர்"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "கிடைக்கவில்லை"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "மின்புத்தக வாசகர்"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "இந்த புத்தகத்தைத் தேடுங்கள்…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "தலைப்பு, ஆசிரியர் மற்றும் குறிச்சொற்கள் மூலம் தேடுங்கள்"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "புத்தகப்புழு புத்தகங்கள் இல்லை என்று தெரிகிறது"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "மின்புத்தகங்களைச் சேர்ப்பதன் மூலம் உங்கள் நூலகத்தை உருவாக்குங்கள்"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "படிக்க ஒரு புத்தகத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"புத்தகத்தின் உள்ளடக்கங்களைப் பிரித்தெடுப்பதில் சிக்கல். இங்கே செல்லுபடியாகும் மின்புத்தக கோப்பு இருப்பதை உறுதிசெய்க: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
+"தவறான ஊடக வகை கண்டறியப்பட்டது. இந்த மின்புத்தகத்திற்கான வடிவமைப்பை சரிபார்க்கவும்: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"தவறான உள்ளடக்கம் காணப்பட்டது. இங்கே செல்லுபடியாகும் மின்புத்தக கோப்பு இருப்பதை உறுதிசெய்க: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"மின்புத்தகத்தை பாகுபடுத்த முடியவில்லை. இங்கே செல்லுபடியாகும் மின்புத்தக கோப்பு இருப்பதை உறுதிசெய்க: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "இங்கே காணப்படும் கோப்பின் வடிவமைப்பை புத்தகப்புழு ஆதரிக்காது: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"கோரப்பட்ட உள்ளடக்கத்தை பெற முடியவில்லை. தயவுசெய்து இங்கே காணப்படும் மின்புத்தக கோப்பை அகற்றி சேர்க்கவும்: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"பக்க வழிசெலுத்தலில் வெளியிடுங்கள், தயவுசெய்து பக்கங்களை முன்னோக்கி அல்லது பின்னோக்கி நகர்த்தவும்."
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "நூலகம்"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "மீண்டும் தொடங்குங்கள்"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "உள்ளடக்கங்கள்"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "உள்ளடக்க #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "புக்மார்க்குகள்"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "பிரிவு பிபிபிக்கு புக்மார்க்கு #nnn"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "புக்மார்க்கு செய்யப்பட்ட பிரிவுக்கு செல்ல ஒரு இணைப்பைக் சொடுக்கு செய்க"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"பிபிபியில் புக்மார்க்குகள் இல்லை, பக்கத்தை புக்மார்க்கு செய்ய தலைப்பு பட்டியில் உள்ள புக்மார்க்கு ஐகானைக் சொடுக்கு செய்க"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "சொல் பொருள்"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "தேடல் முடிவுகள்"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "சிறுகுறிப்புகள்"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "சிறுகுறிப்பு குறிச்சொற்கள்"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "இந்த சிறுகுறிப்புக்கான கமாவால் பிரிக்கப்பட்ட குறிச்சொற்கள்"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "இதற்கான சிறுகுறிப்பைத் திருத்து:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "சிறுகுறிப்பு பகுதிக்கு செல்ல ஒரு இணைப்பைக் சொடுக்கு செய்க"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"பிபிபியில் சிறுகுறிப்புகள் எதுவும் அமைக்கப்படவில்லை, ஒரு புத்தகத்தின் பக்கத்தை வலது சொடுக்கு செய்து, சிறுகுறிப்புகளைச் சேர்க்"
+"க சூழல் மெனுவிலிருந்து சிறுகுறிப்பைத் தேர்வுசெய்க"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& இல் '$$$' தேடுகிறது:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& இல் '$$$' க்கான பின்வரும் போட்டிகளைக் கண்டறிந்தது:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "&&& இல் '$$$' க்கு போட்டிகள் எதுவும் கிடைக்கவில்லை"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"புத்தகத்தில் ஒரு வார்த்தையைத் தேர்ந்தெடுத்து, அதன் பொருளைப் பார்க்க வலது சொடுக்கு"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "தகவலைத் திருத்தவும்"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "கவர் படத்தைப் புதுப்பிக்கவும்"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "புதுப்பிப்பு தலைப்பு"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "குறிச்சொற்களைப் புதுப்பிக்கவும்"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "புதுப்பிப்பு எழுத்தாளர்"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "முழுத்திரை காட்சியை உள்ளிடவும் (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "முழுத்திரை பார்வையில் இருந்து வெளியேறவும் (ESC)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "சொல் அர்த்தத்தை சரிபார்க்கவும்"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட உரையை சிறுகுறிப்பு செய்யுங்கள்"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "புத்தகங்கள்"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "படங்கள்"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "அனைத்து கோப்புகள்"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "தலைப்பு"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "நூலாசிரியர்"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "கடைசியாக திறக்கப்பட்டது"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "செயல்வரம்பு"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "குறிச்சொற்கள்"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "இன்று"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "நேற்று"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "நாட்கள்"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "புத்தகப்புழு மூடப்படும் போது புத்தகங்கள் கண்டுபிடிப்பு தொடங்கப்படும்"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "நூலகத்தில் புத்தகங்களைச் சேர்க்கவும்"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
+"தேர்ந்தெடுக்கப்பட்ட புத்தகங்களை நூலகத்திலிருந்து அகற்று (மின்புத்தக கோப்பு நீக்கப்படாது)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "அகற்றுவதற்கு புத்தகங்களைத் தேர்ந்தெடுக்கவும்"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "நூலகத்தில் ஒன்று அல்லது அதற்கு மேற்பட்ட புத்தகங்களைத் தேர்ந்தெடுக்கவும்"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "உள்ளடக்கங்கள், புக்மார்க்குகள் மற்றும் தேடல் முடிவுகளைப் பார்க்கவும்"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr ""
+msgstr "விருப்பங்களை வாசித்தல்"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "இந்த பக்கத்தை புக்மார்க்கு செய்ய சொடுக்கு செய்க"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "இந்த புத்தகக்குறியை அகற்ற சொடுக்கு செய்க"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "எழுத்துரு அளவை அதிகரிக்கவும் (Ctrl + உயர்த்து + ' +')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "எழுத்துரு அளவைக் குறைக்கவும் (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "வரி அகலத்தை அதிகரிக்கவும்"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "வரி அகலத்தைக் குறைக்கவும்"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
-msgstr ""
+msgstr "வரி இடைவெளியை அதிகரிக்கவும்"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "வரி இடைவெளியைக் குறைக்கவும்"
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "இடதுபுறம் சீரமைக்கவும்"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "வலதுபுறம் சீரமைக்கவும்"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "கவர் படத்தைப் புதுப்பிக்கவும்"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "இந்த வண்ண சுயவிவரத்திற்கு கருப்பொருளைப் பயன்படுத்துங்கள்"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "செயல்தவிர் செய்ய முழுத்திரை பார்வை மற்றும் தப்பி விசையை உள்ளிடவும்"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "புத்தகங்களுக்கு ச்கேன் செய்ய கோப்புறையைச் சேர்க்கவும்"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "புத்தக ச்கேன் மூலம் காட்டப்படும் கோப்புறையை அகற்று"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட உரையில் சிறுகுறிப்பைச் சேர்க்கவும்"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "முந்தைய பக்கத்திற்குச் செல்"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "அடுத்த பக்கத்திற்குச் செல்"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "விருப்பத்தேர்வுகள்"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "இருண்ட பயன்முறையை இயக்கவும்"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "தற்காலிக சேமிப்பை இயக்கவும் (புத்தகங்களை வேகமாக திறக்கிறது)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr ""
+msgstr "தொடக்கத்தில் எப்போதும் நூலகத்தைக் காட்டுங்கள்"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "இரண்டு பக்க வாசிப்பை இயக்கவும்"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "எழுத்துருவைத் தேர்ந்தெடுக்கவும்"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr ""
+msgstr "வாசிப்பு சுயவிவரத்தைத் தனிப்பயனாக்குங்கள்"
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "உரை"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "பின்னணி"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "சிறப்பம்சமாக"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "புத்தகங்களுக்கு ச்கேன் செய்ய கோப்புறைகளைச் சேர்க்கவும்"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "சுயவிவரம்"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "நூலகத்தில் ஒரு பக்கத்திற்கு புத்தகங்களின் எண்ணிக்கை"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "இயல்புநிலை மதிப்புகளுக்கு மீட்டமைக்கவும்"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "தெரியாத நூல்"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "பற்றி"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "படத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "கோப்புறையைத் தேர்ந்தெடு"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr ""
+msgstr "மின்புத்தகத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "சேர்த்தல் "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "நூல்"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "புத்தகப்புழு"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "மின்புத்தகங்களைப் படித்து நிர்வகிக்கவும்"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 msgstr ""
+"புத்தகப்புழு; மின்புத்தகம்; வாசகர்; எபப்; மொபி; காமிக்; சிபிஆர்; சிபிஇசட்; பி.டி.எஃப்;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "கவனம் செலுத்திய மின்புத்தக வாசகர்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"EPUB, PDF, MOBI, CBR போன்ற வெவ்வேறு வடிவ சிக்கல்களைப் பற்றி கவலைப்படாமல் நீங்கள் விரும்பும் புத்தகங்களைப் "
+"படியுங்கள்."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"மேனிலை தரவு தேடல் மற்றும் குறிச்சொல் அடிப்படையிலான வடிகட்டலைப் பயன்படுத்தி புத்தகங்களை விரைவாகக் கண்டுபிடிக்க, "
+"புத்தகங்களில் மெட்டாடேட்டாவை குறிக்கவும் புதுப்பிக்கவும் உங்கள் நூலகத்தை நிர்வகிக்கவும்."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
+"இந்த பதிப்பு EPUB, MOBI, PRC, PDF, FB2 மற்றும் காமிக்ச் (சிபிஆர் மற்றும் சிபிஇசட்) வடிவங்களை "
+"ஆதரிக்கிறது."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "புத்தகப்புழு நூலகக் காட்சி"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "புத்தகப்புழு வாசிப்பு பார்வை"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
 msgstr ""
+"இந்த வெளியீட்டில் சில புதிய நற்பொருத்தங்கள், திருத்தங்கள் மற்றும் புதிய மொழிபெயர்ப்புகள் உள்ளன:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "புதிய அம்சங்கள்:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "பெரிய நூலகங்களை விரைவாக ஏற்ற நூலகம் பிணைக்கப்பட்டுள்ளது"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "FB2 வடிவமைப்பிற்கான உதவி - .fb2 மற்றும் .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "திருத்தங்கள்:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "நூலகத்தில் புத்தக அகற்றுதல் பொத்தானின் உள்ளுணர்வு பிரதிநிதித்துவம்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"அனைத்து மாற்றங்களும் முடியும் வரை விருப்பத்தேர்வு உரையாடலைத் திறந்து வைப்பதை சரிசெய்யவும்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "திறந்த காலத்தில் தலைப்புத் தகவலை மாற்றத்தைச் சரிசெய்யவும்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
+"ஒரு மின்புத்தகத்தைத் திறக்க உரையாடலை ரத்து செய்வதைக் கையாள்வதை சரிசெய்யவும்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "F11 உடன் முழு திரை பயன்முறைக்கு இடையில் மாறுவதை சரிசெய்யவும்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
 msgstr ""
+"வெற்று தலைப்புகளைக் கொண்ட புத்தகங்களுக்கான சிறுகுறிப்பு உரையாடலை சரிசெய்யவும்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "செய்தி பார்வையில் இருந்து பக்க நிலைக்குத் திரும்புவதை சரிசெய்யவும்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "வலமிருந்து இடது வாசிப்பு"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "வலது-இடது ச்கிரிப்டுக்கான உதவி"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "ஒரு பளபளப்பான புதிய படவுரு மற்றும் புதிய கவர் படங்கள்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "EPUB உள்ளடக்க அட்டவணைக்கு சிறந்த உதவி"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"தேர்ந்தெடுக்கப்பட்ட வார்த்தையை வலது சொடுக்கு செய்து அதன் பொருளை நிகழ்நிலை அகராதியில் பாருங்கள்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "சிறப்பம்சமாக வண்ணத்தைத் தனிப்பயனாக்க விருப்பம் சேர்க்கப்பட்டது"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"HTTP, FTP போன்ற இணைப்புகளைத் திறப்பதைத் தடுக்கவும், அவற்றை திறக்க இயல்புநிலை உலாவியைப் பயன்படுத்தவும்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
+"புத்தகத்தின் முதல் இரண்டு பக்கங்களுக்கு கோடுகள் ஒன்றுடன் ஒன்று சிக்கியுள்ள ஒரு சிக்கல் சரி செய்யப்பட்டது"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
 msgstr ""
+"ஐகான்கள், ச்கிரிப்ட்கள் போன்றவற்றை ஏற்றுவதை விரைவுபடுத்துவதற்கு கிரெசோர்சின் பயன்பாடு."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "சூனோவுடன் சில சிறிய சிஎச்எச் பொருந்தக்கூடிய தன்மை"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "சிறுகுறிப்புகள் மற்றும் இரண்டு பக்க காட்சிகள்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "MOBI வடிவம் மற்றும் யுஎக்ச் மேம்பாடுகளுக்கான உதவி"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "பட்டியல் பார்வை மற்றும் பிற விருப்பத்தேர்வுகளுக்கான யுஎக்ச் மேம்பாடுகள்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "காமிக்ச் உதவி மற்றும் யுஎக்ச் மேம்பாடுகள்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF உதவி மற்றும் யுஎக்ச் மேம்பாடுகள்"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "EPUB வடிவமைப்பிற்கான ஆதரவுடன் ஆரம்ப வெளியீடு"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "சித்தார்த் அடிமை"
