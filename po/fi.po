@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2024-12-04 12:00+0000\n"
+"PO-Revision-Date: 2024-12-12 13:00+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/fi/>\n"
@@ -375,7 +375,7 @@ msgstr "Siirry kokoruututilaan ja poistu esc-näppäimellä"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr "Etsi kirjoja kansioista"
+msgstr "Lisää skannattava kansio kirjoja varten"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
@@ -435,7 +435,7 @@ msgstr "Korostus"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr "Etsi kirjoja kansioista"
+msgstr "Lisää skannattavat kansiot kirjoja varten"
 
 #: src/constants.vala.in:133
 msgid "Profile"
