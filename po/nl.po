@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2024-03-17 14:01+0000\n"
-"Last-Translator: Ranforingus <ranforingus@hotmail.com>\n"
+"PO-Revision-Date: 2025-02-15 20:55+0000\n"
+"Last-Translator: hardbacknutter <2082710+tfonteyn@users.noreply.github.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "nl/>\n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.10\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -23,11 +23,11 @@ msgstr "Bookworm in debug modus uitvoeren"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr "Bookworm in info modus uitvoeren"
+msgstr "Bookworm uitvoeren in info modus"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Voeg automatisch boeken toe vanuit gevolgde mappen"
+msgstr "Voeg automatisch nieuwe boeken toe vanuit gemonitorde mappen"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
