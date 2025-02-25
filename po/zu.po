@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2025-02-25 04:09+0000\n"
+"PO-Revision-Date: 2025-02-25 04:16+0000\n"
 "Last-Translator: Thamsanqa Bengu <tbengu@gmail.com>\n"
 "Language-Team: Zulu <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "zu/>\n"
@@ -213,28 +213,35 @@ msgid "No matches found for '$$$' in &&&"
 msgstr "Asikutholanga okuhlagene no-'$$$' ku-&&&"
 
 #: src/constants.vala.in:72
+#, fuzzy
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Khetha igama encwadini bese ucofa inkinobho yasokudla ekugundwane ukuze "
+"izitholele incazelo yegama"
 
 #: src/constants.vala.in:73
+#, fuzzy
 msgid "Edit Info for"
-msgstr ""
+msgstr "Shintsha Imininingwane ya:"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
+#, fuzzy
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Shintsha isithombe"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "Shintsha isihoko"
 
 #: src/constants.vala.in:76
+#, fuzzy
 msgid "Update Tags"
-msgstr ""
+msgstr "Shintsha isigqamiso"
 
 #: src/constants.vala.in:77
+#, fuzzy
 msgid "Update Author"
-msgstr ""
+msgstr "Shintsha umabhalane"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
