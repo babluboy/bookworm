@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2025-02-25 04:20+0000\n"
+"PO-Revision-Date: 2025-02-25 04:28+0000\n"
 "Last-Translator: Thamsanqa Bengu <tbengu@gmail.com>\n"
 "Language-Team: Zulu <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "zu/>\n"
@@ -258,51 +258,52 @@ msgstr "Bheka incazelo yegama"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Chaza lokho okgqanyisiswe"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "Izincwadi"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "Izithombe"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "Amafayela wonke"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Isihloko"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "Umqophi"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "Yagcina ukuvulwa"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "Izinga"
 
 #: src/constants.vala.in:90
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Ogqamisa"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "Namuhla"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "Izolo"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "Izinsuku"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
