@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2025-02-25 04:16+0000\n"
+"PO-Revision-Date: 2025-02-25 04:20+0000\n"
 "Last-Translator: Thamsanqa Bengu <tbengu@gmail.com>\n"
 "Language-Team: Zulu <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "zu/>\n"
@@ -245,15 +245,16 @@ msgstr "Shintsha umabhalane"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "Gcwalisa i-screen"
 
 #: src/constants.vala.in:80
+#, fuzzy
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "Yehlisa i-screen"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Bheka incazelo yegama"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
