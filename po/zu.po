@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2025-02-25 03:29+0000\n"
+"PO-Revision-Date: 2025-02-25 04:09+0000\n"
 "Last-Translator: Thamsanqa Bengu <tbengu@gmail.com>\n"
 "Language-Team: Zulu <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "zu/>\n"
@@ -87,32 +87,45 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Kunenkinga mayelana nokukhishwa kwalokho okuphakathi kwencwadi. Qikelela "
+"ukuthi i-eBook efanele. "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
+"Kukhona uhlobo okungamulekile. Qikelela ukuthi le-eBook iwuholobo "
+"olwamulekile. "
 
 #: src/constants.vala.in:48
+#, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"Kukhona zinto ezingamulekile. Qikelela ukuthi  ifayela le-eBook iwuholobo "
+"olwamulekile. "
 
 #: src/constants.vala.in:49
+#, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
-msgstr ""
+msgstr "I-eBook ayifundeki. Qikelela ukuthi le-eBook iwuholobo olwamulekile. "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "I-Bookworm ayihambelani nohkobo lofayela olutholakalq lapha "
 
 #: src/constants.vala.in:51
+#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Lokho okucelile, akutholakali.  Sicela ususe bese uyabuyisela lefayela le-"
+"eBook olutholakala lapho. "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Kukhona okuphazamisa ukuphenywa kwaleli khasi, sicela uphenye uyephambili "
+"bese uyapheya futhi usubuyela emuva"
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -124,15 +137,17 @@ msgstr ""
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "Okuqukethwe"
 
 #: src/constants.vala.in:56
+#, fuzzy
 msgid "Content #"
-msgstr ""
+msgstr "I-hastag yokuqukethwe"
 
 #: src/constants.vala.in:57
+#, fuzzy
 msgid "Bookmarks"
-msgstr ""
+msgstr "Ama-Bookmarks"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
@@ -150,27 +165,30 @@ msgstr ""
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "Incazelo yegama"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
 msgstr ""
 
 #: src/constants.vala.in:63
+#, fuzzy
 msgid "Annotations"
-msgstr ""
+msgstr "Incazelo"
 
 #: src/constants.vala.in:64
+#, fuzzy
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Okugqamisa incazelo"
 
 #: src/constants.vala.in:65
+#, fuzzy
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Hlukanisa nge-comma ogqamisa bencazelo"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Shitsha incazelo ka:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
@@ -184,15 +202,15 @@ msgstr ""
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Sifuna u-'$$$' ku-&&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Sithola ukulandelayo okuhlangene no-'$$$' ku &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Asikutholanga okuhlagene no-'$$$' ku-&&&"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
