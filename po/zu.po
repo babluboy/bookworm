@@ -2,24 +2,33 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
+"PO-Revision-Date: 2025-02-25 03:20+0000\n"
+"Last-Translator: Thamsanqa Bengu <tbengu@gmail.com>\n"
+"Language-Team: Zulu <https://hosted.weblate.org/projects/bookworm/bookworm/"
+"zu/>\n"
+"Language: zu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.10.2-dev\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "Unqondonqondo"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Sebenzisa iBookworm ngesimo sokucwaninga"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Sebenzisa iBookworm ngesimo somuniningwane"
 
 #: src/bookworm.vala:112
+#, fuzzy
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Uma ufuna ukufaka izincwadi ezintsha koqweqwe"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
