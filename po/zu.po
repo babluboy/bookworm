@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2025-02-25 03:24+0000\n"
+"PO-Revision-Date: 2025-02-25 03:29+0000\n"
 "Last-Translator: Thamsanqa Bengu <tbengu@gmail.com>\n"
 "Language-Team: Zulu <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "zu/>\n"
@@ -68,11 +68,11 @@ msgstr "Phenya lencwadi…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Phenya ngesihloko, ngomqophi, noma ngamatemu"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Kubukeka sengathi u-Bookworm akanazo izincwadi"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -80,7 +80,7 @@ msgstr ""
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Khetha i-eBook ozoyifunda"
 
 #: src/constants.vala.in:46
 msgid ""
