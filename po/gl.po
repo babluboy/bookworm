@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2017-09-18 07:01+0000\n"
-"Last-Translator: Pablo Mariño <pablo.marino.boga@gmail.com>\n"
+"PO-Revision-Date: 2025-03-17 04:46+0000\n"
+"Last-Translator: \"J. Lavoie\" <j.lavoie@net-c.ca>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/gl/>\n"
 "Language: gl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -43,7 +43,7 @@ msgstr "Gardar"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Un Lector de eBooks"
+msgstr "Un lector de libros electrónicos"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -59,7 +59,7 @@ msgstr "Non dispoñible"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "Lector de eBooks"
+msgstr "Lector de libros electrónicos"
 
 #: src/constants.vala.in:41
 #, fuzzy
@@ -81,15 +81,14 @@ msgstr "Construe a tua biblioteca engadindo eBooks"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Elixe un eBook para ler"
+msgstr "Elixe un libro para ler"
 
 #: src/constants.vala.in:46
-#, fuzzy
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problema extraendo os contidos do libro. Asegurate de que existe un eBook "
+"Problema extraendo os contidos do libro. Asegurate de que existe un libro "
 "válido na localización : "
 
 #: src/constants.vala.in:47
@@ -100,18 +99,16 @@ msgstr ""
 "localización: "
 
 #: src/constants.vala.in:48
-#, fuzzy
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
-"Contido non válido atopado. Asegúrese de que existe un eBook válido na "
+"Contido non válido atopado. Asegúrese de que existe un libro válido na "
 "localización: "
 
 #: src/constants.vala.in:49
-#, fuzzy
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
-"Non foi posible parsear o eBook. Asegurate de que exista un ficheiro de "
-"eBook válido na localización : "
+"Non foi posible parsear o libro. Asegurate de que exista un ficheiro de "
+"libro válido na localización : "
 
 #: src/constants.vala.in:50
 #, fuzzy
@@ -119,13 +116,12 @@ msgid "Bookworm does not support the format of the file found here: "
 msgstr "Bookworm Non soporta o formato do ficheiro atopado na localización : "
 
 #: src/constants.vala.in:51
-#, fuzzy
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
 "O contido pedido non puido ser recuperado. Por favor elimine e engada o "
-"ficheiro do eBook na localización : "
+"ficheiro do libro na localización : "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -145,7 +141,7 @@ msgstr "Contidos"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr "Contido"
+msgstr "Contido nº"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
