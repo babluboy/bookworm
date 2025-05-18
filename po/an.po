@@ -2,8 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
+"PO-Revision-Date: 2025-05-18 21:12+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"Language-Team: Aragonese <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/an/>\n"
+"Language: an\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.12-dev\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -27,11 +35,11 @@ msgstr ""
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "Ubrir"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "Alzar"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
@@ -239,7 +247,7 @@ msgstr ""
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Títol"
 
 #: src/constants.vala.in:87
 msgid "Author"
