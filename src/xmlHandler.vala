@@ -142,11 +142,10 @@ public class BookwormApp.XmlParser {
     public void parseXML (string path) {
         Parser.init ();
         var handler = SAXHandler ();
-        void* user_data = null;
         handler.startElement = start_element;
         handler.characters = get_text;
         handler.endElement = end_element;
-        handler.user_parse_file (user_data, path);
+        handler.user_parse_file (this, path);
         Parser.cleanup ();
     }
 
