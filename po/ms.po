@@ -2,20 +2,20 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2024-10-27 16:00+0000\n"
+"PO-Revision-Date: 2025-07-27 03:03+0000\n"
 "Last-Translator: The great <ledang99@yahoo.com>\n"
 "Language-Team: Malay <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ms/>\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8.2-dev\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr "Tunjukkan nombor versi"
+msgstr "Papar nombor versi"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
@@ -55,11 +55,11 @@ msgstr "Laman Web | Terjemahan | Bug Tracker"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "Tiada"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "eBook Reader"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
@@ -72,7 +72,7 @@ msgstr "Carian pada Tajuk, Pengarang dan Tags"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Tajuk tidak dijumpai"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -136,18 +136,20 @@ msgid "Bookmarks"
 msgstr "Bookmarks"
 
 #: src/constants.vala.in:58
+#, fuzzy
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "Bookmark #NNN untuk Section PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Klik pada link untuk pergi ke bahagian bookmark"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"Tiada bookmark pada BBB, clik pada ikon bookmark untuk set bookmark mukasurat"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
@@ -160,145 +162,147 @@ msgstr "Hasil \"search\""
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "Anotasi"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Label Anotasi"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Label yang dipisahkan dengan koma untuk anotasi ini"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Sunting Anotasi untuk :"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Klik pada link untuk pergi ke bahagian anotasi"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"Tiada anotasi ditetapkan dalam BBB. Klik kanan pada halaman buku dan pilih "
+"'anotasi' dari menu konteks untuk menambah anotasi"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "Carian '$$$' pada &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "Menemui padanan berikut untuk '$$$' pada &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "Tiada padanan untuk '$$$' pada &&&"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "Pilih perkataan pada buku dan klik kanan untuk carian maksud perkataan"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "Ubah maklumat mengenai"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Kemaskini gambar kulit"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "Kemaskini tajuk"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "Kemaskini label"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "Kemaskini pengarang"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "Buka screen penuh (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "Tutup screen penuh (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Periksa maksud perkataan"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Anotasi perkataan yang dipilih"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "Buku"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "Gambar"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "Semua Fail"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Tajuk"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "Pengarang"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "Fail terakhir dibuka"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "Penilaian"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "Label"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "Hari ini"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "Semalam"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "Hari"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "Proses mengesan buku baru akan berjalan selepas Bookworm ditutup"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "Tambah buku pada perpustakaan"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
-msgstr ""
+msgstr "Buang buku dari perpustakaan (Fail tidak akan dipadam)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "Pilih buku untuk dibuang"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "Pilih satu (atau lebih) buku dari perpustakaan"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
