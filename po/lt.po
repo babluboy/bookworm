@@ -2,18 +2,18 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2025-06-25 14:46+0000\n"
-"Last-Translator: Tomas Darius Davainis <tomas@davainis.lt>\n"
+"PO-Revision-Date: 2025-08-23 10:02+0000\n"
+"Last-Translator: Marija Grineviciute <marijagrine@protonmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
 "19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
 "1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
-"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Weblate 5.13\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -21,263 +21,278 @@ msgstr "Rodyti versijos numerį"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "Leisti „Bookworm“ įjungus klaidų taisymo režimą"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "Leisti „Bookworm“ įjungus informacinį režimą"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "Automatiškai pridėti naujas knygas iš stebimų aplankų"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "Atšaukti"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "Atverti"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "Išsaugoti"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "Elektroninių knygų skaityklė"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "„Weblate“ vertėjai"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "Svetainė | Vertimas | Riktų sekiklis"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "Neprieinama"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "El. knygų skaityklė"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "Ieškoti šios knygos…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "Ieškoti pagal pavadinimą, autorių ir etiketes"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "Regis „Bookworm“ nėra jokių knygų"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "Kurkite biblioteką pridėdami el. knygas"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "Pasirinkite norimą skaityti el. knygą"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"Kilo problema ištraukiant knygos turinį. Įsitikinkite, kad čia yra "
+"galiojantis el. knygos failas: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr ""
+msgstr "Aptiktas netinkamas failo tipas. Patikrinkite šios el. knygos formatą: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"Rastas negaliojantis turinys. Įsitikinkite, kad čia yra galiojantis el. "
+"knygos failas: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"Nepavyko apdoroti el. knygos. Įsitikinkite, kad čia yra galiojantis el. "
+"knygos failas: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "„Bookworm“ nepalaiko čia rasto failo formato: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"Nepavyko gauti prašomo turinio. Pašalinkite ir pridėkite el. knygos failą "
+"rastą čia: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Kilo puslapių vartymo problema, atverskite sekantį arba ankstesnį puslapį."
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "Biblioteka"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "Pratęsti"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "Turinys"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "Turinio nr."
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "Žymės"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "PPP skirsnio žymė #NNN"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "Spauskite nuorodą, kad pereitumėte prie pažymėto skirsnio"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"BBB nėra jokių žymių, paspauskite žymės piktogramą antraštės juostelėje, kad "
+"pažymėtumėte puslapį"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "Žodžio reikšmė"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "Paieškos rezultatai"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "Užrašai"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "Užrašų etiketės"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "Etiketės, skiriamos kableliu, šiam užrašui"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "Redaguoti užrašą:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "Spauskite nuorodą, kad pereitumėte į skirsnį su užrašais"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"BBB nėra jokių užrašų, paspauskite knygos puslapį dešiniuoju pelės klavišu "
+"ir pasirinkite užrašą iš kontekstinio meniu, kad pridėtumėte užrašų"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& ieškome „$$$“:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "&&& radome šias atitiktis „$$$“ paieškai:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "&&& nerasta jokių atitikčių „$$$“ paieškai"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
 msgstr ""
+"Paspauskite dešiniuoju pelės mygtuku pasirinktą žodį knygoje, kad "
+"pamatytumėte jo reikšmę"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "Redaguoti informaciją"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "Atnaujinti viršelio paveikslėlį"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "Atnaujinti pavadinimą"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "Atnaujinti etiketes"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "Atnaujinti autorių"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "Pereiti į pilno ekrano rešimą (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "Išeiti iš pilno ekrano režimo (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "Patikrinti žodžio reikšmę"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "Pažymėti pasirinkti tekstą"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "Knygos"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "Vaizdai"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "Visi failai"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "Pavadinimas"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "Autorius"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "Paskutinįkart atverta"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "Vertinimas"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "Etiketės"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "Šiandien"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "Vakar"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "Dienos"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
