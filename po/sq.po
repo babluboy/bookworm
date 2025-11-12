@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2019-02-20 19:17+0000\n"
-"Last-Translator: Betim <betimsalihu@gmail.com>\n"
+"PO-Revision-Date: 2025-11-13 11:51+0000\n"
+"Last-Translator: kkat550 <kkat550@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sq/>\n"
 "Language: sq\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -70,9 +70,10 @@ msgid "Search by Title, Author and Tags"
 msgstr "Kërko në Titull, Autor apo Tag"
 
 #: src/constants.vala.in:43
-#, fuzzy
 msgid "Looks like Bookworm has no books"
-msgstr "Siduket Bookworm nuk ka asnjë libër në librari."
+msgstr ""
+"Duket si nje \"Bookworm\" (shqip figurativ: \"Krimb librash\") por nuk ka "
+"libra."
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
@@ -89,9 +90,10 @@ msgid ""
 msgstr "Hapja e librit dështoi. Sigurohu që skeda e eLibrit eshte këtu: "
 
 #: src/constants.vala.in:47
-#, fuzzy
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr "MIME tipi nuk është i saktë. Kontrollo formatin e këtij eLibri: "
+msgstr ""
+"Tipi i medias nuk është i saktë. Kontrolloni formatin e ketij eBook "
+"(shqip: libër digjital): "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
@@ -116,6 +118,7 @@ msgstr ""
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
 msgstr ""
+"Problem me navigimin e faqeve, ju lutem lëvizni faqet përpara ose prapa."
 
 #: src/constants.vala.in:53
 msgid "Library"
@@ -155,7 +158,7 @@ msgstr ""
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr "DMThnja e fjalës"
+msgstr "Kumptimi i fjalës"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
@@ -221,7 +224,7 @@ msgstr ""
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "Përditëso Autorin"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
