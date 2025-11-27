@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2025-11-27 08:43+0000\n"
+"PO-Revision-Date: 2025-11-28 09:00+0000\n"
 "Last-Translator: Feike Donia <feikedonia@proton.me>\n"
 "Language-Team: Afrikaans <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/af/>\n"
@@ -18,14 +18,12 @@ msgid "Display version number"
 msgstr "Wys weergawe nommer"
 
 #: src/bookworm.vala:110
-#, fuzzy
 msgid "Run Bookworm in debug mode"
-msgstr "Voer Bookworm uit in debug-modus"
+msgstr "Voer Bookworm in ontfoutingsmodus uit"
 
 #: src/bookworm.vala:111
-#, fuzzy
 msgid "Run Bookworm in info mode"
-msgstr "Voer Bookworm uit in infomodus"
+msgstr "Voer Bookworm in infomodus uit"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
