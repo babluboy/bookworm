@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2021-06-14 23:32+0000\n"
-"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2025-12-15 10:00+0000\n"
+"Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/it/>\n"
 "Language: it\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -19,7 +19,7 @@ msgstr "Mostra il numero di versione"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr "Esegui Bookworm in modalità di debug"
+msgstr "Esegui Bookworm in modalità debug"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
@@ -43,7 +43,7 @@ msgstr "Salva"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "Un lettore di libri digitali"
+msgstr "Un lettore di eBook"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -59,7 +59,7 @@ msgstr "Non disponibile"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr "Lettore di libri digitali"
+msgstr "Lettore di eBook"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
@@ -67,7 +67,7 @@ msgstr "Cerca questo libro…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "Cerca per Titolo, Autore, Etichette"
+msgstr "Cerca per Titolo, Autore ed Etichette"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
@@ -75,40 +75,37 @@ msgstr "Sembra che Bookworm non abbia libri"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Costruisci la tua biblioteca aggiungendo libri digitali"
+msgstr "Costruisci la tua biblioteca aggiungendo eBook"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr "Seleziona un libro da leggere"
+msgstr "Seleziona un eBook da leggere"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Si è verificato un problema durante l'estrazione dei contenuti del libro. "
-"Verifica che sia presente un file di libro digitale valido alla posizione: "
+"Si è verificato un problema durante l'estrazione dei contenuti dell'eBook. "
+"Verifica che sia presente un file valido in: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
-msgstr ""
-"Rilevato tipo di file non valido. Controlla il formato di questo libro "
-"digitale: "
+msgstr "Rilevato un tipo di file non valido. Controlla il formato dell'eBook: "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
-msgstr ""
-"Contenuto non valido. Controlla il file di libro digitale alla posizione: "
+msgstr "Contenuto non valido. Assicurati che ci sia un eBook corretto in: "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
-"Non si è potuto analizzare il libro digitale. Controllare la validità del "
-"libro alla posizione: "
+"L'eBook non può essere analizzato. Assicurati che ci sia un file eBook "
+"valido in: "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm non supporta il formato del file presente alla posizione: "
+msgstr "Bookworm non supporta il formato del file presente in: "
 
 #: src/constants.vala.in:51
 msgid ""
@@ -116,7 +113,7 @@ msgid ""
 "found here: "
 msgstr ""
 "Impossibile ottenere il contenuto richiesto. Per favore rimuovere e "
-"aggiungere il file di libro digitale alla posizione: "
+"aggiungere il file eBook in: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -193,9 +190,8 @@ msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
-"Nessun commento impostato in BBB, clicca il tasto destro del mouse sulla "
-"pagina del libro e scegli commento dal menù cotestuale per aggiungere i "
-"commenti"
+"Nessun commento impostato in BBB, usa il tasto destro del mouse sulla pagina "
+"del libro e scegli commento dal menù contestuale per aggiungere i commenti"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
@@ -306,8 +302,8 @@ msgstr "Aggiungi libri alla biblioteca"
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Rimuovi i libri selezionati dalla biblioteca (il file di libro digitale non "
-"sarà rimosso)"
+"Rimuovi i libri selezionati dalla biblioteca (il file dell'eBook non sarà "
+"rimosso)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
@@ -471,7 +467,7 @@ msgstr "Seleziona cartella"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr "Seleziona libro"
+msgstr "Seleziona un eBook"
 
 #: src/library.vala:543
 msgid "Adding "
@@ -488,7 +484,7 @@ msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr "Leggi e gestisci libri digitali"
+msgstr "Leggi e gestisci eBook"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
@@ -500,7 +496,7 @@ msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr "Un lettore di libri digitali senza distrazioni"
+msgstr "Un lettore di eBook senza distrazioni"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
@@ -581,7 +577,7 @@ msgstr "Correzione del titolo di intestazione che varia durante l'apertura"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
 msgstr ""
-"Correzione per gestire la cancellazione nel pannello di apertura di libro"
+"Correzione per gestire la cancellazione nel pannello di apertura di un eBook"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
