@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-09-23 21:40+0000\n"
-"Last-Translator: Cătălin George Feștilă <catalinfest@gmail.com>\n"
+"PO-Revision-Date: 2026-03-06 14:09+0000\n"
+"Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/ro/>\n"
 "Language: ro\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -372,7 +372,7 @@ msgstr "Aplică tema pentru acest profil de culor"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr "Intră în modul ecran complet și apasă ESC pentru a anula"
+msgstr "Intră în modul ecran complet, apasă tasta «ESC» pentru a ieși"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
