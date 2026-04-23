@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Swedish (bookworm)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2020-11-29 17:29+0000\n"
-"Last-Translator: Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>\n"
+"PO-Revision-Date: 2026-04-24 18:09+0000\n"
+"Last-Translator: Mona Lisa <nickwick@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/sv/>\n"
 "Language: sv\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -44,7 +44,7 @@ msgstr "Spara"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "En e-bokläsplatta"
+msgstr "E-bokläsare"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -87,8 +87,8 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Problem med att extrahera innehållet i boken. Kontrollera om boken är "
-"tillgänglig på platsen: "
+"Problem med att extrahera innehållet i boken. Kontrollera att det finns en "
+"giltig e-bokfil här: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
@@ -105,15 +105,15 @@ msgstr ""
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr "Bookworm stöder inte formatet av filen hittad här: "
+msgstr "Bookworm stöder inte formatet på filen som hittades här: "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
-"Det begärda innehållet kunde inte hämtas. Ta bort och lägg till e-bokfil på "
-"platsen: "
+"Det begärda innehållet kunde inte hämtas. Ta bort filen och lägg till e-"
+"boksfilen igen från den här platsen: "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
@@ -141,7 +141,7 @@ msgstr "Bokmärken"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr "Bokmärk #NNN för avsnitt PPP"
+msgstr "Bokmärke #NNN för avsnitt PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
@@ -161,7 +161,7 @@ msgstr "Ordets betydelse"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr "Sök i resultat"
+msgstr "Sökresultat"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
@@ -205,7 +205,7 @@ msgstr "Inga matchningar funna för \"$$$\" i &&&"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr "Välj ett ord i boken och högerklicka för att söka upp dess mening"
+msgstr "Välj ett ord i boken och högerklicka för att slå upp dess betydelse"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
@@ -406,7 +406,7 @@ msgstr "Visa alltid bibliotek vid uppstart"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr "Aktivera två sidläsning"
+msgstr "Aktivera läsning i tvåsidigt läge"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
@@ -491,7 +491,7 @@ msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr "En fokuserad e-bokläsare"
+msgstr "En renodlad e-bokläsare"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
@@ -529,7 +529,8 @@ msgstr "Bookworm läsläge"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr "Denna utgåva har några nya funktioner, fixar och nya översättningar:"
+msgstr ""
+"Denna utgåva har några nya funktioner, felrättningar och nya översättningar:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
@@ -538,7 +539,8 @@ msgstr "Nya funktioner:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr "Biblioteket sidoindelas för att snabbt ladda stora bibliotek"
+msgstr ""
+"Biblioteket delas upp i sidor för att stora bibliotek ska laddas snabbare"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
@@ -547,7 +549,7 @@ msgstr "Stöd för FB2-format - .fb2 och .fb2.zip"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr "Fixar:"
+msgstr "Felrättningar:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
@@ -563,11 +565,11 @@ msgstr ""
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr "Fix för att rubrik ändras under öppen"
+msgstr "Rättade ett fel där rubriken ändrades när en bok öppnades"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr "Fix för att hantera annullering av dialog för att öppna en e-bok"
+msgstr "Rättade hanteringen när dialogrutan för att öppna en e-bok avbryts"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
@@ -579,7 +581,7 @@ msgstr "Fix för anteckningsdialogrutan för böcker med tomma titlar"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr "Fixa för att återgå till sidpositionen från infovyn"
+msgstr "Rättade återgången till sidpositionen från infovyn"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
@@ -589,7 +591,7 @@ msgstr "Höger till vänster läsning"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr "Stöd för höger till vänster skript"
+msgstr "Stöd för höger-till-vänster-skrift"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
@@ -624,7 +626,7 @@ msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
 msgstr ""
-"Fixade ett problem där raderna överlappade varandra de första par sidorna i "
+"Rättade ett problem där raderna överlappade varandra de första sidorna i "
 "boken"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
