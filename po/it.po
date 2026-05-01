@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2025-12-15 10:00+0000\n"
+"PO-Revision-Date: 2026-05-01 13:45+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/it/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
@@ -27,7 +27,7 @@ msgstr "Esegui Bookworm in modalità informazione"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr "Aggiungi automaticamente nuovi libri digitali dalle cartelle monitorate"
+msgstr "Aggiungi automaticamente i libri dalle cartelle monitorate"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
@@ -86,8 +86,8 @@ msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
-"Si è verificato un problema durante l'estrazione dei contenuti dell'eBook. "
-"Verifica che sia presente un file valido in: "
+"Si è verificato un problema nell'estrazione dei contenuti dell'eBook. "
+"Verifica che ci sia un file valido in: "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
@@ -191,15 +191,15 @@ msgid ""
 "annotation from the context menu to add annotations"
 msgstr ""
 "Nessun commento impostato in BBB, usa il tasto destro del mouse sulla pagina "
-"del libro e scegli commento dal menù contestuale per aggiungere i commenti"
+"del libro e scegli commento dal menù contestuale per aggiungerne"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr "Ricerca in corso per «$$$» in &&&:"
+msgstr "Ricerca in corso per '$$$' in &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr "Trovati i seguenti risultati per «$$$» in &&&:"
+msgstr "Trovati i seguenti risultati per '$$$' in &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
@@ -671,7 +671,7 @@ msgstr "Supporto PDF e migliorie UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr "Rilascio iniziale con supporto per formato EPUB"
+msgstr "Rilascio iniziale con supporto del formato EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
