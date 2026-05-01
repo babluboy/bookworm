@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
-"PO-Revision-Date: 2026-05-01 13:45+0000\n"
+"PO-Revision-Date: 2026-05-02 14:10+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/it/>\n"
@@ -75,7 +75,7 @@ msgstr "Sembra che Bookworm non abbia libri"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr "Costruisci la tua biblioteca aggiungendo eBook"
+msgstr "Crea la tua biblioteca aggiungendo eBook"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
@@ -302,8 +302,7 @@ msgstr "Aggiungi libri alla biblioteca"
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
-"Rimuovi i libri selezionati dalla biblioteca (il file dell'eBook non sarà "
-"rimosso)"
+"Rimuovi i libri selezionati dalla biblioteca (il file non verranno rimossi)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
@@ -375,7 +374,7 @@ msgstr "Entra in modalità a schermo intero e premi Esc per uscire"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr "Aggiungi cartella da analizzare per trovare libri"
+msgstr "Aggiungi cartella in cui cercare libri"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
@@ -447,7 +446,7 @@ msgstr "Numero di libri per pagina nella libreria"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr "Reset ai valori di default"
+msgstr "Ripristina valori predefiniti"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
@@ -503,15 +502,15 @@ msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
-"Leggi i libri che ami senza doverti preoccupare per la complessità dei "
-"diversi tipi di formato come EPUB, PDF, MOBI, CBR, ecc."
+"Leggi i libri che ami senza doverti preoccupare delle complessità legate ai "
+"diversi formati come EPUB, PDF, MOBI, CBR, ecc."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
-"Gestisci la tua libreria etichetando e aggiornando i metadati dei libri per "
+"Gestisci la tua libreria etichettando e aggiornando i metadati dei libri per "
 "trovarli rapidamente filtrando per etichetta e metadati."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
@@ -545,8 +544,8 @@ msgstr "Nuove funzionalità:"
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
 msgstr ""
-"La Libreria è visualizzata in pagine per consentire la visualizzazione "
-"rapida di grandi librerie"
+"La libreria è impaginata per caricare rapidamente collezioni di grandi "
+"dimensioni"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
@@ -559,8 +558,7 @@ msgstr "Correzioni:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
-"Rappresentazione intuitiva del pulsante di rimozione libri nella libreria"
+msgstr "Rappresentazione intuitiva del pulsante di rimozione libri"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
@@ -627,8 +625,8 @@ msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
-"Impedire a Bookworm di aprire collegamenti come HTTP, FTP ecc. ed utilizzare "
-"il browser predefinito per questi"
+"Impedire che Bookworm apra i link HTTP, FTP ecc. utilizzando, invece, il "
+"browser predefinito"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
