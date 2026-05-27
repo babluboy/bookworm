@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2026-05-28 09:11+0000\n"
-"Last-Translator: Trash Soul <trashtrash0909@gmail.com>\n"
+"Last-Translator: Matthew Choi <zeulkin@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ko/>\n"
 "Language: ko\n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr "버전 번호 화면표시"
+msgstr "버전 넘버 띄우기"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
@@ -67,7 +67,7 @@ msgstr "이 책 검색…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr "제목, 저자 및 태그로 검색"
+msgstr "제목, 작가이름, 태그로 찾기"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
@@ -227,7 +227,7 @@ msgstr "태그 업데이트"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr "저자 업데이트"
+msgstr "작가 업데이트하기"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
