@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2026-05-28 09:11+0000\n"
-"Last-Translator: Matthew Choi <zeulkin@gmail.com>\n"
+"Last-Translator: Trash Soul <trashtrash0909@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ko/>\n"
 "Language: ko\n"
@@ -43,7 +43,7 @@ msgstr "저장"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr "전자책 읽기도구"
+msgstr "eBook 읽기도구"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
@@ -127,7 +127,7 @@ msgstr "라이브러리"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr "다시 시작"
+msgstr "재개"
 
 #: src/constants.vala.in:55
 msgid "Contents"
@@ -243,7 +243,7 @@ msgstr "단어뜻 확인하기"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr "선택한 텍스트에 주석 추가"
+msgstr "선택한 텍스트 주석처리"
 
 #: src/constants.vala.in:83
 msgid "Books"
@@ -323,7 +323,7 @@ msgstr "클릭해서 이 페이지 북마크하기"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr "클릭해서 북마크 해제하기"
+msgstr "클릭하여 북마크 해제하기"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
@@ -335,123 +335,123 @@ msgstr "글꼴 크기 줄이기 (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "줄 너비 늘리기"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "줄 너비 줄이기"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
-msgstr ""
+msgstr "줄 간격 늘리기"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "줄 간격 줄이기"
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "왼쪽으로 정렬"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "오른쪽으로 정렬"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "표지 이미지 업데이트"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "이 색상 프로필 적용"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "전체 화면으로 보기 (Esc 키로 종료)"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "책 검색 폴더 추가"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "도서 검색 폴더에서 삭제"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "선택한 텍스트에 주석 추가"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "이전 페이지"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "다음 페이지"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "설정"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr "어두운 모드 켜기"
+msgstr "다크 모드 켜기"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr "캐시 활성화 (책을 더 빨리 열 수 있음)"
+msgstr "캐시 활성화 (책을 더 빨리 열 수 있습니다)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr ""
+msgstr "시작 시 항상 라이브러리 표시"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "양면 보기 활성화"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "글꼴 선택"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr ""
+msgstr "나만의 독서 프로필 설정"
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "문자"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "배경"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "하이라이트"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "책 검색 폴더들 추가"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "프로필"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "페이지당 도서 수"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "기본값으로 복원"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "알 수 없는 책"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "정보"
 
 #: src/dialog.vala:59
 msgid "Select Image"
@@ -463,62 +463,68 @@ msgstr "폴더 선택"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr "전자책 선택"
+msgstr "eBook 선택"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "추가 중 "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "도서"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "eBook 읽기 및 관리"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "집중형 eBook 리더"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"EPUB, PDF, MOBI, CBR 등 다양한 형식 고민 없이, 좋아하는 책을 마음껏 "
+"읽어보세요."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"태그를 지정하고 메타데이터를 업데이트하여 서재를 관리해 보세요. 메타데이터 "
+"검색과 태그 필터링으로 원하는 책을 빠르게 찾을 수 있습니다."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
+"이번 버전은 EPUB, MOBI, PRC, PDF, FB2 및 만화(CBR, CBZ) 포맷을 지원하며, 곧 "
+"더 많은 형식이 추가될 예정입니다."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "Bookworm 라이브러리 보기"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "Bookworm 독서 보기"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
@@ -528,124 +534,130 @@ msgstr "이 릴리스에는 몇 가지 새로운 기능, 수정 사항 및 새�
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "새로운 기능:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
 msgstr ""
+"보유하신 도서가 많아도 빠르게 불러올 수 있도록 라이브러리를 페이지별로 "
+"나누어 표시합니다"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "FB2 형식 지원 - .fb2 과 .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "수정:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "라이브러리 내 도서 삭제 버튼의 직관적인 시각화"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
-msgstr ""
+msgstr "모든 설정을 완료할 때까지 설정 창이 열려 있도록 수정"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "화면이 열릴 때 상단 제목이 비정상적으로 바뀌던 현상 수정"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "eBook 열기 창을 취소했을 때 발생하던 오류 수정"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "F11 키를 이용한 전체 화면 전환(토글) 오류 수정"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "제목이 없는 도서에서 주석 창이 정상적으로 표시되지 않던 현상 수정"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
 msgstr ""
+"책 정보 화면에서 돌아왔을 때, 이전에 읽던 페이지 위치가 유지되지 않던 현상 "
+"수정"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "오른쪽에서 왼쪽으로 읽기"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "오른쪽에서 왼쪽으로 쓰는 언어 지원"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "새롭게 단장한 아이콘과 새로운 표지 이미지들을 만나보세요"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "EPUB 도서 목차 기능 개선"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
-msgstr ""
+msgstr "선택한 단어를 우클릭하여 온라인 사전에서 뜻을 검색해 보세요"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "하이라이트 색상 사용자 지정 옵션 추가"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"Bookworm 내부에서 웹 링크(HTTP, FTP 등)가 열리는 현상을 해결하고, 기기의 "
+"기본 브라우저로 연결되도록 변경"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "도서의 첫 페이지에서 글자 줄이 겹쳐서 표시되던 현상 수정"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "GResource를 적용하여 아이콘, 스크립트 등의 로딩 속도 개선."
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "Juno 버전과의 자잘한 CSS 호환성 문제 수정"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "주석 및 두 페이지 보기"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "MOBI 형식 지원 및 UX 향상"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "목록 보기 사용성 개선 및 기타 설정 맞춤 기능 추가"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "만화책 지원 및 UX 향상"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "PDF 지원 및 UX 향상"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "초기 릴리즈 및 EPUB 형식 지원"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "싯다르타 다스"
