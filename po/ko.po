@@ -3,7 +3,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "PO-Revision-Date: 2026-05-28 09:11+0000\n"
-"Last-Translator: Trash Soul <trashtrash0909@gmail.com>\n"
+"Last-Translator: Matthew Choi <zeulkin@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bookworm/bookworm/"
 "ko/>\n"
 "Language: ko\n"
@@ -319,11 +319,11 @@ msgstr "독서 설정"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr "이 페이지를 북마크하려면 클릭"
+msgstr "클릭해서 이 페이지 북마크하기"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr "이 책갈피를 제거하려면 클릭"
+msgstr "클릭해서 북마크 해제하기"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
