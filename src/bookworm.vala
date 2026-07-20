@@ -188,6 +188,7 @@ public class BookwormApp.Bookworm : Granite.Application {
             //retrieve Settings
             settings = BookwormApp.Settings.get_instance ();
             //set window attributes
+            window.set_icon_name(BookwormApp.Constants.bookworm_id);
             window.set_border_width (0);
             window.get_style_context ().add_class ("rounded");
             //set the minimum size of the window on minimize
