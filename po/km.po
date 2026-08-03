@@ -4,110 +4,123 @@ msgstr ""
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"PO-Revision-Date: 2026-08-03 14:11+0000\n"
+"Last-Translator: SeyhaLite <sok123230@gmail.com>\n"
+"Language-Team: Khmer (Central) <https://hosted.weblate.org/projects/bookworm/"
+"bookworm/km/>\n"
+"Language: km\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.8.dev0\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: src/bookworm.vala:109
 msgid "Display version number"
-msgstr ""
+msgstr "បង្ហាញលេខកំណែ"
 
 #: src/bookworm.vala:110
 msgid "Run Bookworm in debug mode"
-msgstr ""
+msgstr "ដំណើរការ​ Bookworm ជាមួយមុខងារ Debug"
 
 #: src/bookworm.vala:111
 msgid "Run Bookworm in info mode"
-msgstr ""
+msgstr "ដំណើរការ​ Bookworm ក្នុងមុខងារ បង្ហាញពណ៍មាន"
 
 #: src/bookworm.vala:112
 msgid "Automatically add new books from watched folders"
-msgstr ""
+msgstr "បន្ថែមសៀវភៅថ្មីដោយស្វ័យប្រវត្តិពី folder ដែលបានកំណត់"
 
 #: src/utils.vala:552 src/utils.vala:639
 msgid "Cancel"
-msgstr ""
+msgstr "បោះបង់"
 
 #: src/utils.vala:554 src/utils.vala:640
 msgid "Open"
-msgstr ""
+msgstr "បើក"
 
 #: src/utils.vala:556
 msgid "Save"
-msgstr ""
+msgstr "រក្សាទុក"
 
 #: src/constants.vala.in:29
 msgid "An eBook Reader"
-msgstr ""
+msgstr "អ្នកអាន សៀវភៅអេឡិចត្រូនិច"
 
 #: src/constants.vala.in:31
 msgid "Weblate Translators"
-msgstr ""
+msgstr "វេបសាយ បកប្រែ"
 
 #: src/constants.vala.in:37
 msgid "Website | Translation | Bug Tracker"
-msgstr ""
+msgstr "វេបសាយ| បកប្រែ| តាមដានកំហុសបច្ចេកទេស"
 
 #: src/constants.vala.in:39
 msgid "Not Available"
-msgstr ""
+msgstr "មិនទាន់មាន"
 
 #: src/constants.vala.in:40 data/com.github.babluboy.bookworm.desktop.in:4
 msgid "eBook Reader"
-msgstr ""
+msgstr "អ្នកអានសៀវភៅអេឡិចត្រូនិច"
 
 #: src/constants.vala.in:41
 msgid "Search this book…"
-msgstr ""
+msgstr "ស្វែងរកសៀវភៅនេះ…"
 
 #: src/constants.vala.in:42
 msgid "Search by Title, Author and Tags"
-msgstr ""
+msgstr "ស្វែងរក តាមចំណងជើង, និពន្ធ និងស្លាកសញ្ញា"
 
 #: src/constants.vala.in:43
 msgid "Looks like Bookworm has no books"
-msgstr ""
+msgstr "មើលទៅដូចជា Bookworm មិនទាន់មានសៀវភៅនៅឡើយទេ"
 
 #: src/constants.vala.in:44
 msgid "Build your library by adding eBooks"
-msgstr ""
+msgstr "បង្កើតបណ្ណាល័យដោយបន្ថែមសៀវភៅអេឡិចត្រូនិច"
 
 #: src/constants.vala.in:45
 msgid "Select an eBook to read"
-msgstr ""
+msgstr "ជ្រើសរើសសៀវភៅអេឡិចត្រូនិចដើម្បីអាន"
 
 #: src/constants.vala.in:46
 msgid ""
 "Problem in extracting contents of book. Ensure there is a valid eBook file "
 "here: "
 msgstr ""
+"មានបញ្ហាក្នុងការទាញយកមាតិកាសៀវភៅ។ សូមប្រាកដថាមានឯកសារសៀវភៅអេឡិចត្រូនិចត្រឹមត្រូវនៅទីនេះ:។ "
 
 #: src/constants.vala.in:47
 msgid "Invalid media type detected. Check format for this eBook: "
 msgstr ""
+"រកឃើញប្រភេទមេឌៀមិន ត្រឹមត្រូវ។ សូមពិនិត្យមើលទម្រង់ Format​ សម្រាប់សៀវភៅអេឡិចត្រូនិចនេះ៖។ "
 
 #: src/constants.vala.in:48
 msgid "Invalid content found. Ensure there is a valid eBook file here: "
 msgstr ""
+"រកឃើញមាតិកាមិនត្រឹមត្រូវ។ សូមប្រាកដថាមានឯកសារសៀវភៅអេឡិចត្រូនិចត្រឹមត្រូវនៅទីនេះ៖។ "
 
 #: src/constants.vala.in:49
 msgid "eBook could not be parsed. Ensure there is a valid eBook file here: "
 msgstr ""
+"មិនអាចវិភាគ សៀវភៅអេឡិចត្រូនិចបានទេ។ សូមប្រាកដថាមានឯកសារសៀវភៅអេឡិចត្រូនិចត្រឹមត្រូវនៅទីនេះ៖ "
 
 #: src/constants.vala.in:50
 msgid "Bookworm does not support the format of the file found here: "
-msgstr ""
+msgstr "Bookworm មិនគាំទ្រទម្រង់ឯកសារដែលរកឃើញនៅទីនេះទេ៖ "
 
 #: src/constants.vala.in:51
 msgid ""
 "Requested content could not be fetched. Please remove and add the eBook file "
 "found here: "
 msgstr ""
+"មិនអាចទាញយកមាតិកាដែលបានស្នើសុំបានទេ។ សូមលុប រួចបន្ថែមឯកសារសៀវភៅអេឡិចត្រូនិចនៅទីនេះឡើងវិញ៖ "
 
 #: src/constants.vala.in:52
 msgid "Issue in page navigation, please move the pages forward or backward."
-msgstr ""
+msgstr "មានបញ្ហាក្នុងការផ្លាស់ប្តូរទំព័រ សូមព្យាយាមទំព័រទៅមុខ ឬថយក្រោយ។"
 
 #: src/constants.vala.in:53
 msgid "Library"
-msgstr ""
+msgstr "បណ្ណាល័យ"
 
 #: src/constants.vala.in:54
 msgid "Resume"
