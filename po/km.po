@@ -4,13 +4,13 @@ msgstr ""
 "POT-Creation-Date: 2019-12-28 17:43+0530\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"PO-Revision-Date: 2026-08-03 14:11+0000\n"
+"PO-Revision-Date: 2026-08-05 19:01+0000\n"
 "Last-Translator: SeyhaLite <sok123230@gmail.com>\n"
 "Language-Team: Khmer (Central) <https://hosted.weblate.org/projects/bookworm/"
 "bookworm/km/>\n"
 "Language: km\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.8.1.dev0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/bookworm.vala:109
@@ -124,521 +124,534 @@ msgstr "បណ្ណាល័យ"
 
 #: src/constants.vala.in:54
 msgid "Resume"
-msgstr ""
+msgstr "បន្ត"
 
 #: src/constants.vala.in:55
 msgid "Contents"
-msgstr ""
+msgstr "មាតិកា"
 
 #: src/constants.vala.in:56
 msgid "Content #"
-msgstr ""
+msgstr "មាតិកា #"
 
 #: src/constants.vala.in:57
 msgid "Bookmarks"
-msgstr ""
+msgstr "ចំណាំ"
 
 #: src/constants.vala.in:58
 msgid "Bookmark #NNN for Section PPP"
-msgstr ""
+msgstr "ចំណាំ #NNN សម្រាប់ផ្នែក PPP"
 
 #: src/constants.vala.in:59
 msgid "Click on a link to jump to bookmarked section"
-msgstr ""
+msgstr "ចុចលើតំណដើម្បីលោតទៅផ្នែកដែលបានចំណាំ"
 
 #: src/constants.vala.in:60
 msgid ""
 "No bookmarks set in BBB, click the bookmark icon on the header bar to "
 "bookmark the page"
 msgstr ""
+"មិនទាន់មានចំណាំក្នុង BBB ទេ សូមចុចរូបសញ្ញាចំណាំនៅរបារក្បាល ដើម្បីចំណាំទំព័រនេះ"
 
 #: src/constants.vala.in:61
 msgid "Word Meaning"
-msgstr ""
+msgstr "អត្ថន័យពាក្យ"
 
 #: src/constants.vala.in:62
 msgid "Search Results"
-msgstr ""
+msgstr "លទ្ធផលស្វែងរក"
 
 #: src/constants.vala.in:63
 msgid "Annotations"
-msgstr ""
+msgstr "ចំណារពន្យល់"
 
 #: src/constants.vala.in:64
 msgid "Annotation Tags"
-msgstr ""
+msgstr "ស្លាកចំណារពន្យល់"
 
 #: src/constants.vala.in:65
 msgid "Comma-separated tags for this annotation"
-msgstr ""
+msgstr "ស្លាកបំបែកដោយសញ្ញាក្បៀសសម្រាប់ចំណារពន្យល់នេះ"
 
 #: src/constants.vala.in:66
 msgid "Edit annotation for:"
-msgstr ""
+msgstr "កែសម្រួលចំណារពន្យល់សម្រាប់:"
 
 #: src/constants.vala.in:67
 msgid "Click on a link to jump to an annotated section"
-msgstr ""
+msgstr "ចុចលើតំណដើម្បីលោតទៅផ្នែកដែលមានចំណារពន្យល់"
 
 #: src/constants.vala.in:68
 msgid ""
 "No annotations set in BBB, right click the page of a book and choose "
 "annotation from the context menu to add annotations"
 msgstr ""
+"មិនទាន់មានចំណារពន្យល់ក្នុង BBB ទេ សូមចុចស្តាំលើទំព័រនៃសៀវភៅ រួចជ្រើសរើសចំណារពន្យល់ពីម៉ឺនុយបរិបទ ដើម្បី"
+"បន្ថែមចំណារពន្យល់"
 
 #: src/constants.vala.in:69
 msgid "Searching for '$$$' in &&&:"
-msgstr ""
+msgstr "កំពុងស្វែងរក '$$$' នៅក្នុង &&&:"
 
 #: src/constants.vala.in:70
 msgid "Found the following matches for '$$$' in &&&:"
-msgstr ""
+msgstr "រកឃើញការផ្គូផ្គងដូចខាងក្រោមសម្រាប់ '$$$' នៅក្នុង &&&:"
 
 #: src/constants.vala.in:71
 msgid "No matches found for '$$$' in &&&"
-msgstr ""
+msgstr "រកមិនឃើញការផ្គូផ្គងសម្រាប់ '$$$' នៅក្នុង &&& ទេ"
 
 #: src/constants.vala.in:72
 msgid "Select a word in the book and right click for looking up its meaning"
-msgstr ""
+msgstr "ជ្រើសរើសពាក្យក្នុងសៀវភៅ រួចចុចស្តាំដើម្បីស្វែងរកអត្ថន័យរបស់វា"
 
 #: src/constants.vala.in:73
 msgid "Edit Info for"
-msgstr ""
+msgstr "កែសម្រួលព័ត៌មានសម្រាប់"
 
 #: src/constants.vala.in:74 src/constants.vala.in:78
 msgid "Update Cover Image"
-msgstr ""
+msgstr "ធ្វើបច្ចុប្បន្នភាពរូបភាពគម្រប"
 
 #: src/constants.vala.in:75
 msgid "Update Title"
-msgstr ""
+msgstr "ធ្វើបច្ចុប្បន្នភាពចំណងជើង"
 
 #: src/constants.vala.in:76
 msgid "Update Tags"
-msgstr ""
+msgstr "ធ្វើបច្ចុប្បន្នភាពស្លាក"
 
 #: src/constants.vala.in:77
 msgid "Update Author"
-msgstr ""
+msgstr "ធ្វើបច្ចុប្បន្នភាពអ្នកនិពន្ធ"
 
 #: src/constants.vala.in:79
 msgid "Enter fullscreen view (F11)"
-msgstr ""
+msgstr "ចូលទិដ្ឋភាពពេញអេក្រង់ (F11)"
 
 #: src/constants.vala.in:80
 msgid "Exit fullscreen view (Esc)"
-msgstr ""
+msgstr "ចេញពីទិដ្ឋភាពពេញអេក្រង់ (Esc)"
 
 #: src/constants.vala.in:81
 msgid "Check Word Meaning"
-msgstr ""
+msgstr "ពិនិត្យអត្ថន័យពាក្យ"
 
 #: src/constants.vala.in:82
 msgid "Annotate selected text"
-msgstr ""
+msgstr "ធ្វើចំណារពន្យល់លើអត្ថបទដែលបានជ្រើសរើស"
 
 #: src/constants.vala.in:83
 msgid "Books"
-msgstr ""
+msgstr "សៀវភៅ"
 
 #: src/constants.vala.in:84
 msgid "Images"
-msgstr ""
+msgstr "រូបភាព"
 
 #: src/constants.vala.in:85
 msgid "All Files"
-msgstr ""
+msgstr "ឯកសារទាំងអស់"
 
 #: src/constants.vala.in:86
 msgid "Title"
-msgstr ""
+msgstr "ចំណងជើង"
 
 #: src/constants.vala.in:87
 msgid "Author"
-msgstr ""
+msgstr "អ្នកនិពន្ធ"
 
 #: src/constants.vala.in:88
 msgid "Last Opened"
-msgstr ""
+msgstr "បើកចុងក្រោយ"
 
 #: src/constants.vala.in:89
 msgid "Rating"
-msgstr ""
+msgstr "ការវាយតម្លៃ"
 
 #: src/constants.vala.in:90
 msgid "Tags"
-msgstr ""
+msgstr "ស្លាក"
 
 #: src/constants.vala.in:91
 msgid "Today"
-msgstr ""
+msgstr "ថ្ងៃនេះ"
 
 #: src/constants.vala.in:92
 msgid "Yesterday"
-msgstr ""
+msgstr "ម្សិលមិញ"
 
 #: src/constants.vala.in:93
 msgid "Days"
-msgstr ""
+msgstr "ថ្ងៃ"
 
 #: src/constants.vala.in:94
 msgid "Discovery of books will be started when Bookworm is closed"
-msgstr ""
+msgstr "ការស្វែងរកសៀវភៅនឹងចាប់ផ្តើមនៅពេល Bookworm ត្រូវបានបិទ"
 
 #: src/constants.vala.in:96
 msgid "Add books to library"
-msgstr ""
+msgstr "បន្ថែមសៀវភៅទៅបណ្ណាល័យ"
 
 #: src/constants.vala.in:97
 msgid "Remove selected books from library (eBook file will not be deleted)"
 msgstr ""
+"លុបសៀវភៅដែលបានជ្រើសរើសចេញពីបណ្ណាល័យ (ឯកសារសៀវភៅអេឡិចត្រូនិចនឹងមិនត្រូវបានលុបទេ)"
 
 #: src/constants.vala.in:98
 msgid "Select books to enable removal"
-msgstr ""
+msgstr "ជ្រើសរើសសៀវភៅដើម្បីអាចលុបបាន"
 
 #: src/constants.vala.in:99
 msgid "Select one or more books in library"
-msgstr ""
+msgstr "ជ្រើសរើសសៀវភៅមួយ ឬច្រើនក្នុងបណ្ណាល័យ"
 
 #: src/constants.vala.in:100
 msgid "See Table of Contents, Bookmarks and Search Results"
-msgstr ""
+msgstr "មើលតារាងមាតិកា ចំណាំ និងលទ្ធផលស្វែងរក"
 
 #: src/constants.vala.in:101
 msgid "Reading preferences"
-msgstr ""
+msgstr "ចំណូលចិត្តការអាន"
 
 #: src/constants.vala.in:102
 msgid "Click to bookmark this page"
-msgstr ""
+msgstr "ចុចដើម្បីចំណាំទំព័រនេះ"
 
 #: src/constants.vala.in:103
 msgid "Click to remove this bookmark"
-msgstr ""
+msgstr "ចុចដើម្បីលុបចំណាំនេះ"
 
 #: src/constants.vala.in:104
 msgid "Increase font size (Ctrl + Shift + '+')"
-msgstr ""
+msgstr "បង្កើនទំហំអក្សរ (Ctrl + Shift + '+')"
 
 #: src/constants.vala.in:105
 msgid "Decrease font size (Ctrl + '-')"
-msgstr ""
+msgstr "បន្ថយទំហំអក្សរ (Ctrl + '-')"
 
 #: src/constants.vala.in:106
 msgid "Increase line width"
-msgstr ""
+msgstr "បង្កើនទទឹងបន្ទាត់"
 
 #: src/constants.vala.in:107
 msgid "Decrease line width"
-msgstr ""
+msgstr "បន្ថយទទឹងបន្ទាត់"
 
 #: src/constants.vala.in:108
 msgid "Increase line spacing"
-msgstr ""
+msgstr "បង្កើនគម្លាតបន្ទាត់"
 
 #: src/constants.vala.in:109
 msgid "Decrease line spacing"
-msgstr ""
+msgstr "បន្ថយគម្លាតបន្ទាត់"
 
 #: src/constants.vala.in:110
 msgid "Align left"
-msgstr ""
+msgstr "តម្រឹមឆ្វេង"
 
 #: src/constants.vala.in:111
 msgid "Align right"
-msgstr ""
+msgstr "តម្រឹមស្តាំ"
 
 #: src/constants.vala.in:112
 msgid "Update cover image"
-msgstr ""
+msgstr "ធ្វើបច្ចុប្បន្នភាពរូបភាពគម្រប"
 
 #: src/constants.vala.in:113
 msgid "Apply theme for this colour profile"
-msgstr ""
+msgstr "អនុវត្តប្រធានបទសម្រាប់ទម្រង់ពណ៌នេះ"
 
 #: src/constants.vala.in:114 src/constants.vala.in:115
 msgid "Enter fullscreen view and Esc key to undo"
-msgstr ""
+msgstr "ចូលទិដ្ឋភាពពេញអេក្រង់ ហើយចុច Esc ដើម្បីមិនធ្វើវិញ"
 
 #: src/constants.vala.in:116
 msgid "Add folder to scan for books"
-msgstr ""
+msgstr "បន្ថែមថតដើម្បីស្កេនរកសៀវភៅ"
 
 #: src/constants.vala.in:117
 msgid "Remove displayed folder from book scan"
-msgstr ""
+msgstr "លុបថតដែលបង្ហាញចេញពីការស្កេនសៀវភៅ"
 
 #: src/constants.vala.in:118
 msgid "Add annotation to selected text"
-msgstr ""
+msgstr "បន្ថែមចំណារពន្យល់ទៅអត្ថបទដែលបានជ្រើសរើស"
 
 #: src/constants.vala.in:119
 msgid "Go to previous page"
-msgstr ""
+msgstr "ទៅទំព័រមុន"
 
 #: src/constants.vala.in:120
 msgid "Go to next page"
-msgstr ""
+msgstr "ទៅទំព័របន្ទាប់"
 
 #: src/constants.vala.in:122 src/constants.vala.in:151
 msgid "Preferences"
-msgstr ""
+msgstr "ចំណូលចិត្ត"
 
 #: src/constants.vala.in:123
 msgid "Turn on Dark Mode"
-msgstr ""
+msgstr "បើករបៀបងងឹត"
 
 #: src/constants.vala.in:124
 msgid "Enable cache (opens books faster)"
-msgstr ""
+msgstr "បើកឃ្លាំងសម្ងាត់ (បើកសៀវភៅលឿនជាង)"
 
 #: src/constants.vala.in:125
 msgid "Always show library on startup"
-msgstr ""
+msgstr "បង្ហាញបណ្ណាល័យជានិច្ចនៅពេលចាប់ផ្តើម"
 
 #: src/constants.vala.in:126
 msgid "Enable two page reading"
-msgstr ""
+msgstr "បើកការអានពីរទំព័រ"
 
 #: src/constants.vala.in:127
 msgid "Select Font"
-msgstr ""
+msgstr "ជ្រើសរើសអក្សរ"
 
 #: src/constants.vala.in:128
 msgid "Customize reading profile"
-msgstr ""
+msgstr "ប្ដូរទម្រង់ការអានតាមបំណង"
 
 #: src/constants.vala.in:129
 msgid "Text"
-msgstr ""
+msgstr "អត្ថបទ"
 
 #: src/constants.vala.in:130
 msgid "Background"
-msgstr ""
+msgstr "ផ្ទៃខាងក្រោយ"
 
 #: src/constants.vala.in:131
 msgid "Highlight"
-msgstr ""
+msgstr "ការបន្លិច"
 
 #: src/constants.vala.in:132
 msgid "Add folders to scan for books"
-msgstr ""
+msgstr "បន្ថែមថតដើម្បីស្កេនរកសៀវភៅ"
 
 #: src/constants.vala.in:133
 msgid "Profile"
-msgstr ""
+msgstr "ទម្រង់"
 
 #: src/constants.vala.in:134
 msgid "Number of books per page on library"
-msgstr ""
+msgstr "ចំនួនសៀវភៅក្នុងមួយទំព័រនៅបណ្ណាល័យ"
 
 #: src/constants.vala.in:135
 msgid "Reset to default values"
-msgstr ""
+msgstr "កំណត់ឡើងវិញទៅតម្លៃលំនាំដើម"
 
 #: src/constants.vala.in:149
 msgid "Unknown Book"
-msgstr ""
+msgstr "សៀវភៅមិនស្គាល់"
 
 #: src/constants.vala.in:150
 msgid "About"
-msgstr ""
+msgstr "អំពី"
 
 #: src/dialog.vala:59
 msgid "Select Image"
-msgstr ""
+msgstr "ជ្រើសរើសរូបភាព"
 
 #: src/dialog.vala:544
 msgid "Select folder"
-msgstr ""
+msgstr "ជ្រើសរើសថត"
 
 #: src/window.vala:315 src/window.vala:629
 msgid "Select eBook"
-msgstr ""
+msgstr "ជ្រើសរើសសៀវភៅអេឡិចត្រូនិច"
 
 #: src/library.vala:543
 msgid "Adding "
-msgstr ""
+msgstr "កំពុងបន្ថែម "
 
 #: src/mobiReader.vala:320
 msgid "Book"
-msgstr ""
+msgstr "សៀវភៅ"
 
 #: data/com.github.babluboy.bookworm.desktop.in:3
 #: data/com.github.babluboy.bookworm.appdata.xml.in:8
 msgid "Bookworm"
-msgstr ""
+msgstr "Bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:5
 msgid "Read and manage eBooks"
-msgstr ""
+msgstr "អាន និងគ្រប់គ្រងសៀវភៅអេឡិចត្រូនិច"
 
 #: data/com.github.babluboy.bookworm.desktop.in:9
 msgid "com.github.babluboy.bookworm"
-msgstr ""
+msgstr "com.github.babluboy.bookworm"
 
 #: data/com.github.babluboy.bookworm.desktop.in:13
 msgid "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
-msgstr ""
+msgstr "Bookworm;Ebook;Reader;Epub;Mobi;Comic;Cbr;Cbz;Pdf;"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:9
 msgid "A focused eBook reader"
-msgstr ""
+msgstr "កម្មវិធីអានសៀវភៅអេឡិចត្រូនិចដែលផ្តោតលើការអាន"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:11
 msgid ""
 "Read the books you love without having to worry about the different format "
 "complexities like EPUB, PDF, MOBI, CBR, etc."
 msgstr ""
+"អានសៀវភៅដែលអ្នកស្រឡាញ់ ដោយមិនចាំបាច់ព្រួយបារម្ភអំពីភាពស្មុគស្មាញនៃទម្រង់ផ្សេងៗដូចជា EPUB, PDF, "
+"MOBI, CBR ជាដើម។"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:12
 msgid ""
 "Manage your library by tagging and updating metadata on books, to quickly "
 "find books using metadata searching and tag based filtering."
 msgstr ""
+"គ្រប់គ្រងបណ្ណាល័យរបស់អ្នកដោយដាក់ស្លាក និងធ្វើបច្ចុប្បន្នភាពទិន្នន័យមេតាតាមសៀវភៅ ដើម្បីរកសៀវភៅបាន"
+"លឿនតាមរយៈការស្វែងរកទិន្នន័យមេតា និងការច្រោះតាមស្លាក។"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:13
 msgid ""
 "This version supports EPUB, MOBI, PRC, PDF, FB2 and comics (CBR and CBZ) "
 "formats with support for more formats to follow soon."
 msgstr ""
+"កំណែនេះគាំទ្រទម្រង់ EPUB, MOBI, PRC, PDF, FB2 និង comics ​(CBR និង CBZ) ហើយនឹងមានការគាំ"
+"ទ្រទម្រង់ផ្សេងៗទៀតនៅពេលក្រោយ។"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:17
 msgid "Bookworm Library View"
-msgstr ""
+msgstr "ទិដ្ឋភាពបណ្ណាល័យ Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:21
 msgid "Bookworm Reading View"
-msgstr ""
+msgstr "ទិដ្ឋភាពការអាន Bookworm"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:31
 #: data/com.github.babluboy.bookworm.appdata.xml.in:61
 msgid "This release has some new features, fixes and new translations:"
-msgstr ""
+msgstr "ការចេញផ្សាយនេះមានមុខងារថ្មីមួយចំនួន ការជួសជុល និងការបកប្រែថ្មី:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:32
 #: data/com.github.babluboy.bookworm.appdata.xml.in:62
 msgid "New Features:"
-msgstr ""
+msgstr "មុខងារថ្មី:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:34
 msgid "Library is paginated to load large libraries quickly"
-msgstr ""
+msgstr "បណ្ណាល័យត្រូវបានបែងចែកជាទំព័រ ដើម្បីផ្ទុកបណ្ណាល័យធំៗបានលឿន"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:35
 msgid "Support for FB2 Format - .fb2 and .fb2.zip"
-msgstr ""
+msgstr "គាំទ្រទម្រង់ FB2 - .fb2 និង .fb2.zip"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:37
 #: data/com.github.babluboy.bookworm.appdata.xml.in:67
 msgid "Fixes:"
-msgstr ""
+msgstr "ការជួសជុល:"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:39
 msgid "Intuitive representation of book removal button on library"
-msgstr ""
+msgstr "ការបង្ហាញប៊ូតុងលុបសៀវភៅនៅបណ្ណាល័យដោយងាយយល់"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:40
 msgid ""
 "Fix for keeping the preference dialog open until all adjustments are "
 "completed"
 msgstr ""
+"ការជួសជុលសម្រាប់រក្សាប្រអប់ចំណូលចិត្តឱ្យបើករហូតដល់ការកែសម្រួលទាំងអស់បានបញ្ចប់"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:41
 msgid "Fix for header title changing during open"
-msgstr ""
+msgstr "ការជួសជុលសម្រាប់ចំណងជើងរបារក្បាលដែលផ្លាស់ប្តូរពេលកំពុងបើក"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:42
 msgid "Fix for handling cancelation of dialog to open an ebook"
-msgstr ""
+msgstr "ការជួសជុលសម្រាប់ការគ្រប់គ្រងការបោះបង់ប្រអប់បើកសៀវភៅអេឡិចត្រូនិច"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:43
 msgid "Fix for toggling between full screen mode with F11"
-msgstr ""
+msgstr "ការជួសជុលសម្រាប់ការប្តូររបៀបពេញអេក្រង់ដោយ F11"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:44
 msgid "Fix for annotation dialog for books with empty titles"
-msgstr ""
+msgstr "ការជួសជុលសម្រាប់ប្រអប់ចំណារពន្យល់សម្រាប់សៀវភៅដែលគ្មានចំណងជើង"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:45
 msgid "Fix for returning to the page position from the info view"
-msgstr ""
+msgstr "ការជួសជុលសម្រាប់ការត្រឡប់ទៅទីតាំងទំព័រពីទិដ្ឋភាពព័ត៌មាន"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:51
 #: data/com.github.babluboy.bookworm.appdata.xml.in:78
 msgid "Right to Left Reading"
-msgstr ""
+msgstr "ការអានពីស្តាំទៅឆ្វេង"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:53
 #: data/com.github.babluboy.bookworm.appdata.xml.in:80
 msgid "Support for right-to-left script"
-msgstr ""
+msgstr "ការគាំទ្រអក្សរពីស្តាំទៅឆ្វេង"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:54
 #: data/com.github.babluboy.bookworm.appdata.xml.in:81
 msgid "A shiny new icon and new cover images"
-msgstr ""
+msgstr "រូបតំណាងថ្មីភ្លឺចែងចាំង និងរូបភាពគម្របថ្មី"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:55
 #: data/com.github.babluboy.bookworm.appdata.xml.in:82
 msgid "Better support for EPUB table of contents"
-msgstr ""
+msgstr "ការគាំទ្រប្រសើរជាងសម្រាប់តារាងមាតិកា EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:64
 msgid ""
 "Right click a selected word and look up its meaning in an online dictionary"
 msgstr ""
+"ចុចស្តាំលើពាក្យដែលបានជ្រើសរើស រួចស្វែងរកអត្ថន័យរបស់វាក្នុងវចនានុក្រមអនឡាញ"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:65
 msgid "Added option to customize highlight colour"
-msgstr ""
+msgstr "បានបន្ថែមជម្រើសដើម្បីប្ដូរពណ៌បន្លិចតាមបំណង"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:69
 msgid ""
 "Prevent Bookworm from opening links like HTTP, FTP etc. and use the default "
 "browser to open them"
 msgstr ""
+"ការពារ Bookworm មិនឱ្យបើកតំណដូចជា HTTP, FTP ជាដើម ហើយប្រើកម្មវិធីរុករកលំនាំដើមដើម្បីបើកវា"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:70
 msgid ""
 "Fixed an issue where the lines overlapped for the first couple of pages in "
 "the book"
-msgstr ""
+msgstr "បានជួសជុលបញ្ហាដែលបន្ទាត់ត្រួតគ្នានៅពីរទំព័រដំបូងក្នុងសៀវភៅ"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:71
 msgid "Use of GResource to speed up loading of icons, scripts, etc."
-msgstr ""
+msgstr "ការប្រើ GResource ដើម្បីពន្លឿនការផ្ទុករូបតំណាង ស្គ្រីប ជាដើម។"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:72
 msgid "Some minor CSS compatibility with Juno"
-msgstr ""
+msgstr "ភាពឆបគ្នា CSS បន្តិចបន្តួចជាមួយ Juno"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:88
 msgid "Annotations and two page views"
-msgstr ""
+msgstr "ចំណារពន្យល់ និងទិដ្ឋភាពពីរទំព័រ"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:93
 msgid "Support for MOBI format and UX improvements"
-msgstr ""
+msgstr "ការគាំទ្រទម្រង់ MOBI និងការកែលម្អ UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:98
 msgid "UX improvements for list view and other preference customizations"
-msgstr ""
+msgstr "ការកែលម្អ UX សម្រាប់ទិដ្ឋភាពបញ្ជី និងការប្ដូរចំណូលចិត្តផ្សេងៗ"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:103
 msgid "Comics support and UX improvements"
-msgstr ""
+msgstr "ការគាំទ្រ Comics និងការកែលម្អ UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:108
 msgid "PDF support and UX improvements"
-msgstr ""
+msgstr "ការគាំទ្រ PDF និងការកែលម្អ UX"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:113
 msgid "Initial release with support for EPUB format"
-msgstr ""
+msgstr "ការចេញផ្សាយដំបូងដែលគាំទ្រទម្រង់ EPUB"
 
 #: data/com.github.babluboy.bookworm.appdata.xml.in:117
 msgid "Siddhartha Das"
-msgstr ""
+msgstr "Siddhartha Das"
