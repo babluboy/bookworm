@@ -843,11 +843,13 @@ namespace BookwormApp.Utils {
         var loop = new MainLoop ();
         BookwormApp.AppWindow.aWebView.run_javascript.begin (javascript, null, (obj, res) => {
             try {
-                BookwormApp.AppWindow.aWebView.run_javascript.end (res);
+                WebKit.JavascriptResult? jsResult = BookwormApp.AppWindow.aWebView.run_javascript.end (res);
+                if (jsResult != null) {
+                    selectedText = jsResult.get_js_value ().to_string ();
+                }
             } catch (GLib.Error e) {
                 warning ("Could not get selected text, javascript error: " + e.message);
             }
-            selectedText = BookwormApp.AppWindow.aWebView.get_title ();
             loop.quit ();
         });
         loop.run ();
