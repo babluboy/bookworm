@@ -80,6 +80,8 @@ public class BookwormApp.contentHandler {
                 }
                 //fetch content from extracted book
                 contents.assign (BookwormApp.Utils.fileOperations ("READ_FILE", bookLocationToRead, "", ""));
+                //ensure the HTML content contains valid UTF-8
+                contents.assign (contents.str.make_valid ());
                 //find list of relative urls with src, href, etc and convert them to absolute ones
                 foreach (string tagname in BookwormApp.Constants.TAG_NAME_WITH_PATHS) {
                     string[] srcList = BookwormApp.Utils.multiExtractBetweenTwoStrings (contents.str, tagname, "\"");
