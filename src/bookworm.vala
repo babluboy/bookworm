@@ -257,8 +257,7 @@ public class BookwormApp.Bookworm : Granite.Application {
             info ("Book (s) to be added/opened based on command line parameters. Size of command line attributes:" + 
                 commandLineArgs.length.to_string ()
             );
-            pathsOfBooksToBeAdded = new string[commandLineArgs.length];
-            pathsOfBooksToBeAdded = commandLineArgs;
+            pathsOfBooksToBeAdded = commandLineArgs[1:commandLineArgs.length];
             //Display the progress bar
             BookwormApp.AppWindow.bookAdditionBar.show ();
             isBookBeingAddedToLibrary = true;

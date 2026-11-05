@@ -533,7 +533,7 @@ public class BookwormApp.Library {
             //If only one book is being added, complete parsing and adding the book, 
             //so that it will be added to the BookwormApp.Bookworm.libraryViewMap and opened on the
             //BookwormApp.contentHandler.performStartUpActions method
-            if (BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 2) {
+            if (BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 1) {
                 Idle.add (addBooksToLibrary.callback);
             }
             BookwormApp.Bookworm.noOfBooksAddedFromCommand++;
@@ -548,7 +548,7 @@ public class BookwormApp.Library {
             //If only one book is being added, complete parsing and adding the book, 
             //so that it will be added to the BookwormApp.Bookworm.libraryViewMap and opened on the
             //BookwormApp.contentHandler.performStartUpActions method
-            if (BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 2) {
+            if (BookwormApp.Bookworm.pathsOfBooksToBeAdded.length > 1) {
                 yield;
             }
             //ignore the first command which is the application name
@@ -673,8 +673,6 @@ public class BookwormApp.Library {
                     BookwormApp.AppWindow.library_table_liststore.remove (iterToBeRemoved);
                 #endif
             }
-            //Clear the paths of the loaded books
-            BookwormApp.Bookworm.pathsOfBooksInLibraryOnLoadStr.erase (0, -1);
             //Update the library view
             BookwormApp.Library.updateLibraryViewFromDB ();
         }
