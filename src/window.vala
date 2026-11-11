@@ -150,6 +150,8 @@ public class BookwormApp.AppWindow {
         //Create a MessageBar to show status messages
         infobar = new Gtk.InfoBar ();
         infobarLabel = new Gtk.Label ("");
+        infobarLabel.set_line_wrap (true);
+        infobarLabel.set_line_wrap_mode (Pango.WrapMode.WORD_CHAR);
         Gtk.Container infobarContent = infobar.get_content_area ();
         infobar.set_message_type (MessageType.INFO);
         infobarContent.add (infobarLabel);
