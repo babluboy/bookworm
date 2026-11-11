@@ -355,7 +355,7 @@ namespace BookwormApp.Utils {
                 //check if directory does not exists
                 if (!fileDir.query_exists ()) {
                     //create the directory
-                    fileDir.make_directory ();
+                    fileDir.make_directory_with_parents ();
                     result.assign ("true");
                     //close and release the file
                     FileUtils.close (new IOChannel.file (path, "r").unix_get_fd ());
