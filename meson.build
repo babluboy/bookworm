@@ -62,7 +62,7 @@ executable(
     dependencies: [
         dependency('gtk+-3.0'),
         dependency('gee-0.8'),
-        dependency('webkit2gtk-4.0'),
+        dependency('webkit2gtk-4.1'),
         dependency('poppler-glib'),
         dependency('libxml-2.0'),
         dependency('granite', version: '>=0.5'),

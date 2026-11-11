@@ -690,7 +690,7 @@ namespace BookwormApp.Utils {
     }
 
     public static string decodeHTMLChars (string inputString) {
-        string outputString = Soup.URI.decode (inputString);
+        string outputString = GLib.Uri.unescape_string (inputString);
         return outputString;
     }
 
@@ -700,7 +700,7 @@ namespace BookwormApp.Utils {
     }
 
     public static string removeMarkUp (string inputString) {
-        string outputString = Soup.URI.decode (inputString);
+        string outputString = GLib.Uri.unescape_string (inputString);
         //replace the escape char for space present in HTML converted from PDF
         outputString = outputString.replace ("&#160;", " ").replace ("#160;", " ").replace ("&#160", " ");
         return outputString;
