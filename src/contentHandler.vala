@@ -401,7 +401,8 @@ public class BookwormApp.contentHandler {
         // (2) Close Bookworm while in reading mode
         // (3) Move to info view using Info button on Header Bar
         int scrollPos = -1;
-        scrollPos = int.parse (BookwormApp.Utils.setWebViewTitle ("document.title = window.scrollY;"));
+        string scrollPosition = BookwormApp.Utils.setWebViewTitle("document.title = window.scrollY;");
+        scrollPos = scrollPosition != null ? int.parse(scrollPosition) : 0;
         debug ("[START] [FUNCTION:getScrollPos] scrollPos=" + scrollPos.to_string ());
         return scrollPos;
     }
