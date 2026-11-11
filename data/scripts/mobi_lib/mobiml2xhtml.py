@@ -515,11 +515,11 @@ def main(argv=sys.argv):
         print('XHTML version of book can be found at: ', outname)
 
     except ValueError as e:
-        print("Error: %s" % e)
+        print('Error: %s', e)
         return 1
 
     return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())
