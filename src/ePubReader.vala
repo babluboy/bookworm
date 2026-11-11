@@ -299,8 +299,7 @@ public class BookwormApp.ePubReader {
         }
         //If cover could not be located in properties="cover-image" : 
         //Check for a MANIFEST item with "id" attribute contaning the word "cover"
-        if (bookCoverLocation.length < 1 &&
-            "true" == BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, "") )
+        if (bookCoverLocation.length < 1)
         {
             count = 0;
             foreach (string id in opfItemsList[0].extractedTagAttributes) {
@@ -318,8 +317,8 @@ public class BookwormApp.ePubReader {
             }
         }
         //check if cover was still not found and assign flag for default cover to be used
-        if (bookCoverLocation.length < 1 &&
-            "true" == BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, ""))
+        if( bookCoverLocation.length < 1 ||
+            "true" != BookwormApp.Utils.fileOperations ("EXISTS", "", bookCoverLocation, "") )
         {
             aBook.setIsBookCoverImagePresent (false);
             debug ("Cover image not found for book located at:" + aBook.getBookExtractionLocation ());
