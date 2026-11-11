@@ -106,6 +106,7 @@
   </releases>
   <developer_name>Siddhartha Das</developer_name>
   <url type="homepage">https://babluboy.github.io/bookworm</url>
+  <url type="vcs-browser">https://github.com/babluboy/bookworm</url>
   <url type="bugtracker">https://github.com/babluboy/bookworm/issues</url>
   <url type="help">https://github.com/babluboy/bookworm/wiki</url>
   <update_contact>bablu.boy_AT_gmail.com</update_contact>
