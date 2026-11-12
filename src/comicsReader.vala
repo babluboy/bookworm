@@ -67,17 +67,41 @@ public class BookwormApp.comicsReader {
             extractionLocation = BookwormApp.Constants.EBOOK_EXTRACTION_LOCATION + File.new_for_path (eBookLocation).get_basename ();
         }
         //check and create directory for extracting contents of ebook
-        BookwormApp.Utils.fileOperations ("CREATEDIR", extractionLocation, "", "");
+        BookwormApp.Utils.fileOperations ("CREATEDIR", extractionLocation + "/images", "", "");
         //extract eBook contents into extraction location
+        string? bsdtar = GLib.Environment.find_program_in_path ("bsdtar");
+        string? unar = GLib.Environment.find_program_in_path ("unar");
+        string? unrar = GLib.Environment.find_program_in_path ("unrar");
+        string? unzip = GLib.Environment.find_program_in_path ("unzip");
+        string? extractionCommand = null;
+
         switch (comicsFileType) {
             case ".CBR":
-                BookwormApp.Utils.execute_sync_command ("unar -D -o \"" + extractionLocation + "/images/" + "\" \"" + eBookLocation + "\"");
+                if (unar != null) {
+                    extractionCommand = "\"" + unar + "\" -D -f -o \"" + extractionLocation + "/images/\" \"" + eBookLocation + "\"";
+                } else if (unrar != null) {
+                    extractionCommand = "\"" + unrar + "\" x -o+ \"" + eBookLocation + "\" \"" + extractionLocation + "/images/\"";
+                } else if (bsdtar != null) {
+                    extractionCommand = "\"" + bsdtar + "\" -xf \"" + eBookLocation + "\" -C \"" + extractionLocation + "/images/\"";
+                }
                 break;
             case ".CBZ":
-                BookwormApp.Utils.execute_sync_command ("unzip -j -o \"" + eBookLocation + "\" -d \"" + extractionLocation + "/images/" + "\"");
+                if (unzip != null) {
+                    extractionCommand = "\"" + unzip + "\" -o \"" + eBookLocation + "\" -d \"" + extractionLocation + "/images/\"";
+                } else if (unar != null) {
+                    extractionCommand = "\"" + unar + "\" -D -f -o \"" + extractionLocation + "/images/\" \"" + eBookLocation + "\"";
+                } else if (bsdtar != null) {
+                    extractionCommand = "\"" + bsdtar + "\" -xf \"" + eBookLocation + "\" -C \"" + extractionLocation + "/images/\"";
+                }
                 break;
             default:
                 break;
+        }
+        if (extractionCommand != null) {
+            BookwormApp.Utils.execute_sync_command (extractionCommand);
+        } else {
+            warning ("No suitable archive extraction utility found for %s files", comicsFileType);
+            extractionLocation = "false";
         }
         info ("[END] [FUNCTION:extractComics] extractionLocation=" + eBookLocation);
         return extractionLocation;
@@ -101,7 +125,7 @@ public class BookwormApp.comicsReader {
                     htmlFileName.assign (File.new_for_path (aBook.getBookLocation ()).get_basename () + "_" + countOfSections.to_string () + ".html");
                     BookwormApp.Utils.fileOperations (
                         "WRITE", extractionLocation, htmlFileName.str, BookwormApp.Constants.COMICS_HTML_TEMPLATE
-                            .replace ("<image-location>", extractionLocation + "/images/" + contentLocationPath));
+                            .replace ("<image-location>", contentLocationPath));
                     aBook.setBookContentList (extractionLocation + "/" + htmlFileName.str);
                     //Set the first image as the cover for the comics
                     if (countOfSections == 1) {
